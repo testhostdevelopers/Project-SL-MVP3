@@ -1,0 +1,2052 @@
+/* NFT MarketPlace Start -- Muhsin Deniz -- */
+
+@import './veriables.css';
+
+
+/*
+    NFT MarketPlace Veriables
+*/
+html body,
+body p{
+    font-family: AvertaStd;
+    font-weight: normal;
+}
+body p{
+    font-size: 14px;
+}
+body b,
+body strong {
+	font-weight: 600;
+}
+
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+	font-weight: 600 !important;
+}
+
+
+body .container,
+body .container-fluid,
+body .container-lg,
+body .container-md,
+body .container-sm,
+body .container-xl{
+    max-width: 1320px;
+    padding:  0 15px;
+    margin:  0 auto;
+}
+img{
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+.btn-fill,
+.btn-primary {
+	background-image: url(../img/icons/custom/buttonBg.png);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	border: none;
+	border-radius: 30px;
+	font-size: 14px;
+	padding: 10px 27px 11px 27px;
+	color: #fff;
+}
+
+.btn-fill{
+    background-image: none;
+    background-color: #6300FF;
+}
+.nav-item .btn-primary-outline,
+.nav-item .btn-primary {
+    margin-left: 10px;
+}
+.buy-art-work-week-card {
+    padding: 0 30px 30px 30px;
+}
+
+.bighest-bid-text b span{
+    color: #979797;
+}
+
+.btn-light {
+    background: var(--gray-bg);
+    border: 0.5px solid #C7C7C7;
+    box-sizing: border-box;
+    border-radius: 47px;
+    padding: 10px 18px;
+    color: var(--black-text);
+}
+
+.btn-light-white{
+    background: var(--btn-light-white);
+    border: 0.5px solid #C7C7C7;
+    box-sizing: border-box;
+    border-radius: 47px;
+    padding: 10px 18px;
+    color: var(--text-light-color);
+}
+
+.btn-light-white:hover{
+    color: var(--text-light-color);
+}
+
+.btn-ping:hover{
+    color: white !important;
+}
+
+.btn:focus{
+    box-shadow: none !important;
+}
+
+.buy-art-work-week h1, 
+.buy-art-work-week h2, 
+.buy-art-work-week h3, 
+.buy-art-work-week h4, 
+.buy-art-work-week h5, 
+.buy-art-work-week h6, 
+nav h3, 
+.buy-art-work-week p,
+.buy-art-work-week span,
+.buy-art-work-week b,
+.liveAuction h3,
+.quickExplore h3,
+.buy-art-work-week small, 
+.sign-in-container-section h3,
+.sign-in-container-section h6,
+.buy-art-work-week a,
+.buy-art-work-week .tab-pane,
+.openProfileDropMenu h6,
+.notificationPopup h5,
+.notificationPopup h4,
+.cryptoioria-banner-container h4,
+.cryptoioria-banner-container div,
+.artWorkWeekSection h3,
+.create-collectible div,
+.create-collectible h1,
+.create-collectible h5,
+.create-collectible p,
+.create-collectible b,
+.quickExplore h4,
+.openProfileDropMenu h4{
+    color: var(--black-color);
+}
+
+.quickExplore .ant-tabs-ink-bar{
+    background: none !important;
+}
+
+.place-a-bid-popup-container div,
+.place-a-bid-popup-container b,
+.place-a-bid-popup-container h1,
+.place-a-bid-popup-container h2
+.place-a-bid-popup-container path{
+    color: var(--black-color);
+    fill: var(--black-color);
+}
+
+.profile-activity-filter-mobile path{
+    fill: var(--black-color);
+}
+
+
+
+.create-single-section-container div,
+.create-single-section-container h1,
+.create-single-section-container h2,
+.create-single-section-container h3, 
+.create-single-section-container h4, 
+.create-single-section-container h5, 
+.create-single-section-container h6{
+    color: var(--black-color);
+    background-color: var(--bg-main);
+}
+
+.create-single-section-container .prize-single-collectible input{
+    background-color: var(--bg-main);
+    width: 100% !important;
+    font-size: 16px;
+}
+
+.create-single-section-container .prize-single-collectible input::placeholder{
+    color: #9D9D9D !important;
+}
+
+.place-a-bid-popup-container input{
+    width: 100% !important;
+}
+
+.profile-pictures-infos div,
+.profile-pictures-infos h1,
+.profile-pictures-infos h2,
+.profile-pictures-infos h3, 
+.profile-pictures-infos h4, 
+.profile-pictures-infos h5, 
+.profile-pictures-infos h6,
+.profile-pictures-infos path{
+    color: var(--black-color);
+    fill: var(--black-color);
+}
+
+.profile-pictures-infos .profile-activity-filter-mobile path{
+    fill: var(--pink-color);
+}
+
+.profile-pictures-infos .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap, .ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-wrap{
+border-bottom: solid 1px var(--gray-color);
+}
+
+.ant-tabs-tab + .ant-tabs-tab div{
+    color: var(--gray-color);
+}
+
+.profile-pictures-infos .btn-gray{
+    background: var(--gray-bg);
+    border: solid 1px #fff;
+    display: inline-block   ;
+}
+
+.profile-pictures-infos .ant-tabs-tab-active{
+    border-bottom: solid 2px #000 !important;
+    z-index: 9999 !important;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+    color: var(--black-color) !important;
+}
+
+
+.prize-single-collectible input{
+    background: var(--bg-white);
+}
+
+
+.nft-start h3, .nft-start h6{
+    color: var(--black-color);
+}
+
+.liveAuction-card-container small{
+    color: var(--black-color);
+}
+
+.liveAuction-card-container div,
+.liveAuction-card-container h6{
+    background-color: var(--bg-white);
+}
+
+.headerSelect h3{
+    color: var(--black-color);
+}
+
+.btn-ping  {
+    background: var(--pink-color);
+    border: none;
+    border-radius: 30px;
+    font-size: 14px;
+    padding: 12px 25px;
+    color: #fff;
+}
+
+.btn-ping-passive{
+    background: var(--bg-white);
+    border: solid 1px var(--pink-color);
+    border-radius: 30px;
+    font-size: 14px;
+    padding: 12px 25px;
+    color: var(--black-text);
+}
+
+.btn-gray {
+    background: var(--light-gray);
+    border: none;
+    border-radius: 30px;
+    font-size: 14px;
+    padding: 12px 25px;
+    color: var(--white-color);
+}
+
+.btn-primary-outline {
+	background: transparent;
+	border: solid 1px var(--pink-color);
+	border-radius: 30px;
+	font-size: 12px;
+	padding: 12px 15px;
+	color: var(--black-color);
+	min-width: 94px;
+	height: 45px;
+	margin-left: 8px;
+}
+
+.btn-primary-outline-big{
+    background: transparent;
+    border: solid 1px var(--pink-color);
+    border-radius: 30px;
+    font-size: 14px;
+    padding: 12px 25px;
+    color: var(--black-color);
+    min-width: 145px !important;
+    height: 45px;
+}
+
+.btn-primary-outline-responsive {
+    background: transparent;
+    border: solid 1px var(--primary-gradient);
+    border-radius: 20px;
+    font-size: 14px;
+    padding: 12px 25px;
+    color: var(--red-color);
+}
+
+.footer-column-flex-border .footer-column:first-child {
+	padding-right: 6.9%;
+}
+.footer-column-flex-border .footer-column:first-child .footer-menu {
+	max-width: 92%;
+	width: 100%;
+	font-size: 16px;
+	line-height: 156.52%;
+	color: #6E6E6E;
+}
+footer .footer-menu {
+    padding: 0;
+    color: var(--black-text);
+}
+
+footer .footer-title {
+    color: var(--black-text);
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 25px;
+}
+
+footer .footer-title h3{
+    color: var(--black-text) !important;
+    font-size: 22px !important;
+}
+
+footer .footer-title h6 {
+	color: var(--black-text) !important;
+	line-height: 156.52%;
+	font-weight: 600;
+}
+footer .footer-menu li {
+	list-style-type: none;
+	padding: 0 0 15px 0;
+	font-family: AvertaStd;
+	font-size: 16px;
+	line-height: 156.52%;
+	color: #6E6E6E;
+	font-weight: 600;
+}
+footer .footer-menu li:hover{
+    color: var(--pink-color);
+}
+footer .footer-menu li > span {
+	font-weight: normal;
+}
+footer .btn-primary {
+	padding: 10px 10px;
+	min-width: 80px !important;
+}
+footer .footer-menu li:hover {
+    cursor: pointer;
+}
+
+footer .footer-social-media-container {
+    display: flex;
+    width: 100%;
+    color: var(--black-text);
+}
+
+footer p {
+    color: var(--black-text);
+    font-size: 14px;
+}
+
+footer .footer-social-media-container li {
+    list-style-type: none;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    color: var(--black-text);
+    justify-content: center;
+    align-items: center;
+    background-color: #F9F9F9;
+    margin-right: 20px;
+    transition: linear .2s all;
+    margin-top: 25px;
+}
+
+footer .footer-social-media-container li:hover {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: linear .2s all;
+}
+
+.footer-copy-right {
+    color: #C2C2C2;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+footer div {
+	font-family: AvertaStd;
+	font-size: 16px;
+	line-height: 156.52%;
+	color: #6E6E6E;
+	font-weight: 600;
+}
+.d-flex.footer-social-icons > div {
+	display: flex;
+	align-items: center;
+}
+.d-flex.footer-social-icons > div:hover{
+    opacity: 0.8;
+}
+footer section .footer-in-email {
+	outline: none;
+	border: 0.2px solid #C7C7C7;
+	box-sizing: border-box;
+	padding: 0 20px;
+	height: 50px;
+	font-size: 14px;
+	background-color: var(--footer-input-bg);
+	width: 225px;
+	box-shadow: 0px 25px 40px rgba(0, 0, 0, 0.01);
+	border-radius: 24px;
+}
+.artwork-item {
+	width: 31.3%;
+    margin-bottom: 1.2rem;
+}
+.artwork-item:nth-child(3n) {
+	margin-right: 0 !important;
+}
+.artWorkWeekSection .col-lg-5 {
+	-ms-flex: 0 0 40.167%;
+	flex: 0 0 40.167%;
+	max-width: 40.167%;
+}
+.artWorkWeekSection .home-artwork-week-day {
+	-ms-flex: 0 0 59.8%;
+	flex: 0 0 59.8%;
+	max-width: 59.8%;
+}
+.home-artwork-week-day > .d-flex {
+	display: flex;
+	flex-wrap: wrap;
+}
+.artwork-item:last-child {
+	margin-right: 0 !important;
+}
+.artWorkWeekSection img {
+	border-radius: 14px;
+	max-width: 100%;
+	width: auto;
+	max-height: 100%;
+	height: auto;
+}
+
+.artWorkWeekSection .artWorkMain {
+    height: 450px !important;
+    border-radius: 12px !important;
+}
+
+.art-work-description-container {
+    background: rgba(255, 255, 255, 0.8);
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+    border-radius: 15px;
+    position: absolute;
+    width: 80%;
+    padding: 10px 17px;
+    display: flex;
+    left: 50%;
+    bottom: 5%;
+    flex-direction: column;
+    align-items: flex-start;
+    transform: translate(-50%, 0);
+    justify-content: center;
+}
+
+.nft-start .artWorkWeekSection .artWork-of-the-week-overflow{
+    overflow: hidden;
+}
+
+.art-work-description-container small{
+    font-family: "AvertaStd" !important;
+    font-size: 15px;
+}
+
+.art-work-description-container small b{
+    font-family: "AvertaStd" !important;
+    font-size: 14px;
+}
+
+.footer-social-icons i {
+    font-size: 22px;
+    color: #9D9D9D;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.footer-social-icons svg{
+    width: 24px;
+    height: 24px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.footer-column-flex-border {
+    border-bottom: 0.5px solid #adadad;
+}
+
+.d-web-none {
+    display: none;
+}
+
+.margin-mobile-left {
+    margin-left: 75px;
+}
+
+.topSeller .headerSelect {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+
+.topSellerCard {
+    background-color: var(--bg-white);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    position: relative;
+}
+
+.topSeller .topSellerCard .topSellectProfilePicture {
+	width: 95px;
+	height: 95px;
+	border-radius: 50%;
+	position: absolute;
+	top: 80px;
+	left: 50%;
+	transform: translate(-50%);
+}
+
+.topSeller .topSellerCard .topSellerUserInfo {
+	width: 100%;
+	text-align: center;
+	padding: 55px 10px 20px 10px;
+}
+
+.topSeller .topSellerCard .topSellerUserInfo h5 {
+    font-size: 13px;
+}
+
+.topSeller .topSellerCard .topSellerUserInfo small {
+	color: var(--gray-color);
+	font-size: 14px;
+	font-family: "AvertaStd" !important;
+	margin-top: 10px;
+	display: block;
+}
+
+.topSellerContent .topSellerCard .topSellectProfilePicture .confirmation {
+    width: 24px;
+    height: 24px;
+    background-color: var(--orange-color);
+    color: var(--white-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+}
+
+.liveAuction .liveAuction-card-container .live-image img {
+	border-radius: 15px;
+	max-height: 280px;
+	object-fit: cover;
+	width: 100%;
+}
+.liveAuction-card-container {
+	background: #FFFFFF;
+	border: 0.2px solid #EDECEC;
+	box-sizing: border-box;
+	box-shadow: 0px 25px 40px rgba(0, 0, 0, 0.01);
+	border-radius: 15px;
+    margin-bottom: 25px;
+	overflow: hidden;
+    position: relative;
+}
+.liveAuction-card-container .bg-white{
+	position: relative;
+}
+.liveAuction-card-container .live-user-list {
+	display: flex;
+	flex-wrap: wrap;
+	position: absolute;
+	z-index: 1;
+	top: -20px;
+	background: transparent;
+	left: 23px;
+}
+.liveAuction-card-container .live-user-list > img {
+	width: 36px;
+	height: 36px;
+    border-radius: 50px;
+    border: 1px solid #FFFFFF;
+}
+.liveAuction .live-image {
+    position: relative;
+}
+
+.liveAuction .card-heart-icon {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(50px);
+    border-radius: 15px;
+    padding: 5px 10px;
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    color: var(--text-light-color);
+}
+
+.liveAuction .card-heart-icon i {
+	color: var(--red-color);
+	margin-right: 5px;
+}
+
+.liveAuction .card-select-icon {
+    background: var(--bg-white);
+    backdrop-filter: blur(50px);
+    cursor: pointer;
+    padding: 5px 10px;
+    position: absolute;
+    bottom: -16px;
+    right: 15px;
+    border: 0.2px solid #EDECEC;
+    box-sizing: border-box;
+    box-shadow: 0px 25px 40px rgba(0, 0, 0, 0.01);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.liveAuction .card-select-icon i {
+    color: var(--black-color);
+}
+
+.liveAuction .live-user-list img {
+    margin-right: -15px;
+}
+
+.liveAuction .live-user-list .live-card-tick {
+    width: 12px;
+    height: 12px;
+    background-color: var(--orange-color);
+    color: var(--white-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 9px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 60px;
+}
+
+.liveAuction .live-user-list .live-card-tick i {
+    font-size: 8px;
+}
+
+.liveAuction .card-time-hours {
+    position: absolute;
+    background: rgba(var(--gray-color), 0.8);
+    backdrop-filter: blur(50px);
+    border-radius: 15px;
+    left: 20px;
+    bottom: -15px;
+    text-align: center;
+    padding: 5px 10px;
+    z-index: 1;
+}
+
+.quickExplore .nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background-color: var(--black-color);
+    color: var(--white-color);
+}
+
+.ant-tabs-top > .ant-tabs-nav::before{
+    border: none !important;
+}
+
+.quickExplore .ant-tabs-tab-active{
+    background-color: var(--black-color) !important;
+    color: var(--bg-white) !important;
+}
+
+.quickExplore .ant-tabs-tab{
+    background-color: rgba(157, 157, 157, .1);
+    color: var(--gray-color);
+    margin: 0 10px;
+    border-radius: 30px;
+    padding: 12px 20px !important;
+}
+
+.quickExplore .ant-tabs-tab:hover{
+    color: var(--black-color);
+}
+
+/*
+    Slider
+*/
+
+
+.nft-start .swiper-container{
+    width: 100%;
+    position: static;
+}
+
+.nft-start .swiper-slide{
+    width: 100%;
+}
+
+.nft-start .swiper-container .swiper-slide > img {
+	border-radius: 15px;
+	max-height: 483px;
+	width: 100%;
+}
+
+.swiper-button-prev.swiper-button-disabled, .swiper-button-next.swiper-button-disabled{
+    display: none;
+}
+
+.swiper-button-prev, .swiper-button-next{
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 50% !important;
+    background: #e6e6e6 !important;
+    backdrop-filter: blur(50px) !important;
+    z-index: 9 !important;
+}
+
+.swiper-button-next:after{
+    font-size: 20px !important;
+    content: "→" !important;
+    color: #000;
+}
+
+.nft-start .swiper-button-prev:after{
+    font-size: 20px !important;
+    content: "\2190" !important;
+    color: #000;
+}
+small.text-secondary {
+	color: #979797 !important;
+}
+.nft-start .slider-content{
+    position: absolute;
+    bottom: 0;
+    background: rgba(var(--slider-opacity-card), 0.8) !important;
+    backdrop-filter: blur(50px);
+    padding: 25px;
+    width: 100%;
+    display: flex;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.nft-start .slider-content > img {
+	width: 52px;
+	height: 52px;
+	margin-top: 10px;
+}
+.slider-conter-absolute{
+    position: absolute;
+    top: -75px;
+    border-radius: 15px;
+    height: 100px;
+    width: 83%;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 15px;
+    background: rgba(var(--slider-opacity-card), 0.8) !important;
+    backdrop-filter: blur(50px);
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.margin-50{
+    margin-top: 100px !important;
+}
+header + section.margin-50 {
+	margin-top: 0 !important;
+}
+.nft-start .slider-content .slider-conter-absolute h6{
+    font-size: 14px;
+    margin-bottom: 0;
+    color: var(--black-color);
+}
+
+.nft-start .slider-content .slider-conter-absolute small{
+font-size: 12px;
+}
+
+.ant-dropdown-menu-item{
+    padding: 8px 12px !important;
+    border-radius: 30px !important;
+    color: var(--black-color) !important;
+}
+
+.ant-dropdown-menu{
+    background-color: var(--bg-white) !important;
+    color: var(--black-color) !important;
+}
+
+.quick-explore-filter-buton svg path{ 
+    fill: var(--black-color) !important;
+}
+
+.quick-explore-filter-buton svg{ 
+    margin-right: 10px !important;
+}
+
+.ant-dropdown-menu-item:hover{
+    background-color: var(--pink-color) !important;
+    color: var(--white-color) !important; 
+}
+
+.ant-dropdown-menu{
+    border-radius: 12px !important;
+    padding: 10px !important;
+}
+
+.nft-start .swiper-container::before{
+    content: '';
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    border: solid 1px var(--pink-color);
+    border-radius: 15px;
+    top: 4px;
+    right: 0;
+}
+
+.nft-start .swiper-container::after{
+    content: '';
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    border: solid 1px var(--pink-color);
+    border-radius: 15px;
+    top: -9px;
+    right: -15px;
+}
+
+.nft-start .bg-lines{
+    content: '';
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    border: solid 1px var(--pink-color);
+    border-radius: 15px;
+    top: -20px;
+    right: -30px;
+}
+
+
+.liveAuction-card-container h6{
+    color: var(--black-text) !important;
+    margin-top: 15px !important;
+}
+
+.topSeller .ant-select:not(.ant-select-customize-input) .ant-select-selector{
+    background-color: transparent;
+    color: var(--black-color);
+    border: solid 1px var(--pink-color);
+    border-radius: 30px;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    padding: 6px 15px;
+    min-width: 130px;
+    max-width: 160px;
+    text-align: right;
+}
+
+footer .ant-select:not(.ant-select-customize-input) .ant-select-selector{
+    border: solid 1px var(--gray-color) !important;
+}
+
+.topSeller .section-select-filter {
+	margin-left: 26px;
+}
+.topSeller .ant-select {
+	width: 128px;
+}
+
+.topSeller .ant-select-single:not(.ant-select-customize-input) .ant-select-selector{
+    height: auto;
+}
+
+.topSeller .ant-select-arrow path{
+    fill: var(--black-color);
+}
+
+.topSeller .topSellerUserInfo h5 b{
+    color: var(--black-color) !important;
+    font-family: "AvertaStd" !important;
+    font-size: 18px;
+}
+
+.create-single-section-container .putOnMarketplace:hover{
+    border: solid 1px var(--pink-color) !important;
+    cursor: pointer;
+}
+
+.liveAuction-web-none{
+    display: none;
+}
+
+.swiper-button-prev::after{
+    font-size: 20px !important;
+    content: "←" !important;
+    color: #000;
+}
+
+.view-all-items {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.view-all-items button{
+    max-width: 350px;
+}
+
+.prize-single-collectible .ant-select:not(.ant-select-customize-input) .ant-select-selector{
+    background-color: transparent !important;
+    color: var(--black-color) !important;
+    border: none !important;
+    border-radius: 30px !important;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+    padding: 6px 25px !important;
+    text-align: center !important;
+}
+
+
+.prize-single-collectible .ant-select:not(.ant-select-customize-input) .ant-select-selector{
+    background-color: transparent;
+    color: var(--black-color);
+    border: solid 1px var(--pink-color);
+    border-radius: 30px;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    padding: 6px 25px;
+    text-align: center;
+}
+
+.prize-single-collectible .section-select-filter{
+    margin-left: 20px;
+}
+
+.prize-single-collectible .ant-select-single:not(.ant-select-customize-input) .ant-select-selector{
+    height: auto;
+}
+
+.prize-single-collectible .ant-select-arrow path{
+    fill: var(--black-color);
+}
+
+/* .prize-single-collectible input{
+    width: 35px !important;
+} */
+
+.border{
+    border: solid 1px var(--border-color) !important;
+    border-radius: 20px !important;
+    padding: 0 10px;
+}
+
+
+.border-gray{
+    border: solid 1px var(--gray-color) !important;
+}
+
+.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector{
+    box-shadow: none !important;
+}
+.profile-usr-name-h3-size h3{
+    font-size: 24px !important;
+    text-align: center;
+}
+
+.profile-pictures-infos .profile-pictures-cover{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    min-height: 378px;
+}
+
+.flashLightFill{
+    display: block;
+}
+
+.border-dotted{
+    border-style: dashed !important;
+    border-width: 2px !important;
+}
+
+.profile-not-found-browse-btn {
+	border: solid 1px var(--gray-bg);
+	margin: auto auto;
+	height: auto !important;
+	padding: 10px 15px !important;
+}
+
+.d-lg-block{
+    display: block;
+}
+
+.cryptoioria-banner-container {
+	width: 100vw;
+	height: 150vh;
+	background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(74,65,126,0.8225665266106442) 35%, rgba(74,65,126,0.5732668067226891) 64%, rgba(252,252,252,0) 100%);
+	position: relative;
+	display: flex;
+	justify-content: center;
+}
+
+.cryptoioria-banner-container::after{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/custom/cryptoioriaBanner.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    
+}
+
+.artCryptoLogo{
+    width: 600px;
+}
+
+.cryptoioria-banner-container .bottom-logo-x-icons svg path{
+    fill: var(--black-text) !important;
+}
+
+.cryptoioria-banner-container .crypto-border-right {
+	border-right:none;
+	padding-right: 32px;
+	padding-left: 32px;
+    position: relative;
+}
+.cryptoioria-banner-container .crypto-border-right::before {
+	content: "";
+	top: 2px;
+	bottom: 0px;
+	width: 2px;
+	height: 42px;
+	background: #2A2A2A;
+	border-radius: 4px;
+	position: absolute;
+	right: 12px;
+	margin: auto;
+}
+.cryptoioria-banner-container .crypto-border-right:last-child::before{
+    display: none;
+}
+.cryptoioria-banner-container h4 {
+	text-align: left;
+	font-size: 28px;
+	line-height: 105.8%;
+}
+/* .place-a-bid-popup-container .popup-close-btn-outline{
+
+} */
+
+.place-a-bid-popup-container .coin-convert-direction{
+    width: 62px;
+    height: 62px; 
+    border: solid 1px var(--gray-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto auto;
+}
+
+.place-a-bid-popup-container .coin-convert-direction svg path{
+    fill: var(--black-color);
+}
+
+.place-a-bid-popup-container .popup-width, .coin-covert-popup-container{
+    width: 488px;
+    max-height: calc(100vh - 40px) !important;
+    overflow-y: auto;
+    padding: 40px;
+}
+
+.popup-close-btn-exit{
+    position: absolute !important;
+    right: 10px !important;
+    top: 10px !important;
+    width: 15px;
+    height: 15px;
+    border: solid 1px var(--gray-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+div.ant-select-dropdown {
+	padding: 0;
+}
+.ant-select-item-option-content {
+	padding: 2px;
+}
+span.ant-select-selection-item {
+	font-size: 13px;
+}
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled)::after{
+    content: '\2713';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    border-radius: 50%;
+    background-color: #6300FF;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 10px;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.signInActiveBtn{
+    position: relative;
+}
+
+.signInActiveBtn::after{
+    position: absolute;
+    content: 'Most Popular';
+    padding: 7px 15px;
+    border-radius: 30px;
+    background-color: var(--black-color);
+    color: var(--white-color);
+    right: 0;
+    top: -15px;
+}
+
+.sign-in-container-section h5,
+.sign-in-container-section svg path,
+.create-collectible svg path,
+.create-collectible h6,
+.create-single-section-container svg path,
+.create-single-section-container h6,
+.notificationPopup h6,
+.sign-in-container-section h2,
+.sign-in-container-section p{
+    color: var(--black-text) !important;
+    fill: var(--black-text) !important;
+}
+
+.StepProgress {
+  position: relative;
+  padding-left: 45px;
+  list-style: none;
+}
+.StepProgress::before {
+  display: inline-block;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 33px;
+  width: 10px;
+  height: 100%;
+  border-left: 2px solid var(--gray-bg);
+}
+.StepProgress-item {
+  position: relative;
+}
+.StepProgress-item:not(:last-child) {
+  padding-bottom: 50px;
+}
+
+.StepProgress-item{
+    padding-left: 20px;
+}
+
+.StepProgress-item::before {
+  display: inline-block;
+  content: '';
+  position: absolute;
+  left: -30px;
+  height: 100%;
+  width: 10px;
+}
+.StepProgress-item::after {
+    content: attr(data-step);
+    position: absolute;
+    top: 0;
+    left: -37px;
+    font-weight: bold;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border: 1px solid var(--gray-bg);
+    box-shadow: 0px 25px 60px rgba(0, 0, 0, 0.04);
+    border-radius: 50%;
+    background-color: var(--white-color);
+}
+
+.StepProgress strong {
+  display: block;
+}
+
+.activity-container .activity-list-container{
+    border: solid 1px var(--gray-color);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.activity-container .ant-tabs-nav-wrap{
+    border-bottom: solid 1px var(--gray-color) !important;
+}
+
+
+.following-page-section .nav-tabs{
+    border: none !important;
+}
+
+.following-page-section .nav-link{
+    border-radius: 30px;
+    border: solid 1px var(--pink-color);
+    padding: 10px 20px;
+    background: none;
+    max-height: 48px;
+    margin-right: 20px;
+    color: var(--black-text);
+    display: flex;
+    align-items: center;
+}
+
+.following-page-section svg{
+    margin-right: 15px;
+}
+
+.following-page-section .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+    background-color: var(--pink-color) !important;
+    color: var(--white-color) !important;
+}
+
+.following-page-section .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active svg path{
+    fill: var(--white-color) !important;
+}
+
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover{
+    background-color: var(--pink-color) !important;
+    color: var(--white-color) !important;
+}
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover svg path {
+    fill: var(--white-color) !important;
+}
+
+.following-page-section .btn-primary-following svg path{
+    fill: var(--black-text);
+}
+
+.putOnMarketplace svg path{
+    fill: var(--black-color) !important;
+}
+
+.following-page-section .tab-content .tab-pane{
+    text-align: center;
+}
+
+.following-page-section .following-divition{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.following-page-section .nav-tabs .nav-link{
+    align-items: center;
+}
+ 
+.nft-start .home-nft-slider-section {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	-ms-flex: 0 0 45%;
+	flex: 0 0 45%;
+	max-width: 45%;
+}
+.nft-start .home-nft-slider {
+	-ms-flex: 0 0 43.6%;
+	flex: 0 0 43.6%;
+	max-width: 43.6%;
+	margin-top: 67px !important;
+	padding-right: 20px;
+	padding-top: 5px;
+    margin-left: 6%;
+}
+
+.quickExplore .nav-tabs{
+    border: none;
+    display: flex;
+    align-items: center;
+    flex-wrap: initial;
+    width: 100%;
+    height: 50px;
+    overflow-x: auto;
+}
+
+.quickExplore .nav-tabs .nav-link{
+    background-color: var(--gray-bg);
+    color: var(--gray-color);
+    border-radius: 30px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.ant-input:focus{
+    background-color: red !important;
+}
+
+.following-page-section .tab-content{
+    min-height: 350px;
+}
+
+.following-page-section .nav-link svg path{
+    fill: var(--black-color) !important;
+}
+
+.place-a-bid-popup-container .popup-close-btn-outline {
+	width: 48px;
+	height: 48px;
+	border: solid 1px var(--gray-bg);
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 0 0 0;
+}
+.place-a-bid-popup-container .sub-heading {
+	font-size: 18px;
+	line-height: 130%;
+	color: #0E0E0E;
+	font-weight: lighter;
+	max-width: 98%;
+	width: 100%;
+	display: block;
+}
+.place-a-bid-popup-container .sub-heading span {
+	display: inline-block;
+	vertical-align: top;
+}
+.place-a-bid-popup-container .formcontrol {
+	border: none;
+	font-size: 24px;
+	line-height: 130%;
+	height: 32px;
+	font-weight: lighter;
+	padding-right: 80px;
+}
+input:focus,
+input:focus-visible {
+	outline: 0;
+}
+.place-a-bid-popup-container small {
+	font-size: 14px;
+	line-height: 130%;
+	color: #9D9D9D;
+	display: block;
+}
+.place-a-bid-popup-container .bid-input {
+	position: relative;
+	margin-bottom: 10px;
+}
+.balance-info > div {
+	font-size: 18px;
+	margin-bottom: 10px !important;
+}
+.balance-info > div b {
+	font-weight: 600;
+}
+.place-a-bid-popup-container .bid-input .info {
+	position: absolute;
+	right: 0;
+	top: 12px;
+}
+.place-a-bid-popup-container .bid-input .info b {
+	margin-left: 8px;
+}
+.nft-start .home-nft-slider-section .swiper-wrapper .swiper-slide{
+    width: 100%;
+}
+
+.ant-select:not(.ant-select-disabled):hover .ant-select-selector,
+.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector{
+    border-color: var(--pink-color) !important;
+}
+
+.btn-primary.focus, .btn-primary:focus{
+    box-shadow: none !important;
+}
+
+.topSellerContent .topSellerCard .topSellerCardImageover {
+    width: 100%;
+    height: 127px;
+}
+
+.topSellerContent .topSellerCard .topSellerCardImageover img {
+	object-fit: cover;
+	height: 100%;
+	border-top-left-radius: 12px;
+	border-top-right-radius: 12px;
+	width: 100%;
+}
+
+.sign-in-container-section .sig-in-mobile{
+    margin-top: 100px;
+}
+
+.full-screen-images-popup{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--white-color);
+    z-index: 99999;
+    top: 0;
+    padding: 60px 40px;
+}
+
+.full-screen-images-popup .full-screen-img img{
+    width: 100%;
+    border-radius: 20px;
+}
+
+.full-screen-images-popup .full-screen-image-resize{
+    width: 42px;
+    height: 42px;
+    border: solid 1px var(--gray-bg);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 36px;
+    right: 70px;
+}
+
+.full-screen-images-popup .full-screen-image-resize svg path{
+    fill: var(--black-color);
+}
+
+.full-screen-images-popup .full-screen-image-resize:hover{
+    cursor: pointer;
+}
+
+.create-single-section-container .putOnMarketplace svg path{
+    fill: var(--black-color) !important;
+}
+.home-banner-description h3 {
+	margin-left: 4px !important;
+	position: relative;
+	padding-bottom: 8px;
+}
+.home-nft-slider-section > h6 {
+	padding-top: 67px;
+	padding-bottom: 76px;
+}
+.nft-start-counter .btn-primary {
+	min-width: 132px;
+	line-height: 100%;
+}
+.nft-start-counter .d-flex.mt-4 {
+	padding-top: 20px;
+}
+section.nft-start {
+	margin-top: 60px;
+}
+.nft-start, .nft-start-counter h4, .nft-start h4, .navbar-brand span {
+	font-family: 'AvertaStd';
+	font-size: 29px;
+	line-height: 115.8%;
+}
+.nft-start-counter small {
+	font-size: 17px;
+	padding: 0 !important;
+	line-height: 100%;
+	display: block;
+	margin-top: 6px;
+}
+.nft-start-counter .d-flex.mt-4 > div {
+	padding-right: 35px !important;
+	margin-right: 35px;
+	padding-left: 0 !important;
+	border-right: 2px solid #dee2e6 !important;
+}
+.nft-start-counter .d-flex.mt-4 > div:last-child{
+    padding-right:0px !important;
+	margin-right:0px;
+}
+.nft-start-counter .d-flex.mt-4 > div.border-left {
+	border: none !important;
+}
+section .container-fluid,
+.artWorkWeekSection .container-fluid {
+	padding: 0 40px;
+}
+.main-title {
+	font-size: 40px;
+	line-height: 111.8%;
+	position: relative;
+	font-weight: 600 !important;
+	letter-spacing: -2.7px;
+}
+.main-title .back {
+	position: absolute;
+	left: -177px;
+	top: 10px;
+}
+.main-title .back h6 {
+	letter-spacing: 0;
+	margin-left: 4px !important;
+	font-size: 12px;
+}
+section.artWorkWeekSection {
+	padding-top: 82px;
+}
+
+.topSellerContent .d-flex {
+	width: 100%;
+	flex-wrap: wrap;
+}
+.topSellerContent .d-flex .topSellerCard {
+	width: 18.6%;
+	margin-bottom: 25px;
+	background: #FFFFFF;
+	border: 1px solid #C7C7C7;
+	box-sizing: border-box;
+	box-shadow: 0px 25px 40px rgba(0, 0, 0, 0.01);
+	border-radius: 15px;
+	margin-right: 1.7%;
+}
+.topSellerContent .d-flex .topSellerCard:nth-child(5n){
+	margin-right: 0;
+}
+section.artWorkWeekSection .row.mt-5{
+    align-items: flex-start;
+}
+.buy-art-work-week .col-lg-6:first-child {
+	padding-right: 30px;
+}
+.buy-art-work-week .col-lg-6:last-child {
+	padding-left: 30px;
+}
+.ant-tabs-content-holder h3 {
+	font-weight: 600 !important;
+	font-size: 24px;
+}
+.ant-tabs-content-holder .color-gray {
+	font-size: 18px;
+	line-height: 21px;
+	max-width: 264px;
+	margin: 15px auto 0 auto;
+}
+.topSellerContent .d-flex.activity .topSellerCard {
+	width: 30.63%;
+	margin-right: 4%;
+}
+.topSellerContent .d-flex.activity .topSellerCard:last-child {
+	margin-right: 0;
+}
+div.ant-tabs > .ant-tabs-nav{
+	margin-bottom: 30px;
+}
+.topSellerUserInfo button:empty{
+    display: none;
+}
+
+div.cryptoloria-page {
+	margin-top: 172px;
+}
+.cryptoioria-banner-container .navbar-brand {
+	padding-top: 0;
+	padding-bottom: 26px;
+	margin-right: 0;
+	white-space: normal;
+	margin-top: -30px;
+}
+.cryptoioria-banner-container .navbar-brand span {
+	font-size: 22px;
+	letter-spacing: 1px;
+	margin-left: 9px !important;
+}
+.cryptoioria-banner-container a.navbar-brand {
+	margin-bottom: 0 !important;
+	padding-bottom: 24px;
+}
+.cryptoioria-banner-container div.pl-4.pr-4 {
+	font-size: 18px;
+	line-height: 150.3%;
+	max-width: 650px;
+	letter-spacing: 0.4px;
+}
+.cryptoioria-banner-container > div > div.d-flex {
+	max-width: 500px;
+	margin: 60px auto 0 auto !important;
+	width: 100%;
+}
+.cryptoioria-banner-container > div > div.d-flex > div {
+	min-width: 140px;
+}
+.cryptoioria-banner-container div.crypto-border-right div {
+	text-align: left;
+	font-size: 18px;
+	line-height: 115.8%;
+	color: #000000;
+	margin-top: 5px;
+}
+
+ul.filter.topSeller {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+}
+ul.filter.topSeller > li {
+	margin-left: 12px;
+    position: relative;
+}
+ul.filter.topSeller .ant-select {
+	margin: 0;
+	width: auto;
+	max-width: 180px;
+}
+ul.filter.topSeller > li .label {
+	position: absolute;
+	right: 15px;
+	top: -8px;
+	font-size: 10px;
+	line-height: 156.52%;
+	background: var(--white-color);
+	display: block;
+	z-index: 1;
+	padding: 0 5px;
+	color: var(--black-color) !important;
+}
+ul.filter.topSeller > li .icon {
+	position: absolute;
+	top: 11px;
+	left: 13px;
+	z-index: 1;
+}
+.ant-select-single.ant-select-show-arrow span.ant-select-selection-item{
+	padding-right: 22px;
+}
+ul.filter.topSeller > li .ant-select-single:not(.ant-select-customize-input) div.ant-select-selector {
+	padding-left: 40px;
+}
+.d-flex.explore-page {
+	flex-wrap: wrap;
+}
+
+.artwork-sales-btn {
+    color: #000000 !important;
+    font-size: 12px;
+    text-align: center;
+    padding: 7px 16px !important;
+    height: auto !important;
+    font-weight: bold;
+}
+
+.owner-details-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 330px;
+}
+
+.owner-details-list li{
+    margin-bottom: 20px;
+    margin-right: 15px;
+    display: inline-block;
+}
+
+.owner-details-list li a {
+    border: 1px solid #979797;
+    box-sizing: border-box;
+    border-radius: 15px;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    color: #6300FF;
+    font-weight: bold;
+    display: inline-block;
+    padding: 12px 15px;
+}
+
+.owner-details-list li a span{
+    display: block;
+    margin-top: 2px;
+    font-size: 14px;
+    color: #979797;
+}
+
+.category-btn-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.category-btn-list li{
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.category-btn-list li a {
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    border: 1px solid #979797;
+    box-sizing: border-box;
+    border-radius: 50px;
+    padding: 5px 18px;
+}
+
+.category-btn-list li a span{
+    margin-right: 6px;
+    line-height: 0;
+}
+
+.artwork-tab-nav li a{
+    font-weight: bold;
+    color: #979797 !important;
+}
+
+.artwork-tab-nav li a.active{
+    color: #000000 !important;
+}
+
+.profile-pictures-cover{
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-pictures-cover > img{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
+.text-pink{
+    color: var(--pink-color) !important;
+}
+
+.filters-listing-reset button.btn-light{
+    font-weight: bold;
+    height: auto !important;
+}
+
+.filters-listing-reset button.btn-light:hover,
+.filters-listing-reset button.btn-light.active{
+    background-color: var(--pink-color) !important;
+    color: #FFFFFF !important;
+}
+
+.filters-listing-reset button.btn-light:hover svg path,
+.filters-listing-reset button.btn-light.active svg path{
+    fill: #FFFFFF;
+}
+
+.ActivityNumberCard{
+    border: 1px solid #979797;
+    box-sizing: border-box;
+    border-radius: 10px;
+    height: auto;
+    padding: 20px 28px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+    margin-bottom: 25px;
+}
+
+.ActivityNumberCard-img{
+    height: 80px;
+    width: 80px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.ActivityNumberCard-img .lable-icon {
+    position: absolute;
+    line-height: 0;
+    top: -6px;
+    left: -6px;
+}
+
+.ActivityNumberCard-info{
+    padding-left: 25px;
+}
+
+.ActivityNumberCard-info h4{
+    font-size: 18px;
+    line-height: 130%;
+    color: #000000;    
+}
+.ActivityNumberCard-info p{
+    font-size: 16px;
+    line-height: 130%;
+    color: #979797;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.ActivityNumberCard-info p span{
+    color: #000000;
+    margin: 0 4px;
+}
+
+.ActivityNumberCard-info .seenstatus{
+    font-size: 16px;
+    line-height: 130%;
+    color: #979797;    
+}
+
+h4.pro-username{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    color: #0E0E0E;
+    font-family: 'LoRes 9 Plus OT Narrow' !important;
+    padding-top: 5px;
+    display: block;
+}
+
+.following-profile-topSellerContent .d-flex.activity .topSellerCard{
+    width: calc(20% - 26px);
+    margin-right: 13px !important;
+    margin-left: 13px !important;
+}
+
+.following-profile-topSellerContent .d-flex.activity .topSellerCard .topSellerUserInfo h5 b{
+    font-family: 'LoRes 9 Plus OT Narrow' !important;
+}
+
+.topSellerUserInfo .btn-ping{
+    border: 1px solid transparent;
+    max-width: 272px;
+}
+
+.topSellerUserInfo .btn-ping:hover{
+    background-color: transparent;
+    border-color: var(--pink-color);
+    color: #000000 !important;
+}
+
+.faq-sec .container-fluid {
+    padding-top: 100px;
+}
+
+.faq-sec .main-title{
+    padding-bottom: 50px;
+}
+
+.faq-sec.faq-container .tab-label{
+    margin-bottom: 0;
+}
+
+.faq-sec.faq-container .tab-content{
+    background: #F7F7F7 !important;
+    border-radius: 20px !important;
+}
+
+.faq-sec.faq-container [id*="open-accordion"]:after,
+.faq-sec.faq-container [id*="close-accordion"]:after {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #000;
+    top: 10px;
+}
+
+.faq-sec.faq-container .sub-tabs-menu .accordion span:target~[id*="close-accordion"]:after {
+    border-top: 5px solid #333;
+}
+
+.faq-sec.faq-container .sub-tabs-menu .accordion a {
+    padding-left: 3%;
+    font-family: 'LoRes 9 Plus OT Narrow';
+    height: auto !important;
+    padding-bottom: 15px;
+}
+
+.faq-sec.faq-container .sub-tabs-menu .accordion-content {
+    width: 100%;
+    padding-left: 3%;
+}
+
+.faq-sec.faq-container .sub-tabs-menu .accordion-content p{
+    font-size: 18px;
+    color: #0E0E0E;
+}
+.activity-list-container > div > img{
+    width: 120px;
+}
+
+header + section {
+	padding-top: 148px;
+}
+section div.main-box {
+	-ms-flex: unset;
+	flex: unset;
+	max-width: 600px;
+	width: 100%;
+}
+
+.create-single-section-container > .container {
+	max-width: 954px;
+	margin-top: 33px;
+}
+.tooltp {
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+    padding: 0px 2px 2px 2px;
+    cursor: pointer;
+}
+.tooltp svg {
+	opacity: 0.5;
+}
+.tooltp::before {
+	content: attr(data-title);
+	position: absolute;
+	background: #FFF;
+	box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.2);
+	width: 214px;
+	height: 56px;
+	top: 100%;
+	left: -100px;
+	padding: 10px 20px;
+	font-family: AvertaStd;
+	font-size: 14px;
+	line-height: 120%;
+	text-align: center;
+	color: #000000;
+	font-weight: 500;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+.tooltp:hover:before{
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: all 0.5s ease;
+}
+.brand-new-nfp .upload-box {
+	height: 516px;
+	position: sticky;
+	top: 20px;
+}
+.prize-single-collectible .d-flex.border * {
+	background: transparent;
+}
+.topSellerUserInfo .btn-ping.follow {
+	background: transparent;
+	border: 1px solid var(--pink-color);
+	color: var(--pink-color);
+}
+.topSellerUserInfo .btn-ping.follow:hover {
+	background: var(--pink-color);
+	color: var(--white) !important;
+}
+.prize-single-collectible .btn-primary-outline {
+	padding: 5px 15px;
+	height: auto !important;
+}
+.profile-edit-verified-container .btn-primary-outline {
+	background:var(--white);
+}
+.btn-primary.profile-edit-verified-btn {
+	background: var(--pink-color);
+}
+.btn-primary.profile-edit-verified-btn:hover{
+	background: #5502D7;
+}
+.place-a-bid-popup-container h3 {
+	font-weight: normal !important;
+}
+.place-a-bid-popup-container h5 {
+	font-size: 18px;
+	line-height: 130%;
+}
+.place-a-bid-popup-container h5 + span {
+	font-size: 14px;
+	line-height: 130%;
+    margin-top: 4px;
+}
+
+.profile-pictures-infos.search-page .ant-tabs-top > .ant-tabs-nav::before {
+	display: none;
+}
+.profile-pictures-infos.search-page .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap{
+    justify-content: flex-start;
+}
+.profile-pictures-infos.search-page .topSellerContent .d-flex{
+    padding: 0;
+}
+footer .ant-select-arrow {
+	right: 35px !important;
+}
+.profile-user-pictures {
+	width: 167px;
+	height: 167px;
+	border-radius: 50%;
+	border: 5px solid #fff;
+    position: relative;
+}
+.edit-proile-img {
+	position: absolute;
+	top: 10px;
+	right: 7px;
+	background: #fff;
+	padding: 0px;
+	border-radius: 25px;
+    cursor: pointer;
+}
+.profile-user-pictures > img{
+    border-radius: 100%;
+}

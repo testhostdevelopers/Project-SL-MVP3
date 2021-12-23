@@ -1,0 +1,352 @@
+@font-face {
+    font-family: 'LoRes 12 OT Narrow';
+    src: url('LoRes12OTNarrow-Regular.eot');
+    src: local('LoRes 12 OT Narrow Regular'), local('LoRes12OTNarrow-Regular'),
+        url('LoRes12OTNarrow-Regular.eot?#iefix') format('embedded-opentype'),
+        url('LoRes12OTNarrow-Regular.woff2') format('woff2'),
+        url('LoRes12OTNarrow-Regular.woff') format('woff'),
+        url('LoRes12OTNarrow-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 9 OT Wide';
+    src: url('LoRes9OTWide-Regular.eot');
+    src: local('LoRes 9 OT Wide Regular'), local('LoRes9OTWide-Regular'),
+        url('LoRes9OTWide-Regular.eot?#iefix') format('embedded-opentype'),
+        url('LoRes9OTWide-Regular.woff2') format('woff2'),
+        url('LoRes9OTWide-Regular.woff') format('woff'),
+        url('LoRes9OTWide-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 9 OT Wide Alt Oakland';
+    src: url('LoRes9OTWideAltOakland-Bold.eot');
+    src: local('LoRes 9 OT Wide Alt Oakland Bold'), local('LoRes9OTWideAltOakland-Bold'),
+        url('LoRes9OTWideAltOakland-Bold.eot?#iefix') format('embedded-opentype'),
+        url('LoRes9OTWideAltOakland-Bold.woff2') format('woff2'),
+        url('LoRes9OTWideAltOakland-Bold.woff') format('woff'),
+        url('LoRes9OTWideAltOakland-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 12 OT';
+    src: url('LoRes12OT-Bold.eot');
+    src: local('LoRes 12 OT Bold'), local('LoRes12OT-Bold'),
+        url('LoRes12OT-Bold.eot?#iefix') format('embedded-opentype'),
+        url('LoRes12OT-Bold.woff2') format('woff2'),
+        url('LoRes12OT-Bold.woff') format('woff'),
+        url('LoRes12OT-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 12 OT Alt Oakland';
+    src: url('LoRes12OTAltOakland-Bold.eot');
+    src: local('LoRes 12 OT Alt Oakland Bold'), local('LoRes12OTAltOakland-Bold'),
+        url('LoRes12OTAltOakland-Bold.eot?#iefix') format('embedded-opentype'),
+        url('LoRes12OTAltOakland-Bold.woff2') format('woff2'),
+        url('LoRes12OTAltOakland-Bold.woff') format('woff'),
+        url('LoRes12OTAltOakland-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 9 OT Narrow';
+    src: url('LoRes9OTNarrow-Regular.eot');
+    src: local('LoRes 9 OT Narrow Regular'), local('LoRes9OTNarrow-Regular'),
+        url('LoRes9OTNarrow-Regular.eot?#iefix') format('embedded-opentype'),
+        url('LoRes9OTNarrow-Regular.woff2') format('woff2'),
+        url('LoRes9OTNarrow-Regular.woff') format('woff'),
+        url('LoRes9OTNarrow-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 9 OT Wide';
+    src: url('LoRes9OTWide-Bold.eot');
+    src: local('LoRes 9 OT Wide Bold'), local('LoRes9OTWide-Bold'),
+        url('LoRes9OTWide-Bold.eot?#iefix') format('embedded-opentype'),
+        url('LoRes9OTWide-Bold.woff2') format('woff2'),
+        url('LoRes9OTWide-Bold.woff') format('woff'),
+        url('LoRes9OTWide-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 9 OT Narrow';
+    src: url('LoRes9OTNarrow-Bold.eot');
+    src: local('LoRes 9 OT Narrow Bold'), local('LoRes9OTNarrow-Bold'),
+        url('LoRes9OTNarrow-Bold.eot?#iefix') format('embedded-opentype'),
+        url('LoRes9OTNarrow-Bold.woff2') format('woff2'),
+        url('LoRes9OTNarrow-Bold.woff') format('woff'),
+        url('LoRes9OTNarrow-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 15 OT';
+    src: url('LoRes15OT-Bold.eot');
+    src: local('LoRes 15 OT Bold'), local('LoRes15OT-Bold'),
+        url('LoRes15OT-Bold.eot?#iefix') format('embedded-opentype'),
+        url('LoRes15OT-Bold.woff2') format('woff2'),
+        url('LoRes15OT-Bold.woff') format('woff'),
+        url('LoRes15OT-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 9 Plus OT Wide';
+    src: url('LoRes9PlusOTWide-Bold.eot');
+    src: local('LoRes 9 Plus OT Wide Bold'), local('LoRes9PlusOTWide-Bold'),
+        url('LoRes9PlusOTWide-Bold.eot?#iefix') format('embedded-opentype'),
+        url('LoRes9PlusOTWide-Bold.woff2') format('woff2'),
+        url('LoRes9PlusOTWide-Bold.woff') format('woff'),
+        url('LoRes9PlusOTWide-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 9 Plus OT Narrow';
+    src: url('LoRes9PlusOTNarrow-Regular.eot');
+    src: local('LoRes 9 Plus OT Narrow Regular'), local('LoRes9PlusOTNarrow-Regular'),
+        url('LoRes9PlusOTNarrow-Regular.eot?#iefix') format('embedded-opentype'),
+        url('LoRes9PlusOTNarrow-Regular.woff2') format('woff2'),
+        url('LoRes9PlusOTNarrow-Regular.woff') format('woff'),
+        url('LoRes9PlusOTNarrow-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 15 OT Alt Oakland';
+    src: url('LoRes15OTAltOakland-Bold.eot');
+    src: local('LoRes 15 OT Alt Oakland Bold'), local('LoRes15OTAltOakland-Bold'),
+        url('LoRes15OTAltOakland-Bold.eot?#iefix') format('embedded-opentype'),
+        url('LoRes15OTAltOakland-Bold.woff2') format('woff2'),
+        url('LoRes15OTAltOakland-Bold.woff') format('woff'),
+        url('LoRes15OTAltOakland-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 22 OT Serif';
+    src: url('LoRes22OTSerif-Bold.eot');
+    src: local('LoRes 22 OT Serif Bold'), local('LoRes22OTSerif-Bold'),
+        url('LoRes22OTSerif-Bold.eot?#iefix') format('embedded-opentype'),
+        url('LoRes22OTSerif-Bold.woff2') format('woff2'),
+        url('LoRes22OTSerif-Bold.woff') format('woff'),
+        url('LoRes22OTSerif-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 28 OT Narrow';
+    src: url('LoRes28OTNarrow-Regular.eot');
+    src: local('LoRes 28 OT Narrow Regular'), local('LoRes28OTNarrow-Regular'),
+        url('LoRes28OTNarrow-Regular.eot?#iefix') format('embedded-opentype'),
+        url('LoRes28OTNarrow-Regular.woff2') format('woff2'),
+        url('LoRes28OTNarrow-Regular.woff') format('woff'),
+        url('LoRes28OTNarrow-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 22 OT Oakland';
+    src: url('LoRes22OTOakland-Bold.eot');
+    src: local('LoRes 22 OT Oakland Bold'), local('LoRes22OTOakland-Bold'),
+        url('LoRes22OTOakland-Bold.eot?#iefix') format('embedded-opentype'),
+        url('LoRes22OTOakland-Bold.woff2') format('woff2'),
+        url('LoRes22OTOakland-Bold.woff') format('woff'),
+        url('LoRes22OTOakland-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 21 OT Serif';
+    src: url('LoRes21OTSerif-Regular.eot');
+    src: local('LoRes 21 OT Serif Regular'), local('LoRes21OTSerif-Regular'),
+        url('LoRes21OTSerif-Regular.eot?#iefix') format('embedded-opentype'),
+        url('LoRes21OTSerif-Regular.woff2') format('woff2'),
+        url('LoRes21OTSerif-Regular.woff') format('woff'),
+        url('LoRes21OTSerif-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 9 Minus OT Narrow';
+    src: url('LoRes9MinusOTNarrow-Regular.eot');
+    src: local('LoRes 9 Minus OT Narrow Regular'), local('LoRes9MinusOTNarrow-Regular'),
+        url('LoRes9MinusOTNarrow-Regular.eot?#iefix') format('embedded-opentype'),
+        url('LoRes9MinusOTNarrow-Regular.woff2') format('woff2'),
+        url('LoRes9MinusOTNarrow-Regular.woff') format('woff'),
+        url('LoRes9MinusOTNarrow-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 9 Plus OT Narrow';
+    src: url('LoRes9PlusOTNarrow-Bold.eot');
+    src: local('LoRes 9 Plus OT Narrow Bold'), local('LoRes9PlusOTNarrow-Bold'),
+        url('LoRes9PlusOTNarrow-Bold.eot?#iefix') format('embedded-opentype'),
+        url('LoRes9PlusOTNarrow-Bold.woff2') format('woff2'),
+        url('LoRes9PlusOTNarrow-Bold.woff') format('woff'),
+        url('LoRes9PlusOTNarrow-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 9 Minus OT Wide';
+    src: url('LoRes9MinusOTWide-Regular.eot');
+    src: local('LoRes 9 Minus OT Wide Regular'), local('LoRes9MinusOTWide-Regular'),
+        url('LoRes9MinusOTWide-Regular.eot?#iefix') format('embedded-opentype'),
+        url('LoRes9MinusOTWide-Regular.woff2') format('woff2'),
+        url('LoRes9MinusOTWide-Regular.woff') format('woff'),
+        url('LoRes9MinusOTWide-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 9 Plus OT Wide Alt';
+    src: url('LoRes9PlusOTWideAlt-Bold.eot');
+    src: local('LoRes 9 Plus OT Wide Alt Bold'), local('LoRes9PlusOTWideAlt-Bold'),
+        url('LoRes9PlusOTWideAlt-Bold.eot?#iefix') format('embedded-opentype'),
+        url('LoRes9PlusOTWideAlt-Bold.woff2') format('woff2'),
+        url('LoRes9PlusOTWideAlt-Bold.woff') format('woff'),
+        url('LoRes9PlusOTWideAlt-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 28 OT';
+    src: url('LoRes28OT-Regular.eot');
+    src: local('LoRes 28 OT Regular'), local('LoRes28OT-Regular'),
+        url('LoRes28OT-Regular.eot?#iefix') format('embedded-opentype'),
+        url('LoRes28OT-Regular.woff2') format('woff2'),
+        url('LoRes28OT-Regular.woff') format('woff'),
+        url('LoRes28OT-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 22 OT Narrow';
+    src: url('LoRes22OTNarrow-Regular.eot');
+    src: local('LoRes 22 OT Narrow Regular'), local('LoRes22OTNarrow-Regular'),
+        url('LoRes22OTNarrow-Regular.eot?#iefix') format('embedded-opentype'),
+        url('LoRes22OTNarrow-Regular.woff2') format('woff2'),
+        url('LoRes22OTNarrow-Regular.woff') format('woff'),
+        url('LoRes22OTNarrow-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 15 OT Narrow';
+    src: url('LoRes15OTNarrow-Regular.eot');
+    src: local('LoRes 15 OT Narrow Regular'), local('LoRes15OTNarrow-Regular'),
+        url('LoRes15OTNarrow-Regular.eot?#iefix') format('embedded-opentype'),
+        url('LoRes15OTNarrow-Regular.woff2') format('woff2'),
+        url('LoRes15OTNarrow-Regular.woff') format('woff'),
+        url('LoRes15OTNarrow-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 12 OT';
+    src: url('LoRes12OT-Regular.eot');
+    src: local('LoRes 12 OT Regular'), local('LoRes12OT-Regular'),
+        url('LoRes12OT-Regular.eot?#iefix') format('embedded-opentype'),
+        url('LoRes12OT-Regular.woff2') format('woff2'),
+        url('LoRes12OT-Regular.woff') format('woff'),
+        url('LoRes12OT-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LoRes 9 Plus OT Wide';
+    src: url('LoRes9PlusOTWide-Regular.eot');
+    src: local('LoRes 9 Plus OT Wide Regular'), local('LoRes9PlusOTWide-Regular'),
+        url('LoRes9PlusOTWide-Regular.eot?#iefix') format('embedded-opentype'),
+        url('LoRes9PlusOTWide-Regular.woff2') format('woff2'),
+        url('LoRes9PlusOTWide-Regular.woff') format('woff'),
+        url('LoRes9PlusOTWide-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AvertaStd';
+    src: url('AvertaStd-Bold.eot');
+    src: url('AvertaStd-Bold.eot?#iefix') format('embedded-opentype'),
+        url('AvertaStd-Bold.woff2') format('woff2'),
+        url('AvertaStd-Bold.woff') format('woff'),
+        url('AvertaStd-Bold.ttf') format('truetype'),
+        url('AvertaStd-Bold.svg#AvertaStd-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'AvertaStd';
+    src: url('AvertaStd-Semibold.eot');
+    src: url('AvertaStd-Semibold.eot?#iefix') format('embedded-opentype'),
+        url('AvertaStd-Semibold.woff2') format('woff2'),
+        url('AvertaStd-Semibold.woff') format('woff'),
+        url('AvertaStd-Semibold.ttf') format('truetype'),
+        url('AvertaStd-Semibold.svg#AvertaStd-Semibold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'AvertaStd';
+    src: url('AvertaStd-Light.eot');
+    src: url('AvertaStd-Light.eot?#iefix') format('embedded-opentype'),
+        url('AvertaStd-Light.woff2') format('woff2'),
+        url('AvertaStd-Light.woff') format('woff'),
+        url('AvertaStd-Light.ttf') format('truetype'),
+        url('AvertaStd-Light.svg#AvertaStd-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'AvertaStd';
+    src: url('AvertaStd-Regular.eot');
+    src: url('AvertaStd-Regular.eot?#iefix') format('embedded-opentype'),
+        url('AvertaStd-Regular.woff2') format('woff2'),
+        url('AvertaStd-Regular.woff') format('woff'),
+        url('AvertaStd-Regular.ttf') format('truetype'),
+        url('AvertaStd-Regular.svg#AvertaStd-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

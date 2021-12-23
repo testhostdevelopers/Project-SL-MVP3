@@ -1,0 +1,1399 @@
+@media only screen and (max-width: 1400px) {
+    nav.navbar {
+        padding: 20px 0;
+    }
+    div.navbar-search {
+        min-width: 210px;
+    }
+    .navbar-light .navbar-nav a.nav-link{
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+    section .container-fluid,
+    .artWorkWeekSection .container-fluid {
+        padding: 0;
+    }
+    .margin-50 {
+        margin-top: 87px !important;
+    }
+    .nft-start h1.section-title {
+        font-size: 62px !important;
+    }
+    .home-banner-description h3 {
+        font-size: 22px !important;
+    }
+    .nft-start h4 {
+        font-size: 32px !important;
+    }
+    .home-nft-slider-section > h6 {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        font-size: 16px !important;
+    }
+    .nft-start .slider-content {
+        padding: 35px 25px 25px 25px;
+    }
+    .slider-content .position-relative {
+        font-size: 22px !important;
+    }
+
+}
+
+
+@media only screen and (max-width: 1200px) {
+    nav.navbar {
+        padding: 15px 0;
+    }
+    .navbar-light .navbar-brand > img {
+        width: 25px;
+        margin-right: 1px;
+    }
+    .navbar-light .navbar-brand {
+        width: 130px;
+    }
+    .navbar-light .navbar-brand h3 {
+        font-size: 18px !important;
+    }
+    .navbar-expand-lg div.navbar-collapse {
+        max-width: calc(100% - 135px);
+    }
+    div.navbar-search {
+        min-width: 200px;
+        margin-right: 10px;
+    }
+    .navbar-light .navbar-nav a.nav-link {
+        padding-right: 5px;
+        padding-left: 5px;
+        font-size: 12px;
+    }
+    .btn-primary {
+        padding: 10px 16px;
+    }
+    .btn-primary-outline {
+        width: 80px;
+        height: 45px;
+    }
+    .btn-primary-outline {
+        padding: 10px 10px;
+        width: 80px;
+        height: 45px;
+        margin-left: 5px;
+    }
+    section {
+        padding: 30px 26px;
+    }
+    section.nft-start {
+        margin-top: 60px;
+        padding-top: 10px;
+    }
+    .margin-50 {
+        margin-top: 60px !important;
+    }
+    .nft-start h1.section-title {
+        font-size: 52px !important;
+    }
+    .home-banner-description h3 {
+        font-size: 18px !important;
+    }
+    .nft-start h4 {
+        font-size: 24px !important;
+    }
+    .home-nft-slider-section > h6 {
+        font-size: 14px !important;
+    }
+    .slider-content .position-relative {
+        font-size: 18px !important;
+        line-height: 140%;
+        margin-top: 10px;
+    }
+    section.artWorkWeekSection {
+        padding-top: 20px;
+    }
+    .main-title {
+        font-size: 32px;
+        margin-bottom: 0 !important;
+    }
+    section.artWorkWeekSection .row.mt-5 {
+        margin-top: 20px !important;
+    }
+    .art-work-description-container small b {
+        font-size: 12px;
+    }
+
+    .topSellerContent .d-flex .topSellerCard {
+        width: 23.7%;
+        margin-right: 1.7%;
+    }
+    .topSellerContent .d-flex .topSellerCard:nth-child(5n){
+        margin-right: 1.7%;
+    }
+    .topSellerContent .d-flex .topSellerCard:nth-child(4n){
+        margin-right: 0;
+    }
+    body .mt-5,
+    body .my-5 {
+        margin-top: 1.6rem !important;
+    }
+    .liveAuction .card-time-hours {
+        left: 15px;
+    }
+    .liveAuction-card-container h6 {
+        font-size: 14px;
+        margin-bottom: 5px !important;
+    }
+    footer .footer-menu li {
+        font-size: 14px;
+    }
+    .footer-column-flex-border .footer-column:first-child {
+        padding-right: 1.9%;
+        -ms-flex: 0 0 36%;
+        flex: 0 0 36%;
+        max-width: 36%;
+    }
+    .footer-column-flex-border .col-sm-6.col-lg-3 {
+        -ms-flex: 0 0 22%;
+        flex: 0 0 22%;
+        max-width: 22%;
+    }
+    .footer-column-flex-border .col-sm-6.col-lg-2 {
+        width: 25px;
+        -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+    footer div {
+        font-size: 14px;
+    }   
+    a.nav-dark-button {
+        width: 38px;
+        height: 38px;
+        margin-left: 5px;
+        padding: 5px;
+    }
+    .navbar-nav .btn{
+        padding: 0 13px;
+        height: 38px !important;
+    }
+    .buy-art-work-week .col-lg-6:first-child {
+        padding-right: 15px;
+    }
+    .buy-art-work-week .col-lg-6:last-child {
+        padding-left: 15px;
+    }
+    h3 {
+        font-size: 22px;
+    }
+    div.buy-art-work-week-card p {
+        font-size: 16px;
+    }
+    .buy-font .mr-3 {
+        margin-right: 8px !important;
+        text-align: center;
+    }
+    .buy-font h5 {
+        font-size: 16px;
+    }
+    .d-flex.action-btn > div {
+        width: 80%;
+        -ms-flex: 0 0 80%;
+        flex: 0 0 80%;
+        max-width: 80%;
+    }
+    div.cryptoloria-page {
+        margin-top: 90px;
+    }
+    .artCryptoLogo {
+        width: 60%;
+    }
+    .cryptoioria-banner-container .navbar-brand {
+        margin-top: -20px;
+    }
+    .cryptoioria-banner-container div.pl-4.pr-4 {
+        max-width: 550px;
+    }
+    .cryptoioria-banner-container > div > div.d-flex > div {
+        min-width: 120px;
+    }
+    .cryptoioria-banner-container {
+        height: 55vh;
+    }
+    h4 {
+        font-size: 20px;
+    }
+    .art-work-description-container small {
+        font-size: 12px;
+    }
+    .topSellerContent .topSellerCard .topSellerCardImageover {
+        height: 95px;
+    }
+    .topSeller .topSellerCard .topSellectProfilePicture {
+        width: 75px;
+        height: 75px;
+        top: 60px;
+    }
+    .topSellerContent .topSellerCard .topSellectProfilePicture .confirmation {
+        width: 20px;
+        height: 20px;
+        right: 7px;
+    }
+
+    .following-profile-topSellerContent .d-flex.activity .topSellerCard {
+        width: calc(25% - 26px);
+    }
+    header + section {
+        padding-top: 90px;
+    }
+    .main-title .back {
+        left: -85px;
+        top: 3px;
+    }
+    h2 {
+        font-size: 30px;
+    }
+    .create-single-section-container div.putOnMarketplace{
+        width: 140px;
+        height: 140px;
+    }
+    .create-single-section-container .swiper-slide .putOnMarketplace{
+        width: auto;
+    }
+    .choose-collection .slider {
+        width: calc(100% - 140px);
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    header .navbar-expand-lg > .container-fluid {
+        padding-right: 15px;
+        padding-left: 15px;
+        flex-direction: row-reverse;
+    }
+
+    .nav-link.nav-dark-button {
+        margin-right: 0 !important;
+    }
+    section .container-fluid,
+    .artWorkWeekSection .container-fluid {
+        padding: 0 15px;
+    }
+    section {
+        padding: 25px 10px;
+    }
+    .nft-start .home-nft-slider-section {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .nft-start .home-nft-slider {
+        margin-top: 65px !important;
+        margin-left: 0;
+    }
+    .nft-start h1.section-title {
+        font-size: 36px !important;
+    }
+    .nft-start .home-nft-slider {
+        margin-top: 65px !important;
+        margin-left: 0;
+    }
+    .nft-start h4 {
+        font-size: 16px !important;
+    }
+    .home-nft-slider-section > h6 {
+        font-size: 12px !important;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        line-height: 150%;
+    }
+    .nft-start-counter .d-flex.mt-4 {
+        padding-top: 10px;
+    }
+    .nft-start-counter .d-flex.mt-4 > div {
+        padding-right: 25px !important;
+        margin-right: 25px;
+    }
+    .slider-content .position-relative {
+        font-size: 14px !important;
+        margin-top: 15px;
+    }
+    .slider-conter-absolute h5,
+    .slider-conter-absolute small {
+        font-size: 12px !important;
+        line-height: 140%;
+    }
+    .slider-conter-absolute {
+        top: -45px;
+        height: 80px;
+    }
+    h3, 
+    .main-title {
+        font-size: 24px;
+        margin-bottom: 0 !important;
+        letter-spacing: 0;
+    }
+    .artwork-item {
+        width: 30.7%;
+    }
+    .topSeller .topSellerUserInfo h5 b {
+        font-size: 14px;
+    }
+    .liveAuction .row {
+        margin: 0 -8px;
+    }
+    .liveAuction .col-sm-12.col-lg-3 {
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
+        padding: 0 8px;
+    }
+    .liveAuction-card-container .p-4 {
+        padding: 10px !important;
+    }
+    .liveAuction-card-container .live-user-list {
+        top: -20px;
+        left: 10px;
+    }
+    .liveAuction-card-container .live-user-list > img {
+        width: 30px;
+        height: 30px;
+    }
+    .liveAuction-card-container div,
+    .liveAuction-card-container h6 {
+        font-size: 12px;
+    }
+    .liveAuction .live-user-list .live-card-tick {
+        width: 10px;
+        height: 10px;
+        left: 50px;
+    }
+    .liveAuction .card-time-hours {
+        left: 10px;
+    }
+    .footer-column-flex-border .footer-column:first-child {
+        padding-right: 1.9%;
+        flex: 0 0 36%;
+        max-width: 36%;
+    }
+    .footer-column-flex-border .col-sm-6.col-lg-3 {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+    .footer-column-flex-border .col-sm-6.col-lg-2 {
+        width: 25%;
+        flex: 0 0 24%;
+        max-width: 25%;
+    }
+    footer section .footer-in-email {
+        width: 100%;
+    }
+    footer div {
+        font-size: 12px;
+    }
+    .margin-mobile-left {
+        margin-left: 15px;
+    }
+    .footer-social-icons i {
+        font-size: 18px;
+    }
+    footer .d-flex.justify-content-between > div {
+        margin-left: 5px;
+    }
+    footer .d-flex.justify-content-between > div:first-child {
+        margin-left: 0;
+    }
+    .liveAuction .d-lg-none {
+        display: none;
+    }
+
+    .following-profile-topSellerContent .d-flex.activity .topSellerCard {
+        width: calc(33.33% - 26px);
+    }
+    .pl-5.brand-new-nfp {
+        padding-left: 16px !important;
+        margin-top: 0;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    nav.navbar-light a.navbar-brand > img {
+        width: 20px;
+        margin-right: 0;
+    }
+    .navbar-light a.navbar-brand h3 {
+        font-size: 16px !important;
+    }
+    a.nav-dark-button {
+        width: 36px;
+        height: 36px;
+        padding: 5px;
+        margin-left: 5px;
+    }
+    .navbar-light a.navbar-brand {
+        width: 110px;
+    }
+    section.nft-start {
+        margin-top: 60px;
+        padding-top: 10px;
+        padding-top: 30px !important;
+    }
+    .nft-start .section-title {
+        font-size: 36px !important;
+    }
+    .nft-start p {
+        font-size: 14px !important;
+    }
+    .nft-start {
+        text-align: center !important;
+    }
+    .nft-start-counter {
+        justify-content: center !important;
+        margin-top: 20px !important;
+        align-items: center !important;
+    }
+
+    .order-sm-1{
+        order: 1 !important;
+    }
+
+    .order-sm-2{
+        order: 2 !important;
+    }
+
+    .order-sm-3{
+        order: 3 !important;
+    }
+
+    .token-page-section .connect-wallet-section{
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    .nft-start .swiper-container .swiper-slide > img {
+        max-height: unset;
+    }
+    .art-work-description-container {
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(50px) !important;
+        border-radius: 15px !important;
+        position: absolute !important;
+        bottom: 10% !important;
+        width: 80% !important;
+        padding: 6px 15px !important;
+        left: 50% !important;
+        transform: translate(-50%) !important;
+        box-sizing: border-box;
+    }
+    .artWorkWeekSection .artWorkMain {
+        width: 100% !important;
+        border-radius: 12px !important;
+    }
+    footer .footer-column {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+    footer .footer-title,
+    footer .footer-in-mail-container {
+        display: flex;
+        justify-content: flex-start;
+    }
+    footer .footer-title {
+        font-size: 16px;
+        margin-bottom: 15px;
+        justify-content: center;
+    }
+    .nft-start .home-nft-slider-section {
+        align-items: center !important;
+        margin-top: 0 !important;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .nft-start .home-nft-slider {
+        margin-top: 55px !important;
+        margin-left: 0;
+        flex: 0 0 calc(100% - 15px);
+        max-width: calc(100% - 15px);
+    }
+
+    .d-mobile-none {
+        display: none !important;
+    }
+    .footer-social-icons {
+        display: flex !important;
+        justify-content: center !important;
+        margin-top: 20px !important;
+    }
+    .footer-social-icons i {
+        font-size: 16px !important;
+    }
+    .footer-menu-element {
+        margin: 0 !important;
+    }
+    .d-mobile-flex-column {
+        flex-direction: column !important;
+    }
+    .d-web-none {
+        display: block !important;
+        text-align: center !important;
+        font-size: 12px !important;
+        margin-top: 15px;
+    }
+    .margin-mobile-left {
+        margin-left: 0 !important;
+    }
+    .topSeller .headerSelect {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+    .buy-font {
+        font-size: 12px !important;
+    }
+    .popup-width {
+        width: calc(100% - 25px) !important;
+    }
+    .create-collectible .single-create-collectible {
+        position: absolute !important;
+        top: -15px !important;
+        right: 10px !important;
+        padding: 0 5px !important;
+    }
+    .create-collectible div.create-col {
+        padding: 30px 30px 20px 30px;
+    }
+    .create-collectible div.create-col img {
+        max-width: 100px;
+    }
+    .create-collectible button.single-create-collectible {
+        top: -20px;
+        font-size: 10px !important;
+        padding: 1px 12px !important;
+        height: 32px !important;
+    }
+    .profile-user-pictures {
+        width: 103px !important;
+        height: 103px !important;
+    }
+    div.profile-info-position {
+        margin-top: -50px !important;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .faq-container .sub-tabs-menu .accordion a {
+        padding-left: 10% !important;
+        height: 50px !important;
+        margin-bottom: 20px;
+    }
+    .faq-container .sub-tabs-menu .accordion span:target~.accordion-content {
+        padding-top: 0 !important;
+    }
+    .mobile-sm-order-right {
+        order: 2 !important;
+    }
+    .mobile-sm-order-left {
+        order: 1 !important;
+    }
+
+    .nft-start .swiper-container, .swiper-slide{
+        width: 100% !important;
+    }
+
+    .swiper-button-prev, .swiper-button-next{
+        top: 50% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+
+    .mobile-filter-live-auc .swiper-button-prev, .mobile-filter-live-auc .swiper-button-next{
+        top: 40% !important;
+    }
+
+    .upload-file-container{
+        width: 100% !important;
+    }
+
+    .notificationPopup{
+        height: 100vh !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        z-index: 9999 !important;
+    }
+
+    .notification-popup-outline{
+        position: inherit !important;
+    }
+
+    .nft-start .swiper-container::before {
+        content: '' !important;
+        position: absolute !important;
+        width: auto !important;
+        height: auto !important;
+        border-radius: 15px !important;
+        top: 0px !important;
+        right: 4px !important;
+        left: 30px;
+        bottom: 20px;
+    }
+    .nft-start .swiper-container::after {
+        content: '' !important;
+        position: absolute !important;
+        width: auto !important;
+        height: auto !important;
+        border-radius: 15px !important;
+        top: 11px !important;
+        right: 13px !important;
+        left: 21px;
+        bottom: 28px;
+    }
+
+    .nft-start .bg-lines {
+        content: '' !important;
+        position: absolute !important;
+        width: auto !important;
+        height: auto !important;
+        border-radius: 15px !important;
+        top: -10px !important;
+        right: -7px !important;
+        left: 40px;
+        bottom: 10px;
+    }
+    .slider-content .position-relative {
+        text-align: left;
+    } 
+    .navbar .navbar-search{
+        display: none !important;
+    }
+    .live-auction-none-mobile{
+        display: none !important;
+    }
+
+    .liveAuction-web-none{
+        display: block !important;
+    }
+
+    .profile-pictures-infos .profile-pictures-cover{
+        align-items: flex-start !important;
+    }
+
+    .flashLightFill{
+        display: none !important;
+    }
+
+    .create-single-section-container .profile-edit-verified-btn{
+        width: 100% !important;
+    }
+
+    .create-single-section-container .profile-edit-verified-container {
+        text-align: center !important;
+    }
+
+    .d-sm-none{
+        display: none !important;
+    }
+
+    .artCryptoLogo{
+        width: 90% !important;
+    }
+
+    .cryptoioria-banner-container::after{
+        background-size: contain !important;
+        height: 700px ​!important;
+        background-position: bottom !important;
+    }
+
+    .cryptoioria-banner-container {
+        height: 70vh;
+    }
+    .cryptoioria-banner-container div.pl-4.pr-4 {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    .cryptoioria-banner-container .navbar-brand {
+        margin-top: -20px;
+        padding-bottom: 15px;
+    }
+    .cryptoioria-banner-container div.d-flex div.crypto-border-right {
+        padding-right: 10px !important;
+        padding-left: 10px !important;
+        border-color: var(--black-color) !important;
+        min-width: 80px;
+    }
+    .cryptoioria-banner-container > div > div.d-flex {
+        max-width: 100%;
+        margin: 30px auto 0 auto !important;
+    }
+    .cryptoioria-banner-container h4 {
+        font-size: 24px !important;
+    }
+    .cryptoioria-banner-container div.crypto-border-right div {
+        font-size: 14px;
+        margin-top: 3px;
+    }
+
+    .btn-primary-outline {
+        font-size: 14px !important;
+        padding: 10px 8px !important;
+        height: 44px !important;
+    }
+
+    .token-page-section .token-page-section-content{
+        text-align: center !important;
+    }
+
+    .navbar .navbar-collapse{
+        height: 100vh !important;
+    }
+
+    .menu-create-width button{
+        width: 100% !important;
+    }
+
+    .quickExplore h3{
+        font-size: 20px !important;
+    }
+
+    .following-page-section .following-divition{
+        flex-direction: column !important;
+    }
+
+    .following-page-section .nav-tabs{
+        flex-wrap: initial !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        width: 100% !important;
+        min-height: 60px !important;
+    }
+
+    .following-page-section .nav-tabs .nav-link{
+        display: flex !important;
+        align-items: center !important;
+        min-width: 180px !important;
+    }
+
+    .nft-start .home-banner-description{
+        justify-content: center !important;
+    }
+
+    .home-artwork-week-day{
+        margin-top: 30px !important;
+    }
+
+    header .navbar {
+        padding: 15px 0 !important;
+        background: #fff;
+    }
+    .nft-start h4 {
+        font-size: 22px !important;
+    }
+    .home-nft-slider-section > h6 {
+        font-size: 14px !important;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        line-height: 150%;
+        max-width: 80%;
+    }
+    .home-nft-slider-section > h6 > br {
+        display: none;
+    }
+
+    .artWork-of-the-week-overflow{
+        overflow: auto !important;
+    }
+
+    .liveAuction-mobile-margin{
+        margin-top: 25px !important;
+    }
+
+    .nft-start .home-center{
+        margin: auto auto;
+    }
+
+    h1{
+        font-size: 32px !important;
+    }
+
+    h2{
+        font-size: 22px !important;
+    }
+
+    h3{
+        font-size: 26px !important;
+    }
+
+    h4{
+        font-size: 24px !important;
+    }
+
+    h5{
+        font-size: 16px !important;
+    }
+
+
+    h6{
+        font-size: 12px !important;
+    }
+    .btn-primary-outline-responsive {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+    button,
+    .nav-tabs .nav-link {
+        min-height: 30px !important;
+        height: auto !important;
+        line-height: 100% !important;
+        font-size: 13px !important;
+    }
+    .liveAuction .d-lg-none {
+        color: var(--text-light-color);
+    }
+    .liveAuction .d-lg-none {
+        display: block;
+    }
+    h3, .main-title {
+        font-size: 18px !important;
+        margin-bottom: 0 !important;
+    }
+    .home-artwork-week-day > .d-flex {
+        flex-wrap: nowrap;
+    }
+    .artWorkWeekSection .col-lg-5 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .artWorkWeekSection .home-artwork-week-day {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .home-artwork-week-day > .d-flex {
+        white-space: nowrap;
+        display: block !important;
+        scrollbar-width: none;
+    }
+    .home-artwork-week-day > .d-flex::-webkit-scrollbar {
+        display: none;
+    }
+    .artwork-item {
+        width: 50%;
+        margin-right: 15px !important;
+        white-space: normal;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .artwork-item:nth-child(3n) {
+        margin-right: 15px !important;
+    }
+
+    .topSellerContent .d-flex {
+        width: 100%;
+        display: block !important;
+        white-space: nowrap;
+        overflow: auto;
+        scrollbar-width: none;
+    }
+    .topSellerContent .d-flex::-webkit-scrollbar {
+        display: none;
+    }
+    .quickExplore .nav-tabs{
+        scrollbar-width: none;
+    }
+    .quickExplore .nav-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .topSellerContent .d-flex .topSellerCard {
+        width: 60%;
+        margin-right: 15px !important;
+        white-space: normal;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .liveAuction .col-sm-12.col-lg-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding: 0;
+    }
+    .liveAuction-card-container div,
+    .liveAuction-card-container h6 {
+        font-size: 14px;
+    }
+    .liveAuction-card-container .p-4 {
+        padding: 15px !important;
+    }
+    .liveAuction .order-sm-1 {
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .footer-column-flex-border .footer-column:first-child {
+        padding-right: 15px;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .footer-column-flex-border .col-sm-6.col-lg-3 {
+        flex: 0 0 50%;
+        max-width: 50%;
+        text-align: left;
+        margin-bottom: 0 !important;
+    }
+    footer .footer-title h6 {
+        font-size: 14px !important;
+        justify-content: flex-start;
+        width: 100%;
+    }
+    footer .row.footer-column-flex-border {
+        margin-bottom: 15px !important;
+        padding-bottom: 0 !important;
+    }
+    footer .d-flex.justify-content-between > div {
+        margin-left: 5px;
+        align-items: center;
+    }
+    .footer-column-flex-border .footer-column:first-child .footer-menu {
+        max-width: 100%;
+        width: 100%;
+        font-size: 14px;
+    }
+    .navbar-expand-lg div.navbar-collapse {
+        max-width: 100%;
+    }
+
+    .buy-art-work-week .container-fluid.mt-5 {
+        margin-top: 0 !important;
+    }
+
+    div.buy-art-work-week-card {
+        margin-top: 15px;
+        padding: 15px;
+    }
+    .buy-art-work-week-card > .d-flex {
+        flex-wrap: wrap;
+        position: relative;
+    }
+    .buy-art-work-week-card h3 {
+        width: 100%;
+    }
+    .buy-art-work-week-card h3 + div {
+        position: absolute;
+        right: 0;
+        bottom: -44px;
+    }
+    div.buy-art-work-week-card p {
+        font-size: 14px;
+    }
+    div.buy-art-work-week-card p br {
+        display: none;
+    }
+    .buy-art-work-week .tab-pane div {
+        font-size: 12px;
+    }
+    .buy-art-work-week .btn-ping {
+        padding: 11px 16px;
+        color: #fff;
+        height: 100% !important;
+        font-size: 12px !important;
+    }
+    .d-flex.buy-font > div {
+        width: 100%;
+        justify-content: center;
+        padding: 15px 0 !important;
+        display: flex;
+        flex-wrap: wrap;
+        border-right: none !important;
+        border-bottom: 1px solid #dee2e6 !important;
+    }
+
+    .d-flex.buy-font > div:last-child{
+        border-bottom:none !important;
+    }
+    .d-flex.buy-font > div > * {
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        justify-content: center;
+    }
+    .buy-art-work-week-card > .d-flex.buy-font {
+        margin-top: 0 !important;
+    }
+
+    .place-a-bid-popup-container .popup-width,
+    .coin-covert-popup-container {
+        padding: 20px;
+    }
+    .place-a-bid-popup-container .popup-close-btn-outline {
+        width: 40px;
+        height: 40px;
+    }
+    .place-a-bid-popup-container .sub-heading {
+        max-width: 90%;
+    }
+    .place-a-bid-popup-container .sub-heading {
+        font-size: 14px;
+        margin-top: 5px;
+    }
+    .place-a-bid-popup-container .formcontrol {
+        font-size: 18px;
+    }
+    .place-a-bid-popup-container small {
+        font-size: 12px;
+    }
+    .balance-info > div {
+        font-size: 14px;
+    }
+    .place-a-bid-popup-container .d-flex > h3 {
+        font-size: 24px !important;
+    }
+    div.fallow-steps-active i {
+        font-size: 28px
+    }
+    div.follow-step h6 {
+        font-size: 18px !important;
+        min-height: 28px;
+        padding-top: 1px;
+    }
+    div.follow-step h6 + p {
+        margin-left: 0;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+    div.follow-step small {
+        font-size: 14px;
+    }
+    .quickExplore .nav-tabs .nav-link {
+        padding: 0 15px;
+        font-size: 12px !important;
+        margin-right: 7px;
+    }
+    .liveAuction .liveAuction-card-container .live-image img {
+        max-height: unset;
+    }
+    .profile-pictures-infos .edit-profile {
+        max-width: 180px !important;
+        width: 100% !important;
+    }
+    div.ant-tabs > .ant-tabs-nav {
+        margin-bottom: 10px;
+    }
+    .profile-activity-filter-mobile {
+        margin-top: 7px;
+        margin-bottom: 12px;
+    }
+    .profile-pictures-infos .profile-activity-filter-mobile path {
+        fill: var(--black-color);
+    }
+    .profile-pictures-infos .profile-activity-filter-mobile rect {
+        stroke: var(--purple);
+    }
+    .topSellerContent .d-flex.activity {
+        padding: 0;
+        white-space: normal;
+    }
+
+    .topSellerContent .row{
+        margin: 0 !important;
+    }
+
+    .topSellerContent .d-flex.activity .topSellerCard {
+        width: 100%;
+        margin-right: auto !important;
+    }
+    .profile-usr-name-h3-size h3 {
+        font-size: 18px !important;
+    }
+    div.profile-info-position .mt-4:last-child {
+        width: 260px;
+    }
+    .profile-pictures-infos button.profile-upload,
+    .profile-pictures-infos button.select {
+        width: 35px !important;
+        height: 35px !important;
+    }
+    .explore-page > h3 {
+        width: 100%;
+        margin-bottom: 15px !important;
+    }
+    ul.filter.topSeller {
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        width: 100%;
+        overflow: auto;
+        scrollbar-width: none;
+        padding-top: 8px;
+    }
+    ul.filter.topSeller::-webkit-scrollbar {
+        display: none;
+    }
+    ul.filter.topSeller  .ant-select-single.ant-select-show-arrow .ant-select-selection-item{
+        font-size: 12px;
+    }
+    .liveAuction .row.mt-5 {
+        margin: auto;
+    }
+
+    .artwork-tab-nav li a {
+        padding: 8px 10px;
+    }
+
+    .owner-details-list li a {
+        padding: 8px 11px;
+    }
+
+    .owner-details-list li {
+        margin-bottom: 5px;
+        margin-right: 5px;
+    }
+
+    .buy-highest-bid-block-left{
+        text-align: left;
+    }
+
+    .buy-highest-bid-block.d-flex.buy-font > div > * {
+        width: 100%;
+        text-align: left;
+        justify-content: flex-start;
+    }
+
+    .buy-highest-bid-block.d-flex.buy-font > div {
+        width: 50%;
+        justify-content: flex-start;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .buy-highest-bid-block.d-flex.buy-font > div.buy-highest-bid-block-left{
+        border-right: 1px solid #E4E4E5 !important;
+        border-bottom: 0 !important;
+        padding-right: 10px !important;
+    }
+
+    .buy-highest-bid-block.d-flex.buy-font > div.buy-highest-bid-block-right{
+        padding-left: 10px !important;
+    }
+
+    .buy-highest-bid-block-left > span {
+        width: auto !important;
+        display: inline-block;
+        font-size: 12px !important;
+    }
+    .action-btn.buy-highest-bid-block-btn > div{
+        width: 100%;
+        max-width: 100%;
+        flex: 0 0 100%
+    }
+
+    .buy-highest-bid-block-right .d-flex.mt-3 div{
+        font-size: 12px;
+    }
+
+    .activity-number-card-right {
+        order: -1;
+        margin-top: -45px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .filters-listing-reset .d-flex.mb-2 h5{
+        font-size: 18px !important;
+        color: #0E0E0E;        
+    }
+
+    .filters-listing-reset .d-flex{
+        display: flex !important;
+    }
+
+    .filters-listing-button-list{
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        width: 100%;
+        overflow: auto;
+        scrollbar-width: none;
+        padding-top: 8px;
+        scrollbar-width: none;
+    }
+    .filters-listing-button-list::-webkit-scrollbar{
+        width: 0;
+    }
+
+    .filters-listing-button-list button{
+        display: inline-block !important;
+    }
+
+    .ActivityNumberCard{
+        width: 100%;
+        padding: 15px 20px;
+        margin-bottom: 20px;
+    }
+
+    .ActivityNumberCard-info {
+        padding-left: 15px;
+    }
+
+    .Collection-topSellerContent{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .ActivityNumberCard-info h4 {
+        font-size: 15px !important;
+        padding-bottom: 5px;
+    }
+
+    .ActivityNumberCard-info p {
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+
+    .following-profile-topSellerContent .d-flex.activity .topSellerCard {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .faq-sec.faq-container .sub-tabs-menu .accordion a {
+        padding-bottom: 0px;
+    }
+
+    .faq-sec.faq-container .sub-tabs-menu .accordion-content p {
+        font-size: 16px;
+        margin-bottom: 0;
+    }
+
+    .faq-sec.faq-container .sub-tabs-menu .accordion-content {
+        padding-left: 10%;
+    }
+
+    .faq-container .tab {
+        margin-bottom: 15px !important;
+    }
+
+    .faq-sec .main-title {
+        padding-bottom: 20px;
+    }
+
+    .faq-sec .container-fluid {
+        padding-top: 70px;
+    }
+    header + section {
+        padding-top: 80px;
+    }
+    section div.main-box {
+        margin-top: 0 !important;
+    }
+    .main-title .back {
+        position: static;
+        margin-bottom: 20px;
+    }
+    .main-title .back svg {
+        width: 18px;
+        margin-top: 2px;
+    }
+    div.main-box > p.color-gray {
+        font-size: 14px;
+        margin-top: 20px !important;
+    }
+    .create-single-section-container > .container {
+        max-width: 954px;
+        padding: 0 5px;
+    }
+    div.upload-file-container {
+        padding: 35px;
+    }
+    .upload-file-container button.btn-primary {
+        Width: 275.33px !important;
+        Height: 48px !important;
+        margin-top: 13px !important;
+    }
+    .custom-switch {
+        margin-right: 12px;
+    }
+    .marketplace .marketplace-content {
+        padding-right: 70px;
+        line-height: 130%;
+        font-weight: 600;
+    }
+    .create-single-section-container div.putOnMarketplace {
+        padding: 15px;
+        height: auto;
+        margin-right: 14px;
+        min-width: 30.53%;
+        min-height: 110px;
+        margin-bottom: 20px;
+    }
+    .create-single-section-container div.putOnMarketplace img {
+        width: 22px;
+    }
+    .create-single-section-container div.putOnMarketplace b {
+        margin-top: 7px;
+        font-size: 14px;
+        line-height: 130%;
+    }
+    .btn-primary-outline-responsive,
+    .border {
+        border-radius: 15px !important;
+    }
+    .create-single-section-container div .prize-single-collectible {    
+        margin-top: 0;
+    }
+    .prize-single-collectible .color-gray {
+        font-size: 14px;
+    }
+    .create-single-section-container div .prize-single-collectible .d-flex {
+        align-items: center;
+        border-radius: 50px !important;
+        border-color: var(--pink-color) !important;
+    }
+    .prize-single-collectible .section-select-filter {
+        background: transparent;
+    }
+    .prize-single-collectible > div.color-gray:last-child{
+        margin-top: 5px;
+        padding-right: 100px;
+        font-weight: 600;
+        line-height: 130%;
+    }
+    .pl-5.brand-new-nfp {
+        display: none;
+    }
+    .create-single-section-container .choose-collection > div.putOnMarketplace{
+        min-height: 120px;
+        min-width: 120px;
+        width: auto;
+        margin: 0;
+    }
+    .create-single-section-container .choose-collection div.slider .putOnMarketplace{
+        width: auto;
+        margin: 0;
+        height: 100%;
+    }
+    .choose-collection div.slider {
+        width: calc(100% - 120px);
+    }
+    .pl-5.brand-new-nfp {
+        margin-top: 20px;
+    }
+    .copies .h-75 {
+        height: auto !important;
+    }
+    div.CreateCollectibleEdit-right {
+        padding-left: 15px !important;
+        margin-top: 25px;
+    }
+}
+
+@media only screen and (max-width: 376px) {
+    .buy-highest-bid-block.d-flex.buy-font > div {
+        width: 100%;
+    }
+
+    .buy-highest-bid-block.d-flex.buy-font > div.buy-highest-bid-block-left {
+        border-right: 0 !important;
+        border-bottom: 1px solid #E4E4E5 !important;
+        padding-right: 0px !important;
+        padding-bottom: 10px !important;
+    }
+
+    .buy-highest-bid-block.d-flex.buy-font > div.buy-highest-bid-block-right {
+        padding-left: 0px !important;
+        margin-top: 0 !important;
+    }
+}
