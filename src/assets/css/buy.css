@@ -3,12 +3,15 @@
 
 
 .buy-art-work-week {
-    margin-top: 80px;
+    margin-top: 0;
+}
+.buy-art-work-week .col-lg-6 > img.border-radius{
+	cursor: pointer;
 }
 .buy-art-work-week-card p {
 	font-size: 18px;
 	line-height: 130%;
-	color: #0E0E0E;
+	color: var(--black-text);
 }
 .buy-art-work-week-card {
     background-color: var(--bg-main-white);
@@ -34,16 +37,25 @@
 	font-weight: 600;
 }
 .buy-art-work-week .card-heart-icon {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(50px);
-    border-radius: 15px;
-    padding: 5px 10px;
-    height: 35px;
-    border: 0.2px solid #EDECEC;
+	background: transparent;
+	-webkit-backdrop-filter: blur(50px);
+	backdrop-filter: blur(50px);
+	border-radius: 15px;
+	padding: 5px 10px;
+	height: 35px;
+	border: 0.2px solid #EDECEC;
+	min-width: 55px;
+	width: auto;
+	display: inline-flex;
+	align-items: center;
+	color: var(--black-text);
 }
-
+.buy-art-work-week-card h3 {
+	padding-right: 10px;
+}
 .buy-art-work-week .card-heart-icon i {
     color: var(--red-color);
+    margin-right: 5px
 }
 
 .buy-art-work-week .card-select-icon {

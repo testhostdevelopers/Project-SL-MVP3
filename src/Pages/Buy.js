@@ -11,6 +11,7 @@ import PlaceABidFollowPopup from '../Components/Popup/PlaceABidFollowPopup';
 import ErrorPopup from '../Components/Popup/ErrorPopup';
 import ShareThisNFTPopup from '../Components/Popup/ShareThisNFTPopup';
 import WhatIswETHPopup from '../Components/Popup/WhatIswETHPopup';
+import FullScreenImage from '../Components/Popup/FullScreenImage';
 
 import CheckOut from '../Components/Popup/CheckOut';
 import { Menu, Dropdown, Select } from 'antd';
@@ -23,6 +24,7 @@ const Buy = () => {
     const [sharePopup, setsharePopup] = useState(false);
     const [helpPopup, sethelpPopup] = useState(false);
     
+    let [openImage, setOpenImage] = useState(false)
 
     const menu = (
         <Menu>
@@ -57,6 +59,9 @@ const Buy = () => {
     return (
         <>
             {
+                openImage && <FullScreenImage setOpenImage={setOpenImage} />
+            }
+            {
                 singleCollectionPopup && <FinishedCollectiblePopup setSinglePopup={setSinglePopup}  sethelpPopup={sethelpPopup} setSingleCollectionPopup={setSingleCollectionPopup} />
             }
             {
@@ -79,7 +84,7 @@ const Buy = () => {
                 <div className="container-fluid mt-5">
                     <div className="row">
                         <div className="col-sm-12 col-lg-6">
-                            <img src={artWorkWeekOne} className="border-radius" width="100%" alt="" />
+                            <img src={artWorkWeekOne} className="border-radius" width="100%" alt="" onClick={() => {setOpenImage(true); document.body.style.overflow = "hidden";}} />
                         </div>
                         <div className="col-sm-12 col-lg-6">
                             <div className="buy-art-work-week-card border-radius">

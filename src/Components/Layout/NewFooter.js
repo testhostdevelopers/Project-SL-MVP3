@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const { Option } = Select;
 
-const Footer = () => {
+const NewFooter = () => {
     return (
         <footer>
             <section className="m-0">
@@ -22,11 +22,6 @@ const Footer = () => {
                             <ul className="footer-menu">
                                 <li><span className="color-gray">The Eden Smart Chain is a low latency, cross platform smart contract chain for digital assets, fiat on-ramping and dApps.</span></li>
                             </ul>
-
-                            <div className="w-100 d-flex footer-in-mail-container">
-                                <input type="email" className="footer-in-email" placeholder="Your email" />
-                                <button className="btn-primary ml-2" style={{ maxHeight: "50px", minWidth: "90px" }}> I'm in</button>
-                            </div>
                         </div>
 
                         <div className="col-sm-6 col-lg-3 footer-column-flex mb-4">
@@ -35,10 +30,10 @@ const Footer = () => {
                             </div>
 
                             <ul className="footer-menu">
-                                <li>Explore</li>
-                                <li>How it works</li>
-                                <li>Support</li>
-                                <li>Become a partner</li>
+                                <li>Vision</li>
+                                <li>Token</li>
+                                <li>Metaverse</li>
+                                <li>Roadmap</li>
                             </ul>
                         </div>
 
@@ -48,10 +43,10 @@ const Footer = () => {
                             </div>
 
                             <ul className="footer-menu">
-                                <li>Token</li>
-                                <li>Community</li>
-                                <li>Voting</li>
-                                <li>Suggest feature</li>
+                                <li>Discord</li>
+                                <li>Twitter</li>
+                                <li>Telegram</li>
+                                <li>Reddit</li>
                             </ul>
                         </div>
 
@@ -113,27 +108,18 @@ const Footer = () => {
                         </div>
 
                         <div className="d-flex footer-social-icons">
-                            <Link to="https://twitter.com/starlight_meta" target="_blank">
+                            <div>
                                 <i className="fab fa-twitter"></i>
-                            </Link>
-                            <Link to="https://t.me/starlightmeta" target="_blank">
+                            </div>
+                            <div>
                                 <i className="fab fa-telegram-plane"></i>
-                            </Link>
-                            <Link to="https://www.instagram.com/starlightmeta/" target="_blank">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M11.9991 8.87531C10.2788 8.87531 8.87491 10.2792 8.87491 11.9995C8.87491 13.7198 10.2788 15.1237 11.9991 15.1237C13.7194 15.1237 15.1234 13.7198 15.1234 11.9995C15.1234 10.2792 13.7194 8.87531 11.9991 8.87531ZM21.3694 11.9995C21.3694 10.7058 21.3812 9.42374 21.3085 8.13234C21.2358 6.63234 20.8937 5.30109 19.7968 4.20421C18.6976 3.10499 17.3687 2.76515 15.8687 2.69249C14.5749 2.61984 13.2929 2.63156 12.0015 2.63156C10.7077 2.63156 9.4257 2.61984 8.13429 2.69249C6.63429 2.76515 5.30304 3.10734 4.20617 4.20421C3.10695 5.30343 2.7671 6.63234 2.69445 8.13234C2.62179 9.42609 2.63351 10.7081 2.63351 11.9995C2.63351 13.2909 2.62179 14.5753 2.69445 15.8667C2.7671 17.3667 3.10929 18.698 4.20617 19.7948C5.30538 20.8941 6.63429 21.2339 8.13429 21.3066C9.42804 21.3792 10.7101 21.3675 12.0015 21.3675C13.2952 21.3675 14.5773 21.3792 15.8687 21.3066C17.3687 21.2339 18.6999 20.8917 19.7968 19.7948C20.896 18.6956 21.2358 17.3667 21.3085 15.8667C21.3835 14.5753 21.3694 13.2933 21.3694 11.9995ZM11.9991 16.8066C9.33898 16.8066 7.1921 14.6597 7.1921 11.9995C7.1921 9.33937 9.33898 7.19249 11.9991 7.19249C14.6593 7.19249 16.8062 9.33937 16.8062 11.9995C16.8062 14.6597 14.6593 16.8066 11.9991 16.8066ZM17.003 8.11828C16.3819 8.11828 15.8804 7.61671 15.8804 6.99562C15.8804 6.37453 16.3819 5.87296 17.003 5.87296C17.6241 5.87296 18.1257 6.37453 18.1257 6.99562C18.1259 7.1431 18.097 7.28917 18.0406 7.42546C17.9843 7.56175 17.9016 7.68559 17.7973 7.78987C17.693 7.89416 17.5692 7.97684 17.4329 8.0332C17.2966 8.08955 17.1505 8.11846 17.003 8.11828Z" fill="#9D9D9D" />
-                                </svg>
-                            </Link>
-                            <Link to="https://discord.com/invite/h3pWz4fY72" target="_blank">
+                            </div>
+                            <div>
                                 <i className="fab fa-discord"></i>
-                            </Link>
-                            <Link to="https://www.reddit.com/r/starlightmeta/" target="_blank">
-                                <i class="fab fa-reddit" aria-hidden="true"></i>
-                            </Link>
-                            <Link>
+                            </div>
+                            <div>
                                 <i className="fab fa-youtube"></i>
-                            </Link>
-
+                            </div>
                         </div>
 
                         <div className="d-web-none"><small>© 2021, All Rights Reserved.</small></div>
@@ -144,4 +130,4 @@ const Footer = () => {
     )
 }
 
-export default Footer
+export default NewFooter

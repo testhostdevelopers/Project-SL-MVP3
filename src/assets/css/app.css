@@ -212,7 +212,7 @@ border-bottom: solid 1px var(--gray-color);
 }
 
 .profile-pictures-infos .ant-tabs-tab-active{
-    border-bottom: solid 2px #000 !important;
+    border-bottom: solid 2px var(--black-color) !important;
     z-index: 9999 !important;
 }
 
@@ -280,6 +280,11 @@ border-bottom: solid 1px var(--gray-color);
 	min-width: 94px;
 	height: 45px;
 	margin-left: 8px;
+}
+
+.btn-primary-outline:hover{
+    background: var(--pink-color);
+    color: var(--white);
 }
 
 .btn-primary-outline-big{
@@ -487,7 +492,12 @@ footer section .footer-in-email {
     font-family: "AvertaStd" !important;
     font-size: 14px;
 }
-
+.footer-social-icons > a {
+	display: flex;
+}
+.footer-social-icons > a:hover i {
+	color: var(--pink-color);
+}
 .footer-social-icons i {
     font-size: 22px;
     color: #9D9D9D;
@@ -742,13 +752,13 @@ footer section .footer-in-email {
 .swiper-button-next:after{
     font-size: 20px !important;
     content: "→" !important;
-    color: #000;
+    color: var(--black-color);
 }
 
 .nft-start .swiper-button-prev:after{
     font-size: 20px !important;
     content: "\2190" !important;
-    color: #000;
+    color: var(--black-color);
 }
 small.text-secondary {
 	color: #979797 !important;
@@ -823,7 +833,7 @@ font-size: 12px;
 
 .ant-dropdown-menu-item:hover{
     background-color: var(--pink-color) !important;
-    color: var(--white-color) !important; 
+    color: var(--menu-link) !important; 
 }
 
 .ant-dropdown-menu{
@@ -919,7 +929,7 @@ footer .ant-select:not(.ant-select-customize-input) .ant-select-selector{
 .swiper-button-prev::after{
     font-size: 20px !important;
     content: "←" !important;
-    color: #000;
+    color: var(--black-color);
 }
 
 .view-all-items {
@@ -1025,16 +1035,16 @@ footer .ant-select:not(.ant-select-customize-input) .ant-select-selector{
 	justify-content: center;
 }
 
-.cryptoioria-banner-container::after{
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 100%;
+.cryptoioria-banner-container::after {
+	position: absolute;
+	content: '';
+	width: 100%;
+	height: 100%;
     background-image: url(../img/custom/cryptoioriaBanner.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: contain;
+	bottom: 0;
 }
 
 .artCryptoLogo{
@@ -1354,7 +1364,7 @@ span.ant-select-selection-item {
 .place-a-bid-popup-container .sub-heading {
 	font-size: 18px;
 	line-height: 130%;
-	color: #0E0E0E;
+    color: var(--black-color);
 	font-weight: lighter;
 	max-width: 98%;
 	width: 100%;
@@ -1371,6 +1381,7 @@ span.ant-select-selection-item {
 	height: 32px;
 	font-weight: lighter;
 	padding-right: 80px;
+    background: transparent;
 }
 input:focus,
 input:focus-visible {
@@ -1519,7 +1530,7 @@ section .container-fluid,
 	padding: 0 40px;
 }
 .main-title {
-	font-size: 40px;
+	font-size: 32px;
 	line-height: 111.8%;
 	position: relative;
 	font-weight: 600 !important;
@@ -1626,7 +1637,7 @@ div.cryptoloria-page {
 	text-align: left;
 	font-size: 18px;
 	line-height: 115.8%;
-	color: #000000;
+	color: var(--black-color);
 	margin-top: 5px;
 }
 
@@ -1675,12 +1686,12 @@ ul.filter.topSeller > li .ant-select-single:not(.ant-select-customize-input) div
 }
 
 .artwork-sales-btn {
-    color: #000000 !important;
+    color: var(--black-color) !important;
     font-size: 12px;
     text-align: center;
     padding: 7px 16px !important;
     height: auto !important;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .owner-details-list {
@@ -1704,7 +1715,7 @@ ul.filter.topSeller > li .ant-select-single:not(.ant-select-customize-input) div
     line-height: 14px;
     text-align: center;
     color: #6300FF;
-    font-weight: bold;
+    font-weight: 600;
     display: inline-block;
     padding: 12px 15px;
 }
@@ -1731,7 +1742,6 @@ ul.filter.topSeller > li .ant-select-single:not(.ant-select-customize-input) div
 .category-btn-list li a {
     display: flex;
     align-items: center;
-    background: #FFFFFF;
     border: 1px solid #979797;
     box-sizing: border-box;
     border-radius: 50px;
@@ -1749,7 +1759,7 @@ ul.filter.topSeller > li .ant-select-single:not(.ant-select-customize-input) div
 }
 
 .artwork-tab-nav li a.active{
-    color: #000000 !important;
+    color: var(--black-color) !important;
 }
 
 .profile-pictures-cover{
@@ -1823,7 +1833,7 @@ ul.filter.topSeller > li .ant-select-single:not(.ant-select-customize-input) div
 .ActivityNumberCard-info h4{
     font-size: 18px;
     line-height: 130%;
-    color: #000000;    
+    color: var(--black-color);
 }
 .ActivityNumberCard-info p{
     font-size: 16px;
@@ -1834,7 +1844,7 @@ ul.filter.topSeller > li .ant-select-single:not(.ant-select-customize-input) div
 }
 
 .ActivityNumberCard-info p span{
-    color: #000000;
+    color: var(--black-color);
     margin: 0 4px;
 }
 
@@ -1849,7 +1859,7 @@ h4.pro-username{
     font-weight: bold;
     font-size: 18px;
     text-align: center;
-    color: #0E0E0E;
+    color: var(--black-color);
     font-family: 'LoRes 9 Plus OT Narrow' !important;
     padding-top: 5px;
     display: block;
@@ -1873,7 +1883,7 @@ h4.pro-username{
 .topSellerUserInfo .btn-ping:hover{
     background-color: transparent;
     border-color: var(--pink-color);
-    color: #000000 !important;
+    color: var(--black-color) !important;
 }
 
 .faq-sec .container-fluid {
@@ -1897,7 +1907,7 @@ h4.pro-username{
 .faq-sec.faq-container [id*="close-accordion"]:after {
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 5px solid #000;
+    border-top: 5px solid var(--black-color);
     top: 10px;
 }
 
@@ -1919,7 +1929,7 @@ h4.pro-username{
 
 .faq-sec.faq-container .sub-tabs-menu .accordion-content p{
     font-size: 18px;
-    color: #0E0E0E;
+    color: var(--black-color);
 }
 .activity-list-container > div > img{
     width: 120px;
@@ -1963,7 +1973,7 @@ section div.main-box {
 	font-size: 14px;
 	line-height: 120%;
 	text-align: center;
-	color: #000000;
+	color: var(--black-color);
 	font-weight: 500;
     opacity: 0;
     visibility: hidden;

@@ -203,7 +203,8 @@
         margin-top: 90px;
     }
     .artCryptoLogo {
-        width: 60%;
+        width: 40%;
+        margin-top: 15px;
     }
     .cryptoioria-banner-container .navbar-brand {
         margin-top: -20px;
@@ -215,7 +216,7 @@
         min-width: 120px;
     }
     .cryptoioria-banner-container {
-        height: 55vh;
+        height: 830px;
     }
     h4 {
         font-size: 20px;
@@ -409,6 +410,12 @@
     .pl-5.brand-new-nfp {
         padding-left: 16px !important;
         margin-top: 0;
+    }
+    .buy-art-work-week {
+        padding-top: 15px;
+    }
+    .buy-art-work-week-card h3 {
+        padding-right: 0;
     }
 }
 

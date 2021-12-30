@@ -36,8 +36,17 @@ header {
 .navbar-expand-lg .navbar-collapse {
 	justify-content: center;
 	max-width: calc(100% - 185px);
+    width: 100%;
+    flex-grow: unset;
 }
-
+.navbar-expand-lg .navbar-nav.center-menu .nav-item {
+	margin: 0 20px;
+}
+.navbar-expand-lg .navbar-nav.center-menu {
+	max-width: calc(100% - 160px);
+	width: 100%;
+	justify-content: center;
+}
 .navbar .menu-dropdown{
     width: 100%;
 }
@@ -62,7 +71,7 @@ header {
 }
 
 .navbar .menu-dropdown li:hover{
-    color: var(--white-color) !important;
+    color: var(--menu-link) !important;
     cursor: pointer !important;
     background-color: var(--pink-color);
     border-radius: 30px;
@@ -99,10 +108,12 @@ header {
 .navbar .nav-item {
     display: flex;
     align-items: center;
+    flex: unset;
 }
 .navbar-expand-lg .navbar-nav {
-	justify-content: flex-start;
-    width: 100%;
+	justify-content: flex-end;
+	width: 100%;
+	max-width: 160px;
 }
 
 /* breakpoint and up - mega dropdown styles */
