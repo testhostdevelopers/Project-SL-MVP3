@@ -7,6 +7,9 @@ import fabaLogo from "../../assets/img/custom/x.svg";
 import { useLocation, Link } from "react-router-dom";
 import userTick from "../../assets/img/icons/custom/logo.svg";
 import grayPp from "../../assets/img/custom/grayPp.png";
+import McdoIcon from "../../assets/img/custom/mcdoicon.png";
+import VisaIcon from "../../assets/img/custom/visaicon.png";
+
 
 const Navbar = () => {
 
@@ -35,7 +38,9 @@ const Navbar = () => {
             document.documentElement.style.setProperty('--footer-input-bg', "#C7C7C7");
             document.documentElement.style.setProperty('--bg-main-white', "#121212");
             document.documentElement.style.setProperty('--menu-link', "#fff");
-
+            document.documentElement.style.setProperty('--light-gray', "#2a2a2a");
+            document.documentElement.style.setProperty('--bgopacity', "rgba(21, 21, 21, 0.8)");
+            
 
         } else {
             document.documentElement.style.setProperty('--bg-main', '#FCFCFC');
@@ -54,6 +59,8 @@ const Navbar = () => {
             document.documentElement.style.setProperty('--footer-input-bg', "#fff");
             document.documentElement.style.setProperty('--bg-main-white', "#fff");
             document.documentElement.style.setProperty('--menu-link', "#fff");
+            document.documentElement.style.setProperty('--light-gray', "#C7C7C7");
+            document.documentElement.style.setProperty('--bgopacity', "rgba(255, 255, 255, 0.8)");
         }
     }, [theme])
 
@@ -78,6 +85,7 @@ const Navbar = () => {
             document.documentElement.style.setProperty('--footer-input-bg', "#C7C7C7");
             document.documentElement.style.setProperty('--bg-main-white', "#121212");
             document.documentElement.style.setProperty('--menu-link', "#fff");
+            document.documentElement.style.setProperty('--bgopacity', "rgba(21, 21, 21, 0.8)");
 
         } else {
             document.documentElement.style.setProperty('--bg-main', '#FCFCFC');
@@ -97,6 +105,7 @@ const Navbar = () => {
             document.documentElement.style.setProperty('--footer-input-bg', "#fff");
             document.documentElement.style.setProperty('--bg-main-white', "#fff");
             document.documentElement.style.setProperty('--menu-link', "#fff");
+            document.documentElement.style.setProperty('--bgopacity', "rgba(255, 255, 255, 0.8)");
         }
     }
 
@@ -206,6 +215,8 @@ const Navbar = () => {
                                                         </svg>
                                                     </a>
                                                 </div>
+
+                                                <div className="add-funds-with-btn">Add funds with <span><img src={McdoIcon}/><img src={VisaIcon}/></span></div>
 
                                             </div>
 
@@ -372,8 +383,8 @@ const Navbar = () => {
 
 
                                     {
-                                        location.pathname !== "/" ? <a className="d-sm-none d-lg-block nav-link p-0 nav-dark-button mr-2 position-relative">
-                                            <svg onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                        location.pathname !== "/" ? <a className="d-sm-none d-lg-block nav-link p-0 nav-dark-button mr-2 position-relative" onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                                                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                             </svg>
                                             {
@@ -432,6 +443,8 @@ const Navbar = () => {
 
                                                             </a>
                                                         </div>
+
+                                                        <div className="add-funds-with-btn">Add funds with <span><img src={McdoIcon}/><img src={VisaIcon}/></span></div>
 
                                                     </div>
 

@@ -138,15 +138,37 @@
     overflow: auto;
 }
 
-.fallow-steps-active i {
+.follow-step > .btn-primary-outline {
+	margin-left: 0;
+}
+.fallow-steps-passive i,
+.fallow-steps-active i{
+    position: relative;
     font-size: 38px;
-    color: var(--pink-color)
+    color: var(--gray-color);
+}
+.fallow-steps-active i{
+    color: var(--pink-color);   
+}
+.fallow-steps-active i:before,
+.fallow-steps-passive i::before {
+	content: "\f058";
+	z-index: 1;
+	position: relative;
+}
+.fallow-steps-active i::after,
+.fallow-steps-passive i::after {
+	content: "";
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	background: #fff;
+	z-index: 0;
+	border-radius: 50px;
+	bottom: 2px;
+	right: 2px;
 }
 
-.fallow-steps-passive i {
-    font-size: 38px;
-    color: var(--light-gray);
-}
 .upload-file-container > .color-gray {
 	font-weight: normal !important;
 	font-size: 13px;
@@ -204,7 +226,17 @@
     width: 3rem !important;
     border-radius: 30px !important;
 }
-
+.custom-switch .custom-control-label::before {
+	left: -2.25rem;
+	width: 1.75rem;
+	pointer-events: all;
+	border-radius: .5rem;
+	background-color: var(--pink-color);
+	border: none;
+}
+.custom-switch .custom-control-label::after {
+	background-color: #fff;
+}
 .create-single-section-container .custom-control-label::before {
     height: 1.50rem !important;
 }
@@ -604,13 +636,15 @@ footer .topSeller .headerSelect .ant-select-single.ant-select-show-arrow .ant-se
 .follow-step small {
 	font-size: 18px;
 	line-height: 130%;
-	color: #0E0E0E;
+	color: var(--black-color);
 	font-weight: 300;
 }
 .follow-step small b {
 	font-weight: 600;
 }
-
+.follow-step > div.mb-3:last-of-type {
+	border-bottom: 1px solid #ccc;
+}
 .CreateCollectibleEdit-right{
     padding-left: 75px !important;
 }
@@ -620,4 +654,18 @@ footer .topSeller .headerSelect .ant-select-single.ant-select-show-arrow .ant-se
 	margin-top: 28px !important;
 	line-height: 140%;
 	letter-spacing:0;
+}
+.add-funds-with-btn {
+	background: var(--footer-input-bg);
+	border: 0.5px solid #C7C7C7;
+	box-sizing: border-box;
+	border-radius: 47px;
+	font-weight: bold;
+	padding: 10px 10px;
+	text-align: center;
+}
+.new-buy.btn-ping {
+	width: 76px !important;
+	height: 39px !important;
+	padding: 5px 0  6px 0 !important;
 }

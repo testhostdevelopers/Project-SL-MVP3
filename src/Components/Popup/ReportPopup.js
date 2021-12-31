@@ -8,7 +8,7 @@ const ReportPopup = (props) => {
         visible: { opacity: 1 },
     }
 
-    let { setReportPopup } = props;
+    let { setreportPopup } = props;
 
     return (
         <motion.div
@@ -32,7 +32,7 @@ const ReportPopup = (props) => {
                     </button>
                 </div>
 
-                <button className="btn-primary-outline w-100 mt-3 mb-3" onClick={() => setReportPopup(false)}>
+                <button className="btn-primary-outline w-100 mt-3 mb-3" onClick={() => setreportPopup(false)}>
                     Cancel
                 </button>
 

@@ -363,13 +363,15 @@ header {
     top: 50px;
     right: 0;
     box-shadow: 0px 25px 60px rgba(0, 0, 0, 0.08);
+    border: solid 1px var(--light-gray);
     z-index: 999;
     width: 380px;
 }
 
-.notificationPopup .border-section{
-    border-top: solid 1px var(--gray-bg);
-    border-bottom: solid 1px var(--gray-bg);
+.notificationPopup .border-section {
+	border-top: solid 1px var(--gray-bg);
+	border-bottom: solid 1px var(--gray-bg);
+	padding-bottom: 28px;
 }
 .notificationPopup .border-section > div {
 	width: 100%;
@@ -384,13 +386,14 @@ header {
 	width: 36px;
 	height: 36px;
 }
-
-.notificationPopup .btn-dark-outline{
-    padding: 10px 25px;
-    border: solid 1px var(--gray-bg);
-    background-color: var(--bg-white);
-    color: var(--black-text);
-    border-radius: 30px;
+.notificationPopup .btn-dark-outline {
+	padding: 10px 25px;
+	border: solid 1px var(--gray-color);
+	background-color: var(--bg-white);
+	color: var(--black-text);
+	border-radius: 30px;
+	min-height: 1px;
+	height: auto !important;
 }
 
 .notification-ping-bg{
@@ -460,4 +463,8 @@ header {
 
 .landing-header.navbar .dropdown-toggle::after {
     border-color: #fff transparent transparent transparent;
+}
+
+body > iframe {
+	display: none;
 }

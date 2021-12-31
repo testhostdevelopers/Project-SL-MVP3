@@ -25,7 +25,7 @@ const PlaceABidFollowPopup = (props) => {
                 </div>
                 <div className="mb-3 mt-4">
                     <div className="d-flex">
-                        <div className="fallow-steps-active">
+                        <div className="fallow-steps-passive">
                             <i className="fas fa-check-circle"></i>
                         </div>
                         <div className="ml-3">
@@ -36,14 +36,14 @@ const PlaceABidFollowPopup = (props) => {
                         </div>
                     </div>
 
-                    <button className="btn-ping  w-100 mb-3">
+                    <button className="btn-gray  w-100 mb-3">
                         Completed
                     </button>
                 </div>
 
                 <div className="mb-3">
                     <div className="d-flex">
-                        <div className="fallow-steps-passive">
+                        <div className="fallow-steps-active">
                             <i className="fas fa-check-circle"></i>
                         </div>
                         <div className="ml-3">
@@ -54,14 +54,14 @@ const PlaceABidFollowPopup = (props) => {
                         </div>
                     </div>
 
-                    <button className="btn-gray w-100 mb-3">
+                    <button className="btn-ping w-100 mb-3">
                         Start
                     </button>
                 </div>
 
                 <div className="mb-3">
                     <div className="d-flex">
-                        <div className="fallow-steps-passive">
+                        <div className="fallow-steps-active">
                             <i className="fas fa-check-circle"></i>
                         </div>
                         <div className="ml-3">
@@ -71,8 +71,7 @@ const PlaceABidFollowPopup = (props) => {
                             </p>
                         </div>
                     </div>
-
-                    <button className="btn-gray w-100 mb-3" onClick={() => setErrorPopup(true) }>
+                    <button className="btn-ping w-100 mb-3" onClick={() => setErrorPopup(true) }>
                         Start
                     </button>
                 </div>

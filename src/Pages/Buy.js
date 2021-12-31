@@ -12,8 +12,9 @@ import ErrorPopup from '../Components/Popup/ErrorPopup';
 import ShareThisNFTPopup from '../Components/Popup/ShareThisNFTPopup';
 import WhatIswETHPopup from '../Components/Popup/WhatIswETHPopup';
 import FullScreenImage from '../Components/Popup/FullScreenImage';
-
+import ReportPopup from '../Components/Popup/ReportPopup';
 import CheckOut from '../Components/Popup/CheckOut';
+
 import { Menu, Dropdown, Select } from 'antd';
 import { motion } from "framer-motion"
 
@@ -22,16 +23,18 @@ const Buy = () => {
     const [singlePopup, setSinglePopup] = useState(false);
     const [errorPopups, setErrorPopup] = useState(false);
     const [sharePopup, setsharePopup] = useState(false);
+    const [reportPopup, setreportPopup] = useState(false);
     const [helpPopup, sethelpPopup] = useState(false);
+    const [CheckOutPopup, setCheckOutPopup] = useState(false);
     
     let [openImage, setOpenImage] = useState(false)
 
     const menu = (
         <Menu>
-            <Menu.Item>
+            <Menu.Item onClick={() => setSingleCollectionPopup(true)}>
                 New bid
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item onClick={() => setCheckOutPopup(true)} >
                 Purchase now
             </Menu.Item>
             <div className="mt-3 mb-3 border-bottom w-100"></div>
@@ -44,7 +47,7 @@ const Buy = () => {
             <Menu.Item onClick={() => setsharePopup(true)}>
                 Share
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item onClick={() => setreportPopup(true)}>
                 Report
             </Menu.Item>
         </Menu>
@@ -74,8 +77,16 @@ const Buy = () => {
                 sharePopup && <ShareThisNFTPopup setsharePopup={setsharePopup} />
             }
             {
+                reportPopup && <ReportPopup setreportPopup={setreportPopup} />
+            }
+            {
                 helpPopup && <WhatIswETHPopup  sethelpPopup={sethelpPopup} />
             }
+            {
+                CheckOutPopup && <CheckOut  setCheckOutPopup={setCheckOutPopup} />
+            }
+
+
 
             <motion.section
                 initial="hidden"
@@ -243,7 +254,7 @@ const Buy = () => {
                                                     </div>
                                                 </div>
 
-                                                <button className="btn-ping" style={{ height: "45px" }}>Buy</button>
+                                                <button onClick={() => setCheckOutPopup(true)} className="new-buy btn-ping">Buy</button>
                                             </div>
 
                                             <div className="w-100 d-flex justify-content-between mb-3">
@@ -392,7 +403,7 @@ const Buy = () => {
 
                                 <div className="row d-flex justify-content-center mt-5 action-btn buy-highest-bid-block-btn">
                                     <div className="col-sm-12 col-lg-8 d-flex">
-                                        <button className="btn-ping  w-100" onClick={() => setSingleCollectionPopup(true)}>
+                                        <button className="btn-ping  w-100" onClick={() => setCheckOutPopup(true)}>
                                             Buy for 1.25 ETH
                                         </button>
 
