@@ -5,10 +5,14 @@ import menu4Line from "../../assets/img/icons/custom/menu-4-line.svg";
 import userProfilePictures from "../../assets/img/icons/custom/userNav.svg";
 import fabaLogo from "../../assets/img/custom/x.svg";
 import { useLocation, Link } from "react-router-dom";
-import userTick from "../../assets/img/icons/custom/logo.svg";
+import userTick from "../../assets/img/custom/StarlightbalanceIcon.svg";
 import grayPp from "../../assets/img/custom/grayPp.png";
-import McdoIcon from "../../assets/img/custom/mcdoicon.png";
-import VisaIcon from "../../assets/img/custom/visaicon.png";
+import McdoIcon from "../../assets/img/custom/mcdoicon.svg";
+import menuclose from "../../assets/img/custom/close.png";
+import BalanceIcon from "../../assets/img/custom/BalanceIcon.svg";
+import starlight from "../../assets/img/custom/starlight.png";
+import BidingbalanceIcon from "../../assets/img/custom/BidingbalanceIcon.svg";
+
 
 
 const Navbar = () => {
@@ -22,6 +26,8 @@ const Navbar = () => {
     useEffect(() => {
         localStorage.setItem('theme', theme);
         if (theme === true) {
+            document.documentElement.classList.add('dark-md');
+            document.documentElement.classList.remove('light-md');
             document.documentElement.style.setProperty('--bg-main', '#121212');
             document.documentElement.style.setProperty('--bg-card', '#181818');
             document.documentElement.style.setProperty('--bg-white', '#000');
@@ -40,9 +46,13 @@ const Navbar = () => {
             document.documentElement.style.setProperty('--menu-link', "#fff");
             document.documentElement.style.setProperty('--light-gray', "#2a2a2a");
             document.documentElement.style.setProperty('--bgopacity', "rgba(21, 21, 21, 0.8)");
-            
+            document.documentElement.style.setProperty('--arrowbg', "#392F3B");
+            document.documentElement.style.setProperty('--bothblack', "#000");
+
 
         } else {
+            document.documentElement.classList.remove('dark-md');
+            document.documentElement.classList.add('light-md');
             document.documentElement.style.setProperty('--bg-main', '#FCFCFC');
             document.documentElement.style.setProperty('--bg-card', '#fff');
             document.documentElement.style.setProperty('--bg-white', '#fff');
@@ -61,6 +71,8 @@ const Navbar = () => {
             document.documentElement.style.setProperty('--menu-link', "#fff");
             document.documentElement.style.setProperty('--light-gray', "#C7C7C7");
             document.documentElement.style.setProperty('--bgopacity', "rgba(255, 255, 255, 0.8)");
+            document.documentElement.style.setProperty('--arrowbg', "#F0E7F2");
+            document.documentElement.style.setProperty('--bothblack', "#000");
         }
     }, [theme])
 
@@ -68,6 +80,8 @@ const Navbar = () => {
         setTheme(!theme)
         localStorage.setItem('theme', theme);
         if (theme === true) {
+            document.documentElement.classList.add('dark-md');
+            document.documentElement.classList.remove('light-md');
             document.documentElement.style.setProperty('--bg-main', '#121212');
             document.documentElement.style.setProperty('--bg-card', '#181818');
             document.documentElement.style.setProperty('--bg-white', '#000');
@@ -86,8 +100,12 @@ const Navbar = () => {
             document.documentElement.style.setProperty('--bg-main-white', "#121212");
             document.documentElement.style.setProperty('--menu-link', "#fff");
             document.documentElement.style.setProperty('--bgopacity', "rgba(21, 21, 21, 0.8)");
+            document.documentElement.style.setProperty('--arrowbg', "#392F3B");
+            document.documentElement.style.setProperty('--bothblack', "#000");
 
         } else {
+            document.documentElement.classList.remove('dark-md');
+            document.documentElement.classList.add('light-md');
             document.documentElement.style.setProperty('--bg-main', '#FCFCFC');
             document.documentElement.style.setProperty('--bg-card', '#fff');
             document.documentElement.style.setProperty('--bg-white', '#fff');
@@ -106,9 +124,15 @@ const Navbar = () => {
             document.documentElement.style.setProperty('--bg-main-white', "#fff");
             document.documentElement.style.setProperty('--menu-link', "#fff");
             document.documentElement.style.setProperty('--bgopacity', "rgba(255, 255, 255, 0.8)");
+            document.documentElement.style.setProperty('--arrowbg', "#F0E7F2");
+            document.documentElement.style.setProperty('--bothblack', "#000");
         }
     }
 
+    const [isShow, SetIsShow] = useState(false);
+    const [closeNotification, setCloseNotification] = useState(true);
+
+    const notifications = ["add your email", "subscribe", "go to website"];
 
     return (
         <>
@@ -162,8 +186,11 @@ const Navbar = () => {
                                     </svg>
                                     {
                                         openProfileDropMenu === false ? "" : <div className="openProfileDropMenu">
-                                            <h4>0×hubwc8fh2f....hb8fhr</h4>
-                                            <div className="color-ping text-left">Set display name</div>
+                                            <h4 className="text-left">0×hubwc8fh2f....hb8fhr</h4>
+                                            <div className="notipopup-display">
+                                                <a href="#0" className="color-ping"><b>Set display name</b></a>
+                                                <a href="#0" className="color-ping"><b>Upload profile picture</b></a>
+                                            </div>
 
                                             <div className="border-section pt-3 mt-3">
 
@@ -187,7 +214,7 @@ const Navbar = () => {
                                                 <div className="d-flex justify-content-between mb-3">
                                                     <div className="d-flex">
                                                         <div>
-                                                            <img src={grayPp} width="36" />
+                                                            <img src={BalanceIcon} width="36" />
                                                         </div>
 
                                                         <div className="ml-3">
@@ -200,7 +227,7 @@ const Navbar = () => {
                                                 <div className="d-flex justify-content-between mb-3">
                                                     <div className="d-flex">
                                                         <div>
-                                                            <img src={grayPp} width="36" />
+                                                            <img src={BidingbalanceIcon} width="36" />
                                                         </div>
 
                                                         <div className="ml-3">
@@ -216,18 +243,22 @@ const Navbar = () => {
                                                     </a>
                                                 </div>
 
-                                                <div className="add-funds-with-btn">Add funds with <span><img src={McdoIcon}/><img src={VisaIcon}/></span></div>
+                                                <div className="add-funds-with-btn">Add funds with 
+                                                    <span>
+                                                        <img src={McdoIcon} />
+                                                    </span>
+                                                </div>
 
                                             </div>
 
 
-                                            <div className="d-flex justify-content-between mb-3 mt-3">
+                                            {/* <div className="d-flex justify-content-between mb-3 mt-3">
                                                 <Link to="/Profile"> <h6>My Profile</h6></Link>
                                             </div>
 
                                             <div className="d-flex justify-content-between mb-3">
                                                 <Link to="/CreateCollectibleEdit"><h6>Edit Profile</h6></Link>
-                                            </div>
+                                            </div> */}
 
                                             <div className="d-flex justify-content-between align-items-center mb-3">
                                                 <h6 className="m-0">Manage funds</h6>
@@ -255,20 +286,46 @@ const Navbar = () => {
 
                         <Link to="/" className="navbar-brand m-0 d-flex align-items-center"> <img src={fabaLogo} width="24" alt="" /> <h3 className="ml-2" style={{ fontSize: "22px", fontFamily: 'LoRes 9 Plus OT Narrow' }}>Starlight</h3></Link>
 
-                        <div className="collapse navbar-collapse" id="mainNav">
-                                
+                        <div className={`collapse navbar-collapse${isShow ? ' noshow' : ''}`} id="mainNav">
+                            <div className='close' onClick={() => SetIsShow(!isShow)}>
+                                <img src={menuclose} />
+                            </div>
                             <ul className="navbar-nav nav-fill align-items-center center-menu">
                                 <li>
-                                    <Link to="#0" className="nav-link">Explore Starlight</Link>
+                                    <Link to="/Explore" className="nav-link">Explore Starlight</Link>
                                 </li>
                                 <li>
-                                    <Link to="#0" className="nav-link">Explore Starlight</Link>
+                                    <Link to="/Cryptoloria" className="nav-link">Cryptoloria</Link>
                                 </li>
                                 <li>
-                                    <Link to="#0" className="nav-link">Explore Starlight</Link>
+                                    <Link to="#0" className="nav-link">SLX Token</Link>
+                                </li>
+                                <li className='mobile-social'>
+                                    <div className="d-flex footer-social-icons">
+                                        <Link to={{ pathname: "https://twitter.com/starlight_meta" }} target="_blank">
+                                            <i className="fab fa-twitter"></i>
+                                        </Link>
+                                        <Link to={{ pathname: "https://t.me/starlightmeta" }} target="_blank">
+                                            <i className="fab fa-telegram-plane"></i>
+                                        </Link>
+                                        <Link to={{ pathname: "https://www.instagram.com/starlightmeta/" }} target="_blank">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M11.9991 8.87531C10.2788 8.87531 8.87491 10.2792 8.87491 11.9995C8.87491 13.7198 10.2788 15.1237 11.9991 15.1237C13.7194 15.1237 15.1234 13.7198 15.1234 11.9995C15.1234 10.2792 13.7194 8.87531 11.9991 8.87531ZM21.3694 11.9995C21.3694 10.7058 21.3812 9.42374 21.3085 8.13234C21.2358 6.63234 20.8937 5.30109 19.7968 4.20421C18.6976 3.10499 17.3687 2.76515 15.8687 2.69249C14.5749 2.61984 13.2929 2.63156 12.0015 2.63156C10.7077 2.63156 9.4257 2.61984 8.13429 2.69249C6.63429 2.76515 5.30304 3.10734 4.20617 4.20421C3.10695 5.30343 2.7671 6.63234 2.69445 8.13234C2.62179 9.42609 2.63351 10.7081 2.63351 11.9995C2.63351 13.2909 2.62179 14.5753 2.69445 15.8667C2.7671 17.3667 3.10929 18.698 4.20617 19.7948C5.30538 20.8941 6.63429 21.2339 8.13429 21.3066C9.42804 21.3792 10.7101 21.3675 12.0015 21.3675C13.2952 21.3675 14.5773 21.3792 15.8687 21.3066C17.3687 21.2339 18.6999 20.8917 19.7968 19.7948C20.896 18.6956 21.2358 17.3667 21.3085 15.8667C21.3835 14.5753 21.3694 13.2933 21.3694 11.9995ZM11.9991 16.8066C9.33898 16.8066 7.1921 14.6597 7.1921 11.9995C7.1921 9.33937 9.33898 7.19249 11.9991 7.19249C14.6593 7.19249 16.8062 9.33937 16.8062 11.9995C16.8062 14.6597 14.6593 16.8066 11.9991 16.8066ZM17.003 8.11828C16.3819 8.11828 15.8804 7.61671 15.8804 6.99562C15.8804 6.37453 16.3819 5.87296 17.003 5.87296C17.6241 5.87296 18.1257 6.37453 18.1257 6.99562C18.1259 7.1431 18.097 7.28917 18.0406 7.42546C17.9843 7.56175 17.9016 7.68559 17.7973 7.78987C17.693 7.89416 17.5692 7.97684 17.4329 8.0332C17.2966 8.08955 17.1505 8.11846 17.003 8.11828Z" fill="#9D9D9D" />
+                                            </svg>
+                                        </Link>
+                                        <Link to={{ pathname: "https://discord.com/invite/h3pWz4fY72" }} target="_blank">
+                                            <i className="fab fa-discord"></i>
+                                        </Link>
+                                        <Link to={{ pathname: "https://www.reddit.com/r/starlightmeta/" }} target="_blank">
+                                            <i class="fab fa-reddit" aria-hidden="true"></i>
+                                        </Link>
+                                        <Link to={{ pathname: "#0" }}>
+                                            <i className="fab fa-youtube"></i>
+                                        </Link>
+                                    </div>
                                 </li>
                             </ul>
-                             <ul className="navbar-nav nav-fill align-items-center">
+                            <ul className="navbar-nav nav-fill align-items-center">
 
                                 {/*<li className="nav-item">
                                     <div className="navbar-search">
@@ -346,35 +403,36 @@ const Navbar = () => {
                                                 notificationPopup === false ? "" : <div className="notificationPopup p-0">
                                                     <div className="d-flex justify-content-between align-items-center p-4">
                                                         <h5>Notifications</h5>
-                                                        <div className="color-ping text-left">See All</div>
+                                                        <div className="color-ping text-left">See all</div>
                                                     </div>
 
-                                                    <div className="d-flex justify-content-between mb-3 notification-ping-bg position-relative p-4">
-                                                        <div className="popup-close-btn-outline">
-                                                            <i className="fas fa-times"></i>
-                                                        </div>
-                                                        <div className="d-flex">
-                                                            <div>
-                                                                <img src={grayPp} width="56" />
+                                                    {notifications.map((n, i) =>
+                                                        <div className={`d-flex justify-content-between notification-ping-bg position-relative p-4 ${!closeNotification ? " notifyclose" : ""}`}>
+                                                            <div className="popup-close-btn-outline" onClick={() => setCloseNotification(false)}>
+                                                                <i className="fas fa-times" ></i>
                                                             </div>
-
-                                                            <div className="ml-3">
-                                                                <div className="text-left">Add your email</div>
-                                                                <div className="text-left">
-                                                                    <span className="color-gray">to get all the important notifications
-                                                                        right into your inbox</span>
+                                                            <div className="d-flex">
+                                                                <div>
+                                                                    <img src={grayPp} width="56" />
                                                                 </div>
 
-                                                                <div className="d-flex justify-content-between gray-color mt-3" style={{ borderRadius: "30px" }}>
-                                                                    <input width="100%" className="border-none bg-white" style={{ border: "none", paddingLeft: "10px", outline: "none", borderTopLeftRadius: "30px", borderBottomLeftRadius: "30px" }} placeholder="Your email" />
-                                                                    <button className="single-create-collectible btn-ping pt-0 pb-0 pl-4 pr-4 " style={{ fontSize: "12px", marginLeft: "-15px" }}><small>Get notified</small></button>
-                                                                </div>
+                                                                <div className="ml-3">
+                                                                    <div className="text-left">{n}</div>
+                                                                    <div className="text-left">
+                                                                        <span className="color-gray">to get all the important notifications
+                                                                            right into your inbox</span>
+                                                                    </div>
 
+                                                                    <div className="d-flex justify-content-between gray-color mt-3" style={{ borderRadius: "30px" }}>
+                                                                        <input width="100%" className="border-none bg-white" style={{ border: "none", paddingLeft: "10px", outline: "none", borderTopLeftRadius: "30px", borderBottomLeftRadius: "30px" }} placeholder="Your email" />
+                                                                        <button className="single-create-collectible btn-ping pt-0 pb-0 pl-4 pr-4 " style={{ fontSize: "12px", marginLeft: "-15px" }}><small>Get notified</small></button>
+                                                                    </div>
+
+                                                                </div>
                                                             </div>
                                                         </div>
-
-                                                    </div>
-
+                                                    )
+                                                    }
 
                                                 </div>
                                             }
@@ -390,7 +448,10 @@ const Navbar = () => {
                                             {
                                                 openProfileDropMenu === false ? "" : <div className="notificationPopup">
                                                     <h4 className="text-left">0×hubwc8fh2f....hb8fhr</h4>
-                                                    <div className="color-ping text-left mt-2">Set display name</div>
+                                                    <div className="notipopup-display">
+                                                        <a href="#0" className="color-ping"><b>Set display name</b></a>
+                                                        <a href="#0" className="color-ping"><b>Upload profile picture</b></a>
+                                                    </div>
 
                                                     <div className="border-section pt-3 mt-3">
 
@@ -414,7 +475,7 @@ const Navbar = () => {
                                                         <div className="d-flex justify-content-between mb-3">
                                                             <div className="d-flex">
                                                                 <div className="token-img">
-                                                                    <img src={grayPp} width="36" />
+                                                                    <img src={BalanceIcon} width="36" />
                                                                 </div>
 
                                                                 <div className="ml-3">
@@ -427,7 +488,7 @@ const Navbar = () => {
                                                         <div className="d-flex justify-content-between mb-3">
                                                             <div className="d-flex">
                                                                 <div className="token-img">
-                                                                    <img src={grayPp} width="36" />
+                                                                    <img src={BidingbalanceIcon} width="36" />
                                                                 </div>
 
                                                                 <div className="ml-3">
@@ -444,18 +505,22 @@ const Navbar = () => {
                                                             </a>
                                                         </div>
 
-                                                        <div className="add-funds-with-btn">Add funds with <span><img src={McdoIcon}/><img src={VisaIcon}/></span></div>
+                                                        <div className="add-funds-with-btn">Add funds with
+                                                            <span>
+                                                                <img src={McdoIcon} />
+                                                            </span>
+                                                        </div>
 
                                                     </div>
 
 
-                                                    <div className="d-flex justify-content-between mb-3 mt-3">
+                                                    {/* <div className="d-flex justify-content-between mb-3 mt-3">
                                                         <Link to="/Profile"> <h6>My Profile</h6></Link>
                                                     </div>
 
                                                     <div className="d-flex justify-content-between mb-3">
                                                         <Link to="/CreateCollectibleEdit"><h6>Edit Profile</h6></Link>
-                                                    </div>
+                                                    </div> */}
 
                                                     <div className="d-flex justify-content-between align-items-center mb-3">
                                                         <h6 className="m-0">Manage funds</h6>

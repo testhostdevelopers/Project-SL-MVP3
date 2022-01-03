@@ -17,7 +17,7 @@ import artWorkWeek3 from "../assets/img/custom/artWorkWeek3.png";
 import artWorkWeek4 from "../assets/img/custom/artWorkWeek4.png";
 import menuline from "../assets/img/custom/menu-line-icon.png";
 import FillLabel from "../assets/img/icons/custom/fill-label.png";
-import categoryicon from "../assets/img/custom/category-icon.png";
+import categoryicon from "../assets/img/custom/category-icon.svg";
 import propertiesicon from "../assets/img/custom/properties.png";
 import flashlight from "../assets/img/custom/flashlight-line.png";
 import Priceicon from "../assets/img/custom/u_dollar-alt.png";

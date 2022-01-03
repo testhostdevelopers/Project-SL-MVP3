@@ -231,7 +231,7 @@ border-bottom: solid 1px var(--gray-color);
 }
 
 .liveAuction-card-container small {
-	color: var(--black-color);
+	color: var(--bothblacks);
 	font-size: 14px;
 	line-height: 16px;
     font-weight: 500;
@@ -241,7 +241,7 @@ border-bottom: solid 1px var(--gray-color);
 }
 .liveAuction-card-container div,
 .liveAuction-card-container h6{
-    background-color: var(--bg-white);
+    background-color: var(--bg-card);
 }
 
 .headerSelect h3{
@@ -598,8 +598,8 @@ footer section .footer-in-email {
 	width: 100%;
 }
 .liveAuction-card-container {
-	background: #FFFFFF;
-	border: 0.2px solid #EDECEC;
+	background: var(--bg-card);
+	border: 0.2px solid var(--light-gray);
 	box-sizing: border-box;
 	box-shadow: 0px 25px 40px rgba(0, 0, 0, 0.01);
 	border-radius: 15px;
@@ -609,6 +609,7 @@ footer section .footer-in-email {
 }
 .liveAuction-card-container .bg-white{
 	position: relative;
+    background: var(--bg-card) !important;
 }
 .liveAuction-card-container .live-user-list {
 	display: flex;
@@ -630,14 +631,13 @@ footer section .footer-in-email {
 }
 
 .liveAuction .card-heart-icon {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(50px);
+    background:var(--bg-card);
     border-radius: 15px;
     padding: 5px 10px;
     position: absolute;
     top: 20px;
     right: 15px;
-    color: var(--text-light-color);
+    color: var(--black-text);
 }
 
 .liveAuction .card-heart-icon i {
@@ -646,14 +646,13 @@ footer section .footer-in-email {
 }
 
 .liveAuction .card-select-icon {
-    background: var(--bg-white);
-    backdrop-filter: blur(50px);
+    background: var(--bg-card);
     cursor: pointer;
     padding: 5px 10px;
     position: absolute;
     bottom: -16px;
     right: 15px;
-    border: 0.2px solid #EDECEC;
+    border: 0.2px solid var(--light-gray);
     box-sizing: border-box;
     box-shadow: 0px 25px 40px rgba(0, 0, 0, 0.01);
     border-radius: 50%;
@@ -753,8 +752,7 @@ footer section .footer-in-email {
     width: 38px !important;
     height: 38px !important;
     border-radius: 50% !important;
-    background: #e6e6e6 !important;
-    backdrop-filter: blur(50px) !important;
+    background: var(--arrowbg) !important;
     z-index: 9 !important;
 }
 
@@ -804,7 +802,13 @@ small.text-secondary {
     align-items: center;
     justify-content: space-between;
 }
-
+.slider-conter-absolute * {
+	color: var(--black-text);
+	align-items: unset !important;
+}
+.slider-content small {
+    font-size: 16px;
+}
 .margin-50{
     margin-top: 100px !important;
 }
@@ -887,6 +891,7 @@ font-size: 12px;
 .liveAuction-card-container h6{
     color: var(--black-text) !important;
     margin-top: 15px !important;
+    background: var(--bg-card) !important;
 }
 
 .topSeller .ant-select:not(.ant-select-customize-input) .ant-select-selector{
@@ -897,7 +902,7 @@ font-size: 12px;
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     padding: 6px 15px;
     min-width: 130px;
-    max-width: 160px;
+    max-width: 200px;
     text-align: right;
 }
 
@@ -1274,7 +1279,7 @@ span.ant-select-selection-item {
 
 .following-page-section .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
     background-color: var(--pink-color) !important;
-    color: var(--white-color) !important;
+    color: var(--black-text) !important;
 }
 
 .following-page-section .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active svg path{
@@ -1692,9 +1697,13 @@ ul.filter.topSeller > li .label {
 }
 ul.filter.topSeller > li .icon {
 	position: absolute;
-	top: 11px;
+	top: 9px;
 	left: 13px;
 	z-index: 1;
+	width: 20px;
+}
+ul.filter.topSeller > li .icon img {
+	width: 100%;
 }
 .ant-select-single.ant-select-show-arrow span.ant-select-selection-item{
 	padding-right: 22px;
@@ -2236,4 +2245,30 @@ ul.react-tabs__tab-list > li{
     left: 0;
     right: 0;
     opacity: 0;
+}
+
+
+.dark-md ul.filter.topSeller > li .icon img {
+	filter: invert(1) brightness(100);
+}
+.navbar-expand-lg .mobile-social,
+.navbar-expand-lg .navbar-collapse .close {
+	display: none;
+}
+.notification-ping-bg button.single-create-collectible {
+	padding: 0 3px !important;
+	width: 96px;
+}
+.add-funds-with-btn > span {
+	margin-left: 7px;
+}
+.activity-number-card-right .filters-listing-button-list {
+	display: inline-flex;
+	flex-wrap: wrap;
+}
+.activity-number-card-right button.btn-light {
+	font-weight: bold;
+	height: auto !important;
+	display: flex;
+	align-items: center;
 }

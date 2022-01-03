@@ -6,23 +6,42 @@ import ReportPopup from '../Components/Popup/ReportPopup';
 export default function HotBids ({title,WETH,bid,heartcount, Coverimg,time}) {
     const [ReportPopups, setReportPopup] = useState(false);
     const [singlePopup, setSinglePopup] = useState(false);
+    const lastSegment = window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1);
 
-    const menu = (
-        <Menu>
-            <Menu.Item>
-                Change Price
-            </Menu.Item>
-            <Menu.Item>
-                Transfer Token
-            </Menu.Item>
-            <Menu.Item>
-                Burn Token
-            </Menu.Item>
-            <Menu.Item onClick={() => setReportPopup(true)}>
-                Report
-            </Menu.Item>
-        </Menu>
-    );
+    console.log(lastSegment);  
+    let menu;
+    if( lastSegment === "Profile" ){
+        menu = (
+            <Menu>
+                <Menu.Item>
+                    Change Price
+                </Menu.Item>
+                <Menu.Item>
+                    Transfer Token
+                </Menu.Item>
+                <Menu.Item>
+                    Burn Token
+                </Menu.Item>
+                <Menu.Item onClick={() => setReportPopup(true)}>
+                    Report
+                </Menu.Item>
+            </Menu>
+        );
+    }else{
+        menu = (
+            <Menu>
+                <Menu.Item>
+                    Refresh Matedata
+                </Menu.Item>
+                <Menu.Item>
+                    Share
+                </Menu.Item>
+                <Menu.Item>
+                    Report
+                </Menu.Item>
+            </Menu>
+        );
+    }
   return (
     <>
     {

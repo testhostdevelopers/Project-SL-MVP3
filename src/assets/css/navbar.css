@@ -290,7 +290,7 @@ header {
 	border: 1px solid #C7C7C7;
 	width: 48px;
 	height: 48px;
-	background-color: #fff;
+	background-color: var(--white-color);
 	color: #333;
 	border-radius: 50%;
 	margin-left: 10px;
@@ -354,7 +354,10 @@ header {
     border-radius: 30px;
 }
 
-
+.notipopup-display{
+    display: flex;
+    justify-content: space-between;
+}
 .notificationPopup{
     padding: 20px;
     background-color: var(--bg-main);
@@ -366,15 +369,27 @@ header {
     border: solid 1px var(--light-gray);
     z-index: 999;
     width: 380px;
+    overflow: hidden;
 }
-
+.notificationPopup > h4{
+    font-size: 24px;
+    color: #000000;
+    font-weight: bold;
+    margin-bottom: 8px !important;
+}
 .notificationPopup .border-section {
 	border-top: solid 1px var(--gray-bg);
 	border-bottom: solid 1px var(--gray-bg);
-	padding-bottom: 28px;
+	padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 .notificationPopup .border-section > div {
 	width: 100%;
+}
+.notificationPopup .border-section > div.add-funds-with-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .notificationPopup .border-section > div > .d-flex {
 	width: 100%;
@@ -399,13 +414,18 @@ header {
 .notification-ping-bg{
     background-color: var(--notification-ping-bg);
 }
+.notification-ping-bg:last-child{
+    margin-bottom: 0 !important;
+}
 
 .notificationPopup .notification-ping-bg .popup-close-btn-outline{
     position: absolute;
     right: 10px;
     top: 10px;
 }
-
+.notification-ping-bg.notifyclose {
+	display: none !important;
+}
 .custom-control-input:checked~.custom-control-label::before{
     border-color: var(--pink-color);
     background-color: var(--pink-color);

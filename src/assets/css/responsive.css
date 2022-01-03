@@ -417,6 +417,30 @@
     .buy-art-work-week-card h3 {
         padding-right: 0;
     }
+    .navbar-expand-lg .navbar-nav.center-menu {
+        max-width: 100%;
+        width: 100%;
+        justify-content: flex-start;
+        align-items: flex-start !important;
+    }
+    .navbar-expand-lg .navbar-nav:not(.center-menu) {
+        display: none;
+    }
+    .navbar-collapse .close {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        cursor: pointer;
+        z-index: 1;
+    }
+    .dark-md header .menu-reverse > div img,
+    .dark-md header .menu-reverse > div svg {
+        filter: invert(1) brightness(100);
+    }
+    .navbar-expand-lg .mobile-social,
+    .navbar-expand-lg .navbar-collapse .close {
+        display: block;
+    }
 }
 
 @media only screen and (max-width: 767px) {
@@ -536,6 +560,9 @@
     }
     .d-mobile-flex-column {
         flex-direction: column !important;
+    }
+    .profile-activity-filter-mobile.d-web-none {
+        display: none !important;
     }
     .d-web-none {
         display: block !important;
@@ -788,7 +815,6 @@
 
     header .navbar {
         padding: 15px 0 !important;
-        background: #fff;
     }
     .nft-start h4 {
         font-size: 22px !important;
@@ -960,10 +986,59 @@
         width: 100%;
         font-size: 14px;
     }
+    .navbar-expand-lg .navbar-nav.center-menu {
+        max-width: 100%;
+        padding: 0 15px;
+    }
     .navbar-expand-lg div.navbar-collapse {
         max-width: 100%;
+        align-items: center;
+        justify-content: flex-start;
+        display: flex;
+        margin-top: 0;
+        z-index: 2;
+        max-height: 0 !important;
+        transition: all 0.5s ease;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        pointer-events: none;
+        visibility: hidden;
     }
-
+    .navbar-collapse .footer-social-icons{
+        margin-top: 0 !important;
+    }
+    .navbar-expand-lg div.navbar-collapse.collapsing,
+    .navbar-expand-lg div.navbar-collapse.show {
+        max-height: 100vh !important;
+        transition: all 0.5s ease;
+        pointer-events: all;
+        visibility: visible;
+        opacity: 1;
+        background: var(--bg-main);
+        padding-top: 60px;
+    }
+    .navbar-expand-lg .navbar-nav.center-menu li {
+        width: auto;
+        margin-bottom: 30px;
+    }
+    .navbar-nav .footer-social-icons i{
+        font-size: 18px !important;
+    }
+    .navbar-nav  .footer-social-icons svg {
+        width: 20px;
+        height: 20px;
+    }
+    .navbar-light .navbar-nav a.nav-link {
+        padding-right: 5px;
+        padding-left: 5px;
+        font-size: 18px;
+        line-height: 115.8%;
+        background: transparent;
+        font-weight: 600;
+    }
     .buy-art-work-week .container-fluid.mt-5 {
         margin-top: 0 !important;
     }
@@ -1195,7 +1270,7 @@
 
     .activity-number-card-right {
         order: -1;
-        margin-top: -45px;
+        margin-top: 10px;
         padding-left: 0;
         padding-right: 0;
     }
@@ -1208,7 +1283,10 @@
     .filters-listing-reset .d-flex{
         display: flex !important;
     }
-
+    .activity-number-card-right .filters-listing-button-list {
+        display: block;
+        flex-wrap: wrap;
+    }
     .filters-listing-button-list{
         flex-wrap: nowrap;
         white-space: nowrap;
@@ -1236,9 +1314,9 @@
         padding-left: 15px;
     }
 
-    .Collection-topSellerContent{
-        padding-left: 15px;
-        padding-right: 15px;
+    .Collection-topSellerContent {
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .ActivityNumberCard-info h4 {

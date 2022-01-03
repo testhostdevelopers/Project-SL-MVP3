@@ -53,23 +53,6 @@ const Home = () => {
         visible: { opacity: 1 },
     }
 
-    const menu = (
-        <Menu>
-            <Menu.Item>
-                Change Price
-            </Menu.Item>
-            <Menu.Item>
-                Transfer Token
-            </Menu.Item>
-            <Menu.Item>
-                Burn Token
-            </Menu.Item>
-            <Menu.Item>
-                Report
-            </Menu.Item>
-        </Menu>
-    );
-
     return (
         <>
 
@@ -250,7 +233,7 @@ const Home = () => {
 
                     <div className="row mt-5">
                         <div className="col-sm-12 col-md-5 col-lg-5 position-relative">
-                            <img src={artWorkWeekOne} className="cursor-pointer" width="95%" alt="" onClick={() => {setOpenImage(true); document.body.style.overflow = "hidden";}} />
+                            <img src={artWorkWeekOne} className="cursor-pointer" width="95%" alt="" onClick={() => { setOpenImage(true); document.body.style.overflow = "hidden"; }} />
                             <div className="art-work-description-container">
                                 <h4 className="mb-0"><b>The Black</b></h4>
                                 <small>Original Series</small>
@@ -290,16 +273,16 @@ const Home = () => {
 
                     <div className="topSellerContent mt-5">
                         <div className="d-flex">
-                            <TopCard topcoverimg={topSeller2} topuserimg={topSellerUser1} title="Courtney Henry" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller3} topuserimg={topSellerUser2} title="Eleanor Pena" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser3} title="Darlene Robertson" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller5} topuserimg={topSellerUser4} title="Robert Fox" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller6} topuserimg={topSellerUser5} title="Savannah Nguyen" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller7} topuserimg={topSellerUser6} title="Devon Lane" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller8} topuserimg={topSellerUser7} title="Arlene McCoy" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller9} topuserimg={topSellerUser8} title="Albert Flores" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller10} topuserimg={topSellerUser9} title="Kristin Watson" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller2} topuserimg={topSellerUser10} title="Cody Fisher" Price="$1,403"  />
+                            <TopCard topcoverimg={topSeller2} topuserimg={topSellerUser1} title="Courtney Henry" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller3} topuserimg={topSellerUser2} title="Eleanor Pena" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser3} title="Darlene Robertson" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller5} topuserimg={topSellerUser4} title="Robert Fox" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller6} topuserimg={topSellerUser5} title="Savannah Nguyen" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller7} topuserimg={topSellerUser6} title="Devon Lane" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller8} topuserimg={topSellerUser7} title="Arlene McCoy" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller9} topuserimg={topSellerUser8} title="Albert Flores" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller10} topuserimg={topSellerUser9} title="Kristin Watson" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller2} topuserimg={topSellerUser10} title="Cody Fisher" Price="$1,403" />
                         </div>
                     </div>
                 </div>
@@ -326,16 +309,16 @@ const Home = () => {
 
                     <div className="topSellerContent mt-5">
                         <div className="d-flex">
-                            <TopCard topcoverimg={topSeller2} topuserimg={topSellerUser1} title="Courtney Henry" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller3} topuserimg={topSellerUser2} title="Eleanor Pena" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller2} topuserimg={topSellerUser3} title="Darlene Robertson" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser4} title="Robert Fox" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller5} topuserimg={topSellerUser5} title="Savannah Nguyen" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller6} topuserimg={topSellerUser6} title="Devon Lane" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller7} topuserimg={topSellerUser7} title="Arlene McCoy" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller8} topuserimg={topSellerUser8} title="Albert Flores" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller9} topuserimg={topSellerUser9} title="Kristin Watson" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller10} topuserimg={topSellerUser10} title="Cody Fisher" Price="$1,403"  />
+                            <TopCard topcoverimg={topSeller2} topuserimg={topSellerUser1} title="Courtney Henry" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller3} topuserimg={topSellerUser2} title="Eleanor Pena" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller2} topuserimg={topSellerUser3} title="Darlene Robertson" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser4} title="Robert Fox" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller5} topuserimg={topSellerUser5} title="Savannah Nguyen" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller6} topuserimg={topSellerUser6} title="Devon Lane" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller7} topuserimg={topSellerUser7} title="Arlene McCoy" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller8} topuserimg={topSellerUser8} title="Albert Flores" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller9} topuserimg={topSellerUser9} title="Kristin Watson" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller10} topuserimg={topSellerUser10} title="Cody Fisher" Price="$1,403" />
                         </div>
                     </div>
                 </div>
@@ -352,10 +335,10 @@ const Home = () => {
                     </div>
 
                     <div className="row mt-5">
-                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
+                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" isOpenInProfile={false} />
+                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" isOpenInProfile={false} />
+                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" isOpenInProfile={false} />
+                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" isOpenInProfile={false} />
                     </div>
                 </div>
             </motion.section>
@@ -403,10 +386,10 @@ const Home = () => {
                     </div>
 
                     <div className="row  mt-5">
-                    <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021"  WETH="1.2 WETH" bid="Highest bid 1/1" />
-                    <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021"  WETH="1.2 WETH" bid="Highest bid 1/1" />
-                    <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021"  WETH="1.2 WETH" bid="Highest bid 1/1" />
-                    <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021"  WETH="1.2 WETH" bid="Highest bid 1/1" />
+                        <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" isOpenInProfile={false}/>
+                        <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" isOpenInProfile={false}/>
+                        <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" isOpenInProfile={false}/>
+                        <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" isOpenInProfile={false}/>
                     </div>
                 </div>
             </motion.section>
@@ -428,16 +411,16 @@ const Home = () => {
                         navigation={true}
                     >
                         <SwiperSlide>
-                            <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021"  WETH="1.2 WETH" bid="Highest bid 1/1" />
+                            <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" />
                         </SwiperSlide>
                         <SwiperSlide>
-                            <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021"  WETH="1.2 WETH" bid="Highest bid 1/1" />
+                            <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" />
                         </SwiperSlide>
                         <SwiperSlide>
-                            <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021"  WETH="1.2 WETH" bid="Highest bid 1/1" />
+                            <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" />
                         </SwiperSlide>
                         <SwiperSlide>
-                            <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021"  WETH="1.2 WETH" bid="Highest bid 1/1" />
+                            <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" />
                         </SwiperSlide>
                     </Swiper>
                 </div>
@@ -456,11 +439,11 @@ const Home = () => {
 
                     <div className="topSellerContent mt-5">
                         <div className="d-flex overflow-auto justify-content-between w-100 mb-4">
-                            <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser3} title="Courtney Henry" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller2} topuserimg={topSellerUser2} title="Courtney Henry" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller3} topuserimg={topSellerUser3} title="Courtney Henry" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser4} title="Courtney Henry" Price="$1,403"  />
-                            <TopCard topcoverimg={topSeller5} topuserimg={topSellerUser5} title="Courtney Henry" Price="$1,403"  />
+                            <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser3} title="Courtney Henry" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller2} topuserimg={topSellerUser2} title="Courtney Henry" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller3} topuserimg={topSellerUser3} title="Courtney Henry" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser4} title="Courtney Henry" Price="$1,403" />
+                            <TopCard topcoverimg={topSeller5} topuserimg={topSellerUser5} title="Courtney Henry" Price="$1,403" />
                         </div>
                     </div>
                 </div>
@@ -487,26 +470,26 @@ const Home = () => {
                             navigation={true}
                         >
                             <SwiperSlide>
-                                <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser3} title="Courtney Henry" Price="$1,403"  />
+                                <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser3} title="Courtney Henry" Price="$1,403" />
                             </SwiperSlide>
 
                             <SwiperSlide>
-                                <TopCard topcoverimg={topSeller2} topuserimg={topSellerUser2} title="Courtney Henry" Price="$1,403"  />
+                                <TopCard topcoverimg={topSeller2} topuserimg={topSellerUser2} title="Courtney Henry" Price="$1,403" />
                             </SwiperSlide>
                             <SwiperSlide>
-                                <TopCard topcoverimg={topSeller3} topuserimg={topSellerUser3} title="Courtney Henry" Price="$1,403"  />
+                                <TopCard topcoverimg={topSeller3} topuserimg={topSellerUser3} title="Courtney Henry" Price="$1,403" />
                             </SwiperSlide>
                             <SwiperSlide>
-                                <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser4} title="Courtney Henry" Price="$1,403"  />
+                                <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser4} title="Courtney Henry" Price="$1,403" />
                             </SwiperSlide>
                             <SwiperSlide>
-                                <TopCard topcoverimg={topSeller5} topuserimg={topSellerUser5} title="Courtney Henry" Price="$1,403"  />
+                                <TopCard topcoverimg={topSeller5} topuserimg={topSellerUser5} title="Courtney Henry" Price="$1,403" />
                             </SwiperSlide>
                         </Swiper>
                     </div>
                 </div>
             </motion.section>
-            
+
 
             <motion.section
                 initial="hidden"
@@ -575,11 +558,11 @@ const Home = () => {
                                 <LiveAuctions Coverimg={artWorkWeek1} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
                                 <LiveAuctions Coverimg={artWorkWeek4} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
                                 <LiveAuctions Coverimg={artWorkWeek2} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <HotBids Coverimg={artWorkWeek3} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021"  WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <HotBids Coverimg={artWorkWeek1} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021"  WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <HotBids Coverimg={artWorkWeek4} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021"  WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021"  WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                
+                                <HotBids Coverimg={artWorkWeek3} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" />
+                                <HotBids Coverimg={artWorkWeek1} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" />
+                                <HotBids Coverimg={artWorkWeek4} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" />
+                                <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" />
+
                             </div>
                         </div>
                         <div className="tab-pane w-100 fade" id="art" role="tabpanel" aria-labelledby="art-tab">

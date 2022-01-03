@@ -29,7 +29,6 @@ const Profile = () => {
         hidden: { opacity: 0 },
         visible: { opacity: 1 },
     }
-
     const menu = (
         <Menu>
             <Menu.Item>
@@ -41,12 +40,11 @@ const Profile = () => {
             <Menu.Item>
                 Burn Token
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item onClick={() => setReportPopup(true)}>
                 Report
             </Menu.Item>
         </Menu>
     );
-
 
     return (
         <motion.section
@@ -114,10 +112,10 @@ const Profile = () => {
                                 <TabPane tab="Owned" key="2">
                                     <div className="liveAuction proile-liked-filter">
                                         <div className="row ">
-                                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
+                                            <LiveAuctions isOpenInProfile="true" Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
+                                            <LiveAuctions isOpenInProfile="true" Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1"/>
+                                            <LiveAuctions isOpenInProfile="true" Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
+                                            <LiveAuctions isOpenInProfile="true" Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1"  />
                                         </div>
                                     </div>
                                 </TabPane>
@@ -134,15 +132,15 @@ const Profile = () => {
                                 <TabPane tab="Liked (2)" key="4">
                                     <div className="liveAuction proile-liked-filter">
                                         <div className="row ">
-                                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
+                                            <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
+                                            <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
+                                            <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
+                                            <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
                                         </div>
                                     </div>
                                 </TabPane>
                                 <TabPane tab="Activity" key="5">
-                                <div className="topSeller">
+                                    <div className="topSeller">
                                         <div className="">
                                             <div className="w-100 d-flex justify-content-end">
                                                 <button className="profile-activity-filter-mobile d-web-none">
@@ -157,14 +155,14 @@ const Profile = () => {
                                             <div className="topSellerContent Collection-topSellerContent">
                                                 <div className="row align-items-start">
                                                     <div className="d-flex col-lg-8 activity activity-number-card-left">
-                                                        <ActivityNumberCard activitynumbercardimg={ActivityCard} FillLabel={FillLabel} title="123456" pixelpunks="pixelpunks" eth="0.05 ETH" seenstatus="Just now"/>
-                                                        <ActivityNumberCard activitynumbercardimg={ActivityCard} FillLabel={FillLabel} title="123456" pixelpunks="pixelpunks" eth="0.05 ETH" seenstatus="Just now"/>
+                                                        <ActivityNumberCard activitynumbercardimg={ActivityCard} FillLabel={FillLabel} title="123456" pixelpunks="pixelpunks" eth="0.05 ETH" seenstatus="Just now" />
+                                                        <ActivityNumberCard activitynumbercardimg={ActivityCard} FillLabel={FillLabel} title="123456" pixelpunks="pixelpunks" eth="0.05 ETH" seenstatus="Just now" />
                                                     </div>
                                                     <div className="col-sm-12 col-lg-4 mb-4 activity-number-card-right">
                                                         <div className="filters-listing-reset">
                                                             <div className="d-flex mb-2">
                                                                 <h5 className="mr-3"><b>Filters</b></h5>
-                                                                <h5><b><a href="#0"  className="text-pink">Reset filter</a></b></h5>
+                                                                <h5><b><a href="#0" className="text-pink">Reset filter</a></b></h5>
                                                             </div>
                                                             <div className="filters-listing-button-list">
                                                                 <button className="btn-light mr-2 mt-2 bg-white active">
@@ -249,27 +247,27 @@ const Profile = () => {
                                 <TabPane tab="Following (4)" key="6">
 
                                     <div className="topSeller">
-                                            <div className="w-100 d-flex justify-content-end">
-                                                <button className="profile-activity-filter-mobile d-web-none">
-                                                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" fill="white" />
-                                                        <path clipRule="evenodd" clipRule="evenodd" d="M16.5 19V20.6667H31.5V19H16.5ZM22.3333 29H25.6667V27.3333H22.3333V29ZM29 24.8333H19V23.1667H29V24.8333Z" fill="black" />
-                                                        <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="black" />
-                                                    </svg>
-                                                </button>
-                                            </div>
+                                        <div className="w-100 d-flex justify-content-end">
+                                            <button className="profile-activity-filter-mobile d-web-none">
+                                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" fill="white" />
+                                                    <path clipRule="evenodd" clipRule="evenodd" d="M16.5 19V20.6667H31.5V19H16.5ZM22.3333 29H25.6667V27.3333H22.3333V29ZM29 24.8333H19V23.1667H29V24.8333Z" fill="black" />
+                                                    <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="black" />
+                                                </svg>
+                                            </button>
+                                        </div>
 
-                                            <div className="topSellerContent following-profile-topSellerContent">
-                                                <div className="row">
-                                                    <div className="d-flex col-lg-12 activity ">
-                                                        <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser1} title="Courtney Henry" follow="10.8k followers" btnname="Unfollow" />
-                                                        <TopCard topcoverimg={topSeller3} topuserimg={topSellerUser3} title="Arlene McCoy" follow="10.8k followers" btnname="Unfollow" />
-                                                        <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser4} title="Bessie Cooper" follow="10.8k followers" btnname="Unfollow" />
-                                                        <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser4} title="Jerome Bell" follow="10.8k followers" btnname="Unfollow" />
-                                                        <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser4} title="Arlene McCoy" follow="10.8k followers" btnname="Unfollow" />
-                                                    </div>
+                                        <div className="topSellerContent following-profile-topSellerContent">
+                                            <div className="row">
+                                                <div className="d-flex col-lg-12 activity ">
+                                                    <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser1} title="Courtney Henry" follow="10.8k followers" btnname="Unfollow" />
+                                                    <TopCard topcoverimg={topSeller3} topuserimg={topSellerUser3} title="Arlene McCoy" follow="10.8k followers" btnname="Unfollow" />
+                                                    <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser4} title="Bessie Cooper" follow="10.8k followers" btnname="Unfollow" />
+                                                    <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser4} title="Jerome Bell" follow="10.8k followers" btnname="Unfollow" />
+                                                    <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser4} title="Arlene McCoy" follow="10.8k followers" btnname="Unfollow" />
                                                 </div>
                                             </div>
+                                        </div>
                                     </div>
 
                                 </TabPane>
@@ -284,7 +282,7 @@ const Profile = () => {
                                             <div className="topSellerContent following-profile-topSellerContent">
                                                 <div className="row">
                                                     <div className="d-flex col-lg-12 activity">
-                                                    <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser1} title="Courtney Henry" follow="10.8k followers"  btnname="Unfollow" />
+                                                        <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser1} title="Courtney Henry" follow="10.8k followers" btnname="Unfollow" />
                                                         <TopCard topcoverimg={topSeller3} topuserimg={topSellerUser3} title="Arlene McCoy" follow="10.8k followers" btnname="Follow" />
                                                         <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser4} title="Bessie Cooper" follow="10.8k followers" btnname="Unfollow" />
                                                         <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser4} title="Jerome Bell" follow="10.8k followers" btnname="Follow" />

@@ -183,6 +183,9 @@
     display: inline-block;
     margin-top: 20px;
 }
+.add-to-calendar-btn:hover{
+    color: #6300FF;
+}
 
 @media (max-width: 1500px) {
     .sec-title {

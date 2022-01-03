@@ -2,7 +2,7 @@ import React from 'react'
 import { Menu, Dropdown, Tabs, Select } from 'antd';
 import { motion } from "framer-motion"
 import menuline from "../assets/img/custom/menu-line-icon.png";
-import categoryicon from "../assets/img/custom/category-icon.png";
+import categoryicon from "../assets/img/custom/category-icon.svg";
 import propertiesicon from "../assets/img/custom/properties.png";
 import flashlight from "../assets/img/custom/flashlight-line.png";
 import Priceicon from "../assets/img/custom/u_dollar-alt.png";
