@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Downarrow from '../../assets/img/icons/custom/downarrow.png';
+import Downarrow from '../../assets/img/icons/custom/downarrow.svg';
 import InnerCircle from '../../assets/img/custom/innercircle.png';
 
 const WeAreHereSec = () => {

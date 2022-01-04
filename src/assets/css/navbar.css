@@ -34,10 +34,10 @@ header {
 }
 
 .navbar-expand-lg .navbar-collapse {
-	justify-content: center;
 	max-width: calc(100% - 185px);
-    width: 100%;
-    flex-grow: unset;
+	width: 100%;
+	flex-grow: unset;
+	justify-content: flex-end;
 }
 .navbar-expand-lg .navbar-nav.center-menu .nav-item {
 	margin: 0 20px;
@@ -113,7 +113,7 @@ header {
 .navbar-expand-lg .navbar-nav {
 	justify-content: flex-end;
 	width: 100%;
-	max-width: 160px;
+	max-width: 100%;
 }
 
 /* breakpoint and up - mega dropdown styles */

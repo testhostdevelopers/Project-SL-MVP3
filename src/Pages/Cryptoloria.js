@@ -39,9 +39,11 @@ import { motion } from "framer-motion"
 import FullScreenImage from '../Components/Popup/FullScreenImage';
 import TopCard from '../Components/TopCard';
 import LiveAuctions from '../Components/LiveAuctions';
-
+import ReportPopup from '../Components/Popup/ReportPopup';
 
 const Cryptoloria = () => {
+    const [reportPopup, setReportPopup] = useState(false);
+
     let [openImage, setOpenImage] = useState(false)
 
     const variants = {
@@ -60,7 +62,7 @@ const Cryptoloria = () => {
             <Menu.Item>
                 Burn Token
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item onClick={() => setReportPopup(true)}>
                 Report
             </Menu.Item>
         </Menu>
@@ -70,6 +72,9 @@ const Cryptoloria = () => {
         <>
           {
             openImage && <FullScreenImage setOpenImage={setOpenImage} />
+          }
+          {
+            reportPopup && <ReportPopup setReportPopup={setReportPopup} />
         }
 
             <motion.div

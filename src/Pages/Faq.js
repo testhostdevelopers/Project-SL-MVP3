@@ -17,7 +17,7 @@ const Faq = () => {
                 <div className="row">
                     <div className="col-sm-12">
                         <div className="w-100">
-                            <h3 class="main-title"><b>Artwork of the week</b></h3>
+                            <h3 className="main-title"><b>Artwork of the week</b></h3>
                         </div>
                         <div className="tabs">
                             <div className="tab">

@@ -19,7 +19,7 @@ const ErrorPopup = (props) => {
                 <div className="justify-content-between d-flex cursor-pointer mb-3">
                     <h3 className="">Error</h3>
                     <div className="popup-close-btn-outline cursor-pointer" onClick={() => { setErrorPopup(false); document.body.style.overflow = "scroll"; }}>
-                        <i class="fas fa-times"></i>
+                        <i className="fas fa-times"></i>
                     </div>
                 </div>
                 <p className="sub-heading">Metamask Message Signature: User denied message signature. If the problem persist please <strong>contact support.</strong></p>

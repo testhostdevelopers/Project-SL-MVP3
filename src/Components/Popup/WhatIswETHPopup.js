@@ -19,7 +19,7 @@ const WhatIswETHPopup = (props) => {
                 <div className="justify-content-between d-flex cursor-pointer mb-3">
                     <h3 className="">What is wETH</h3>
                     <div className="popup-close-btn-outline cursor-pointer" onClick={() => { sethelpPopup(false); document.body.style.overflow = "scroll"; }}>
-                        <i class="fas fa-times"></i>
+                        <i className="fas fa-times"></i>
                     </div>
                 </div>
                 <p className="sub-heading">wETH which stands for “wrapped Ether”, is a cryptocurrency used to make bids for digital goods on Starlight. There is a 1:1 exchange between wETH and ETH, so you can always convert it back and forth anytime.</p>

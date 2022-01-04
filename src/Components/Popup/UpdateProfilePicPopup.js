@@ -19,7 +19,7 @@ const UpdateProfilePicPopup = (props) => {
                 <div className="justify-content-between d-flex cursor-pointer mb-3">
                     <h3 className="">Update profile pic</h3>
                     <div className="popup-close-btn-outline cursor-pointer" onClick={() => { setprofilePopup(false); document.body.style.overflow = "scroll"; }}>
-                        <i class="fas fa-times"></i>
+                        <i className="fas fa-times"></i>
                     </div>
                 </div>
                 <p className="sub-heading">Upload new profile picture for your profile. We recommend to upload images in 200x200 resolution.</p>

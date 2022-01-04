@@ -8,10 +8,11 @@
     position: relative;
 }
 
-.starl-banner-img{
-    position: relative;
-    overflow: hidden;
-    padding-top: 43.35%;
+.starl-banner-img {
+	position: relative;
+	overflow: hidden;
+	padding-top: 43.35%;
+	margin-top: 110px;
 }
 
 .starl-banner-img:before{
@@ -40,15 +41,25 @@
 }
 
 .starl-banner-info h1 {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 72px;
-    color: #FFFFFF;
-    padding-bottom: 90px;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 72px;
+	color: #FFFFFF;
+	padding-bottom: 90px;
+	display: flex;
+	align-items: flex-end;
+	font-weight: normal !important;
+	justify-content: center;
+	line-height: 100%;
 }
 
-.starl-banner-info h1 sub{
-    font-size: 32px;
+.starl-banner-info h1 sub {
+	font-size: 32px;
+	font-weight: normal;
+	display: block;
+	bottom: auto;
+	line-height: 100%;
+	margin-left: 15px;
 }
 
 .starl-banner-info {
@@ -117,6 +128,15 @@
     width: 50%;
     text-align: right;
     padding-left: 50px;
+}
+.primed-right-block > img{
+    display: none;
+}
+.dark-md .primed-right-block > img.dark{
+    display: block;
+}
+.light-md .primed-right-block > img.light{
+    display: block;
 }
 
 .text{
@@ -271,7 +291,7 @@
 
 .weare-here-hover {
     font-size: 14px;
-    color: #000000;
+    color: var(--black-text);
     display: block;
     text-align: center;
     margin-bottom: 10px;
@@ -484,21 +504,22 @@
 }
 
 .how-to-works-list li .num-count {
-    width: 50px;
-    height: 50px;
-    display: block;
-    text-align: center;
-    line-height: 50px;
-    font-size: 24px;
-    border-radius: 100%;
-    color: #000000;
-    font-weight: bold;
-    box-shadow: 0px 25px 60px rgba(0, 0, 0, 0.04);
-    background-color: #fff;
-    position: absolute;
-    left: -84px;
-    top: 50%;
-    transform: translateY(-50%);
+	width: 50px;
+	height: 50px;
+	display: block;
+	text-align: center;
+	line-height: 50px;
+	font-size: 24px;
+	border-radius: 100%;
+	color: var(--black-color);
+	font-weight: 600;
+	box-shadow: 0px 25px 60px rgba(0, 0, 0, 0.04);
+	background-color: var(--bg-card);
+    border: 1px solid var(--light-gray);
+	position: absolute;
+	left: -84px;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 .tier-full-list{
@@ -519,7 +540,7 @@
 
 .tier-full-list li .tier-box{
     background: var(--bg-card);
-    border: 1px solid var(--bordercolor);
+    border: 1px solid var(--light-gray);
     box-sizing: border-box;
     box-shadow: 0px 25px 40px rgba(0, 0, 0, 0.01);
     border-radius: 15px;
@@ -531,13 +552,16 @@
     color: var(--black-text);
     font-weight: bold !important;
     padding: 30px;
-    border-bottom: 1px solid var(--bordercolor);
+    border-bottom: 1px solid var(--light-gray);
 }
 
 .tier-bottom-box{
     min-height: 335px;
 }
-
+.climeworks-sec h2,
+.the-starlight-first-block h2 {
+	font-weight: 400 !important;
+}
 @media (max-width: 1500px) {
     .sec-title {
         margin-bottom: 30px !important;
@@ -554,9 +578,9 @@
         margin-right: auto;
     }
 
-    .weare-here-list-full-list > ul:last-child > li:last-child:after {
-        right: -124px !important;
-        top: 1.4px !important;
+    .weare-here-list-full-list > ul:last-child > li:last-child::after {
+        right: -103px !important;
+        top: 1.6px !important;
         background-size: 107px !important;
     }
     .climeworks-block-info {
@@ -675,11 +699,12 @@
         left: -117px;
     }
 
-    .weare-here-list-full-list > ul:nth-child(odd) > li:last-child:after {
+    .weare-here-list-full-list > ul:nth-child(2n+1) > li:last-child::after {
         width: 233px;
         height: 233px;
-        top: 24px;
-        right: -105px;
+        top: 23px;
+        right: -117px;
+        border: 5.5px solid #C4C4C4;
     }
 
     .weare-here-list li {
@@ -858,6 +883,9 @@
 
     .the-starlight-first-left-block {
         padding-right: 20px;
+    }
+    .starl-banner-img {
+        margin-top: 77px;
     }
 }
 

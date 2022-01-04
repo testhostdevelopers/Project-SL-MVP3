@@ -16,7 +16,7 @@ import artWorkWeek2 from "../assets/img/custom/artWorkWeek2.png";
 import artWorkWeek3 from "../assets/img/custom/artWorkWeek3.png";
 import artWorkWeek4 from "../assets/img/custom/artWorkWeek4.png";
 import menuline from "../assets/img/custom/menu-line-icon.png";
-import FillLabel from "../assets/img/icons/custom/fill-label.png";
+import FillLabel from "../assets/img/icons/custom/fill-label.svg";
 import categoryicon from "../assets/img/custom/category-icon.svg";
 import propertiesicon from "../assets/img/custom/properties.png";
 import flashlight from "../assets/img/custom/flashlight-line.png";

@@ -261,6 +261,13 @@
     .choose-collection .slider {
         width: calc(100% - 140px);
     }
+    .sign-in-container-section .sig-in-mobile {
+        margin: 100px auto;
+    }
+    .sign-in-container-section .sig-in-mobile .btn > img {
+        left: 30px;
+        height: 15px;
+    }
 }
 
 @media only screen and (max-width: 991px) {
@@ -1182,7 +1189,21 @@
         font-size: 18px !important;
     }
     div.profile-info-position .mt-4:last-child {
-        width: 260px;
+        width: 180px;
+    }
+    .share-profile .nft-share-icons {
+        left: -160px;
+        right: -120px;
+    }
+    .share-profile .nft-share-icons ul li a {
+        font-size: 12px;
+    }
+    
+    .profile-pictures-infos button.edit-profile {
+        padding: 10px 12px;
+        min-width: 1px;
+        max-width: unset !important;
+        width: auto !important;
     }
     .profile-pictures-infos button.profile-upload,
     .profile-pictures-infos button.select {
@@ -1462,6 +1483,9 @@
     div.CreateCollectibleEdit-right {
         padding-left: 15px !important;
         margin-top: 25px;
+    }
+    .whatiswallet p {
+        font-size: 16px;
     }
 }
 

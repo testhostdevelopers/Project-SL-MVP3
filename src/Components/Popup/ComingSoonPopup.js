@@ -19,7 +19,7 @@ const ComingSoonPopup = (props) => {
                 <div className="justify-content-between d-flex cursor-pointer mb-3">
                     <h3 className="">Coming soon!</h3>
                     <div className="popup-close-btn-outline cursor-pointer" onClick={() => { setSingleCollectionPopup(false); document.body.style.overflow = "scroll"; }}>
-                        <i class="fas fa-times"></i>
+                        <i className="fas fa-times"></i>
                     </div>
                 </div>
                 <p>This feature is coming soon, take a look at our roadmap. You can also vote on what features you would like to include in the coming months.</p>

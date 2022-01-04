@@ -2,7 +2,7 @@ import React from 'react'
 import activityCard from "../assets/img/custom/activity-card.png";
 import { motion } from "framer-motion"
 import ActivityNumberCard from '../Components/ActivityNumberCard';
-import FillLabel from "../assets/img/icons/custom/fill-label.png";
+import FillLabel from "../assets/img/icons/custom/fill-label.svg";
 import ActivityCard from "../assets/img/custom/activity-cardonly.png";
 
 import { Menu, Dropdown, Tabs } from 'antd';

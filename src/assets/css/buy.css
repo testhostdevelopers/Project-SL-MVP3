@@ -332,6 +332,7 @@ span.profile-check-icon {
 	flex-direction: column;
 	margin-bottom: 50px;
     text-align: center;
+    z-index: 2;
 }
 
 .profile-usr-info{
@@ -340,7 +341,7 @@ span.profile-check-icon {
 
 .profile-usr-info .website-link {
     font-size: 16px;
-    color: #000000;
+    color: var(--black-text);
     font-weight: bold;
     margin-bottom: 10px;
     display: inline-block;
@@ -355,7 +356,7 @@ span.profile-check-icon {
 }
 
 .follows-block span b{
-    color: #000000;
+    color: var(--black-text);
 }
 
 .profile-usr-info .website-link span{
@@ -371,7 +372,7 @@ span.profile-check-icon {
 }
 
 .read-more-link{
-    color: #000;
+    color: var(--black-text);
 }
 
 .profile-pictures-infos .edit-profile {
@@ -381,6 +382,8 @@ span.profile-check-icon {
 	min-width: 120px;
 	max-width: 168px !important;
 	z-index: 1;
+    text-align: center;
+    cursor: pointer;
 }
 .profile-pictures-infos .profile-upload,
 .profile-pictures-infos .select {
@@ -401,7 +404,7 @@ span.profile-check-icon {
 }
 
 .profile-tab-menu .nav-link {
-    color: #000;
+    color: var(--black-text);
     border-radius: 0%;
 }
 
@@ -562,7 +565,7 @@ span.profile-check-icon {
     content: "";
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 10px solid #000;
+    border-top: 10px solid var(--black-text);
     position: absolute;
     left: 5px;
     top: 15px;

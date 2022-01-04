@@ -38,7 +38,7 @@ export default function LiveAuctions({ title, WETH, bid, heartcount, Coverimg, U
                 <Menu.Item>
                     Share
                 </Menu.Item>
-                <Menu.Item>
+                <Menu.Item onClick={() => setReportPopup(true)}>
                     Report
                 </Menu.Item>
             </Menu>

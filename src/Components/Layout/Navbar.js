@@ -181,7 +181,7 @@ const Navbar = () => {
 
                             <div className="d-lg-none d-sm-block">
                                 <a className="nav-link nav-dark-button p-0 nav-dark-button mr-2 position-relative">
-                                    <svg onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                    <svg onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
                                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                     </svg>
                                     {
@@ -290,7 +290,7 @@ const Navbar = () => {
                             <div className='close' onClick={() => SetIsShow(!isShow)}>
                                 <img src={menuclose} />
                             </div>
-                            <ul className="navbar-nav nav-fill align-items-center center-menu">
+                            {/* <ul className="navbar-nav nav-fill align-items-center center-menu">
                                 <li>
                                     <Link to="/Explore" className="nav-link">Explore Starlight</Link>
                                 </li>
@@ -317,17 +317,17 @@ const Navbar = () => {
                                             <i className="fab fa-discord"></i>
                                         </Link>
                                         <Link to={{ pathname: "https://www.reddit.com/r/starlightmeta/" }} target="_blank">
-                                            <i class="fab fa-reddit" aria-hidden="true"></i>
+                                            <i className="fab fa-reddit" aria-hidden="true"></i>
                                         </Link>
                                         <Link to={{ pathname: "#0" }}>
                                             <i className="fab fa-youtube"></i>
                                         </Link>
                                     </div>
                                 </li>
-                            </ul>
+                            </ul> */}
                             <ul className="navbar-nav nav-fill align-items-center">
 
-                                {/*<li className="nav-item">
+                                <li className="nav-item">
                                     <div className="navbar-search">
                                         <i className="fas fa-search"></i>
                                         <input type="text" placeholder="Search by creator, collectible or collection" />
@@ -380,7 +380,7 @@ const Navbar = () => {
                                     <Link to="/create" className="nav-link p-0">
                                         <button className="btn btn-primary">Create</button>
                                     </Link>
-                                </li>*/}
+                                </li>
 
                                 {
                                     location.pathname === "/" ? <li className="nav-item d-sm-none d-lg-block m-0 p-0 d-flex align-items-center">
@@ -442,7 +442,7 @@ const Navbar = () => {
 
                                     {
                                         location.pathname !== "/" ? <a className="d-sm-none d-lg-block nav-link p-0 nav-dark-button mr-2 position-relative" onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
                                                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                             </svg>
                                             {

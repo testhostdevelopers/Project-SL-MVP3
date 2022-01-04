@@ -14,16 +14,27 @@ import MyEtherWallet from "../assets/img/icons/custom/MyEtherWallet.svg";
 import Fortmatic from "../assets/img/icons/custom/Fortmatic.svg";
 import backArrow from "../assets/img/icons/custom/arrow.svg";
 import { motion } from "framer-motion"
+import WhatWallet from '../Components/Popup/Whatwallet';
+
 
 const SignIn = () => {
+    const [Whatwallet, setWhatwallet] = useState(false);
+    const navRef = React.useRef(null);
 
     const variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1 },
     }
 
+    const onToggleClick = (e) => {
+        navRef.current.classList.toggle("showWallet");
+      };
+
     return (
         <>
+            {
+                Whatwallet && <WhatWallet setWhatwallet={setWhatwallet} />
+            }
             <motion.div
                 initial="hidden"
                 animate="visible"
@@ -40,10 +51,10 @@ const SignIn = () => {
                                 </Link>
                             </div>
 
-                            <div className="mt-5">
+                            <div className="mt-5"  ref={navRef}>
                                 <h3>Sign in with your wallet</h3>
                                 <p className="mb-4 mt-3">Sign in with one of available wallet providers or create a new wallet <br />
-                                    <span className="color-ping"> <b>What is a wallet?</b></span></p>
+                                    <span className="color-ping" onClick={() => setWhatwallet(true)}> <b>What is a wallet?</b></span></p>
 
                                 <button className="btn ml-0 btn-ping signInActiveBtn w-100 d-flex align-items-center justify-content-center mb-4">
                                     <img src={metamask} width="20px" />
@@ -60,8 +71,28 @@ const SignIn = () => {
                                     <div style={{ margin: "auto auto" }}><b>Mobile Wallet</b></div>
                                 </button>
 
-                                <button className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
-                                    <div style={{ margin: "auto auto" }}><b>Show less options</b></div>
+                                <div className='showmorewallet'>
+                                    <button className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
+                                        <img src={Porttis} width="20px" />
+                                        <div style={{ margin: "auto auto" }}><b>Porttis</b></div>
+                                    </button>
+                                    <button className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
+                                        <img src={Coinbase} width="20px" />
+                                        <div style={{ margin: "auto auto" }}><b>Coinbase</b></div>
+                                    </button>
+                                    <button className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
+                                        <img src={MyEtherWallet} width="20px" />
+                                        <div style={{ margin: "auto auto" }}><b>MyEtherWallet</b></div>
+                                    </button>
+                                    <button className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
+                                        <img src={Fortmatic} width="20px" />
+                                        <div style={{ margin: "auto auto" }}><b>Fortmatic</b></div>
+                                    </button>
+                                </div>
+
+                                <button onClick={onToggleClick} className="loadmore-wallet btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
+                                    <div className='more' style={{ margin: "auto auto" }}><b>Show more options</b></div>
+                                    <div className='less' style={{ margin: "auto auto" }}><b>Show less options</b></div>
                                 </button>
 
                                 <p>We do not own private keys and cannot access your funds without your confirmation.</p>

@@ -23,7 +23,7 @@ const Buy = () => {
     const [singlePopup, setSinglePopup] = useState(false);
     const [errorPopups, setErrorPopup] = useState(false);
     const [sharePopup, setsharePopup] = useState(false);
-    const [reportPopup, setreportPopup] = useState(false);
+    const [reportPopup, setReportPopup] = useState(false);
     const [helpPopup, sethelpPopup] = useState(false);
     const [CheckOutPopup, setCheckOutPopup] = useState(false);
     
@@ -47,7 +47,7 @@ const Buy = () => {
             <Menu.Item onClick={() => setsharePopup(true)}>
                 Share
             </Menu.Item>
-            <Menu.Item onClick={() => setreportPopup(true)}>
+            <Menu.Item onClick={() => setReportPopup(true)}>
                 Report
             </Menu.Item>
         </Menu>
@@ -77,7 +77,7 @@ const Buy = () => {
                 sharePopup && <ShareThisNFTPopup setsharePopup={setsharePopup} />
             }
             {
-                reportPopup && <ReportPopup setreportPopup={setreportPopup} />
+                reportPopup && <ReportPopup setReportPopup={setReportPopup} />
             }
             {
                 helpPopup && <WhatIswETHPopup  sethelpPopup={sethelpPopup} />
@@ -220,7 +220,7 @@ const Buy = () => {
                                                 </ul>
                                             </div>
                                             <div className="details-tab-block">
-                                                <b class="text-secondary d-block mb-2">Category</b>
+                                                <b className="text-secondary d-block mb-2">Category</b>
                                                 <ul className="category-btn-list">
                                                     <li>
                                                         <a href="#0">

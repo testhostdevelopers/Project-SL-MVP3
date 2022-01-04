@@ -19,7 +19,7 @@ const CreateCollectibleMultiplePopup = (props) => {
             <div className="d-flex justify-content-between cursor-pointer">
                 <h3>New Collection</h3>
                 <div className="popup-close-btn-outline" onClick={() => {setSingleCollectionPopup(false); document.body.style.overflow = "scroll";}}>
-                    <i class="fas fa-times"></i>
+                    <i className="fas fa-times"></i>
                 </div>
             </div>
 

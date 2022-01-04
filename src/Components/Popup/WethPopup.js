@@ -19,7 +19,7 @@ const WethPopup = (props) => {
             <div className="border-radius bg-white popup-width">
                 <div className="justify-content-end d-flex cursor-pointer mb-3">
                     <div className="popup-close-btn-outline cursor-pointer" onClick={() => { setSingleCollectionPopup(false); document.body.style.overflow = "scroll"; }}>
-                        <i class="fas fa-times"></i>
+                        <i className="fas fa-times"></i>
                     </div>
                 </div>
                 <div className="text-center mb-2">

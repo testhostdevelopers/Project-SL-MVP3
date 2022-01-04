@@ -128,7 +128,7 @@ const Footer = () => {
                                 <i className="fab fa-discord"></i>
                             </Link>
                             <Link to ={{pathname:"https://www.reddit.com/r/starlightmeta/"}} target="_blank">
-                                <i class="fab fa-reddit" aria-hidden="true"></i>
+                                <i className="fab fa-reddit" aria-hidden="true"></i>
                             </Link>
                             <Link  to ={{pathname:"#0"}}>
                                 <i className="fab fa-youtube"></i>

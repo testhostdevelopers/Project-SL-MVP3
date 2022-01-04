@@ -41,12 +41,12 @@ const Token = () => {
 
                             <p><span className="color-gray">$STARLIGHT rewards distribution on</span> <b>Starlight.com</b> <span className="color-gray">is a part of Starlight Protocol DAO</span> <b>App Mining program</b> <span className="color-gray">and is calculated dynamically each week.</span></p>
 
-                            <div class="wrapper mt-5">
-                                <ul class="StepProgress">
-                                    <li class="StepProgress-item" data-step="1"><strong>A portion of the 41,250 $RARI distributed every week</strong> <div><span className="color-gray">Proportional to sales, scaled quadratically</span></div></li>
-                                    <li class="StepProgress-item" data-step="2"><strong>50% for buyers and 50% for sellers</strong></li>
-                                    <li class="StepProgress-item" data-step="3"><strong>+15% $RARI for verified users</strong></li>
-                                    <li class="StepProgress-item" data-step="4"><strong>-50% for NFTs created not on Rarible.com</strong></li>
+                            <div className="wrapper mt-5">
+                                <ul className="StepProgress">
+                                    <li className="StepProgress-item" data-step="1"><strong>A portion of the 41,250 $RARI distributed every week</strong> <div><span className="color-gray">Proportional to sales, scaled quadratically</span></div></li>
+                                    <li className="StepProgress-item" data-step="2"><strong>50% for buyers and 50% for sellers</strong></li>
+                                    <li className="StepProgress-item" data-step="3"><strong>+15% $RARI for verified users</strong></li>
+                                    <li className="StepProgress-item" data-step="4"><strong>-50% for NFTs created not on Rarible.com</strong></li>
                                 </ul>
                             </div>
                         </div>

@@ -20,7 +20,7 @@ const PlaceABidFollowPopup = (props) => {
                 <div className="d-flex justify-content-between cursor-pointer">
                     <h3>Follow steps</h3>
                     <div className="popup-close-btn-outline" onClick={() => { setSinglePopup(false); document.body.style.overflow = "scroll"; }}>
-                        <i class="fas fa-times"></i>
+                        <i claclassNamess="fas fa-times"></i>
                     </div>
                 </div>
                 <div className="mb-3 mt-4">

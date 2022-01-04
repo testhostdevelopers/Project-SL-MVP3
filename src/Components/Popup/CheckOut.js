@@ -38,7 +38,7 @@ const PlaceABidPopup = (props) => {
                     <div className="d-flex justify-content-between">
                         <h3>Checkout</h3>
                         <div className="popup-close-btn-outline cursor-pointer" onClick={() => { setSingleCollectionPopup, setCheckOutPopup(false); document.body.style.overflow = "scroll"; }}>
-                            <i class="fas fa-times"></i>
+                            <i className="fas fa-times"></i>
                         </div>
                     </div>
 
@@ -48,7 +48,7 @@ const PlaceABidPopup = (props) => {
                        <div className="tab-nav">
                             <TabList>
                                 <Tab>Pay with Crypto</Tab>
-                                <Tab>Pay with <span className="pay-with-img"><img src={McdoIcon} /><img className="change-img-mode" src={VisaIcon} /></span></Tab>
+                                <Tab>Pay with <span className="pay-with-img"><img src={McdoIcon} /></span></Tab>
                             </TabList>
                         </div>
                         <div className="tab-content">

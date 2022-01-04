@@ -36,7 +36,7 @@ export default function HotBids ({title,WETH,bid,heartcount, Coverimg,time}) {
                 <Menu.Item>
                     Share
                 </Menu.Item>
-                <Menu.Item>
+                <Menu.Item onClick={() => setReportPopup(true)}>
                     Report
                 </Menu.Item>
             </Menu>

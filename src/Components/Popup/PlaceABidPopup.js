@@ -35,7 +35,7 @@ const PlaceABidPopup = (props) => {
                     <div className="d-flex justify-content-between">
                         <h3>Place a bid</h3>
                         <div className="popup-close-btn-outline cursor-pointer" onClick={() => { setSingleCollectionPopup(false); document.body.style.overflow = "scroll"; }}>
-                            <i class="fas fa-times"></i>
+                            <i className="fas fa-times"></i>
                         </div>
                     </div>
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import SolanaLogo from '../../assets/img/custom/solanalogo.png';
 import MetaplexLogo from '../../assets/img/custom/metaplexlogo.png';
 import PrimedImg from '../../assets/img/custom/primedimg.png';
+import darkPrimedImg from '../../assets/img/custom/darkPrimedImg.png';
 
 const PrimedandReady = () => {
 return (
@@ -23,7 +24,8 @@ return (
                     </div>
                 </div>
                 <div className="primed-right-block">
-                    <img src={PrimedImg} />
+                    <img className='light' src={PrimedImg} />
+                    <img className='dark' src={darkPrimedImg} />
                 </div>
             </div>
         </div>
