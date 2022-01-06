@@ -37,7 +37,7 @@ const PlaceABidPopup = (props) => {
                 <div className="border-radius bg-white popup-width">
                     <div className="d-flex justify-content-between">
                         <h3>Checkout</h3>
-                        <div className="popup-close-btn-outline cursor-pointer" onClick={() => { setSingleCollectionPopup, setCheckOutPopup(false); document.body.style.overflow = "scroll"; }}>
+                        <div className="popup-close-btn-outline cursor-pointer" onClick={() => { setSingleCollectionPopup(); setCheckOutPopup(false); document.body.style.overflow = "scroll"; }}>
                             <i className="fas fa-times"></i>
                         </div>
                     </div>
