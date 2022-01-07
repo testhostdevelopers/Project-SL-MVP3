@@ -1363,14 +1363,16 @@ span.ant-select-selection-item {
     margin-left: 6%;
 }
 
-.quickExplore .nav-tabs{
-    border: none;
-    display: flex;
-    align-items: center;
-    flex-wrap: initial;
-    width: 100%;
-    height: 50px;
-    overflow-x: auto;
+.quickExplore .nav-tabs {
+	border: none;
+	display: flex;
+	align-items: center;
+	flex-wrap: initial;
+	width: 100%;
+	height: 50px;
+	overflow-x: auto;
+	scrollbar-width: none;
+	margin-top: 20px;
 }
 
 .quickExplore .nav-tabs .nav-link{
@@ -1381,7 +1383,9 @@ span.ant-select-selection-item {
     display: flex;
     align-items: center;
 }
-
+.quickExplore .nav-tabs::-webkit-scrollbar {
+    display: none;
+}
 .ant-input:focus{
     background-color: red !important;
 }
@@ -1625,7 +1629,7 @@ section.artWorkWeekSection {
 	border: 1px solid var(--light-gray);
 	box-sizing: border-box;
 	box-shadow: 0px 25px 40px rgba(0, 0, 0, 0.01);
-	border-radius: 15px;
+	border-radius: 20px;
 	margin-right: 1.7%;
 }
 .topSellerContent .d-flex .topSellerCard:nth-child(5n){

@@ -117,7 +117,9 @@ header {
 	width: 100%;
 	max-width: 100%;
 }
-
+.navbar-brand  h3 {
+    font-weight: normal !important;
+}
 /* breakpoint and up - mega dropdown styles */
 
 @media screen and (min-width: 767px) {

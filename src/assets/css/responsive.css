@@ -448,7 +448,7 @@
     .navbar-expand-lg .navbar-collapse .close {
         display: block;
     }
-    .mobile-menu{
+    ul.mobile-menu{
         display: block;
     }
     .navbar-expand-lg .navbar-nav.center-menu {
