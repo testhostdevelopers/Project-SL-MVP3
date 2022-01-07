@@ -448,6 +448,66 @@
     .navbar-expand-lg .navbar-collapse .close {
         display: block;
     }
+    .mobile-menu{
+        display: block;
+    }
+    .navbar-expand-lg .navbar-nav.center-menu {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+    .navbar-expand-lg div.navbar-collapse {
+        max-width: 100%;
+        align-items: center;
+        justify-content: flex-start;
+        display: flex;
+        margin-top: 0;
+        z-index: 2;
+        max-height: 0 !important;
+        transition: all 0.5s ease;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        pointer-events: none;
+        visibility: hidden;
+    }
+    .navbar-collapse .footer-social-icons{
+        margin-top: 0 !important;
+        justify-content: flex-start !important;
+    }
+    .navbar-expand-lg div.navbar-collapse.collapsing,
+    .navbar-expand-lg div.navbar-collapse.show {
+        max-height: 100vh !important;
+        transition: all 0.5s ease;
+        pointer-events: all;
+        visibility: visible;
+        opacity: 1;
+        background: var(--bg-main);
+        padding-top: 60px;
+    }
+    .navbar-expand-lg .navbar-nav.center-menu li {
+        width: auto;
+        margin-bottom: 30px;
+    }
+    .navbar-nav .footer-social-icons i{
+        font-size: 18px !important;
+    }
+    .navbar-nav  .footer-social-icons svg {
+        width: 20px;
+        height: 20px;
+    }
+    .navbar-light .navbar-nav a.nav-link {
+        padding-right: 5px;
+        padding-left: 5px;
+        font-size: 18px;
+        line-height: 115.8%;
+        background: transparent;
+        font-weight: 600;
+    }
+    .navbar .navbar-collapse{
+        height: 100vh !important;
+    }
 }
 
 @media only screen and (max-width: 767px) {
@@ -782,10 +842,6 @@
         text-align: center !important;
     }
 
-    .navbar .navbar-collapse{
-        height: 100vh !important;
-    }
-
     .menu-create-width button{
         width: 100% !important;
     }
@@ -993,59 +1049,7 @@
         width: 100%;
         font-size: 14px;
     }
-    .navbar-expand-lg .navbar-nav.center-menu {
-        max-width: 100%;
-        padding: 0 15px;
-    }
-    .navbar-expand-lg div.navbar-collapse {
-        max-width: 100%;
-        align-items: center;
-        justify-content: flex-start;
-        display: flex;
-        margin-top: 0;
-        z-index: 2;
-        max-height: 0 !important;
-        transition: all 0.5s ease;
-        overflow: hidden;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        pointer-events: none;
-        visibility: hidden;
-    }
-    .navbar-collapse .footer-social-icons{
-        margin-top: 0 !important;
-    }
-    .navbar-expand-lg div.navbar-collapse.collapsing,
-    .navbar-expand-lg div.navbar-collapse.show {
-        max-height: 100vh !important;
-        transition: all 0.5s ease;
-        pointer-events: all;
-        visibility: visible;
-        opacity: 1;
-        background: var(--bg-main);
-        padding-top: 60px;
-    }
-    .navbar-expand-lg .navbar-nav.center-menu li {
-        width: auto;
-        margin-bottom: 30px;
-    }
-    .navbar-nav .footer-social-icons i{
-        font-size: 18px !important;
-    }
-    .navbar-nav  .footer-social-icons svg {
-        width: 20px;
-        height: 20px;
-    }
-    .navbar-light .navbar-nav a.nav-link {
-        padding-right: 5px;
-        padding-left: 5px;
-        font-size: 18px;
-        line-height: 115.8%;
-        background: transparent;
-        font-weight: 600;
-    }
+    
     .buy-art-work-week .container-fluid.mt-5 {
         margin-top: 0 !important;
     }

@@ -290,7 +290,7 @@ const Navbar = () => {
                             <div className='close' onClick={() => SetIsShow(!isShow)}>
                                 <img src={menuclose} />
                             </div>
-                            {/* <ul className="navbar-nav nav-fill align-items-center center-menu">
+                            <ul className="navbar-nav nav-fill align-items-center center-menu mobile-menu">
                                 <li>
                                     <Link to="/Explore" className="nav-link">Explore Starlight</Link>
                                 </li>
@@ -324,7 +324,7 @@ const Navbar = () => {
                                         </Link>
                                     </div>
                                 </li>
-                            </ul> */}
+                            </ul>
                             <ul className="navbar-nav nav-fill align-items-center">
 
                                 <li className="nav-item">
