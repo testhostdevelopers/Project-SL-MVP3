@@ -34,17 +34,39 @@ import CreateCollectibleEdit from './Pages/CreateCollectibleEdit';
 
 import 'swiper/swiper-bundle.css';
 import {
-    BrowserRouter as Router, 
+    BrowserRouter as Router,
     Switch,
     Route
 } from "react-router-dom";
 
 const App = () => {
+    const [pImage, setpImage] = useState('')
+    const profileImage = React.useRef(null);
+    const handleprofilepicUploadr = e => {
+        const [file] = e.target.files;
 
+        if (file) {
+
+            const reader = new FileReader();
+            const { current } = profileImage;
+            current.file = file;
+            reader.onload = e => {
+                current.src = e.target.result;
+                setpImage(current.src);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    function withProps(Component, props) {
+        return function (matchProps) {
+            return <Component {...props} {...matchProps} />
+        }
+    }
     return (
         <>
             <Router>
-                <Navbar />
+                <Navbar handleprofilepicUploadr={(e) => handleprofilepicUploadr(e)} profileImage={profileImage} />
                 <Switch>
                     <Route path="/" component={Home} exact />
                     <Route path="/cryptoloria" component={Cryptoloria} exact />
@@ -58,7 +80,7 @@ const App = () => {
                     <Route path="/create" component={CreateCollectible} exact />
                     <Route path="/create-single" component={CreateCollectibleSingle} exact />
                     <Route path="/create-multiple" component={CreateCollectibleMulti} exact />
-                    <Route path="/profile" component={Profile} exact />
+                    <Route path="/profile" component={withProps(Profile,{pImage: pImage})}   exact />
                     <Route path="/faq" component={Faq} exact />
                     <Route path="/edit-profile" component={CreateCollectibleEdit} exact />
                     <Route path="/activity" component={Activity} exact />

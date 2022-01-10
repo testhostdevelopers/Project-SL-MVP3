@@ -15,8 +15,7 @@ import BidingbalanceIcon from "../../assets/img/custom/BidingbalanceIcon.svg";
 
 
 
-const Navbar = () => {
-
+const Navbar = (props) => {
     const [theme, setTheme] = useState(localStorage.getItem('theme'))
     const [openProfileDropMenu, setOpenProfileDropMenu] = useState(false);
     const [notificationPopup, setNotificationPopup] = useState(false);
@@ -134,6 +133,10 @@ const Navbar = () => {
 
     const notifications = ["add your email", "subscribe", "go to website"];
 
+
+    const profileUploaderr = React.useRef(null);
+
+
     return (
         <>
             {/* {
@@ -189,7 +192,31 @@ const Navbar = () => {
                                             <h4 className="text-left">0×hubwc8fh2f....hb8fhr</h4>
                                             <div className="notipopup-display">
                                                 <a href="#0" className="color-ping"><b>Set display name</b></a>
-                                                <a href="#0" className="color-ping"><b>Upload profile picture</b></a>
+                                                {/* <a href="#0" className="color-ping" for="profilephoto" onClick={() => profileUploader.current.click()}><b>Upload profile picture</b></a>
+                                                <div className="profile-user-pictures">
+                                                    <input
+                                                        type="file"
+                                                        accept="image/*"
+                                                        onChange={handleprofilepicUpload}
+                                                        ref={profileUploader}
+                                                        id="profilephoto"
+                                                        style={{
+                                                            display: "none"
+                                                        }}
+                                                    />
+                                                    <div className='profile-pic'>
+                                                        <label>Add Profile Picture</label>
+                                                        <img
+                                                            src=""
+                                                            ref={profileImage}
+                                                            style={{
+                                                                width: "100%",
+                                                                height: "100%",
+                                                                position: "absolute"
+                                                            }}
+                                                        />
+                                                    </div>
+                                                </div> */}
                                             </div>
 
                                             <div className="border-section pt-3 mt-3">
@@ -243,7 +270,7 @@ const Navbar = () => {
                                                     </a>
                                                 </div>
 
-                                                <div className="add-funds-with-btn">Add funds with 
+                                                <div className="add-funds-with-btn">Add funds with
                                                     <span>
                                                         <img src={McdoIcon} />
                                                     </span>
@@ -377,8 +404,27 @@ const Navbar = () => {
                                         </ul>
 
                                     </div>
-                                </li> 
-
+                                </li>
+                                <div  style={{display: "none",}}>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={props.handleprofilepicUploadr}
+                                        ref={profileUploaderr}
+                                        style={{
+                                            display: "none"
+                                        }}
+                                    />
+                                    <img
+                                        src=""
+                                        ref={props.profileImage}
+                                        style={{
+                                            width: "100%",
+                                            height: "100%",
+                                            position: "absolute"
+                                        }}
+                                    />
+                                </div>
                                 <li className="nav-item d-sm-none d-lg-block p-0 d-flex align-items-center">
                                     <Link to="/create" className="nav-link p-0">
                                         <button className="btn btn-primary">Create</button>
@@ -449,11 +495,14 @@ const Navbar = () => {
                                                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                             </svg>
                                             {
+
+
                                                 openProfileDropMenu === false ? "" : <div className="notificationPopup">
                                                     <h4 className="text-left">0×hubwc8fh2f....hb8fhr</h4>
                                                     <div className="notipopup-display">
                                                         <a href="#0" className="color-ping"><b>Set display name</b></a>
-                                                        <a href="#0" className="color-ping"><b>Upload profile picture</b></a>
+                                                        <a className="color-ping" onClick={() => profileUploaderr.current.click()} ><b>Upload profile picture</b></a>
+
                                                     </div>
 
                                                     <div className="border-section pt-3 mt-3">

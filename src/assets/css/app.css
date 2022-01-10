@@ -333,12 +333,11 @@ footer .footer-title {
     font-weight: 300;
     margin-bottom: 25px;
 }
-
-footer .footer-title h3{
-    color: var(--black-text) !important;
-    font-size: 22px !important;
+footer .footer-title h3 {
+	color: var(--black-text) !important;
+	font-size: 22px !important;
+	font-weight: 500 !important;
 }
-
 footer .footer-title h6 {
 	color: var(--black-text) !important;
 	line-height: 156.52%;
@@ -893,7 +892,9 @@ font-size: 12px;
     margin-top: 15px !important;
     background: var(--bg-card) !important;
 }
-
+.ant-select-single.ant-select-show-arrow span.ant-select-selection-item > img {
+	display: none;
+}
 .topSeller .ant-select:not(.ant-select-customize-input) .ant-select-selector{
     background-color: transparent;
     color: var(--black-color);
@@ -902,10 +903,30 @@ font-size: 12px;
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     padding: 6px 15px;
     min-width: 130px;
-    max-width: 200px;
+    max-width: 180px;
     text-align: right;
 }
-
+span.ant-select-multiple .ant-select-selection-item-remove {
+	line-height: 17px;
+}
+.ant-select-multiple .ant-select-selection-item-remove > span.anticon {
+	vertical-align: 2px;
+}
+div.ant-select-selection-overflow {
+	position: relative;
+	display: flex;
+	flex: auto;
+	max-width: 100%;
+	white-space: nowrap;
+	width: 100%;
+	flex-wrap: nowrap;
+	overflow: hidden;
+	padding-left: 25px;
+}
+.ant-select-multiple span.ant-select-selection-item {
+	margin-top: 0;
+	margin-bottom: 0;
+}
 footer .ant-select:not(.ant-select-customize-input) .ant-select-selector{
     border: solid 1px var(--gray-color) !important;
 }
@@ -2134,6 +2155,46 @@ footer .ant-select-arrow {
 .profile-user-pictures > img{
     border-radius: 100%;
 }
+.profile-user-pictures .profile-pic {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	background: #f9f9f9;
+	border-radius: 50%;
+    cursor: pointer;
+}
+.profile-pic label {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 0;
+	right: 0;
+	background: #FFFFFF;
+	border: 0.5px solid #C7C7C7;
+	border-radius: 47px;
+	width: 90%;
+	margin: 0 auto;
+	padding: 8px 0;
+}
+.profile-user-pictures .profile-pic img {
+	border-radius: 50%;
+	border: none;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+	background: #f9f9f9;
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
+.profile-user-pictures .profile-pic img[src=""] {
+	opacity: 0;
+}
 
 
 /* popup-inner-dropdown-menu Start */
@@ -2389,8 +2450,28 @@ ul.react-tabs__tab-list > li{
 	display: none;
 }
 
-
-
+div.ant-select-dropdown {
+	font-size: 14px;
+	max-width: 208px !important;
+	width: 100% !important;
+    border-radius: 15px !important;
+}
+.ant-select-item-option-content .navbar-search {
+	min-width: 100%;
+}
+.ant-select-item-option-content .profilepic >img {
+	width: 23px;
+	height: 23px;
+	border: 1px solid #FFFFFF;
+	border-radius: 50px;
+}
+.ant-select-selection-item .profilepic {
+	display: none;
+}
+.notification-ping-bg input,
+.notification-ping-bg button {
+	height: 38px !important;
+}
 
 .dark-md ul.filter.topSeller > li .icon img {
 	filter: invert(1) brightness(100);
