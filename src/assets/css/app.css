@@ -1393,7 +1393,7 @@ span.ant-select-selection-item {
 	height: 50px;
 	overflow-x: auto;
 	scrollbar-width: none;
-	margin-top: 20px;
+	margin-top: 0;
 }
 
 .quickExplore .nav-tabs .nav-link{
