@@ -1175,7 +1175,10 @@ footer .ant-select:not(.ant-select-customize-input) .ant-select-selector{
     padding: 10px;
     border-radius: 50%;
 }
-
+div.ant-select-item {
+	font-weight: 600;
+    color: var(--black-text);
+}
 div.ant-select-dropdown {
 	padding: 0;
 }
@@ -2452,9 +2455,10 @@ ul.react-tabs__tab-list > li{
 
 div.ant-select-dropdown {
 	font-size: 14px;
-	max-width: 208px !important;
+	max-width: 150px !important;
 	width: 100% !important;
-    border-radius: 15px !important;
+	border-radius: 15px !important;
+	background: var(--white-color);
 }
 .ant-select-item-option-content .navbar-search {
 	min-width: 100%;
@@ -2473,6 +2477,174 @@ div.ant-select-dropdown {
 	height: 38px !important;
 }
 
+.custom-filter {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: var(--white-color);
+    padding: 10px;
+    border-radius: 15px;
+    overflow: hidden;
+    z-index: 2;
+    width: 284px;
+    box-shadow: 0px 25px 60px rgb(0 0 0 / 8%);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+.show-filter.custom-filter {
+    max-height: 332px;
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.5s ease;
+}
+.searchfilter.navbar-search {
+	min-width: 100%;
+	margin: auto;
+}
+.custom-filter ul {
+	margin: 10px -10px 0 -10px;
+	overflow: auto;
+	max-height: 250px;
+	scrollbar-width: thin;
+}
+.custom-filter ul::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+}
+.custom-filter ul::-webkit-scrollbar-thumb {
+    background: #6f6f6f;
+}
+.custom-filter ul li {
+	list-style: none;
+	position: relative;
+	display: block;
+	transition: all 0.3s ease;
+}
+.custom-filter ul li img {
+	width: 23px;
+	height: 23px;
+	border: 1px solid var(--white-color);
+	margin-right: 8px;
+	border-radius: 50px;
+}
+.custom-filter ul li label {
+	margin: 0;
+	position: relative;
+	width: 100%;
+	cursor: pointer;
+    min-height: 32px;
+	padding: 7px 22px;
+	color: var(--black-text);
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 22px;
+	cursor: pointer;
+}
+.custom-filter ul li:hover label{
+    background-color: #f5f5f5;
+}
+.custom-filter ul li input[type="radio"],
+.custom-filter ul li input[type="checkbox"] {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+}
+.custom-filter ul li input[type="radio"] + label::before,
+.custom-filter ul li input[type="checkbox"] + label::before {
+	content: '';
+	position: absolute;
+	width: 18px;
+	height: 18px;
+	font-size: 12px;
+	border-radius: 50%;
+    background: url("../../assets/img/custom/tick.svg") no-repeat center center;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	right: 20px;
+	top: 50%;
+	transform: translate(0, -50%);
+    opacity: 0;
+    z-index: -1;
+}
+.custom-filter ul li input[type="radio"]:checked + label::before,
+.custom-filter ul li input[type="checkbox"]:checked + label::before {
+    opacity: 1;
+    z-index: 1;
+}
+.custom-filter .filter-button {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	border-top: 0.5px solid #979797;
+	padding-top: 8px;
+	width: 100%;
+}
+.custom-filter .filter-button .btn {
+	margin: 0;
+	width: 49%;
+    font-weight: bold;
+    font-size: 14px;
+}
+.custom-filter .filter-button .btn-primary{
+    color: var(--black-color);
+}
+.custom-filter .filter-button .btn-primary {
+	background: var(--pink-color);
+	color: var(--white);
+}
+
+.rangeselect {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.rangeselect .input {
+	width: 48.5%;
+	position: relative;
+	margin-bottom: 10px;
+}
+.rangeselect .input > span {
+	width: 100%;
+	display: block;
+}
+.rangeselect .ant-select {
+	max-width: 100% !important;
+	position: absolute;
+	top: 9px;
+	right: 20px;
+}
+.rangeselect .ant-select .ant-select-selector {
+	min-width: 1px !important;
+	max-width: unset !important;
+	border: none !important;
+	padding: 0 !important;
+}
+.rangeselect .ant-select .ant-select-arrow {
+	display: none !important;
+}
+.rangeselect .ant-select .ant-select-selection-item {
+	padding: 0 !important;
+	font-size: 14px;
+	font-weight: 600;
+}
+.rangeselect .input > span input {
+	width: 100%;
+	border: 0.5px solid #C7C7C7;
+	box-sizing: border-box;
+	border-radius: 56px;
+	height: 48px;
+	padding: 0 50px 0 15px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+
 .dark-md ul.filter.topSeller > li .icon img {
 	filter: invert(1) brightness(100);
 }
@@ -2484,4 +2656,12 @@ div.ant-select-dropdown {
 }
 .dark-md .text-pink:hover{
 	color: var(--white) !important;
+}
+.dark-md .ant-select-item-option-active:not(.ant-select-item-option-disabled),
+.dark-md .custom-filter ul li:hover label {
+	background-color: #000;
+}
+.dark-md div.ant-select-dropdown,
+.dark-md .custom-filter{
+    border: 0.5px solid #2A2A2A;
 }
