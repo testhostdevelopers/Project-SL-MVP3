@@ -3,16 +3,21 @@ import categoryicon from "../assets/img/custom/category-icon.svg";
 import userProfile from "../assets/img/custom/userProfilePictures.png";
 import { Menu, Dropdown, Select } from 'antd';
 
-export default function FilterCollections({ }) {
+export default function FilterCollections({setFilterSort, filterSort,filterCategory,filterCollections,filterProperties,filtersale,filterRange,setFilterCategory,setFilterCollections,setFilterProperties,setFiltersale,setFilterRange }) {
   const { Option } = Select;
   const [isActive, setActive] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [checkedValues, setCheckedValues] = useState([]);
   const handleToggle = () => {
-    setActive(!isActive);
+    setFilterSort(false);
+    setFilterCategory(false);
+    setFilterCollections(!filterCollections);
+    setFilterProperties(false);
+    setFiltersale(false);
+    setFilterRange(false);
   };
   const unCheckedCheckBox = () => {
-    setActive(false);
+    setFilterCollections(false);
     setIsChecked(false);
     let node = document.querySelectorAll(".filtercollection-check input[type='checkbox']")
     node.forEach((ele) => {
@@ -29,7 +34,7 @@ export default function FilterCollections({ }) {
       }
     });
     setCheckedValues(arr);
-  }, [isActive]);
+  }, [filterCollections]);
 
   console.log(checkedValues, 'checked values')
   // console.log(document.querySelectorAll(".custom-filter ul input[type='checkbox']"), 'checkboxes')
@@ -41,7 +46,7 @@ export default function FilterCollections({ }) {
       </div>
       <div className="ant-select ant-select-single ant-select-show-arrow" onClick={handleToggle}>
         <div className="ant-select-selector">
-          <span className="ant-select-selection-item">{isChecked ? checkedValues : 'Collections'}</span>
+          <span className="ant-select-selection-item">{isChecked ? checkedValues.join(" , ") : 'Collections'}</span>
         </div>
         <span className="ant-select-arrow">
           <span role="img" aria-label="down" className="anticon anticon-down ant-select-suffix">
@@ -50,7 +55,8 @@ export default function FilterCollections({ }) {
         </span>
       </div>
 
-      <div className={`app ${isActive ? "custom-filter show-filter" : "custom-filter"}`}>
+      {  (filterCategory  === false || filterSort  === false || filterProperties  === false || filtersale  === false || filterRange  === false ) && 
+      <div className={`app ${filterCollections ? "custom-filter show-filter" : "custom-filter"}`}>
         <span className="searchfilter navbar-search">
           <i className="fas fa-search"></i>
           <input type="text" placeholder="Search in collections" />
@@ -94,9 +100,10 @@ export default function FilterCollections({ }) {
 
         <div className="filter-button">
           <a className="btn btn-primary-outline" onClick={() => unCheckedCheckBox()}>Clear</a>
-          <a className="btn btn-primary" onClick={() => { setActive(false); setIsChecked(false) }} >Apply</a>
+          <a className="btn btn-primary" onClick={() => { setFilterCollections(false); setIsChecked(false) }} >Apply</a>
         </div>
       </div>
+}
     </li>
   );
 }

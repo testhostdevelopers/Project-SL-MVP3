@@ -3,16 +3,21 @@ import flashlight from "../assets/img/custom/flashlight-line.png";
 import userProfile from "../assets/img/custom/userProfilePictures.png";
 import { Menu, Dropdown, Select } from 'antd';
 
-export default function Filtersale({ }) {
+export default function Filtersale({setFilterSort, filterSort,filterCategory,filterCollections,filterProperties,filtersale,filterRange,setFilterCategory,setFilterCollections,setFilterProperties,setFiltersale,setFilterRange }) {
   const { Option } = Select;
   const [isActive, setActive] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [checkedValues, setCheckedValues] = useState([]);
   const handleToggle = () => {
-    setActive(!isActive);
+    setFilterSort(false);
+    setFilterCategory(false);
+    setFilterCollections(false);
+    setFilterProperties(false);
+    setFiltersale(!filtersale);
+    setFilterRange(false);
   };
   const unCheckedCheckBox = () => {
-    setActive(false);
+    setFiltersale(false);
     setIsChecked(false);
     let node = document.querySelectorAll(".filtersale-check input[type='checkbox']")
     node.forEach((ele) => {
@@ -29,7 +34,7 @@ export default function Filtersale({ }) {
       }
     });
     setCheckedValues(arr);
-  }, [isActive]);
+  }, [filtersale]);
 
   console.log(checkedValues, 'checked values')
   // console.log(document.querySelectorAll(".custom-filter ul input[type='checkbox']"), 'checkboxes')
@@ -50,7 +55,8 @@ export default function Filtersale({ }) {
         </span>
       </div>
 
-      <div className={`app ${isActive ? "custom-filter show-filter" : "custom-filter"}`}>
+      {  (filterCategory  === false || filterSort  === false || filterProperties  === false || filterCollections  === false || filterRange  === false ) && 
+      <div className={`app ${filtersale ? "custom-filter show-filter" : "custom-filter"}`}>
         <ul className="filtersale-check">
           <li>
             <input type="checkbox" id="TimedAuction" value="Timed Auction" />
@@ -83,9 +89,10 @@ export default function Filtersale({ }) {
 
         <div className="filter-button">
           <a className="btn btn-primary-outline" onClick={() => unCheckedCheckBox()}>Clear</a>
-          <a className="btn btn-primary" onClick={() => { setActive(false); setIsChecked(false) }} >Apply</a>
+          <a className="btn btn-primary" onClick={() => { setFiltersale(false); setIsChecked(false) }} >Apply</a>
         </div>
       </div>
+}
     </li>
   );
 }

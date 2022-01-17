@@ -7,13 +7,17 @@ import Metaverses from "../assets/img/custom/alien-monster.png";
 import Art from "../assets/img/custom/rainbow.png";
 import { Menu, Dropdown, Select } from 'antd';
 
-  export default function FilterCategory({ }) {
+  export default function FilterCategory({ setFilterSort, filterSort,filterCategory,filterCollections,filterProperties,filtersale,filterRange, setFilterCategory,setFilterCollections,setFilterProperties,setFiltersale,setFilterRange }) {
     const { Option } = Select;
-    const [isActive, setActive] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
     const [checkedValues, setCheckedValues] = useState('Category');
     const handleToggle = () => {
-      setActive(!isActive);
+      setFilterSort(false);
+      setFilterCategory(!filterCategory);
+      setFilterCollections(false);
+      setFilterProperties(false);
+      setFiltersale(false);
+      setFilterRange(false);
     };
     // const unCheckedCheckBox = () => {
     //   setActive(false);
@@ -24,7 +28,7 @@ import { Menu, Dropdown, Select } from 'antd';
     //   })
     // }
     const isActiveFunc = () => {
-      setActive(false);
+      setFilterCategory(false)
       setIsChecked(true)
       let checkedV = document.querySelectorAll(".filtercategory-check input[type='radio']");
       console.log(checkedV, 'elements');
@@ -42,7 +46,7 @@ import { Menu, Dropdown, Select } from 'antd';
       });
     }
   
-    // console.log(document.querySelectorAll(".custom-filter ul input[type='checkbox']"), 'checkboxes')
+    console.log( filterSort,filterCategory,filterCollections,filterProperties,filtersale,filterRange)
     return (
       <li>
   
@@ -59,8 +63,8 @@ import { Menu, Dropdown, Select } from 'antd';
             </span>
           </span>
         </div>
-  
-        <div className={`app ${isActive ? "custom-filter show-filter" : "custom-filter"}`}>
+        { ( filterSort  === false || filterCollections  === false || filterProperties  === false || filtersale  || filterRange  === false ) && 
+        <div className={`app ${filterCategory ? "custom-filter show-filter" : "custom-filter"}`}>
         <ul className="filtercategory-check">
          <li>
             <input type="radio" id="All" value="All" name="filtercategory" />
@@ -106,6 +110,7 @@ import { Menu, Dropdown, Select } from 'antd';
         </ul>
   
         </div>
+  }
       </li>
     );
   }

@@ -2643,7 +2643,136 @@ div.ant-select-dropdown {
 	font-size: 14px;
 	font-weight: bold;
 }
-
+.navbar-search.property-search {
+	margin: 0;
+    position: relative;
+}
+.searchMenu {
+	cursor: pointer;
+	position: absolute;
+	top: 10px;
+	right: 20px;
+    z-index: 1;
+}
+.property-search .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+	background:url("../../assets/img/custom/search-menu.png") no-repeat center center;
+	border: none;
+	width: 36px;
+	padding: 0;
+}
+.navbar-search.property-search .ant-select-selection-item {
+	display: none;
+}
+.navbar-search.property-search .ant-select-arrow {
+	display: none !important;
+}
+.accordian-hide > .subc-cat,
+.Accordian-card{
+    list-style: none;
+}
+.Accordian-card > li {
+	list-style: none;
+}
+.pro-accessories {
+	margin-top: 20px;
+}
+.pro-accessories h3{
+    font-weight: bold !important;
+    font-family: "AvertaStd" !important;
+    font-size: 18px;
+    line-height: 130%;
+    color: var(--gray-color);
+}
+.Accordian-box {
+	position: relative;
+}
+.Accordian-card .Accordian-box h5 {
+    font-family: AvertaStd;
+    font-size: 18px;
+    line-height: 130%;
+    color: var(--black-color);
+    font-weight: 600;
+    padding: 15px 20px;
+    border-bottom: 1px solid #C4C4C4;
+    position: relative;
+    cursor: pointer;
+}
+.Accordian-card .Accordian-box h5 i {
+	position: absolute;
+	right: 20px;
+	top: 14px;
+	font-size: 24px;
+}
+.Accordian-card .accordian-hide {
+	padding: 0px 20px;
+	background: #FBFBFB;
+    max-height: 0;
+    opacity: 1;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+.Accordian-card .accordian-hide.collapsed{
+    opacity: 1;
+    max-height:1000px;
+    transition: all 0.5s ease;
+}
+.accordian-hide .custom-filter {
+	opacity: 1;
+	pointer-events: auto;
+	position: relative;
+	top: auto;
+	width: auto;
+	padding: 0;
+	box-shadow: none;
+	max-height: unset;
+    background: transparent;
+}
+.custom-filter ul.subc-cat {
+	margin: 0;
+	max-height: unset;
+}
+.accordian-hide > .subc-cat li {
+	position: relative;
+    padding: 10px 100px 10px 0;
+}
+.accordian-hide > .subc-cat li span {
+	position: absolute;
+	top: 15px;
+	right: 40px;
+	font-size: 18px;
+	text-align: right;
+	color: var(--black-text);
+	font-weight: 600;
+	display: block;
+	line-height: 100%;
+}
+.accordian-hide .custom-filter ul li label {
+	position: static;
+	padding: 0;
+	font-family: AvertaStd;
+	font-size: 18px;
+	line-height: 130%;
+	color: var(--black-color);
+	background: transparent;
+}
+.accordian-hide .custom-filter ul li input[type="radio"] + label::before,
+.accordian-hide .custom-filter ul li input[type="checkbox"] + label::before {
+	right: 0;
+}
+.pro-accessories .custom-filter .filter-button {
+	border: none;
+	padding: 0;
+}
+.pro-accessories .custom-filter {
+	position: static;
+	max-height: unset;
+	opacity: 1;
+	width: 100%;
+	border: none;
+	padding: 0;
+	box-shadow: none;
+	pointer-events: auto;
+}
 
 .dark-md ul.filter.topSeller > li .icon img {
 	filter: invert(1) brightness(100);
@@ -2664,4 +2793,7 @@ div.ant-select-dropdown {
 .dark-md div.ant-select-dropdown,
 .dark-md .custom-filter{
     border: 0.5px solid #2A2A2A;
+}
+.dark-md .weare-here-hover img {
+	filter: invert(1) brightness(100);
 }

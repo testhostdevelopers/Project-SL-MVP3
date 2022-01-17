@@ -2,13 +2,18 @@ import React, { useState, useEffect } from "react";
 import Priceicon from "../assets/img/custom/u_dollar-alt.png";
 import { Menu, Dropdown, Select } from 'antd';
 
-export default function FilterRange({ }) {
+export default function FilterRange ({setFilterSort, filterSort,filterCategory,filterCollections,filterProperties,filtersale,filterRange,setFilterCategory,setFilterCollections,setFilterProperties,setFiltersale,setFilterRange }) {
   const { Option } = Select;
   const [isActive, setActive] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [checkedValues, setCheckedValues] = useState([]);
   const handleToggle = () => {
-    setActive(!isActive);
+    setFilterSort(false);
+    setFilterCategory(false);
+    setFilterCollections(false);
+    setFilterProperties(false);
+    setFiltersale(false);
+    setFilterRange(!filterRange);
   };
   const unCheckedCheckBox = () => {
     setActive(false);
@@ -37,7 +42,8 @@ export default function FilterRange({ }) {
         </span>
       </div>
 
-      <div className={`rangeselect app ${isActive ? "custom-filter show-filter" : "custom-filter"}`}>
+      {  (filterCategory  === false || filterSort  === false || filterProperties  === false || filterCollections  === false || filterRange  === false ) && 
+      <div className={`rangeselect app ${filterRange ? "custom-filter show-filter" : "custom-filter"}`}>
           <div className="input">
               <span>
                 <input type="text" placeholder="0"/>
@@ -68,6 +74,7 @@ export default function FilterRange({ }) {
           <a className="btn btn-primary" onClick={() => { setActive(false);}}>Apply</a>
         </div>
       </div>
+    }
     </li>
   );
 }

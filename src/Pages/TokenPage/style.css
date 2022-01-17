@@ -58,27 +58,28 @@
 	font-weight: normal;
 	display: block;
 	bottom: auto;
-	line-height: 100%;
-	margin-left: 15px;
+	line-height: 130%;
+	margin-left: 10px;
 }
 
 .starl-banner-info {
-    position: absolute;
-    z-index: 1;
-    bottom: 110px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    max-width: 630px;
-    margin-left: auto;
-    margin-right: auto;
+	position: absolute;
+	z-index: 1;
+	bottom: 125px;
+	left: 0;
+	right: 0;
+	text-align: center;
+	max-width: 650px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-.starl-banner-info p{
-    font-size: 32px;
-    color: #FFFFFF;
-    margin-bottom: 0;
-    line-height: normal;
+.starl-banner-info p {
+	font-size: 32px;
+	color: #FFFFFF;
+	margin-bottom: 0;
+	line-height: normal;
+	font-weight: bold;
 }
 
 /* primed-and-ready-sec Start */
@@ -588,12 +589,7 @@
     }
 
     .starl-banner-info h1 {
-        font-size: 60px;
-        padding-bottom: 50px;
-    }
-
-    .starl-banner-info p {
-        font-size: 26px;
+        padding-bottom: 70px;
     }
 
     .collections-exculsive-right-block {

@@ -24,6 +24,13 @@ import Priceicon from "../assets/img/custom/u_dollar-alt.png";
 import CollectionBannerBg from "../assets/img/custom/Collection-banner-bg.png";
 import userProfilePictures from "../assets/img/custom/userProfilePictures.png";
 
+import FilterSort from '../Components/FilterSort';
+import FilterCategory from '../Components/FilterCategory';
+import FilterCollections from '../Components/FilterCollections';
+import Filtersale from '../Components/Filtersale';
+import FilterRange from '../Components/FilterRange';
+import FilterProperties from '../Components/FilterProperties';
+
 const { TabPane } = Tabs;
 const { Option } = Select;
 
@@ -32,6 +39,13 @@ const Collection = () => {
     //const [singlePopup, setSinglePopup] = useState(false);
     const [CoverPopup, setUpdateCoverPopup] = useState(false);
     const [profilePopup, setprofilePopup] = useState(false);
+
+    const [filterSort, setFilterSort] = useState(false);
+    const [filterCategory, setFilterCategory] = useState(false);
+    const [filterCollections, setFilterCollections] = useState(false);
+    const [filterProperties, setFilterProperties] = useState(false);
+    const [filtersale, setFiltersale] = useState(false);
+    const [filterRange, setFilterRange] = useState(false);
 
     const variants = {
         hidden: { opacity: 0 },
@@ -75,7 +89,9 @@ const Collection = () => {
         {
             profilePopup && <UpdateProfilePicPopup setprofilePopup={setprofilePopup} />
         }
-
+         {
+            filterProperties && <FilterProperties setFilterProperties={setFilterProperties} />
+        }
     
         <motion.section
             initial="hidden"
@@ -127,81 +143,94 @@ const Collection = () => {
                                 <TabPane tab="Items" key="1">
                                     <div className="liveAuction ">
                                         <div className="w-100 d-flex justify-content-center align-items-center explore-page">
-                                            <ul className="filter topSeller">
-                                                <li>
-                                                    <span className="label">Filter & Sort</span>
-                                                    <span className="icon">
-                                                        <img src={menuline}/>
-                                                    </span>
-                                                    <Select className="section-select-filter" defaultValue="Recently added">
-                                                        <Option value="day">Recently added</Option>
-                                                        <Option value="week">Price: Low to High</Option>
-                                                        <Option value="month">Price: High to Low</Option>
-                                                        <Option value="sixYear">Auction ending soon</Option>
-                                                    </Select>
-                                                </li>
-                                                <li>
-                                                    <span className="icon">
-                                                        <img src={categoryicon}/>
-                                                    </span>
-                                                    <Select className="section-select-filter" defaultValue="Category">
-                                                        <Option value="All">All</Option>
-                                                        <Option value="Cryptoloria">Cryptoloria</Option>
-                                                        <Option value="Art">Art</Option>
-                                                        <Option value="Photography">Photography</Option>
-                                                        <Option value="Games">Games</Option>
-                                                        <Option value="Metaverses">Metaverses</Option>
-                                                    </Select>
-                                                </li>
-                                                <li>
-                                                    <span className="icon">
-                                                        <img src={categoryicon}/>
-                                                    </span>
-                                                    <Select className="section-select-filter" defaultValue="Collections">
-                                                        <Option value="Cryptoloria">Cryptoloria</Option>
-                                                        <Option value="Art">Art</Option>
-                                                        <Option value="Photography">Photography</Option>
-                                                        <Option value="Games">Games</Option>
-                                                        <Option value="Metaverses">Metaverses</Option>
-                                                    </Select>
-                                                </li>
-                                                <li>
-                                                    <span className="label">Properties</span>
-                                                    <span className="icon">
-                                                        <img src={propertiesicon}/>
-                                                    </span>
-                                                    <Select className="section-select-filter" defaultValue="All 257">
-                                                        <Option value="day">Option 1</Option>
-                                                        <Option value="week">Option 2</Option>
-                                                        <Option value="month">Option 3</Option>
-                                                        <Option value="sixYear">Option 4</Option>
-                                                    </Select>
-                                                </li>
-                                                <li>
-                                                    <span className="icon">
-                                                        <img src={flashlight}/>
-                                                    </span>
-                                                    <Select className="section-select-filter" defaultValue="Sale type">
-                                                        <Option value="day">Timed Auction</Option>
-                                                        <Option value="week">Fixed price</Option>
-                                                        <Option value="month">Not for sale</Option>
-                                                        <Option value="sixYear">Open for offers</Option>
-                                                    </Select>
-                                                </li>
-
-                                                <li>
-                                                    <span className="icon">
-                                                        <img src={Priceicon}/>
-                                                    </span>
-                                                    <Select className="section-select-filter" defaultValue="Price range">
-                                                        <Option value="day">0 - 5</Option>
-                                                        <Option value="week">5 - 10</Option>
-                                                        <Option value="month">10 - 15</Option>
-                                                        <Option value="sixYear">15 - 20</Option>
-                                                    </Select>
-                                                </li>
-
-                                            </ul>
+                                        <ul className="filter topSeller">
+                            <FilterSort 
+                                filterSort={filterSort}
+                                filterCategory={filterCategory} 
+                                filterCollections={filterCollections} 
+                                filterProperties={filterProperties} 
+                                filtersale={filtersale} 
+                                filterRange={filterRange} 
+                                setFilterSort={setFilterSort} 
+                                setFilterCategory={setFilterCategory} 
+                                setFilterCollections={setFilterCollections} 
+                                setFilterProperties={setFilterProperties} 
+                                setFiltersale={setFiltersale} 
+                                setFilterRange={setFilterRange} 
+                            />
+                            <FilterCategory 
+                                filterSort={filterSort}
+                                filterCategory={filterCategory} 
+                                filterCollections={filterCollections} 
+                                filterProperties={filterProperties} 
+                                filtersale={filtersale} 
+                                filterRange={filterRange} 
+                                setFilterSort={setFilterSort}
+                                setFilterCategory={setFilterCategory} 
+                                setFilterCollections={setFilterCollections} 
+                                setFilterProperties={setFilterProperties} 
+                                setFiltersale={setFiltersale} 
+                                setFilterRange={setFilterRange} 
+                            />
+                            <FilterCollections
+                                filterSort={filterSort}
+                                filterCategory={filterCategory} 
+                                filterCollections={filterCollections} 
+                                filterProperties={filterProperties} 
+                                filtersale={filtersale} 
+                                filterRange={filterRange} 
+                                setFilterSort={setFilterSort}
+                                setFilterCategory={setFilterCategory} 
+                                setFilterCollections={setFilterCollections} 
+                                setFilterProperties={setFilterProperties} 
+                                setFiltersale={setFiltersale} 
+                                setFilterRange={setFilterRange} 
+                            />
+                            <li>
+                                <span className="label">Properties</span>
+                                <div className="icon">
+                                    <img src={propertiesicon} />
+                                </div>
+                                <div className="ant-select ant-select-single ant-select-show-arrow" onClick={() => setFilterProperties(true)}>
+                                    <div className="ant-select-selector">
+                                    <span className="ant-select-selection-item">All 257</span>
+                                    </div>
+                                    <span className="ant-select-arrow">
+                                    <span role="img" aria-label="down" className="anticon anticon-down ant-select-suffix">
+                                        <svg viewBox="64 64 896 896" focusable="false" data-icon="down" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"></path></svg>
+                                    </span>
+                                    </span>
+                                </div>
+                            </li>
+                            <Filtersale 
+                                filterSort={filterSort}
+                                filterCategory={filterCategory} 
+                                filterCollections={filterCollections} 
+                                filterProperties={filterProperties} 
+                                filtersale={filtersale} 
+                                filterRange={filterRange} 
+                                setFilterSort={setFilterSort}
+                                setFilterCategory={setFilterCategory} 
+                                setFilterCollections={setFilterCollections} 
+                                setFilterProperties={setFilterProperties} 
+                                setFiltersale={setFiltersale} 
+                                setFilterRange={setFilterRange} 
+                            />
+                            <FilterRange
+                                filterSort={filterSort}
+                                filterCategory={filterCategory} 
+                                filterCollections={filterCollections} 
+                                filterProperties={filterProperties} 
+                                filtersale={filtersale} 
+                                filterRange={filterRange} 
+                                setFilterSort={setFilterSort}
+                                setFilterCategory={setFilterCategory} 
+                                setFilterCollections={setFilterCollections} 
+                                setFilterProperties={setFilterProperties} 
+                                setFiltersale={setFiltersale} 
+                                setFilterRange={setFilterRange} 
+                            />
+                        </ul>
 
                                         </div>
                                         <div className="row  mt-5">

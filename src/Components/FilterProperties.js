@@ -1,90 +1,91 @@
 import React, { useState, useEffect } from "react";
-import propertiesicon from "../assets/img/custom/properties.png";
 import { Menu, Dropdown, Select } from 'antd';
+import { motion } from "framer-motion"
+import searchMenu from "../assets/img/custom/search-menu.png";
+import Accordian from "./Accordian";
 
-export default function FilterProperties({ }) {
+
+
+
+export default function FilterProperties(props) {
   const { Option } = Select;
-  const [isActive, setActive] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
-  const [checkedValues, setCheckedValues] = useState('All 257');
-  const handleToggle = () => {
-    setActive(!isActive);
-  };
-  const isActiveFunc = () => {
-    setActive(false);
-    setIsChecked(true)
-    let checkedV = document.querySelectorAll(".filterproperties-check input[type='radio']");
-    console.log(checkedV, 'elements');
-    setTimeout(() => {
-      setValueForInput(checkedV);
-    }, 100);
+  function handleChange(value) {
+  }
+  const variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
   }
 
-  const setValueForInput = (array) => {
-    array.forEach((ele) => {
-      console.log(ele.checked, 'checked', ele.id)
-      if (ele.checked === true) {
-        setCheckedValues(ele.value);
+  let { setFilterProperties } = props;
+
+  const AccordianData = [
+      {
+        title:"Eyes",
+        options:[
+          {subtitle:"Eyes-1",number:"89"},
+          {subtitle:"Eyes-2",number:"9"}
+        ]
+      },
+      {
+        title:"Clothing",
+        options:[
+          {subtitle:"Clothing-1",number:"79"},
+          {subtitle:"Clothing-2",number:"69"}
+        ]
+      },
+      {
+        title:"Headwear",
+        options:[
+          {subtitle:"Headwear-1",number:"100"},
+          {subtitle:"Headwear-2",number:"120"}
+        ]
+      },
+      {
+        title:"Background",
+        options:[
+          {subtitle:"Purple",number:"89"},
+          {subtitle:"Blurred",number:"9"},
+          {subtitle:"City",number:"57"},
+          {subtitle:"Country-side",number:"289"}
+        ]
       }
-    });
-  }
-
-  // console.log(document.querySelectorAll(".custom-filter ul input[type='checkbox']"), 'checkboxes')
+  ];
+  
   return (
-    <li>
-      <span className="label">Properties</span>
-      <div className="icon">
-        <img src={propertiesicon} />
-      </div>
-      <div className="ant-select ant-select-single ant-select-show-arrow" onClick={handleToggle}>
-        <div className="ant-select-selector">
-          <span className="ant-select-selection-item">{isChecked ? checkedValues : 'All 257'}</span>
+    <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={variants} className="place-a-bid-popup-container">
+          <div className="border-radius bg-white popup-width">
+              <div className="justify-content-between d-flex cursor-pointer mb-3">
+                  <h3 className="">Properties</h3>
+                  <div className="popup-close-btn-outline cursor-pointer" onClick={() => { setFilterProperties(false); document.body.style.overflow = "scroll"; }}>
+                      <i className="fas fa-times"></i>
+                  </div>
+              </div>
+
+              <div class="navbar-search property-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search by property" />
+                <Select onChange={handleChange}>
+                  <Option value="Frequency first">Frequency first</Option>
+                  <Option value="Rare first">Rare first</Option>
+                </Select>
+              </div>
+
+              <div className="pro-accessories">
+                  <h3>Accessories</h3>
+                  <Accordian AccordianField={AccordianData} />
+                  <div className="custom-filter">
+                    <div class="filter-button">
+                      <a class="btn btn-primary-outline">Clear</a>
+                      <a class="btn btn-primary">Apply</a>
+                    </div>
+                  </div>
+              </div>
+
         </div>
-        <span className="ant-select-arrow">
-          <span role="img" aria-label="down" className="anticon anticon-down ant-select-suffix">
-            <svg viewBox="64 64 896 896" focusable="false" data-icon="down" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"></path></svg>
-          </span>
-        </span>
-      </div>
-
-      <div className={`app ${isActive ? "custom-filter show-filter" : "custom-filter"}`}>
-        <ul className="filterproperties-check">
-          <li>
-            <input type="radio" id="All" value="All" name="properties" />
-            <label for="Recentlyadded" onClick={() => isActiveFunc()} >
-              All
-            </label>
-          </li>
-
-          <li>
-            <input type="radio" id="Option1" value="Option 1" name="properties" />
-            <label for="Option1" onClick={() => isActiveFunc()} >
-              Option 1
-            </label>
-          </li>
-
-          <li>
-            <input type="radio" id="Option2" value="Option 2" name="properties" />
-            <label for="Option2" onClick={() => isActiveFunc()} >
-              Option 1
-            </label>
-          </li>
-          <li>
-            <input type="radio" id="Option3" value="Option 3" name="properties" />
-            <label for="Option3" onClick={() => isActiveFunc()} >
-              Option 1
-            </label>
-          </li>
-          <li>
-            <input type="radio" id="Option4" value="Option 4" name="properties" />
-            <label for="Option4" onClick={() => isActiveFunc()} >
-              Option 1
-            </label>
-          </li>
-        </ul>
-
-      </div>
-    </li>
+      </motion.div>
   );
 }
 

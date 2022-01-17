@@ -3,13 +3,17 @@ import categoryicon from "../assets/img/custom/category-icon.svg";
 import userProfile from "../assets/img/custom/userProfilePictures.png";
 import { Menu, Dropdown, Select } from 'antd';
 
-export default function FilterSort({ }) {
+export default function FilterSort({setFilterSort, filterSort,filterCategory,filterCollections,filterProperties,filtersale,filterRange,setFilterCategory,setFilterCollections,setFilterProperties,setFiltersale,setFilterRange }) {
   const { Option } = Select;
-  const [isActive, setActive] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [checkedValues, setCheckedValues] = useState('Recently added');
   const handleToggle = () => {
-    setActive(!isActive);
+    setFilterSort(!filterSort);
+    setFilterCategory(false);
+    setFilterCollections(false);
+    setFilterProperties(false);
+    setFiltersale(false);
+    setFilterRange(false);
   };
   // const unCheckedCheckBox = () => {
   //   setActive(false);
@@ -20,7 +24,7 @@ export default function FilterSort({ }) {
   //   })
   // }
   const isActiveFunc = () => {
-    setActive(false);
+    setFilterSort(false);
     setIsChecked(true)
     let checkedV = document.querySelectorAll(".filtersort-check input[type='radio']");
     console.log(checkedV, 'elements');
@@ -38,7 +42,8 @@ export default function FilterSort({ }) {
     });
   }
 
-  // console.log(document.querySelectorAll(".custom-filter ul input[type='checkbox']"), 'checkboxes')
+  
+  console.log( filterSort,filterCategory,filterCollections,filterProperties,filtersale,filterRange)
   return (
     <li>
       <span className="label">Filter & Sort</span>
@@ -55,8 +60,8 @@ export default function FilterSort({ }) {
           </span>
         </span>
       </div>
-
-      <div className={`app ${isActive ? "custom-filter show-filter" : "custom-filter"}`}>
+      {  (filterCategory  === false || filterCollections  === false || filterProperties  === false || filtersale  === false || filterRange  === false ) && 
+      <div className={`app ${filterSort ? "custom-filter show-filter" : "custom-filter"}`}>
         <ul className="filtersort-check">
           <li>
             <input type="radio" id="Recentlyadded" value="Recently added" name="sorting" />
@@ -88,6 +93,7 @@ export default function FilterSort({ }) {
         </ul>
 
       </div>
+}
     </li>
   );
 }

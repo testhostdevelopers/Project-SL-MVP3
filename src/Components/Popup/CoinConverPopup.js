@@ -4,13 +4,12 @@ import { motion } from "framer-motion"
 
 const { Option } = Select;
 
-const CoinConverPopup = () => {
+const CoinConverPopup = ({setCoinConverp}) => {
 
     const variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1 },
     }
-
     return (
         <motion.div
             initial="hidden"
@@ -62,7 +61,7 @@ const CoinConverPopup = () => {
                 </div>
 
                 <div>
-                    <button className="btn-ping w-100 mt-3 mb-3 ">
+                    <button className="btn-ping w-100 mt-3 mb-3" onClick={() => setCoinConverp(false)}>
                         Close
                     </button>
                 </div>

@@ -12,10 +12,12 @@ import menuclose from "../../assets/img/custom/close.png";
 import BalanceIcon from "../../assets/img/custom/BalanceIcon.svg";
 import starlight from "../../assets/img/custom/starlight.png";
 import BidingbalanceIcon from "../../assets/img/custom/BidingbalanceIcon.svg";
+import CoinConver from "../Popup/CoinConverPopup"
 
 
 
 const Navbar = (props) => {
+    const [CoinConverp, setCoinConverp] = useState(false);
     const [theme, setTheme] = useState(localStorage.getItem('theme'))
     const [openProfileDropMenu, setOpenProfileDropMenu] = useState(false);
     const [notificationPopup, setNotificationPopup] = useState(false);
@@ -139,6 +141,9 @@ const Navbar = (props) => {
 
     return (
         <>
+        {
+            CoinConverp && <CoinConver setCoinConverp={setCoinConverp} />
+        }
             {/* {
                 location.pathname === "/Profile" ? <div style={{ backgroundColor: "#6300FF" }} className="p-3 d-flex justify-content-center text-white">DesignerName - choose yours and earn x3 Starlight rewards!</div> :
                     location.pathname === "/Buy" ? <div style={{ backgroundColor: "#6300FF" }} className="p-3 d-flex justify-content-center text-white">DesignerName - choose yours and earn x3 Starlight rewards!</div> :
@@ -549,7 +554,7 @@ const Navbar = (props) => {
                                                                 </div>
                                                             </div>
 
-                                                            <a className="nav-link nav-dark-button">
+                                                            <a className="nav-link nav-dark-button dd" onClick={() => setCoinConverp(true)}>
                                                                 <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                     <path fillRule="evenodd" clipRule="evenodd" d="M6.02452 4.24267L6.96719 3.3L3.66719 0L0.367188 3.3L1.31052 4.24267L3.00052 2.552V11.3333H4.33385V2.552L6.02452 4.24267ZM10.3352 12.0001L13.6352 8.70008L12.6925 7.75741L11.0018 9.44808V0.666748H9.66849L9.66916 9.44808L7.97782 7.75741L7.03516 8.70008L10.3352 12.0001Z" fill="black" />
                                                                 </svg>
