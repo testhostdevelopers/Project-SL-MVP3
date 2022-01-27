@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import Downarrow from '../../assets/img/icons/custom/downarrow.svg';
-import InnerCircle from '../../assets/img/custom/innercircle.png';
+import raodmap from '../../assets/img/custom/road-map.svg';
+import mraodmap from '../../assets/img/custom/mobile-road-map.svg';
 
 const WeAreHereSec = () => {
 return (
     <section className="common-gapping weare-here-sec">
         <div className="container">
             <div className="weare-here-block">
-                <div className="weare-here-list-full-list">
+                <img className='desktop' src={raodmap}/>
+                <img className='mobile' src={mraodmap}/>
+                
+
+                {/* <div className="weare-here-list-full-list">
                     <ul className="weare-here-list"> 
                         <li>
                             <span className="weare-here-hover">
@@ -113,7 +117,7 @@ return (
                             <p>Global takeover.</p>
                         </li>
                     </ul>
-                </div>
+                </div> */}
             </div>
         </div>
     </section>

@@ -14,6 +14,11 @@ import starlight from "../../assets/img/custom/starlight.png";
 import BidingbalanceIcon from "../../assets/img/custom/BidingbalanceIcon.svg";
 import CoinConver from "../Popup/CoinConverPopup"
 
+import backmenu from "../../assets/img/custom/back-arrow.svg";
+import subarrow from "../../assets/img/custom/subarrow.svg";
+
+
+
 
 
 const Navbar = (props) => {
@@ -131,6 +136,7 @@ const Navbar = (props) => {
     }
 
     const [isShow, SetIsShow] = useState(false);
+    const [isSubMenuShow, SetSubMenuShow] = useState(false);
     const [closeNotification, setCloseNotification] = useState(true);
 
     const notifications = ["add your email", "subscribe", "go to website"];
@@ -141,9 +147,9 @@ const Navbar = (props) => {
 
     return (
         <>
-        {
-            CoinConverp && <CoinConver setCoinConverp={setCoinConverp} />
-        }
+            {
+                CoinConverp && <CoinConver setCoinConverp={setCoinConverp} />
+            }
             {/* {
                 location.pathname === "/Profile" ? <div style={{ backgroundColor: "#6300FF" }} className="p-3 d-flex justify-content-center text-white">DesignerName - choose yours and earn x3 Starlight rewards!</div> :
                     location.pathname === "/Buy" ? <div style={{ backgroundColor: "#6300FF" }} className="p-3 d-flex justify-content-center text-white">DesignerName - choose yours and earn x3 Starlight rewards!</div> :
@@ -321,19 +327,52 @@ const Navbar = (props) => {
                             <h3 className="ml-2" style={{ fontSize: "22px", fontFamily: 'LoRes 9 Plus OT Narrow' }}>Starlight</h3>
                         </Link>
 
-                        <div className={`collapse navbar-collapse${isShow ? ' noshow' : ''}`} id="mainNav">
-                            <div className='close' onClick={() => SetIsShow(!isShow)}>
-                                <img src={menuclose} />
+                        <div className={`collapse navbar-collapse ${isShow ? ' noshow' : ''}`} id="mainNav">
+                            <div className='menu-header'>
+                                <div className='close' onClick={() => { SetIsShow(!isShow); SetSubMenuShow(false) }} >
+                                    <img src={menuclose} />
+                                </div>
                             </div>
-                            <ul className="navbar-nav nav-fill align-items-center center-menu mobile-menu">
+                            <ul className={`navbar-nav nav-fill align-items-center center-menu mobile-menu ${isSubMenuShow ? 'show-submenu' : ''}`}>
                                 <li>
-                                    <Link to="/Explore" className="nav-link">Explore Starlight</Link>
+                                    <Link to="/Explore" className="nav-link">My items</Link>
                                 </li>
                                 <li>
-                                    <Link to="/Cryptoloria" className="nav-link">Cryptoloria</Link>
+                                    <Link to="/Cryptoloria" className="nav-link">Following</Link>
                                 </li>
                                 <li>
-                                    <Link to="#0" className="nav-link">SLX Token</Link>
+                                    <Link to="#0" className="nav-link">Activity</Link>
+                                </li>
+                                <li>
+                                    <Link to="#0" className="nav-link">How it works</Link>
+                                </li>
+                                <li className="has-submenu">
+                                    <Link to="#0" className="nav-link" onClick={() => SetSubMenuShow(!isSubMenuShow)} >Community <img src={subarrow} /></Link>
+                                    <div className='submenu-slide'>
+                                        <span className='back-menu' onClick={() => { SetIsShow(false); SetSubMenuShow(false) }}>
+                                            <img src={backmenu} />
+                                        </span>
+                                        <ul className='submenu'>
+                                            <li>
+                                                <Link to="#0" className="nav-link">Token</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="#0" className="nav-link">Discussion</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="#0" className="nav-link">Voting</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="#0" className="nav-link">Suggest feature</Link>
+                                            </li>
+                                            <li>
+                                                <Link to="#0" className="nav-link">Subscribe</Link>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <Link to="#0" className="btn-primary">Create</Link>
                                 </li>
                                 <li className='mobile-social'>
                                     <div className="d-flex footer-social-icons">
@@ -410,7 +449,7 @@ const Navbar = (props) => {
 
                                     </div>
                                 </li>
-                                <div  style={{display: "none",}}>
+                                <div style={{ display: "none", }}>
                                     <input
                                         type="file"
                                         accept="image/*"

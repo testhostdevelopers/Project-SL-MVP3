@@ -2797,3 +2797,6 @@ div.ant-select-dropdown {
 .dark-md .weare-here-hover img {
 	filter: invert(1) brightness(100);
 }
+.dark-md .cryptoioria-banner-container .crypto-border-right::before {
+	background: #fff;
+}

@@ -314,8 +314,22 @@
 }
 
 .weare-here-sec{
-    padding-top: 100px;
+    padding:100px 0;
     overflow: hidden;
+}
+.weare-here-sec .container{
+    max-width: 97%;
+    margin: 0;
+    padding: 0;
+}
+.weare-here-block > img{
+    width: 100%;
+}
+.weare-here-block > img.desktop{
+    display: block
+}
+.weare-here-block > img.mobile{
+    display: none;
 }
 
 .weare-here-list-full-list > ul:last-child > li{
@@ -323,11 +337,6 @@
 }
 
 /* climeworks-sec */
-
-.climeworks-sec{
-}
-
-
 .starlight-roadmap-block{
     display: flex;
     justify-content: space-between;
@@ -536,7 +545,6 @@
 .tier-full-list li{
     width: 33.33%;
     padding: 0 6px;
-    min-width: 278px;
 }
 
 .tier-full-list li .tier-box{
@@ -571,12 +579,6 @@
 
     .text {
         font-size: 16px;
-    }
-
-    .weare-here-block {
-        max-width: 1000px;
-        margin-left: auto;
-        margin-right: auto;
     }
 
     .weare-here-list-full-list > ul:last-child > li:last-child::after {
@@ -635,10 +637,15 @@
 }
 
 @media (max-width: 1200px) {
-    .weare-here-block {
-        max-width: 620px;
+    .weare-here-sec {
+        padding: 50px 0;
     }
-
+    .starlight-roadmap-btn-block p {
+        font-size: 14px;
+    }
+    .light-md .primed-right-block > img.light {
+        margin: auto;
+    }
     .hard-cap-main-box {
         min-width: 240px;
         min-height: 240px;
@@ -886,6 +893,15 @@
 }
 
 @media (max-width: 767px) {
+    .weare-here-block > img.desktop{
+        display: none
+    }
+    .weare-here-block > img.mobile{
+        display: block;
+    }
+    .weare-here-sec .container{
+        max-width: 100%;
+    }
     .starl-banner-img {
         position: relative;
         overflow: hidden;
