@@ -314,22 +314,32 @@ header {
     display: flex;
     justify-content: space-between;
     padding-top: 10px;
-}
-
-.navbar-nav .dropdown .nav-bar-social-items li{
-    color: var(--tabs-bg);
-    display: flex;
-    justify-content: center;
     align-items: center;
-    transition: ease .6s all;
-    padding: 10px 5px !important;
 }
 
+.navbar-nav .dropdown .nav-bar-social-items li {
+	color: var(--tabs-bg);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: ease .6s all;
+	padding: 0 !important;
+	font-size: 16px;
+}
+.navbar-nav .dropdown .nav-bar-social-items li a{
+    color: inherit;
+}
+.navbar-nav .dropdown .nav-bar-social-items li a svg {
+	width: 17px;
+	margin-top: -1px;
+}
+.navbar-nav .dropdown .nav-bar-social-items li a:hover svg path {
+    fill: #000;
+}
 .navbar-nav .dropdown .nav-bar-social-items li:hover{
     background: none !important;
     color: var(--black-color) !important;
     background: var(--white-color) !important;
-    padding: 10px 5px !important;
     transition: ease .6s all;
 }
 

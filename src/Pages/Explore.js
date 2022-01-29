@@ -10,7 +10,7 @@ import artWorkWeek2 from "../assets/img/custom/artWorkWeek2.png";
 import artWorkWeek3 from "../assets/img/custom/artWorkWeek3.png";
 import artWorkWeek4 from "../assets/img/custom/artWorkWeek4.png";
 import categoryicon from "../assets/img/custom/category-icon.svg";
-import propertiesicon from "../assets/img/custom/properties.png";
+import propertiesicon from "../assets/img/custom/properties.svg";
 
 
 import HotBids from '../Components/HotBids';

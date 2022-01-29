@@ -645,17 +645,23 @@ footer section .footer-in-email {
 }
 
 .liveAuction .card-select-icon {
-    background: var(--bg-card);
-    cursor: pointer;
-    padding: 5px 10px;
-    position: absolute;
-    bottom: -16px;
-    right: 15px;
-    border: 0.2px solid var(--light-gray);
-    box-sizing: border-box;
-    box-shadow: 0px 25px 40px rgba(0, 0, 0, 0.01);
-    border-radius: 50%;
-    z-index: 1;
+	background: var(--bg-card);
+	cursor: pointer;
+	padding: 5px 10px;
+	position: absolute;
+	bottom: -16px;
+	right: 15px;
+	border: 0.2px solid var(--light-gray);
+	box-sizing: border-box;
+	box-shadow: 0px 25px 40px rgba(0, 0, 0, 0.01);
+	border-radius: 50%;
+	z-index: 1;
+	padding: 0;
+	width: 36px;
+	height: 36px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .liveAuction .card-select-icon i {
@@ -1329,9 +1335,10 @@ span.ant-select-selection-item {
     margin-right: 15px;
 }
 
-.following-page-section .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
-    background-color: var(--pink-color) !important;
-    color: var(--black-text) !important;
+.following-page-section .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active{
+    background-color: #0E0E0E !important;
+    color: #FFF !important;
 }
 
 .following-page-section .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active svg path{
@@ -1339,8 +1346,8 @@ span.ant-select-selection-item {
 }
 
 .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover{
-    background-color: var(--pink-color) !important;
-    color: var(--white-color) !important;
+    background-color: #0E0E0E !important;
+    color: #FFF !important;
 }
 .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover svg path {
     fill: var(--white-color) !important;
@@ -1397,15 +1404,20 @@ span.ant-select-selection-item {
 	overflow-x: auto;
 	scrollbar-width: none;
 	margin-top: 0;
+    justify-content: flex-end;
 }
 
-.quickExplore .nav-tabs .nav-link{
-    background-color: var(--gray-bg);
-    color: var(--gray-color);
-    border-radius: 30px;
-    margin-right: 15px;
-    display: flex;
-    align-items: center;
+.quickExplore .nav-tabs .nav-link {
+	background-color: var(--gray-bg);
+	color: var(--gray-color);
+	border-radius: 30px;
+	margin-right: 10px;
+	display: flex;
+	align-items: center;
+	min-width: 65px;
+	justify-content: center;
+    border: none;
+    max-height: 35px;
 }
 .quickExplore .nav-tabs::-webkit-scrollbar {
     display: none;
@@ -1770,6 +1782,9 @@ ul.filter.topSeller > li .icon {
 }
 ul.filter.topSeller > li .icon img {
 	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	max-height: 18px;
 }
 .ant-select-single.ant-select-show-arrow span.ant-select-selection-item{
 	padding-right: 22px;

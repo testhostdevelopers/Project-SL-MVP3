@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import categoryicon from "../assets/img/custom/category-icon.svg";
+import filtericon from "../assets/img/custom/filter-icon.svg";
+
 import userProfile from "../assets/img/custom/userProfilePictures.png";
 import { Menu, Dropdown, Select } from 'antd';
 
@@ -48,7 +50,7 @@ export default function FilterSort({setFilterSort, filterSort,filterCategory,fil
     <li>
       <span className="label">Filter & Sort</span>
       <div className="icon">
-        <img src={categoryicon} />
+        <img src={filtericon} />
       </div>
       <div className="ant-select ant-select-single ant-select-show-arrow" onClick={handleToggle}>
         <div className="ant-select-selector">
