@@ -16,6 +16,7 @@ import CoinConver from "../Popup/CoinConverPopup"
 
 import backmenu from "../../assets/img/custom/back-arrow.svg";
 import subarrow from "../../assets/img/custom/subarrow.svg";
+import closeicon from "../../assets/img/custom/close.svg";
 
 
 
@@ -520,7 +521,7 @@ const Navbar = (props) => {
                                                     {notifications.map((n, i) =>
                                                         <div className={`d-flex justify-content-between notification-ping-bg position-relative p-4 ${!closeNotification ? " notifyclose" : ""}`}>
                                                             <div className="popup-close-btn-outline" onClick={() => setCloseNotification(false)}>
-                                                                <i className="fas fa-times" ></i>
+                                                                <img src={closeicon}/>
                                                             </div>
                                                             <div className="d-flex">
                                                                 <div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PlaceABidFollowPopup from './PlaceABidFollowPopup';
 import { motion } from "framer-motion"
 import { useLocation, Link } from "react-router-dom";
+import closeicon from "../../assets/img/custom/close.svg";
 
 const PlaceABidPopup = (props) => {
 
@@ -10,7 +11,7 @@ const PlaceABidPopup = (props) => {
         visible: { opacity: 1 },
     }
 
-    let { setSingleCollectionPopup, setSinglePopup } = props;
+    let { setSingleCollectionPopup, setSinglePopup, setCheckOutPopup } = props;
 
     const options = [
         { value: "ETH", label: "ETH" },
@@ -34,8 +35,8 @@ const PlaceABidPopup = (props) => {
                 <div className="border-radius bg-white popup-width">
                     <div className="d-flex justify-content-between">
                         <h3>Place a bid</h3>
-                        <div className="popup-close-btn-outline cursor-pointer" onClick={() => { setSingleCollectionPopup(false); document.body.style.overflow = "scroll"; }}>
-                            <i className="fas fa-times"></i>
+                        <div className="popup-close-btn-outline cursor-pointer" onClick={() => { setSingleCollectionPopup(false); setCheckOutPopup(false); document.body.style.overflow = "scroll"; }}>
+                            <img src={closeicon}/>
                         </div>
                     </div>
 

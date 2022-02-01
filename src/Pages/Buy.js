@@ -68,7 +68,7 @@ const Buy = () => {
                 singleCollectionPopup && <FinishedCollectiblePopup setSinglePopup={setSinglePopup}  sethelpPopup={sethelpPopup} setSingleCollectionPopup={setSingleCollectionPopup} />
             }
             {
-                singlePopup && <PlaceABidFollowPopup setSinglePopup={setSinglePopup} setErrorPopup={setErrorPopup} />
+                singlePopup && <PlaceABidFollowPopup setSinglePopup={setSinglePopup} setErrorPopup={setErrorPopup} setCheckOutPopup={setCheckOutPopup}/>
             }
             {
                 errorPopups && <ErrorPopup setErrorPopup={setErrorPopup} />
@@ -83,7 +83,7 @@ const Buy = () => {
                 helpPopup && <WhatIswETHPopup  sethelpPopup={sethelpPopup} />
             }
             {
-                CheckOutPopup && <CheckOut  setCheckOutPopup={setCheckOutPopup} />
+                CheckOutPopup && <CheckOut  setCheckOutPopup={setCheckOutPopup} setSinglePopup={setSinglePopup} />
             }
 
 

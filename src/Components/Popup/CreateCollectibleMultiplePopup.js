@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from "framer-motion"
+import closeicon from "../../assets/img/custom/close.svg";
 
 const CreateCollectibleMultiplePopup = (props) => {
 
@@ -19,7 +20,7 @@ const CreateCollectibleMultiplePopup = (props) => {
             <div className="d-flex justify-content-between cursor-pointer">
                 <h3>New Collection</h3>
                 <div className="popup-close-btn-outline" onClick={() => {setSingleCollectionPopup(false); document.body.style.overflow = "scroll";}}>
-                    <i className="fas fa-times"></i>
+                    <img src={closeicon}/>
                 </div>
             </div>
 

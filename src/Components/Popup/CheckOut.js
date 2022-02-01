@@ -5,15 +5,16 @@ import { useLocation, Link } from "react-router-dom";
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import McdoIcon from '../../assets/img/custom/mcdoicon.png'
 import VisaIcon from '../../assets/img/custom/visaicon.png'
+import closeicon from "../../assets/img/custom/close.svg";
 
-const PlaceABidPopup = (props) => {
+const CheckOut = (props) => {
     const [tabIndex, setTabIndex] = useState(0);
     const variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1 },
     }
 
-    let { setSingleCollectionPopup, setSinglePopup, setCheckOutPopup } = props;
+    let { setSingleCollectionPopup, setSinglePopup } = props;
 
     const options = [
         { value: "ETH", label: "ETH" },
@@ -37,8 +38,8 @@ const PlaceABidPopup = (props) => {
                 <div className="border-radius bg-white popup-width">
                     <div className="d-flex justify-content-between">
                         <h3>Checkout</h3>
-                        <div className="popup-close-btn-outline cursor-pointer" onClick={() => { setSingleCollectionPopup(); setCheckOutPopup(false); document.body.style.overflow = "scroll"; }}>
-                            <i className="fas fa-times"></i>
+                        <div className="popup-close-btn-outline cursor-pointer" onClick={() => { props.setCheckOutPopup(false);  }}>
+                            <img src={closeicon}/>
                         </div>
                     </div>
 
@@ -119,7 +120,7 @@ const PlaceABidPopup = (props) => {
                                     </div>
                                 </div>
 
-                                <button className="btn-ping  w-100 mt-4 mb-3" onClick={() => { setSinglePopup(true) }}>
+                                <button className="btn-ping  w-100 mt-4 mb-3" onClick={() => { props.setCheckOutPopup(false); setSinglePopup(true) }}>
                                     Place a bid
                                 </button>
 
@@ -184,4 +185,4 @@ const PlaceABidPopup = (props) => {
     )
 }
 
-export default PlaceABidPopup
+export default CheckOut

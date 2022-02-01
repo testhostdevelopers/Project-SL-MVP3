@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from "framer-motion"
+import closeicon from "../../assets/img/custom/close.svg";
 
 const FinishedCollectiblePopup = (props) => {
 
@@ -18,9 +19,9 @@ const FinishedCollectiblePopup = (props) => {
             <div className="border-radius bg-white popup-width" style={{padding: "48px"}}>
                 <div className="d-flex justify-content-between cursor-pointer">
                     <h3>Follow steps</h3>
-                    <div className="popup-close-btn-outline" onClick={() => { setSingleCollectionPopup(false); document.body.style.overflow = "scroll"; }}>
-                        <i className="fas fa-times"></i>
-                    </div>
+                    {/* <div className="popup-close-btn-outline" onClick={() => { setSingleCollectionPopup(false); document.body.style.overflow = "scroll"; }}>
+                        <img src={closeicon}/>
+                    </div> */}
                 </div>
 
                 <div className="d-flex mt-3 flex-column">
@@ -59,7 +60,7 @@ const FinishedCollectiblePopup = (props) => {
                     </button>
                 </div>
 
-                <button className="btn-primary-outline w-100 mt-3 mb-3 ">
+                <button className="btn-primary-outline w-100 mt-3 mb-3 " onClick={() => { setSingleCollectionPopup(false); document.body.style.overflow = "scroll"; }}>
                     Cancel
                 </button>
 

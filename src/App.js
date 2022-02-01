@@ -16,7 +16,6 @@ import Collection from './Pages/Collection';
 import FullScreenImage from './Components/Popup/FullScreenImage';
 import CreateCollectibleMultiplePopup from './Components/Popup/CreateCollectibleMultiplePopup';
 import FinishedCollectiblePopup from './Components/Popup/FinishedCollectiblePopup';
-import PlaceABidPopup from './Components/Popup/PlaceABidPopup';
 import PlaceABidFollowPopup from './Components/Popup/PlaceABidFollowPopup';
 import CoinConverPopup from './Components/Popup/CoinConverPopup';
 import UpcomingCollections from './Pages/UpcomingCollections';

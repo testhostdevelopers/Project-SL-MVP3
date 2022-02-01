@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from "framer-motion"
 import EthereumLogo from '../../assets/img/custom/Ethereum-Logo-1.png';
+import closeicon from "../../assets/img/custom/close.svg";
 
 const WethPopup = (props) => {
 
@@ -19,7 +20,7 @@ const WethPopup = (props) => {
             <div className="border-radius bg-white popup-width">
                 <div className="justify-content-end d-flex cursor-pointer mb-3">
                     <div className="popup-close-btn-outline cursor-pointer" onClick={() => { setSingleCollectionPopup(false); document.body.style.overflow = "scroll"; }}>
-                        <i className="fas fa-times"></i>
+                        <img src={closeicon}/>
                     </div>
                 </div>
                 <div className="text-center mb-2">

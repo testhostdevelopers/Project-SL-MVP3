@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from "framer-motion"
+import closeicon from "../../assets/img/custom/close.svg";
 
 const UpdateCoverPopup = (props) => {
 
@@ -19,7 +20,7 @@ const UpdateCoverPopup = (props) => {
                 <div className="justify-content-between d-flex cursor-pointer mb-3">
                     <h3 className="">Update cover</h3>
                     <div className="popup-close-btn-outline cursor-pointer" onClick={() => { setUpdateCoverPopup(false); document.body.style.overflow = "scroll"; }}>
-                        <i className="fas fa-times"></i>
+                        <img src={closeicon}/>
                     </div>
                 </div>
                 <p className="sub-heading">Upload new cover for your collection. We recommend to upload images in 1440x260 resolution.</p>
