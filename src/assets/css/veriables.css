@@ -141,6 +141,7 @@ button, .nav-tabs .nav-link{
 
 .color-ping {
     color: var(--pink-color) !important;
+    cursor: pointer;
 }
 
 .cursor-pointer{

@@ -23,12 +23,14 @@ import closeicon from "../../assets/img/custom/close.svg";
 
 
 const Navbar = (props) => {
+
     const [CoinConverp, setCoinConverp] = useState(false);
     const [theme, setTheme] = useState(localStorage.getItem('theme'))
     const [openProfileDropMenu, setOpenProfileDropMenu] = useState(false);
     const [notificationPopup, setNotificationPopup] = useState(false);
 
     const location = useLocation();
+    
 
     useEffect(() => {
         localStorage.setItem('theme', theme);
@@ -142,9 +144,11 @@ const Navbar = (props) => {
 
     const notifications = ["add your email", "subscribe", "go to website"];
 
-
     const profileUploaderr = React.useRef(null);
 
+    const [searchItem, SetsearchItem] = useState(false)
+    
+    
 
     return (
         <>
@@ -176,11 +180,23 @@ const Navbar = (props) => {
 
                         <div className="d-flex d-lg-none align-items-center">
 
-                            <div className="d-lg-none d-sm-block mr-1">
-                                <a className="nav-link nav-dark-button">
-                                    <img src={searchLine} alt="" />
+                            <div className="d-lg-none d-sm-block mr-1" style={{position: "relative", zIndex:"999"}} >
+                                <a className="nav-link nav-dark-button" onClick={() => SetsearchItem(!searchItem)}>
+                                    <img src={searchLine} alt="" style={{zIndex: "9"}} />
                                 </a>
+                                {
+                                    searchItem && (
+                                        <div className="mobile_search">
+                                      <input type="text" placeholder="Search"  />
+                                    </div>
+                                    )
+                                }
                             </div>
+
+                            
+                            
+                            
+                            
 
                             <div className="d-lg-none d-sm-block mr-1">
                                 <a className="nav-link nav-dark-button" onClick={() => activeMode()}>
@@ -199,6 +215,7 @@ const Navbar = (props) => {
                                     <svg onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
                                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                     </svg>
+                                    
                                     {
                                         openProfileDropMenu === false ? "" : <div className="openProfileDropMenu">
                                             <h4 className="text-left">0×hubwc8fh2f....hb8fhr</h4>
@@ -301,15 +318,14 @@ const Navbar = (props) => {
 
                                             <div className="d-flex justify-content-between align-items-center mb-3">
                                                 <h6 className="m-0">Manage funds</h6>
-
-                                                <div className="custom-control custom-switch">
-                                                    <input type="checkbox" defaultChecked className="custom-control-input" id="profileSwitch3" />
-                                                    <label className="custom-control-label" htmlFor="profileSwitch3"></label>
-                                                </div>
                                             </div>
 
                                             <div className="d-flex justify-content-between mb-3">
                                                 <h6>Autoplay</h6>
+                                                <div className="custom-control custom-switch">
+                                                    <input type="checkbox" className="custom-control-input" id="profileSwitch3" />
+                                                    <label className="custom-control-label" htmlFor="profileSwitch3"></label>
+                                                </div>
                                             </div>
 
                                             <div className="d-flex justify-content-between">
@@ -515,10 +531,12 @@ const Navbar = (props) => {
                                                 notificationPopup === false ? "" : <div className="notificationPopup p-0">
                                                     <div className="d-flex justify-content-between align-items-center p-4">
                                                         <h5>Notifications</h5>
-                                                        <div className="color-ping text-left">See all</div>
+                                                        <div className="color-ping text-left" onClick={() => { setNotificationPopup()}}>See all</div>
                                                     </div>
 
-                                                    {notifications.map((n, i) =>
+                                                    {
+                                                        
+                                                    notifications.map((n, i) =>
                                                         <div className={`d-flex justify-content-between notification-ping-bg position-relative p-4 ${!closeNotification ? " notifyclose" : ""}`}>
                                                             <div className="popup-close-btn-outline" onClick={() => setCloseNotification(false)}>
                                                                 <img src={closeicon}/>
@@ -640,14 +658,15 @@ const Navbar = (props) => {
                                                     <div className="d-flex justify-content-between align-items-center mb-3">
                                                         <h6 className="m-0">Manage funds</h6>
 
-                                                        <div className="custom-control custom-switch">
-                                                            <input type="checkbox" className="custom-control-input" id="profileSwitch1" />
-                                                            <label className="custom-control-label" htmlFor="profileSwitch1"></label>
-                                                        </div>
+                                                       
                                                     </div>
 
                                                     <div className="d-flex justify-content-between mb-3">
                                                         <h6>Autoplay</h6>
+                                                        <div className="custom-control custom-switch">
+                                                            <input type="checkbox" className="custom-control-input" id="profileSwitch1" />
+                                                            <label className="custom-control-label" htmlFor="profileSwitch1"></label>
+                                                        </div>
                                                     </div>
 
                                                     <div className="d-flex justify-content-between">

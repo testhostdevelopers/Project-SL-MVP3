@@ -1146,7 +1146,7 @@ footer .ant-select:not(.ant-select-customize-input) .ant-select-selector{
 .place-a-bid-popup-container .coin-convert-direction{
     width: 62px;
     height: 62px; 
-    border: solid 1px var(--gray-color);
+    border: solid 1px var(--white   -color);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -1245,7 +1245,7 @@ span.ant-select-selection-item {
 	font-family: AvertaStd !important;
 	font-size: 12px;
 	line-height: 8px;
-	color: #000000;
+    color: var(--black-color);
 	margin-left: 10px !important;
 }
 .StepProgress {
@@ -1437,12 +1437,13 @@ span.ant-select-selection-item {
 .place-a-bid-popup-container .popup-close-btn-outline {
 	width: 48px;
 	height: 48px;
-	border: solid 1px var(--gray-bg);
+	border: solid 1px var(--white-color);
 	border-radius: 50%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	margin: 0 0 10px 0;
+    background-color: #fff;
 }
 .place-a-bid-popup-container .sub-heading {
 	font-size: 18px;
@@ -1553,12 +1554,20 @@ input:focus-visible {
     background-color: var(--white-color);
     z-index: 99999;
     top: 0;
-    padding: 60px 40px;
+    padding: 30px 60px;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .full-screen-images-popup .full-screen-img img{
-    width: 100%;
+   
     border-radius: 20px;
+    height: 80vh;
 }
 
 .full-screen-images-popup .full-screen-image-resize{
@@ -1573,6 +1582,10 @@ input:focus-visible {
     top: 36px;
     right: 70px;
 }
+.full-screen-img{
+    height: auto;
+}
+
 
 .full-screen-images-popup .full-screen-image-resize svg path{
     fill: var(--black-color);
@@ -2180,7 +2193,7 @@ footer .ant-select-arrow {
 	height: 100%;
 	width: 100%;
 	overflow: hidden;
-	background: #f9f9f9;
+	background: var(--bg-white); 
 	border-radius: 50%;
     cursor: pointer;
 }
@@ -2190,7 +2203,7 @@ footer .ant-select-arrow {
 	transform: translateY(-50%);
 	left: 0;
 	right: 0;
-	background: #FFFFFF;
+	background: var(--bg-white);
 	border: 0.5px solid #C7C7C7;
 	border-radius: 47px;
 	width: 90%;
@@ -2208,7 +2221,7 @@ footer .ant-select-arrow {
 	background: #f9f9f9;
 	height: 100%;
 	width: 100%;
-	object-fit: contain;
+	object-fit: cover;
 }
 .profile-user-pictures .profile-pic img[src=""] {
 	opacity: 0;
@@ -2792,12 +2805,21 @@ div.ant-select-dropdown {
 .dark-md ul.filter.topSeller > li .icon img {
 	filter: invert(1) brightness(100);
 }
-.dark-md .activity-number-card-right button.btn-light {
-	background-color: transparent !important;
+.dark-md .activity-number-card-right button.btn-light.active {
+	background-color: var(--pink-color) !important;
+    /* color: var(--btn-light-white); */
+
 }
+.dark-md .activity-number-card-right button.btn-light:focus {
+    outline: none!important;
+    box-shadow: none!important;
+    color: var(--white);
+}
+
 .dark-md .activity-number-card-right button.btn-light:hover{
 	background-color: var(--pink-color) !important;
 }
+
 .dark-md .text-pink:hover{
 	color: var(--white) !important;
 }
@@ -2815,3 +2837,43 @@ div.ant-select-dropdown {
 .dark-md .cryptoioria-banner-container .crypto-border-right::before {
 	background: #fff;
 }
+
+.mobile_search {
+    position: absolute;
+    right: 18px;
+    top: 0;
+}
+
+.mobile_search input{
+    background-color: var(--white-color);
+    padding: 10px 16px;
+    border: solid 2px var(--gray-bg);
+    border-radius: 30px;
+    outline: none;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    margin-right: 0px;
+    border: 1px solid #C7C7C7;
+    width: 220px;
+    border-top-right-radius: 0px;
+    border-right: none;
+    border-bottom-right-radius: 0px;
+}
+
+
+/*  scroll full width img  */
+/* .scrollbar
+{
+	height: 550px;
+	width: 80%;
+	background: #F5F5F5;
+	overflow-y: scroll;
+} */
+
+/* .force-overflow
+{
+	min-height: 350px;
+    width: 100%;
+} */

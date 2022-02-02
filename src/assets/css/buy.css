@@ -381,7 +381,7 @@ span.profile-check-icon {
 	padding: 10px 10px;
 	min-width: 120px;
 	max-width: 168px !important;
-	z-index: 1;
+	z-index: 2;
     text-align: center;
     cursor: pointer;
 }

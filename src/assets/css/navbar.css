@@ -387,7 +387,7 @@ header {
 }
 .notificationPopup > h4{
     font-size: 24px;
-    color: #000000;
+    color: var(--black-color);
     font-weight: bold;
     margin-bottom: 8px !important;
 }

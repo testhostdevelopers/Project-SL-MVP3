@@ -18,13 +18,19 @@ import ReportPopup from '../Components/Popup/ReportPopup';
 
 
 import { motion } from "framer-motion"
-import { Menu, Dropdown, Tabs } from 'antd';
+import { Menu, Dropdown, Tabs, Button } from 'antd';
+
+
 
 const { TabPane } = Tabs;
 
 const Profile = (props) => {
     console.log("props.pImage", props.pImage, "sdasadsa");
     const [reportPopup, setReportPopup] = useState(false);
+
+    const [buttonText, setButtonText] = useState("Add Cover");
+    const changeText = (text) => setButtonText(text);
+
 
     const variants = {
         hidden: { opacity: 0 },
@@ -81,6 +87,7 @@ const Profile = (props) => {
             reader.readAsDataURL(file);
         }
     };
+    
 
     return (
         <>
@@ -118,8 +125,12 @@ const Profile = (props) => {
                                                 }}
                                             />
                                         </div>
-                                        <label for="uploadcoverphoto" className="bg-white border-gray edit-profile">Add Cover</label>
+
+                                        <label for="uploadcoverphoto" className="bg-white border-gray edit-profile" onClick={() => changeText("Edit Cover")}> {buttonText}</label>
+                                        {/* <Button onClick={() => changeText("newText")}>{buttonText}</Button> */}
+
                                     </div>
+                                    
 
                                     <div className="profile-info-position">
                                         <div className="profile-user-pictures">
@@ -161,9 +172,11 @@ const Profile = (props) => {
                                         </div>
 
                                         <div className="mt-4 d-flex justify-content-between align-items-center">
+
                                             <button className="bg-white border-gray edit-profile"><b>Edit Profile</b></button>
+
                                             <div className='share-profile'>
-                                                <button className="bg-white border-gray profile-upload">
+                                                <button className="bg-white border-gray profile-upload" >
                                                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path clipRule="evenodd" clipRule="evenodd" d="M3.75 6.75H7.5V11.25H10.5V6.75H14.25L9 1.5L3.75 6.75ZM15 9V14.25H3V9H1.5V15C1.5 15.4142 1.83579 15.75 2.25 15.75H15.75C16.1642 15.75 16.5 15.4142 16.5 15V9H15Z" fill="black" />
                                                     </svg>

@@ -216,15 +216,15 @@ const NewHeader = () => {
 
                                             <div className="d-flex justify-content-between align-items-center mb-3">
                                                 <h6 className="m-0">Manage funds</h6>
-
-                                                <div className="custom-control custom-switch">
-                                                    <input type="checkbox" defaultChecked className="custom-control-input" id="profileSwitch3" />
-                                                    <label className="custom-control-label" htmlFor="profileSwitch3"></label>
-                                                </div>
                                             </div>
 
                                             <div className="d-flex justify-content-between mb-3">
                                                 <h6>Autoplay</h6>
+                                                 <div className="custom-control custom-switch">
+                                                    <input type="checkbox" className="custom-control-input" id="profileSwitch1" />
+                                                    <label className="custom-control-label" htmlFor="profileSwitch1"></label>
+                                                </div>
+                                                
                                             </div>
 
                                             <div className="d-flex justify-content-between">

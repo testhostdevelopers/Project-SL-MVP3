@@ -1,6 +1,7 @@
 import React from 'react'
 import artWork from '../../assets/img/custom/artWorkWeekOne.png';
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
+import myimg from '../../assets/img/myimg2.jpg';
 
 const FullScreenImage = (props) => {
 
@@ -27,7 +28,7 @@ const FullScreenImage = (props) => {
 
                 <div className="container">
                     <div className="row d-flex justify-content-center">
-                        <div className="col-sm-12 col-lg-6">
+                        <div className="">
                             <div className="full-screen-img">
                                 <img src={artWork} />
                             </div>

@@ -47,6 +47,10 @@ const Collection = () => {
     const [filtersale, setFiltersale] = useState(false);
     const [filterRange, setFilterRange] = useState(false);
 
+    
+
+    
+
     const variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1 },
@@ -104,7 +108,7 @@ const Collection = () => {
                             <div className="position-relative">
                                 <div className="border p-3 gray-color profile-pictures-cover">
                                     <img src={CollectionBannerBg} width="100%" alt="" />
-                                    <button onClick={() => setUpdateCoverPopup(true)}  className="bg-white border-gray edit-profile">Add Cover</button>
+                                    <button onClick={() => setUpdateCoverPopup(true)}  className="bg-white border-gray edit-profile">Edit Cover</button>
                                 </div>
                                 <div className="profile-info-position">
                                     <div className="profile-user-pictures">
@@ -120,11 +124,54 @@ const Collection = () => {
 
                                     <div className="mt-4 d-flex justify-content-between align-items-center w-auto">
                                         {/* <button className="bg-white border-gray edit-profile"><b>Edit Profile</b></button> */}
-                                        <button className="bg-white border-gray profile-upload">
-                                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path clipRule="evenodd" clipRule="evenodd" d="M3.75 6.75H7.5V11.25H10.5V6.75H14.25L9 1.5L3.75 6.75ZM15 9V14.25H3V9H1.5V15C1.5 15.4142 1.83579 15.75 2.25 15.75H15.75C16.1642 15.75 16.5 15.4142 16.5 15V9H15Z" fill="black" />
-                                            </svg>
-                                        </button>
+
+                                        <div className='share-profile'>
+                                                <button className="bg-white border-gray profile-upload" >
+                                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path clipRule="evenodd" clipRule="evenodd" d="M3.75 6.75H7.5V11.25H10.5V6.75H14.25L9 1.5L3.75 6.75ZM15 9V14.25H3V9H1.5V15C1.5 15.4142 1.83579 15.75 2.25 15.75H15.75C16.1642 15.75 16.5 15.4142 16.5 15V9H15Z" fill="black" />
+                                                    </svg>
+                                                </button>
+
+                                                <div className="nft-share-icons">
+                                                    <h3>Share link to this page</h3>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#0">
+                                                                <span>
+                                                                    <i className="fab fa-twitter"></i>
+                                                                </span>
+                                                                Twitter
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#0">
+                                                                <span>
+                                                                    <i className="fab fa-facebook-f"></i>
+                                                                </span>
+                                                                Facebook
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#0">
+                                                                <span>
+                                                                    <i className="fab fa-telegram-plane"></i>
+                                                                </span>
+                                                                Telegram
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#0">
+                                                                <span>
+                                                                    <i className="fas fa-envelope"></i>
+                                                                </span>
+                                                                Email
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+
                                         <Dropdown overlay={singleoption}>
                                         <button className="bg-white border-gray select">
                                             <svg width="14" height="4" viewBox="0 0 14 4" fill="none" xmlns="http://www.w3.org/2000/svg">

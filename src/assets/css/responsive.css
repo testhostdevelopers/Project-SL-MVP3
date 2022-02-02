@@ -543,7 +543,7 @@
         list-style: none;
     }
     a.nav-link > img {
-        margin-left: 5px;
+        margin-left: 0px;
     }
     .submenu-slide .back-menu {
         position: fixed;
