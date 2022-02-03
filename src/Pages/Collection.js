@@ -108,7 +108,13 @@ const Collection = () => {
                             <div className="position-relative">
                                 <div className="border p-3 gray-color profile-pictures-cover">
                                     <img src={CollectionBannerBg} width="100%" alt="" />
-                                    <button onClick={() => setUpdateCoverPopup(true)}  className="bg-white border-gray edit-profile">Edit Cover</button>
+
+                                    <button onClick={() => setUpdateCoverPopup(true)}  className="bg-white border-gray edit-profile">
+                                        {
+                                            CollectionBannerBg == null ? "Add Cover" : "Edit Cover"
+                                        }
+                                    
+                                        </button>
                                 </div>
                                 <div className="profile-info-position">
                                     <div className="profile-user-pictures">

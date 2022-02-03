@@ -87,6 +87,9 @@ const Profile = (props) => {
             reader.readAsDataURL(file);
         }
     };
+
+    
+    
     
 
     return (
@@ -116,6 +119,7 @@ const Profile = (props) => {
                                         />
                                         <div className='coverpic' onClick={() => imageUploader.current.click()}>
                                             <img
+                                            id='mydat'
                                                 src=""
                                                 ref={uploadedImage}
                                                 style={{
@@ -126,7 +130,13 @@ const Profile = (props) => {
                                             />
                                         </div>
 
-                                        <label for="uploadcoverphoto" className="bg-white border-gray edit-profile" onClick={() => changeText("Edit Cover")}> {buttonText}</label>
+                                        <label for="uploadcoverphoto" className="bg-white border-gray edit-profile" onClick={() => changeText("Edit Cover")}>
+                                            
+                                             {buttonText}
+                                             {/* {
+                                                imageUploader.current == "" ? "hello" : "jhhh"
+                                             } */}
+                                             </label>
                                         {/* <Button onClick={() => changeText("newText")}>{buttonText}</Button> */}
 
                                     </div>

@@ -1562,6 +1562,11 @@
     .whatiswallet p {
         font-size: 16px;
     }
+
+    .full-screen-images-popup .full-screen-img img {
+        border-radius: 20px;
+        height: auto;
+    }
 }
 
 @media only screen and (max-width: 376px) {

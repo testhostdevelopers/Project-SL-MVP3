@@ -1055,7 +1055,7 @@ footer .ant-select:not(.ant-select-customize-input) .ant-select-selector{
 	width: 100%;
 }
 .profile-pictures-cover .coverpic img {
-	object-fit: contain;
+	/* object-fit: contain; */
 	border-radius: 20px;
 	z-index: 2;
 	background: var(--gray-bg);
@@ -2856,7 +2856,7 @@ div.ant-select-dropdown {
     font-size: 12px;
     margin-right: 0px;
     border: 1px solid #C7C7C7;
-    width: 220px;
+    width: 200px;
     border-top-right-radius: 0px;
     border-right: none;
     border-bottom-right-radius: 0px;

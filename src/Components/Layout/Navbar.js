@@ -18,10 +18,6 @@ import backmenu from "../../assets/img/custom/back-arrow.svg";
 import subarrow from "../../assets/img/custom/subarrow.svg";
 import closeicon from "../../assets/img/custom/close.svg";
 
-
-
-
-
 const Navbar = (props) => {
 
     const [CoinConverp, setCoinConverp] = useState(false);
@@ -30,7 +26,6 @@ const Navbar = (props) => {
     const [notificationPopup, setNotificationPopup] = useState(false);
 
     const location = useLocation();
-    
 
     useEffect(() => {
         localStorage.setItem('theme', theme);
@@ -57,7 +52,6 @@ const Navbar = (props) => {
             document.documentElement.style.setProperty('--bgopacity', "rgba(21, 21, 21, 0.8)");
             document.documentElement.style.setProperty('--arrowbg', "#392F3B");
             document.documentElement.style.setProperty('--bothblack', "#000");
-
 
         } else {
             document.documentElement.classList.remove('dark-md');
@@ -144,11 +138,33 @@ const Navbar = (props) => {
 
     const notifications = ["add your email", "subscribe", "go to website"];
 
-    const profileUploaderr = React.useRef(null);
+    const [searchItem, SetsearchItem] = useState(false);
+    const [notificationsArr, setNotificationsArr] = useState(notifications);
+    
+    const deleteHandler = index => {
+        setNotificationsArr(notificationsArr.filter((item, i) => i !== index));
+    }
 
-    const [searchItem, SetsearchItem] = useState(false)
+    const profileImage = React.useRef(null);
+    const profileUploader = React.useRef(null);
+    profileImage.current = props.pImage;
+   
+    const handleprofilepicUpload = e => {
+        const [file] = e.target.files;
+        console.log(e);
+        if (file) {
+            const reader = new FileReader();
+            const { current } = profileImage;
+            current.file = file;
+            reader.onload = e => {
+                current.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     
-    
+ 
 
     return (
         <>
@@ -484,25 +500,8 @@ const Navbar = (props) => {
 
                                     </div>
                                 </li>
-                                <div style={{ display: "none", }}>
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        onChange={props.handleprofilepicUploadr}
-                                        ref={profileUploaderr}
-                                        style={{
-                                            display: "none"
-                                        }}
-                                    />
-                                    <img
-                                        src=""
-                                        ref={props.profileImage}
-                                        style={{
-                                            width: "100%",
-                                            height: "100%",
-                                            position: "absolute"
-                                        }}
-                                    />
+                                <div className="">
+                                    
                                 </div>
                                 <li className="nav-item d-sm-none d-lg-block p-0 d-flex align-items-center">
                                     <Link to="/create" className="nav-link p-0">
@@ -534,12 +533,10 @@ const Navbar = (props) => {
                                                         <div className="color-ping text-left" onClick={() => { setNotificationPopup()}}>See all</div>
                                                     </div>
 
-                                                    {
-                                                        
-                                                    notifications.map((n, i) =>
-                                                        <div className={`d-flex justify-content-between notification-ping-bg position-relative p-4 ${!closeNotification ? " notifyclose" : ""}`}>
-                                                            <div className="popup-close-btn-outline" onClick={() => setCloseNotification(false)}>
-                                                                <img src={closeicon}/>
+                                                    {notificationsArr.map((n, index) =>
+                                                        <div key={index} className={`d-flex justify-content-between notification-ping-bg position-relative p-4 `}>
+                                                            <div className="popup-close-btn-outline" onClick={() => deleteHandler(index)}>
+                                                                <img src={closeicon} />
                                                             </div>
                                                             <div className="d-flex">
                                                                 <div>
@@ -575,14 +572,40 @@ const Navbar = (props) => {
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
                                                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                             </svg>
+                                        
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={props.handleprofilepicUploadr}
+                                                ref={profileUploader}
+                                                style={{
+                                                    display: "none"
+                                                }}
+                                            />
+                                            <img
+                                                className="my_pro"
+                                                src={props.pImage}
+                                                ref={props.profileImage}
+                                                style={{
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    position: "absolute",
+                                                    borderRadius: "30px",
+                                                    padding: "3px",
+                                                    inlineSize: "auto"
+                                                }}
+                                            />
+                                        
+
+
+
+                                            
                                             {
-
-
                                                 openProfileDropMenu === false ? "" : <div className="notificationPopup">
                                                     <h4 className="text-left">0×hubwc8fh2f....hb8fhr</h4>
                                                     <div className="notipopup-display">
                                                         <a href="#0" className="color-ping"><b>Set display name</b></a>
-                                                        <a className="color-ping" onClick={() => profileUploaderr.current.click()} ><b>Upload profile picture</b></a>
+                                                        <a className="color-ping" onClick={() => profileUploader.current.click()} ><b>Upload profile picture</b></a>
 
                                                     </div>
 

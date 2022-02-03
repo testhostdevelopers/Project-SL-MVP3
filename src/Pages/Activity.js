@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import activityCard from "../assets/img/custom/activity-card.png";
 import { motion } from "framer-motion"
 import ActivityNumberCard from '../Components/ActivityNumberCard';
@@ -10,11 +10,14 @@ import { Menu, Dropdown, Tabs } from 'antd';
 const { TabPane } = Tabs;
 
 const Activity = () => {
+    const[activebtn = SetactiveBtn] = useState(false);
 
     const variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1 },
     }
+
+    
 
     return (
         <motion.section
