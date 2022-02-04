@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import categoryicon from "../assets/img/custom/category-icon.svg";
 import userProfile from "../assets/img/custom/userProfilePictures.png";
-import { Menu, Dropdown, Select } from 'antd';
 
 export default function FilterCollections({setFilterSort, filterSort,filterCategory,filterCollections,filterProperties,filtersale,filterRange,setFilterCategory,setFilterCollections,setFilterProperties,setFiltersale,setFilterRange }) {
-  const { Option } = Select;
-  const [isActive, setActive] = useState(false);
+
   const [isChecked, setIsChecked] = useState(false);
   const [checkedValues, setCheckedValues] = useState([]);
   const handleToggle = () => {

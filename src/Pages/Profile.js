@@ -29,7 +29,7 @@ const Profile = (props) => {
     const [reportPopup, setReportPopup] = useState(false);
 
     const [buttonText, setButtonText] = useState("Add Cover");
-    const changeText = (text) => setButtonText(text);
+    
 
 
     const variants = {
@@ -64,7 +64,12 @@ const Profile = (props) => {
             current.file = file;
             reader.onload = e => {
                 current.src = e.target.result;
+                if( e.target.result ) {
+                    setButtonText("Edit Cover");
+                }
             };
+            
+            
             reader.readAsDataURL(file);
         }
     };
@@ -106,6 +111,7 @@ const Profile = (props) => {
                         <div className="col-sm-12">
                             <header>
                                 <div className="position-relative">
+
                                     <div className="border p-3 gray-color profile-pictures-cover">
                                         <input
                                             type="file"
@@ -119,7 +125,7 @@ const Profile = (props) => {
                                         />
                                         <div className='coverpic' onClick={() => imageUploader.current.click()}>
                                             <img
-                                            id='mydat'
+                                                id='mydat'
                                                 src=""
                                                 ref={uploadedImage}
                                                 style={{
@@ -130,14 +136,8 @@ const Profile = (props) => {
                                             />
                                         </div>
 
-                                        <label for="uploadcoverphoto" className="bg-white border-gray edit-profile" onClick={() => changeText("Edit Cover")}>
-                                            
-                                             {buttonText}
-                                             {/* {
-                                                imageUploader.current == "" ? "hello" : "jhhh"
-                                             } */}
-                                             </label>
-                                        {/* <Button onClick={() => changeText("newText")}>{buttonText}</Button> */}
+                                        <label for="uploadcoverphoto" className="bg-white border-gray edit-profile" >{buttonText}</label>
+            
 
                                     </div>
                                     

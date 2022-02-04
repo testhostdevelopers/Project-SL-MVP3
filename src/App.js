@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './assets/css/veriables.css';
 import './assets/css/app.css';
 import './assets/css/buy.css';
@@ -13,11 +13,11 @@ import Token from './Pages/Token';
 import Cryptoloria from './Pages/Cryptoloria';
 import Explore from './Pages/Explore';
 import Collection from './Pages/Collection';
-import FullScreenImage from './Components/Popup/FullScreenImage';
-import CreateCollectibleMultiplePopup from './Components/Popup/CreateCollectibleMultiplePopup';
-import FinishedCollectiblePopup from './Components/Popup/FinishedCollectiblePopup';
-import PlaceABidFollowPopup from './Components/Popup/PlaceABidFollowPopup';
-import CoinConverPopup from './Components/Popup/CoinConverPopup';
+// import FullScreenImage from './Components/Popup/FullScreenImage';
+// import CreateCollectibleMultiplePopup from './Components/Popup/CreateCollectibleMultiplePopup';
+// import FinishedCollectiblePopup from './Components/Popup/FinishedCollectiblePopup';
+// import PlaceABidFollowPopup from './Components/Popup/PlaceABidFollowPopup';
+// import CoinConverPopup from './Components/Popup/CoinConverPopup';
 import UpcomingCollections from './Pages/UpcomingCollections';
 import TokenPage from './Pages/TokenPage';
 import Home from './Pages/Home';

@@ -10,7 +10,7 @@ import { Menu, Dropdown, Tabs } from 'antd';
 const { TabPane } = Tabs;
 
 const Activity = () => {
-    const[activebtn = SetactiveBtn] = useState(false);
+
 
     const variants = {
         hidden: { opacity: 0 },

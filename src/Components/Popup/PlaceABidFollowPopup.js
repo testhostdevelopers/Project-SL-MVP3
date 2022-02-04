@@ -77,7 +77,7 @@ const PlaceABidFollowPopup = (props) => {
                     </button>
                 </div>
 
-                <button className="btn-primary-outline w-100 mb-3" onClick={() => { setSingleCollectionPopup(false); setSinglePopup(false); document.body.style.overflow = "scroll"; }}>
+                <button className="btn-primary-outline w-100 mb-3" onClick={() => { setSinglePopup(false); document.body.style.overflow = "scroll"; }}>
                     Cancel
                 </button>
             </div>

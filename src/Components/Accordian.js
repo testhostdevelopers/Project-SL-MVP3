@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 
 const Accordian = ({ AccordianField }) => {
@@ -10,8 +9,8 @@ const Accordian = ({ AccordianField }) => {
     if (AccordianField) {
       let arr = [];
       AccordianField.map(() => {
-        arr.push(false);
-      });
+          arr.push(false);
+        });
       setOpen(arr)
     }
   }, [AccordianField]);

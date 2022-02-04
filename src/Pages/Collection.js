@@ -30,11 +30,12 @@ import FilterCollections from '../Components/FilterCollections';
 import Filtersale from '../Components/Filtersale';
 import FilterRange from '../Components/FilterRange';
 import FilterProperties from '../Components/FilterProperties';
+import Profile from "./Profile";
 
 const { TabPane } = Tabs;
 const { Option } = Select;
 
-const Collection = () => {
+const Collection = (props) => {
     const [ReportPopups, setReportPopup] = useState(false);
     //const [singlePopup, setSinglePopup] = useState(false);
     const [CoverPopup, setUpdateCoverPopup] = useState(false);
@@ -46,7 +47,7 @@ const Collection = () => {
     const [filterProperties, setFilterProperties] = useState(false);
     const [filtersale, setFiltersale] = useState(false);
     const [filterRange, setFilterRange] = useState(false);
-
+    const [buttonText, setButtonText] = useState("Edit Cover");
     
 
     
@@ -109,12 +110,7 @@ const Collection = () => {
                                 <div className="border p-3 gray-color profile-pictures-cover">
                                     <img src={CollectionBannerBg} width="100%" alt="" />
 
-                                    <button onClick={() => setUpdateCoverPopup(true)}  className="bg-white border-gray edit-profile">
-                                        {
-                                            CollectionBannerBg == null ? "Add Cover" : "Edit Cover"
-                                        }
-                                    
-                                        </button>
+                                    <button onClick={() => setUpdateCoverPopup(true)}  className="bg-white border-gray edit-profile">{buttonText}</button>
                                 </div>
                                 <div className="profile-info-position">
                                     <div className="profile-user-pictures">
