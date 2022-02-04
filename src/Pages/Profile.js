@@ -64,6 +64,7 @@ const Profile = (props) => {
             current.file = file;
             reader.onload = e => {
                 current.src = e.target.result;
+               
                 if( e.target.result ) {
                     setButtonText("Edit Cover");
                 }
@@ -79,15 +80,15 @@ const Profile = (props) => {
     const profileUploader = React.useRef(null);
     profileImage.current = props.pImage;
    
-    const handleprofilepicUpload = e => {
+    const handleprofilepicUploadr = e => {
         const [file] = e.target.files;
-        console.log(e);
         if (file) {
             const reader = new FileReader();
             const { current } = profileImage;
             current.file = file;
             reader.onload = e => {
                 current.src = e.target.result;
+                setpImage(current.src);
             };
             reader.readAsDataURL(file);
         }
@@ -136,7 +137,7 @@ const Profile = (props) => {
                                             />
                                         </div>
 
-                                        <label for="uploadcoverphoto" className="bg-white border-gray edit-profile" >{buttonText}</label>
+                                        <label for="uploadcoverphoto" className="bg-white border-gray edit-profile" > {buttonText}</label>
             
 
                                     </div>
@@ -147,7 +148,7 @@ const Profile = (props) => {
                                             <input
                                                 type="file"
                                                 accept="image/*"
-                                                onChange={handleprofilepicUpload}
+                                                onChange={handleprofilepicUploadr}
                                                 ref={profileUploader}
                                                 id="profilephoto"
                                                 style={{

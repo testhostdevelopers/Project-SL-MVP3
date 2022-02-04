@@ -148,23 +148,7 @@ const Navbar = (props) => {
     const profileImage = React.useRef(null);
     const profileUploader = React.useRef(null);
     profileImage.current = props.pImage;
-   
-    const handleprofilepicUpload = e => {
-        const [file] = e.target.files;
-        console.log(e);
-        if (file) {
-            const reader = new FileReader();
-            const { current } = profileImage;
-            current.file = file;
-            reader.onload = e => {
-                current.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-    };
 
-    
- 
 
     return (
         <>
@@ -227,33 +211,12 @@ const Navbar = (props) => {
                             </div>
 
                             <div className="d-lg-none d-sm-block">
-                                <a className="nav-link nav-dark-button p-0 nav-dark-button mr-2 position-relative">
-                                    <svg onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
+                                <a className="nav-link nav-dark-button p-0 nav-dark-button mr-2 position-relative" onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)} >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
                                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                     </svg>
-                                    <input
-                                                type="file"
-                                                accept="image/*"
-                                                onChange={props.handleprofilepicUploadr}
-                                                ref={profileUploader}
-                                                style={{
-                                                    display: "none"
-                                                }}
-                                            />
-                                            <img
-                                                className="my_pro"
-                                                src={props.pImage}
-                                                ref={props.profileImage}
-                                                style={{
-                                                    width: "100%",
-                                                    height: "100%",
-                                                    position: "absolute",
-                                                    borderRadius: "30px",
-                                                    padding: "3px",
-                                                    inlineSize: "auto"
-                                                }}
-                                            />
-
+                                   
+                                    
                                     
                                     {
                                         openProfileDropMenu === false ? "" : <div className="openProfileDropMenu">
@@ -591,7 +554,7 @@ const Navbar = (props) => {
 
 
                                     {
-                                        location.pathname !== "/" ? <a className="d-sm-none d-lg-block nav-link p-0 nav-dark-button mr-2 position-relative" onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)}>
+                                        location.pathname !== "/" ? <a className="d-sm-none d-lg-block nav-link p-0 nav-dark-button mr-2 position-relative"  onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
                                                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                             </svg>
@@ -607,7 +570,7 @@ const Navbar = (props) => {
                                             />
                                             <img
                                                 className="my_pro"
-                                                src={props.pImage}
+                                                src=""
                                                 ref={props.profileImage}
                                                 style={{
                                                     width: "100%",
@@ -619,8 +582,6 @@ const Navbar = (props) => {
                                                 }}
                                             />
                                         
-
-
 
                                             
                                             {

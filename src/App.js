@@ -32,20 +32,14 @@ import search from './Pages/search';
 import CreateCollectibleEdit from './Pages/CreateCollectibleEdit';
 
 import 'swiper/swiper-bundle.css';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route
-} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const App = () => {
     const [pImage, setpImage] = useState('')
     const profileImage = React.useRef(null);
     const handleprofilepicUploadr = e => {
         const [file] = e.target.files;
-
         if (file) {
-
             const reader = new FileReader();
             const { current } = profileImage;
             current.file = file;
