@@ -46,12 +46,40 @@ SwiperCore.use([Keyboard, Pagination, Navigation, Autoplay]);
 
 const Home = () => {
 
-    let [openImage, setOpenImage] = useState(false)
-
+    let [openImage, setOpenImage] = useState(false);
     const variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1 },
     }
+
+
+    const all_atwork = [
+        {
+            my_title: "Butterfly",
+            artimg: artWorkWeek1, 
+        },
+        {
+            my_title: "Butterfly",
+            artimg: artWorkWeek2,
+        },
+        {
+            my_title: "Butterfly",
+            artimg: artWorkWeek3,
+        },
+        {
+            my_title: "Butterfly",
+            artimg: artWorkWeek4,
+        },
+        {
+            my_title: "Butterfly",
+            artimg: artWorkWeek5,
+        },
+        {
+            my_title: "Butterfly",
+            artimg: artWorkWeek6,
+        }
+    ]
+    
 
     return (
         <>
@@ -242,12 +270,13 @@ const Home = () => {
 
                         <div className="col-sm-12 col-md-7 col-lg-7 home-artwork-week-day position-relative d-flex flex-column align-items-stretch justify-content-between">
                             <div className="d-flex overflow-auto justify-content-between w-100 justify-content-between">
-                                <ArtWork title="Butterfly" artworkimg={artWorkWeek1} setOpenImage={(imgFlag) => setOpenImage(imgFlag)} />
-                                <ArtWork title="Butterfly" artworkimg={artWorkWeek2} setOpenImage={(imgFlag) => setOpenImage(imgFlag)} />
-                                <ArtWork title="Butterfly" artworkimg={artWorkWeek3} setOpenImage={(imgFlag) => setOpenImage(imgFlag)} />
-                                <ArtWork title="Butterfly" artworkimg={artWorkWeek4} setOpenImage={(imgFlag) => setOpenImage(imgFlag)} />
-                                <ArtWork title="Butterfly" artworkimg={artWorkWeek5} setOpenImage={(imgFlag) => setOpenImage(imgFlag)} />
-                                <ArtWork title="Butterfly" artworkimg={artWorkWeek6} setOpenImage={(imgFlag) => setOpenImage(imgFlag)} />
+
+                                {
+                                    all_atwork.map((artwork) =>
+                                    <ArtWork title={artwork.my_title} artworkimg={artwork.artimg} setOpenImage={(imgFlag) => setOpenImage(imgFlag)} />
+                                    )
+                                }
+
                             </div>
                         </div>
                     </div>

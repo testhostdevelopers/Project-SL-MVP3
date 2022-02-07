@@ -47,9 +47,6 @@ const all_filter = [
     {
         name: 'Following',
         _filter_: 'Sales',
-    },
-    {
-
     }
 ];
 
@@ -82,7 +79,6 @@ useEffect(() => {
         visible: { opacity: 1 },
     }
 
-    console.log(filterData, 'filterdata')
 
     return (
         <motion.section
@@ -114,6 +110,7 @@ useEffect(() => {
                                                 <div className="row align-items-start">
                                                     <div className="d-flex col-lg-8 activity activity-number-card-left">
                                                     <h5 id='not_match' style={{color: "red"}}>{error_data}</h5>
+                                                  
                                                     {
                                                        filterData.map(() =>
                                                          <ActivityNumberCard activitynumbercardimg={ActivityCard} FillLabel={FillLabel} title="123456" filter={listing} pixelpunks="pixelpunks" eth="0.05 ETH" seenstatus="Just now"/>
