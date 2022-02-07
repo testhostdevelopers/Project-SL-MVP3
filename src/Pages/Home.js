@@ -78,6 +78,50 @@ const Home = () => {
             my_title: "Butterfly",
             artimg: artWorkWeek6,
         }
+    ];
+
+    const top_seller = ['Today', 'This week', 'This month', 'Last 6 months', 'Last 1 year']
+    
+    const top_seller_profile = [
+        {topcover_img: topSeller2, topuser_img: topSellerUser1, topuser_name: "Courtney Henry", topuser_price: "$1,403"},
+        {topcover_img: topSeller3, topuser_img: topSellerUser2, topuser_name: "Darlene Robertson", topuser_price: "$1,403"},
+        {topcover_img: topSeller4, topuser_img: topSellerUser3, topuser_name: "Robert Fox", topuser_price: "$1,403"},
+        {topcover_img: topSeller5, topuser_img: topSellerUser4, topuser_name: "Savannah Nguyen", topuser_price: "$1,403"},
+        {topcover_img: topSeller6, topuser_img: topSellerUser5, topuser_name: "Devon Lane", topuser_price: "$1,403"},
+        {topcover_img: topSeller7, topuser_img: topSellerUser6, topuser_name: "Arlene McCoy", topuser_price: "$1,403"},
+        {topcover_img: topSeller8, topuser_img: topSellerUser7, topuser_name: "Albert Flores", topuser_price: "$1,403"},
+        {topcover_img: topSeller9, topuser_img: topSellerUser8, topuser_name: "Kristin Watson", topuser_price: "$1,403"},
+        {topcover_img: topSeller10, topuser_img: topSellerUser9, topuser_name: "Cody Fisher", topuser_price: "$1,403"},
+        {topcover_img: topSeller2, topuser_img: topSellerUser10, topuser_name: "Courtney Henry", topuser_price: "$1,403"}
+    ];
+
+    const top_buyer = ['Today', 'This week', 'This month', 'Last 6 months', 'Last 1 year']
+    
+    const top_buyers_profile = [
+        {topcover_img: topSeller2, topuser_img: topSellerUser1, topuser_name: "Courtney Henry", topuser_price: "$1,403"},
+        {topcover_img: topSeller3, topuser_img: topSellerUser2, topuser_name: "Darlene Robertson", topuser_price: "$1,403"},
+        {topcover_img: topSeller4, topuser_img: topSellerUser3, topuser_name: "Robert Fox", topuser_price: "$1,403"},
+        {topcover_img: topSeller5, topuser_img: topSellerUser4, topuser_name: "Savannah Nguyen", topuser_price: "$1,403"},
+        {topcover_img: topSeller6, topuser_img: topSellerUser5, topuser_name: "Devon Lane", topuser_price: "$1,403"},
+        {topcover_img: topSeller7, topuser_img: topSellerUser6, topuser_name: "Arlene McCoy", topuser_price: "$1,403"},
+        {topcover_img: topSeller8, topuser_img: topSellerUser7, topuser_name: "Albert Flores", topuser_price: "$1,403"},
+        {topcover_img: topSeller9, topuser_img: topSellerUser8, topuser_name: "Kristin Watson", topuser_price: "$1,403"},
+        {topcover_img: topSeller10, topuser_img: topSellerUser9, topuser_name: "Cody Fisher", topuser_price: "$1,403"},
+        {topcover_img: topSeller2, topuser_img: topSellerUser10, topuser_name: "Courtney Henry", topuser_price: "$1,403"}
+    ];
+
+    const live_auction = [
+        {cover_img: artWorkWeek1, auction_name: "Memescalf#782021", h_count: "24", auc_user1: topSellerUser1, auc_user2: topSellerUser2, auc_user3: topSellerUser3, auction_WETH: "1.2 WETH",  auction_bid: "Highest bid 1/1" },
+        {cover_img: artWorkWeek2, auction_name: "Memescalf#782022", h_count: "27", auc_user1: topSellerUser1, auc_user2: topSellerUser2, auc_user3: topSellerUser3, auction_WETH: "1.3 WETH",  auction_bid: "Highest bid 1/1" },
+        {cover_img: artWorkWeek3, auction_name: "Memescalf#782021", h_count: "30", auc_user1: topSellerUser1, auc_user2: topSellerUser2, auc_user3: topSellerUser3, auction_WETH: "1.7 WETH",  auction_bid: "Highest bid 1/1" },
+        {cover_img: artWorkWeek4, auction_name: "Memescalf#782022", h_count: "36", auc_user1: topSellerUser1, auc_user2: topSellerUser2, auc_user3: topSellerUser3, auction_WETH: "1.6 WETH",  auction_bid: "Highest bid 1/1" }
+    ];
+
+    const hot_bide = [
+            {cover_bide: artWorkWeek2, bide_heartcount: "23", bide_time: '3H : 15M : 50S left', bide_name: "Memescalf#782021", bide_weth: '1.3 WETH', bide_bid: "Highest bid 1/1"},
+            {cover_bide: artWorkWeek3, bide_heartcount: "25", bide_time: '7H : 13M : 50S left', bide_name: "Memescalf#782022", bide_weth: '1.6 WETH', bide_bid: "Highest bid 1/16"},
+            {cover_bide: artWorkWeek1, bide_heartcount: "26", bide_time: '8H : 20M : 50S left', bide_name: "Memescalf#782023", bide_weth: '1.2 WETH', bide_bid: "Highest bid 6/6"},
+            {cover_bide: artWorkWeek4, bide_heartcount: "26", bide_time: '8H : 40M : 50S left', bide_name: "Memescalf#782022", bide_weth: '1.2 WETH', bide_bid: "Highest bid 6/5"}
     ]
     
 
@@ -292,26 +336,22 @@ const Home = () => {
                     <div className="w-100 headerSelect">
                         <h3><b>Top Sellers</b></h3>
                         <Select className="section-select-filter" defaultValue="day" >
-                            <Option value="day">Today</Option>
-                            <Option value="week">This week</Option>
-                            <Option value="month">This month</Option>
-                            <Option value="sixYear">Last 6 months</Option>
-                            <Option value="year">Last 1 year</Option>
+                            {
+                                top_seller.map( (x,y) => 
+                                <option key={y}>{x}</option> )
+                            }
                         </Select>
                     </div>
 
                     <div className="topSellerContent mt-5">
                         <div className="d-flex">
-                            <TopCard topcoverimg={topSeller2} topuserimg={topSellerUser1} title="Courtney Henry" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller3} topuserimg={topSellerUser2} title="Eleanor Pena" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser3} title="Darlene Robertson" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller5} topuserimg={topSellerUser4} title="Robert Fox" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller6} topuserimg={topSellerUser5} title="Savannah Nguyen" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller7} topuserimg={topSellerUser6} title="Devon Lane" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller8} topuserimg={topSellerUser7} title="Arlene McCoy" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller9} topuserimg={topSellerUser8} title="Albert Flores" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller10} topuserimg={topSellerUser9} title="Kristin Watson" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller2} topuserimg={topSellerUser10} title="Cody Fisher" Price="$1,403" />
+                            {
+                                top_seller_profile.map((top_seller_profile) => 
+                                    <TopCard topcoverimg={top_seller_profile.topcover_img} topuserimg={top_seller_profile.topuser_img} title={top_seller_profile.topuser_name} Price={top_seller_profile.topuser_price} />
+                                    )
+                            }
+
+                            
                         </div>
                     </div>
                 </div>
@@ -328,26 +368,20 @@ const Home = () => {
                     <div className="w-100 headerSelect">
                         <h3><b>Top Buyers</b></h3>
                         <Select className="section-select-filter" defaultValue="day">
-                            <Option value="day">Today</Option>
-                            <Option value="week">This week</Option>
-                            <Option value="month">This month</Option>
-                            <Option value="sixYear">Last 6 months</Option>
-                            <Option value="year">Last 1 year</Option>
+                             {
+                                top_buyer.map( (x,y) => 
+                                <option key={y}>{x}</option> )
+                            }
                         </Select>
                     </div>
 
                     <div className="topSellerContent mt-5">
                         <div className="d-flex">
-                            <TopCard topcoverimg={topSeller2} topuserimg={topSellerUser1} title="Courtney Henry" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller3} topuserimg={topSellerUser2} title="Eleanor Pena" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller2} topuserimg={topSellerUser3} title="Darlene Robertson" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser4} title="Robert Fox" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller5} topuserimg={topSellerUser5} title="Savannah Nguyen" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller6} topuserimg={topSellerUser6} title="Devon Lane" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller7} topuserimg={topSellerUser7} title="Arlene McCoy" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller8} topuserimg={topSellerUser8} title="Albert Flores" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller9} topuserimg={topSellerUser9} title="Kristin Watson" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller10} topuserimg={topSellerUser10} title="Cody Fisher" Price="$1,403" />
+                        {
+                             top_buyers_profile.map((top_seller_profile) => 
+                                  <TopCard topcoverimg={top_seller_profile.topcover_img} topuserimg={top_seller_profile.topuser_img} title={top_seller_profile.topuser_name} Price={top_seller_profile.topuser_price} />
+                            )
+                            }
                         </div>
                     </div>
                 </div>
@@ -364,10 +398,12 @@ const Home = () => {
                     </div>
 
                     <div className="row mt-5">
-                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" isOpenInProfile={false} />
-                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" isOpenInProfile={false} />
-                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" isOpenInProfile={false} />
-                        <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" isOpenInProfile={false} />
+                            {
+                                live_auction.map((live_a) =>
+                                <LiveAuctions Coverimg={live_a.cover_img} title={live_a.auction_name} heartcount={live_a.h_count} User1={live_a.auc_user1} User2={live_a.auc_user2} User3={live_a.auc_user3} WETH={live_a.auction_WETH} bid={live_a.auction_bid} isOpenInProfile={false} />
+                                )
+                            }
+
                     </div>
                 </div>
             </motion.section>
@@ -405,6 +441,7 @@ const Home = () => {
             </motion.section>
 
 
+
             <motion.section
                 initial="hidden"
                 animate="visible"
@@ -415,10 +452,12 @@ const Home = () => {
                     </div>
 
                     <div className="row  mt-5">
-                        <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" isOpenInProfile={false}/>
-                        <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" isOpenInProfile={false}/>
-                        <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" isOpenInProfile={false}/>
-                        <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" isOpenInProfile={false}/>
+                        {
+                            hot_bide.map((bide_desk) => 
+                            <HotBids Coverimg={bide_desk.cover_bide} heartcount={bide_desk.bide_heartcount} time={bide_desk.bide_time} title={bide_desk.bide_name} WETH={bide_desk.bide_weth} bid={bide_desk.bide_bid} isOpenInProfile={false}/>
+                            )
+                        }
+
                     </div>
                 </div>
             </motion.section>
