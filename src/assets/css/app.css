@@ -58,6 +58,18 @@ img{
 	color: #fff;
 }
 
+/* .btn-primary {
+	background-image: url(../img/icons/custom/bg_img.png);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	border: none;
+	border-radius: 30px;
+	font-size: 14px;
+	padding: 10px 27px 11px 27px;
+	color: #fff;
+} */
+
 .btn-fill{
     background-image: none;
     background-color: #6300FF;
@@ -171,6 +183,7 @@ nav h3,
     background-color: var(--bg-main);
     width: 100% !important;
     font-size: 16px;
+    margin-left: 15px;
 }
 
 .create-single-section-container .prize-single-collectible input::placeholder{
@@ -284,7 +297,6 @@ border-bottom: solid 1px var(--gray-color);
 	color: var(--black-color);
 	min-width: 94px;
 	height: 45px;
-	margin-left: 8px;
 }
 
 .btn-primary-outline:hover{
@@ -757,7 +769,7 @@ footer section .footer-in-email {
     width: 38px !important;
     height: 38px !important;
     border-radius: 50% !important;
-    background: var(--arrowbg) !important;
+    background: #E1E5F0 !important;
     z-index: 9 !important;
 }
 
@@ -2133,7 +2145,7 @@ section div.main-box {
 	height: auto !important;
 }
 .profile-edit-verified-container .btn-primary-outline {
-	background:var(--white);
+	background:var(--white-color);
 }
 .btn-primary.profile-edit-verified-btn {
 	background: var(--pink-color);
@@ -2863,17 +2875,12 @@ div.ant-select-dropdown {
 }
 
 
-/*  scroll full width img  */
-/* .scrollbar
-{
-	height: 550px;
-	width: 80%;
-	background: #F5F5F5;
-	overflow-y: scroll;
-} */
-
-/* .force-overflow
-{
-	min-height: 350px;
-    width: 100%;
-} */
+.profile-tab-menu .ant-tabs-tab div {
+    color: var(--gray-color);
+}
+.filtername{
+    padding: 20px;
+}
+.edit_title{
+    font-size: 36px;
+}

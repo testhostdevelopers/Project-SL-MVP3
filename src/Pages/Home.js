@@ -122,7 +122,18 @@ const Home = () => {
             {cover_bide: artWorkWeek3, bide_heartcount: "25", bide_time: '7H : 13M : 50S left', bide_name: "Memescalf#782022", bide_weth: '1.6 WETH', bide_bid: "Highest bid 1/16"},
             {cover_bide: artWorkWeek1, bide_heartcount: "26", bide_time: '8H : 20M : 50S left', bide_name: "Memescalf#782023", bide_weth: '1.2 WETH', bide_bid: "Highest bid 6/6"},
             {cover_bide: artWorkWeek4, bide_heartcount: "26", bide_time: '8H : 40M : 50S left', bide_name: "Memescalf#782022", bide_weth: '1.2 WETH', bide_bid: "Highest bid 6/5"}
-    ]
+    ];
+
+    const top_card = [
+        {top_cover: topSeller6, top_user: topSellerUser3, top_name: "Courtney Henry", top_price: "$1,403"},
+        {top_cover: topSeller2, top_user: topSellerUser4, top_name: "Courtney Henry", top_price: "$3,403"},
+        {top_cover: topSeller3, top_user: topSellerUser5, top_name: "Courtney Henry", top_price: "$5,403"},
+        {top_cover: topSeller4, top_user: topSellerUser6, top_name: "Courtney Henry", top_price: "$3,403"},
+        {top_cover: topSeller5, top_user: topSellerUser7, top_name: "Courtney Henry", top_price: "$4,403"}
+    ];
+
+
+
     
 
     return (
@@ -478,9 +489,12 @@ const Home = () => {
                         slidesPerView={1}
                         navigation={true}
                     >
+
                         <SwiperSlide>
                             <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" />
                         </SwiperSlide>
+
+
                         <SwiperSlide>
                             <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" />
                         </SwiperSlide>
@@ -507,11 +521,11 @@ const Home = () => {
 
                     <div className="topSellerContent mt-5">
                         <div className="d-flex overflow-auto justify-content-between w-100 mb-4">
-                            <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser3} title="Courtney Henry" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller2} topuserimg={topSellerUser2} title="Courtney Henry" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller3} topuserimg={topSellerUser3} title="Courtney Henry" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser4} title="Courtney Henry" Price="$1,403" />
-                            <TopCard topcoverimg={topSeller5} topuserimg={topSellerUser5} title="Courtney Henry" Price="$1,403" />
+                            {
+                                top_card.map((collr_) =>
+                                <TopCard topcoverimg={collr_.top_cover} topuserimg={collr_.top_user} title={collr_.top_name} Price={collr_.top_price} />
+                                )
+                            }
                         </div>
                     </div>
                 </div>
@@ -537,6 +551,7 @@ const Home = () => {
                             slidesPerView={1}
                             navigation={true}
                         >
+                            
                             <SwiperSlide>
                                 <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser3} title="Courtney Henry" Price="$1,403" />
                             </SwiperSlide>

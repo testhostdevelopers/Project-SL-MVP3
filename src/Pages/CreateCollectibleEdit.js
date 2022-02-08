@@ -28,7 +28,7 @@ const CreateCollectibleEdit = () => {
                         </div>
 
                         <div className="col-sm-12 mt-5">
-                            <h2>Edit Profile</h2>
+                            <h2 className='edit_title'>Edit Profile</h2>
                         </div>
 
                         <div className="col-sm-12 col-md-7 mobile-sm-order-right CreateCollectibleEdit-left">
@@ -52,7 +52,7 @@ const CreateCollectibleEdit = () => {
                                 <h5 className="m-0"><b>Custom URL</b></h5>
 
                                 <div className="prize-single-collectible">
-                                    starlight.com/
+                                    starlight.ooo/
                                     <input type="text" className="ml-3" placeholder="Enter your custom URL" />
                                 </div>
                             </div>
@@ -100,7 +100,7 @@ const CreateCollectibleEdit = () => {
                             <div className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center">
                                 <div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>
                                 <div className="mt-3">
-                                    <button className="btn-primary w-100 ml-0">Choose File</button>
+                                    <button className="btn-primary w-100 ml-0 "></button>
                                 </div>
                             </div>
 
@@ -110,14 +110,14 @@ const CreateCollectibleEdit = () => {
                             <div className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center">
                                 <div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>
                                 <div className="mt-3">
-                                    <button className="btn-primary w-100 ml-0">Choose File</button>
+                                    <button className="btn-primary w-100 ml-0"></button>
                                 </div>
                             </div>
                         </div>
 
 
 
-                        <div className="col-sm-12 mobile-sm-order-right gray-color profile-edit-verified-container m-3 p-4 mt-5" style={{ borderRadius: "25px" }}>
+                        <div className="col-sm-12 mobile-sm-order-right gray-color profile-edit-verified-container p-4 mt-5" style={{ borderRadius: "25px" }}>
                             <div className="row">
                                 <div className="gray-color col-sm-12 col-lg-2">
                                     <h5 className="m-0 gray-color"><b>Verfication</b></h5>

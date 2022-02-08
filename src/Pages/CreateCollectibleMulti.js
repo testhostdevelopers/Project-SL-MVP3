@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import collectibleSingle from "../assets/img/icons/custom/collectible-single.svg";
+import priceP from "../assets/img/icons/custom/price_p.svg"
 import unlock from "../assets/img/icons/custom/unlock.svg";
-import sonsuz from "../assets/img/icons/custom/sonsuz.svg";
+import sonsuz from "../assets/img/icons/custom/open_p.png";
 import plus from "../assets/img/icons/custom/plus.svg";
 import darkcircle from "../assets/img/icons/custom/darkcircle.svg";
 import {Link} from "react-router-dom";
@@ -24,6 +24,28 @@ const CreateCollectibleMulti = () => {
     }
 
     const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
+    const [filesize, setfilesize] = useState("");
+
+    const profileImage = React.useRef(null);
+    const profileUploader = React.useRef(null);
+
+    const handleprofilepicUploadr = e => {  
+        const [file] = e.target.files;
+        if (file) {
+            const reader = new FileReader();
+            const { current } = profileImage;
+            current.file = file;
+            reader.onload = e => {
+                current.src = e.target.result;
+                if (!file) {
+                    setfilesize('Please select Valid Image.' );
+                    return false;
+                  }
+                
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
     return (
         <>
@@ -38,11 +60,14 @@ const CreateCollectibleMulti = () => {
                 variants={variants} className="create-single-section-container multi">
                 <div className="container">
                     <div className="row">
-                        <div className="col-sm-12 d-flex align-items-center mb-4">
-                            <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fillRule="evenodd" clipRule="evenodd" d="M14 7.33341H4.55333L8.28 3.60675L7.33333 2.66675L2 8.00008L7.33333 13.3334L8.27333 12.3934L4.55333 8.66675H14V7.33341Z" fill="#141414" />
-                            </svg>
-                            <Link to="/create"><h5 className="ml-3">Back</h5></Link>
+                        
+                     <div className="col-sm-12">
+                            <Link className="d-flex align-items-center" to="/create">
+                                <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M14 7.33341H4.55333L8.28 3.60675L7.33333 2.66675L2 8.00008L7.33333 13.3334L8.27333 12.3934L4.55333 8.66675H14V7.33341Z" fill="#141414" />
+                                </svg>
+                                <h6 className="ml-3 mb-0">Back</h6>
+                            </Link>
                         </div>
 
                         <div className="col-sm-12 mt-4 mb-4">
@@ -55,10 +80,20 @@ const CreateCollectibleMulti = () => {
                             <div>
                                 <div className="upload-file-container">
                                     <div className="color-gray">
-                                        PNG, GIF, WEBP, MP4 OR MP3. mAX 100mb
+                                        PNG, GIF, WEBP, MP4 OR MP3. MAX 100MB
                                     </div>
-
-                                    <button className="btn-primary  w-50 mt-4">Choose file</button>
+                                    <p style={{color: "red"}}>{filesize}</p>
+                                    <input
+                                                type="file"
+                                                accept="image/*,video/mp4,video/x-m4v,video/*,image/x-png,image/gif,image/jpeg"
+                                                onChange={handleprofilepicUploadr}
+                                                ref={profileUploader}
+                                                id="profilephoto"
+                                                style={{
+                                                    display: "none"
+                                                }}
+                                            />
+                                    <button className="btn-primary  w-50 mt-4" onClick={() => profileUploader.current.click()}>Choose file</button>
                                 </div>
                             </div>
 
@@ -74,7 +109,7 @@ const CreateCollectibleMulti = () => {
                                 <div className="color-gray marketplace-content">Enter price to allow user instantly purchase your NFT</div>
 
                                 <div className="d-flex justify-content-between mt-3">
-                                    <div className="putOnMarketplace border-radius btn-primary-outline-responsive col-sm-12 col-md-5"><img src={collectibleSingle} width="32" alt="" /><b> Fixed <br/> Price</b></div>
+                                    <div className="putOnMarketplace border-radius btn-primary-outline-responsive col-sm-12 col-md-5"><img src={priceP} width="32" alt="" /><b> Fixed <br/> Price</b></div>
                                     <div className="putOnMarketplace border-radius border-gray col-sm-12 col-md-5"><img src={sonsuz} width="40" alt="" /> <b>Open for <br/> bids</b></div>
                                 </div>
 
@@ -125,7 +160,19 @@ const CreateCollectibleMulti = () => {
                         <div className="col-sm-12 col-md-5 pl-5 brand-new-nfp">
                             <b>Preview</b>
                             <div className="border-gray upload-box text-center border-radius mt-4 color-gray d-flex justify-content-center align-items-center p-5">
-                                Upload file to preview your brand new NFT
+                               <label>Upload file to preview your brand new NFT</label>
+
+                                                 <img
+                                                    src=""
+                                                    ref={profileImage}
+                                                    style={{
+                                                        width: "100%",
+                                                        height: "100%",
+                                                        position: "absolute",
+                                                        insetInlineStart: "auto",
+                                                        borderRadius: "10px"
+                                                    }}
+                                                />
                             </div>
                         </div>
 
@@ -250,7 +297,7 @@ const CreateCollectibleMulti = () => {
 
                                 <div className="prize-single-collectible">
                                     <input type="text" placeholder="EG. 10" />
-                                    <span className="color-gray ">%</span>
+                                    
                                 </div>
 
                                 <div className="mt-2"><small><span className="color-gray">Amount of tokens</span></small></div>

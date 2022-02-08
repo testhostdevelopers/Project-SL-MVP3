@@ -33,6 +33,7 @@ import CreateCollectibleEdit from './Pages/CreateCollectibleEdit';
 
 import 'swiper/swiper-bundle.css';
 import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Activitytab  from './Components/Tabs/Activitytab';
 
 const App = () => {
     const [pImage, setpImage] = useState('')
@@ -79,6 +80,7 @@ const App = () => {
                     <Route path="/activity" component={Activity} exact />
                     <Route path="/following" component={Following} exact />
                     <Route path="/search" component={search} exact />
+                    <Route path="/Activetab" component={Activitytab} exact />
                 </Switch>
                 <Footer />
             </Router>

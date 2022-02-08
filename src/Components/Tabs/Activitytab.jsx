@@ -1,16 +1,11 @@
-import React,{useEffect, useState} from 'react'
-import activityCard from "../assets/img/custom/activity-card.png";
-import { motion } from "framer-motion"
-import ActivityNumberCard from '../Components/ActivityNumberCard';
-import FillLabel from "../assets/img/icons/custom/fill-label.svg";
-import ActivityCard from "../assets/img/custom/activity-cardonly.png";
+import React,{useState, useEffect} from 'react';
+import ActivityNumberCard from '../ActivityNumberCard';
+import { Tabs } from 'antd';
 
-import { Menu, Dropdown, Tabs } from 'antd';
 
 const { TabPane } = Tabs;
 
-const Activity = () => {
-    
+export default function Activitytab() {
 
 const [listing, Setlisting] = useState('');
 const [error_data, seterror_data] = useState('');
@@ -80,19 +75,8 @@ useEffect(() => {
     }
 
 
-    return (
-        <motion.section
-                initial="hidden"
-                animate="visible"
-                variants={variants} className="profile-pictures-infos">
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-sm-12">
-                        <main className="profile-tab-menu">
-
-                            <h2>Activity</h2>
-
-                            <Tabs defaultActiveKey="1" className="activity-container">
+  return <div>
+      <Tabs defaultActiveKey="1" className="activity-container">
                                 <TabPane tab="All" key="1" className="tab-pane">
                                 <div className="topSeller">
                                         <div className="">
@@ -115,7 +99,7 @@ useEffect(() => {
                                                             {listing === 'Burn' ? <h6>Burn</h6> : ''}
                                                             {listing === 'Bids' ? <h6>Bids</h6> : ''}
                                                             {listing === 'Likes' ? <h6>Likes</h6> : ''}
-                                                            {listing === 'Followings' ? <h6>Likes</h6> : ''}
+                                                            {listing === 'Followings' ? <h6>Followings</h6> : ''}
                                                         </div>
                                                 <div className="row align-items-start">
                                                     <div className="d-flex col-lg-8 activity activity-number-card-left">
@@ -124,7 +108,7 @@ useEffect(() => {
 
                                                         
                                                     {
-                                                       filterData.map(() =>
+                                                       filterData.map((filter_name) =>
                                                          <ActivityNumberCard activitynumbercardimg={ActivityCard} FillLabel={FillLabel} title="123456" filter={listing} pixelpunks="pixelpunks" eth="0.05 ETH" seenstatus="Just now"/>
                                                       )
                                                     }
@@ -221,12 +205,8 @@ useEffect(() => {
                                     </div>
                                 </TabPane>
                             </Tabs>
-                        </main>
-                    </div>
-                </div>
-            </div>
-        </motion.section>
-    )
-}
 
-export default Activity
+  </div>;
+};
+
+

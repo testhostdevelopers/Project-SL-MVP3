@@ -39,7 +39,7 @@ const search = () => {
                             <h2 className="mb-3">Search results for “Users”</h2>
 
                             <Tabs defaultActiveKey="3" centered>
-                                <TabPane tab="Collections" key="1">
+                                <TabPane tab="Collections" key="1" style={{color: "gray"}}>
                                     <div className="topSeller">
                                         <div className="w-100 d-flex justify-content-end">
                                             <button className="profile-activity-filter-mobile d-web-none">

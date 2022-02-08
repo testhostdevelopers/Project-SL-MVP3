@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import collectibleSingle from "../assets/img/icons/custom/collectible-single.svg";
 import unlock from "../assets/img/icons/custom/unlock.svg";
-import sonsuz from "../assets/img/icons/custom/sonsuz.svg";
+import sonsuz from "../assets/img/icons/custom/open_p.png";
 import plus from "../assets/img/icons/custom/plus.svg";
 import darkcircle from "../assets/img/icons/custom/darkcircle.svg";
+import priceP from "../assets/img/icons/custom/price_p.svg";
+
 import {
     Link
 } from "react-router-dom";
@@ -24,7 +25,30 @@ const CreateCollectibleSingle = () => {
         visible: { opacity: 1 },
     }
 
+    const [filesize, setfilesize] = useState("");
+
+    const profileImage = React.useRef(null);
+    const profileUploader = React.useRef(null);
+   
+    const handleprofilepicUploadr = e => {
+        const [file] = e.target.files;
+        if (file) {
+            const reader = new FileReader();
+            const { current } = profileImage;
+            current.file = file;
+            reader.onload = e => {
+                current.src = e.target.result;
+                if (!file) {
+                    setfilesize('Please select Valid Image .' );
+                    return false;
+                  }
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
+    console.log(filesize, "setfilesize");
 
     return (
         <>
@@ -58,10 +82,20 @@ const CreateCollectibleSingle = () => {
                             <div>
                                 <div className="upload-file-container">
                                     <div className="color-gray">
-                                        PNG, GIF, WEBP, MP4 OR MP3. mAX 100mb
+                                        PNG, GIF, WEBP, MP4 OR MP3. MAX 100MB
                                     </div>
-
-                                    <button className="btn-primary w-50 mt-4">Choose file</button>
+                                    <p style={{color: "red"}}>{filesize}</p>
+                                    <input
+                                                type="file"
+                                                accept="image/*,video/mp4,video/x-m4v,video/*,image/x-png,image/gif,image/jpeg"
+                                                onChange={handleprofilepicUploadr}
+                                                ref={profileUploader}
+                                                id="profilephoto"
+                                                style={{
+                                                    display: "none"
+                                                }}
+                                            />
+                                    <button className="btn-primary w-50 mt-4" onClick={() => profileUploader.current.click()} >Choose file</button>
                                 </div>
                             </div>
 
@@ -77,7 +111,7 @@ const CreateCollectibleSingle = () => {
                                 <div className="color-gray marketplace-content">Enter price to allow user instantly purchase your NFT</div>
 
                                 <div className="d-flex justify-content-between mt-4">
-                                    <div className="putOnMarketplace border-radius btn-primary-outline-responsive"><img src={collectibleSingle} width="32" alt="" /><b> Fixed<br/>Price</b></div>
+                                    <div className="putOnMarketplace border-radius btn-primary-outline-responsive"><img src={priceP} width="32" alt="" /><b> Fixed<br/>Price</b></div>
                                     <div className="putOnMarketplace border-gray border-radius border"><img src={unlock} width="32" alt="" /> <b>Time<br/> auction</b>
                                     </div>
                                     <div className="putOnMarketplace border-gray border-radius border"><img src={sonsuz} width="40" alt="" /> <b>Open for <br/>bids</b></div>
@@ -132,7 +166,18 @@ const CreateCollectibleSingle = () => {
                         <div className="col-sm-12 col-md-5 pl-5 brand-new-nfp">
                             <b>Preview</b>
                             <div className="border-gray upload-box text-center border-radius mt-4 color-gray d-flex justify-content-center align-items-center p-5">
-                                Upload file to preview your brand new NFT
+                               <label>Upload file to preview your brand new NFT</label>
+
+                                                 <img
+                                                    src=""
+                                                    ref={profileImage}
+                                                    style={{
+                                                        width: "100%",
+                                                        height: "100%",
+                                                        position: "absolute",
+                                                        insetInlineStart: "auto"
+                                                    }}
+                                                />
                             </div>
                         </div>
 
@@ -274,12 +319,12 @@ const CreateCollectibleSingle = () => {
                         </div>
 
                     </div>
-                    <div className="mt-5">
+                    <div className="mt-4">
                         <button className="btn-primary-outline w-100">Hide advanced settings</button>
                     </div>
 
                     <div className="mt-4">
-                        <button className="btn-ping  w-100">Show Item</button>
+                        <button className="btn-ping  w-100">Save Item</button>
                     </div>
 
                     <div className="mt-4 color-gray text-center">

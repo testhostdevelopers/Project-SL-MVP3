@@ -211,7 +211,7 @@
 	flex-direction: column;
 	margin-top: 25px;
 	background: rgba(255, 255, 255, 0.1);
-	border: 1px dashed #0E0E0E;
+	border: 1px dashed var(--gray-color) !important;
 	box-sizing: border-box;
 	border-radius: 30px;
 	max-width: 100%;
@@ -374,6 +374,9 @@ span.profile-check-icon {
 .read-more-link{
     color: var(--black-text);
 }
+.read-more-link:hover{
+    color: var(--pink-color);
+}
 
 .profile-pictures-infos .edit-profile {
 	border-radius: 30px;
@@ -384,6 +387,10 @@ span.profile-check-icon {
 	z-index: 2;
     text-align: center;
     cursor: pointer;
+    color: var(--black-text);
+}
+.profile-pictures-infos .edit-profile:hover{
+    color: var(--pink-color)
 }
 .profile-pictures-infos .profile-upload,
 .profile-pictures-infos .select {

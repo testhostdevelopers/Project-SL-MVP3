@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 
 export default function ActivityNumberCard ({title,pixelpunks, eth,seenstatus,activitynumbercardimg, FillLabel}) {
+    
   return (
       <div className="ActivityNumberCard">
           <div className="ActivityNumberCard-img">
@@ -10,6 +11,7 @@ export default function ActivityNumberCard ({title,pixelpunks, eth,seenstatus,ac
                 <img src={activitynumbercardimg} />
           </div>
           <div className="ActivityNumberCard-info">
+              
                 <h4>{title}</h4>
                 <p>Listed by
                     <span>
