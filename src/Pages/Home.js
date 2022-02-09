@@ -38,6 +38,7 @@ import { Tabs } from 'antd';
 import TopCard from '../Components/TopCard';
 import LiveAuctions from '../Components/LiveAuctions';
 import HotBids from '../Components/HotBids';
+import QuickExplore from '../Components/Tabs/QuickExplore';
 
 const { TabPane } = Tabs;
 const { Option } = Select;
@@ -132,6 +133,28 @@ const Home = () => {
         {top_cover: topSeller5, top_user: topSellerUser7, top_name: "Courtney Henry", top_price: "$4,403"}
     ];
 
+    const slide_data =[
+        {top_cover: topSeller6, top_user: topSellerUser3, top_name: "Courtney Henry", top_price: "$1,403"},
+        {top_cover: topSeller2, top_user: topSellerUser4, top_name: "Courtney Henry", top_price: "$3,403"},
+        {top_cover: topSeller3, top_user: topSellerUser5, top_name: "Courtney Henry", top_price: "$5,403"},
+        {top_cover: topSeller4, top_user: topSellerUser6, top_name: "Courtney Henry", top_price: "$3,403"},
+        {top_cover: topSeller5, top_user: topSellerUser7, top_name: "Courtney Henry", top_price: "$4,403"}
+    ];
+
+    const slide_hot_bid = [
+            {cover_bide: artWorkWeek2, bide_heartcount: "23", bide_time: '3H : 15M : 50S left', bide_name: "Memescalf#782021", bide_weth: '1.3 WETH', bide_bid: "Highest bid 1/1"},
+            {cover_bide: artWorkWeek3, bide_heartcount: "25", bide_time: '7H : 13M : 50S left', bide_name: "Memescalf#782022", bide_weth: '1.6 WETH', bide_bid: "Highest bid 1/16"},
+            {cover_bide: artWorkWeek1, bide_heartcount: "26", bide_time: '8H : 20M : 50S left', bide_name: "Memescalf#782023", bide_weth: '1.2 WETH', bide_bid: "Highest bid 6/6"},
+            {cover_bide: artWorkWeek4, bide_heartcount: "26", bide_time: '8H : 40M : 50S left', bide_name: "Memescalf#782022", bide_weth: '1.2 WETH', bide_bid: "Highest bid 6/5"}
+    ];
+    const slide_live_auction = [
+        {cover_img: artWorkWeek1, auction_name: "Memescalf#782021", h_count: "24", auc_user1: topSellerUser1, auc_user2: topSellerUser2, auc_user3: topSellerUser3, auction_WETH: "1.2 WETH",  auction_bid: "Highest bid 1/1" },
+        {cover_img: artWorkWeek2, auction_name: "Memescalf#782022", h_count: "27", auc_user1: topSellerUser1, auc_user2: topSellerUser2, auc_user3: topSellerUser3, auction_WETH: "1.3 WETH",  auction_bid: "Highest bid 1/1" },
+        {cover_img: artWorkWeek3, auction_name: "Memescalf#782021", h_count: "30", auc_user1: topSellerUser1, auc_user2: topSellerUser2, auc_user3: topSellerUser3, auction_WETH: "1.7 WETH",  auction_bid: "Highest bid 1/1" },
+        {cover_img: artWorkWeek4, auction_name: "Memescalf#782022", h_count: "36", auc_user1: topSellerUser1, auc_user2: topSellerUser2, auc_user3: topSellerUser3, auction_WETH: "1.6 WETH",  auction_bid: "Highest bid 1/1" }
+    ];
+
+
 
 
     
@@ -190,7 +213,9 @@ const Home = () => {
 
                         <div className="col-sm-12 col-lg-6  home-nft-slider margin-50 ">
                             <div className="bg-lines"></div>
-
+                            <div className="bg-lines1"></div>
+                            <div className="bg-lines2"></div>
+                            
                             <Swiper
                                 style={{ marginTop: 15 }}
                                 spaceBetween={10}
@@ -434,18 +459,13 @@ const Home = () => {
                         slidesPerView={1}
                         navigation={true}
                     >
-                        <SwiperSlide>
-                            <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <LiveAuctions Coverimg={artWorkWeek1} title="Memescalf#782021" heartcount="24" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                        </SwiperSlide>
+                        {
+                            slide_live_auction.map((live_a) =>    
+                             <SwiperSlide>
+                                  <LiveAuctions Coverimg={live_a.cover_img} title={live_a.auction_name} heartcount={live_a.h_count} User1={live_a.auc_user1} User2={live_a.auc_user2} User3={live_a.auc_user3} WETH={live_a.auction_WETH} bid={live_a.auction_bid} isOpenInProfile={false} />
+                             </SwiperSlide>
+                            )
+                        }
 
                     </Swiper>
                 </div>
@@ -489,21 +509,14 @@ const Home = () => {
                         slidesPerView={1}
                         navigation={true}
                     >
+                        {
+                            slide_hot_bid.map((bide_desk) => 
+                            <SwiperSlide>
+                                 <HotBids Coverimg={bide_desk.cover_bide} heartcount={bide_desk.bide_heartcount} time={bide_desk.bide_time} title={bide_desk.bide_name} WETH={bide_desk.bide_weth} bid={bide_desk.bide_bid} isOpenInProfile={false}/>
+                             </SwiperSlide>
+                             )
+                        }
 
-                        <SwiperSlide>
-                            <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" />
-                        </SwiperSlide>
-
-
-                        <SwiperSlide>
-                            <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" />
-                        </SwiperSlide>
                     </Swiper>
                 </div>
             </motion.section>
@@ -551,23 +564,15 @@ const Home = () => {
                             slidesPerView={1}
                             navigation={true}
                         >
+                        
+                        {
+                            slide_data.map((collr_) =>
+                                <SwiperSlide>
+                                    <TopCard topcoverimg={collr_.top_cover} topuserimg={collr_.top_user} title={collr_.top_name} Price={collr_.top_price} />
+                                </SwiperSlide>
+                            )
+                        }
                             
-                            <SwiperSlide>
-                                <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser3} title="Courtney Henry" Price="$1,403" />
-                            </SwiperSlide>
-
-                            <SwiperSlide>
-                                <TopCard topcoverimg={topSeller2} topuserimg={topSellerUser2} title="Courtney Henry" Price="$1,403" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <TopCard topcoverimg={topSeller3} topuserimg={topSellerUser3} title="Courtney Henry" Price="$1,403" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <TopCard topcoverimg={topSeller4} topuserimg={topSellerUser4} title="Courtney Henry" Price="$1,403" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <TopCard topcoverimg={topSeller5} topuserimg={topSellerUser5} title="Courtney Henry" Price="$1,403" />
-                            </SwiperSlide>
                         </Swiper>
                     </div>
                 </div>
@@ -589,140 +594,86 @@ const Home = () => {
                                 view all
                             </button>
                         </div>
+                       
 
                         <div className="col-sm-12 col-lg-8 order-sm-3 order-2 d-flex align-items-center">
-                            <ul className="nav nav-tabs" id="myTab" role="tablist">
-                                <li className="nav-item" role="presentation">
-                                    <a className="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">
-                                        All</a>
-                                </li>
-                                <li className="nav-item" role="presentation">
-                                    <a className="nav-link" id="art-tab" data-toggle="tab" href="#art" role="tab" aria-controls="art" aria-selected="false">
-                                        Art</a>
-                                </li>
-                                <li className="nav-item" role="presentation">
-                                    <a className="nav-link" id="photo-tab" data-toggle="tab" href="#photo" role="tab" aria-controls="photo" aria-selected="false">
-                                        Photography</a>
-                                </li>
-
-                                <li className="nav-item" role="presentation">
-                                    <a className="nav-link" id="games-tab" data-toggle="tab" href="#games" role="tab" aria-controls="games" aria-selected="false">
-                                        Games</a>
-                                </li>
-
-                                <li className="nav-item" role="presentation">
-                                    <a className="nav-link" id="metaverses-tab" data-toggle="tab" href="#metaverses" role="tab" aria-controls="metaverses" aria-selected="false">
-                                        Metaverses</a>
-                                </li>
-
-                                <li className="nav-item" role="presentation">
-                                    <a className="nav-link" id="music-tab" data-toggle="tab" href="#music" role="tab" aria-controls="music" aria-selected="false">
-                                        Music</a>
-                                </li>
-
-                                <li className="nav-item" role="presentation">
-                                    <a className="nav-link" id="memes-tab" data-toggle="tab" href="#memes" role="tab" aria-controls="memes" aria-selected="false">
-                                        Memes</a>
-                                </li>
-                            </ul>
-                            <button className="btn-primary-outline-big mt-0 d-mobile-none quick-explore-filter-buton">
-                                {/* <svg width="15" height="10" viewBox="0 0 15 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fillRule="evenodd" clipRule="evenodd" d="M0 0V1.66667H15V0H0ZM5.83333 10H9.16667V8.33333H5.83333V10ZM12.5 5.83333H2.5V4.16667H12.5V5.83333Z" fill="black" />
-                                </svg> */}
-                                view all
-                            </button>
+                              <QuickExplore />
                         </div>
                     </div>
 
                     <div className="tab-content w-100 d-flex justify-content-center flex-column align-items-center mt-5" id="myTabContent">
                         <div className="tab-pane w-100 fade" id="all" role="tabpanel" aria-labelledby="all-tab">
                             <div className="row">
-                                <LiveAuctions Coverimg={artWorkWeek2} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek1} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek4} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek2} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <HotBids Coverimg={artWorkWeek3} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <HotBids Coverimg={artWorkWeek1} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <HotBids Coverimg={artWorkWeek4} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021" WETH="1.2 WETH" bid="Highest bid 1/1" />
+                            {
+                                live_auction.map((live_a) =>
+                                      <LiveAuctions Coverimg={live_a.cover_img} title={live_a.auction_name} heartcount={live_a.h_count} User1={live_a.auc_user1} User2={live_a.auc_user2} User3={live_a.auc_user3} WETH={live_a.auction_WETH} bid={live_a.auction_bid} isOpenInProfile={false} />
+                                )
+                            }
+                            {
+                                hot_bide.map((bide_desk) => 
+                                     <HotBids Coverimg={bide_desk.cover_bide} heartcount={bide_desk.bide_heartcount} time={bide_desk.bide_time} title={bide_desk.bide_name} WETH={bide_desk.bide_weth} bid={bide_desk.bide_bid} isOpenInProfile={false}/>
+                                )
+                        }
 
                             </div>
                         </div>
                         <div className="tab-pane w-100 fade" id="art" role="tabpanel" aria-labelledby="art-tab">
                             <div className="row">
-                                <LiveAuctions Coverimg={artWorkWeek4} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek5} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek4} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek3} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek1} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek2} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek4} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek5} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
+                            {
+                                live_auction.map((live_a) =>
+                                      <LiveAuctions Coverimg={live_a.cover_img} title={live_a.auction_name} heartcount={live_a.h_count} User1={live_a.auc_user1} User2={live_a.auc_user2} User3={live_a.auc_user3} WETH={live_a.auction_WETH} bid={live_a.auction_bid} isOpenInProfile={false} />
+                                )
+                            }
                             </div>
                         </div>
 
                         <div className="tab-pane w-100 fade" id="photo" role="tabpanel" aria-labelledby="photo-tab">
                             <div className="row">
-                                <LiveAuctions Coverimg={artWorkWeek6} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek4} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek5} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek2} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek1} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek5} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek6} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek2} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
+                            {
+                                live_auction.map((live_a) =>
+                                      <LiveAuctions Coverimg={live_a.cover_img} title={live_a.auction_name} heartcount={live_a.h_count} User1={live_a.auc_user1} User2={live_a.auc_user2} User3={live_a.auc_user3} WETH={live_a.auction_WETH} bid={live_a.auction_bid} isOpenInProfile={false} />
+                                )
+                            }
                             </div>
                         </div>
 
 
                         <div className="tab-pane w-100 fade" id="games" role="tabpanel" aria-labelledby="games-tab">
                             <div className="row">
-                                <LiveAuctions Coverimg={artWorkWeek4} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek3} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek1} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek4} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek2} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek3} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek5} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek1} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
+                            {
+                                live_auction.map((live_a) =>
+                                      <LiveAuctions Coverimg={live_a.cover_img} title={live_a.auction_name} heartcount={live_a.h_count} User1={live_a.auc_user1} User2={live_a.auc_user2} User3={live_a.auc_user3} WETH={live_a.auction_WETH} bid={live_a.auction_bid} isOpenInProfile={false} />
+                                )
+                            }
                             </div>
                         </div>
 
                         <div className="tab-pane w-100 fade" id="metaverses" role="tabpanel" aria-labelledby="metaverses-tab">
                             <div className="row">
-                                <LiveAuctions Coverimg={artWorkWeek1} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek2} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek4} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek3} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek1} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek5} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek2} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek1} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
+                            {
+                                live_auction.map((live_a) =>
+                                      <LiveAuctions Coverimg={live_a.cover_img} title={live_a.auction_name} heartcount={live_a.h_count} User1={live_a.auc_user1} User2={live_a.auc_user2} User3={live_a.auc_user3} WETH={live_a.auction_WETH} bid={live_a.auction_bid} isOpenInProfile={false} />
+                                )
+                            }
                             </div>
                         </div>
                         <div className="tab-pane w-100 fade" id="music" role="tabpanel" aria-labelledby="music-tab">
                             <div className="row">
-                                <LiveAuctions Coverimg={artWorkWeek5} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek4} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek3} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek2} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek1} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek6} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek5} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek2} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
+                            {
+                                live_auction.map((live_a) =>
+                                      <LiveAuctions Coverimg={live_a.cover_img} title={live_a.auction_name} heartcount={live_a.h_count} User1={live_a.auc_user1} User2={live_a.auc_user2} User3={live_a.auc_user3} WETH={live_a.auction_WETH} bid={live_a.auction_bid} isOpenInProfile={false} />
+                                )
+                            }
                             </div>
                         </div>
 
                         <div className="tab-pane w-100 fade" id="memes" role="tabpanel" aria-labelledby="memes-tab">
                             <div className="row">
-                                <LiveAuctions Coverimg={artWorkWeek2} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek3} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek4} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek5} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek6} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek1} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek2} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                <LiveAuctions Coverimg={artWorkWeek3} heartcount="24" title="Memescalf#782021" User1={topSellerUser1} User2={topSellerUser2} User3={topSellerUser3} WETH="1.2 WETH" bid="Highest bid 1/1" />
+                            {
+                                live_auction.map((live_a) =>
+                                      <LiveAuctions Coverimg={live_a.cover_img} title={live_a.auction_name} heartcount={live_a.h_count} User1={live_a.auc_user1} User2={live_a.auc_user2} User3={live_a.auc_user3} WETH={live_a.auction_WETH} bid={live_a.auction_bid} isOpenInProfile={false} />
+                                )
+                            }
                             </div>
                         </div>
                     </div>

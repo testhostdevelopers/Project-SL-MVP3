@@ -436,7 +436,8 @@ footer section .footer-in-email {
 	padding: 0 20px;
 	height: 50px;
 	font-size: 14px;
-	background-color: var(--footer-input-bg);
+	background-color: var(--bg-main-white);
+    color: var(--black-color);
 	width: 225px;
 	box-shadow: 0px 25px 40px rgba(0, 0, 0, 0.01);
 	border-radius: 24px;
@@ -764,26 +765,50 @@ footer section .footer-in-email {
 .swiper-button-prev.swiper-button-disabled, .swiper-button-next.swiper-button-disabled{
     display: none;
 }
-
-.swiper-button-prev, .swiper-button-next{
-    width: 38px !important;
-    height: 38px !important;
+.slide .swiper-button-next{
+    width: 45px !important;
+    /* height: 38px !important; */
     border-radius: 50% !important;
-    background: #E1E5F0 !important;
+    /* background: #E1E5F0 !important; */
     z-index: 9 !important;
+    background-image: url(../img/icons/custom/Group_1430.png)!important;
+}
+
+.swiper-button-next{
+    width: 45px !important;
+    /* height: 38px !important; */
+    border-radius: 50% !important;
+    /* background: #E1E5F0 !important; */
+    z-index: 9 !important;
+    background-image: url(../img/icons/custom/Group_1430.png)!important;
+}
+.swiper-button-prev{
+    width: 45px !important;
+    /* height: 38px !important; */
+    border-radius: 50% !important;
+    /* background: #E1E5F0 !important; */
+    z-index: 9 !important;
+    background-image: url(../img/icons/custom/Group_1650.png)!important;
+}
+.swiper-button-next:after, .swiper-container-rtl .swiper-button-prev:after{
+    display: none;
+}
+.swiper-button-prev:after, .swiper-container-rtl .swiper-button-next:after{
+    display: none;
 }
 
 .swiper-button-next:after{
     font-size: 20px !important;
-    content: "→" !important;
+    /* content: "→" !important; */
+    /* background-image: url(../img/icons/custom/Group_1430.png)!important; */
     color: var(--black-color);
 }
 
-.nft-start .swiper-button-prev:after{
+/* .nft-start .swiper-button-prev:after{
     font-size: 20px !important;
     content: "\2190" !important;
     color: var(--black-color);
-}
+} */
 small.text-secondary {
 	color: #979797 !important;
 }
@@ -871,7 +896,7 @@ font-size: 12px;
     padding: 10px !important;
 }
 
-.nft-start .swiper-container::before{
+/* .nft-start .swiper-container::before{
     content: '';
     position: absolute;
     width: 95%;
@@ -891,7 +916,7 @@ font-size: 12px;
     border-radius: 15px;
     top: -9px;
     right: -15px;
-}
+} */
 
 .nft-start .bg-lines{
     content: '';
@@ -901,7 +926,27 @@ font-size: 12px;
     border: solid 1px var(--pink-color);
     border-radius: 15px;
     top: -20px;
-    right: -30px;
+    right: -35px;
+}
+.nft-start .bg-lines1{
+    content: '';
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    border: solid 1px var(--pink-color);
+    border-radius: 15px;
+    top: -10px;
+    right: -20px;
+}
+.nft-start .bg-lines2{
+    content: '';
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    border: solid 1px var(--pink-color);
+    border-radius: 15px;
+    top: 5px;
+    right: -2px;
 }
 
 
@@ -982,6 +1027,7 @@ footer .ant-select:not(.ant-select-customize-input) .ant-select-selector{
 .swiper-button-prev::after{
     font-size: 20px !important;
     content: "←" !important;
+    /* background-image: url(../img/icons/custom/Group_1430.png); */
     color: var(--black-color);
 }
 
@@ -1207,20 +1253,27 @@ span.ant-select-selection-item {
 	font-size: 13px;
 }
 .ant-select-item-option-selected:not(.ant-select-item-option-disabled)::after{
-    content: '\2713';
+    content: ' ';
     position: absolute;
     width: 18px;
     height: 18px;
-    font-size: 12px;
-    border-radius: 50%;
-    background-color: #6300FF;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    right: 10px;
+    background: url("../../assets/img/custom/tick.svg") no-repeat center center;
+    background-size: 100% auto;
+    right: 15px;
     top: 50%;
     transform: translate(0, -50%);
+    padding: 0;
+    text-align: center;
+}
+.dark-md div.ant-select-item-option-active,
+.dark-md div.ant-select-item-option-selected{
+    background-color: #000;
+    color: #fff;
+}
+.light-md div.ant-select-item-option-active,
+.light-md div.ant-select-item-option-selected{
+    background-color: #e6f7ff;
+    color: #000;
 }
 
 .signInActiveBtn{

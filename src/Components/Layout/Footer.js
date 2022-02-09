@@ -79,10 +79,10 @@ const Footer = () => {
                                                 <defs>
                                                     <filter id="filter0_d" x="0.996094" y="0.857422" width="6.9613" height="6.28588" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
                                                         <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                                                        <feOffset dy="2" />
-                                                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0" />
-                                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+                                                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                                                                <feOffset dy="2" />
+                                                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0" />
+                                                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
                                                         <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
                                                     </filter>
                                                     <linearGradient id="paint0_linear" x1="0.996094" y1="0.857422" x2="0.996094" y2="5.1433" gradientUnits="userSpaceOnUse">

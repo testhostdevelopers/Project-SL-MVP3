@@ -6,21 +6,17 @@ import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
 import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
-import profileBanner from "../assets/img/custom/profileBanner.png";
-import userProfilePictures from "../assets/img/custom/userProfilePictures.png";
 import LiveAuctions from '../Components/LiveAuctions';
-import ActivityNumberCard from '../Components/ActivityNumberCard';
 import TopCard from '../Components/TopCard';
-import ActivityCard from "../assets/img/custom/activity-cardonly.png";
-import FillLabel from "../assets/img/icons/custom/fill-label.svg";
 import EarthIcon from "../assets/img/icons/custom/earth.svg";
 import ReportPopup from '../Components/Popup/ReportPopup';
-import Activity from './Activity';
+import Activitytab from "../Components/Tabs/Activitytab";
 
 
 import { motion } from "framer-motion"
-import { Menu, Dropdown, Tabs, Button } from 'antd';
+import { Menu, Dropdown, Tabs } from 'antd';
 import { Link } from 'react-router-dom';
+import ProfileLinks from '../Components/ProfileLinks';
 
 
 
@@ -78,7 +74,6 @@ const Profile = (props) => {
                     setButtonText("Edit Cover");
                 }
             };
-            
             
             reader.readAsDataURL(file);
         }
@@ -201,45 +196,9 @@ const Profile = (props) => {
                                                         <path clipRule="evenodd" clipRule="evenodd" d="M3.75 6.75H7.5V11.25H10.5V6.75H14.25L9 1.5L3.75 6.75ZM15 9V14.25H3V9H1.5V15C1.5 15.4142 1.83579 15.75 2.25 15.75H15.75C16.1642 15.75 16.5 15.4142 16.5 15V9H15Z" fill="black" />
                                                     </svg>
                                                 </button>
-
-                                                <div className="nft-share-icons">
-                                                    <h3>Share link to this page</h3>
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#0">
-                                                                <span>
-                                                                    <i className="fab fa-twitter"></i>
-                                                                </span>
-                                                                Twitter
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#0">
-                                                                <span>
-                                                                    <i className="fab fa-facebook-f"></i>
-                                                                </span>
-                                                                Facebook
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#0">
-                                                                <span>
-                                                                    <i className="fab fa-telegram-plane"></i>
-                                                                </span>
-                                                                Telegram
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#0">
-                                                                <span>
-                                                                    <i className="fas fa-envelope"></i>
-                                                                </span>
-                                                                Email
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                <ProfileLinks />
                                             </div>
+                                            
                                             <Dropdown overlay={singleoption}>
                                                 <button className="bg-white border-gray select">
                                                     <svg width="14" height="4" viewBox="0 0 14 4" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -297,9 +256,7 @@ const Profile = (props) => {
                                     </TabPane>
 
                                     <TabPane tab="Activity" key="5">
-                                        <div className='profile-Activity'>
-                                            <Activity />
-                                        </div>
+                                            <Activitytab />
                                     </TabPane>
 
                                     <TabPane tab="Following (4)" key="6">

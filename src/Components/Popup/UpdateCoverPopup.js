@@ -21,12 +21,13 @@ const UpdateCoverPopup = (props) => {
                     <h3 className="">Update cover</h3>
                     <div className="popup-close-btn-outline cursor-pointer" onClick={() => { setUpdateCoverPopup(false); document.body.style.overflow = "scroll"; }}>
                         <img src={closeicon}/>
-                    </div>
-                </div>
+                    </div> 
+                </div> 
                 <p className="sub-heading">Upload new cover for your collection. We recommend to upload images in 1440x260 resolution.</p>
 
                 <div className="upload-file-field">
                     <input type="file" placeholder="Choose image" className="" />
+                    
                     <label className="btn-ping w-100 mb-0">Choose image</label>
                 </div>
 

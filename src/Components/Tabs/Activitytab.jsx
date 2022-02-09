@@ -1,11 +1,12 @@
-import React,{useState, useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import ActivityNumberCard from '../ActivityNumberCard';
+import myimg from '../../assets/img/icons/custom/fill-label.svg';
+import ActivityCard from '../../assets/img/custom/activity-cardonly.png';
 import { Tabs } from 'antd';
-
 
 const { TabPane } = Tabs;
 
-export default function Activitytab() {
+const Activitytab = () => {
 
 const [listing, Setlisting] = useState('');
 const [error_data, seterror_data] = useState('');
@@ -68,16 +69,8 @@ useEffect(() => {
     }
 }, [filterData]);
 
-
-    const variants = {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1 },
-    }
-
-
   return <div>
-      <Tabs defaultActiveKey="1" className="activity-container">
-                                <TabPane tab="All" key="1" className="tab-pane">
+     
                                 <div className="topSeller">
                                         <div className="">
                                             <div className="w-100 d-flex justify-content-end">
@@ -99,17 +92,16 @@ useEffect(() => {
                                                             {listing === 'Burn' ? <h6>Burn</h6> : ''}
                                                             {listing === 'Bids' ? <h6>Bids</h6> : ''}
                                                             {listing === 'Likes' ? <h6>Likes</h6> : ''}
-                                                            {listing === 'Followings' ? <h6>Followings</h6> : ''}
+                                                            {listing === 'Followings' ? <h6>Likes</h6> : ''}
                                                         </div>
                                                 <div className="row align-items-start">
                                                     <div className="d-flex col-lg-8 activity activity-number-card-left">
                                                         
                                                     <h5 id='not_match' style={{color: "red"}}>{error_data}</h5>
 
-                                                        
                                                     {
-                                                       filterData.map((filter_name) =>
-                                                         <ActivityNumberCard activitynumbercardimg={ActivityCard} FillLabel={FillLabel} title="123456" filter={listing} pixelpunks="pixelpunks" eth="0.05 ETH" seenstatus="Just now"/>
+                                                       filterData.map(() =>
+                                                         <ActivityNumberCard activitynumbercardimg={ActivityCard} title="123456" FillLabel={myimg} filter={listing} pixelpunks="pixelpunks" eth="0.05 ETH" seenstatus="Just now"/>
                                                       )
                                                     }
                                           
@@ -122,10 +114,6 @@ useEffect(() => {
                                                             </div>
                                                             <div className="filters-listing-button-list">
                                 
-                                                                    {
-                                                                       
-                                                                    }
-                                    
                                                                 <button className={`btn-light mr-2 mt-2 bg-white ${listing === 'Listing' ? 'active' : ''} `} onClick={() => findFilter('Listing')} >
                                                                     <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                         <path d="M0 5.18711V1.65443C0 1.27008 0.311582 0.958496 0.695937 0.958496H4.40931C4.59388 0.958496 4.77089 1.03182 4.90141 1.16233L9.425 5.68592C9.69678 5.9577 9.69678 6.39834 9.425 6.67012L5.87761 10.2175C5.60897 10.4861 5.17454 10.4897 4.90154 10.2255L0.211967 5.68721C0.0764892 5.55611 0 5.37564 0 5.18711Z" fill="#0E0E0E" />
@@ -203,10 +191,9 @@ useEffect(() => {
                                             </div>
                                         </div>
                                     </div>
-                                </TabPane>
-                            </Tabs>
+                            
 
   </div>;
 };
 
-
+export default Activitytab;

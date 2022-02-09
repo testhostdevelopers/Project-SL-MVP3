@@ -13,11 +13,6 @@ import Token from './Pages/Token';
 import Cryptoloria from './Pages/Cryptoloria';
 import Explore from './Pages/Explore';
 import Collection from './Pages/Collection';
-// import FullScreenImage from './Components/Popup/FullScreenImage';
-// import CreateCollectibleMultiplePopup from './Components/Popup/CreateCollectibleMultiplePopup';
-// import FinishedCollectiblePopup from './Components/Popup/FinishedCollectiblePopup';
-// import PlaceABidFollowPopup from './Components/Popup/PlaceABidFollowPopup';
-// import CoinConverPopup from './Components/Popup/CoinConverPopup';
 import UpcomingCollections from './Pages/UpcomingCollections';
 import TokenPage from './Pages/TokenPage';
 import Home from './Pages/Home';
@@ -33,7 +28,7 @@ import CreateCollectibleEdit from './Pages/CreateCollectibleEdit';
 
 import 'swiper/swiper-bundle.css';
 import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Activitytab  from './Components/Tabs/Activitytab';
+
 
 const App = () => {
     const [pImage, setpImage] = useState('')
@@ -80,10 +75,11 @@ const App = () => {
                     <Route path="/activity" component={Activity} exact />
                     <Route path="/following" component={Following} exact />
                     <Route path="/search" component={search} exact />
-                    <Route path="/Activetab" component={Activitytab} exact />
+                    
                 </Switch>
                 <Footer />
             </Router>
+            
         </>
     )
 }

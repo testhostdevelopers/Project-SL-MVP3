@@ -1,7 +1,4 @@
-import React, { useState, useEffect } from "react";
-import LiveAuctions from '../Components/LiveAuctions';
-import TopCard from '../Components/TopCard';
-import ActivityNumberCard from '../Components/ActivityNumberCard';
+import React, { useState } from "react";
 import HotBids from '../Components/HotBids';
 import { motion } from "framer-motion"
 import { Menu, Dropdown, Tabs, Select} from 'antd';
@@ -11,37 +8,30 @@ import UpdateProfilePicPopup from "../Components/Popup/UpdateProfilePicPopup";
 
 import addicon from "../assets/img/custom/add-icon.png";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
-import ActivityCard from "../assets/img/custom/activity-cardonly.png";
 import artWorkWeek2 from "../assets/img/custom/artWorkWeek2.png";
 import artWorkWeek3 from "../assets/img/custom/artWorkWeek3.png";
 import artWorkWeek4 from "../assets/img/custom/artWorkWeek4.png";
-import menuline from "../assets/img/custom/menu-line-icon.png";
-import FillLabel from "../assets/img/icons/custom/fill-label.svg";
-import categoryicon from "../assets/img/custom/category-icon.svg";
 import propertiesicon from "../assets/img/custom/properties.svg";
-import flashlight from "../assets/img/custom/flashlight-line.png";
-import Priceicon from "../assets/img/custom/u_dollar-alt.png";
 import CollectionBannerBg from "../assets/img/custom/Collection-banner-bg.png";
 import userProfilePictures from "../assets/img/custom/userProfilePictures.png";
-
 import FilterSort from '../Components/FilterSort';
 import FilterCategory from '../Components/FilterCategory';
 import FilterCollections from '../Components/FilterCollections';
 import Filtersale from '../Components/Filtersale';
 import FilterRange from '../Components/FilterRange';
 import FilterProperties from '../Components/FilterProperties';
-import Profile from "./Profile";
-import Activity from "./Activity";
+import Activitytab from "../Components/Tabs/Activitytab";
+import ProfileLinks from "../Components/ProfileLinks";
+
+
 
 const { TabPane } = Tabs;
 const { Option } = Select;
 
 const Collection = (props) => {
     const [ReportPopups, setReportPopup] = useState(false);
-    //const [singlePopup, setSinglePopup] = useState(false);
     const [CoverPopup, setUpdateCoverPopup] = useState(false);
     const [profilePopup, setprofilePopup] = useState(false);
-
     const [filterSort, setFilterSort] = useState(false);
     const [filterCategory, setFilterCategory] = useState(false);
     const [filterCollections, setFilterCollections] = useState(false);
@@ -126,7 +116,7 @@ const Collection = (props) => {
                                     </div>
 
                                     <div className="mt-4 d-flex justify-content-between align-items-center w-auto">
-                                        {/* <button className="bg-white border-gray edit-profile"><b>Edit Profile</b></button> */}
+
 
                                         <div className='share-profile'>
                                                 <button className="bg-white border-gray profile-upload" >
@@ -135,48 +125,12 @@ const Collection = (props) => {
                                                     </svg>
                                                 </button>
 
-                                                <div className="nft-share-icons">
-                                                    <h3>Share link to this page</h3>
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#0">
-                                                                <span>
-                                                                    <i className="fab fa-twitter"></i>
-                                                                </span>
-                                                                Twitter
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#0">
-                                                                <span>
-                                                                    <i className="fab fa-facebook-f"></i>
-                                                                </span>
-                                                                Facebook
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#0">
-                                                                <span>
-                                                                    <i className="fab fa-telegram-plane"></i>
-                                                                </span>
-                                                                Telegram
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#0">
-                                                                <span>
-                                                                    <i className="fas fa-envelope"></i>
-                                                                </span>
-                                                                Email
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                <ProfileLinks />
                                             </div>
 
 
                                         <Dropdown overlay={singleoption}>
-                                        <button className="bg-white border-gray select">
+                                         <button className="bg-white border-gray select">
                                             <svg width="14" height="4" viewBox="0 0 14 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path clipRule="evenodd" clipRule="evenodd" d="M1.75 0.5C0.925 0.5 0.25 1.175 0.25 2C0.25 2.825 0.925 3.5 1.75 3.5C2.575 3.5 3.25 2.825 3.25 2C3.25 1.175 2.575 0.5 1.75 0.5ZM12.25 0.5C11.425 0.5 10.75 1.175 10.75 2C10.75 2.825 11.425 3.5 12.25 3.5C13.075 3.5 13.75 2.825 13.75 2C13.75 1.175 13.075 0.5 12.25 0.5ZM5.5 2C5.5 1.175 6.175 0.5 7 0.5C7.825 0.5 8.5 1.175 8.5 2C8.5 2.825 7.825 3.5 7 3.5C6.175 3.5 5.5 2.825 5.5 2Z" fill="black" />
                                             </svg>
@@ -292,9 +246,7 @@ const Collection = (props) => {
                                     </div>
                                 </TabPane>
                                 <TabPane tab="Activity" key="2">
-
-                                    <Activity />
-
+                                    <Activitytab />
                                 </TabPane>
                             </Tabs>
 

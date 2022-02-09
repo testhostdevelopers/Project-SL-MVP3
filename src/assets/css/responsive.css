@@ -819,8 +819,30 @@
         width: auto !important;
         height: auto !important;
         border-radius: 15px !important;
-        top: -10px !important;
-        right: -7px !important;
+        top: -14px !important;
+        right: -8px !important;
+        left: 62px;
+        bottom: 30px;
+    }
+    .nft-start .bg-lines1 {
+        content: '' !important;
+        position: absolute !important;
+        width: auto !important;
+        height: auto !important;
+        border-radius: 15px !important;
+        top: -4px !important;
+        right: 0px !important;
+        left: 50px;
+        bottom: 20px;
+    }
+    .nft-start .bg-lines2 {
+        content: '' !important;
+        position: absolute !important;
+        width: auto !important;
+        height: auto !important;
+        border-radius: 15px !important;
+        top: 5px !important;
+        right: 8px !important;
         left: 40px;
         bottom: 10px;
     }
@@ -864,7 +886,7 @@
 
     .cryptoioria-banner-container::after{
         background-size: contain !important;
-        height: 700px ​!important;
+        height: 700px!important;
         background-position: bottom !important;
     }
     div.cryptoloria-page {
