@@ -3,7 +3,6 @@ import artWorkWeekOne from "../assets/img/custom/artWorkWeekOne.png";
 import userTick from "../assets/img/custom/userTick.png";
 import AlienMonster from "../assets/img/icons/custom/alien-monster.svg";
 import RainbowIcon from "../assets/img/icons/custom/rainbow.svg";
-import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
 import FinishedCollectiblePopup from '../Components/Popup/PlaceABidPopup';
 import PlaceABidFollowPopup from '../Components/Popup/PlaceABidFollowPopup';
 import ErrorPopup from '../Components/Popup/ErrorPopup';
@@ -17,6 +16,10 @@ import { Menu, Dropdown, Select } from 'antd';
 import { motion } from "framer-motion"
 import Buytab from '../Components/Tabs/Buytab';
 import ArtworkWeek from './ArtworkWeek';
+import FilterProperties from '../Components/FilterProperties';
+import FilterCategory from '../Components/FilterCategory';
+import BuyHistory from '../Components/BuyCopmponent/BuyHistory';
+import BuyAuction from '../Components/BuyCopmponent/BuyAuction';
 
 const Buy = () => {
     const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
@@ -56,7 +59,21 @@ const Buy = () => {
     const variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1 },
-    }
+    };
+
+    const properties = [
+        {pr_name: 'Eyes', pr_subname: 'Empty'},
+        {pr_name: 'Ears', pr_subname: 'Empty'},
+        {pr_name: 'Mouth', pr_subname: 'Peircing'},
+        {pr_name: 'Body', pr_subname: 'Green'},
+        {pr_name: 'Neck', pr_subname: 'Empty'},
+        {pr_name: 'Head', pr_subname: 'Black Wreath'}
+    ];
+
+    const category = [
+        {cat_img: RainbowIcon, cat_title: 'Art'},
+        {cat_img: AlienMonster, cat_title: 'Metaverse'}
+    ]
 
 
     return (
@@ -111,14 +128,17 @@ const Buy = () => {
                                         </Dropdown>
                                     </div>
                                 </div>
-                                
 
-                        {/*           Artwork week components                */}
+
+                        {/*      /////////     Artwork week components    /////////   */}
                                <ArtworkWeek />
 
                                 
                                 <div className="mt-5">
+
+                        {/*      /////////     Buytab components    /////////   */}
                                 <Buytab />
+
                                     <div className="tab-content artwork-tab-content" id="pills-tabContent">
                                         <div className="tab-pane fade  show active" id="pills-Details" role="tabpanel" aria-labelledby="pills-details-tab">
                                             <div className="details-tab-block mb-2">
@@ -136,65 +156,23 @@ const Buy = () => {
                                                 <b className="text-secondary d-block mb-2">Properties</b>
                                                 <ul className="owner-details-list">
                                                     {
-
+                                                      properties.map((pr_data, pr_) =>  
+                                                           <li key={pr_}><a href="#0">{pr_data.pr_name}<span>{pr_data.pr_subname}</span></a></li>
+                                                         )
                                                     }
-                                                    <li>
-                                                        <a href="#0">
-                                                            Eyes
-                                                            <span>Empty</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#0">
-                                                            Ears
-                                                            <span>Empty</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#0">
-                                                            Mouth
-                                                            <span>Peircing</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#0">
-                                                            Body
-                                                            <span>Green</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#0">
-                                                            Neck
-                                                            <span>Empty</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#0">
-                                                            Head
-                                                            <span>Black Wreath</span>
-                                                        </a>
-                                                    </li>
+                                        
                                                 </ul>
                                             </div>
                                             <div className="details-tab-block">
                                                 <b className="text-secondary d-block mb-2">Category</b>
                                                 <ul className="category-btn-list">
-                                                    <li>
-                                                        <a href="#0">
-                                                            <span>
-                                                                <img src={RainbowIcon}/>
-                                                            </span>
-                                                            Art
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#0">
-                                                            <span>
-                                                                <img src={AlienMonster}/>
-                                                            </span>
-                                                            Metaverse
-                                                        </a>
-                                                    </li>
+
+                                                    {
+                                                        category.map((categ, cat_k) =>
+                                                             <li key={cat_k}><a href="#0"><span><img src={categ.cat_img}/></span>{categ.cat_title}</a></li>
+                                                        )
+                                                    }
+
                                                 </ul>
                                             </div>
                                         </div>
@@ -238,125 +216,22 @@ const Buy = () => {
                                                 </div>
                                             </div>
                                         </div>
+                                        
+
+
                                         <div className="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                            <div className="w-100 d-flex justify-content-between mb-3">
-                                                <div className="d-flex">
-                                                    <div className="user-img"><img src={userTick} width="36" alt="" /></div>
-                                                    <div className="ml-4">
-                                                        <div><span className="color-gray">Listen 1 edition for </span><b>0.024 ETH</b></div>
-                                                        <div><span className="color-gray">By </span><b>Mad Scientist</b><span className="color-gray"> 1 hour ago</span></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="w-100 d-flex justify-content-between mb-3">
-                                                <div className="d-flex">
-                                                    <div className="user-img"><img src={userTick} width="36" alt="" /></div>
-                                                    <div className="ml-4">
-                                                        <div><span className="color-gray">Listen 1 edition for </span><b>0.024 ETH</b></div>
-                                                        <div><span className="color-gray">By </span><b>Mad Scientist</b><span className="color-gray"> 1 hour ago</span></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="w-100 d-flex justify-content-between mb-3">
-                                                <div className="d-flex">
-                                                    <div className="user-img"><img src={userTick} width="36" alt="" /></div>
-                                                    <div className="ml-4">
-                                                        <div><span className="color-gray">Listen 1 edition for </span><b>0.024 ETH</b></div>
-                                                        <div><span className="color-gray">By </span><b>Mad Scientist</b><span className="color-gray"> 1 hour ago</span></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="w-100 d-flex justify-content-between mb-3">
-                                                <div className="d-flex">
-                                                    <div className="user-img"><img src={userTick} width="36" alt="" /></div>
-                                                    <div className="ml-4">
-                                                        <div><span className="color-gray">Listen 1 edition for </span><b>0.024 ETH</b></div>
-                                                        <div><span className="color-gray">By </span><b>Mad Scientist</b><span className="color-gray"> 1 hour ago</span></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="w-100 d-flex justify-content-between mb-3">
-                                                <div className="d-flex">
-                                                    <div className="user-img"><img src={userTick} width="36" alt="" /></div>
-                                                    <div className="ml-4">
-                                                        <div><span className="color-gray">Listen 1 edition for </span><b>0.024 ETH</b></div>
-                                                        <div><span className="color-gray">By </span><b>Mad Scientist</b><span className="color-gray"> 1 hour ago</span></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="w-100 d-flex justify-content-between mb-3">
-                                                <div className="d-flex">
-                                                    <div className="user-img"><img src={userTick} width="36" alt="" /></div>
-                                                    <div className="ml-4">
-                                                        <div><span className="color-gray">Listen 1 edition for </span><b>0.024 ETH</b></div>
-                                                        <div><span className="color-gray">By </span><b>Mad Scientist</b><span className="color-gray"> 1 hour ago</span></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="w-100 d-flex justify-content-between mb-3">
-                                                <div className="d-flex">
-                                                    <div className="user-img"><img src={userTick} width="36" alt="" /></div>
-                                                    <div className="ml-4">
-                                                        <div><span className="color-gray">Listen 1 edition for </span><b>0.024 ETH</b></div>
-                                                        <div><span className="color-gray">By </span><b>Mad Scientist</b><span className="color-gray"> 1 hour ago</span></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="w-100 d-flex justify-content-between mb-3">
-                                                <div className="d-flex">
-                                                    <div className="user-img"><img src={userTick} width="36" alt="" /></div>
-                                                    <div className="ml-4">
-                                                        <div><span className="color-gray">Listen 1 edition for </span><b>0.024 ETH</b></div>
-                                                        <div><span className="color-gray">By </span><b>Mad Scientist</b><span className="color-gray"> 1 hour ago</span></div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                              <BuyHistory />
+
+                                            
                                         </div>
                                     </div>
 
                                     <div className="tab-pane-bottom-solid"></div>
                                 </div>
 
-
-                                <div className="d-flex mt-4 justify-content-center mt-5 buy-font buy-highest-bid-block">
-                                    <div className="pr-3 border-right buy-highest-bid-block-left">
-                                        <span className="text-secondary">Highest bid by </span><span><b> The first of art</b></span>
-                                        <div className="d-flex mt-2">
-                                            <div className="user-img">
-                                                <img src={topSellerUser4} width="42" alt="" />
-                                            </div>
-                                            <div className="ml-3">
-                                                <h5 className="m-1"><b>0.066 wETH</b></h5>
-                                                <div className="text-secondary">~$261</div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="pl-3 buy-highest-bid-block-right">
-                                        <div className="text-secondary">Auction ends in</div>
-                                        <div className="d-flex mt-3">
-                                            <div className="mr-3">
-                                                <h5 className="mb-1"><b>0</b></h5>
-                                                <div className="text-secondary">Days</div>
-                                            </div>
-
-                                            <div className="mr-3">
-                                                <h5 className="mb-1"><b>9</b></h5>
-                                                <div className="text-secondary">Hours</div>
-                                            </div>
-
-                                            <div className="mr-3">
-                                                <h5 className="mb-1"><b>6</b></h5>
-                                                <div className="text-secondary">Minutes</div>
-                                            </div>
-
-                                            <div className="mr-3">
-                                                <h5 className="mb-1"><b>21</b></h5>
-                                                <div className="text-secondary">Seconds</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            {/*  //////////       Buy Auction Data         ////////  */}
+                            <BuyAuction />
+                                
 
                                 <div className="row d-flex justify-content-center mt-5 action-btn buy-highest-bid-block-btn">
                                     <div className="col-sm-12 col-lg-8 d-flex">
