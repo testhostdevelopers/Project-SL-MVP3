@@ -24,6 +24,8 @@ export default function FilterRange ({setFilterSort, filterSort,filterCategory,f
     })
   }
 
+  const select_filer = ['ETH', 'WETH', 'BTC', 'DOGE'];
+
   
   return (
     <li>
@@ -50,10 +52,11 @@ export default function FilterRange ({setFilterSort, filterSort,filterCategory,f
               </span>
 
               <Select className="section-select-filter" defaultValue="ETH">
-                  <Option value="ETH">ETH</Option>
-                  <Option value="WETH">WETH</Option>
-                  <Option value="BTC">BTC</Option>
-                  <Option value="DOGE">DOGE</Option>
+                {
+                  select_filer.map((x, y) =>
+                        <option key={y}>{x}</option>
+                  )
+                }
               </Select>
           </div>
 
@@ -62,10 +65,11 @@ export default function FilterRange ({setFilterSort, filterSort,filterCategory,f
                 <input type="text" placeholder="0"/>
               </span>
               <Select className="section-select-filter" defaultValue="ETH">
-                  <Option value="ETH">ETH</Option>
-                  <Option value="WETH">WETH</Option>
-                  <Option value="BTC">BTC</Option>
-                  <Option value="DOGE">DOGE</Option>
+              {
+                  select_filer.map((x, y) =>
+                    <option key={y}>{x}</option>
+                  )
+                }
               </Select>
           </div>
 

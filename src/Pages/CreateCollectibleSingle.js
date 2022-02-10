@@ -3,18 +3,17 @@ import unlock from "../assets/img/icons/custom/unlock.svg";
 import sonsuz from "../assets/img/icons/custom/open_p.png";
 import plus from "../assets/img/icons/custom/plus.svg";
 import darkcircle from "../assets/img/icons/custom/darkcircle.svg";
+import starticon from '../assets/img/icons/custom/star_icon.png';
 import priceP from "../assets/img/icons/custom/price_p.svg";
-
-import {
-    Link
-} from "react-router-dom";
+import {Link} from "react-router-dom";
 import CreateCollectibleMultiplePopup from '../Components/Popup/CreateCollectibleMultiplePopup';
 import { Select } from 'antd';
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Keyboard, Pagination, Navigation } from "swiper/core";
 import { motion } from "framer-motion"
-
-const { Option } = Select;
+import SingleCollectibleDetails from './SingleCollectibleDetails';
+import SingleChooesColl from '../Components/Collection/SingleChooesColl';
+// const { Option } = Select;
 
 SwiperCore.use([Keyboard, Pagination, Navigation]);
 
@@ -49,6 +48,16 @@ const CreateCollectibleSingle = () => {
 
     const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
     console.log(filesize, "setfilesize");
+
+    const price_one = ['ETH', 'BTC', 'USDC', 'Starlight', 'ASH', 'ATRI', 'FIRST'];
+    
+    const single_call = [
+        {myimg: starticon, title: 'STARLIGHT', dass: 'SLX'},
+        {myimg: darkcircle, dass: '---'},
+        {myimg: darkcircle, dass: '---'},
+        {myimg: darkcircle, dass: '---'},
+        {myimg: darkcircle, dass: '---'}
+    ]
 
     return (
         <>
@@ -128,14 +137,11 @@ const CreateCollectibleSingle = () => {
                                             <span className="color-gray">
                                                 <div className="d-flex border">
                                                     <input placeholder="0" style={{ maxWidth: "50px" }} />
-                                                    <Select className="section-select-filter ml-0" defaultValue="eth">
-                                                        <Option value="eth">ETH</Option>
-                                                        <Option value="btc">BTC</Option>
-                                                        <Option value="usdc">USDC</Option>
-                                                        <Option value="sttarligh">Starlight</Option>
-                                                        <Option value="ash">ASH</Option>
-                                                        <Option value="atri">ATRI</Option>
-                                                        <Option value="first">FIRST</Option>
+                                                    <Select className="section-select-filter ml-0" defaultValue="ETH">
+                                                    {
+                                                        price_one.map( (x,y) => 
+                                                        <option key={y}>{x}</option> )
+                                                    }
                                                     </Select>
                                                 </div>
                                             </span>
@@ -180,7 +186,7 @@ const CreateCollectibleSingle = () => {
                                                 />
                             </div>
                         </div>
-
+                            {/* <SingleChooesColl /> */}
                         <div className="position-relative col-sm-12">
                             <div className="mt-3 mb-4">
                                 {/* <p className="color-gray">Markdown is supported.</p> */}
@@ -194,131 +200,28 @@ const CreateCollectibleSingle = () => {
                                     <div><small className="color-gray">ERC-721</small></div>
                                 </div>
 
+
                                 <Swiper className="slider"  slidesPerView={4.3} navigation={true}>
-                                    <SwiperSlide>
-                                        <div className="putOnMarketplace ml-3 border-radius btn-primary-outline-responsive">
-                                            <img src={darkcircle} width="40" alt="" />
-                                            <div><small className="color-gray">---</small></div>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <div className="putOnMarketplace border-gray ml-3 border-radius btn-primary-outline-responsive">
-                                            <img src={darkcircle} width="40" alt="" />
-                                            <div><small className="color-gray">---</small></div>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <div className="putOnMarketplace border-gray ml-3 border-radius btn-primary-outline-responsive">
-                                            <img src={darkcircle} width="40" alt="" />
-                                            <div><small className="color-gray">---</small></div>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <div className="putOnMarketplace border-gray ml-3 border-radius btn-primary-outline-responsive">
-                                            <img src={darkcircle} width="40" alt="" />
-                                            <div><small className="color-gray">---</small></div>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <div className="putOnMarketplace border-gray ml-3 border-radius btn-primary-outline-responsive">
-                                            <img src={darkcircle} width="40" alt="" />
-                                            <div><small className="color-gray">---</small></div>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <div className="putOnMarketplace border-gray ml-3 border-radius btn-primary-outline-responsive">
-                                            <img src={darkcircle} width="40" alt="" />
-                                            <div><small className="color-gray">---</small></div>
-                                        </div>
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <div className="putOnMarketplace border-gray ml-3 border-radius btn-primary-outline-responsive">
-                                            <img src={darkcircle} width="40" alt="" />
-                                            <div><small className="color-gray">---</small></div>
-                                        </div>
-                                    </SwiperSlide>
+                                    {
+                                        single_call.map((sing) =>    
+                                            <SwiperSlide>
+                                                <div className="putOnMarketplace ml-3 border-radius btn-primary-outline-responsive">
+                                                    <img src={sing.myimg} width="40" alt="" />
+                                                     <div className='starslide'>{sing.title}</div>
+                                                    <div><small className="color-gray">{sing.dass}</small></div>
+                                                </div>
+                                            </SwiperSlide>
+                                        )
+                                    }
+                                
                                 </Swiper>
                             </div>
-
                         </div>
 
-                        <div className="col-sm-12 col-lg-7">
-                            <div className="mt-5">
-                                <h5><b>Title</b></h5>
 
-                                <div className="prize-single-collectible">
-                                    <input type="text" placeholder="e. g. Redeemable T-Shirt with logo" />
-                                </div>
-                            </div>
-
-                            <div className="mt-3">
-                                <div className="d-flex">
-                                    <h5><b>Description</b> </h5><span><small className="color-gray ml-2">(Optional)</small></span>
-                                </div>
-
-                                <div className="prize-single-collectible">
-                                    <input type="text" placeholder="e. g.  “After purchasing you will be able to get the real T-Shirt" />
-                                </div>
-
-                                <div className="mt-2"><small><span className="color-gray">With preserved line-breaks </span></small></div>
-                            </div>
-
-                            {/* <div className="mt-5">
-                                <div className="d-flex">
-                                    <h5><b>Properties</b> </h5><span><small className="color-gray ml-2">(Optional)</small></span>
-                                </div>
-
-                                <div className="d-flex">
-                                    <div className="prize-single-collectible d-flex w-100">
-                                        <input type="text" placeholder="e. g.  Size" />
-                                    </div>
-
-                                    <div className="prize-single-collectible d-flex w-100 ml-3">
-                                        <input type="text" placeholder="e. g.  Medium" />
-                                    </div>
-
-                                </div>
-                            </div> */}
-
-
-
-                            {/* <div className="mt-5">
-                                <div className="d-flex">
-                                    <h5><b>Alternative text for NFT</b> </h5><span><small className="color-gray ml-2">(Optional)</small></span>
-                                </div>
-
-                                <div className="prize-single-collectible">
-                                    <input type="text" placeholder="Describe the Image in detail" />
-                                </div>
-
-                                <div className="mt-2"><small><span className="color-gray">Text that will be used in VoiceOver for people with disabilities.</span></small></div>
-                            </div> */}
-
-
-
-                        </div>
-
-                        <div className="col-sm-12 col-lg-5">
-                            <div className="mt-5 border-gray border-radius p-4">
-                                <div className="d-flex">
-                                    <h5><b>Royalties</b> </h5>
-                                </div>
-
-                                <div className="prize-single-collectible">
-                                    <input type="text" placeholder="10" />
-                                    <span className="color-gray ">%</span>
-                                </div>
-
-                                <div className="mt-2 w-100">
-                                    <small className="d-flex">
-                                        <span className="color-gray">Suggested:</span>
-                                        <div className="text-right w-100"><span className="color-gray">0%, 10%, 20%,30%</span><br /><span className="color-gray">Maximum is 50%</span></div>
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-
+                        <SingleCollectibleDetails />
                     </div>
+
                     <div className="mt-4">
                         <button className="btn-primary-outline w-100">Hide advanced settings</button>
                     </div>

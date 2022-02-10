@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import artWorkWeekOne from "../assets/img/custom/artWorkWeekOne.png";
 import userTick from "../assets/img/custom/userTick.png";
-import logo from "../assets/img/icons/custom/logo.svg";
-import start from "../assets/img/icons/custom/start.svg";
 import AlienMonster from "../assets/img/icons/custom/alien-monster.svg";
 import RainbowIcon from "../assets/img/icons/custom/rainbow.svg";
 import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
@@ -17,6 +15,8 @@ import CheckOut from '../Components/Popup/CheckOut';
 
 import { Menu, Dropdown, Select } from 'antd';
 import { motion } from "framer-motion"
+import Buytab from '../Components/Tabs/Buytab';
+import ArtworkWeek from './ArtworkWeek';
 
 const Buy = () => {
     const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
@@ -99,6 +99,7 @@ const Buy = () => {
                         </div>
                         <div className="col-sm-12 col-lg-6">
                             <div className="buy-art-work-week-card border-radius">
+                                
                                 <div className="d-flex justify-content-between align-items-center">
                                     <h3><b>Artwork of the week</b></h3>
                                     <div className="d-flex">
@@ -110,62 +111,15 @@ const Buy = () => {
                                         </Dropdown>
                                     </div>
                                 </div>
+                                
 
-                                <div className="mt-3 bighest-bid-text">
-                                    <b>
-                                        <span className="">Highest bid </span>
-                                        <span className="color-ping">0.066 wETH</span>
-                                    </b>
-                                </div>
+                        {/*           Artwork week components                */}
+                               <ArtworkWeek />
 
-                                <p className="mt-4">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br /> sed do eiusmod tempor incididunt ut labore et dolore <br /> magna aliqua.
-                                </p>
-
-                                <div className="w-100 d-flex mt-5 heading-text">
-                                    <div className="d-flex flex-column">
-                                        <b className="text-secondary">Creator</b>
-                                        <div className="mt-3">
-                                            <span className="user-img">
-                                                <img src={userTick} width="36" alt="" />
-                                            </span>
-                                            <span className="ml-3"><b>Courtney</b></span>
-                                        </div>
-                                    </div>
-                                    <div className="ml-4 d-flex flex-column">
-                                        <b className="text-secondary">Creator</b>
-                                        <div className="mt-3">
-                                            <span className="user-img">
-                                                <img src={logo} width="36" alt="" />
-                                            </span>
-                                            <span className="ml-3"><b>EdenSwap</b></span>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <button className="artwork-sales-btn  btn-primary-outline-responsive mt-4 pt-2 pb-2 pl-3 pr-3 text-dark d-flex align-items-center">
-                                    <img src={start} className="mr-2" width="16" alt="" /> 10% of sales will go to creator
-                                </button>
-
-
+                                
                                 <div className="mt-5">
-                                    <ul className="nav nav-pills mb-3 artwork-tab-nav" id="pills-tab" role="tablist">
-                                        <li className="nav-item">
-                                            <a className="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-Details" role="tab" aria-controls="pills-details" aria-selected="true">Details</a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Owner</a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Bids</a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">History</a>
-                                        </li>
-                                    </ul>
+                                <Buytab />
                                     <div className="tab-content artwork-tab-content" id="pills-tabContent">
-
                                         <div className="tab-pane fade  show active" id="pills-Details" role="tabpanel" aria-labelledby="pills-details-tab">
                                             <div className="details-tab-block mb-2">
                                                 <b className="text-secondary d-block mb-2">Owner</b>
@@ -181,6 +135,9 @@ const Buy = () => {
                                             <div className="details-tab-block mb-2">
                                                 <b className="text-secondary d-block mb-2">Properties</b>
                                                 <ul className="owner-details-list">
+                                                    {
+
+                                                    }
                                                     <li>
                                                         <a href="#0">
                                                             Eyes

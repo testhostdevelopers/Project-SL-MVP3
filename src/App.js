@@ -28,6 +28,7 @@ import CreateCollectibleEdit from './Pages/CreateCollectibleEdit';
 
 import 'swiper/swiper-bundle.css';
 import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import AnnBnnaer from './Components/Popup/AnnBnnaer';
 
 
 const App = () => {
@@ -54,7 +55,10 @@ const App = () => {
     }
     return (
         <>
+        
+        
             <Router>
+                     
                 <Navbar handleprofilepicUploadr={(e) => handleprofilepicUploadr(e)} profileImage={profileImage} />
                 <Switch>
                     <Route path="/" component={Home} exact />

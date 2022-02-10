@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 
-export default function ActivityNumberCard ({title,pixelpunks, eth,seenstatus,activitynumbercardimg, FillLabel}) {
+export default function ActivityNumberCard ({pixelpunks, eth,seenstatus,activitynumbercardimg, FillLabel}) {
     
   return (
       <div className="ActivityNumberCard">
@@ -10,9 +10,7 @@ export default function ActivityNumberCard ({title,pixelpunks, eth,seenstatus,ac
                 <span className="lable-icon"><img src={FillLabel} /></span>
                 <img src={activitynumbercardimg} />
           </div>
-          <div className="ActivityNumberCard-info">
-              
-                <h4>{title}</h4>
+          <div className="ActivityNumberCard-info"> 
                 <p>Listed by
                     <span>
                         {pixelpunks}

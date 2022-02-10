@@ -50,6 +50,7 @@ export default function FilterProperties(props) {
         ]
       }
   ];
+  const handel_ch = ['Frequency first', 'Rare first'];
   
   return (
     <motion.div
@@ -68,8 +69,10 @@ export default function FilterProperties(props) {
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Search by property" />
                 <Select onChange={handleChange}>
-                  <Option value="Frequency first">Frequency first</Option>
-                  <Option value="Rare first">Rare first</Option>
+                   {
+                      handel_ch.map( (searchselect, sear) => 
+                      <option key={sear}>{searchselect}</option> )
+                    }
                 </Select>
               </div>
 

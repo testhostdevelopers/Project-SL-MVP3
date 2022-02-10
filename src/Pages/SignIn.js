@@ -1,8 +1,5 @@
 import React, { useState } from 'react'
-import {
-    Link
-} from "react-router-dom";
-
+import {Link} from "react-router-dom";
 import signInBanner from "../assets/img/custom/signInBanner.png";
 import metamask from "../assets/img/custom/metamask.svg";
 
@@ -30,6 +27,18 @@ const SignIn = () => {
         navRef.current.classList.toggle("showWallet");
       };
 
+      const less_button = [
+          {btn_img: Torus, btn_text: 'Torus'},
+          {btn_img: MobileWallet, btn_text: 'Mobile Wallet'}
+      ];
+
+      const more_button = [
+        {btn_img: Porttis, btn_text: 'Porttis'},
+        {btn_img: Coinbase, btn_text: 'Coinbase'},
+        {btn_img: MyEtherWallet, btn_text: 'MyEtherWallet'},
+        {btn_img: Fortmatic, btn_text: 'Fortmatic'}
+      ];
+
     return (
         <>
             {
@@ -56,38 +65,29 @@ const SignIn = () => {
                                 <p className="mb-4 mt-3">Sign in with one of available wallet providers or create a new wallet <br />
                                     <span className="color-ping" onClick={() => setWhatwallet(true)}> <b>What is a wallet?</b></span></p>
 
-                                <button className="btn ml-0 btn-ping signInActiveBtn w-100 d-flex align-items-center justify-content-center mb-4">
-                                    <img src={metamask} width="20px" />
-                                    <div style={{ margin: "auto auto" }}>Sign in with Metamask</div>
-                                </button>
-
-                                <button className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
-                                    <img src={Torus} width="20px" />
-                                    <div style={{ margin: "auto auto" }}><b>Torus</b></div>
-                                </button>
-
-                                <button className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
-                                    <img src={MobileWallet} width="20px" />
-                                    <div style={{ margin: "auto auto" }}><b>Mobile Wallet</b></div>
-                                </button>
-
+                                    <button className="btn ml-0 btn-ping signInActiveBtn w-100 d-flex align-items-center justify-content-center mb-4">
+                                            <img src={metamask} width="20px" />
+                                            <div style={{ margin: "auto auto" }}>Sign in with Metamask</div>
+                                        </button>
+                                {
+                                    less_button.map((less) =>    
+                                    <button className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
+                                        <img src={less.btn_img} width="20px" />
+                                             <div style={{ margin: "auto auto" }}><b>{less.btn_text}</b></div>
+                                     </button>
+                                    )
+                                }
+                                
                                 <div className='showmorewallet'>
-                                    <button className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
-                                        <img src={Porttis} width="20px" />
-                                        <div style={{ margin: "auto auto" }}><b>Porttis</b></div>
-                                    </button>
-                                    <button className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
-                                        <img src={Coinbase} width="20px" />
-                                        <div style={{ margin: "auto auto" }}><b>Coinbase</b></div>
-                                    </button>
-                                    <button className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
-                                        <img src={MyEtherWallet} width="20px" />
-                                        <div style={{ margin: "auto auto" }}><b>MyEtherWallet</b></div>
-                                    </button>
-                                    <button className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
-                                        <img src={Fortmatic} width="20px" />
-                                        <div style={{ margin: "auto auto" }}><b>Fortmatic</b></div>
-                                    </button>
+                                    {
+                                        more_button.map((more) =>    
+                                            <button className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
+                                                <img src={more.btn_img} width="20px" />
+                                                <div style={{ margin: "auto auto" }}><b>{more.btn_text}</b></div>
+                                            </button>
+                                        )
+                                    }
+
                                 </div>
 
                                 <button onClick={onToggleClick} className="loadmore-wallet btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
@@ -95,12 +95,15 @@ const SignIn = () => {
                                     <div className='less' style={{ margin: "auto auto" }}><b>Show less options</b></div>
                                 </button>
 
+                                
+
                                 <p>We do not own private keys and cannot access your funds without your confirmation.</p>
                             </div>
                         </div>
                     </div>
 
                 </div>
+                
             </motion.div>
         </>
     )
