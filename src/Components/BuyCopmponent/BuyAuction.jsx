@@ -2,16 +2,40 @@ import React, { useState, useEffect } from 'react'
 import topSellerUser4 from '../../assets/img/custom/topSellerUser4.png';
 
 const BuyAuction = () => {
-    const [seconds, setSeconds] = useState(50);
-    const [min, setMin] = useState(0);
+
+    const [day, setDay] = useState(1)
+    const [hour, setHour] = useState(3);
+    const [min, setMin] = useState(43);
+    const [seconds, setSeconds] = useState(44);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setSeconds(seconds => seconds - 1);
-            
-          }, 1000);
-          return () => clearInterval(interval);
-    }, [])
+            if (seconds > 0) {
+                setSeconds(seconds - 1);
+            }
+            if (seconds === 0) {
+                if (min === 0) {
+                    clearInterval(interval)
+                } else {
+                    setMin(min - 1);
+                    setSeconds(59);
+                }
+                if (hour === 0) {
+                    clearInterval(interval)
+                    setHour(hour - 1);
+                    setMin(59)
+                }
+                if (day === 0) {
+                    clearInterval(interval)
+                    setDay(day - 1)
+                    setHour(24)
+                }
+            } 
+        }, 1000)
+        return ()=> {
+            clearInterval(interval);
+          };
+    });
     
   return (
     <>
@@ -33,27 +57,32 @@ const BuyAuction = () => {
                                         <div className="text-secondary">Auction ends in</div>
                                         <div className="d-flex mt-3">
                                             <div className="mr-3">
-                                                <h5 className="mb-1"><b>0</b></h5>
+                                                <h5 className="mb-1"><b>{day}</b></h5>
                                                 <div className="text-secondary">Days</div>
                                             </div>
 
                                             <div className="mr-3">
-                                                <h5 className="mb-1"><b>0</b></h5>
+                                                <h5 className="mb-1"><b>{hour}</b></h5>
                                                 <div className="text-secondary">Hours</div>
                                             </div>
 
                                             <div className="mr-3">
-                                                <h5 className="mb-1"><b>{min    }</b></h5>
+                                                <h5 className="mb-1"><b>{min}</b></h5>
                                                 <div className="text-secondary">Minutes</div>
                                             </div>
 
                                             <div className="mr-3">
-                                                <h5 className="mb-1"><b>{seconds}</b></h5>
+                                                <h5 className="mb-1"><b>{seconds < 10 ?  `0${seconds}` : seconds}</b></h5>
                                                 <div className="text-secondary">Second</div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div>
+
+               { day === 0 && hour === 0 && min === 0 && seconds === 0 ? "All Auction Done" : ''  }
+        
+        </div>
     </>
   )
 }

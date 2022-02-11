@@ -73,6 +73,13 @@ const Collection = (props) => {
         </Menu>
     );
 
+    const hot_bide = [
+        {cover_bide: artWorkWeek2, bide_heartcount: "23", bide_time: '3H : 15M : 50S left', bide_name: "Memescalf#782021", bide_weth: '1.3 WETH', bide_bid: "Highest bid 1/1"},
+        {cover_bide: artWorkWeek3, bide_heartcount: "25", bide_time: '7H : 13M : 50S left', bide_name: "Memescalf#782022", bide_weth: '1.6 WETH', bide_bid: "Highest bid 1/16"},
+        {cover_bide: artWorkWeek1, bide_heartcount: "26", bide_time: '8H : 20M : 50S left', bide_name: "Memescalf#782023", bide_weth: '1.2 WETH', bide_bid: "Highest bid 6/6"},
+        {cover_bide: artWorkWeek4, bide_heartcount: "26", bide_time: '8H : 40M : 50S left', bide_name: "Memescalf#782022", bide_weth: '1.2 WETH', bide_bid: "Highest bid 6/5"}
+];
+
 
     return (
         <>
@@ -238,10 +245,11 @@ const Collection = (props) => {
 
                                         </div>
                                         <div className="row  mt-5">
-                                            <HotBids Coverimg={artWorkWeek1} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021"  WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                            <HotBids Coverimg={artWorkWeek2} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021"  WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                            <HotBids Coverimg={artWorkWeek3} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021"  WETH="1.2 WETH" bid="Highest bid 1/1" />
-                                            <HotBids Coverimg={artWorkWeek4} heartcount="24" time="3H : 15M : 50S left" title="Memescalf#782021"  WETH="1.2 WETH" bid="Highest bid 1/1" />
+                                        {
+                                            hot_bide.map((bide_desk, ho_B) => 
+                                                <HotBids key={ho_B} Coverimg={bide_desk.cover_bide} heartcount={bide_desk.bide_heartcount} time={bide_desk.bide_time} title={bide_desk.bide_name} WETH={bide_desk.bide_weth} bid={bide_desk.bide_bid} isOpenInProfile={false}/>
+                                            )
+                                        }
                                         </div>
                                     </div>
                                 </TabPane>

@@ -63,7 +63,6 @@ export default function HotBids ({title,WETH,bid,heartcount, Coverimg,time}) {
 
             <div className="bg-white p-4">
                 <h6>{title}</h6>
-
                 <div className="d-flex justify-content-between align-items-center">
                     <div className="text-danger"><b>{WETH}</b></div>
                     <small className="text-secondary">{bid}</small>

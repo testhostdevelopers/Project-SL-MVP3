@@ -609,11 +609,12 @@ const Home = () => {
                                       <LiveAuctions Coverimg={live_a.cover_img} title={live_a.auction_name} heartcount={live_a.h_count} User1={live_a.auc_user1} User2={live_a.auc_user2} User3={live_a.auc_user3} WETH={live_a.auction_WETH} bid={live_a.auction_bid} isOpenInProfile={false} />
                                 )
                             }
+
                             {
-                                hot_bide.map((bide_desk) => 
-                                     <HotBids Coverimg={bide_desk.cover_bide} heartcount={bide_desk.bide_heartcount} time={bide_desk.bide_time} title={bide_desk.bide_name} WETH={bide_desk.bide_weth} bid={bide_desk.bide_bid} isOpenInProfile={false}/>
+                                hot_bide.map((bide_desk, ho_B) => 
+                                     <HotBids key={ho_B} Coverimg={bide_desk.cover_bide} heartcount={bide_desk.bide_heartcount} time={bide_desk.bide_time} title={bide_desk.bide_name} WETH={bide_desk.bide_weth} bid={bide_desk.bide_bid} isOpenInProfile={false}/>
                                 )
-                        }
+                            }
 
                             </div>
                         </div>

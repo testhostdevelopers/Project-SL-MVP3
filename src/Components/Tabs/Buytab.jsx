@@ -11,6 +11,8 @@ const buy_tab = [
     {tab_name: "History", tab_link: '#pills-contact', tab_control: 'pills-contact', tab_id: 'pills-profile-tab', tab_role: 'tab'}
  ];
 
+ 
+
   return (
     <>
     <ul className="nav nav-pills mb-3 artwork-tab-nav" id="pills-tab" role="tablist">
@@ -21,6 +23,7 @@ const buy_tab = [
             </li>   
             )
         }
+
       </ul>
 
       
