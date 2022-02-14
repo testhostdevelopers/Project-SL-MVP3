@@ -22,31 +22,31 @@ const all_filter = [
     },
     {
         name: 'Purchases',
-        _filter_: 'Listing',
+        _filter_: 'Purchases',
     },
     {
         name: 'Sales',
-        _filter_: 'Burns',
+        _filter_: 'Sales',
     },
     {
         name: 'Transfer',
-        _filter_: 'Listing',
+        _filter_: 'Transfer',
     },
     {
         name: 'Burns',
-        _filter_: 'Sales',
+        _filter_: 'Burns',
     },
     {
         name: 'Bids',
-        _filter_: 'Transfer',
+        _filter_: 'Bids',
     },
     {
         name: 'Like',
-        _filter_: 'Transfer',
+        _filter_: 'Like',
     },
     {
         name: 'Following',
-        _filter_: 'Sales',
+        _filter_: 'Following',
     }
 ];
 
@@ -65,13 +65,13 @@ const findFilter = (key) =>{
 
 }
 
-useEffect(() => {
-    if(filterData.length > 0){
-        seterror_data('');
-    } else{
-        seterror_data('Data Not Found..!')
-    }
-}, [filterData]);
+// useEffect(() => {
+//     if(filterData.length > 0){
+//         seterror_data('');
+//     } else{
+//         seterror_data('Data Not Found..!')
+//     }
+// }, [filterData]);
 
 
     const variants = {
@@ -133,7 +133,7 @@ useEffect(() => {
                                                         <div className="filters-listing-reset">
                                                             <div className="d-flex mb-2">
                                                                 <h5 className="mr-3"><b>Filters</b></h5>
-                                                                <h5><b><a href="#0"  className="text-pink">Reset filter</a></b></h5>
+                                                                <h5><b><a href="" className="text-pink">Reset filter</a></b></h5>
                                                             </div>
                                                             <div className="filters-listing-button-list">
                                                             {

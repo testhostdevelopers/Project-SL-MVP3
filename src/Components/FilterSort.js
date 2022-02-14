@@ -87,7 +87,7 @@ export default function FilterSort({setFilterSort, filterSort,filterCategory,fil
           </li>
 
           <li>
-            <input type="radio" id="endingsoon" value="ending soon" name="sorting" />
+            <input type="radio" id="endingsoon" value="Ending Soon" name="sorting" />
             <label for="endingsoon" onClick={() => isActiveFunc()} >
               Auction Ending Soon
             </label>

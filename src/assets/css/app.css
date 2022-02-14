@@ -2245,8 +2245,9 @@ footer .ant-select-arrow {
 	right: 7px;
 	background: #fff;
 	padding: 0px;
-	border-radius: 25px;
+	border-radius: 30px;
     cursor: pointer;
+    height: 30px;
 }
 .profile-user-pictures > img{
     border-radius: 100%;
@@ -2903,29 +2904,7 @@ div.ant-select-dropdown {
 	background: #fff;
 }
 
-.mobile_search {
-    position: absolute;
-    right: 18px;
-    top: 0;
-}
 
-.mobile_search input{
-    background-color: var(--white-color);
-    padding: 10px 16px;
-    border: solid 2px var(--gray-bg);
-    border-radius: 30px;
-    outline: none;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    margin-right: 0px;
-    border: 1px solid #C7C7C7;
-    width: 200px;
-    border-top-right-radius: 0px;
-    border-right: none;
-    border-bottom-right-radius: 0px;
-}
 
 
 .profile-tab-menu .ant-tabs-tab div {

@@ -233,6 +233,7 @@
 	border-radius: .5rem;
 	background-color: var(--pink-color);
 	border: none;
+    cursor: pointer;
 }
 .custom-switch .custom-control-label::after {
 	background-color: #fff;
@@ -673,6 +674,7 @@ footer .topSeller .headerSelect .ant-select-single.ant-select-show-arrow .ant-se
 	font-weight: bold;
 	padding: 10px 10px;
 	text-align: center;
+    color: #0E0E0E;
 }
 .new-buy.btn-ping {
 	width: 76px !important;

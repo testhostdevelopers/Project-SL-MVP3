@@ -6,7 +6,7 @@ import ReportPopup from '../Components/Popup/ReportPopup';
 import UpdateCoverPopup from "../Components/Popup/UpdateCoverPopup";
 import UpdateProfilePicPopup from "../Components/Popup/UpdateProfilePicPopup";
 
-import addicon from "../assets/img/custom/add-icon.png";
+import addicon from "../assets/img/custom/Mask_Group.png";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 import artWorkWeek2 from "../assets/img/custom/artWorkWeek2.png";
 import artWorkWeek3 from "../assets/img/custom/artWorkWeek3.png";
