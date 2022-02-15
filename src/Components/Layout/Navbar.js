@@ -17,6 +17,9 @@ import CoinConver from "../Popup/CoinConverPopup"
 import backmenu from "../../assets/img/custom/back-arrow.svg";
 import subarrow from "../../assets/img/custom/subarrow.svg";
 import closeicon from "../../assets/img/custom/close.svg";
+import notification_white from '../../assets/img/icons/custom/notification_white.svg';
+import searchline_white from '../../assets/img/icons/custom/search-line_white.svg';
+import user2 from '../../assets/img/icons/custom/user2.png';
 
 const Navbar = (props) => {
 
@@ -149,6 +152,12 @@ const Navbar = (props) => {
     const profileUploader = React.useRef(null);
     profileImage.current = props.pImage;
 
+    const list_drop = [
+        {listLink: '/Token', listName: 'Token'},
+        {listLink: '/', listName: 'Discussion'},
+        {listLink: '/', listName: 'Suggest feature'},
+        {listLink: '/', listName: 'Subscribe'}
+    ];
 
     return (
         <>
@@ -183,7 +192,10 @@ const Navbar = (props) => {
                             <div className="d-lg-none d-sm-block mr-1" style={{zIndex:"999"}} >
 
                                 <a className="nav-link nav-dark-button" onClick={() => SetsearchItem(!searchItem)}>
-                                    <img src={searchLine} alt="" style={{zIndex: "9"}} />
+                                    {
+                                        theme === true ? <img src={searchline_white} alt="" style={{zIndex: "9"}} /> : <img src={searchLine} alt="" style={{zIndex: "9"}} />
+                                    }
+                                   
                                 </a>
                                 {
                                     searchItem && (
@@ -192,12 +204,10 @@ const Navbar = (props) => {
                                     </div>
                                     )
                                 }
+
                             </div>
 
-                            
-                            
-                            
-                            
+
 
                             <div className="d-lg-none d-sm-block mr-1">
                                 <a className="nav-link nav-dark-button" onClick={() => activeMode()}>
@@ -223,15 +233,21 @@ const Navbar = (props) => {
 
                             <div className="navbar-toggler p-0 mr-1" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <a className="nav-link nav-dark-button">
-                                    <img src={menu4Line} className="navbar-hamburger-show" alt="" />
+                                    {
+                                        theme  === true ? <img src={notification_white} className="navbar-hamburger-show" alt="" /> : <img src={menu4Line} className="navbar-hamburger-show" alt="" />
+                                    }
+                                    
                                 </a>
                             </div>
 
                             <div className="d-lg-none d-sm-block">
                                 <a className="nav-link nav-dark-button p-0 nav-dark-button mr-2 position-relative" onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)} >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
+                                    {
+                                        theme === true ? <img src={user2} /> : <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
                                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                     </svg>
+                                    }
+                                    
                                    
                                     
                                     
@@ -465,11 +481,13 @@ const Navbar = (props) => {
                                     <a className="nav-link dropdown-toggle" id="servicesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Community</a>
                                     <div className="dropdown-menu" aria-labelledby="servicesDropdown">
                                         <ul className="menu-dropdown">
-                                            <Link to="/Token"><li>Token</li></Link>
-                                            <Link to="/"><li>Discussion</li></Link>
-                                            <Link to="/"><li>Voting</li></Link>
-                                            <Link to="/"><li>Suggest feature</li></Link>
-                                            <Link to="/"><li>Subscribe</li></Link>
+                                            {
+                                                list_drop.map((list, dr_l) =>
+                                                      <Link key={dr_l} to={list.listLink}><li>{list.listName}</li></Link>
+                                                )
+                                            }
+                                            
+                                            
                                             <ul className="nav-bar-social-items mt-3 border-top">
                                                 <li>
                                                     <Link to={{ pathname: "https://twitter.com/starlight_meta" }} target="_blank">
@@ -571,8 +589,8 @@ const Navbar = (props) => {
 
 
                                     {
-                                        location.pathname !== "/" ? <a className="d-sm-none d-lg-block nav-link p-0 nav-dark-button mr-2 position-relative">
-                                            <div className='toggle_btn'  onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)}>
+                                        location.pathname !== "/" ? <a className="d-sm-none d-lg-block nav-link p-0 nav-dark-button mr-2 position-relative"  onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)}>
+                                            <div className='toggle_btn'>
                                                 
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
                                                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />

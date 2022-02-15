@@ -1,12 +1,25 @@
-
 import React, { useState, useContext, useEffect } from 'react';
-import { Menu, Dropdown, Tabs, Select } from 'antd';
-import { motion } from "framer-motion"
-import menuline from "../assets/img/custom/menu-line-icon.png";
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import SwiperCore, { Keyboard, Pagination, Navigation, Autoplay } from "swiper/core";
+
+import ArtWork from '../Components/ArtWork';
+import artWorkWeekOne from "../assets/img/custom/artWorkWeekOne.png";
+import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
+import artWorkWeek2 from "../assets/img/custom/artWorkWeek2.png";
+import artWorkWeek3 from "../assets/img/custom/artWorkWeek3.png";
+import artWorkWeek4 from "../assets/img/custom/artWorkWeek4.png";
 import categoryicon from "../assets/img/custom/category-icon.svg";
 import propertiesicon from "../assets/img/custom/properties.svg";
-import flashlight from "../assets/img/custom/flashlight-line.png";
-import Priceicon from "../assets/img/custom/u_dollar-alt.png";
+
+
+import HotBids from '../Components/HotBids';
+import fabaLogo from "../assets/img/custom/x.svg";
+import { Menu, Dropdown, Select } from 'antd';
+import { motion } from "framer-motion"
+import FullScreenImage from '../Components/Popup/FullScreenImage';
+import TopCard from '../Components/TopCard';
+import LiveAuctions from '../Components/LiveAuctions';
 
 import FilterSort from '../Components/FilterSort';
 import FilterCategory from '../Components/FilterCategory';
@@ -16,15 +29,13 @@ import FilterRange from '../Components/FilterRange';
 import FilterProperties from '../Components/FilterProperties';
 
 
-const { TabPane } = Tabs;
+
+
+// const { TabPane } = Tabs;
 const { Option } = Select;
 
 const Following = () => {
-
-    const variants = {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1 },
-    }
+    let [openImage, setOpenImage] = useState(false)
     const [filterSort, setFilterSort] = useState(false);
     const [filterCategory, setFilterCategory] = useState(false);
     const [filterCollections, setFilterCollections] = useState(false);
@@ -32,18 +43,51 @@ const Following = () => {
     const [filtersale, setFiltersale] = useState(false);
     const [filterRange, setFilterRange] = useState(false);
 
+    const variants = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 },
+    }
+
+    const menu = (
+        <Menu>
+            <Menu.Item>
+                Change Price
+            </Menu.Item>
+            <Menu.Item>
+                Transfer Token
+            </Menu.Item>
+            <Menu.Item>
+                Burn Token
+            </Menu.Item>
+            <Menu.Item>
+                Report
+            </Menu.Item>
+        </Menu>
+    );
+
+    const hot_bide = [
+        {cover_bide: artWorkWeek2, bide_heartcount: "23", bide_time: '3H : 15M : 50S left', bide_name: "Memescalf#782021", bide_weth: '1.3 WETH', bide_bid: "Highest bid 1/1"},
+        {cover_bide: artWorkWeek3, bide_heartcount: "25", bide_time: '7H : 13M : 50S left', bide_name: "Memescalf#782022", bide_weth: '1.6 WETH', bide_bid: "Highest bid 1/16"},
+        {cover_bide: artWorkWeek1, bide_heartcount: "26", bide_time: '8H : 20M : 50S left', bide_name: "Memescalf#782023", bide_weth: '1.2 WETH', bide_bid: "Highest bid 6/6"},
+        {cover_bide: artWorkWeek4, bide_heartcount: "26", bide_time: '8H : 40M : 50S left', bide_name: "Memescalf#782022", bide_weth: '1.2 WETH', bide_bid: "Highest bid 6/5"}
+];
+
     return (
         <>
+            {
+                openImage && <FullScreenImage setOpenImage={setOpenImage} />
+            }
+            {
+                filterProperties && <FilterProperties setFilterProperties={setFilterProperties} />
+            }
+
             <motion.section
                 initial="hidden"
                 animate="visible"
-                variants={variants}
-                className="create-single-section-container following-page-section">
+                variants={variants} className="liveAuction hot-bids-liveAuction margin-50">
                 <div className="container-fluid">
-                    <div className="following-divition">
-                        <h2>Following</h2>
-                    
-
+                    <div className="w-100 d-flex justify-content-between align-items-center explore-page">
+                        <h3><b>Following</b></h3>
                         <ul className="filter topSeller">
                             <FilterSort 
                                 filterSort={filterSort}
@@ -133,34 +177,20 @@ const Following = () => {
                             />
                         </ul>
                     </div>
-                    <div className="tab-content w-100 d-flex justify-content-center flex-column align-items-center mt-5" id="myTabContent">
-                        <div className="tab-pane w-100 fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <h3>Not items found 1</h3>
-                            <div>
-                                <span className="color-gray">Come back soon or browse the
-                                    items on our marketplace.</span>
-                            </div>
-                            <button className="bg-white border-radius profile-not-found-browse-btn mt-4 p-3" style={{ borderRadius: "30px" }}>Browse marketplace</button>
-                        </div>
-                        <div className="tab-pane w-100 fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <h3>Not items found 2</h3>
-                            <div>
-                                <span className="color-gray">Come back soon or browse the
-                                    items on our marketplace.</span>
-                            </div>
-                            <button className="bg-white border-radius profile-not-found-browse-btn mt-4 p-3" style={{ borderRadius: "30px" }}>Browse marketplace</button>
-                        </div>
-                        <div className="tab-pane w-100 fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                            <h3>Not items found 3</h3>
-                            <div>
-                                <span className="color-gray">Come back soon or browse the
-                                    items on our marketplace.</span>
-                            </div>
-                            <button className="bg-white border-radius profile-not-found-browse-btn mt-4 p-3" style={{ borderRadius: "30px" }}>Browse marketplace</button>
-                        </div>
+                    
+                    <div className="row  mt-5">
+                    {
+                      hot_bide.map((bide_desk, ho_B) => 
+                              <HotBids key={ho_B} Coverimg={bide_desk.cover_bide} heartcount={bide_desk.bide_heartcount} time={bide_desk.bide_time} title={bide_desk.bide_name} WETH={bide_desk.bide_weth} bid={bide_desk.bide_bid} isOpenInProfile={false}/>
+                            )
+                    }
                     </div>
                 </div>
             </motion.section>
+
+
+
+
         </>
     )
 }

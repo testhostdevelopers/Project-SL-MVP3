@@ -681,11 +681,11 @@ const Home = () => {
 
                 </div>
 
-                <div className="w-100 mt-5 pl-3 pr-3">
+                {/* <div className="w-100 mt-5 pl-3 pr-3">
                     <div className="view-all-items">
                         <button className="btn-primary-outline w-100"><b>View all</b></button>
                     </div>
-                </div>
+                </div> */}
             </motion.section>
 
         </>

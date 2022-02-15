@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion"
-import CheckFillClrIcon from '../assets/img/icons/custom/check-fill-clr.png'
+import CheckFillClrIcon from '../assets/img/icons/custom/Group_1454.svg'
 
 const CreateCollectibleEdit = () => {
 
@@ -100,7 +100,7 @@ const CreateCollectibleEdit = () => {
                             <div className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center">
                                 <div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>
                                 <div className="mt-3">
-                                    <button className="btn-primary w-100 ml-0 "></button>
+                                    <button className="btn-chooes w-100 ml-0 "></button>
                                 </div>
                             </div>
 
@@ -110,26 +110,26 @@ const CreateCollectibleEdit = () => {
                             <div className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center">
                                 <div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>
                                 <div className="mt-3">
-                                    <button className="btn-primary w-100 ml-0"></button>
+                                    <button className="btn-chooes w-100 ml-0"></button>
                                 </div>
                             </div>
                         </div>
 
 
 
-                        <div className="col-sm-12 mobile-sm-order-right gray-color profile-edit-verified-container p-4 mt-5" style={{ borderRadius: "25px" }}>
+                        <div className="col-sm-12 mobile-sm-order-right profile-edit-verified-container p-4 mt-5" style={{ borderRadius: "25px" }}>
                             <div className="row">
-                                <div className="gray-color col-sm-12 col-lg-2">
-                                    <h5 className="m-0 gray-color"><b>Verfication</b></h5>
+                                <div className="col-sm-12 col-lg-2">
+                                    <h5 className="m-0"><b>Verfication</b></h5>
                                 </div>
 
-                                <div className="col-sm-12 col-lg-6 gray-color">
+                                <div className="col-sm-12 col-lg-6">
                                     <span className="color-gray">
                                         Proceed with verification process to get <br /> more visibility and gain trust on Starlight  <br />  Marketplace.
                                     </span>
                                 </div>
 
-                                <div className="gray-color col-sm-12 col-lg-4 text-right">
+                                <div className="col-sm-12 col-lg-4 text-right">
                                     <button className="btn-primary-outline profile-edit-verified-btn w-50">Get Verified</button>
                                 </div>
                             </div>

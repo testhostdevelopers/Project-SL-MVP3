@@ -55,7 +55,10 @@ const CreateCollectibleMulti = () => {
         {myimg: darkcircle, dass: '---'},
         {myimg: darkcircle, dass: '---'},
         {myimg: darkcircle, dass: '---'}
-    ]
+    ];
+
+    const [showDetail,setShowDetail] = useState(false);
+    const handleToggle = () => setShowDetail(!showDetail);
 
     return (
         <>
@@ -220,8 +223,8 @@ const CreateCollectibleMulti = () => {
                             </div>
                         </div>
 
-                       <MultiCollectibleDetails />
-
+                       
+                        {showDetail && <MultiCollectibleDetails />}
                     </div>
 
 
@@ -258,10 +261,11 @@ const CreateCollectibleMulti = () => {
                         </div>
                     </div> */}
 
+                    
 
 
                     <div className="mt-5">
-                        <button className="btn-primary-outline w-100">Show advance setting</button>
+                        <button className="btn-primary-outline w-100" onClick={handleToggle}>{showDetail ? "Hide advanced settings" : "Show advanced settings"}</button>
                     </div>
 
                     <div className="mt-4">

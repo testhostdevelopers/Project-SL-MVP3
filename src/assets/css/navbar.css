@@ -441,8 +441,8 @@ header {
 	display: none !important;
 }
 .custom-control-input:checked~.custom-control-label::before{
-    border-color: var(--pink-color);
-    background-color: var(--pink-color);
+    border-color: #fff;
+    background-color: #d3dbef;
 }
 
 .ant-select-arrow .anticon{

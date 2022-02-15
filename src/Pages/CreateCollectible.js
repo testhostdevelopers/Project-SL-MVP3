@@ -56,7 +56,7 @@ const CreateCollectible = () => {
                                 </Link>
                             </div>
                         </div>
-                        <p className="color-gray mt-3">We do not own your private keys and cannot access your funds without your confirmation</p>
+                        <p className="color-gray mt-3">We do not own your private keys and cannot access your funds without your confirmation.</p>
 
                     </div>
 

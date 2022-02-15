@@ -447,9 +447,9 @@
         align-items: center;
     }
 
-    .dark-md header .menu-reverse > div  img,
+    .dark-md header .menu-reverse > div img,
     .dark-md header .menu-reverse > div .nav-link svg {
-        filter: invert(1) brightness(50);
+        /* filter: invert(1) brightness(50); */
         fill: var(--black-color) !important;
     }
     .dark-md header .menu-reverse > div svg{

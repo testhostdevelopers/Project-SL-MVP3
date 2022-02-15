@@ -182,8 +182,13 @@
 	height: 37px !important;
 	background: #6300FF;
 }
-.create-collectible .single-create-collectible:hover{
+/* .create-collectible .single-create-collectible:hover{
 	background: #4302A8;
+} */
+.btn-primary:not(:disabled):not(.disabled):active{
+    color: #fff;
+    background-color: #6300FF!important;
+    border-color: #6300FF;
 }
 
 .create-collectible .create-collectible-select {
@@ -219,6 +224,9 @@
 }
 
 .upload-file-container  button.btn-primary{
+    min-width: 192px;
+}
+.upload-file-container button.btn-chooes{
     min-width: 192px;
 }
 

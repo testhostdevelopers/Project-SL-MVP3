@@ -245,11 +245,13 @@ const Collection = (props) => {
 
                                         </div>
                                         <div className="row  mt-5">
+                                            
                                         {
                                             hot_bide.map((bide_desk, ho_B) => 
                                                 <HotBids key={ho_B} Coverimg={bide_desk.cover_bide} heartcount={bide_desk.bide_heartcount} time={bide_desk.bide_time} title={bide_desk.bide_name} WETH={bide_desk.bide_weth} bid={bide_desk.bide_bid} isOpenInProfile={false}/>
                                             )
                                         }
+
                                         </div>
                                     </div>
                                 </TabPane>

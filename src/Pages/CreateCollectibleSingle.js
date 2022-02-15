@@ -57,10 +57,15 @@ const CreateCollectibleSingle = () => {
         {myimg: darkcircle, dass: '---'},
         {myimg: darkcircle, dass: '---'},
         {myimg: darkcircle, dass: '---'}
-    ]
+    ];
+    
+    const [showDetail,setShowDetail] = useState(false);
+    const handleToggle = () => setShowDetail(!showDetail);
+
 
     return (
         <>
+        
 
             {
                 singleCollectionPopup && <CreateCollectibleMultiplePopup setSingleCollectionPopup={setSingleCollectionPopup} />
@@ -181,7 +186,9 @@ const CreateCollectibleSingle = () => {
                                                         width: "100%",
                                                         height: "100%",
                                                         position: "absolute",
-                                                        insetInlineStart: "auto"
+                                                        insetInlineStart: "auto",
+                                                        borderRadius: "13px",
+                                                        overflow: "hidden"
                                                     }}
                                                 />
                             </div>
@@ -218,13 +225,16 @@ const CreateCollectibleSingle = () => {
                             </div>
                         </div>
 
+                        
+                        {showDetail && <SingleCollectibleDetails /> }
 
-                        <SingleCollectibleDetails />
                     </div>
 
                     <div className="mt-4">
-                        <button className="btn-primary-outline w-100">Hide advanced settings</button>
+                        <button className="btn-primary-outline w-100" onClick={handleToggle}> {showDetail ? "Hide advanced settings" : "Show advanced settings"}</button>
                     </div>
+                    
+                        
 
                     <div className="mt-4">
                         <button className="btn-ping  w-100">Save Item</button>
