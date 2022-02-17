@@ -575,29 +575,33 @@
         left: 0;
         top: auto;
     }
+    
     .mobile_search {
-        position: absolute;
-        /* right: 18px; */
-        top: 0;
         left: 10px;
-        right: 150px;
-        z-index: 5;
+        right: 10px;
+        z-index: 0;
+        position: absolute;
+        animation: mymove 0.5s;
     }
+    @keyframes mymove {
+        from {top: 0px;}
+        to {top: 50px;}
+      }
     
     .mobile_search input{
         background-color: var(--white-color);
-        padding: 10px 16px;
         border: solid 2px var(--gray-bg);
-        border-radius: 30px;
+        /* border-radius: 30px; */
         outline: none;
         height: 36px;
         display: block;
         font-size: 12px;
         border: 1px solid #C7C7C7;
         /* left: 200px; */
-        margin-top: 15px;
+        margin-top: 0px;
         max-width: 100%;
         width: 100%;
+        padding: 10px 20px;
     }
 }
 
@@ -1621,30 +1625,7 @@
         padding: 8px 10px;
     }
 
-    .mobile_search {
-        position: absolute;
-        /* right: 18px; */
-        top: 0;
-        left: 10px;
-        right: 150px;
-        z-index: 5;
-    }
     
-    .mobile_search input{
-        background-color: var(--white-color);
-        padding: 10px 16px;
-        border: solid 2px var(--gray-bg);
-        border-radius: 30px;
-        outline: none;
-        height: 36px;
-        display: block;
-        font-size: 12px;
-        border: 1px solid #C7C7C7;
-        /* left: 200px; */
-        margin-top: 15px;
-        max-width: 100%;
-        width: 100%;
-    }
 }
 
 @media only screen and (max-width: 376px) {
@@ -1666,30 +1647,8 @@
         padding-left: 0px !important;
         margin-top: 0 !important;
     }
-
-    .mobile_search {
-        position: absolute;
-        /* right: 18px; */
-        top: 0;
-        left: 10px;
-        right: 150px;
-        z-index: 5;
-    }
-    
-    .mobile_search input{
-        background-color: var(--white-color);
-        padding: 10px 16px;
-        border: solid 2px var(--gray-bg);
-        border-radius: 30px;
-        outline: none;
-        height: 36px;
-        display: block;
-        font-size: 12px;
-        border: 1px solid #C7C7C7;
-        /* left: 200px; */
-        margin-top: 15px;
-        max-width: 100%;
-        width: 100%;
+    .swiper-button-next{
+        right: 10px;
     }
 }
 

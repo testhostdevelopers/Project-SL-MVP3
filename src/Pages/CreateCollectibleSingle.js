@@ -13,6 +13,7 @@ import SwiperCore, { Keyboard, Pagination, Navigation } from "swiper/core";
 import { motion } from "framer-motion"
 import SingleCollectibleDetails from './SingleCollectibleDetails';
 import SingleChooesColl from '../Components/Collection/SingleChooesColl';
+import AdvanceCollectionSetting from './AdvanceCollectionSetting';
 // const { Option } = Select;
 
 SwiperCore.use([Keyboard, Pagination, Navigation]);
@@ -25,6 +26,7 @@ const CreateCollectibleSingle = () => {
     }
 
     const [filesize, setfilesize] = useState("");
+    const [changetext, setChangetext] = useState("Upload file to preview your brand new NFT")
 
     const profileImage = React.useRef(null);
     const profileUploader = React.useRef(null);
@@ -40,6 +42,9 @@ const CreateCollectibleSingle = () => {
                 if (!file) {
                     setfilesize('Please select Valid Image .' );
                     return false;
+                  }
+                  if (e.target.result) {
+                    setChangetext("")
                   }
             };
             reader.readAsDataURL(file);
@@ -59,9 +64,10 @@ const CreateCollectibleSingle = () => {
         {myimg: darkcircle, dass: '---'}
     ];
     
-    const [showDetail,setShowDetail] = useState(false);
+    const [showDetail,setShowDetail] = useState(true);
     const handleToggle = () => setShowDetail(!showDetail);
 
+    
 
     return (
         <>
@@ -177,14 +183,16 @@ const CreateCollectibleSingle = () => {
                         <div className="col-sm-12 col-md-5 pl-5 brand-new-nfp">
                             <b>Preview</b>
                             <div className="border-gray upload-box text-center border-radius mt-4 color-gray d-flex justify-content-center align-items-center p-5">
-                               <label>Upload file to preview your brand new NFT</label>
+                              
+                               <label>{changetext}</label>
+                               {
+
+                               }
 
                                                  <img
                                                     src=""
                                                     ref={profileImage}
                                                     style={{
-                                                        width: "100%",
-                                                        height: "100%",
                                                         position: "absolute",
                                                         insetInlineStart: "auto",
                                                         borderRadius: "13px",
@@ -225,13 +233,14 @@ const CreateCollectibleSingle = () => {
                             </div>
                         </div>
 
+                        <SingleCollectibleDetails />
                         
-                        {showDetail && <SingleCollectibleDetails /> }
+                        {showDetail && <AdvanceCollectionSetting /> }
 
                     </div>
-
+                     
                     <div className="mt-4">
-                        <button className="btn-primary-outline w-100" onClick={handleToggle}> {showDetail ? "Hide advanced settings" : "Show advanced settings"}</button>
+                        <button className="btn-primary-outline w-100"onClick={handleToggle}> {showDetail ? "Hide advanced settings" : "Show advanced settings "}</button>
                     </div>
                     
                         

@@ -782,6 +782,7 @@ footer section .footer-in-email {
     z-index: 9 !important;
     background-image: url(../img/icons/custom/arra_right.svg)!important;
     flex-wrap: wrap;
+    right: 5px!important;
 }
 .dark-md .swiper-button-next{
     width: 45px !important;
@@ -791,6 +792,7 @@ footer section .footer-in-email {
     z-index: 9 !important;
     background-image: url(../img/icons/custom/dar_right_arr.svg)!important;
     flex-wrap: wrap;
+    right: 5px!important;
 } 
 .swiper-button-prev{
     width: 45px !important;
@@ -798,7 +800,7 @@ footer section .footer-in-email {
     border-radius: 50% !important;
     /* background: #E1E5F0 !important; */
     z-index: 9 !important;
-    background-image: url(../img/icons/custom/Group_1650.png)!important;
+    background-image: url(../img/icons/custom/arr_pre.svg)!important;
 }
 .dark-md .swiper-button-prev{
     width: 45px !important;
@@ -2963,4 +2965,8 @@ div.ant-select-dropdown {
     top: 8px;
     right: 8px;
     bottom: 0;
+}
+
+.slowmotion{
+    transition-duration: 10s;
 }

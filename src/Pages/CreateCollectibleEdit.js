@@ -117,26 +117,28 @@ const CreateCollectibleEdit = () => {
 
 
 
-                        <div className="col-sm-12 mobile-sm-order-right profile-edit-verified-container p-4 mt-5" style={{ borderRadius: "25px" }}>
+                        <div className="col-sm-12  mobile-sm-order-right profile-edit-verified-container p-4 mt-5" style={{ borderRadius: "25px" }}>
                             <div className="row">
-                                <div className="col-sm-12 col-lg-2">
-                                    <h5 className="m-0"><b>Verfication</b></h5>
+                                <div className="col-sm-12 col-lg-2 ">
+                                    <h5 className=" m-0"><b>Verfication</b></h5>
                                 </div>
 
-                                <div className="col-sm-12 col-lg-6">
-                                    <span className="color-gray">
+                                <div className="col-sm-12 col-lg-6 ">
+                                    <span className="color-gray ">
                                         Proceed with verification process to get <br /> more visibility and gain trust on Starlight  <br />  Marketplace.
                                     </span>
                                 </div>
 
-                                <div className="col-sm-12 col-lg-4 text-right">
-                                    <button className="btn-primary-outline profile-edit-verified-btn w-50">Get Verified</button>
+                                <div className="col-sm-12 col-lg-4 text-right ">
+                                    <button className=" btn-primary-outline profile-edit-verified-btn w-50">Get Verified</button>
                                 </div>
                             </div>
+
                         </div>
 
-                        <div className="col-sm-12 mt-5 mobile-sm-order-right">
-                            <button className="btn-primary profile-edit-verified-btn w-100 ">Update Profile</button>
+                            
+                        <div className="col-md-12 mt-5 mobile-sm-order-right" style={{paddingLeft: "0px", paddingRight: "0px"}}>
+                             <button className="btn-primary profile-edit-verified-btn w-100 ">Update Profile</button>
                         </div>
 
                     </div>

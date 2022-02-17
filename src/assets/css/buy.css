@@ -233,6 +233,9 @@
 .create-single-section-container .custom-switch .custom-control-label::before {
     width: 3rem !important;
     border-radius: 30px !important;
+    background: #ffffff;
+    transform: rotate(-180deg);
+    border: 1px solid #E1E5F0;
 }
 .custom-switch .custom-control-label::before {
 	left: -2.25rem;
@@ -246,18 +249,38 @@
 .custom-switch .custom-control-label::after {
 	background-color: #fff;
 }
+.custom-switch .custom-control-label::before{
+    background-color: #6300FF;
+}
 .create-single-section-container .custom-control-label::before {
-    height: 1.50rem !important;
+    height: 1.80rem !important;
+    width: 51px;
+    height: 31px;
 }
 
 .create-single-section-container .custom-switch .custom-control-label::after {
-    width: calc(1.5rem - 4px) !important;
-    height: calc(1.5rem - 4px) !important;
+    /* width: calc(1.5rem - 4px) !important;
+    height: calc(1.5rem - 4px) !important; */
+    width: calc(1.6rem - 4px) !important;
+    height: calc(1.6rem - 4px) !important;
     border-radius: 50% !important;
+    background: #E1E5F0;
+    border: 0.5px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15), 0px 3px 1px rgba(0, 0, 0, 0.06);
+}
+.custom-control-input:focus:not(:checked)~.custom-control-label::before{
+    border: 1px solid #E1E5F0;
+}
+.custom-control-input:focus~.custom-control-label::before{
+    box-shadow: none;
+}
+.custom-switch .custom-control-label::after {
+    top: calc(0.2rem + 3px)!important;
+    left: calc(-2.25rem + 3px)!important;
 }
 
 .create-single-section-container .custom-switch .custom-control-input:checked~.custom-control-label::after {
-    transform: translateX(1.5rem) !important;
+    transform: translateX(1.3rem) !important;
 }
 
 .create-single-section-container .putOnMarketplace {

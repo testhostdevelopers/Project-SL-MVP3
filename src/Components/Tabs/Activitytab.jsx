@@ -89,10 +89,10 @@ const findFilter = (key) =>{
                                                             {listing === 'Purchases' ? <h6>Purchases</h6> : ''}
                                                             {listing === 'Sales' ? <h6>Sales</h6> : ''}
                                                             {listing === 'Transfer' ? <h6>Transfer</h6> : ''}
-                                                            {listing === 'Burn' ? <h6>Burn</h6> : ''}
+                                                            {listing === 'Burns' ? <h6>Burn</h6> : ''}
                                                             {listing === 'Bids' ? <h6>Bids</h6> : ''}
-                                                            {listing === 'Likes' ? <h6>Likes</h6> : ''}
-                                                            {listing === 'Followings' ? <h6>Likes</h6> : ''}
+                                                            {listing === 'Like' ? <h6>Likes</h6> : ''}
+                                                            {listing === 'Following' ? <h6>Likes</h6> : ''}
                                                         </div>
                                                 <div className="row align-items-start">
                                                     <div className="d-flex col-lg-8 activity activity-number-card-left">
