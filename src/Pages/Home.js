@@ -171,7 +171,7 @@ const Home = () => {
                 variants={variants} className="nft-start">
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-sm-12 col-lg-5 home-nft-slider-section margin-50">
+                        {/* <div className="col-sm-12 col-lg-5 home-nft-slider-section margin-50">
                             <div className="d-flex align-items-start flex-column w-100">
                                 <div className="d-flex align-items-end w-100 home-banner-description">
                                     <h1 className="section-title mb-0 ml-0" style={{ fontSize: "72px" }}>
@@ -209,12 +209,12 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
-                        <div className="col-sm-12 col-lg-6  home-nft-slider margin-50 ">
-                            <div className="bg-lines"></div>
+                        <div className="col-sm-12 col-lg-12  home-nft-slider margin-50 ">
+                            {/* <div className="bg-lines"></div>
                             <div className="bg-lines1"></div>
-                            <div className="bg-lines2"></div>
+                            <div className="bg-lines2"></div> */}
                             
                             <Swiper
                                 style={{ marginTop: 15 }}
@@ -228,7 +228,7 @@ const Home = () => {
                             >
                                 <SwiperSlide>
                                     <img src={artWorkWeek1} width="100%" />
-                                    <div className="slider-content">
+                                    {/* <div className="slider-content">
                                         <img src={topSellerUser1} width="52px" height="52px" />
                                         <div className="slider-conter-absolute d-flex">
                                             <div className="d-flex flex-column">
@@ -247,12 +247,48 @@ const Home = () => {
                                             Liquid Abstract Painting
                                             <small>@gshsj56</small>
                                         </div>
-
+                                    </div> */}
+                                    <div id="message-container">
+                                        <div id="main-heading">
+                                            Name of Collection
+                                        </div>
+                                        <div id="by">
+                                            By Lorem Ipsum
+                                        </div>
+                                        <div id="sub-heading">
+                                            Lorem Ipsum is simply dummy text of the printing
+                                            and typesetting industry. Lorem Ipsum has been the 
+                                            industry's standard dummy text ever since the 1500s, 
+                                            when an unknown printer took a galley of type and 
+                                            scrambled it to make a type specimen book.
+                                        </div>
+                                        <button type="button" class="ant-btn ant-btn-default Explore Collection">
+                                            <span>How to Buy</span>
+                                        </button>
                                     </div>
+
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <img src={artWorkWeek2} width="100%" />
-                                    <div className="slider-content">
+                                    <div id="message-container">
+                                        <div id="main-heading">
+                                            Name of Collection
+                                        </div>
+                                        <div id="by">
+                                            By Lorem Ipsum
+                                        </div>
+                                        <div id="sub-heading">
+                                            Lorem Ipsum is simply dummy text of the printing
+                                            and typesetting industry. Lorem Ipsum has been the 
+                                            industry's standard dummy text ever since the 1500s, 
+                                            when an unknown printer took a galley of type and 
+                                            scrambled it to make a type specimen book.
+                                        </div>
+                                        <button type="button" class="ant-btn ant-btn-default Explore Collection">
+                                            <span>How to Buy</span>
+                                        </button>
+                                    </div>
+                                    {/* <div className="slider-content">
                                         <img src={topSellerUser1} width="52px" height="52px" />
                                         <div className="slider-conter-absolute d-flex">
                                             <div className="d-flex flex-column">
@@ -271,12 +307,12 @@ const Home = () => {
                                             Liquid Abstract Painting
                                             <small>@gshsj56</small>
                                         </div>
+                                    </div> */}
 
-                                    </div>
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <img src={artWorkWeek3} width="100%" />
-                                    <div className="slider-content">
+                                    {/* <div className="slider-content">
                                         <img src={topSellerUser1} width="52px" height="52px" />
                                         <div className="slider-conter-absolute d-flex">
                                             <div className="d-flex flex-column">
@@ -295,12 +331,30 @@ const Home = () => {
                                             Liquid Abstract Painting
                                             <small>@gshsj56</small>
                                         </div>
-
+                                    </div> */}
+                                    <div id="message-container">
+                                        <div id="main-heading">
+                                            Name of Collection
+                                        </div>
+                                        <div id="by">
+                                            By Lorem Ipsum
+                                        </div>
+                                        <div id="sub-heading">
+                                            Lorem Ipsum is simply dummy text of the printing
+                                            and typesetting industry. Lorem Ipsum has been the 
+                                            industry's standard dummy text ever since the 1500s, 
+                                            when an unknown printer took a galley of type and 
+                                            scrambled it to make a type specimen book.
+                                        </div>
+                                        <button type="button" class="ant-btn ant-btn-default Explore Collection">
+                                            <span>How to Buy</span>
+                                        </button>
                                     </div>
+
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <img src={artWorkWeek4} width="100%" />
-                                    <div className="slider-content">
+                                    {/* <div className="slider-content">
                                         <img src={topSellerUser1} width="52px" height="52px" />
                                         <div className="slider-conter-absolute d-flex">
                                             <div className="d-flex flex-column">
@@ -319,8 +373,26 @@ const Home = () => {
                                             Liquid Abstract Painting
                                             <small>@gshsj56</small>
                                         </div>
-
+                                    </div> */}
+                                    <div id="message-container">
+                                        <div id="main-heading">
+                                            Name of Collection
+                                        </div>
+                                        <div id="by">
+                                            By Lorem Ipsum
+                                        </div>
+                                        <div id="sub-heading">
+                                            Lorem Ipsum is simply dummy text of the printing
+                                            and typesetting industry. Lorem Ipsum has been the 
+                                            industry's standard dummy text ever since the 1500s, 
+                                            when an unknown printer took a galley of type and 
+                                            scrambled it to make a type specimen book.
+                                        </div>
+                                        <button type="button" class="ant-btn ant-btn-default Explore Collection">
+                                            <span>How to Buy</span>
+                                        </button>
                                     </div>
+
                                 </SwiperSlide>
                             </Swiper>
                         </div>

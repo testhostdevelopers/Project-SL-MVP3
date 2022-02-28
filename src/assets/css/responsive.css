@@ -36,6 +36,7 @@
     .slider-content .position-relative {
         font-size: 22px !important;
     }
+    
 
 }
 
@@ -267,6 +268,23 @@
     .sign-in-container-section .sig-in-mobile .btn > img {
         left: 30px;
         height: 15px;
+    }
+    .nft-start .swiper-container,
+    .nft-start .swiper-container .swiper-slide > img {
+        max-height: 400px;
+    }
+
+    #message-container #main-heading {
+        font-size: 32px;
+    }
+    #message-container #by {
+        font-size: 16px;
+    }
+    #message-container #sub-heading {
+        font-size: 14px;
+    }
+    #message-container button {
+        font-size: 12px;
     }
 }
 
@@ -603,6 +621,11 @@
         width: 100%;
         padding: 10px 20px;
     }
+
+    .nft-start .swiper-container,
+    .nft-start .swiper-container .swiper-slide > img {
+        max-height: 350px;
+    }
 }
 
 @media only screen and (max-width: 767px) {
@@ -700,10 +723,10 @@
         max-width: 100%;
     }
     .nft-start .home-nft-slider {
-        margin-top: 55px !important;
+        margin-top: 0 !important;
         margin-left: 0;
-        flex: 0 0 calc(100% - 15px);
-        max-width: calc(100% - 15px);
+        flex: 100%;
+        max-width: 100%;
     }
 
     .d-mobile-none {
@@ -1625,6 +1648,27 @@
         padding: 8px 10px;
     }
 
+    #message-container {
+        left: 0;
+        right: 0;
+        margin-left:auto;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 15px;
+    }
+    #message-container #main-heading {
+        font-size: 24px;
+    }
+    #message-container #by {
+        font-size: 14px;
+    }
+    #message-container #sub-heading {
+        font-size: 12px;
+    }
+    #message-container button {
+        font-size: 12px;
+        line-height: 130%;
+    }
     
 }
 

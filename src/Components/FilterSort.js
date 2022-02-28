@@ -54,7 +54,7 @@ export default function FilterSort({setFilterSort, filterSort,filterCategory,fil
       </div>
       <div className="ant-select ant-select-single ant-select-show-arrow" onClick={handleToggle}>
         <div className="ant-select-selector">
-          <span className="ant-select-selection-item">{isChecked ? checkedValues : 'Collections'}</span>
+          <span className="ant-select-selection-item">{isChecked ? checkedValues : 'Recently added'}</span>
         </div>
         <span className="ant-select-arrow">
           <span role="img" aria-label="down" className="anticon anticon-down ant-select-suffix">

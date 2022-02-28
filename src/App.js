@@ -55,10 +55,7 @@ const App = () => {
     }
     return (
         <>
-        
-        
             <Router>
-                     
                 <Navbar handleprofilepicUploadr={(e) => handleprofilepicUploadr(e)} profileImage={profileImage} />
                 <Switch>
                     <Route path="/" component={Home} exact />

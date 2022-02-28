@@ -750,6 +750,9 @@ footer section .footer-in-email {
 .nft-start .swiper-container{
     width: 100%;
     position: static;
+    overflow: hidden;
+	max-height: 550px;
+    border-radius: 15px;
 }
 
 .nft-start .swiper-slide{
@@ -758,7 +761,7 @@ footer section .footer-in-email {
 
 .nft-start .swiper-container .swiper-slide > img {
 	border-radius: 15px;
-	max-height: 483px;
+	max-height: 550px;
 	width: 100%;
 }
 
@@ -1471,13 +1474,13 @@ span.ant-select-selection-item {
 	max-width: 45%;
 }
 .nft-start .home-nft-slider {
-	-ms-flex: 0 0 43.6%;
-	flex: 0 0 43.6%;
-	max-width: 43.6%;
-	margin-top: 67px !important;
+	-ms-flex: 0 0 100%;
+	flex: 0 0 100%;
+	max-width: 100%;
+	margin-top: 0 !important;
 	padding-right: 20px;
 	padding-top: 5px;
-    margin-left: 6%;
+    margin-left: auto;
 }
 
 .quickExplore .nav-tabs {
@@ -2969,4 +2972,61 @@ div.ant-select-dropdown {
 
 .slowmotion{
     transition-duration: 10s;
+}
+
+
+#message-container {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+    margin-left: 5vw;
+    max-width: 450px;
+    width: 100%;
+    transform: translateY(-50%);
+}
+#message-container #main-heading {
+    font-weight: 600;
+    margin-bottom: 0;
+    font-family: "AvertaStd";
+    font-size: 40px;
+    line-height: 120%;
+    color: #fff;
+}
+#message-container #by {
+    font-family: "AvertaStd";
+    font-size: 18px;
+    line-height: 21px;
+    color: #fff;
+}
+#message-container #sub-heading {
+	margin-top: 20px;
+	margin-bottom: 30px;
+	font-family: "AvertaStd";
+	font-size: 18px;
+	line-height: 21px;
+	color: #fff;
+}
+#message-container button {
+	max-width: 222px;
+	border: none;
+	width: 100%;
+	background: #6300FF;
+	border-radius: 47px;
+	font-family: "AvertaStd";
+	font-size: 14px;
+	text-align: center;
+	color: #fff;
+}
+#message-container button:hover {
+	background: #3F00A2 !important;
+}
+.swiper-slide::before {
+	content: "";
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	left: 0;
+	top: 0;
+	background: linear-gradient(270deg, rgba(18, 18, 18, 0) 0%, #121212 100%);
 }
