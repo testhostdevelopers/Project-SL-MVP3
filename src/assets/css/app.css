@@ -2,7 +2,6 @@
 
 @import './veriables.css';
 
-
 /*
     NFT MarketPlace Veriables
 */
@@ -1478,8 +1477,7 @@ span.ant-select-selection-item {
 	flex: 0 0 100%;
 	max-width: 100%;
 	margin-top: 0 !important;
-	padding-right: 20px;
-	padding-top: 5px;
+    padding: 0;
     margin-left: auto;
 }
 
@@ -3030,3 +3028,26 @@ div.ant-select-dropdown {
 	top: 0;
 	background: linear-gradient(270deg, rgba(18, 18, 18, 0) 0%, #121212 100%);
 }
+
+.home-nft-slider .swiper-pagination-bullets {
+	text-align: right;
+	padding: 0 25px;
+    z-index: 4;
+}
+.home-nft-slider .swiper-pagination-bullets .swiper-pagination-bullet {
+	width: 16px;
+	height: 16px;
+	background: #FFFFFF;
+	opacity: 0.5;
+	border-radius: 15px;
+}
+
+.home-nft-slider .swiper-pagination-bullets .swiper-pagination-bullet.swiper-pagination-bullet-active {
+	opacity: 1;
+    background: #6300FF;
+    border: 1.08884px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: 0px 4.35535px 5.44419px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+

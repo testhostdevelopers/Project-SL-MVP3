@@ -217,10 +217,12 @@ const Home = () => {
                             <div className="bg-lines2"></div> */}
                             
                             <Swiper
+                                pagination={true} modules={[Pagination]}
+                                pagination={{ clickable: true }}
                                 style={{ marginTop: 15 }}
                                 spaceBetween={10}
                                 slidesPerView={1}
-                                navigation={true}
+                                navigation={false}
                                 autoplay={{
                                     "delay": 2500,
                                     "disableOnInteraction": false
