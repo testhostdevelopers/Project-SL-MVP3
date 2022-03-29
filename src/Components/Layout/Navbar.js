@@ -4,7 +4,7 @@ import vectorLogo from "../../assets/img/custom/Vector.svg";
 import menu4Line from "../../assets/img/icons/custom/menu-4-line.svg";
 import userProfilePictures from "../../assets/img/icons/custom/userNav.svg";
 import fabaLogo from "../../assets/img/custom/x.svg";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Redirect, Link } from "react-router-dom";
 import userTick from "../../assets/img/custom/StarlightbalanceIcon.svg";
 import grayPp from "../../assets/img/custom/grayPp.png";
 import McdoIcon from "../../assets/img/custom/mcdoicon.svg";
@@ -22,6 +22,24 @@ import searchline_white from '../../assets/img/icons/custom/search-line_white.sv
 import user2 from '../../assets/img/icons/custom/user2.png';
 
 const Navbar = (props) => {
+
+    var UPubKey=null,cutPkey;
+
+    if(localStorage.getItem('PublicKey')){
+        UPubKey = localStorage.getItem('PublicKey'); 
+        cutPkey = UPubKey.substring(0,4)+'....'+UPubKey.substring(UPubKey.length-4);
+    }
+
+    const signOut = () => {
+        var wal = localStorage.getItem('wallet');
+        if( wal == 'phantom' ){
+            window.solana.disconnect();
+            window.solana.request({ method: "disconnect" });
+            window.solana.on('disconnect', () => console.log("disconnected!"))
+            sessionStorage.removeItem('apiToken');
+            window.location.reload(false);
+        }
+    }
 
     const [CoinConverp, setCoinConverp] = useState(false);
     const [theme, setTheme] = useState(localStorage.getItem('theme'))
@@ -243,7 +261,7 @@ const Navbar = (props) => {
                             <div className="d-lg-none d-sm-block">
                                 <a className="nav-link nav-dark-button p-0 nav-dark-button mr-2 position-relative" onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)} >
                                     {
-                                        theme === true ? <img src={user2} /> : <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
+                                        theme === true && sessionStorage.getItem('apiToken')  ? <img src={user2} /> : <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
                                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                     </svg>
                                     }
@@ -253,9 +271,9 @@ const Navbar = (props) => {
                                     
                                     {
                                         openProfileDropMenu === false ? "" : <div className="openProfileDropMenu">
-                                            <h4 className="text-left">0×hubwc8fh2f....hb8fhr</h4>
+                                            <h4 className="text-left">{ UPubKey==null ? '' : cutPkey }</h4>
                                             <div className="notipopup-display">
-                                                <a href="#0" className="color-ping"><b>Set display name</b></a>
+                                                <a href="/edit-profile" className="color-ping"><b>Set display name</b></a>
                                                 {/* <a href="#0" className="color-ping" for="profilephoto" onClick={() => profileUploader.current.click()}><b>Upload profile picture</b></a>
                                                 <div className="profile-user-pictures">
                                                     <input
@@ -364,7 +382,7 @@ const Navbar = (props) => {
                                             </div>
 
                                             <div className="d-flex justify-content-between">
-                                                <h6>Sign out</h6>
+                                                <h6 onClick={() => { signOut() } }>Sign out</h6>
                                             </div>
 
 
@@ -531,7 +549,7 @@ const Navbar = (props) => {
                                 </li>
 
                                 {
-                                    location.pathname === "/" ? <li className="nav-item d-sm-none d-lg-block m-0 p-0 d-flex align-items-center">
+                                    location.pathname === "/" && !sessionStorage.getItem('apiToken') ? <li className="nav-item d-sm-none d-lg-block m-0 p-0 d-flex align-items-center">
                                         <Link to="/SignIn" className="nav-link p-0">
                                             <button className="btn btn-primary-outline">Sign In</button>
                                         </Link>
@@ -589,7 +607,7 @@ const Navbar = (props) => {
 
 
                                     {
-                                        location.pathname !== "/" ? <a className="d-sm-none d-lg-block nav-link p-0 nav-dark-button mr-2 position-relative"  onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)}>
+                                        sessionStorage.getItem('apiToken') ? <a className="d-sm-none d-lg-block nav-link p-0 nav-dark-button mr-2 position-relative"  onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)}>
                                             <div className='toggle_btn'>
                                                 
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
@@ -624,9 +642,9 @@ const Navbar = (props) => {
                                             
                                             {
                                                 openProfileDropMenu === false ? "" : <div className="notificationPopup">
-                                                    <h4 className="text-left">0×hubwc8fh2f....hb8fhr</h4>
+                                                    <h4 className="text-left">{ UPubKey==null ? '' : cutPkey }</h4>
                                                     <div className="notipopup-display">
-                                                        <a href="#0" className="color-ping"><b>Set display name</b></a>
+                                                        <a href="/edit-profile" className="color-ping"><b>Set display name</b></a>
                                                         <a className="color-ping" onClick={() => profileUploader.current.click()} ><b>Upload profile picture</b></a>
 
                                                     </div>
@@ -715,7 +733,7 @@ const Navbar = (props) => {
                                                     </div>
 
                                                     <div className="d-flex justify-content-between">
-                                                        <h6>Sign out</h6>
+                                                        <h6 onClick={() => { signOut() } } >Sign out</h6>
                                                     </div>
 
 

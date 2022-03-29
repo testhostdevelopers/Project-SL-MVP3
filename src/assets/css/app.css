@@ -57,6 +57,18 @@ img{
 	color: #fff;
 }
 
+.img-btn::-webkit-file-upload-button{
+    background-image: url(../img/icons/custom/bg_img.png);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	border: none;
+	border-radius: 30px;
+	font-size: 14px;
+	padding: 10px 27px 11px 27px;
+	color: #fff;
+}
+
 .btn-chooes {
 	background-image: url(../img/icons/custom/bg_img.png);
 	background-position: center;

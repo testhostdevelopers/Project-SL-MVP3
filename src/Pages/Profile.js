@@ -17,17 +17,39 @@ import { motion } from "framer-motion"
 import { Menu, Dropdown, Tabs } from 'antd';
 import { Link } from 'react-router-dom';
 import ProfileLinks from '../Components/ProfileLinks';
+import axios from 'axios';
 
+var UPubKey=null,cutPkey;
+
+if(localStorage.getItem('PublicKey')){
+    UPubKey = localStorage.getItem('PublicKey'); 
+    cutPkey = UPubKey.substring(0,4)+'....'+UPubKey.substring(UPubKey.length-4);
+}
 
 
 const { TabPane } = Tabs;
 
 const Profile = (props) => {
-    console.log("props.pImage", props.pImage, "sdasadsa");
+    // console.log("props.pImage", props.pImage, "sdasadsa");
     const [reportPopup, setReportPopup] = useState(false);
 
     const [buttonText, setButtonText] = useState("Add Cover");
-    
+    var [udata,setUdata] = useState();
+
+    useEffect( () => {
+        if(sessionStorage.getItem('apiToken')){
+            var apiToken = sessionStorage.getItem('apiToken');
+            axios.get('http://localhost:8000/v1/user/getUser',
+            { 
+                headers: { 
+                    "Authorization" : `Bearer ${apiToken}`,
+                }
+            }).then((res) => { 
+                setUdata(res.data.data);
+            })
+            
+        }
+    },[])
 
 
     const variants = {
@@ -130,7 +152,7 @@ const Profile = (props) => {
                                         <div className='coverpic' onClick={() => imageUploader.current.click()}>
                                             <img
                                                 id='mydat'
-                                                src=""
+                                                src=''
                                                 ref={uploadedImage}
                                                 style={{
                                                     width: "100%",
@@ -161,7 +183,7 @@ const Profile = (props) => {
                                             <div className='profile-pic' onClick={() => profileUploader.current.click()}>
                                                 <label>Add Profile Picture</label>
                                                 <img
-                                                    src={props.pImage}
+                                                    src={udata==null ? '' : udata.profile}
                                                     ref={profileImage}
                                                     style={{
                                                         width: "100%",
@@ -172,13 +194,13 @@ const Profile = (props) => {
                                             </div>
                                         </div>
                                         <div className="mt-3 profile-usr-name-h3-size">
-                                            <h3><b>Arlene McCoy</b></h3>
-                                            <div className="btn-gray text-center mt-3"><b>0xbAu7...f08a</b></div>
+                                            <h3><b>{udata==null ? '' : udata.display_name}</b></h3>
+                                            <div className="btn-gray text-center mt-3"><b>{ UPubKey==null ? '' : cutPkey }</b></div>
                                         </div>
 
                                         <div className="profile-usr-info">
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. <a href="#0" className="read-more-link">Read more</a></p>
-                                            <a href="#0" className="website-link"><span><img src={EarthIcon} /></span>pixeldrops.com</a>
+                                            <p>{udata==null ? '' : udata.bio} <a href="#0" className="read-more-link">Read more</a></p>
+                                            <a href="#0" className="website-link"><span><img src={EarthIcon} /></span>{udata==null ? '' : udata.personal_site}</a>
                                             <div className="follows-block">
                                                 <span><b>127 </b>Followers</span>
                                                 <span><b>17 </b>Following</span>

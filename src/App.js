@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
 import './assets/css/veriables.css';
 import './assets/css/app.css';
 import './assets/css/buy.css';
@@ -27,7 +27,7 @@ import search from './Pages/search';
 import CreateCollectibleEdit from './Pages/CreateCollectibleEdit';
 
 import 'swiper/swiper-bundle.css';
-import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import AnnBnnaer from './Components/Popup/AnnBnnaer';
 
 
@@ -48,6 +48,13 @@ const App = () => {
         }
     };
 
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    useEffect(() => {
+        if(sessionStorage.getItem('apiToken')){
+            setIsAuthenticated(true);
+        }
+    }, []);
+
     function withProps(Component, props) {
         return function (matchProps) {
             return <Component {...props} {...matchProps} />
@@ -63,16 +70,54 @@ const App = () => {
                     <Route path="/explore" component={Explore} exact />
                     <Route path="/buy" component={Buy} exact />
                     <Route path="/collection" component={Collection} exact />
-                    <Route path="/signIn" component={SignIn} exact />
+                    <Route path="/signIn" render={
+                        (props => {
+                          if(isAuthenticated == false  )
+                          {
+                            return <SignIn {...props}/>
+                          }
+                          else{
+                            return <Redirect to={{
+                              pathname:"/"
+                            }} />
+                          }
+                        })
+                      }/>
                     <Route path="/neum" component={TokenPage} exact />
                     <Route path="/upcoming-collections" component={UpcomingCollections} exact />
                     <Route path="/token" component={Token} exact />
                     <Route path="/create" component={CreateCollectible} exact />
                     <Route path="/create-single" component={CreateCollectibleSingle} exact />
                     <Route path="/create-multiple" component={CreateCollectibleMulti} exact />
-                    <Route path="/profile" component={withProps(Profile,{pImage: pImage})}   exact />
+                    <Route path="/profile" render={
+                        (props => {
+                          if(isAuthenticated == true  )
+                          {
+                            return <Profile {...props}/>
+                          }
+                          else{
+                            return <Redirect to={{
+                              pathname:"/signin"
+                            }} />
+                          }
+                        })
+                      }/>
+                    {/*<Route path="/profile" component={withProps(Profile,{pImage: pImage})}   exact /> */}
                     <Route path="/faq" component={Faq} exact />
-                    <Route path="/edit-profile" component={CreateCollectibleEdit} exact />
+                    <Route path="/edit-profile" render={
+                        (props => {
+                          if(isAuthenticated == true  )
+                          {
+                            return <CreateCollectibleEdit {...props}/>
+                          }
+                          else{
+                            return <Redirect to={{
+                              pathname:"/signin"
+                            }} />
+                          }
+                        })
+                      }/>
+                    {/*<Route path="/edit-profile" component={CreateCollectibleEdit} exact />*/}
                     <Route path="/activity" component={Activity} exact />
                     <Route path="/following" component={Following} exact />
                     <Route path="/search" component={search} exact />

@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
-import {Link} from "react-router-dom";
+import {Link , Redirect } from "react-router-dom";
 import signInBanner from "../assets/img/custom/signInBanner.png";
 import metamask from "../assets/img/custom/metamask.svg";
 
 import Torus from "../assets/img/icons/custom/Torus.svg";
+import phantom from "../assets/img/icons/custom/phantom.png";
+import solflare from "../assets/img/icons/custom/solflare.png";
 import MobileWallet from "../assets/img/icons/custom/MobileWallet.svg";
 import Porttis from "../assets/img/icons/custom/Porttis.svg";
 import Coinbase from "../assets/img/icons/custom/Coinbase.svg";
@@ -12,6 +14,38 @@ import Fortmatic from "../assets/img/icons/custom/Fortmatic.svg";
 import backArrow from "../assets/img/icons/custom/arrow.svg";
 import { motion } from "framer-motion"
 import WhatWallet from '../Components/Popup/Whatwallet';
+import axios from 'axios';
+
+let data = {
+    conEstablished: false,
+    wallet: "",
+    pubKey: ""
+}
+
+const connectStore = async (pkey,wal,con) => {
+     data.conEstablished = con;
+    if(data.conEstablished == true){
+        data.pubKey = pkey;
+        data.wallet = wal;
+        localStorage.setItem('PublicKey', pkey);
+        localStorage.setItem('wallet', wal);
+        axios.post('http://localhost:8000/v1/user/signup',{
+                'walletToken': pkey,
+                'walletName': wal
+        }).then((res) => {
+            axios.put('http://localhost:8000/v1/user/gettoken',{
+                'walletToken': pkey
+            }).then((r) => {
+                sessionStorage.setItem('apiToken',r.data.data.apiToken);
+                window.location.reload(false);
+            })
+            
+        });
+        
+    }
+ }
+
+
 
 
 const SignIn = () => {
@@ -22,21 +56,48 @@ const SignIn = () => {
         hidden: { opacity: 0 },
         visible: { opacity: 1 },
     }
+    const connectPhantom = () => {
+        try {
+            if('solana' in window){
+                const resp = window.solana.connect();
+                resp.publicKey.toString();
+            }else{
+                window.open('https://phantom.app/', '_blank');
+            }
+        } catch (err) {
+          console.log(err);
+        }
+        window.solana.on("connect", () => connectStore(window.solana.publicKey.toString(),'phantom',true) );
+      }
+
+      const connectSolflare = () => {
+        if ('solflare' in window) {
+          const provider = window.solflare;
+        //   if (provider.isSolFlare) {
+            const solRes = window.solflare.connect();
+            window.solflare.on("connect", () => connectStore(window.solflare.publicKey.toString(),'solflare',true) );
+        //   }
+        }else{
+          window.open('https://solflare.com', '_blank');
+        }
+      
+    }
+
+      const connect = () => {
+          console.log("connect");
+      }
 
     const onToggleClick = (e) => {
         navRef.current.classList.toggle("showWallet");
       };
 
       const less_button = [
-          {btn_img: Torus, btn_text: 'Torus'},
-          {btn_img: MobileWallet, btn_text: 'Mobile Wallet'}
+          {btn_img: phantom, btn_text: 'Phantom', btn_function: () => {connectPhantom()}  },
+          {btn_img: solflare, btn_text: 'Solflare', btn_function: () => {connectSolflare()} },
       ];
 
       const more_button = [
-        {btn_img: Porttis, btn_text: 'Porttis'},
-        {btn_img: Coinbase, btn_text: 'Coinbase'},
-        {btn_img: MyEtherWallet, btn_text: 'MyEtherWallet'},
-        {btn_img: Fortmatic, btn_text: 'Fortmatic'}
+        
       ];
 
     return (
@@ -65,13 +126,10 @@ const SignIn = () => {
                                 <p className="mb-4 mt-3">Sign in with one of available wallet providers or create a new wallet <br />
                                     <span className="color-ping" onClick={() => setWhatwallet(true)}> <b>What is a wallet?</b></span></p>
 
-                                    <button className="btn ml-0 btn-ping signInActiveBtn w-100 d-flex align-items-center justify-content-center mb-4">
-                                            <img src={metamask} width="20px" />
-                                            <div style={{ margin: "auto auto" }}>Sign in with Metamask</div>
-                                        </button>
+                                
                                 {
                                     less_button.map((less) =>    
-                                    <button className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
+                                    <button onClick={less.btn_function} className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
                                         <img src={less.btn_img} width="20px" />
                                              <div style={{ margin: "auto auto" }}><b>{less.btn_text}</b></div>
                                      </button>
@@ -90,10 +148,10 @@ const SignIn = () => {
 
                                 </div>
 
-                                <button onClick={onToggleClick} className="loadmore-wallet btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
+                                {/*<button onClick={onToggleClick} className="loadmore-wallet btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
                                     <div className='more' style={{ margin: "auto auto" }}><b>Show more options</b></div>
                                     <div className='less' style={{ margin: "auto auto" }}><b>Show less options</b></div>
-                                </button>
+                                </button>*/}
 
                                 
 

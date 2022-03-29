@@ -1,13 +1,71 @@
-import React from 'react'
+import React ,{ useState, useEffect} from 'react'
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion"
 import CheckFillClrIcon from '../assets/img/icons/custom/Group_1454.svg'
+import axios from 'axios';
 
 const CreateCollectibleEdit = () => {
-
+    var [udata,setUdata] = useState();
     const variants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1 },
+    }
+
+    var form = {
+        dname: '',
+        bio: '',
+        cUrl: '',
+        twitterUname: '',
+        site: '',
+        email: '',
+        profile: {},
+        cover: {},
+    }
+        useEffect( () => {
+            if(sessionStorage.getItem('apiToken')){
+                console.log('api');
+                var apiToken = sessionStorage.getItem('apiToken');
+                axios.get('http://localhost:8000/v1/user/getUser',
+                { 
+                    headers: { 
+                        "Authorization" : `Bearer ${apiToken}`,
+                    }
+                }).then((res) => { 
+                    console.log(udata)
+                    setUdata(res.data.data);
+                    console.log(udata)
+                })
+                
+            }
+        },[])
+    
+        if(sessionStorage.getItem('apiToken')){
+            var apiToken = sessionStorage.getItem('apiToken');
+            // GetUdata(apiToken)
+        }
+    var upProfile = async () => {
+        console.log(form);
+        if(sessionStorage.getItem('apiToken')){
+            var apiToken = sessionStorage.getItem('apiToken');
+            console.log(form.profile)
+            var formData = new FormData();
+            formData.append('display_name',udata.display_name);
+            formData.append('bio',udata.bio);
+            formData.append('custom_url',udata.custom_url);
+            formData.append('twitter_username',udata.twitter_username);
+            formData.append('personal_site',udata.personal_site);
+            formData.append('email',udata.email);
+            formData.append('profile',udata.profile);
+            formData.append('cover',udata.cover);
+            await axios.put('http://localhost:8000/v1/user/update',formData,
+            { 
+                headers: { 
+                    "Authorization" : `Bearer ${apiToken}`,
+                }
+            }).then((res) => { 
+                console.log(res)
+            });
+        }
     }
 
     return (
@@ -36,7 +94,7 @@ const CreateCollectibleEdit = () => {
                                 <h5 className="m-0"><b>Display Name</b></h5>
 
                                 <div className="prize-single-collectible">
-                                    <input type="text" placeholder="PixelDrops" />
+                                    <input name="dname" required={true} onChange={ (e) => { setUdata( {...udata,display_name: e.target.value}) } } value={ udata==null ? '' : udata.display_name }   type="text" placeholder="PixelDrops" />
                                     <span className="color-gray "><img src={CheckFillClrIcon} /></span>
                                 </div>
                             </div>
@@ -44,7 +102,7 @@ const CreateCollectibleEdit = () => {
                             <div className="mt-5">
                                 <h5 className="m-0"><b>Bio</b></h5>
                                 <div className="prize-single-collectible">
-                                    <input type="text" placeholder="Tell us about yourself" />
+                                    <input type="text" required name="bio" onChange={ (e) => { setUdata( {...udata,bio: e.target.value}) } } value={ udata==null ? '' : udata.bio }  placeholder="Tell us about yourself" />
                                 </div>
                             </div>
 
@@ -53,7 +111,7 @@ const CreateCollectibleEdit = () => {
 
                                 <div className="prize-single-collectible">
                                     starlight.ooo/
-                                    <input type="text" className="ml-3" placeholder="Enter your custom URL" />
+                                    <input type="text" name="cUrl" required onChange={ (e) => { setUdata( {...udata,custom_url: e.target.value}) } } value={ udata==undefined ? '' : udata.custom_url } className="ml-3" placeholder="Enter your custom URL" />
                                 </div>
                             </div>
 
@@ -65,7 +123,7 @@ const CreateCollectibleEdit = () => {
 
                                 </div>
                                 <div className="prize-single-collectible">
-                                    <input type="text" placeholder="@PixelDrops" />
+                                    <input name="twitterUname" type="text" required onChange={ (e) => { setUdata( {...udata,twitter_username: e.target.value}) } } value={ udata==undefined ? '' : udata.twitter_username } placeholder="@PixelDrops" />
                                     <span className="color-gray "><button className="btn-primary-outline">Link</button></span>
                                 </div>
                             </div>
@@ -74,7 +132,7 @@ const CreateCollectibleEdit = () => {
                                 <h5 className="m-0"><b>Personal Site or Portfolio</b></h5>
 
                                 <div className="prize-single-collectible">
-                                    <input type="text" placeholder="https://" />
+                                    <input type="text" name="site" required onChange={ (e) => { setUdata( {...udata,personal_site: e.target.value}) } } value={ udata==undefined ? '' : udata.personal_site } placeholder="https://" />
                                 </div>
                             </div>
 
@@ -86,7 +144,7 @@ const CreateCollectibleEdit = () => {
                                 </div>
 
                                 <div className="prize-single-collectible">
-                                    <input type="text" placeholder="PixelDrops@gmail.com" />
+                                    <input type="email" name="email" required value={ udata==undefined ? '' : udata.email } onChange={ (e) => { setUdata( {...udata,email: e.target.value}) } } placeholder="PixelDrops@gmail.com" />
                                     <span className="color-gray "><button className="btn-primary-outline">Confirm</button></span>
                                 </div>
                             </div>
@@ -100,7 +158,7 @@ const CreateCollectibleEdit = () => {
                             <div className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center">
                                 <div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>
                                 <div className="mt-3">
-                                    <button className="btn-chooes w-100 ml-0 "></button>
+                                    <input type="file" accept="image/*" name="profile" src={ udata==undefined ? '' : udata.profile } onChange={ (e) => { setUdata( {...udata,profile: e.target.files[0]}) }  } id="profileImg" className="img-btn w-100 ml-0 "></input>
                                 </div>
                             </div>
 
@@ -110,7 +168,7 @@ const CreateCollectibleEdit = () => {
                             <div className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center">
                                 <div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>
                                 <div className="mt-3">
-                                    <button className="btn-chooes w-100 ml-0"></button>
+                                    <input type="file" accept="image/*" name="cover" src={ udata==undefined ? '' : udata.cover } onChange={ (e) => { setUdata( {...udata,cover: e.target.files[0]}) }  }  id="coverImg" className="img-btn w-100 ml-0"></input>
                                 </div>
                             </div>
                         </div>
@@ -138,7 +196,7 @@ const CreateCollectibleEdit = () => {
 
                             
                         <div className="col-md-12 mt-5 mobile-sm-order-right" style={{paddingLeft: "0px", paddingRight: "0px"}}>
-                             <button className="btn-primary profile-edit-verified-btn w-100 ">Update Profile</button>
+                             <button id="updateProfile" onClick={ () => upProfile() } className="btn-primary profile-edit-verified-btn w-100 ">Update Profile</button>
                         </div>
 
                     </div>
