@@ -39,6 +39,14 @@ const Navbar = (props) => {
             sessionStorage.removeItem('apiToken');
             window.location.reload(false);
         }
+
+        if( wal == 'solflare' ){
+            window.solflare.disconnect();
+            window.solflare.request({ method: "disconnect" });
+            window.solflare.on('disconnect', () => console.log("disconnected!"))
+            sessionStorage.removeItem('apiToken');
+            window.location.reload(false);
+        }
     }
 
     const [CoinConverp, setCoinConverp] = useState(false);

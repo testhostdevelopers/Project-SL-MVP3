@@ -47,7 +47,6 @@ const CreateCollectibleEdit = () => {
         console.log(form);
         if(sessionStorage.getItem('apiToken')){
             var apiToken = sessionStorage.getItem('apiToken');
-            console.log(form.profile)
             var formData = new FormData();
             formData.append('display_name',udata.display_name);
             formData.append('bio',udata.bio);
@@ -55,8 +54,8 @@ const CreateCollectibleEdit = () => {
             formData.append('twitter_username',udata.twitter_username);
             formData.append('personal_site',udata.personal_site);
             formData.append('email',udata.email);
-            formData.append('profile',udata.profile);
-            formData.append('cover',udata.cover);
+            formData.append('profile_img_url',udata.profile_img_url);
+            formData.append('cover_img_url',udata.cover_img_url);
             await axios.put('http://localhost:8000/v1/user/update',formData,
             { 
                 headers: { 
@@ -77,7 +76,7 @@ const CreateCollectibleEdit = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-sm-12">
-                            <Link className="d-flex align-items-center" to="/">
+                            <Link className="d-flex align-items-center" to="/Profile">
                                 <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fillRule="evenodd" clipRule="evenodd" d="M14 7.33341H4.55333L8.28 3.60675L7.33333 2.66675L2 8.00008L7.33333 13.3334L8.27333 12.3934L4.55333 8.66675H14V7.33341Z" fill="#141414" />
                                 </svg>
@@ -158,7 +157,7 @@ const CreateCollectibleEdit = () => {
                             <div className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center">
                                 <div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>
                                 <div className="mt-3">
-                                    <input type="file" accept="image/*" name="profile" src={ udata==undefined ? '' : udata.profile } onChange={ (e) => { setUdata( {...udata,profile: e.target.files[0]}) }  } id="profileImg" className="img-btn w-100 ml-0 "></input>
+                                    <input type="file" accept="image/*" name="profile" src={ udata==undefined ? '' : udata.profile_img_url } onChange={ (e) => { setUdata( {...udata,profile_img_url: e.target.files[0]}) }  } id="profileImg" className="img-btn w-100 ml-0 "></input>
                                 </div>
                             </div>
 
@@ -168,7 +167,7 @@ const CreateCollectibleEdit = () => {
                             <div className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center">
                                 <div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>
                                 <div className="mt-3">
-                                    <input type="file" accept="image/*" name="cover" src={ udata==undefined ? '' : udata.cover } onChange={ (e) => { setUdata( {...udata,cover: e.target.files[0]}) }  }  id="coverImg" className="img-btn w-100 ml-0"></input>
+                                    <input type="file" accept="image/*" name="cover" src={ udata==undefined ? '' : udata.cover_img_url } onChange={ (e) => { setUdata( {...udata,cover_img_url: e.target.files[0]}) }  }  id="coverImg" className="img-btn w-100 ml-0"></input>
                                 </div>
                             </div>
                         </div>

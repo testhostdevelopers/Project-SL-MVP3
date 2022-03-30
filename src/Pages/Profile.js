@@ -83,40 +83,68 @@ const Profile = (props) => {
     const uploadedImage = React.useRef(null);
     const imageUploader = React.useRef(null);
 
-    const handleImageUpload = e => {
-        const [file] = e.target.files;
-        if (file) {
-            const reader = new FileReader();
-            const { current } = uploadedImage;
-            current.file = file;
-            reader.onload = e => {
-                current.src = e.target.result;
-               
-                if( e.target.result ) {
-                    setButtonText("Edit Cover");
+    const profileImage = React.useRef(null);
+    const profileUploader = React.useRef(null);
+    
+    const handleImageUpload = async e => {
+        const ig = e.target.files[0];
+        if(sessionStorage.getItem('apiToken')){
+            var apiToken = sessionStorage.getItem('apiToken');
+            var formData = new FormData();
+            if(e.target.id == 'uploadcoverphoto'){
+                formData.append('cover_img_url',ig);
+            }
+            if(e.target.id == 'profilephoto'){
+                formData.append('profile_img_url',ig);
+            }
+            await axios.put('http://localhost:8000/v1/user/update',formData,
+            { 
+                headers: { 
+                    "Authorization" : `Bearer ${apiToken}`,
                 }
-            };
-            
-            reader.readAsDataURL(file);
+            }).then((res) => { 
+                // console.log(res)
+            });
+            const [file] = e.target.files;
+            if (file) {
+                if(e.target.id == 'uploadcoverphoto'){
+                    const reader = new FileReader();
+                    const { current } = uploadedImage;
+                    current.file = file;
+                    reader.onload = e => {
+                        current.src = e.target.result;
+                        if( e.target.result ) {
+                            setButtonText("Edit Cover");
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
+                if(e.target.id == 'profilephoto'){
+                    const reader = new FileReader();
+                    const { current } = profileImage;
+                    current.file = file;
+                    reader.onload = e => {
+                        current.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
         }
     };
 
 
-    const profileImage = React.useRef(null);
-    const profileUploader = React.useRef(null);
-    profileImage.current = props.pImage;
    
-    const handleprofilepicUploadr = e => {
-        const [file] = e.target.files;
-        if (file) {
-            const reader = new FileReader();
-            const { current } = profileImage;
-            current.file = file;
-            reader.onload = e => {
-                current.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
+    const handleprofilepicUploadr = async e => {
+        // const [file] = e.target.files;
+        // if (file) {
+        //     const reader = new FileReader();
+        //     const { current } = profileImage;
+        //     current.file = file;
+        //     reader.onload = e => {
+        //         current.src = e.target.result;
+        //     };
+        //     reader.readAsDataURL(file);
+        // }
     };
 
     
@@ -152,7 +180,7 @@ const Profile = (props) => {
                                         <div className='coverpic' onClick={() => imageUploader.current.click()}>
                                             <img
                                                 id='mydat'
-                                                src=''
+                                                src={udata==null ? '' : 'http://localhost:8000/'+udata.cover_img_url}
                                                 ref={uploadedImage}
                                                 style={{
                                                     width: "100%",
@@ -173,7 +201,7 @@ const Profile = (props) => {
                                             <input
                                                 type="file"
                                                 accept="image/*"
-                                                onChange={handleprofilepicUploadr}
+                                                onChange={handleImageUpload}
                                                 ref={profileUploader}
                                                 id="profilephoto"
                                                 style={{
@@ -183,7 +211,7 @@ const Profile = (props) => {
                                             <div className='profile-pic' onClick={() => profileUploader.current.click()}>
                                                 <label>Add Profile Picture</label>
                                                 <img
-                                                    src={udata==null ? '' : udata.profile}
+                                                    src={udata==null ? '' : 'http://localhost:8000/'+udata.profile_img_url}
                                                     ref={profileImage}
                                                     style={{
                                                         width: "100%",
