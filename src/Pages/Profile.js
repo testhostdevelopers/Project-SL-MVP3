@@ -47,7 +47,7 @@ const Profile = (props) => {
             }).then((res) => { 
                 setUdata(res.data.data);
             })
-            
+                 
         }
     },[])
 
