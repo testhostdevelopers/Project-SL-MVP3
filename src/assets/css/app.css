@@ -57,7 +57,9 @@ img{
 	color: #fff;
 }
 
-.img-btn::-webkit-file-upload-button{
+.img-btn{
+    display: none;
+    visibility: hidden;
     background-image: url(../img/icons/custom/bg_img.png);
 	background-position: center;
 	background-size: cover;
@@ -67,6 +69,10 @@ img{
 	font-size: 14px;
 	padding: 10px 27px 11px 27px;
 	color: #fff;
+}
+
+.imgLabel {
+    background-image: url(../img/icons/custom/bg_img.png);
 }
 
 .btn-chooes {

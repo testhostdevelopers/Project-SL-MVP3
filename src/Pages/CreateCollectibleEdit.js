@@ -31,7 +31,6 @@ const CreateCollectibleEdit = () => {
                         "Authorization" : `Bearer ${apiToken}`,
                     }
                 }).then((res) => { 
-                    console.log(udata)
                     setUdata(res.data.data);
                     console.log(udata)
                 })
@@ -157,7 +156,9 @@ const CreateCollectibleEdit = () => {
                             <div className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center">
                                 <div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>
                                 <div className="mt-3">
-                                    <input type="file" accept="image/*" name="profile" src={ udata==undefined ? '' : udata.profile_img_url } onChange={ (e) => { setUdata( {...udata,profile_img_url: e.target.files[0]}) }  } id="profileImg" className="img-btn w-100 ml-0 "></input>
+                                    <input type="file" accept="image/*" name="profile" onChange={ (e) => { setUdata( {...udata,profile_img_url: e.target.files[0]}) }  } id="profileImg" className="img-btn w-100 ml-0 "></input>
+                                    <label for="profileImg" > <img src="/static/media/bg_img.156953d5.png" ></img> </label><br/>
+                                    { udata==null ? '' : typeof(udata.profile_img_url) =='object' ? udata.profile_img_url.name : udata.profile_img_url }
                                 </div>
                             </div>
 
@@ -167,7 +168,9 @@ const CreateCollectibleEdit = () => {
                             <div className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center">
                                 <div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>
                                 <div className="mt-3">
-                                    <input type="file" accept="image/*" name="cover" src={ udata==undefined ? '' : udata.cover_img_url } onChange={ (e) => { setUdata( {...udata,cover_img_url: e.target.files[0]}) }  }  id="coverImg" className="img-btn w-100 ml-0"></input>
+                                    <input type="file" accept="image/*" name="cover" onChange={ (e) => { setUdata( {...udata,cover_img_url: e.target.files[0]}) }  }  id="coverImg" className="img-btn w-100 ml-0"></input>
+                                    <label for="coverImg" > <img src="/static/media/bg_img.156953d5.png" ></img> </label><br/>
+                                    { udata==null ? '' : typeof(udata.cover_img_url) =='object' ? udata.cover_img_url.name : udata.cover_img_url  }
                                 </div>
                             </div>
                         </div>
