@@ -1,1 +1,8 @@
+# Package Files
 node_modules/
+package-lock.json
+yarn.lock
+
+# Editor Folder
+.idea/
+ZZZ/
