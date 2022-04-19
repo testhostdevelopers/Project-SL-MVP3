@@ -141,7 +141,7 @@ const CreateCollectibleMulti = () => {
                                                     <Select className="section-select-filter ml-0" defaultValue="ETH">
                                                     {
                                                         price_one.map( (x,y) => 
-                                                        <option key={y}>{x}</option> )
+                                                        <Select.Option key={y}>{x}</Select.Option> )
                                                     }
                                                     </Select>
                                                 </div>
