@@ -264,7 +264,7 @@ const Home = () => {
                                             when an unknown printer took a galley of type and 
                                             scrambled it to make a type specimen book.
                                         </div>
-                                        <button type="button" class="ant-btn ant-btn-default Explore Collection">
+                                        <button type="button" className="ant-btn ant-btn-default Explore Collection">
                                             <span>How to Buy</span>
                                         </button>
                                     </div>
@@ -286,7 +286,7 @@ const Home = () => {
                                             when an unknown printer took a galley of type and 
                                             scrambled it to make a type specimen book.
                                         </div>
-                                        <button type="button" class="ant-btn ant-btn-default Explore Collection">
+                                        <button type="button" className="ant-btn ant-btn-default Explore Collection">
                                             <span>How to Buy</span>
                                         </button>
                                     </div>
@@ -348,7 +348,7 @@ const Home = () => {
                                             when an unknown printer took a galley of type and 
                                             scrambled it to make a type specimen book.
                                         </div>
-                                        <button type="button" class="ant-btn ant-btn-default Explore Collection">
+                                        <button type="button" className="ant-btn ant-btn-default Explore Collection">
                                             <span>How to Buy</span>
                                         </button>
                                     </div>
@@ -390,7 +390,7 @@ const Home = () => {
                                             when an unknown printer took a galley of type and 
                                             scrambled it to make a type specimen book.
                                         </div>
-                                        <button type="button" class="ant-btn ant-btn-default Explore Collection">
+                                        <button type="button" className="ant-btn ant-btn-default Explore Collection">
                                             <span>How to Buy</span>
                                         </button>
                                     </div>
@@ -448,7 +448,7 @@ const Home = () => {
                         <Select className="section-select-filter" defaultValue="day" >
                             {
                                 top_seller.map( (x,y) => 
-                                <option key={y}>{x}</option> )
+                                <Select.Option key={y}>{x}</Select.Option> )
                             }
                         </Select>
                     </div>
@@ -480,7 +480,7 @@ const Home = () => {
                         <Select className="section-select-filter" defaultValue="day">
                              {
                                 top_buyer.map( (x,y) => 
-                                <option key={y}>{x}</option> )
+                                <Select.Option key={y}>{x}</Select.Option> )
                             }
                         </Select>
                     </div>

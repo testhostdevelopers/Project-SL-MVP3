@@ -65,13 +65,13 @@ export default function FilterProperties(props) {
                   </div>
               </div>
 
-              <div class="navbar-search property-search">
-                <i class="fas fa-search"></i>
+              <div className="navbar-search property-search">
+                <i className="fas fa-search"></i>
                 <input type="text" placeholder="Search by property" />
                 <Select onChange={handleChange}>
                    {
                       handel_ch.map( (searchselect, sear) => 
-                      <option key={sear}>{searchselect}</option> )
+                      <Select.Option key={sear}>{searchselect}</Select.Option> )
                     }
                 </Select>
               </div>
@@ -80,9 +80,9 @@ export default function FilterProperties(props) {
                   <h3>Accessories</h3>
                   <Accordian AccordianField={AccordianData} />
                   <div className="custom-filter">
-                    <div class="filter-button">
-                      <a class="btn btn-primary-outline">Clear</a>
-                      <a class="btn btn-primary">Apply</a>
+                    <div className="filter-button">
+                      <a className="btn btn-primary-outline">Clear</a>
+                      <a className="btn btn-primary">Apply</a>
                     </div>
                   </div>
               </div>

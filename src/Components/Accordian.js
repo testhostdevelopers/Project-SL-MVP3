@@ -39,7 +39,7 @@ const Accordian = ({ AccordianField }) => {
             onClick={() => trueIsOpen(i)}
           >
             {item.title}
-            <i class="fas fa-caret-down"></i>
+            <i className="fas fa-caret-down"></i>
           </h5>
           <div className={`accordian-hide ${!isOpen[i] ? " " : "collapsed"}`}>
             <div className="subc-cat custom-filter">

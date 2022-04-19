@@ -54,7 +54,7 @@ export default function FilterRange ({setFilterSort, filterSort,filterCategory,f
               <Select className="section-select-filter" defaultValue="ETH">
                 {
                   select_filer.map((x, y) =>
-                        <option key={y}>{x}</option>
+                        <Select.Option key={y}>{x}</Select.Option>
                   )
                 }
               </Select>
@@ -67,7 +67,7 @@ export default function FilterRange ({setFilterSort, filterSort,filterCategory,f
               <Select className="section-select-filter" defaultValue="ETH">
               {
                   select_filer.map((x, y) =>
-                    <option key={y}>{x}</option>
+                    <Select.Option key={y}>{x}</Select.Option>
                   )
                 }
               </Select>
