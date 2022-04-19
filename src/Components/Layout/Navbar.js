@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import searchLine from "../../assets/img/icons/custom/search-line.svg";
-import vectorLogo from "../../assets/img/custom/Vector.svg";
+// import vectorLogo from "../../assets/img/custom/Vector.svg";
 import menu4Line from "../../assets/img/icons/custom/menu-4-line.svg";
-import userProfilePictures from "../../assets/img/icons/custom/userNav.svg";
+// import userProfilePictures from "../../assets/img/icons/custom/userNav.svg";
 import fabaLogo from "../../assets/img/custom/x.svg";
-import { useLocation, Redirect, Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import userTick from "../../assets/img/custom/StarlightbalanceIcon.svg";
 import grayPp from "../../assets/img/custom/grayPp.png";
 import McdoIcon from "../../assets/img/custom/mcdoicon.svg";
 import menuclose from "../../assets/img/custom/close.png";
 import BalanceIcon from "../../assets/img/custom/BalanceIcon.svg";
-import starlight from "../../assets/img/custom/starlight.png";
+// import starlight from "../../assets/img/custom/starlight.png";
 import BidingbalanceIcon from "../../assets/img/custom/BidingbalanceIcon.svg";
 import CoinConver from "../Popup/CoinConverPopup";
-
 import backmenu from "../../assets/img/custom/back-arrow.svg";
 import subarrow from "../../assets/img/custom/subarrow.svg";
 import closeicon from "../../assets/img/custom/close.svg";
@@ -33,7 +32,7 @@ const Navbar = (props) => {
 
   const signOut = () => {
     var wal = localStorage.getItem("wallet");
-    if (wal == "phantom") {
+    if (wal === "phantom") {
       window.solana.disconnect();
       window.solana.request({ method: "disconnect" });
       window.solana.on("disconnect", () => console.log("disconnected!"));
@@ -41,7 +40,7 @@ const Navbar = (props) => {
       window.location.reload(false);
     }
 
-    if (wal == "solflare") {
+    if (wal === "solflare") {
       window.solflare.disconnect();
       window.solflare.request({ method: "disconnect" });
       window.solflare.on("disconnect", () => console.log("disconnected!"));
@@ -216,10 +215,8 @@ const Navbar = (props) => {
 
   const [isShow, SetIsShow] = useState(false);
   const [isSubMenuShow, SetSubMenuShow] = useState(false);
-  const [closeNotification, setCloseNotification] = useState(true);
-
+  // const [closeNotification, setCloseNotification] = useState(true);
   const notifications = ["add your email", "subscribe", "go to website"];
-
   const [searchItem, SetsearchItem] = useState(false);
   const [notificationsArr, setNotificationsArr] = useState(notifications);
 
@@ -270,6 +267,7 @@ const Navbar = (props) => {
               >
                 <a
                   className="nav-link nav-dark-button"
+                  href="/#"
                   onClick={() => SetsearchItem(!searchItem)}
                 >
                   {theme === true ? (
@@ -292,6 +290,7 @@ const Navbar = (props) => {
               <div className="d-lg-none d-sm-block mr-1">
                 <a
                   className="nav-link nav-dark-button"
+                  href="/#"
                   onClick={() => activeMode()}
                 >
                   {theme === true ? (
@@ -365,7 +364,7 @@ const Navbar = (props) => {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
-                <a className="nav-link nav-dark-button">
+                <a className="nav-link nav-dark-button" href="/#">
                   {theme === true ? (
                     <img
                       src={notification_white}
@@ -385,10 +384,11 @@ const Navbar = (props) => {
               <div className="d-lg-none d-sm-block">
                 <a
                   className="nav-link nav-dark-button p-0 nav-dark-button mr-2 position-relative"
+                  href="/#"
                   onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)}
                 >
                   {theme === true && sessionStorage.getItem("apiToken") ? (
-                    <img src={user2} />
+                    <img src={user2} alt={''}/>
                   ) : (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -444,7 +444,7 @@ const Navbar = (props) => {
                         <div className="d-flex justify-content-between mb-3">
                           <div className="d-flex">
                             <div>
-                              <img src={userTick} width="36" />
+                              <img src={userTick} width="36" alt={''}/>
                             </div>
 
                             <div className="ml-3">
@@ -465,7 +465,7 @@ const Navbar = (props) => {
                         <div className="d-flex justify-content-between mb-3">
                           <div className="d-flex">
                             <div>
-                              <img src={BalanceIcon} width="36" />
+                              <img src={BalanceIcon} width="36" alt={''}/>
                             </div>
 
                             <div className="ml-3">
@@ -480,7 +480,7 @@ const Navbar = (props) => {
                         <div className="d-flex justify-content-between mb-3">
                           <div className="d-flex">
                             <div>
-                              <img src={BidingbalanceIcon} width="36" />
+                              <img src={BidingbalanceIcon} width="36"  alt={''}/>
                             </div>
 
                             <div className="ml-3">
@@ -493,7 +493,7 @@ const Navbar = (props) => {
                             </div>
                           </div>
 
-                          <a className="nav-link nav-dark-button">
+                          <a className="nav-link nav-dark-button" href="/#">
                             <svg
                               width="20"
                               height="20"
@@ -514,7 +514,7 @@ const Navbar = (props) => {
                         <div className="add-funds-with-btn">
                           Add funds with
                           <span>
-                            <img src={McdoIcon} />
+                            <img src={McdoIcon} alt={''}/>
                           </span>
                         </div>
                       </div>
@@ -586,7 +586,7 @@ const Navbar = (props) => {
                     SetSubMenuShow(false);
                   }}
                 >
-                  <img src={menuclose} />
+                  <img alt={''} src={menuclose} />
                 </div>
               </div>
               <ul
@@ -620,7 +620,7 @@ const Navbar = (props) => {
                     className="nav-link"
                     onClick={() => SetSubMenuShow(!isSubMenuShow)}
                   >
-                    Community <img src={subarrow} />
+                    Community <img alt={''}src={subarrow} />
                   </Link>
                   <div className="submenu-slide">
                     <span
@@ -630,7 +630,7 @@ const Navbar = (props) => {
                         SetSubMenuShow(false);
                       }}
                     >
-                      <img src={backmenu} />
+                      <img alt={''}src={backmenu} />
                     </span>
                     <ul className="submenu">
                       <li>
@@ -757,6 +757,7 @@ const Navbar = (props) => {
                 <li className="nav-item dropdown">
                   <a
                     className="nav-link dropdown-toggle"
+                    href="/#"
                     id="servicesDropdown"
                     role="button"
                     data-toggle="dropdown"
@@ -864,7 +865,7 @@ const Navbar = (props) => {
 
                 <li className="nav-item p-0">
                   {location.pathname !== "/" ? (
-                    <a className="nav-link d-sm-none d-lg-block nav-dark-button notification-popup-outline position-relative mr-2">
+                    <a className="nav-link d-sm-none d-lg-block nav-dark-button notification-popup-outline position-relative mr-2" href="/#">
                       <svg
                         width="16"
                         height="22"
@@ -906,11 +907,11 @@ const Navbar = (props) => {
                                 className="popup-close-btn-outline"
                                 onClick={() => deleteHandler(index)}
                               >
-                                <img src={closeicon} />
+                                <img alt={''}src={closeicon} />
                               </div>
                               <div className="d-flex">
                                 <div>
-                                  <img src={grayPp} width="56" />
+                                  <img alt={''}src={grayPp} width="56" />
                                 </div>
 
                                 <div className="ml-3">
@@ -962,6 +963,7 @@ const Navbar = (props) => {
                   {sessionStorage.getItem("apiToken") ? (
                     <a
                       className="d-sm-none d-lg-block nav-link p-0 nav-dark-button mr-2 position-relative"
+                      href="/#"
                       onClick={() =>
                         setOpenProfileDropMenu(!openProfileDropMenu)
                       }
@@ -990,6 +992,7 @@ const Navbar = (props) => {
                       />
                       <img
                         className="my_pro"
+                        alt={''}
                         src=""
                         ref={props.profileImage}
                         style={{
@@ -1015,6 +1018,7 @@ const Navbar = (props) => {
                             </a>
                             <a
                               className="color-ping"
+                              href="/#"
                               onClick={() => profileUploader.current.click()}
                             >
                               <b>Upload profile picture</b>
@@ -1025,7 +1029,7 @@ const Navbar = (props) => {
                             <div className="d-flex justify-content-between mb-3">
                               <div className="d-flex">
                                 <div className="token-img">
-                                  <img src={userTick} width="36" />
+                                  <img alt={''}src={userTick} width="36" />
                                 </div>
 
                                 <div className="ml-3">
@@ -1048,7 +1052,7 @@ const Navbar = (props) => {
                             <div className="d-flex justify-content-between mb-3">
                               <div className="d-flex">
                                 <div className="token-img">
-                                  <img src={BalanceIcon} width="36" />
+                                  <img alt={''}src={BalanceIcon} width="36" />
                                 </div>
 
                                 <div className="ml-3">
@@ -1063,7 +1067,7 @@ const Navbar = (props) => {
                             <div className="d-flex justify-content-between mb-3">
                               <div className="d-flex">
                                 <div className="token-img">
-                                  <img src={BidingbalanceIcon} width="36" />
+                                  <img alt={''}src={BidingbalanceIcon} width="36" />
                                 </div>
 
                                 <div className="ml-3">
@@ -1078,6 +1082,7 @@ const Navbar = (props) => {
 
                               <a
                                 className="nav-link nav-dark-button dd"
+                                href="/#"
                                 onClick={() => setCoinConverp(true)}
                               >
                                 <svg
@@ -1100,7 +1105,7 @@ const Navbar = (props) => {
                             <div className="add-funds-with-btn">
                               Add funds with
                               <span>
-                                <img src={McdoIcon} />
+                                <img src={McdoIcon} alt={''}/>
                               </span>
                             </div>
                           </div>
@@ -1150,6 +1155,7 @@ const Navbar = (props) => {
 
                   <a
                     className="nav-link nav-dark-button d-sm-none d-lg-block"
+                    href="/#"
                     onClick={() => activeMode()}
                   >
                     {theme === true ? (

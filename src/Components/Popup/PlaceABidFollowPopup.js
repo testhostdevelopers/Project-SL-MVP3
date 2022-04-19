@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import closeicon from "../../assets/img/custom/close.svg";
+// import closeicon from "../../assets/img/custom/close.svg";
 
 const PlaceABidFollowPopup = (props) => {
   const variants = {

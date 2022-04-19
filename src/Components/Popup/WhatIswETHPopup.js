@@ -9,6 +9,9 @@ const WhatIswETHPopup = (props) => {
   };
 
   let { setSingleCollectionPopup, setSinglePopup, sethelpPopup } = props;
+  console.log('setSingleCollectionPopup', setSingleCollectionPopup);
+  console.log('setSinglePopup', setSinglePopup);
+
 
   return (
     <motion.div
@@ -27,7 +30,7 @@ const WhatIswETHPopup = (props) => {
               document.body.style.overflow = "scroll";
             }}
           >
-            <img src={closeicon} />
+            <img src={closeicon} alt={''}/>
           </div>
         </div>
         <p className="sub-heading">

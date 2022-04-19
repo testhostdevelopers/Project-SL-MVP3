@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import flashlight from "../assets/img/custom/flashlight-line.png";
-import userProfile from "../assets/img/custom/userProfilePictures.png";
-import { Menu, Dropdown, Select } from "antd";
+// import userProfile from "../assets/img/custom/userProfilePictures.png";
+// import { Select } from "antd";
 
 export default function Filtersale({
   setFilterSort,
@@ -17,8 +17,8 @@ export default function Filtersale({
   setFiltersale,
   setFilterRange,
 }) {
-  const { Option } = Select;
-  const [isActive, setActive] = useState(false);
+  // const { Option } = Select;
+  // const [isActive, setActive] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [checkedValues, setCheckedValues] = useState([]);
   const handleToggle = () => {
@@ -58,7 +58,7 @@ export default function Filtersale({
   return (
     <li>
       <div className="icon">
-        <img src={flashlight} />
+        <img src={flashlight} alt={''}/>
       </div>
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -129,12 +129,14 @@ export default function Filtersale({
           <div className="filter-button">
             <a
               className="btn btn-primary-outline"
+              href="/#"
               onClick={() => unCheckedCheckBox()}
             >
               Clear
             </a>
             <a
               className="btn btn-primary"
+              href="/#"
               onClick={() => {
                 setFiltersale(false);
                 setIsChecked(false);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React  from "react";
 
 export default function ActivityNumberCard({
   title,
@@ -15,9 +15,9 @@ export default function ActivityNumberCard({
       <div className="ActivityNumberCard">
         <div className="ActivityNumberCard-img">
           <span className="lable-icon">
-            <img src={FillLabel} />
+            <img src={FillLabel} alt={''}/>
           </span>
-          <img src={activitynumbercardimg} />
+          <img src={activitynumbercardimg} alt={''}/>
         </div>
         <div className="ActivityNumberCard-info">
           <h4>{title}</h4>

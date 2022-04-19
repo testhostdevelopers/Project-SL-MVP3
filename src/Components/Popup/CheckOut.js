@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import PlaceABidFollowPopup from "./PlaceABidFollowPopup";
+// import PlaceABidFollowPopup from "./PlaceABidFollowPopup";
 import { motion } from "framer-motion";
-import { useLocation, Link } from "react-router-dom";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import McdoIcon from "../../assets/img/custom/mcdoicon.png";
-import VisaIcon from "../../assets/img/custom/visaicon.png";
 import closeicon from "../../assets/img/custom/close.svg";
+// import { useLocation, Link } from "react-router-dom";
+// import VisaIcon from "../../assets/img/custom/visaicon.png";
 
 const CheckOut = (props) => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -15,6 +15,7 @@ const CheckOut = (props) => {
   };
 
   let { setSingleCollectionPopup, setSinglePopup } = props;
+  console.log('setSingleCollectionPopup', setSingleCollectionPopup);
 
   const options = [
     { value: "ETH", label: "ETH" },
@@ -46,7 +47,7 @@ const CheckOut = (props) => {
                 props.setCheckOutPopup(false);
               }}
             >
-              <img src={closeicon} />
+              <img src={closeicon} alt={''}/>
             </div>
           </div>
 
@@ -66,7 +67,7 @@ const CheckOut = (props) => {
                 <Tab>
                   Pay with{" "}
                   <span className="pay-with-img">
-                    <img src={McdoIcon} />
+                    <img src={McdoIcon} alt={''}/>
                   </span>
                 </Tab>
               </TabList>
@@ -105,6 +106,7 @@ const CheckOut = (props) => {
                     </span>
                     <a
                       className="nav-link dropdown-toggle"
+                      href="/#"
                       id="servicesDropdown"
                       data-toggle="dropdown"
                     >

@@ -7,10 +7,13 @@ const AnnBnnaer = () => {
   return (
     <>
     {
-      annBnner ? <div className="closebanner">
-      <h3><img src={annbanner} /> DesignerName - <span> choose yours and earn x3 Starlight rewards! </span></h3>
+      annBnner ?
+          <div className="closebanner">
+      <h3>
+          <img src={annbanner} alt={''} /> DesignerName - <span> choose yours and earn x3 Starlight rewards! </span>
+      </h3>
         <div className="popup-close-btn-outline cursor-pointer myclose" onClick={() => { setannBanner(false)}}>
-          <img src={closeicon}/>
+          <img src={closeicon} alt={''}/>
         </div>
     </div> : ''
     }

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React  from "react";
 import Priceicon from "../assets/img/custom/u_dollar-alt.png";
-import { Menu, Dropdown, Select } from "antd";
+import { Select } from "antd";
 
 export default function FilterRange({
   setFilterSort,
@@ -16,10 +16,10 @@ export default function FilterRange({
   setFiltersale,
   setFilterRange,
 }) {
-  const { Option } = Select;
-  const [isActive, setActive] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
-  const [checkedValues, setCheckedValues] = useState([]);
+  // const { Option } = Select;
+  // const [isActive, setActive] = useState(false);
+  // const [isChecked, setIsChecked] = useState(false);
+  // const [checkedValues, setCheckedValues] = useState([]);
   const handleToggle = () => {
     setFilterSort(false);
     setFilterCategory(false);
@@ -29,8 +29,8 @@ export default function FilterRange({
     setFilterRange(!filterRange);
   };
   const unCheckedCheckBox = () => {
-    setActive(false);
-    setIsChecked(false);
+    // setActive(false);
+    // setIsChecked(false);
     let node = document.querySelectorAll(".rangeselect input");
     node.forEach((ele) => {
       ele.value = "";
@@ -42,7 +42,7 @@ export default function FilterRange({
   return (
     <li>
       <div className="icon">
-        <img src={Priceicon} />
+        <img src={Priceicon} alt={''}/>
       </div>
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -108,15 +108,17 @@ export default function FilterRange({
           <div className="filter-button">
             <a
               className="btn btn-primary-outline"
+              href="/#"
               onClick={() => unCheckedCheckBox()}
             >
               Clear
             </a>
             <a
               className="btn btn-primary"
-              onClick={() => {
+              href="/#"
+              /*onClick={() => {
                 setActive(false);
-              }}
+              }}*/
             >
               Apply
             </a>

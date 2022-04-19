@@ -1,6 +1,6 @@
 import React from "react";
 import fabaLogo from "../../assets/img/custom/x.svg";
-import { Menu, Dropdown, Select } from "antd";
+import { Select } from "antd";
 import { Link } from "react-router-dom";
 
 const { Option } = Select;

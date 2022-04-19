@@ -6,7 +6,7 @@ const Accordian = ({ AccordianField }) => {
   useEffect(() => {
     if (AccordianField) {
       let arr = [];
-      AccordianField.map(() => {
+      AccordianField.forEach(() => {
         arr.push(false);
       });
       setOpen(arr);

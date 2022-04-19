@@ -1,6 +1,5 @@
 import React from 'react'
-import ActivityCard from '../../assets/img/custom/activity-cardonly.png';
-
+// import ActivityCard from '../../assets/img/custom/activity-cardonly.png';
 
 const Buytab = () => {
 

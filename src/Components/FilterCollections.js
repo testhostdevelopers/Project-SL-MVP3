@@ -55,7 +55,7 @@ export default function FilterCollections({
   return (
     <li>
       <div className="icon">
-        <img src={categoryicon} />
+        <img src={categoryicon} alt={''}/>
       </div>
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -105,35 +105,35 @@ export default function FilterCollections({
             <li>
               <input type="checkbox" id="Cryptoloria" value="Cryptoloria" />
               <label for="Cryptoloria">
-                <img src={userProfile} /> Cryptoloria
+                <img src={userProfile} alt={''} /> Cryptoloria
               </label>
             </li>
 
             <li>
               <input type="checkbox" id="Art" value="Art" />
               <label for="Art">
-                <img src={userProfile} /> Art
+                <img src={userProfile} alt={''}/> Art
               </label>
             </li>
 
             <li>
               <input type="checkbox" id="Photography" value="Photography" />
               <label for="Photography">
-                <img src={userProfile} /> Photography
+                <img alt={''}src={userProfile} /> Photography
               </label>
             </li>
 
             <li>
               <input type="checkbox" id="Games" value="Games" />
               <label for="Games">
-                <img src={userProfile} /> Games
+                <img alt={''}src={userProfile} /> Games
               </label>
             </li>
 
             <li>
               <input type="checkbox" id="Metaverses" value="Metaverses" />
               <label for="Metaverses">
-                <img src={userProfile} /> Metaverses
+                <img alt={''}src={userProfile} /> Metaverses
               </label>
             </li>
           </ul>
@@ -141,12 +141,14 @@ export default function FilterCollections({
           <div className="filter-button">
             <a
               className="btn btn-primary-outline"
+              href="/#"
               onClick={() => unCheckedCheckBox()}
             >
               Clear
             </a>
             <a
               className="btn btn-primary"
+              href="/#"
               onClick={() => {
                 setFilterCollections(false);
                 setIsChecked(false);

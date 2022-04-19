@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import categoryicon from "../assets/img/custom/category-icon.svg";
 import planet from "../assets/img/custom/ringed-planet.png";
 import Photography from "../assets/img/custom/camera.png";
 import Games from "../assets/img/custom/joystick.png";
 import Metaverses from "../assets/img/custom/alien-monster.png";
 import Art from "../assets/img/custom/rainbow.png";
-import { Menu, Dropdown, Select } from "antd";
+// import { Select } from "antd";
 
 export default function FilterCategory({
   setFilterSort,
@@ -21,7 +21,7 @@ export default function FilterCategory({
   setFiltersale,
   setFilterRange,
 }) {
-  const { Option } = Select;
+  // const { Option } = Select;
   const [isChecked, setIsChecked] = useState(false);
   const [checkedValues, setCheckedValues] = useState("Category");
   const handleToggle = () => {
@@ -72,7 +72,7 @@ export default function FilterCategory({
   return (
     <li>
       <div className="icon">
-        <img src={categoryicon} />
+        <img src={categoryicon} alt={''}/>
       </div>
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -129,7 +129,7 @@ export default function FilterCategory({
                 name="filtercategory"
               />
               <label for="ctoCryptoloria" onClick={() => isActiveFunc()}>
-                <img src={planet} /> Cryptoloria
+                <img src={planet} alt={''}/> Cryptoloria
               </label>
             </li>
 
@@ -141,7 +141,7 @@ export default function FilterCategory({
                 name="filtercategory"
               />
               <label for="ctoArt" onClick={() => isActiveFunc()}>
-                <img src={Art} /> Art
+                <img src={Art} alt={''}/> Art
               </label>
             </li>
 
@@ -153,7 +153,7 @@ export default function FilterCategory({
                 name="filtercategory"
               />
               <label for="ctoPhotography" onClick={() => isActiveFunc()}>
-                <img src={Photography} /> Photography
+                <img src={Photography} alt={''}/> Photography
               </label>
             </li>
 
@@ -165,7 +165,7 @@ export default function FilterCategory({
                 name="filtercategory"
               />
               <label for="ctoGames" onClick={() => isActiveFunc()}>
-                <img src={Games} /> Games
+                <img src={Games} alt={''}/> Games
               </label>
             </li>
 
@@ -177,7 +177,7 @@ export default function FilterCategory({
                 name="filtercategory"
               />
               <label for="ctoMetaverses" onClick={() => isActiveFunc()}>
-                <img src={Metaverses} /> Metaverses
+                <img src={Metaverses} alt={''}/> Metaverses
               </label>
             </li>
           </ul>

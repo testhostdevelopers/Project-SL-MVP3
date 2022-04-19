@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Menu, Dropdown, Select } from "antd";
+import React, { useState } from "react";
+import { Menu, Dropdown } from "antd";
 import ReportPopup from "../Components/Popup/ReportPopup";
+// import { Link } from "react-router-dom";
 
 export default function HotBids({
   title,
@@ -13,6 +13,7 @@ export default function HotBids({
 }) {
   const [ReportPopups, setReportPopup] = useState(false);
   const [singlePopup, setSinglePopup] = useState(false);
+  console.log('singlePopup', singlePopup);
   const lastSegment = window.location.pathname.substring(
     window.location.pathname.lastIndexOf("/") + 1
   );

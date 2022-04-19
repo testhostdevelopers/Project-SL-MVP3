@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import PlaceABidFollowPopup from "./PlaceABidFollowPopup";
 import { motion } from "framer-motion";
-import { useLocation, Link } from "react-router-dom";
 import closeicon from "../../assets/img/custom/close.svg";
+// import PlaceABidFollowPopup from "./PlaceABidFollowPopup";
+// import { useLocation, Link } from "react-router-dom";
 
 const PlaceABidPopup = (props) => {
   const variants = {
@@ -44,7 +44,7 @@ const PlaceABidPopup = (props) => {
                 document.body.style.overflow = "scroll";
               }}
             >
-              <img src={closeicon} />
+              <img src={closeicon} alt={''}/>
             </div>
           </div>
 
@@ -84,6 +84,7 @@ const PlaceABidPopup = (props) => {
                 </svg>
               </span>
               <a
+                href="/#"
                 className="nav-link dropdown-toggle"
                 id="servicesDropdown"
                 data-toggle="dropdown"

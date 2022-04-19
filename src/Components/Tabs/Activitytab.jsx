@@ -1,15 +1,14 @@
-import React,{useEffect, useState} from 'react';
+import React,{ useState } from 'react';
 import ActivityNumberCard from '../ActivityNumberCard';
 import myimg from '../../assets/img/icons/custom/fill-label.svg';
 import ActivityCard from '../../assets/img/custom/activity-cardonly.png';
-import { Tabs } from 'antd';
+// import { Tabs } from 'antd';
 
-const { TabPane } = Tabs;
-
+// const { TabPane } = Tabs;
 const Activitytab = () => {
 
 const [listing, Setlisting] = useState('Listing');
-const [error_data, seterror_data] = useState('');
+const error_data = '';
 
 const all_filter = [
     {   
@@ -52,7 +51,7 @@ const [filterData, setFIlterData] = useState(all_filter);
 const findFilter = (key) =>{
     Setlisting(key);
     let arr = [];
-    all_filter.map((v)=>{
+    all_filter.forEach((v)=>{
         if(v._filter_ === key ){
             arr.push(v); 
         }
@@ -77,7 +76,7 @@ const findFilter = (key) =>{
                                                 <button className="profile-activity-filter-mobile d-web-none">
                                                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" fill="white" />
-                                                        <path clipRule="evenodd" clipRule="evenodd" d="M16.5 19V20.6667H31.5V19H16.5ZM22.3333 29H25.6667V27.3333H22.3333V29ZM29 24.8333H19V23.1667H29V24.8333Z" fill="black" />
+                                                        <path clipRule="evenodd" d="M16.5 19V20.6667H31.5V19H16.5ZM22.3333 29H25.6667V27.3333H22.3333V29ZM29 24.8333H19V23.1667H29V24.8333Z" fill="black" />
                                                         <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="black" />
                                                     </svg>
                                                 </button>
@@ -110,7 +109,7 @@ const findFilter = (key) =>{
                                                         <div className="filters-listing-reset">
                                                             <div className="d-flex mb-2">
                                                                 <h5 className="mr-3"><b>Filters</b></h5>
-                                                                <h5><b><a href="" className="text-pink">Reset filter</a></b></h5>
+                                                                <h5><b><a href="/#" className="text-pink">Reset filter</a></b></h5>
                                                             </div>
                                                             <div className="filters-listing-button-list">
                                 

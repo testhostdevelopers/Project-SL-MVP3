@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Menu, Dropdown, Select } from "antd";
+import React  from "react";
+import { Select } from "antd";
 import { motion } from "framer-motion";
 import closeicon from "../assets/img/custom/close.svg";
 import Accordian from "./Accordian";
 
 export default function FilterProperties(props) {
-  const { Option } = Select;
+  // const { Option } = Select;
   function handleChange(value) {}
   const variants = {
     hidden: { opacity: 0 },
@@ -65,12 +65,12 @@ export default function FilterProperties(props) {
               document.body.style.overflow = "scroll";
             }}
           >
-            <img src={closeicon} />
+            <img src={closeicon} alt={''}/>
           </div>
         </div>
 
         <div class="navbar-search property-search">
-          <i class="fas fa-search"></i>
+          <i class="fas fa-search"/>
           <input type="text" placeholder="Search by property" />
           <Select onChange={handleChange}>
             {handel_ch.map((searchselect, sear) => (
@@ -84,8 +84,8 @@ export default function FilterProperties(props) {
           <Accordian AccordianField={AccordianData} />
           <div className="custom-filter">
             <div class="filter-button">
-              <a class="btn btn-primary-outline">Clear</a>
-              <a class="btn btn-primary">Apply</a>
+              <a class="btn btn-primary-outline" href="/#">Clear</a>
+              <a class="btn btn-primary" href="/#">Apply</a>
             </div>
           </div>
         </div>

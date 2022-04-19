@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import categoryicon from "../assets/img/custom/category-icon.svg";
+import React, { useState } from "react";
+// import categoryicon from "../assets/img/custom/category-icon.svg";
 import filtericon from "../assets/img/custom/filter-icon.svg";
-
-import userProfile from "../assets/img/custom/userProfilePictures.png";
-import { Menu, Dropdown, Select } from "antd";
+// import userProfile from "../assets/img/custom/userProfilePictures.png";
+// import { Select } from "antd";
 
 export default function FilterSort({
   setFilterSort,
@@ -19,7 +18,7 @@ export default function FilterSort({
   setFiltersale,
   setFilterRange,
 }) {
-  const { Option } = Select;
+  // const { Option } = Select;
   const [isChecked, setIsChecked] = useState(false);
   const [checkedValues, setCheckedValues] = useState("Recently added");
   const handleToggle = () => {
@@ -71,7 +70,7 @@ export default function FilterSort({
     <li>
       <span className="label">Filter & Sort</span>
       <div className="icon">
-        <img src={filtericon} />
+        <img src={filtericon} alt={''}/>
       </div>
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
