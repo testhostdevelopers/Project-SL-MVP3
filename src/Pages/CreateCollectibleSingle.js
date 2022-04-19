@@ -360,9 +360,9 @@ const CreateCollectibleSingle = () => {
                             defaultValue="SOL"
                           >
                             {price_one.map((x, y) => (
-                              <option value={x} key={y}>
+                              <Select.Option value={x} key={y}>
                                 {x}
-                              </option>
+                              </Select.Option>
                             ))}
                           </Select>
                         </div>

@@ -74,7 +74,7 @@ export default function FilterProperties(props) {
           <input type="text" placeholder="Search by property" />
           <Select onChange={handleChange}>
             {handel_ch.map((searchselect, sear) => (
-              <option key={sear}>{searchselect}</option>
+              <Select.Option key={sear}>{searchselect}</Select.Option>
             ))}
           </Select>
         </div>

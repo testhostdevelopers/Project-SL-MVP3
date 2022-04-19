@@ -739,7 +739,7 @@ const Home = () => {
             </h3>
             <Select className="section-select-filter" defaultValue="day">
               {top_seller.map((x, y) => (
-                <option key={y}>{x}</option>
+                <Select.Option key={y}>{x}</Select.Option>
               ))}
             </Select>
           </div>
@@ -772,7 +772,7 @@ const Home = () => {
             </h3>
             <Select className="section-select-filter" defaultValue="day">
               {top_buyer.map((x, y) => (
-                <option key={y}>{x}</option>
+                <Select.Option key={y}>{x}</Select.Option>
               ))}
             </Select>
           </div>

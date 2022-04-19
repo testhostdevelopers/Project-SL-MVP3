@@ -89,7 +89,7 @@ export default function FilterRange({
 
             <Select className="section-select-filter" defaultValue="ETH">
               {select_filer.map((x, y) => (
-                <option key={y}>{x}</option>
+                <Select.Option key={y}>{x}</Select.Option>
               ))}
             </Select>
           </div>
@@ -100,7 +100,7 @@ export default function FilterRange({
             </span>
             <Select className="section-select-filter" defaultValue="ETH">
               {select_filer.map((x, y) => (
-                <option key={y}>{x}</option>
+                <Select.Option key={y}>{x}</Select.Option>
               ))}
             </Select>
           </div>
