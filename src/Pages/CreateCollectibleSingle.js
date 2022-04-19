@@ -463,8 +463,8 @@ const CreateCollectibleSingle = () => {
                   slidesPerView={4.3}
                   navigation={true}
                 >
-                  {single_call.map((sing) => (
-                    <SwiperSlide>
+                  {single_call.map((sing, key) => (
+                    <SwiperSlide key={key}>
                       <div className="putOnMarketplace ml-3 border-radius btn-primary-outline-responsive">
                         <img src={sing.myimg} width="40" alt="" />
                         <div className="starslide">{sing.title}</div>
