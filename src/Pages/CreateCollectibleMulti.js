@@ -12,7 +12,7 @@ import SwiperCore, { Keyboard, Pagination, Navigation } from "swiper/core";
 import { motion } from "framer-motion";
 import MultiCollectibleDetails from "./MultiCollectibleDetails";
 import AdvanceCollectionSetting from "./AdvanceCollectionSetting";
-const { Option } = Select;
+// const { Option } = Select;
 
 SwiperCore.use([Keyboard, Pagination, Navigation]);
 
@@ -140,7 +140,7 @@ const CreateCollectibleMulti = () => {
                     <label
                       className="custom-control-label"
                       htmlFor="customSwitch1"
-                    ></label>
+                    />
                   </div>
                 </div>
 
@@ -219,7 +219,7 @@ const CreateCollectibleMulti = () => {
                       <label
                         className="custom-control-label"
                         htmlFor="customSwitch2"
-                      ></label>
+                      />
                     </div>
                   </div>
                   <div className="color-gray">
@@ -238,6 +238,7 @@ const CreateCollectibleMulti = () => {
                 <label>Upload file to preview your brand new NFT</label>
 
                 <img
+                  alt={""}
                   src=""
                   ref={profileImage}
                   style={{

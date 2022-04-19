@@ -2,18 +2,17 @@ import React, { useEffect, useState } from "react";
 import searchLine from "../../assets/img/icons/custom/search-line.svg";
 import vectorLogo from "../../assets/img/custom/Vector.svg";
 import menu4Line from "../../assets/img/icons/custom/menu-4-line.svg";
-import userProfilePictures from "../../assets/img/icons/custom/userNav.svg";
+// import userProfilePictures from "../../assets/img/icons/custom/userNav.svg";
 import fabaLogo from "../../assets/img/custom/x.svg";
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import userTick from "../../assets/img/icons/custom/logo.svg";
 import grayPp from "../../assets/img/custom/grayPp.png";
 
 const NewHeader = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme"));
   const [openProfileDropMenu, setOpenProfileDropMenu] = useState(false);
-  const [notificationPopup, setNotificationPopup] = useState(false);
-
-  const location = useLocation();
+  // const [notificationPopup, setNotificationPopup] = useState(false);
+  // const location = useLocation();
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -221,7 +220,7 @@ const NewHeader = () => {
                         <div className="d-flex justify-content-between mb-3">
                           <div className="d-flex">
                             <div>
-                              <img src={userTick} width="36" />
+                              <img src={userTick} width="36" alt={""} />
                             </div>
 
                             <div className="ml-3">
@@ -242,7 +241,7 @@ const NewHeader = () => {
                         <div className="d-flex justify-content-between mb-3">
                           <div className="d-flex">
                             <div>
-                              <img src={grayPp} width="36" />
+                              <img src={grayPp} width="36" alt={""} />
                             </div>
 
                             <div className="ml-3">
@@ -257,7 +256,7 @@ const NewHeader = () => {
                         <div className="d-flex justify-content-between mb-3">
                           <div className="d-flex">
                             <div>
-                              <img src={grayPp} width="36" />
+                              <img src={grayPp} width="36" alt={""} />
                             </div>
 
                             <div className="ml-3">
@@ -317,7 +316,7 @@ const NewHeader = () => {
                           <label
                             className="custom-control-label"
                             htmlFor="profileSwitch1"
-                          ></label>
+                          />
                         </div>
                       </div>
 
@@ -403,10 +402,10 @@ const NewHeader = () => {
                       </Link>
                       <ul className="nav-bar-social-items mt-3 border-top">
                         <li>
-                          <i className="fab fa-twitter"></i>
+                          <i className="fab fa-twitter" />
                         </li>
                         <li>
-                          <i className="fab fa-telegram-plane"></i>
+                          <i className="fab fa-telegram-plane" />
                         </li>
                         <li>
                           <svg
@@ -423,13 +422,13 @@ const NewHeader = () => {
                           </svg>
                         </li>
                         <li>
-                          <i className="fab fa-discord"></i>
+                          <i className="fab fa-discord" />
                         </li>
                         <li>
-                          <i className="fab fa-youtube"></i>
+                          <i className="fab fa-youtube" />
                         </li>
                         <li>
-                          <i className="fab fa-medium-m"></i>
+                          <i className="fab fa-medium-m" />
                         </li>
                       </ul>
                     </ul>

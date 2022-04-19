@@ -58,7 +58,7 @@ export default function Filtersale({
   return (
     <li>
       <div className="icon">
-        <img src={flashlight} alt={''}/>
+        <img src={flashlight} alt={""} />
       </div>
       <div
         className="ant-select ant-select-single ant-select-show-arrow"

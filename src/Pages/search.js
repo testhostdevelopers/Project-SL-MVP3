@@ -1,20 +1,20 @@
 import React from "react";
-import activityCard from "../assets/img/custom/activity-card.png";
-import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 import { motion } from "framer-motion";
-import ActivityNumberCard from "../Components/ActivityNumberCard";
-import LiveAuctions from "../Components/LiveAuctions";
-import FillLabel from "../assets/img/icons/custom/fill-label.svg";
-import ActivityCard from "../assets/img/custom/activity-cardonly.png";
+import TopCard from "../Components/TopCard";
+import { Tabs } from "antd";
 
 import topSeller3 from "../assets/img/custom/topSeller3.png";
 import topSeller4 from "../assets/img/custom/topSeller4.png";
 import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
-import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
 import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
-import TopCard from "../Components/TopCard";
-import { Menu, Dropdown, Tabs } from "antd";
+// import activityCard from "../assets/img/custom/activity-card.png";
+// import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
+// import ActivityNumberCard from "../Components/ActivityNumberCard";
+// import LiveAuctions from "../Components/LiveAuctions";
+// import FillLabel from "../assets/img/icons/custom/fill-label.svg";
+// import ActivityCard from "../assets/img/custom/activity-cardonly.png";
+// import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 
 const { TabPane } = Tabs;
 

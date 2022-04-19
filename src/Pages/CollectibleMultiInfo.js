@@ -76,7 +76,7 @@ const CollectibleMultiInfo = () => {
                   <label
                     className="custom-control-label"
                     htmlFor="customSwitch1"
-                  ></label>
+                  />
                 </div>
               </div>
 
@@ -131,7 +131,7 @@ const CollectibleMultiInfo = () => {
                   <label
                     className="custom-control-label"
                     htmlFor="customSwitch2"
-                  ></label>
+                  />
                 </div>
               </div>
 
@@ -333,7 +333,7 @@ const CollectibleMultiInfo = () => {
                     <img src={topSellerUser2} width="36px" alt="" />
                     <img src={topSellerUser3} width="36px" alt="" />
                     <div className="live-card-tick">
-                      <i className="fas fa-check"></i>
+                      <i className="fas fa-check" />
                     </div>
                   </div>
 

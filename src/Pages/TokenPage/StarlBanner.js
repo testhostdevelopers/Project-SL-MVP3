@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import starlBanner from "../../assets/img/custom/starlBanner.png";
+import { Link } from "react-router-dom";
 // import starlBannerDark from '../../assets/img/custom/starlBannerDark.png'
-import { useLocation, Link } from "react-router-dom";
 
 const StarlBanner = () => {
   return (
     <section className="starl-banner-sec">
       <div className="starl-banner-inner">
         <div className="starl-banner-img">
-          <img src={starlBanner} className="show-in-light" />
+          <img src={starlBanner} className="show-in-light" alt={""} />
           {/* <img src={starlBannerDark} className="show-in-dark"/> */}
         </div>
         <div className="starl-banner-info">

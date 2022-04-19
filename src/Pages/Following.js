@@ -1,39 +1,25 @@
-import React, { useState, useContext, useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import SwiperCore, {
-  Keyboard,
-  Pagination,
-  Navigation,
-  Autoplay,
-} from "swiper/core";
-
-import ArtWork from "../Components/ArtWork";
-import artWorkWeekOne from "../assets/img/custom/artWorkWeekOne.png";
+import React, { useState } from "react";
+import HotBids from "../Components/HotBids";
+import { motion } from "framer-motion";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 import artWorkWeek2 from "../assets/img/custom/artWorkWeek2.png";
 import artWorkWeek3 from "../assets/img/custom/artWorkWeek3.png";
 import artWorkWeek4 from "../assets/img/custom/artWorkWeek4.png";
-import categoryicon from "../assets/img/custom/category-icon.svg";
 import propertiesicon from "../assets/img/custom/properties.svg";
-
-import HotBids from "../Components/HotBids";
-import fabaLogo from "../assets/img/custom/x.svg";
-import { Menu, Dropdown, Select } from "antd";
-import { motion } from "framer-motion";
-import FullScreenImage from "../Components/Popup/FullScreenImage";
-import TopCard from "../Components/TopCard";
-import LiveAuctions from "../Components/LiveAuctions";
-
 import FilterSort from "../Components/FilterSort";
+import FullScreenImage from "../Components/Popup/FullScreenImage";
 import FilterCategory from "../Components/FilterCategory";
 import FilterCollections from "../Components/FilterCollections";
 import Filtersale from "../Components/Filtersale";
 import FilterRange from "../Components/FilterRange";
 import FilterProperties from "../Components/FilterProperties";
-
+// import categoryicon from "../assets/img/custom/category-icon.svg";
+// import fabaLogo from "../assets/img/custom/x.svg";
+// import { Menu, Dropdown, Select } from "antd";
+// import TopCard from "../Components/TopCard";
+// import LiveAuctions from "../Components/LiveAuctions";
 // const { TabPane } = Tabs;
-const { Option } = Select;
+// const { Option } = Select;
 
 const Following = () => {
   let [openImage, setOpenImage] = useState(false);
@@ -49,14 +35,14 @@ const Following = () => {
     visible: { opacity: 1 },
   };
 
-  const menu = (
+  /*const menu = (
     <Menu>
       <Menu.Item>Change Price</Menu.Item>
       <Menu.Item>Transfer Token</Menu.Item>
       <Menu.Item>Burn Token</Menu.Item>
       <Menu.Item>Report</Menu.Item>
     </Menu>
-  );
+  );*/
 
   const hot_bide = [
     {
@@ -157,7 +143,7 @@ const Following = () => {
               <li>
                 <span className="label">Properties</span>
                 <div className="icon">
-                  <img src={propertiesicon} />
+                  <img src={propertiesicon} alt={""} />
                 </div>
                 <div
                   className="ant-select ant-select-single ant-select-show-arrow"

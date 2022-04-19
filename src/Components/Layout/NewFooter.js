@@ -1,7 +1,7 @@
 import React from "react";
 import fabaLogo from "../../assets/img/custom/x.svg";
-import { Menu, Dropdown, Select } from "antd";
-import { Link } from "react-router-dom";
+import { Select } from "antd";
+// import { Link } from "react-router-dom";
 
 const { Option } = Select;
 
@@ -191,16 +191,16 @@ const NewFooter = () => {
 
             <div className="d-flex footer-social-icons">
               <div>
-                <i className="fab fa-twitter"></i>
+                <i className="fab fa-twitter" />
               </div>
               <div>
-                <i className="fab fa-telegram-plane"></i>
+                <i className="fab fa-telegram-plane" />
               </div>
               <div>
-                <i className="fab fa-discord"></i>
+                <i className="fab fa-discord" />
               </div>
               <div>
-                <i className="fab fa-youtube"></i>
+                <i className="fab fa-youtube" />
               </div>
             </div>
 

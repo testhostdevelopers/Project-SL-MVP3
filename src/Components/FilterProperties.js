@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import { Select } from "antd";
 import { motion } from "framer-motion";
 import closeicon from "../assets/img/custom/close.svg";
@@ -65,12 +65,12 @@ export default function FilterProperties(props) {
               document.body.style.overflow = "scroll";
             }}
           >
-            <img src={closeicon} alt={''}/>
+            <img src={closeicon} alt={""} />
           </div>
         </div>
 
         <div class="navbar-search property-search">
-          <i class="fas fa-search"/>
+          <i class="fas fa-search" />
           <input type="text" placeholder="Search by property" />
           <Select onChange={handleChange}>
             {handel_ch.map((searchselect, sear) => (
@@ -84,8 +84,12 @@ export default function FilterProperties(props) {
           <Accordian AccordianField={AccordianData} />
           <div className="custom-filter">
             <div class="filter-button">
-              <a class="btn btn-primary-outline" href="/#">Clear</a>
-              <a class="btn btn-primary" href="/#">Apply</a>
+              <a class="btn btn-primary-outline" href="/#">
+                Clear
+              </a>
+              <a class="btn btn-primary" href="/#">
+                Apply
+              </a>
             </div>
           </div>
         </div>

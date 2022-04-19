@@ -1,4 +1,13 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Menu, Dropdown, Tabs } from "antd";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import ProfileLinks from "../Components/ProfileLinks";
+import LiveAuctions from "../Components/LiveAuctions";
+import TopCard from "../Components/TopCard";
+import ReportPopup from "../Components/Popup/ReportPopup";
+import Activitytab from "../Components/Tabs/Activitytab";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 import topSeller3 from "../assets/img/custom/topSeller3.png";
 import topSeller4 from "../assets/img/custom/topSeller4.png";
@@ -6,17 +15,8 @@ import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
 import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
-import LiveAuctions from "../Components/LiveAuctions";
-import TopCard from "../Components/TopCard";
-import EarthIcon from "../assets/img/icons/custom/earth.svg";
-import ReportPopup from "../Components/Popup/ReportPopup";
-import Activitytab from "../Components/Tabs/Activitytab";
 
-import { motion } from "framer-motion";
-import { Menu, Dropdown, Tabs } from "antd";
-import { Link } from "react-router-dom";
-import ProfileLinks from "../Components/ProfileLinks";
-import axios from "axios";
+import EarthIcon from "../assets/img/icons/custom/earth.svg";
 
 var UPubKey = null,
   cutPkey;
@@ -55,14 +55,14 @@ const Profile = (props) => {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
-  const menu = (
+  /*const menu = (
     <Menu>
       <Menu.Item>Change Price</Menu.Item>
       <Menu.Item>Transfer Token</Menu.Item>
       <Menu.Item>Burn Token</Menu.Item>
       <Menu.Item onClick={() => setReportPopup(true)}>Report</Menu.Item>
     </Menu>
-  );
+  );*/
   const singleoption = (
     <Menu>
       <Menu.Item onClick={() => setReportPopup(true)}>Report</Menu.Item>
@@ -80,10 +80,10 @@ const Profile = (props) => {
     if (sessionStorage.getItem("apiToken")) {
       var apiToken = sessionStorage.getItem("apiToken");
       var formData = new FormData();
-      if (e.target.id == "uploadcoverphoto") {
+      if (e.target.id === "uploadcoverphoto") {
         formData.append("cover_img_url", ig);
       }
-      if (e.target.id == "profilephoto") {
+      if (e.target.id === "profilephoto") {
         formData.append("profile_img_url", ig);
       }
       await axios
@@ -97,7 +97,7 @@ const Profile = (props) => {
         });
       const [file] = e.target.files;
       if (file) {
-        if (e.target.id == "uploadcoverphoto") {
+        if (e.target.id === "uploadcoverphoto") {
           const reader = new FileReader();
           const { current } = uploadedImage;
           current.file = file;
@@ -109,7 +109,7 @@ const Profile = (props) => {
           };
           reader.readAsDataURL(file);
         }
-        if (e.target.id == "profilephoto") {
+        if (e.target.id === "profilephoto") {
           const reader = new FileReader();
           const { current } = profileImage;
           current.file = file;
@@ -122,18 +122,18 @@ const Profile = (props) => {
     }
   };
 
-  const handleprofilepicUploadr = async (e) => {
-    // const [file] = e.target.files;
-    // if (file) {
-    //     const reader = new FileReader();
-    //     const { current } = profileImage;
-    //     current.file = file;
-    //     reader.onload = e => {
-    //         current.src = e.target.result;
-    //     };
-    //     reader.readAsDataURL(file);
-    // }
-  };
+  /*const handleprofilepicUploadr = async (e) => {
+    const [file] = e.target.files;
+    if (file) {
+        const reader = new FileReader();
+        const { current } = profileImage;
+        current.file = file;
+        reader.onload = e => {
+            current.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+  };*/
 
   return (
     <>
@@ -165,6 +165,7 @@ const Profile = (props) => {
                       onClick={() => imageUploader.current.click()}
                     >
                       <img
+                        alt={""}
                         id="mydat"
                         src={
                           udata == null
@@ -207,6 +208,7 @@ const Profile = (props) => {
                       >
                         <label>Add Profile Picture</label>
                         <img
+                          alt={""}
                           src={
                             udata == null
                               ? ""
@@ -239,7 +241,7 @@ const Profile = (props) => {
                       </p>
                       <a href="#0" className="website-link">
                         <span>
-                          <img src={EarthIcon} />
+                          <img src={EarthIcon} alt={""} />
                         </span>
                         {udata == null ? "" : udata.personal_site}
                       </a>
@@ -270,7 +272,6 @@ const Profile = (props) => {
                           >
                             <path
                               clipRule="evenodd"
-                              clipRule="evenodd"
                               d="M3.75 6.75H7.5V11.25H10.5V6.75H14.25L9 1.5L3.75 6.75ZM15 9V14.25H3V9H1.5V15C1.5 15.4142 1.83579 15.75 2.25 15.75H15.75C16.1642 15.75 16.5 15.4142 16.5 15V9H15Z"
                               fill="black"
                             />
@@ -289,7 +290,6 @@ const Profile = (props) => {
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              clipRule="evenodd"
                               clipRule="evenodd"
                               d="M1.75 0.5C0.925 0.5 0.25 1.175 0.25 2C0.25 2.825 0.925 3.5 1.75 3.5C2.575 3.5 3.25 2.825 3.25 2C3.25 1.175 2.575 0.5 1.75 0.5ZM12.25 0.5C11.425 0.5 10.75 1.175 10.75 2C10.75 2.825 11.425 3.5 12.25 3.5C13.075 3.5 13.75 2.825 13.75 2C13.75 1.175 13.075 0.5 12.25 0.5ZM5.5 2C5.5 1.175 6.175 0.5 7 0.5C7.825 0.5 8.5 1.175 8.5 2C8.5 2.825 7.825 3.5 7 3.5C6.175 3.5 5.5 2.825 5.5 2Z"
                               fill="black"
@@ -451,7 +451,6 @@ const Profile = (props) => {
                               fill="white"
                             />
                             <path
-                              clipRule="evenodd"
                               clipRule="evenodd"
                               d="M16.5 19V20.6667H31.5V19H16.5ZM22.3333 29H25.6667V27.3333H22.3333V29ZM29 24.8333H19V23.1667H29V24.8333Z"
                               fill="black"

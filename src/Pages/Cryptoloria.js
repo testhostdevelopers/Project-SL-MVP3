@@ -1,13 +1,7 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import SwiperCore, {
-  Keyboard,
-  Pagination,
-  Navigation,
-  Autoplay,
-} from "swiper/core";
-
+// import { Menu } from "antd";
+import { motion } from "framer-motion";
 import ArtWork from "../Components/ArtWork";
 import artWorkWeekOne from "../assets/img/custom/artWorkWeekOne.png";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
@@ -36,11 +30,8 @@ import topSeller8 from "../assets/img/custom/topSeller8.png";
 import topSeller9 from "../assets/img/custom/topSeller9.png";
 import topSeller10 from "../assets/img/custom/topSeller10.png";
 import logo from "../assets/img/custom/cryptoioriaLogo.png";
-import shape from "../assets/img/icons/custom/Shape.svg";
 import HotBids from "../Components/HotBids";
 import fabaLogo from "../assets/img/custom/x.svg";
-import { Menu, Dropdown } from "antd";
-import { motion } from "framer-motion";
 import FullScreenImage from "../Components/Popup/FullScreenImage";
 import TopCard from "../Components/TopCard";
 import LiveAuctions from "../Components/LiveAuctions";
@@ -56,14 +47,14 @@ const Cryptoloria = () => {
     visible: { opacity: 1 },
   };
 
-  const menu = (
+  /*const menu = (
     <Menu>
       <Menu.Item>Change Price</Menu.Item>
       <Menu.Item>Transfer Token</Menu.Item>
       <Menu.Item>Burn Token</Menu.Item>
       <Menu.Item onClick={() => setReportPopup(true)}>Report</Menu.Item>
     </Menu>
-  );
+  );*/
 
   return (
     <>
@@ -76,7 +67,7 @@ const Cryptoloria = () => {
         variants={variants}
         className="container-fluid p-0 d-flex justify-content-center align-items-center flex-column cryptoloria-page"
       >
-        <img src={logo} className="artCryptoLogo" />
+        <img src={logo} className="artCryptoLogo" alt={""} />
         <div className="cryptoioria-banner-container">
           <div className="position-absolute text-center d-flex flex-column">
             <div className="navbar-brand bottom-logo-x-icons mb-3">
@@ -93,7 +84,7 @@ const Cryptoloria = () => {
                 />
               </svg>
             </div>
-            <a className="navbar-brand mb-3 pl-0 mr-0">
+            <a href="/#" className="navbar-brand mb-3 pl-0 mr-0">
               <img src={fabaLogo} width="30" alt="" />
               <span className="ml-2">Starlight</span>
             </a>

@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import Priceicon from "../assets/img/custom/u_dollar-alt.png";
 import { Select } from "antd";
 
@@ -42,7 +42,7 @@ export default function FilterRange({
   return (
     <li>
       <div className="icon">
-        <img src={Priceicon} alt={''}/>
+        <img src={Priceicon} alt={""} />
       </div>
       <div
         className="ant-select ant-select-single ant-select-show-arrow"

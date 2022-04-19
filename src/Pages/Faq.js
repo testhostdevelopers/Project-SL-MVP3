@@ -30,10 +30,10 @@ const Faq = () => {
                 </label>
                 <div className="tab-content sub-tabs-menu">
                   <div className="accordion">
-                    <span className="target-fix" id="accordion"></span>
+                    <span className="target-fix" id="accordion" />
 
                     <div>
-                      <span className="target-fix" id="accordion1"></span>
+                      <span className="target-fix" id="accordion1" />
 
                       <a href="#accordion1" id="open-accordion1" title="open">
                         NFT? ERC-721 tokens?
@@ -54,7 +54,7 @@ const Faq = () => {
                       </div>
                     </div>
                     <div>
-                      <span className="target-fix" id="accordion2"></span>
+                      <span className="target-fix" id="accordion2" />
                       <a href="#accordion2" id="open-accordion2" title="open">
                         What does “minting” mean?
                       </a>
@@ -66,7 +66,7 @@ const Faq = () => {
                       </div>
                     </div>
                     <div>
-                      <span className="target-fix" id="accordion3"></span>
+                      <span className="target-fix" id="accordion3" />
                       <a href="#accordion3" id="open-accordion3" title="open">
                         Can I create an NFT on rarible.com without putting it on
                         sale?
@@ -81,7 +81,7 @@ const Faq = () => {
                     </div>
 
                     <div>
-                      <span className="target-fix" id="accordion4"></span>
+                      <span className="target-fix" id="accordion4" />
                       <a href="#accordion4" id="open-accordion4" title="open">
                         Can I gift or send a collectible to someone?
                       </a>
@@ -100,7 +100,7 @@ const Faq = () => {
                     </div>
 
                     <div>
-                      <span className="target-fix" id="accordion5"></span>
+                      <span className="target-fix" id="accordion5" />
                       <a href="#accordion5" id="open-accordion5" title="open">
                         What does “burn a token” mean?
                       </a>
@@ -119,7 +119,7 @@ const Faq = () => {
                     </div>
 
                     <div>
-                      <span className="target-fix" id="accordion6"></span>
+                      <span className="target-fix" id="accordion6" />
                       <a href="#accordion6" id="open-accordion6" title="open">
                         Do you have an OpenSea integration?
                       </a>
@@ -138,7 +138,7 @@ const Faq = () => {
                     </div>
 
                     <div>
-                      <span className="target-fix" id="accordion7"></span>
+                      <span className="target-fix" id="accordion7" />
                       <a href="#accordion7" id="open-accordion7" title="open">
                         What is the purpose of $RARI as a governance token?
                       </a>
@@ -157,7 +157,7 @@ const Faq = () => {
                     </div>
 
                     <div>
-                      <span className="target-fix" id="accordion8"></span>
+                      <span className="target-fix" id="accordion8" />
                       <a href="#accordion8" id="open-accordion8" title="open">
                         What is “unlockable content”?
                       </a>
@@ -176,7 +176,7 @@ const Faq = () => {
                     </div>
 
                     <div>
-                      <span className="target-fix" id="accordion9"></span>
+                      <span className="target-fix" id="accordion9" />
                       <a href="#accordion9" id="open-accordion9" title="open">
                         How does the royalty system work?
                       </a>
@@ -195,7 +195,7 @@ const Faq = () => {
                     </div>
 
                     <div>
-                      <span className="target-fix" id="accordion10"></span>
+                      <span className="target-fix" id="accordion10" />
                       <a href="#accordion10" id="open-accordion10" title="open">
                         I would like to suggest additional features!
                       </a>
@@ -214,7 +214,7 @@ const Faq = () => {
                     </div>
 
                     <div>
-                      <span className="target-fix" id="accordion11"></span>
+                      <span className="target-fix" id="accordion11" />
                       <a href="#accordion11" id="open-accordion11" title="open">
                         Can I report an artwork or collectible?
                       </a>
@@ -233,7 +233,7 @@ const Faq = () => {
                     </div>
 
                     <div>
-                      <span className="target-fix" id="accordion12"></span>
+                      <span className="target-fix" id="accordion12" />
                       <a href="#accordion12" id="open-accordion12" title="open">
                         What is verification?{" "}
                       </a>
@@ -252,7 +252,7 @@ const Faq = () => {
                     </div>
 
                     <div>
-                      <span className="target-fix" id="accordion13"></span>
+                      <span className="target-fix" id="accordion13" />
                       <a href="#accordion13" id="open-accordion13" title="open">
                         How to get a "verified" badge?{" "}
                       </a>
@@ -271,7 +271,7 @@ const Faq = () => {
                     </div>
 
                     <div>
-                      <span className="target-fix" id="accordion14"></span>
+                      <span className="target-fix" id="accordion14" />
                       <a href="#accordion14" id="open-accordion14" title="open">
                         It's been a while and I don't get verified. Why?{" "}
                       </a>

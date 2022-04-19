@@ -15,7 +15,7 @@ const CheckOut = (props) => {
   };
 
   let { setSingleCollectionPopup, setSinglePopup } = props;
-  console.log('setSingleCollectionPopup', setSingleCollectionPopup);
+  console.log("setSingleCollectionPopup", setSingleCollectionPopup);
 
   const options = [
     { value: "ETH", label: "ETH" },
@@ -47,7 +47,7 @@ const CheckOut = (props) => {
                 props.setCheckOutPopup(false);
               }}
             >
-              <img src={closeicon} alt={''}/>
+              <img src={closeicon} alt={""} />
             </div>
           </div>
 
@@ -67,7 +67,7 @@ const CheckOut = (props) => {
                 <Tab>
                   Pay with{" "}
                   <span className="pay-with-img">
-                    <img src={McdoIcon} alt={''}/>
+                    <img src={McdoIcon} alt={""} />
                   </span>
                 </Tab>
               </TabList>

@@ -70,7 +70,7 @@ export default function FilterSort({
     <li>
       <span className="label">Filter & Sort</span>
       <div className="icon">
-        <img src={filtericon} alt={''}/>
+        <img src={filtericon} alt={""} />
       </div>
       <div
         className="ant-select ant-select-single ant-select-show-arrow"

@@ -72,7 +72,7 @@ export default function FilterCategory({
   return (
     <li>
       <div className="icon">
-        <img src={categoryicon} alt={''}/>
+        <img src={categoryicon} alt={""} />
       </div>
       <div
         className="ant-select ant-select-single ant-select-show-arrow"
@@ -129,7 +129,7 @@ export default function FilterCategory({
                 name="filtercategory"
               />
               <label for="ctoCryptoloria" onClick={() => isActiveFunc()}>
-                <img src={planet} alt={''}/> Cryptoloria
+                <img src={planet} alt={""} /> Cryptoloria
               </label>
             </li>
 
@@ -141,7 +141,7 @@ export default function FilterCategory({
                 name="filtercategory"
               />
               <label for="ctoArt" onClick={() => isActiveFunc()}>
-                <img src={Art} alt={''}/> Art
+                <img src={Art} alt={""} /> Art
               </label>
             </li>
 
@@ -153,7 +153,7 @@ export default function FilterCategory({
                 name="filtercategory"
               />
               <label for="ctoPhotography" onClick={() => isActiveFunc()}>
-                <img src={Photography} alt={''}/> Photography
+                <img src={Photography} alt={""} /> Photography
               </label>
             </li>
 
@@ -165,7 +165,7 @@ export default function FilterCategory({
                 name="filtercategory"
               />
               <label for="ctoGames" onClick={() => isActiveFunc()}>
-                <img src={Games} alt={''}/> Games
+                <img src={Games} alt={""} /> Games
               </label>
             </li>
 
@@ -177,7 +177,7 @@ export default function FilterCategory({
                 name="filtercategory"
               />
               <label for="ctoMetaverses" onClick={() => isActiveFunc()}>
-                <img src={Metaverses} alt={''}/> Metaverses
+                <img src={Metaverses} alt={""} /> Metaverses
               </label>
             </li>
           </ul>

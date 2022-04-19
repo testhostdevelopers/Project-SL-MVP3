@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import SolanaLogo from "../../assets/img/custom/solanalogo.png";
-import MetaplexLogo from "../../assets/img/custom/metaplexlogo.png";
+import React from "react";
 import PrimedImg from "../../assets/img/custom/primedimg.png";
 import darkPrimedImg from "../../assets/img/custom/darkPrimedImg.png";
+// import SolanaLogo from "../../assets/img/custom/solanalogo.png";
+// import MetaplexLogo from "../../assets/img/custom/metaplexlogo.png";
 
 const PrimedandReady = () => {
   return (
@@ -37,8 +37,8 @@ const PrimedandReady = () => {
             </div>
           </div>
           <div className="primed-right-block">
-            <img className="light" src={PrimedImg} />
-            <img className="dark" src={darkPrimedImg} />
+            <img className="light" src={PrimedImg} alt={""} />
+            <img className="dark" src={darkPrimedImg} alt={""} />
           </div>
         </div>
       </div>

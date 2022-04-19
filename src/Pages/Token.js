@@ -19,7 +19,7 @@ const Token = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-12 col-lg-7 token-page-section-content">
-              <img src={tokenLogo} width="75" />
+              <img src={tokenLogo} width="75" alt={""} />
               <h2>
                 Meet $STARLIGHT <br />
                 DAO Governance Token

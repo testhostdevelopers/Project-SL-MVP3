@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import raodmap from "../../assets/img/custom/road-map.svg";
 import mraodmap from "../../assets/img/custom/mobile-road-map.svg";
 
@@ -7,8 +7,8 @@ const WeAreHereSec = () => {
     <section className="common-gapping weare-here-sec">
       <div className="container">
         <div className="weare-here-block">
-          <img className="desktop" src={raodmap} />
-          <img className="mobile" src={mraodmap} />
+          <img className="desktop" src={raodmap} alt={""} />
+          <img className="mobile" src={mraodmap} alt={""} />
 
           {/* <div className="weare-here-list-full-list">
                     <ul className="weare-here-list"> 

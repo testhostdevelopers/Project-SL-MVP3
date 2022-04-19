@@ -12,8 +12,8 @@ export default function HotBids({
   time,
 }) {
   const [ReportPopups, setReportPopup] = useState(false);
-  const [singlePopup, setSinglePopup] = useState(false);
-  console.log('singlePopup', singlePopup);
+  // const [singlePopup, setSinglePopup] = useState(false);
+  // console.log('singlePopup', singlePopup);
   const lastSegment = window.location.pathname.substring(
     window.location.pathname.lastIndexOf("/") + 1
   );
@@ -42,7 +42,7 @@ export default function HotBids({
     <>
       {ReportPopups && (
         <ReportPopup
-          setSinglePopup={setSinglePopup}
+          // setSinglePopup={setSinglePopup}
           setReportPopup={setReportPopup}
         />
       )}

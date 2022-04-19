@@ -44,7 +44,7 @@ const PlaceABidPopup = (props) => {
                 document.body.style.overflow = "scroll";
               }}
             >
-              <img src={closeicon} alt={''}/>
+              <img src={closeicon} alt={""} />
             </div>
           </div>
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import HotBids from "../Components/HotBids";
 import { motion } from "framer-motion";
-import { Menu, Dropdown, Tabs, Select } from "antd";
+import { Menu, Dropdown, Tabs } from "antd";
 import ReportPopup from "../Components/Popup/ReportPopup";
 import UpdateCoverPopup from "../Components/Popup/UpdateCoverPopup";
 import UpdateProfilePicPopup from "../Components/Popup/UpdateProfilePicPopup";
@@ -16,7 +16,7 @@ import CollectionBannerBg from "../assets/img/custom/Collection-banner-bg.png";
 import userProfilePictures from "../assets/img/custom/userProfilePictures.png";
 import FilterSort from "../Components/FilterSort";
 import FilterCategory from "../Components/FilterCategory";
-import FilterCollections from "../Components/FilterCollections";
+// import FilterCollections from "../Components/FilterCollections";
 import Filtersale from "../Components/Filtersale";
 import FilterRange from "../Components/FilterRange";
 import FilterProperties from "../Components/FilterProperties";
@@ -24,7 +24,7 @@ import Activitytab from "../Components/Tabs/Activitytab";
 import ProfileLinks from "../Components/ProfileLinks";
 
 const { TabPane } = Tabs;
-const { Option } = Select;
+// const { Option } = Select;
 
 const Collection = (props) => {
   const [ReportPopups, setReportPopup] = useState(false);
@@ -36,21 +36,21 @@ const Collection = (props) => {
   const [filterProperties, setFilterProperties] = useState(false);
   const [filtersale, setFiltersale] = useState(false);
   const [filterRange, setFilterRange] = useState(false);
-  const [buttonText, setButtonText] = useState("Edit Cover");
+  const buttonText = "Edit Cover";
 
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
 
-  const menu = (
+  /*const menu = (
     <Menu>
       <Menu.Item>Change Price</Menu.Item>
       <Menu.Item>Transfer Token</Menu.Item>
       <Menu.Item>Burn Token</Menu.Item>
       <Menu.Item onClick={() => setReportPopup(true)}>Report</Menu.Item>
     </Menu>
-  );
+  );*/
 
   const singleoption = (
     <Menu>
@@ -133,7 +133,7 @@ const Collection = (props) => {
                         onClick={() => setprofilePopup(true)}
                         className="edit-proile-img"
                       >
-                        <img src={addicon} />
+                        <img src={addicon} alt={""} />
                       </span>
                       <img src={userProfilePictures} width="100%" alt="" />
                     </div>
@@ -158,7 +158,6 @@ const Collection = (props) => {
                           >
                             <path
                               clipRule="evenodd"
-                              clipRule="evenodd"
                               d="M3.75 6.75H7.5V11.25H10.5V6.75H14.25L9 1.5L3.75 6.75ZM15 9V14.25H3V9H1.5V15C1.5 15.4142 1.83579 15.75 2.25 15.75H15.75C16.1642 15.75 16.5 15.4142 16.5 15V9H15Z"
                               fill="black"
                             />
@@ -178,7 +177,6 @@ const Collection = (props) => {
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              clipRule="evenodd"
                               clipRule="evenodd"
                               d="M1.75 0.5C0.925 0.5 0.25 1.175 0.25 2C0.25 2.825 0.925 3.5 1.75 3.5C2.575 3.5 3.25 2.825 3.25 2C3.25 1.175 2.575 0.5 1.75 0.5ZM12.25 0.5C11.425 0.5 10.75 1.175 10.75 2C10.75 2.825 11.425 3.5 12.25 3.5C13.075 3.5 13.75 2.825 13.75 2C13.75 1.175 13.075 0.5 12.25 0.5ZM5.5 2C5.5 1.175 6.175 0.5 7 0.5C7.825 0.5 8.5 1.175 8.5 2C8.5 2.825 7.825 3.5 7 3.5C6.175 3.5 5.5 2.825 5.5 2Z"
                               fill="black"
@@ -242,7 +240,7 @@ const Collection = (props) => {
                           <li>
                             <span className="label">Properties</span>
                             <div className="icon">
-                              <img src={propertiesicon} />
+                              <img src={propertiesicon} alt={""} />
                             </div>
                             <div
                               className="ant-select ant-select-single ant-select-show-arrow"
@@ -268,7 +266,7 @@ const Collection = (props) => {
                                     fill="currentColor"
                                     aria-hidden="true"
                                   >
-                                    <path d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"></path>
+                                    <path d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z" />
                                   </svg>
                                 </span>
                               </span>

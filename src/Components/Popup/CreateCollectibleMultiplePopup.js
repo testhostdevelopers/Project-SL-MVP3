@@ -30,13 +30,13 @@ const CreateCollectibleMultiplePopup = (props) => {
               document.body.style.overflow = "scroll";
             }}
           >
-            <img src={closeicon} alt={''}/>
+            <img src={closeicon} alt={""} />
           </div>
         </div>
 
         <div className="d-flex mt-3">
           <div className="fallow-steps-active">
-            <i className="fas fa-check-circle"/>
+            <i className="fas fa-check-circle" />
           </div>
           <div className="ml-3">
             <h6 className="mb-1">

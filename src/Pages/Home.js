@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import ArtWork from "../Components/ArtWork";
+import { Select } from "antd";
+import { motion } from "framer-motion";
 import SwiperCore, {
   Keyboard,
   Pagination,
   Navigation,
   Autoplay,
 } from "swiper/core";
+import ArtWork from "../Components/ArtWork";
 import artWorkWeekOne from "../assets/img/custom/artWorkWeekOne.png";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 import artWorkWeek2 from "../assets/img/custom/artWorkWeek2.png";
@@ -35,17 +36,13 @@ import topSellerUser8 from "../assets/img/custom/topSellerUser8.png";
 import topSellerUser9 from "../assets/img/custom/topSellerUser9.png";
 import topSellerUser10 from "../assets/img/custom/topSellerUser10.png";
 import FullScreenImage from "../Components/Popup/FullScreenImage";
-import { Menu, Dropdown, Select } from "antd";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { Tabs } from "antd";
 import TopCard from "../Components/TopCard";
 import LiveAuctions from "../Components/LiveAuctions";
 import HotBids from "../Components/HotBids";
 import QuickExplore from "../Components/Tabs/QuickExplore";
 
-const { TabPane } = Tabs;
-const { Option } = Select;
+// const { TabPane } = Tabs;
+// const { Option } = Select;
 
 SwiperCore.use([Keyboard, Pagination, Navigation, Autoplay]);
 
@@ -503,7 +500,6 @@ const Home = () => {
                             <div className="bg-lines2"></div> */}
 
               <Swiper
-                pagination={true}
                 modules={[Pagination]}
                 pagination={{ clickable: true }}
                 style={{ marginTop: 15 }}
@@ -516,7 +512,7 @@ const Home = () => {
                 }}
               >
                 <SwiperSlide>
-                  <img src={artWorkWeek1} width="100%" />
+                  <img src={artWorkWeek1} width="100%" alt={""} />
                   {/* <div className="slider-content">
                                         <img src={topSellerUser1} width="52px" height="52px" />
                                         <div className="slider-conter-absolute d-flex">
@@ -556,7 +552,7 @@ const Home = () => {
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                  <img src={artWorkWeek2} width="100%" />
+                  <img src={artWorkWeek2} width="100%" alt={""} />
                   <div id="message-container">
                     <div id="main-heading">Name of Collection</div>
                     <div id="by">By Lorem Ipsum</div>
@@ -596,7 +592,7 @@ const Home = () => {
                                     </div> */}
                 </SwiperSlide>
                 <SwiperSlide>
-                  <img src={artWorkWeek3} width="100%" />
+                  <img src={artWorkWeek3} width="100%" alt={""} />
                   {/* <div className="slider-content">
                                         <img src={topSellerUser1} width="52px" height="52px" />
                                         <div className="slider-conter-absolute d-flex">
@@ -636,7 +632,7 @@ const Home = () => {
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                  <img src={artWorkWeek4} width="100%" />
+                  <img src={artWorkWeek4} width="100%" alt={""} />
                   {/* <div className="slider-content">
                                         <img src={topSellerUser1} width="52px" height="52px" />
                                         <div className="slider-conter-absolute d-flex">

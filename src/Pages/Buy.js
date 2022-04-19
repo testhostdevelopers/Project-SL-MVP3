@@ -11,13 +11,12 @@ import WhatIswETHPopup from "../Components/Popup/WhatIswETHPopup";
 import FullScreenImage from "../Components/Popup/FullScreenImage";
 import ReportPopup from "../Components/Popup/ReportPopup";
 import CheckOut from "../Components/Popup/CheckOut";
-
-import { Menu, Dropdown, Select } from "antd";
+import { Menu, Dropdown } from "antd";
 import { motion } from "framer-motion";
 import Buytab from "../Components/Tabs/Buytab";
 import ArtworkWeek from "./ArtworkWeek";
-import FilterProperties from "../Components/FilterProperties";
-import FilterCategory from "../Components/FilterCategory";
+// import FilterProperties from "../Components/FilterProperties";
+// import FilterCategory from "../Components/FilterCategory";
 import BuyHistory from "../Components/BuyCopmponent/BuyHistory";
 import BuyAuction from "../Components/BuyCopmponent/BuyAuction";
 
@@ -38,7 +37,7 @@ const Buy = () => {
         New bid
       </Menu.Item>
       <Menu.Item onClick={() => setCheckOutPopup(true)}>Purchase now</Menu.Item>
-      <div className="mt-3 mb-3 border-bottom w-100"></div>
+      <div className="mt-3 mb-3 border-bottom w-100" />
       <Menu.Item>View on opensea</Menu.Item>
       <Menu.Item>Refresh Metadata</Menu.Item>
       <Menu.Item onClick={() => setsharePopup(true)}>Share</Menu.Item>
@@ -121,14 +120,14 @@ const Buy = () => {
                   </h3>
                   <div className="d-flex">
                     <div className="card-heart-icon">
-                      <i className="fas fa-heart"></i> 24
+                      <i className="fas fa-heart" /> 24
                     </div>
                     <Dropdown overlay={menu}>
                       <div
                         className="card-select-icon ml-2"
                         onClick={(e) => e.preventDefault()}
                       >
-                        <i className="fas fa-ellipsis-h"></i>
+                        <i className="fas fa-ellipsis-h" />
                       </div>
                     </Dropdown>
                   </div>
@@ -188,7 +187,7 @@ const Buy = () => {
                             <li key={cat_k}>
                               <a href="#0">
                                 <span>
-                                  <img src={categ.cat_img} />
+                                  <img src={categ.cat_img} alt={""} />
                                 </span>
                                 {categ.cat_title}
                               </a>
@@ -291,8 +290,7 @@ const Buy = () => {
                       <BuyHistory />
                     </div>
                   </div>
-
-                  <div className="tab-pane-bottom-solid"></div>
+                  <div className="tab-pane-bottom-solid" />
                 </div>
 
                 {/*  //////////       Buy Auction Data         ////////  */}

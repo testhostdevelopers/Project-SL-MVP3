@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const SingleChooesColl = () => {
-  return (
-    <>SingleChooesColl</>
-  )
-}
+  return <>SingleChooesColl</>;
+};
 
-export default SingleChooesColl
+export default SingleChooesColl;

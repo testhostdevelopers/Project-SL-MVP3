@@ -27,7 +27,7 @@ const ShareThisNFTPopup = (props) => {
               document.body.style.overflow = "scroll";
             }}
           >
-            <img src={closeicon} alt={''}/>
+            <img src={closeicon} alt={""} />
           </div>
         </div>
 
@@ -44,7 +44,7 @@ const ShareThisNFTPopup = (props) => {
             <li>
               <a href="#0">
                 <span>
-                  <i className="fab fa-facebook-f"></i>
+                  <i className="fab fa-facebook-f" />
                 </span>
                 Facebook
               </a>

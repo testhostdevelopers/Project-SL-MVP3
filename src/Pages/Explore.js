@@ -1,30 +1,12 @@
-import React, { useState, useContext, useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import SwiperCore, {
-  Keyboard,
-  Pagination,
-  Navigation,
-  Autoplay,
-} from "swiper/core";
-
-import ArtWork from "../Components/ArtWork";
-import artWorkWeekOne from "../assets/img/custom/artWorkWeekOne.png";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 import artWorkWeek2 from "../assets/img/custom/artWorkWeek2.png";
 import artWorkWeek3 from "../assets/img/custom/artWorkWeek3.png";
 import artWorkWeek4 from "../assets/img/custom/artWorkWeek4.png";
-import categoryicon from "../assets/img/custom/category-icon.svg";
 import propertiesicon from "../assets/img/custom/properties.svg";
-
 import HotBids from "../Components/HotBids";
-import fabaLogo from "../assets/img/custom/x.svg";
-import { Menu, Dropdown, Select } from "antd";
-import { motion } from "framer-motion";
 import FullScreenImage from "../Components/Popup/FullScreenImage";
-import TopCard from "../Components/TopCard";
-import LiveAuctions from "../Components/LiveAuctions";
-
 import FilterSort from "../Components/FilterSort";
 import FilterCategory from "../Components/FilterCategory";
 import FilterCollections from "../Components/FilterCollections";
@@ -33,7 +15,7 @@ import FilterRange from "../Components/FilterRange";
 import FilterProperties from "../Components/FilterProperties";
 
 // const { TabPane } = Tabs;
-const { Option } = Select;
+// const { Option } = Select;
 
 const Cryptoloria = () => {
   let [openImage, setOpenImage] = useState(false);
@@ -49,14 +31,14 @@ const Cryptoloria = () => {
     visible: { opacity: 1 },
   };
 
-  const menu = (
+  /*const menu = (
     <Menu>
       <Menu.Item>Change Price</Menu.Item>
       <Menu.Item>Transfer Token</Menu.Item>
       <Menu.Item>Burn Token</Menu.Item>
       <Menu.Item>Report</Menu.Item>
     </Menu>
-  );
+  );*/
 
   return (
     <>
@@ -122,7 +104,7 @@ const Cryptoloria = () => {
               <li>
                 <span className="label">Properties</span>
                 <div className="icon">
-                  <img src={propertiesicon} />
+                  <img src={propertiesicon} alt={""} />
                 </div>
                 <div
                   className="ant-select ant-select-single ant-select-show-arrow"
@@ -146,7 +128,7 @@ const Cryptoloria = () => {
                         fill="currentColor"
                         aria-hidden="true"
                       >
-                        <path d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"></path>
+                        <path d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z" />
                       </svg>
                     </span>
                   </span>

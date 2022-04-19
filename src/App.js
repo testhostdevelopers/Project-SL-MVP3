@@ -25,7 +25,6 @@ import Activity from "./Pages/Activity";
 import Following from "./Pages/Following";
 import search from "./Pages/search";
 import CreateCollectibleEdit from "./Pages/CreateCollectibleEdit";
-
 import "swiper/swiper-bundle.css";
 import {
   BrowserRouter as Router,
@@ -33,10 +32,11 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import AnnBnnaer from "./Components/Popup/AnnBnnaer";
+// import AnnBnnaer from "./Components/Popup/AnnBnnaer";
 
 const App = () => {
   const [pImage, setpImage] = useState("");
+  console.log("pImage", pImage);
   const profileImage = React.useRef(null);
   const handleprofilepicUploadr = (e) => {
     const [file] = e.target.files;
@@ -59,11 +59,11 @@ const App = () => {
     }
   }, []);
 
-  function withProps(Component, props) {
+  /*function withProps(Component, props) {
     return function (matchProps) {
       return <Component {...props} {...matchProps} />;
     };
-  }
+  }*/
 
   return (
     <>
@@ -81,7 +81,7 @@ const App = () => {
           <Route
             path="/signIn"
             render={(props) => {
-              if (isAuthenticated == false) {
+              if (isAuthenticated === false) {
                 return <SignIn {...props} />;
               } else {
                 return (
@@ -115,7 +115,7 @@ const App = () => {
           <Route
             path="/profile"
             render={(props) => {
-              if (isAuthenticated == true) {
+              if (isAuthenticated === true) {
                 return <Profile {...props} />;
               } else {
                 return (
@@ -133,7 +133,7 @@ const App = () => {
           <Route
             path="/edit-profile"
             render={(props) => {
-              if (isAuthenticated == true) {
+              if (isAuthenticated === true) {
                 return <CreateCollectibleEdit {...props} />;
               } else {
                 return (

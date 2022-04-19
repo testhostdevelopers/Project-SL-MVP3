@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
-import activityCard from "../assets/img/custom/activity-card.png";
+import React, { useState } from "react";
+// import activityCard from "../assets/img/custom/activity-card.png";
 import { motion } from "framer-motion";
 import ActivityNumberCard from "../Components/ActivityNumberCard";
 import FillLabel from "../assets/img/icons/custom/fill-label.svg";
 import ActivityCard from "../assets/img/custom/activity-cardonly.png";
-
-import { Menu, Dropdown, Tabs } from "antd";
-
+import { Tabs } from "antd";
 const { TabPane } = Tabs;
 
 const Activity = () => {
   const [listing, Setlisting] = useState("Listing");
-  const [error_data, seterror_data] = useState("");
+  const error_data = "";
 
   const all_filter = [
     {
@@ -53,7 +51,7 @@ const Activity = () => {
   const findFilter = (key) => {
     Setlisting(key);
     let arr = [];
-    all_filter.map((v) => {
+    all_filter.forEach((v) => {
       if (v._filter_ === key) {
         arr.push(v);
       }
@@ -110,7 +108,6 @@ const Activity = () => {
                             />
                             <path
                               clipRule="evenodd"
-                              clipRule="evenodd"
                               d="M16.5 19V20.6667H31.5V19H16.5ZM22.3333 29H25.6667V27.3333H22.3333V29ZM29 24.8333H19V23.1667H29V24.8333Z"
                               fill="black"
                             />
@@ -163,7 +160,7 @@ const Activity = () => {
                                 </h5>
                                 <h5>
                                   <b>
-                                    <a href="" className="text-pink">
+                                    <a href="/#" className="text-pink">
                                       Reset filter
                                     </a>
                                   </b>

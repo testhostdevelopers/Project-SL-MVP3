@@ -48,7 +48,7 @@ const FullScreenImage = (props) => {
           <div className="row d-flex justify-content-center">
             <div className="">
               <div className="full-screen-img">
-                <img src={artWork} alt={''}/>
+                <img src={artWork} alt={""} />
               </div>
             </div>
           </div>

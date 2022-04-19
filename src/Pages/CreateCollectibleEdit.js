@@ -36,12 +36,12 @@ const CreateCollectibleEdit = () => {
           console.log(udata);
         });
     }
-  }, []);
+  }, [udata]);
 
-  if (sessionStorage.getItem("apiToken")) {
+  /*if (sessionStorage.getItem("apiToken")) {
     var apiToken = sessionStorage.getItem("apiToken");
-    // GetUdata(apiToken)
-  }
+    GetUdata(apiToken)
+  }*/
   var upProfile = async () => {
     console.log(form);
     if (sessionStorage.getItem("apiToken")) {
@@ -119,7 +119,7 @@ const CreateCollectibleEdit = () => {
                     placeholder="PixelDrops"
                   />
                   <span className="color-gray ">
-                    <img src={CheckFillClrIcon} />
+                    <img src={CheckFillClrIcon} alt={""} />
                   </span>
                 </div>
               </div>
@@ -156,7 +156,7 @@ const CreateCollectibleEdit = () => {
                     onChange={(e) => {
                       setUdata({ ...udata, custom_url: e.target.value });
                     }}
-                    value={udata == undefined ? "" : udata.custom_url}
+                    value={udata === undefined ? "" : udata.custom_url}
                     className="ml-3"
                     placeholder="Enter your custom URL"
                   />
@@ -184,7 +184,7 @@ const CreateCollectibleEdit = () => {
                     onChange={(e) => {
                       setUdata({ ...udata, twitter_username: e.target.value });
                     }}
-                    value={udata == undefined ? "" : udata.twitter_username}
+                    value={udata === undefined ? "" : udata.twitter_username}
                     placeholder="@PixelDrops"
                   />
                   <span className="color-gray ">
@@ -206,7 +206,7 @@ const CreateCollectibleEdit = () => {
                     onChange={(e) => {
                       setUdata({ ...udata, personal_site: e.target.value });
                     }}
-                    value={udata == undefined ? "" : udata.personal_site}
+                    value={udata === undefined ? "" : udata.personal_site}
                     placeholder="https://"
                   />
                 </div>
@@ -230,7 +230,7 @@ const CreateCollectibleEdit = () => {
                     type="email"
                     name="email"
                     required
-                    value={udata == undefined ? "" : udata.email}
+                    value={udata === undefined ? "" : udata.email}
                     onChange={(e) => {
                       setUdata({ ...udata, email: e.target.value });
                     }}
@@ -263,10 +263,13 @@ const CreateCollectibleEdit = () => {
                     }}
                     id="profileImg"
                     className="img-btn w-100 ml-0 "
-                  ></input>
+                  />
                   <label for="profileImg">
                     {" "}
-                    <img src="/static/media/bg_img.156953d5.png"></img>{" "}
+                    <img
+                      src="/static/media/bg_img.156953d5.png"
+                      alt={""}
+                    />{" "}
                   </label>
                   <br />
                   {udata == null
@@ -294,10 +297,13 @@ const CreateCollectibleEdit = () => {
                     }}
                     id="coverImg"
                     className="img-btn w-100 ml-0"
-                  ></input>
+                  />
                   <label for="coverImg">
                     {" "}
-                    <img src="/static/media/bg_img.156953d5.png"></img>{" "}
+                    <img
+                      src="/static/media/bg_img.156953d5.png"
+                      alt={""}
+                    />{" "}
                   </label>
                   <br />
                   {udata == null

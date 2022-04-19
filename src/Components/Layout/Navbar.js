@@ -388,7 +388,7 @@ const Navbar = (props) => {
                   onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)}
                 >
                   {theme === true && sessionStorage.getItem("apiToken") ? (
-                    <img src={user2} alt={''}/>
+                    <img src={user2} alt={""} />
                   ) : (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -444,7 +444,7 @@ const Navbar = (props) => {
                         <div className="d-flex justify-content-between mb-3">
                           <div className="d-flex">
                             <div>
-                              <img src={userTick} width="36" alt={''}/>
+                              <img src={userTick} width="36" alt={""} />
                             </div>
 
                             <div className="ml-3">
@@ -465,7 +465,7 @@ const Navbar = (props) => {
                         <div className="d-flex justify-content-between mb-3">
                           <div className="d-flex">
                             <div>
-                              <img src={BalanceIcon} width="36" alt={''}/>
+                              <img src={BalanceIcon} width="36" alt={""} />
                             </div>
 
                             <div className="ml-3">
@@ -480,7 +480,11 @@ const Navbar = (props) => {
                         <div className="d-flex justify-content-between mb-3">
                           <div className="d-flex">
                             <div>
-                              <img src={BidingbalanceIcon} width="36"  alt={''}/>
+                              <img
+                                src={BidingbalanceIcon}
+                                width="36"
+                                alt={""}
+                              />
                             </div>
 
                             <div className="ml-3">
@@ -514,7 +518,7 @@ const Navbar = (props) => {
                         <div className="add-funds-with-btn">
                           Add funds with
                           <span>
-                            <img src={McdoIcon} alt={''}/>
+                            <img src={McdoIcon} alt={""} />
                           </span>
                         </div>
                       </div>
@@ -586,7 +590,7 @@ const Navbar = (props) => {
                     SetSubMenuShow(false);
                   }}
                 >
-                  <img alt={''} src={menuclose} />
+                  <img alt={""} src={menuclose} />
                 </div>
               </div>
               <ul
@@ -620,7 +624,7 @@ const Navbar = (props) => {
                     className="nav-link"
                     onClick={() => SetSubMenuShow(!isSubMenuShow)}
                   >
-                    Community <img alt={''}src={subarrow} />
+                    Community <img alt={""} src={subarrow} />
                   </Link>
                   <div className="submenu-slide">
                     <span
@@ -630,7 +634,7 @@ const Navbar = (props) => {
                         SetSubMenuShow(false);
                       }}
                     >
-                      <img alt={''}src={backmenu} />
+                      <img alt={""} src={backmenu} />
                     </span>
                     <ul className="submenu">
                       <li>
@@ -865,7 +869,10 @@ const Navbar = (props) => {
 
                 <li className="nav-item p-0">
                   {location.pathname !== "/" ? (
-                    <a className="nav-link d-sm-none d-lg-block nav-dark-button notification-popup-outline position-relative mr-2" href="/#">
+                    <a
+                      className="nav-link d-sm-none d-lg-block nav-dark-button notification-popup-outline position-relative mr-2"
+                      href="/#"
+                    >
                       <svg
                         width="16"
                         height="22"
@@ -907,11 +914,11 @@ const Navbar = (props) => {
                                 className="popup-close-btn-outline"
                                 onClick={() => deleteHandler(index)}
                               >
-                                <img alt={''}src={closeicon} />
+                                <img alt={""} src={closeicon} />
                               </div>
                               <div className="d-flex">
                                 <div>
-                                  <img alt={''}src={grayPp} width="56" />
+                                  <img alt={""} src={grayPp} width="56" />
                                 </div>
 
                                 <div className="ml-3">
@@ -992,7 +999,7 @@ const Navbar = (props) => {
                       />
                       <img
                         className="my_pro"
-                        alt={''}
+                        alt={""}
                         src=""
                         ref={props.profileImage}
                         style={{
@@ -1029,7 +1036,7 @@ const Navbar = (props) => {
                             <div className="d-flex justify-content-between mb-3">
                               <div className="d-flex">
                                 <div className="token-img">
-                                  <img alt={''}src={userTick} width="36" />
+                                  <img alt={""} src={userTick} width="36" />
                                 </div>
 
                                 <div className="ml-3">
@@ -1052,7 +1059,7 @@ const Navbar = (props) => {
                             <div className="d-flex justify-content-between mb-3">
                               <div className="d-flex">
                                 <div className="token-img">
-                                  <img alt={''}src={BalanceIcon} width="36" />
+                                  <img alt={""} src={BalanceIcon} width="36" />
                                 </div>
 
                                 <div className="ml-3">
@@ -1067,7 +1074,11 @@ const Navbar = (props) => {
                             <div className="d-flex justify-content-between mb-3">
                               <div className="d-flex">
                                 <div className="token-img">
-                                  <img alt={''}src={BidingbalanceIcon} width="36" />
+                                  <img
+                                    alt={""}
+                                    src={BidingbalanceIcon}
+                                    width="36"
+                                  />
                                 </div>
 
                                 <div className="ml-3">
@@ -1105,7 +1116,7 @@ const Navbar = (props) => {
                             <div className="add-funds-with-btn">
                               Add funds with
                               <span>
-                                <img src={McdoIcon} alt={''}/>
+                                <img src={McdoIcon} alt={""} />
                               </span>
                             </div>
                           </div>

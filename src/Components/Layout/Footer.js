@@ -209,13 +209,13 @@ const Footer = () => {
                 to={{ pathname: "https://twitter.com/starlight_meta" }}
                 target="_blank"
               >
-                <i className="fab fa-twitter"></i>
+                <i className="fab fa-twitter" />
               </Link>
               <Link
                 to={{ pathname: "https://t.me/starlightmeta" }}
                 target="_blank"
               >
-                <i className="fab fa-telegram-plane"></i>
+                <i className="fab fa-telegram-plane" />
               </Link>
               <Link
                 to={{ pathname: "https://www.instagram.com/starlightmeta/" }}
@@ -238,16 +238,16 @@ const Footer = () => {
                 to={{ pathname: "https://discord.com/invite/h3pWz4fY72" }}
                 target="_blank"
               >
-                <i className="fab fa-discord"></i>
+                <i className="fab fa-discord" />
               </Link>
               <Link
                 to={{ pathname: "https://www.reddit.com/r/starlightmeta/" }}
                 target="_blank"
               >
-                <i className="fab fa-reddit" aria-hidden="true"></i>
+                <i className="fab fa-reddit" aria-hidden="true" />
               </Link>
               <Link to={{ pathname: "#0" }}>
-                <i className="fab fa-youtube"></i>
+                <i className="fab fa-youtube" />
               </Link>
             </div>
 

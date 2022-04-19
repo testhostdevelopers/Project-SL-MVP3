@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import ClimeworksImg from "../../assets/img/custom/climeworks-img.png";
-import ClimeworksLogo from "../../assets/img/custom/climeworks-logo.png";
-import Charitymobile from "../../assets/img/custom/Charitymobile.png";
+import React from "react";
+// import ClimeworksImg from "../../assets/img/custom/climeworks-img.png";
+// import ClimeworksLogo from "../../assets/img/custom/climeworks-logo.png";
+// import Charitymobile from "../../assets/img/custom/Charitymobile.png";
 
 const ClimeworksSec = () => {
   return (
@@ -14,19 +14,19 @@ const ClimeworksSec = () => {
               <li>
                 <div className="tier-box">
                   <h3>Tier 1 name</h3>
-                  <div className="tier-bottom-box"></div>
+                  <div className="tier-bottom-box" />
                 </div>
               </li>
               <li>
                 <div className="tier-box">
                   <h3>Tier 2 name</h3>
-                  <div className="tier-bottom-box"></div>
+                  <div className="tier-bottom-box" />
                 </div>
               </li>
               <li>
                 <div className="tier-box">
                   <h3>Tier 3 name</h3>
-                  <div className="tier-bottom-box"></div>
+                  <div className="tier-bottom-box" />
                 </div>
               </li>
             </ul>

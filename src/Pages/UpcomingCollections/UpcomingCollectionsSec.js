@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Collections1Img from "../../assets/img/custom/collections1.png";
 import Collections2Img from "../../assets/img/custom/collections2.png";
 import Collections3Img from "../../assets/img/custom/collections3.png";
-import { useLocation, Link } from "react-router-dom";
 import CryptoioriaLogo from "../../assets/img/custom/cryptoioriaLogo.png";
+// import { useLocation, Link } from "react-router-dom";
 
 const UpcomingCollectionsSec = () => {
   return (
@@ -11,10 +11,14 @@ const UpcomingCollectionsSec = () => {
       <div className="container">
         <div className="upcoming-collections-box">
           <div className="upcoming-collections-img">
-            <img src={Collections1Img} />
+            <img src={Collections1Img} alt={""} />
           </div>
           <div className="upcoming-collections-info-box">
-            <img src={CryptoioriaLogo} className="upcoming-collections-logo" />
+            <img
+              src={CryptoioriaLogo}
+              className="upcoming-collections-logo"
+              alt={""}
+            />
             <p>The soundtrack to the enchanted world of Cryptoloria.</p>
             <div className="upcoming-collections-time">
               <span>1 January 2021</span>
@@ -41,7 +45,7 @@ const UpcomingCollectionsSec = () => {
         </div>
         <div className="upcoming-collections-box">
           <div className="upcoming-collections-img">
-            <img src={Collections2Img} />
+            <img src={Collections2Img} alt={""} />
           </div>
           <div className="upcoming-collections-info-box">
             <div className="upcoming-collections-logo">
@@ -76,10 +80,14 @@ const UpcomingCollectionsSec = () => {
         </div>
         <div className="upcoming-collections-box">
           <div className="upcoming-collections-img">
-            <img src={Collections3Img} />
+            <img src={Collections3Img} alt={""} />
           </div>
           <div className="upcoming-collections-info-box">
-            <img src={CryptoioriaLogo} className="upcoming-collections-logo" />
+            <img
+              src={CryptoioriaLogo}
+              className="upcoming-collections-logo"
+              alt={""}
+            />
             <p>One of five comic book editions</p>
             <div className="upcoming-collections-time">
               <span>30 January 2021</span>

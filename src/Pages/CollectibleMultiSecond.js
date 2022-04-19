@@ -67,10 +67,7 @@ const CollectibleMultiSecond = () => {
                     className="custom-control-input"
                     id="customSwitch1"
                   />
-                  <label
-                    className="custom-control-label"
-                    for="customSwitch1"
-                  ></label>
+                  <label className="custom-control-label" for="customSwitch1" />
                 </div>
               </div>
 
@@ -88,10 +85,7 @@ const CollectibleMultiSecond = () => {
                     className="custom-control-input"
                     id="customSwitch1"
                   />
-                  <label
-                    className="custom-control-label"
-                    for="customSwitch1"
-                  ></label>
+                  <label className="custom-control-label" for="customSwitch1" />
                 </div>
               </div>
 
@@ -298,7 +292,7 @@ const CollectibleMultiSecond = () => {
                     <img src={topSellerUser2} width="36px" alt="" />
                     <img src={topSellerUser3} width="36px" alt="" />
                     <div className="live-card-tick">
-                      <i className="fas fa-check"></i>
+                      <i className="fas fa-check" />
                     </div>
                   </div>
 

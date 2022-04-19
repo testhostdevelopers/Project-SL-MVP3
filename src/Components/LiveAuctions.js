@@ -16,13 +16,12 @@ export default function LiveAuctions({
   isOpenInProfile,
 }) {
   const [ReportPopups, setReportPopup] = useState(false);
-  const [singlePopup, setSinglePopup] = useState(false);
-  console.log('singlePopup', singlePopup);
+  // const [singlePopup, setSinglePopup] = useState(false);
+  // console.log('singlePopup', singlePopup);
   const lastSegment = window.location.pathname.substring(
     window.location.pathname.lastIndexOf("/") + 1
   );
-
-  console.log(lastSegment);
+  // console.log(lastSegment);
   let menu;
   if (lastSegment === "Profile") {
     menu = (
@@ -47,7 +46,7 @@ export default function LiveAuctions({
     <>
       {ReportPopups && (
         <ReportPopup
-          setSinglePopup={setSinglePopup}
+          // setSinglePopup={setSinglePopup}
           setReportPopup={setReportPopup}
         />
       )}
@@ -56,7 +55,7 @@ export default function LiveAuctions({
           <div className="live-image">
             <img src={Coverimg} width="100%" alt="" />
             <div className="card-heart-icon">
-              <i className="fas fa-heart"></i>
+              <i className="fas fa-heart" />
               {heartcount}
             </div>
             <Dropdown overlay={menu}>
@@ -64,7 +63,7 @@ export default function LiveAuctions({
                 className="card-select-icon ant-dropdown-link"
                 onClick={(e) => e.preventDefault()}
               >
-                <i className="fas fa-ellipsis-h"></i>
+                <i className="fas fa-ellipsis-h" />
               </div>
             </Dropdown>
           </div>
@@ -75,7 +74,7 @@ export default function LiveAuctions({
               <img src={User2} width="36px" alt="" />
               <img src={User3} width="36px" alt="" />
               <div className="live-card-tick">
-                <i className="fas fa-check"></i>
+                <i className="fas fa-check" />
               </div>
             </div>
 

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import SolanaLogo from "../../assets/img/custom/solanalogo.png";
-import MetaplexLogo from "../../assets/img/custom/metaplexlogo.png";
-import PrimedImg from "../../assets/img/custom/primedimg.png";
+import React from "react";
+// import SolanaLogo from "../../assets/img/custom/solanalogo.png";
+// import MetaplexLogo from "../../assets/img/custom/metaplexlogo.png";
+// import PrimedImg from "../../assets/img/custom/primedimg.png";
 
 const TheStarlightDAOSec = () => {
   return (

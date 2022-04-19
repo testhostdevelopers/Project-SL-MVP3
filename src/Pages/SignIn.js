@@ -1,20 +1,19 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
-import signInBanner from "../assets/img/custom/signInBanner.png";
-import metamask from "../assets/img/custom/metamask.svg";
-
-import Torus from "../assets/img/icons/custom/Torus.svg";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import axios from "axios";
+import WhatWallet from "../Components/Popup/Whatwallet";
 import phantom from "../assets/img/icons/custom/phantom.png";
 import solflare from "../assets/img/icons/custom/solflare.png";
-import MobileWallet from "../assets/img/icons/custom/MobileWallet.svg";
-import Porttis from "../assets/img/icons/custom/Porttis.svg";
-import Coinbase from "../assets/img/icons/custom/Coinbase.svg";
-import MyEtherWallet from "../assets/img/icons/custom/MyEtherWallet.svg";
-import Fortmatic from "../assets/img/icons/custom/Fortmatic.svg";
-import backArrow from "../assets/img/icons/custom/arrow.svg";
-import { motion } from "framer-motion";
-import WhatWallet from "../Components/Popup/Whatwallet";
-import axios from "axios";
+// import signInBanner from "../assets/img/custom/signInBanner.png";
+// import metamask from "../assets/img/custom/metamask.svg";
+// import Torus from "../assets/img/icons/custom/Torus.svg";
+// import MobileWallet from "../assets/img/icons/custom/MobileWallet.svg";
+// import Porttis from "../assets/img/icons/custom/Porttis.svg";
+// import Coinbase from "../assets/img/icons/custom/Coinbase.svg";
+// import MyEtherWallet from "../assets/img/icons/custom/MyEtherWallet.svg";
+// import Fortmatic from "../assets/img/icons/custom/Fortmatic.svg";
+// import backArrow from "../assets/img/icons/custom/arrow.svg";
 
 let data = {
   conEstablished: false,
@@ -24,7 +23,7 @@ let data = {
 
 const connectStore = async (pkey, wal, con) => {
   data.conEstablished = con;
-  if (data.conEstablished == true) {
+  if (data.conEstablished === true) {
     data.pubKey = pkey;
     data.wallet = wal;
     localStorage.setItem("PublicKey", pkey);
@@ -73,9 +72,9 @@ const SignIn = () => {
 
   const connectSolflare = () => {
     if ("solflare" in window) {
-      const provider = window.solflare;
+      // const provider = window.solflare;
       //   if (provider.isSolFlare) {
-      const solRes = window.solflare.connect();
+      // const solRes = window.solflare.connect();
       window.solflare.on("connect", () =>
         connectStore(window.solflare.publicKey.toString(), "solflare", true)
       );
@@ -85,13 +84,13 @@ const SignIn = () => {
     }
   };
 
-  const connect = () => {
+  /*const connect = () => {
     console.log("connect");
-  };
+  };*/
 
-  const onToggleClick = (e) => {
+  /*const onToggleClick = (e) => {
     navRef.current.classList.toggle("showWallet");
-  };
+  };*/
 
   const less_button = [
     {
@@ -163,7 +162,7 @@ const SignIn = () => {
                     onClick={less.btn_function}
                     className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4"
                   >
-                    <img src={less.btn_img} width="20px" />
+                    <img src={less.btn_img} width="20px" alt={""} />
                     <div style={{ margin: "auto auto" }}>
                       <b>{less.btn_text}</b>
                     </div>
@@ -173,7 +172,7 @@ const SignIn = () => {
                 <div className="showmorewallet">
                   {more_button.map((more) => (
                     <button className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
-                      <img src={more.btn_img} width="20px" />
+                      <img src={more.btn_img} width="20px" alt={""} />
                       <div style={{ margin: "auto auto" }}>
                         <b>{more.btn_text}</b>
                       </div>
