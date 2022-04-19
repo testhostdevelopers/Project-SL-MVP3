@@ -98,7 +98,7 @@ export default function FilterCollections({
           }`}
         >
           <span className="searchfilter navbar-search">
-            <i className="fas fa-search"></i>
+            <i className="fas fa-search" />
             <input type="text" placeholder="Search in collections" />
           </span>
           <ul className="filtercollection-check">

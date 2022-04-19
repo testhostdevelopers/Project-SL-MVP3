@@ -27,7 +27,7 @@ const PlaceABidFollowPopup = (props) => {
         <div className="mb-3 mt-4">
           <div className="d-flex">
             <div className="fallow-steps-passive">
-              <i className="fas fa-check-circle"></i>
+              <i className="fas fa-check-circle" />
             </div>
             <div className="ml-3">
               <h6 className="mb-1">
@@ -47,7 +47,7 @@ const PlaceABidFollowPopup = (props) => {
         <div className="mb-3">
           <div className="d-flex">
             <div className="fallow-steps-active">
-              <i className="fas fa-check-circle"></i>
+              <i className="fas fa-check-circle" />
             </div>
             <div className="ml-3">
               <h6 className="mb-1">
@@ -65,7 +65,7 @@ const PlaceABidFollowPopup = (props) => {
         <div className="mb-3">
           <div className="d-flex">
             <div className="fallow-steps-active">
-              <i className="fas fa-check-circle"></i>
+              <i className="fas fa-check-circle" />
             </div>
             <div className="ml-3">
               <h6 className="mb-1">

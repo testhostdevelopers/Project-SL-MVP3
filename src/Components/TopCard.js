@@ -24,7 +24,7 @@ export default function TopCard({
       <div className="topSellectProfilePicture">
         <img src={topuserimg} width="100%" alt="" />
         <div className="confirmation">
-          <i className="fas fa-check"></i>
+          <i className="fas fa-check" />
         </div>
       </div>
       <div className="topSellerUserInfo">

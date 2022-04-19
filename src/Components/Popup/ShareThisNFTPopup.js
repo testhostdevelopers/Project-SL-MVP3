@@ -36,7 +36,7 @@ const ShareThisNFTPopup = (props) => {
             <li>
               <a href="#0">
                 <span>
-                  <i className="fab fa-twitter"></i>
+                  <i className="fab fa-twitter" />
                 </span>
                 Twitter
               </a>
@@ -52,7 +52,7 @@ const ShareThisNFTPopup = (props) => {
             <li>
               <a href="#0">
                 <span>
-                  <i className="fab fa-telegram-plane"></i>
+                  <i className="fab fa-telegram-plane" />
                 </span>
                 Telegram
               </a>
@@ -60,7 +60,7 @@ const ShareThisNFTPopup = (props) => {
             <li>
               <a href="#0">
                 <span>
-                  <i className="fas fa-envelope"></i>
+                  <i className="fas fa-envelope" />
                 </span>
                 Email
               </a>

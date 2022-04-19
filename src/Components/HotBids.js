@@ -52,7 +52,7 @@ export default function HotBids({
           <div className="live-image">
             <img src={Coverimg} width="100%" alt="" />
             <div className="card-heart-icon">
-              <i className="fas fa-heart"></i>
+              <i className="fas fa-heart" />
               {heartcount}
             </div>
             <Dropdown overlay={menu}>
@@ -60,12 +60,12 @@ export default function HotBids({
                 className="card-select-icon ant-dropdown-link"
                 onClick={(e) => e.preventDefault()}
               >
-                <i className="fas fa-ellipsis-h"></i>
+                <i className="fas fa-ellipsis-h" />
               </div>
             </Dropdown>
             <div className="card-time-hours">
               <small>
-                <i className="far fa-clock"></i>
+                <i className="far fa-clock" />
                 {time}
               </small>
             </div>

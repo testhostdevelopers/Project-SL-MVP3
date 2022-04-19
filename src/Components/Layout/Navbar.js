@@ -546,7 +546,7 @@ const Navbar = (props) => {
                           <label
                             className="custom-control-label"
                             htmlFor="profileSwitch3"
-                          ></label>
+                          />
                         </div>
                       </div>
 
@@ -676,13 +676,13 @@ const Navbar = (props) => {
                       to={{ pathname: "https://twitter.com/starlight_meta" }}
                       target="_blank"
                     >
-                      <i className="fab fa-twitter"></i>
+                      <i className="fab fa-twitter" />
                     </Link>
                     <Link
                       to={{ pathname: "https://t.me/starlightmeta" }}
                       target="_blank"
                     >
-                      <i className="fab fa-telegram-plane"></i>
+                      <i className="fab fa-telegram-plane" />
                     </Link>
                     <Link
                       to={{
@@ -707,7 +707,7 @@ const Navbar = (props) => {
                       to={{ pathname: "https://discord.com/invite/h3pWz4fY72" }}
                       target="_blank"
                     >
-                      <i className="fab fa-discord"></i>
+                      <i className="fab fa-discord" />
                     </Link>
                     <Link
                       to={{
@@ -715,10 +715,10 @@ const Navbar = (props) => {
                       }}
                       target="_blank"
                     >
-                      <i className="fab fa-reddit" aria-hidden="true"></i>
+                      <i className="fab fa-reddit" aria-hidden="true" />
                     </Link>
                     <Link to={{ pathname: "#0" }}>
-                      <i className="fab fa-youtube"></i>
+                      <i className="fab fa-youtube" />
                     </Link>
                   </div>
                 </li>
@@ -726,7 +726,7 @@ const Navbar = (props) => {
               <ul className="navbar-nav nav-fill align-items-center">
                 <li className="nav-item">
                   <div className="navbar-search">
-                    <i className="fas fa-search"></i>
+                    <i className="fas fa-search" />
                     <input
                       type="text"
                       placeholder="Search by creator, collectible or collection"
@@ -789,7 +789,7 @@ const Navbar = (props) => {
                             }}
                             target="_blank"
                           >
-                            <i className="fab fa-twitter"></i>
+                            <i className="fab fa-twitter"/>
                           </Link>
                         </li>
                         <li>
@@ -797,7 +797,7 @@ const Navbar = (props) => {
                             to={{ pathname: "https://t.me/starlightmeta" }}
                             target="_blank"
                           >
-                            <i className="fab fa-telegram-plane"></i>
+                            <i className="fab fa-telegram-plane"/>
                           </Link>
                         </li>
                         <li>
@@ -829,7 +829,7 @@ const Navbar = (props) => {
                             }}
                             target="_blank"
                           >
-                            <i className="fab fa-discord"></i>
+                            <i className="fab fa-discord" />
                           </Link>
                         </li>
                         <li>
@@ -840,14 +840,14 @@ const Navbar = (props) => {
                             }}
                             target="_blank"
                           >
-                            <i className="fab fa-reddit" aria-hidden="true"></i>
+                            <i className="fab fa-reddit" aria-hidden="true" />
                           </Link>
                         </li>
                       </ul>
                     </ul>
                   </div>
                 </li>
-                <div className=""></div>
+                <div className=""/>
                 <li className="nav-item d-sm-none d-lg-block p-0 d-flex align-items-center">
                   <Link to="/create" className="nav-link p-0">
                     <button className="btn btn-primary">Create</button>
@@ -1144,7 +1144,7 @@ const Navbar = (props) => {
                               <label
                                 className="custom-control-label"
                                 htmlFor="profileSwitch1"
-                              ></label>
+                              />
                             </div>
                           </div>
 
