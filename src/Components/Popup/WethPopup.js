@@ -27,11 +27,11 @@ const WethPopup = (props) => {
               document.body.style.overflow = "scroll";
             }}
           >
-            <img src={closeicon} />
+            <img src={closeicon} alt={''}/>
           </div>
         </div>
         <div className="text-center mb-2">
-          <img src={EthereumLogo} />
+          <img src={EthereumLogo} alt={''}/>
         </div>
         <p>
           <b>

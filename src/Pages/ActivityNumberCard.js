@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React  from "react";
+// import { Link } from "react-router-dom";
 
 export default function ActivityNumberCard({
   pixelpunks,
@@ -12,9 +12,9 @@ export default function ActivityNumberCard({
     <div className="ActivityNumberCard">
       <div className="ActivityNumberCard-img">
         <span className="lable-icon">
-          <img src={FillLabel} />
+          <img src={FillLabel} alt={''}/>
         </span>
-        <img src={activitynumbercardimg} />
+        <img src={activitynumbercardimg} alt={''}/>
       </div>
       <div className="ActivityNumberCard-info">
         <p>

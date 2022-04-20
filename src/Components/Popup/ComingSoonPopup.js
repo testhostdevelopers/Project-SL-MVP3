@@ -27,7 +27,7 @@ const ComingSoonPopup = (props) => {
               document.body.style.overflow = "scroll";
             }}
           >
-            <img src={closeicon} />
+            <img src={closeicon} alt={''}/>
           </div>
         </div>
         <p>

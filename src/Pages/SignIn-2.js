@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React  from "react";
 import { Link } from "react-router-dom";
-
-import signInBanner from "../assets/img/custom/signInBanner.png";
+// import signInBanner from "../assets/img/custom/signInBanner.png";
 import metamask from "../assets/img/custom/metamask.svg";
-
 import Torus from "../assets/img/icons/custom/Torus.svg";
 import MobileWallet from "../assets/img/icons/custom/MobileWallet.svg";
-import Porttis from "../assets/img/icons/custom/Porttis.svg";
-import Coinbase from "../assets/img/icons/custom/Coinbase.svg";
-import MyEtherWallet from "../assets/img/icons/custom/MyEtherWallet.svg";
-import Fortmatic from "../assets/img/icons/custom/Fortmatic.svg";
-import backArrow from "../assets/img/icons/custom/arrow.svg";
+// import Porttis from "../assets/img/icons/custom/Porttis.svg";
+// import Coinbase from "../assets/img/icons/custom/Coinbase.svg";
+// import MyEtherWallet from "../assets/img/icons/custom/MyEtherWallet.svg";
+// import Fortmatic from "../assets/img/icons/custom/Fortmatic.svg";
+// import backArrow from "../assets/img/icons/custom/arrow.svg";
 import { motion } from "framer-motion";
 
 const SignIn = () => {
@@ -62,14 +60,14 @@ const SignIn = () => {
                 </p>
 
                 <button className="btn ml-0 btn-ping signInActiveBtn w-100 d-flex align-items-center justify-content-center mb-4">
-                  <img src={metamask} width="20px" />
+                  <img src={metamask} width="20px" alt={''}/>
                   <div style={{ margin: "auto auto" }}>
                     Sign in with Metamask
                   </div>
                 </button>
 
                 <button className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
-                  <img src={Torus} width="20px" />
+                  <img src={Torus} width="20px" alt={''}/>
                   <div style={{ margin: "auto auto" }}>
                     <b>Torus</b>
                   </div>
