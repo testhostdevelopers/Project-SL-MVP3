@@ -633,7 +633,7 @@ const CreateCollectibleSingle = () => {
           </div>
 
           <div className="mt-4">
-            <button onClick={handleSubmit} className="btn-ping  w-100" onClick={handleSubmit} >Save Item</button>
+            <button onClick={handleSubmit} className="btn-ping  w-100" >Save Item</button>
           </div>
 
           <div className="mt-4 color-gray text-center">

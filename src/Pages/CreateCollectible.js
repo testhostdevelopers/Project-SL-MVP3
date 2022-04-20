@@ -48,20 +48,23 @@ const CreateCollectible = () => {
               or ”multiple” if you want to sell one collectible multiple times.
             </p>
 
-                        <div className="mt-4 d-flex create-collectible-select">
-                            <div className="position-relative">
-                                <Link to="/create-single" >
-                                    <div className="create-col border-radius border d-flex justify-content-center align-items-center flex-column">
-                                        <button className="single-create-collectible btn-primary pt-0 pb-0 pl-4 pr-4  ">Timed Auctions</button>
-                                        <img src={collectibleSingle} width="120" alt="" />
-                                        <h6 className="mt-3"><b>Single</b></h6>
-                                    </div>
-                                </Link>
+            <div className="mt-4 d-flex create-collectible-select">
+              <div className="position-relative">
+                <Link to="/create-single">
+                  <div
+                    className="create-col border-radius border d-flex justify-content-center align-items-center flex-column">
+                    <button className="single-create-collectible btn-primary pt-0 pb-0 pl-4 pr-4  ">Timed Auctions
+                    </button>
+                    <img src={collectibleSingle} width="120" alt=""/>
+                    <h6 className="mt-3"><b>Single</b></h6>
+                  </div>
+                </Link>
               </div>
               <div>
                 <Link to="/create-multiple">
-                  <div className="create-col border-radius border d-flex justify-content-center align-items-center flex-column">
-                    <img src={collectibleMulti} width="130" alt="" />
+                  <div
+                    className="create-col border-radius border d-flex justify-content-center align-items-center flex-column">
+                    <img src={collectibleMulti} width="130" alt=""/>
                     <h6 className="mt-3">
                       <b>Multiple</b>
                     </h6>
