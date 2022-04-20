@@ -796,6 +796,70 @@ const Home = () => {
         initial="hidden"
         animate="visible"
         variants={variants}
+        className="liveAuction live-auction-none-mobile"
+      >
+        <div className="container-fluid">
+          <div className="w-100">
+            <h3>
+              <b>Hot Bids</b>
+            </h3>
+          </div>
+
+          <div className="row  mt-5">
+            {hot_bide.map((bide_desk) => (
+              <HotBids
+                Coverimg={bide_desk.cover_bide}
+                heartcount={bide_desk.bide_heartcount}
+                time={bide_desk.bide_time}
+                title={bide_desk.bide_name}
+                WETH={bide_desk.bide_weth}
+                bid={bide_desk.bide_bid}
+                isOpenInProfile={false}
+              />
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        initial="hidden"
+        animate="visible"
+        variants={variants}
+        className="liveAuction-web-none liveAuction proile-liked-filter mobile-filter-live-auc"
+      >
+        <div className="container-fluid">
+          <div className="w-100">
+            <h3>
+              <b>Hot Bids</b>
+            </h3>
+          </div>
+          <Swiper
+            style={{ marginTop: 15 }}
+            spaceBetween={10}
+            slidesPerView={1}
+            navigation={true}
+          >
+            {slide_hot_bid.map((bide_desk) => (
+              <SwiperSlide>
+                <HotBids
+                  Coverimg={bide_desk.cover_bide}
+                  heartcount={bide_desk.bide_heartcount}
+                  time={bide_desk.bide_time}
+                  title={bide_desk.bide_name}
+                  WETH={bide_desk.bide_weth}
+                  bid={bide_desk.bide_bid}
+                  isOpenInProfile={false}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </motion.section>
+
+      <motion.section
+        initial="hidden"
+        animate="visible"
+        variants={variants}
         className="liveAuction live-auction-none-mobile proile-liked-filter"
       >
         <div className="container-fluid">
@@ -852,70 +916,6 @@ const Home = () => {
                   User3={live_a.auc_user3}
                   WETH={live_a.auction_WETH}
                   bid={live_a.auction_bid}
-                  isOpenInProfile={false}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </motion.section>
-
-      <motion.section
-        initial="hidden"
-        animate="visible"
-        variants={variants}
-        className="liveAuction live-auction-none-mobile"
-      >
-        <div className="container-fluid">
-          <div className="w-100">
-            <h3>
-              <b>Hot Bids</b>
-            </h3>
-          </div>
-
-          <div className="row  mt-5">
-            {hot_bide.map((bide_desk) => (
-              <HotBids
-                Coverimg={bide_desk.cover_bide}
-                heartcount={bide_desk.bide_heartcount}
-                time={bide_desk.bide_time}
-                title={bide_desk.bide_name}
-                WETH={bide_desk.bide_weth}
-                bid={bide_desk.bide_bid}
-                isOpenInProfile={false}
-              />
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      <motion.section
-        initial="hidden"
-        animate="visible"
-        variants={variants}
-        className="liveAuction-web-none liveAuction proile-liked-filter mobile-filter-live-auc"
-      >
-        <div className="container-fluid">
-          <div className="w-100">
-            <h3>
-              <b>Hot Bids</b>
-            </h3>
-          </div>
-          <Swiper
-            style={{ marginTop: 15 }}
-            spaceBetween={10}
-            slidesPerView={1}
-            navigation={true}
-          >
-            {slide_hot_bid.map((bide_desk) => (
-              <SwiperSlide>
-                <HotBids
-                  Coverimg={bide_desk.cover_bide}
-                  heartcount={bide_desk.bide_heartcount}
-                  time={bide_desk.bide_time}
-                  title={bide_desk.bide_name}
-                  WETH={bide_desk.bide_weth}
-                  bid={bide_desk.bide_bid}
                   isOpenInProfile={false}
                 />
               </SwiperSlide>
@@ -1016,7 +1016,7 @@ const Home = () => {
             id="myTabContent"
           >
             <div
-              className="tab-pane w-100 fade"
+              className="tab-pane w-100 fade show active"
               id="all"
               role="tabpanel"
               aria-labelledby="all-tab"

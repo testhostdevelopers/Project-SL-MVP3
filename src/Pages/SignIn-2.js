@@ -28,7 +28,7 @@ const SignIn = () => {
         className="container-fluid sign-in-container-section"
       >
         <div className="row">
-          <div className="col-sm-12 col-lg-8 mx-auto d-flex justify-content-center sig-in-mobile">
+          <div className="col-sm-12 col-lg-6 mx-auto d-flex justify-content-center sig-in-mobile">
             <div>
               <div className="mt-5">
                 <Link className="d-flex align-items-center" to="/create">
@@ -76,7 +76,7 @@ const SignIn = () => {
                 </button>
 
                 <button className="btn ml-0 btn-primary-outline w-100 d-flex align-items-center justify-content-center mb-4">
-                  <img src={MobileWallet} width="20px" />
+                  <img src={MobileWallet} width="20px" alt={''}/>
                   <div style={{ margin: "auto auto" }}>
                     <b>Mobile Wallet</b>
                   </div>
@@ -88,7 +88,7 @@ const SignIn = () => {
                   </div>
                 </button>
 
-                <p>
+                <p className="bottom-sign-text">
                   We do not own private keys and cannot access your funds
                   without your confirmation.
                 </p>

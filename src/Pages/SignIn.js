@@ -121,7 +121,7 @@ const SignIn = () => {
         className="container-fluid sign-in-container-section"
       >
         <div className="row">
-          <div className="col-sm-12 col-lg-8 mx-auto d-flex justify-content-center sig-in-mobile">
+          <div className="col-sm-12 col-lg-5 mx-auto d-flex justify-content-center sig-in-mobile">
             <div>
               <div className="mt-5">
                 <Link className="d-flex align-items-center" to="/">
@@ -185,7 +185,7 @@ const SignIn = () => {
                                     <div className='less' style={{ margin: "auto auto" }}><b>Show less options</b></div>
                                 </button>*/}
 
-                <p>
+                <p className="bottom-sign-text">
                   We do not own private keys and cannot access your funds
                   without your confirmation.
                 </p>

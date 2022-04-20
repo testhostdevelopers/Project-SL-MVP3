@@ -1,7 +1,7 @@
 import React from "react";
 import fabaLogo from "../../assets/img/custom/x.svg";
 import { Select } from "antd";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const { Option } = Select;
 
@@ -10,7 +10,7 @@ const NewFooter = () => {
     <footer>
       <section className="m-0">
         <div className="container-fluid">
-          <div className="row footer-column-flex-border pb-4 mb-5">
+          <div className="row footer-column-flex-border pb-5 mb-5">
             <div className="col-sm-6 col-lg-4 footer-column mb-4">
               <div className="footer-title d-flex align-items-center">
                 <img src={fabaLogo} width="36" alt="" />
@@ -38,10 +38,10 @@ const NewFooter = () => {
               </div>
 
               <ul className="footer-menu">
-                <li>Vision</li>
-                <li>Token</li>
-                <li>Metaverse</li>
-                <li>Roadmap</li>
+                <li><Link to="#0">Vision</Link></li>
+                <li><Link to="#0">Token</Link></li>
+                <li><Link to="#0">Metaverse</Link></li>
+                <li><Link to="#0">Roadmap</Link></li>
               </ul>
             </div>
 
@@ -51,10 +51,10 @@ const NewFooter = () => {
               </div>
 
               <ul className="footer-menu">
-                <li>Discord</li>
-                <li>Twitter</li>
-                <li>Telegram</li>
-                <li>Reddit</li>
+                <li><Link to="#0">Discord</Link></li>
+                <li><Link to="#0">Twitter</Link></li>
+                <li><Link to="#0">Telegram</Link></li>
+                <li><Link to="#0">Reddit</Link></li>
               </ul>
             </div>
 
@@ -184,8 +184,8 @@ const NewFooter = () => {
               style={{ fontSize: "12px" }}
             >
               <div className="d-mobile-none">© 2021, All Rights Reserved.</div>
-              <div className="margin-mobile-left">Privacy Policy</div>
-              <div className="ml-3">Terms of Service</div>
+              <div className="margin-mobile-left"><Link to="#0" className="ft-link">Privacy Policy</Link></div>
+              <div className="ml-3"><Link to="#0" className="ft-link">Terms of Service</Link></div>
               <div className="d-sm-block d-lg-none">Language: English</div>
             </div>
 

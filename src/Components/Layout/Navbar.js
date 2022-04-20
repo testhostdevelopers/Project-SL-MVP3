@@ -70,6 +70,7 @@ const Navbar = (props) => {
       document.documentElement.style.setProperty("--black-text", "#fff");
       document.documentElement.style.setProperty("--gray-color", "#979797");
       document.documentElement.style.setProperty("--faq-container", "#000");
+      document.documentElement.style.setProperty("--gradyto-white", "#fff");
       document.documentElement.style.setProperty(
         "--slider-opacity-card",
         "0, 0, 0"
@@ -111,6 +112,7 @@ const Navbar = (props) => {
       document.documentElement.style.setProperty("--black-text", "#000");
       document.documentElement.style.setProperty("--gray-color", "#9D9D9D");
       document.documentElement.style.setProperty("--faq-container", "#1a252f");
+      document.documentElement.style.setProperty("--gradyto-white", "#9D9D9D");
       document.documentElement.style.setProperty(
         "--slider-opacity-card",
         "255, 255, 255"
@@ -149,6 +151,7 @@ const Navbar = (props) => {
       document.documentElement.style.setProperty("--black-text", "#fff");
       document.documentElement.style.setProperty("--gray-color", "#979797");
       document.documentElement.style.setProperty("--faq-container", "#000");
+      document.documentElement.style.setProperty("--gradyto-white", "#fff");
       document.documentElement.style.setProperty(
         "--slider-opacity-card",
         "0, 0, 0"
@@ -190,6 +193,7 @@ const Navbar = (props) => {
       document.documentElement.style.setProperty("--black-text", "#000");
       document.documentElement.style.setProperty("--gray-color", "#9D9D9D");
       document.documentElement.style.setProperty("--faq-container", "#1a252f");
+      document.documentElement.style.setProperty("--gradyto-white", "#9D9D9D");
       document.documentElement.style.setProperty(
         "--slider-opacity-card",
         "255, 255, 255"
@@ -1166,7 +1170,7 @@ const Navbar = (props) => {
 
                   <a
                     className="nav-link nav-dark-button d-sm-none d-lg-block"
-                    href="/#"
+                    href="#0"
                     onClick={() => activeMode()}
                   >
                     {theme === true ? (

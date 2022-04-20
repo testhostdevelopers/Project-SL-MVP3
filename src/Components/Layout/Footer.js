@@ -10,7 +10,7 @@ const Footer = () => {
     <footer>
       <section className="m-0">
         <div className="container-fluid">
-          <div className="row footer-column-flex-border pb-4 mb-5">
+          <div className="row footer-column-flex-border pb-5 mb-5">
             <div className="col-sm-6 col-lg-4 footer-column mb-4">
               <div className="footer-title d-flex align-items-center">
                 <img src={fabaLogo} width="36" alt="" />
@@ -53,10 +53,10 @@ const Footer = () => {
               </div>
 
               <ul className="footer-menu">
-                <li>Explore</li>
-                <li>How it works</li>
-                <li>Support</li>
-                <li>Become a partner</li>
+                <li><Link to="#0">Explore</Link></li>
+                <li><Link to="#0">How it works</Link></li>
+                <li><Link to="#0">Support</Link></li>
+                <li><Link to="#0">Become a partner</Link></li>
               </ul>
             </div>
 
@@ -66,10 +66,10 @@ const Footer = () => {
               </div>
 
               <ul className="footer-menu">
-                <li>Token</li>
-                <li>Community</li>
-                <li>Voting</li>
-                <li>Suggest feature</li>
+                <li><Link to="#0">Token</Link></li>
+                <li><Link to="#0">Community</Link></li>
+                <li><Link to="#0">Voting</Link></li>
+                <li><Link to="#0">Suggest feature</Link></li>
               </ul>
             </div>
 
@@ -199,8 +199,8 @@ const Footer = () => {
               style={{ fontSize: "12px" }}
             >
               <div className="d-mobile-none">© 2021, All Rights Reserved.</div>
-              <div className="margin-mobile-left">Privacy Policy</div>
-              <div className="ml-3">Terms of Service</div>
+              <div className="margin-mobile-left"><Link to="#0" className="ft-link">Privacy Policy</Link></div>
+              <div className="ml-3"><Link to="#0" className="ft-link">Terms of Service</Link></div>
               <div className="d-sm-block d-lg-none">Language: English</div>
             </div>
 

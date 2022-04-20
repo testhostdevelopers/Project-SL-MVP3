@@ -273,9 +273,17 @@
 .custom-control-input:focus ~ .custom-control-label::before {
   box-shadow: none;
 }
-.custom-switch .custom-control-label::after {
+/* .custom-switch .custom-control-label::after {
   top: calc(0.2rem + 3px) !important;
   left: calc(-2.25rem + 3px) !important;
+} */
+
+.custom-switch .custom-control-label::after {
+  top: calc(0.2rem + 2.9px) !important;
+}
+
+.dark-md .custom-switch .custom-control-label::after {
+  top: calc(0.2rem + 4px) !important;
 }
 
 .create-single-section-container
