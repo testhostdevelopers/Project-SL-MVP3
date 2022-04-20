@@ -129,7 +129,7 @@ const CreateCollectibleSingle = () => {
 
   const handleToggle = () => setShowDetail(!showDetail);
 
-  /*const handleSubmit = async () => {
+  const handleSubmit = async () => {
     if (sessionStorage.getItem("apiToken")) {
       // let apiToken = sessionStorage.getItem('apiToken');
       let formData = new FormData();
@@ -175,7 +175,7 @@ const CreateCollectibleSingle = () => {
       //     console.log(res)
       // });
     }
-  };*/
+  };
 
   const handlePriceChange = (e) => {
     let price = e;
@@ -633,7 +633,7 @@ const CreateCollectibleSingle = () => {
           </div>
 
           <div className="mt-4">
-            <button className="btn-ping  w-100">Save Item</button>
+            <button onClick={handleSubmit} className="btn-ping  w-100">Save Item</button>
           </div>
 
           <div className="mt-4 color-gray text-center">
