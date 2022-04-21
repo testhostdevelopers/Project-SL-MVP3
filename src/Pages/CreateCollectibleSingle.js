@@ -12,6 +12,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Keyboard, Pagination, Navigation } from "swiper/core";
 import { motion } from "framer-motion";
 import Arweave from "arweave";
+import axios from "axios";
 // import SingleCollectibleDetails from './SingleCollectibleDetails';
 // import SingleChooesColl from '../Components/Collection/SingleChooesColl';
 // import AdvanceCollectionSetting from './AdvanceCollectionSetting';
@@ -91,6 +92,8 @@ const CreateCollectibleSingle = () => {
 
   const handleprofilepicUploadr = (e) => {
     const file = e.target.files[0];
+    console.log('file', file);
+    setUdata({ ...udata, img_path: e.target.files[0].name });
     if (file) {
       const reader = new FileReader();
       const { current } = profileImage;
@@ -130,7 +133,8 @@ const CreateCollectibleSingle = () => {
   const handleToggle = () => setShowDetail(!showDetail);
 
   const handleSubmit = async () => {
-    if (sessionStorage.getItem("apiToken")) {
+    const apiToken = sessionStorage.getItem("apiToken")
+    if (apiToken) {
       // let apiToken = sessionStorage.getItem('apiToken');
       let formData = new FormData();
       formData.append("aaa", "aaaaa");
@@ -144,7 +148,7 @@ const CreateCollectibleSingle = () => {
         title: udata.title,
         description: udata.description,
         royalties: 11,
-        img_path: "udata.image_path",
+        img_path: udata.img_path,
         digital_key: "11",
         properties: udata.properties,
         alt_text_nft: udata.alterText,
@@ -166,14 +170,14 @@ const CreateCollectibleSingle = () => {
       console.log(udata);
       console.log(formData);
       console.log(form);
-      // await axios.post('http://localhost:8000/v1/collectible/create', form,
-      // {
-      //     headers: {
-      //         "Authorization" : `Bearer ${apiToken}`,
-      //     }
-      // }).then((res) => {
-      //     console.log(res)
-      // });
+      await axios.post('http://localhost:8000/v1/collectible/create', form,
+      {
+          headers: {
+              "Authorization" : `Bearer ${apiToken}`,
+          }
+      }).then((res) => {
+          console.log(res)
+      });
     }
   };
 
@@ -348,6 +352,7 @@ const CreateCollectibleSingle = () => {
                       <span className="color-gray">
                         <div className="d-flex border">
                           <input
+                            type="number"
                             onChange={(e) => handlePriceChange(e.target.value)}
                             placeholder="0"
                             style={{ maxWidth: "50px" }}
