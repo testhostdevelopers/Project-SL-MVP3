@@ -23,6 +23,7 @@ const CreateCollectibleSingle = () => {
   let [udata, setUdata] = useState({
     oncePurchase: false,
     putOnMarket: false,
+    is_single: true,
     price_currency: "SOL",
     price_type: "fixed_price",
   });
@@ -151,6 +152,7 @@ const CreateCollectibleSingle = () => {
         title: udata.title,
         description: udata.description,
         royalties: 11,
+        is_single: true,
         img_path: udata.img_path,
         digital_key: "11",
         properties: udata.properties,
@@ -473,12 +475,14 @@ const CreateCollectibleSingle = () => {
                   navigation={true}
                 >
                   {collection_list.length > 0 && collection_list.map((sing, key) => (
-                    <SwiperSlide key={key} onClick={() => {
-                      setUdata({
-                        ...udata,
-                        collection_id: sing._id,
-                      });
-                    }}>
+                    <SwiperSlide
+                      key={key}
+                      onClick={() => {
+                        setUdata({
+                          ...udata,
+                          collection_id: sing._id,
+                        });
+                      }}>
                       <div className="putOnMarketplace ml-3 border-radius btn-primary-outline-responsive">
                         <img src={sing.main_img} width="40" alt=""/>
                         <div className="starslide">{sing.title}</div>
