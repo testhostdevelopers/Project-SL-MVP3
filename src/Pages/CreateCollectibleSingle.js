@@ -480,7 +480,7 @@ const CreateCollectibleSingle = () => {
                   slidesPerView={4.3}
                   navigation={true}
                 >
-                  {collection_list.map((sing, key) => (
+                  {collection_list.length > 0 && collection_list.map((sing, key) => (
                     <SwiperSlide key={key} onClick={() => {
                       setUdata({
                         ...udata,
