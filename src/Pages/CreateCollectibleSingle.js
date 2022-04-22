@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import unlock from "../assets/img/icons/custom/unlock.svg";
 import sonsuz from "../assets/img/icons/custom/open_p.png";
 import plus from "../assets/img/icons/custom/plus.svg";
-import darkcircle from "../assets/img/icons/custom/darkcircle.svg";
-import starticon from "../assets/img/icons/custom/star_icon.png";
+// import darkcircle from "../assets/img/icons/custom/darkcircle.svg";
+// import starticon from "../assets/img/icons/custom/star_icon.png";
 import priceP from "../assets/img/icons/custom/price_p.svg";
 import { Link } from "react-router-dom";
 import CreateCollectibleMultiplePopup from "../Components/Popup/CreateCollectibleMultiplePopup";
@@ -22,6 +22,7 @@ import axios from "axios";
 SwiperCore.use([Keyboard, Pagination, Navigation]);
 
 const CreateCollectibleSingle = () => {
+  const apiToken = sessionStorage.getItem("apiToken");
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -33,12 +34,31 @@ const CreateCollectibleSingle = () => {
     price_type: "fixed_price",
   });
   let [price, setPrice] = useState(0);
+  let [collection_list, setcollectionList] = useState([]);
   const [filesize, setfilesize] = useState("");
   const [changetext, setChangetext] = useState(
     "Upload file to preview your brand new NFT"
   );
   const profileImage = React.useRef(null);
   const profileUploader = React.useRef(null);
+  const collectionListFunc = async () => {
+    await axios({
+      url: 'http://localhost:8000/v1/collection/getAllCollection',
+      method: 'get',
+      headers: {
+        "Authorization": `Bearer ${apiToken}`,
+      }
+    })
+      .then(response => {
+        setcollectionList(response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  useEffect(() => {
+    collectionListFunc();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const imageUpload = async (file) => {
     console.log("imageUpload file details:-", file);
@@ -120,20 +140,11 @@ const CreateCollectibleSingle = () => {
 
   const price_one = ["SOL", "BTC"];
 
-  const single_call = [
-    { myimg: starticon, title: "STARLIGHT", dass: "SLX" },
-    { myimg: darkcircle, dass: "---" },
-    { myimg: darkcircle, dass: "---" },
-    { myimg: darkcircle, dass: "---" },
-    { myimg: darkcircle, dass: "---" },
-  ];
-
   const [showDetail, setShowDetail] = useState(true);
 
   const handleToggle = () => setShowDetail(!showDetail);
 
   const handleSubmit = async () => {
-    const apiToken = sessionStorage.getItem("apiToken")
     if (apiToken) {
       // let apiToken = sessionStorage.getItem('apiToken');
       let formData = new FormData();
@@ -144,7 +155,7 @@ const CreateCollectibleSingle = () => {
         price_type: udata.price_type,
         price_currency: udata.price_currency,
         unlock_once_purchased: udata.oncePurchase,
-        collection_id: "1",
+        collection_id: udata.collection_id,
         title: udata.title,
         description: udata.description,
         royalties: 11,
@@ -241,7 +252,7 @@ const CreateCollectibleSingle = () => {
                   <div className="color-gray">
                     PNG, GIF, WEBP, MP4 OR MP3. MAX 100MB
                   </div>
-                  <p style={{ color: "red" }}>{filesize}</p>
+                  <p style={{color: "red"}}>{filesize}</p>
                   <input
                     type="file"
                     accept="image/*,video/mp4,video/x-m4v,video/*,image/x-png,image/gif,image/jpeg"
@@ -271,7 +282,7 @@ const CreateCollectibleSingle = () => {
                       type="checkbox"
                       className="custom-control-input"
                       onChange={(e) => {
-                        setUdata({ ...udata, putOnMarket: e.target.checked });
+                        setUdata({...udata, putOnMarket: e.target.checked});
                       }}
                       id="customSwitch1"
                     />
@@ -297,7 +308,7 @@ const CreateCollectibleSingle = () => {
                         : "putOnMarketplace border-gray  border-radius"
                     } `}
                   >
-                    <img src={priceP} width="32" alt="" />
+                    <img src={priceP} width="32" alt=""/>
                     <b>
                       {" "}
                       Fixed
@@ -331,9 +342,9 @@ const CreateCollectibleSingle = () => {
                         : "putOnMarketplace border-gray  border-radius"
                     } `}
                   >
-                    <img src={sonsuz} width="40" alt="" />{" "}
+                    <img src={sonsuz} width="40" alt=""/>{" "}
                     <b>
-                      Open for <br />
+                      Open for <br/>
                       bids
                     </b>
                   </div>
@@ -355,12 +366,12 @@ const CreateCollectibleSingle = () => {
                             type="number"
                             onChange={(e) => handlePriceChange(e.target.value)}
                             placeholder="0"
-                            style={{ maxWidth: "50px" }}
+                            style={{maxWidth: "50px"}}
                           />
                           <Select
                             className="section-select-filter ml-0"
                             onChange={(e) => {
-                              setUdata({ ...udata, price_currency: e });
+                              setUdata({...udata, price_currency: e});
                             }}
                             defaultValue="SOL"
                           >
@@ -425,7 +436,8 @@ const CreateCollectibleSingle = () => {
 
             <div className="col-sm-12 col-md-5 pl-5 brand-new-nfp">
               <b>Preview</b>
-              <div className="border-gray upload-box text-center border-radius mt-4 color-gray d-flex justify-content-center align-items-center p-5">
+              <div
+                className="border-gray upload-box text-center border-radius mt-4 color-gray d-flex justify-content-center align-items-center p-5">
                 <label>{changetext}</label>
                 <img
                   src=""
@@ -468,13 +480,18 @@ const CreateCollectibleSingle = () => {
                   slidesPerView={4.3}
                   navigation={true}
                 >
-                  {single_call.map((sing, key) => (
-                    <SwiperSlide key={key}>
+                  {collection_list.map((sing, key) => (
+                    <SwiperSlide key={key} onClick={() => {
+                      setUdata({
+                        ...udata,
+                        collection_id: sing._id,
+                      });
+                    }}>
                       <div className="putOnMarketplace ml-3 border-radius btn-primary-outline-responsive">
-                        <img src={sing.myimg} width="40" alt="" />
+                        <img src={sing.main_img} width="40" alt=""/>
                         <div className="starslide">{sing.title}</div>
                         <div>
-                          <small className="color-gray">{sing.dass}</small>
+                          <small className="color-gray">{sing.symbol}</small>
                         </div>
                       </div>
                     </SwiperSlide>
