@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import unlock from "../assets/img/icons/custom/unlock.svg";
 import sonsuz from "../assets/img/icons/custom/open_p.png";
 import plus from "../assets/img/icons/custom/plus.svg";
-// import darkcircle from "../assets/img/icons/custom/darkcircle.svg";
-// import starticon from "../assets/img/icons/custom/star_icon.png";
 import priceP from "../assets/img/icons/custom/price_p.svg";
 import { Link } from "react-router-dom";
 import CreateCollectibleMultiplePopup from "../Components/Popup/CreateCollectibleMultiplePopup";
@@ -13,11 +11,6 @@ import SwiperCore, { Keyboard, Pagination, Navigation } from "swiper/core";
 import { motion } from "framer-motion";
 import Arweave from "arweave";
 import axios from "axios";
-// import SingleCollectibleDetails from './SingleCollectibleDetails';
-// import SingleChooesColl from '../Components/Collection/SingleChooesColl';
-// import AdvanceCollectionSetting from './AdvanceCollectionSetting';
-// import axios from 'axios';
-// const { Option } = Select;
 
 SwiperCore.use([Keyboard, Pagination, Navigation]);
 
@@ -61,7 +54,7 @@ const CreateCollectibleSingle = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const imageUpload = async (file) => {
-    console.log("imageUpload file details:-", file);
+    // console.log("imageUpload file details:-", file);
     const arweave = Arweave.init({
       host: "arweave.net", // Hostname or IP address for a Arweave host
       port: 443, // Port
@@ -77,12 +70,12 @@ const CreateCollectibleSingle = () => {
 
     let key = await arweave.wallets.generate();
 
-    console.log("arweave key", key);
-    console.log("readers.result", readers.result);
+    // console.log("arweave key", key);
+    // console.log("readers.result", readers.result);
 
     const wallet = await arweave.wallets.jwkToAddress(key);
-
     console.log("wallet", wallet);
+
     const transaction = await arweave.createTransaction(
       {
         data: readers.result,
@@ -91,9 +84,9 @@ const CreateCollectibleSingle = () => {
     );
 
     let fileExt = file.name.split(".").pop();
-    console.log("fileExt", fileExt, `image/${fileExt}`);
+    // console.log("fileExt", fileExt, `image/${fileExt}`);
     transaction.addTag("Content-Type", `image/${fileExt}`);
-    console.log("transaction", transaction);
+    // console.log("transaction", transaction);
 
     await arweave.transactions.sign(transaction, key);
 
@@ -105,14 +98,13 @@ const CreateCollectibleSingle = () => {
 
     const { id } = transaction;
     const imageUrl = id ? `https://arweave.net/${id}` : undefined;
-
     console.log("imageUrl", imageUrl);
     //   setUdata({ img_path: imageUrl })
   };
 
   const handleprofilepicUploadr = (e) => {
     const file = e.target.files[0];
-    console.log('file', file);
+    // console.log('file', file);
     setUdata({ ...udata, img_path: e.target.files[0].name });
     if (file) {
       const reader = new FileReader();
@@ -130,7 +122,7 @@ const CreateCollectibleSingle = () => {
       };
       reader.readAsDataURL(file);
       imageUpload(e.target.files[0]).then((res) => {
-        console.log(res);
+        // console.log(res);
       });
     }
   };
@@ -178,16 +170,16 @@ const CreateCollectibleSingle = () => {
       // formData.append('digital_key',udata.description);
       // formData.append('properties',udata.properties);
       // formData.append('alt_text_nft',udata.alterText);
-      console.log(udata);
-      console.log(formData);
-      console.log(form);
+      // console.log(udata);
+      // console.log(formData);
+      // console.log(form);
       await axios.post('http://localhost:8000/v1/collectible/create', form,
       {
           headers: {
               "Authorization" : `Bearer ${apiToken}`,
           }
       }).then((res) => {
-          console.log(res)
+          // console.log(res)
       });
     }
   };
@@ -196,7 +188,7 @@ const CreateCollectibleSingle = () => {
     let price = e;
     let less = price * 0.025;
     let final = price - less;
-    console.log(final, less);
+    // console.log(final, less);
     setPrice(final);
   };
 

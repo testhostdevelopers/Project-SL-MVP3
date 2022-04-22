@@ -15,14 +15,14 @@ const CreateCollectibleMultiplePopup = (props) => {
   const handleCollectionPicUpload = (e) => {
     const file = e.target.files[0];
     setCollectibleData({...collectibleData, main_img: file.name});
-    console.log('file', file.name);
-    console.log('collectibleData', collectibleData);
+    // console.log('file', file.name);
+    // console.log('collectibleData', collectibleData);
   };
 
   const handleSubmit = async () => {
     const apiToken = sessionStorage.getItem("apiToken")
     if (apiToken) {
-      console.log(collectibleData);
+      // console.log(collectibleData);
       let form = {
         title: collectibleData.title,
         description: collectibleData.description,
@@ -30,14 +30,18 @@ const CreateCollectibleMultiplePopup = (props) => {
         custom_url: collectibleData.custom_url,
         main_img: collectibleData.main_img,
       };
-      console.log(form);
+      // console.log(form);
       await axios.post('http://localhost:8000/v1/collection/create', form,
         {
           headers: {
             "Authorization": `Bearer ${apiToken}`,
           }
         }).then((res) => {
-        console.log(res)
+          // console.log('res.data.data.length', res.statusText);
+          if(res.statusText === "OK") {
+            setSingleCollectionPopup(false);
+            // console.log(res)
+          }
       });
     }
   };
@@ -111,7 +115,7 @@ const CreateCollectibleMultiplePopup = (props) => {
               placeholder="Enter token name"
               onChange={(e) => {
                 setCollectibleData({...collectibleData, title: e.target.value});
-                console.log('collectibleData', collectibleData);
+                // console.log('collectibleData', collectibleData);
               }}
               className="w-100"
             />
@@ -135,7 +139,7 @@ const CreateCollectibleMultiplePopup = (props) => {
               placeholder="Enter token symbol"
               onChange={(e) => {
                 setCollectibleData({...collectibleData, symbol: e.target.value});
-                console.log('collectibleData', collectibleData);
+                // console.log('collectibleData', collectibleData);
               }}
               className="w-100"
             />
@@ -156,7 +160,7 @@ const CreateCollectibleMultiplePopup = (props) => {
               placeholder="Some words about the token collection"
               onChange={(e) => {
                 setCollectibleData({...collectibleData, description: e.target.value});
-                console.log('collectibleData', collectibleData);
+                // console.log('collectibleData', collectibleData);
               }}
               className=" w-100 "
             />
@@ -180,7 +184,7 @@ const CreateCollectibleMultiplePopup = (props) => {
               placeholder="Enter your custom URL  "
               onChange={(e) => {
                 setCollectibleData({...collectibleData, custom_url: 'starlight.com/' + e.target.value});
-                console.log('collectibleData', collectibleData);
+                // console.log('collectibleData', collectibleData);
               }}
               className=" w-100 "
             />
