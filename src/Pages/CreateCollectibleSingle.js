@@ -16,11 +16,13 @@ SwiperCore.use([Keyboard, Pagination, Navigation]);
 
 const CreateCollectibleSingle = () => {
   const apiToken = sessionStorage.getItem("apiToken");
+  const user_id = JSON.parse(sessionStorage.getItem("userdata").toString());
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
   let [udata, setUdata] = useState({
+    user_id: user_id._id,
     oncePurchase: false,
     putOnMarket: false,
     is_single: true,
@@ -155,6 +157,7 @@ const CreateCollectibleSingle = () => {
         is_single: true,
         img_path: udata.img_path,
         digital_key: "11",
+        user_id: user_id._id,
         properties: udata.properties,
         alt_text_nft: udata.alterText,
       };

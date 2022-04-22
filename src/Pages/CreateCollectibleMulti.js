@@ -19,6 +19,7 @@ SwiperCore.use([Keyboard, Pagination, Navigation]);
 
 const CreateCollectibleMulti = () => {
   const apiToken = sessionStorage.getItem("apiToken");
+  const user_id = JSON.parse(sessionStorage.getItem("userdata").toString());
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -26,6 +27,7 @@ const CreateCollectibleMulti = () => {
   let [udata, setUdata] = useState({
     oncePurchase: false,
     putOnMarket: false,
+    user_id: user_id._id,
     is_single: false,
     price_currency: "SOL",
     price_type: "fixed_price",
@@ -87,7 +89,6 @@ const CreateCollectibleMulti = () => {
   const handleToggle = () => setShowDetail(!showDetail);
   const handleSubmit = async () => {
     if (apiToken) {
-      // let apiToken = sessionStorage.getItem('apiToken');
       let formData = new FormData();
       formData.append("aaa", "aaaaa");
       let form = {
@@ -99,6 +100,7 @@ const CreateCollectibleMulti = () => {
         collection_id: udata.collection_id,
         is_single: false,
         title: udata.title,
+        user_id: user_id._id,
         description: udata.description,
         royalties: 11,
         img_path: udata.img_path,
