@@ -161,7 +161,6 @@ const Profile = (props) => {
       }
     }
   };
-
   /*const handleprofilepicUploadr = async (e) => {
     const [file] = e.target.files;
     if (file) {
@@ -275,11 +274,11 @@ const Profile = (props) => {
                     <div className="profile-usr-info">
                       <p>
                         {udata == null ? "" : udata.bio}{" "}
-                        <a href="#0" className="read-more-link">
+                        {udata === null && udata.bio.length > 50 ? <a href="#0" className="read-more-link">
                           Read more
-                        </a>
+                        </a> : ""}
                       </p>
-                      <a href="#0" className="website-link">
+                      <a href={udata === undefined ? "" : udata.personal_site} className="website-link">
                         <span>
                           <img src={EarthIcon} alt={""} />
                         </span>
@@ -287,10 +286,10 @@ const Profile = (props) => {
                       </a>
                       <div className="follows-block">
                         <span>
-                          <b>127 </b>Followers
+                          <b>{udata == null || udata.followers == null ? "0" : udata.followers} </b>Followers
                         </span>
                         <span>
-                          <b>17 </b>Following
+                        <b>{udata == null || udata.following == null ? "0" : udata.following} </b>Following
                         </span>
                       </div>
                     </div>

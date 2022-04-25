@@ -5,12 +5,12 @@ import CheckFillClrIcon from "../assets/img/icons/custom/Group_1454.svg";
 import axios from "axios";
 
 const CreateCollectibleEdit = () => {
-  var [udata, setUdata] = useState();
+  var apiToken = sessionStorage.getItem("apiToken");
+  const [udata, setUdata] = useState({});
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
-
   var form = {
     dname: "",
     bio: "",
@@ -22,9 +22,7 @@ const CreateCollectibleEdit = () => {
     cover: {},
   };
   useEffect(() => {
-    if (sessionStorage.getItem("apiToken")) {
-      console.log("api");
-      var apiToken = sessionStorage.getItem("apiToken");
+    if (apiToken) {
       axios
         .get("http://localhost:8000/v1/user/getUser", {
           headers: {
@@ -33,10 +31,10 @@ const CreateCollectibleEdit = () => {
         })
         .then((res) => {
           setUdata(res.data.data);
-          console.log(udata);
+          // console.log(res.data.data);
         });
     }
-  }, [udata]);
+  }, []);
 
   /*if (sessionStorage.getItem("apiToken")) {
     var apiToken = sessionStorage.getItem("apiToken");
@@ -172,8 +170,7 @@ const CreateCollectibleEdit = () => {
                     className="color-gray text-right"
                     style={{ fontSize: "10px" }}
                   >
-                    Link your Twitter account to gain more trust on the
-                    marketplace
+                    Link your Twitter account to gain more trust on the marketplace
                   </div>
                 </div>
                 <div className="prize-single-collectible">
@@ -328,8 +325,8 @@ const CreateCollectibleEdit = () => {
 
                 <div className="col-sm-12 col-lg-6 ">
                   <span className="color-gray ">
-                    Proceed with verification process to get <br /> more
-                    visibility and gain trust on Starlight <br /> Marketplace.
+                    Proceed with verification process to get <br />
+                    more visibility and gain trust on Starlight <br /> Marketplace.
                   </span>
                 </div>
 
