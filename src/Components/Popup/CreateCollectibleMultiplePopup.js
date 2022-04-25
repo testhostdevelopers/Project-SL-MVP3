@@ -8,6 +8,7 @@ const CreateCollectibleMultiplePopup = (props) => {
     hidden: {opacity: 0},
     visible: {opacity: 1},
   };
+  const user_id = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const profileUploader = React.useRef(null);
   let {setSingleCollectionPopup} = props;
   let [collectibleData, setCollectibleData] = useState({});
@@ -29,6 +30,7 @@ const CreateCollectibleMultiplePopup = (props) => {
         symbol: collectibleData.symbol,
         custom_url: collectibleData.custom_url,
         main_img: collectibleData.main_img,
+        user_id: user_id,
       };
       // console.log(form);
       await axios.post('http://localhost:8000/v1/collection/create', form,

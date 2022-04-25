@@ -37,21 +37,7 @@ const Profile = (props) => {
   const [buttonText, setButtonText] = useState("Add Cover");
   let [udata, setUdata] = useState();
   let [userCollectibleList, setUserCollectibleList] = useState([]);
-  
-  useEffect(() => {
-    if (sessionStorage.getItem("apiToken")) {
-      axios
-        .get("http://localhost:8000/v1/user/getUser", {
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          },
-        })
-        .then((res) => {
-          setUdata(res.data.data);
-        });
-      userCollectibleListFunc();
-    }
-  }, []);
+  let [userCollectionList, setUserCollectionList] = useState([]);
   const userCollectibleListFunc = async () => {
     await axios
       .get('http://localhost:8000/v1/collectible/getusercollectiblelist', {
@@ -65,12 +51,46 @@ const Profile = (props) => {
       )
       .then(response => {
         setUserCollectibleList(response.data.data);
-        console.log('userCollectibleList', response.data.data);
+        // console.log('userCollectibleList', response.data.data);
       })
       .catch(err => {
         console.log(err);
       });
   };
+  const userCollectionListFunc = async () => {
+    await axios
+      .get('http://localhost:8000/v1/collection/getusercollectionlist', {
+          data: {
+            user_id: userData.user_id
+          },
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        }
+      )
+      .then(response => {
+        setUserCollectionList(response.data.data);
+        // console.log('setUserCollectionList', response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    if (sessionStorage.getItem("apiToken")) {
+      axios
+        .get("http://localhost:8000/v1/user/getUser", {
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          },
+        })
+        .then((res) => {
+          setUdata(res.data.data);
+        });
+      userCollectibleListFunc();
+      userCollectionListFunc();
+    }
+  }, []);
 
   const variants = {
     hidden: { opacity: 0 },
@@ -92,7 +112,6 @@ const Profile = (props) => {
 
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
-
   const profileImage = React.useRef(null);
   const profileUploader = React.useRef(null);
 
@@ -388,12 +407,41 @@ const Profile = (props) => {
                       </div>
                     </div>
                   </TabPane>
-                  <TabPane tab="Created" key="3">
+                  <TabPane tab={'Collectible' + ' (' + userCollectibleList.length + ')'} key="3">
                     <div className="row mt-5 mb-5">
                       {userCollectibleList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                           <div className="row ">
-                            {userCollectibleList.map((SingleCollection, key) => (
+                            {userCollectibleList.map((SingleCollectible, key) => (
+                              <LiveAuctions
+                                Coverimg={artWorkWeek1}
+                                title={SingleCollectible.title}
+                                heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                                User1={topSellerUser1}
+                                User2={topSellerUser2}
+                                User3={topSellerUser3}
+                                WETH={SingleCollectible.price}
+                                bid="Highest bid 1/1"
+                              />
+                            ))}
+                          </div>
+                        </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                          <h3>Not items found</h3>
+                          <span className="color-gray">
+                          Come back soon or browse the items on our marketplace.
+                        </span>
+                          <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
+                            Browse marketplace
+                          </button>
+                        </div>}
+                    </div>
+                  </TabPane>
+                  <TabPane tab={'Collection' + ' (' + userCollectionList.length + ')'} key="4">
+                    <div className="row mt-5 mb-5">
+                      {userCollectionList.length > 0 ?
+                        <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                          <div className="row ">
+                            {userCollectionList.map((SingleCollection, key) => (
                               <LiveAuctions
                                 Coverimg={artWorkWeek1}
                                 title={SingleCollection.title}
@@ -417,7 +465,7 @@ const Profile = (props) => {
                         </div>}
                     </div>
                   </TabPane>
-                  <TabPane tab="Liked (2)" key="4">
+                  <TabPane tab="Liked (2)" key="5">
                     <div className="liveAuction proile-liked-filter">
                       <div className="row ">
                         <LiveAuctions
@@ -463,12 +511,10 @@ const Profile = (props) => {
                       </div>
                     </div>
                   </TabPane>
-
-                  <TabPane tab="Activity" key="5">
+                  <TabPane tab="Activity" key="6">
                     <Activitytab />
                   </TabPane>
-
-                  <TabPane tab="Following (4)" key="6">
+                  <TabPane tab="Following (4)" key="7">
                     <div className="topSeller">
                       <div className="w-100 d-flex justify-content-end">
                         <button className="profile-activity-filter-mobile d-web-none">
@@ -547,7 +593,7 @@ const Profile = (props) => {
                       </div>
                     </div>
                   </TabPane>
-                  <TabPane tab="Followers (12)" key="7">
+                  <TabPane tab="Followers (12)" key="8">
                     <div className="topSeller">
                       <div className="">
                         <div className="w-100 d-flex justify-content-end">
@@ -628,7 +674,7 @@ const Profile = (props) => {
                       </div>
                     </div>
                   </TabPane>
-                  <TabPane tab="Hidden" key="8">
+                  <TabPane tab="Hidden" key="9">
                     <div className="row mt-5 mb-5">
                       <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                         <h3>Not items found</h3>
