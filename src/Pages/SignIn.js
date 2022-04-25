@@ -40,6 +40,7 @@ const connectStore = async (pkey, wal, con) => {
           })
           .then((r) => {
             sessionStorage.setItem("apiToken", r.data.data.apiToken);
+            sessionStorage.setItem("userdata", JSON.stringify(r.data.data.userdata));
             window.location.reload(false);
           });
       });

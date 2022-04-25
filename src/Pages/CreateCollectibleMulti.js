@@ -1,39 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import priceP from "../assets/img/icons/custom/price_p.svg";
-import starticon from "../assets/img/icons/custom/star_icon.png";
+// import starticon from "../assets/img/icons/custom/star_icon.png";
 import sonsuz from "../assets/img/icons/custom/open_p.png";
 import plus from "../assets/img/icons/custom/plus.svg";
-import darkcircle from "../assets/img/icons/custom/darkcircle.svg";
+// import darkcircle from "../assets/img/icons/custom/darkcircle.svg";
 import { Link } from "react-router-dom";
 import CreateCollectibleMultiplePopup from "../Components/Popup/CreateCollectibleMultiplePopup";
 import { Select } from "antd";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Keyboard, Pagination, Navigation } from "swiper/core";
 import { motion } from "framer-motion";
-import MultiCollectibleDetails from "./MultiCollectibleDetails";
+// import MultiCollectibleDetails from "./MultiCollectibleDetails";
 import AdvanceCollectionSetting from "./AdvanceCollectionSetting";
+import axios from "axios";
 // const { Option } = Select;
 
 SwiperCore.use([Keyboard, Pagination, Navigation]);
 
 const CreateCollectibleMulti = () => {
+  const apiToken = sessionStorage.getItem("apiToken");
+  const user_id = JSON.parse(sessionStorage.getItem("userdata").toString());
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
-
+  let [udata, setUdata] = useState({
+    oncePurchase: false,
+    putOnMarket: false,
+    user_id: user_id._id,
+    is_single: false,
+    price_currency: "SOL",
+    price_type: "fixed_price",
+  });
+  let [price, setPrice] = useState(0);
   const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
   const [filesize, setfilesize] = useState("");
-
+  let [collection_list, setcollectionList] = useState([]);
   const profileImage = React.useRef(null);
   const profileUploader = React.useRef(null);
+  const collectionListFunc = async () => {
+    await axios({
+      url: 'http://localhost:8000/v1/collection/getAllCollection',
+      method: 'get',
+      headers: {
+        "Authorization": `Bearer ${apiToken}`,
+      }
+    })
+      .then(response => {
+        setcollectionList(response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  useEffect(() => {
+    collectionListFunc();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleprofilepicUploadr = (e) => {
+  const handlePriceChange = (e) => {
+    let price = e;
+    let less = price * 0.025;
+    let final = price - less;
+    // console.log(final, less);
+    setPrice(final);
+  };
+  
+  const handleprofilepicUploader = (e) => {
     const [file] = e.target.files;
     if (file) {
       const reader = new FileReader();
       const { current } = profileImage;
       current.file = file;
+      setUdata({ ...udata, img_path: e.target.files[0].name });
       reader.onload = (e) => {
         current.src = e.target.result;
         if (!file) {
@@ -47,16 +85,39 @@ const CreateCollectibleMulti = () => {
 
   const price_one = ["ETH", "BTC", "USDC", "Starlight", "ASH", "ATRI", "FIRST"];
 
-  const multi_call = [
-    { myimg: starticon, title: "STARLIGHT", dass: "SLX" },
-    { myimg: darkcircle, dass: "---" },
-    { myimg: darkcircle, dass: "---" },
-    { myimg: darkcircle, dass: "---" },
-    { myimg: darkcircle, dass: "---" },
-  ];
-
   const [showDetail, setShowDetail] = useState(false);
   const handleToggle = () => setShowDetail(!showDetail);
+  const handleSubmit = async () => {
+    if (apiToken) {
+      let formData = new FormData();
+      formData.append("aaa", "aaaaa");
+      let form = {
+        put_on_market_place: udata.putOnMarket,
+        price: price,
+        price_type: udata.price_type,
+        price_currency: udata.price_currency,
+        unlock_once_purchased: udata.oncePurchase,
+        collection_id: udata.collection_id,
+        is_single: false,
+        title: udata.title,
+        user_id: user_id._id,
+        description: udata.description,
+        royalties: 11,
+        img_path: udata.img_path,
+        digital_key: "11",
+        properties: udata.properties,
+        alt_text_nft: udata.alterText,
+      };
+      await axios.post('http://localhost:8000/v1/collectible/create', form,
+        {
+          headers: {
+            "Authorization" : `Bearer ${apiToken}`,
+          }
+        }).then((res) => {
+        // console.log(res)
+      });
+    }
+  };
 
   return (
     <>
@@ -109,8 +170,9 @@ const CreateCollectibleMulti = () => {
                   <p style={{ color: "red" }}>{filesize}</p>
                   <input
                     type="file"
+                    multiple
                     accept="image/*,video/mp4,video/x-m4v,video/*,image/x-png,image/gif,image/jpeg"
-                    onChange={handleprofilepicUploadr}
+                    onChange={handleprofilepicUploader}
                     ref={profileUploader}
                     id="profilephoto"
                     style={{
@@ -176,9 +238,17 @@ const CreateCollectibleMulti = () => {
                       </span>
                       <span className="color-gray">
                         <div className="d-flex border">
-                          <input placeholder="0" style={{ maxWidth: "50px" }} />
+                          <input
+                            type="number"
+                            placeholder="0"
+                            style={{ maxWidth: "50px" }}
+                            onChange={(e) => handlePriceChange(e.target.value)}
+                          />
                           <Select
                             className="section-select-filter ml-0"
+                            onChange={(e) => {
+                              setUdata({...udata, price_currency: e});
+                            }}
                             defaultValue="ETH"
                           >
                             {price_one.map((x, y) => (
@@ -273,19 +343,23 @@ const CreateCollectibleMulti = () => {
                     <small className="color-gray">ERC-721</small>
                   </div>
                 </div>
-
                 <Swiper
                   className="slider"
                   slidesPerView={4.3}
                   navigation={true}
                 >
-                  {multi_call.map((sing, s) => (
-                    <SwiperSlide key={s}>
+                  {collection_list.length > 0 && collection_list.map((sing, key) => (
+                    <SwiperSlide key={key} onClick={() => {
+                      setUdata({
+                        ...udata,
+                        collection_id: sing._id,
+                      });
+                    }}>
                       <div className="putOnMarketplace ml-3 border-radius btn-primary-outline-responsive">
-                        <img src={sing.myimg} width="40" alt="" />
+                        <img src={sing.main_img} width="40" alt=""/>
                         <div className="starslide">{sing.title}</div>
                         <div>
-                          <small className="color-gray">{sing.dass}</small>
+                          <small className="color-gray">{sing.symbol}</small>
                         </div>
                       </div>
                     </SwiperSlide>
@@ -294,7 +368,92 @@ const CreateCollectibleMulti = () => {
               </div>
             </div>
 
-            <MultiCollectibleDetails />
+            <div className="col-sm-12">
+              <div className="mt-5">
+                <h5>
+                  <b>Title</b>
+                </h5>
+
+                <div className="prize-single-collectible">
+                  <input
+                    type="text"
+                    placeholder="e. g.  “Redeemable T-Shirt with logo”"
+                    onChange={(e) => {
+                      setUdata({ ...udata, title: e.target.value });
+                    }}
+                    value={udata === null ? "" : udata.title}
+                  />
+                </div>
+              </div>
+
+              <div className="mt-3">
+                <div className="d-flex">
+                  <h5>
+                    <b>Description 55555</b>{" "}
+                  </h5>
+                  <span>
+              <small className="color-gray ml-2">(Optional)</small>
+            </span>
+                </div>
+
+                <div className="prize-single-collectible">
+                  <input
+                    type="text"
+                    placeholder="e. g.  “After purchasing you will be able to get the real T-Shirt””"
+                  />
+                </div>
+
+                <div className="mt-2">
+                  <small>
+                    <span className="color-gray">With preserved line-breaks </span>
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-12 col-lg-6 copies">
+              <div className="mt-5 border-gray border-radius h-75 p-4">
+                <div className="d-flex">
+                  <h5>
+                    <b>Royalties</b>{" "}
+                  </h5>
+                </div>
+
+                <div className="prize-single-collectible">
+                  <input type="text" placeholder="10" />
+                  <span className="color-gray ">%</span>
+                </div>
+
+                <div className="mt-2 w-100">
+                  <small className="d-flex">
+                    <span className="color-gray">Suggested:</span>
+                    <div className="text-right w-100">
+                      <span className="color-gray">0%, 10%, 20%,30%</span>
+                      <br />
+                      <span className="color-gray">Maximum is 50%</span>
+                    </div>
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-12 col-lg-6 copies">
+              <div className="mt-5 border-gray border-radius h-75 p-4">
+                <div className="d-flex">
+                  <h5>
+                    <b>No. of copies</b>{" "}
+                  </h5>
+                </div>
+
+                <div className="prize-single-collectible">
+                  <input type="text" placeholder="EG. 10" />
+                </div>
+
+                <div className="mt-2">
+                  <small>
+                    <span className="color-gray">Amount of tokens</span>
+                  </small>
+                </div>
+              </div>
+            </div>
 
             {showDetail && <AdvanceCollectionSetting />}
           </div>
@@ -309,7 +468,7 @@ const CreateCollectibleMulti = () => {
           </div>
 
           <div className="mt-4">
-            <button className="btn-ping  w-100">Create Item</button>
+            <button onClick={handleSubmit} className="btn-ping w-100">Create Item</button>
           </div>
 
           <div className="mt-4 color-gray text-center">
