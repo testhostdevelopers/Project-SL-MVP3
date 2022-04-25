@@ -16,7 +16,8 @@ SwiperCore.use([Keyboard, Pagination, Navigation]);
 
 const CreateCollectibleSingle = () => {
   const apiToken = sessionStorage.getItem("apiToken");
-  const user_id = JSON.parse(sessionStorage.getItem("userdata").toString());
+  const user_id = JSON.parse(sessionStorage.getItem("userdata")) || {};
+  // console.log('user_id', user_id);
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
