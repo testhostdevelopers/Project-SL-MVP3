@@ -31,14 +31,15 @@ const { TabPane } = Tabs;
 
 const Profile = (props) => {
   // console.log("props.pImage", props.pImage, "sdasadsa");
+  var apiToken = sessionStorage.getItem("apiToken");
+  const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [reportPopup, setReportPopup] = useState(false);
-
   const [buttonText, setButtonText] = useState("Add Cover");
-  var [udata, setUdata] = useState();
-
+  let [udata, setUdata] = useState();
+  let [userCollectibleList, setUserCollectibleList] = useState([]);
+  
   useEffect(() => {
     if (sessionStorage.getItem("apiToken")) {
-      var apiToken = sessionStorage.getItem("apiToken");
       axios
         .get("http://localhost:8000/v1/user/getUser", {
           headers: {
@@ -48,8 +49,28 @@ const Profile = (props) => {
         .then((res) => {
           setUdata(res.data.data);
         });
+      userCollectibleListFunc();
     }
   }, []);
+  const userCollectibleListFunc = async () => {
+    await axios
+      .get('http://localhost:8000/v1/collectible/getusercollectiblelist', {
+          data: {
+            user_id: userData.user_id
+          },
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        }
+      )
+      .then(response => {
+        setUserCollectibleList(response.data.data);
+        console.log('userCollectibleList', response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   const variants = {
     hidden: { opacity: 0 },
@@ -111,7 +132,7 @@ const Profile = (props) => {
         }
         if (e.target.id === "profilephoto") {
           const reader = new FileReader();
-          const { current } = profileImage;
+          const {current} = profileImage;
           current.file = file;
           reader.onload = (e) => {
             current.src = e.target.result;
@@ -182,7 +203,7 @@ const Profile = (props) => {
                     </div>
 
                     <label
-                      for="uploadcoverphoto"
+                      htmlFor="uploadcoverphoto"
                       className="bg-white border-gray edit-profile"
                     >
                       {" "}
@@ -277,7 +298,7 @@ const Profile = (props) => {
                             />
                           </svg>
                         </button>
-                        <ProfileLinks />
+                        <ProfileLinks/>
                       </div>
 
                       <Dropdown overlay={singleoption}>
@@ -369,15 +390,31 @@ const Profile = (props) => {
                   </TabPane>
                   <TabPane tab="Created" key="3">
                     <div className="row mt-5 mb-5">
-                      <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
-                        <h3>Not items found</h3>
-                        <span className="color-gray">
+                      {userCollectibleList.length > 0 ?
+                        <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                          <div className="row ">
+                            {userCollectibleList.map((SingleCollection, key) => (
+                              <LiveAuctions
+                                Coverimg={artWorkWeek1}
+                                title={SingleCollection.title}
+                                heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
+                                User1={topSellerUser1}
+                                User2={topSellerUser2}
+                                User3={topSellerUser3}
+                                WETH={SingleCollection.price}
+                                bid="Highest bid 1/1"
+                              />
+                            ))}
+                          </div>
+                        </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                          <h3>Not items found</h3>
+                          <span className="color-gray">
                           Come back soon or browse the items on our marketplace.
                         </span>
-                        <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
-                          Browse marketplace
-                        </button>
-                      </div>
+                          <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
+                            Browse marketplace
+                          </button>
+                        </div>}
                     </div>
                   </TabPane>
                   <TabPane tab="Liked (2)" key="4">

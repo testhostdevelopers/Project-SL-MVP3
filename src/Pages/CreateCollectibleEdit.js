@@ -264,7 +264,7 @@ const CreateCollectibleEdit = () => {
                     id="profileImg"
                     className="img-btn w-100 ml-0 "
                   />
-                  <label for="profileImg">
+                  <label htmlFor="profileImg">
                     {" "}
                     <img
                       src="/static/media/bg_img.156953d5.png"
@@ -298,7 +298,7 @@ const CreateCollectibleEdit = () => {
                     id="coverImg"
                     className="img-btn w-100 ml-0"
                   />
-                  <label for="coverImg">
+                  <label htmlFor="coverImg">
                     {" "}
                     <img
                       src="/static/media/bg_img.156953d5.png"
