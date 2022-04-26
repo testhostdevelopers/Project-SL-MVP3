@@ -44,7 +44,7 @@ const Profile = (props) => {
     await axios
       .get('http://localhost:8000/v1/collectible/getusercollectiblelist', {
           data: {
-            user_id: userData.user_id
+            user_id: userData._id
           },
           headers: {
             Authorization: `Bearer ${apiToken}`,
@@ -52,6 +52,13 @@ const Profile = (props) => {
         }
       )
       .then(response => {
+        response.data.data.forEach((element) => {
+          if (element.likedBy.includes(userData._id)) {
+            element.like = true;
+          } else {
+            element.like = false;
+          }
+        });
         setUserCollectibleList(response.data.data);
       })
       .catch(err => {
@@ -62,7 +69,7 @@ const Profile = (props) => {
     await axios
       .get('http://localhost:8000/v1/collection/getuserlikedcollectionslist', {
           data: {
-            user_id: userData.user_id
+            user_id: userData._id
           },
           headers: {
             Authorization: `Bearer ${apiToken}`,
@@ -70,8 +77,14 @@ const Profile = (props) => {
         }
       )
       .then(response => {
+        response.data.data.forEach((element) => {
+          if (element.likedBy.includes(userData._id)) {
+            element.like = true;
+          } else {
+            element.like = false;
+          }
+        });
         setUserLikedCollectionsList(response.data.data);
-        // console.log('setUserLikedCollectionsList', response.data.data);
       })
       .catch(err => {
         console.log(err);
@@ -81,7 +94,7 @@ const Profile = (props) => {
     await axios
       .get('http://localhost:8000/v1/collectible/getuserlikedcollectiblelist', {
           data: {
-            user_id: userData.user_id
+            user_id: userData._id
           },
           headers: {
             Authorization: `Bearer ${apiToken}`,
@@ -89,6 +102,13 @@ const Profile = (props) => {
         }
       )
       .then(response => {
+        response.data.data.forEach((element) => {
+          if (element.likedBy.includes(userData._id)) {
+            element.like = true;
+          } else {
+            element.like = false;
+          }
+        });
         setUserLikedCollectibleList(response.data.data);
         // console.log('setUserLikedCollectibleList', response.data.data);
       })
@@ -100,7 +120,7 @@ const Profile = (props) => {
     await axios
       .get('http://localhost:8000/v1/collection/getusercollectionlist', {
           data: {
-            user_id: userData.user_id
+            user_id: userData._id
           },
           headers: {
             Authorization: `Bearer ${apiToken}`,
@@ -108,6 +128,13 @@ const Profile = (props) => {
         }
       )
       .then(response => {
+        response.data.data.forEach((element) => {
+          if (element.likedBy.includes(userData._id)) {
+            element.like = true;
+          } else {
+            element.like = false;
+          }
+        });
         setUserCollectionList(response.data.data);
         // console.log('setUserCollectionList', response.data.data);
       })
@@ -383,7 +410,7 @@ const Profile = (props) => {
               </header>
 
               <main className="profile-tab-menu">
-                <Tabs defaultActiveKey="4" centered>
+                <Tabs defaultActiveKey="3" centered>
                   <TabPane tab="On sale" key="1">
                     <div className="row mt-5 mb-5">
                       <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
@@ -455,6 +482,7 @@ const Profile = (props) => {
                             {userCollectibleList.map((SingleCollectible, key) => (
                               <LiveAuctions
                                 Coverimg={artWorkWeek1}
+                                liked={SingleCollectible.like}
                                 title={SingleCollectible.title}
                                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
                                 User1={topSellerUser1}
@@ -484,6 +512,7 @@ const Profile = (props) => {
                             {userCollectionList.map((SingleCollection, key) => (
                               <LiveAuctions
                                 Coverimg={artWorkWeek1}
+                                liked={SingleCollection.like}
                                 title={SingleCollection.title}
                                 heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
                                 User1={topSellerUser1}
@@ -508,12 +537,14 @@ const Profile = (props) => {
                   <TabPane tab={'Liked Collectible (' + userLikedCollectibleList.length + ')'} key="5">
                     <div className="liveAuction proile-liked-filter">
                       {userLikedCollectibleList.length > 0 ?
-                      <div className="row ">
+                        <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                          <div className="row ">
                         {userLikedCollectibleList.map((SingleCollectible, key) => (
                           <LiveAuctions
                             Coverimg={artWorkWeek1}
+                            liked={SingleCollectible.like}
                             title={SingleCollectible.title}
-                            heartcount="24"
+                            heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
                             User1={topSellerUser1}
                             User2={topSellerUser2}
                             User3={topSellerUser3}
@@ -521,7 +552,8 @@ const Profile = (props) => {
                             bid="Highest bid 1/1"
                           />
                         ))}
-                      </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                      </div>
+                        </div>: <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                           <h3>Not items found</h3>
                           <span className="color-gray">
                           Come back soon or browse the items on our marketplace.
@@ -535,20 +567,23 @@ const Profile = (props) => {
                   <TabPane tab={'Liked Collections (' + userLikedCollectionsList.length + ')'} key="6">
                     <div className="liveAuction proile-liked-filter">
                       {userLikedCollectibleList.length > 0 ?
-                      <div className="row ">
-                        {userLikedCollectionsList.map((SingleCollection, key) => (
-                          <LiveAuctions
-                            Coverimg={artWorkWeek1}
-                            title={SingleCollection.title}
-                            heartcount="24"
-                            User1={topSellerUser1}
-                            User2={topSellerUser2}
-                            User3={topSellerUser3}
-                            WETH="1.2 WETH"
-                            bid="Highest bid 1/1"
-                          />
-                        ))}
-                      </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                        <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                          <div className="row ">
+                            {userLikedCollectionsList.map((SingleCollection, key) => (
+                              <LiveAuctions
+                                Coverimg={artWorkWeek1}
+                                liked={SingleCollection.like}
+                                title={SingleCollection.title}
+                                heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
+                                User1={topSellerUser1}
+                                User2={topSellerUser2}
+                                User3={topSellerUser3}
+                                WETH="1.2 WETH"
+                                bid="Highest bid 1/1"
+                              />
+                            ))}
+                          </div>
+                        </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                           <h3>Not items found</h3>
                           <span className="color-gray">
                           Come back soon or browse the items on our marketplace.
