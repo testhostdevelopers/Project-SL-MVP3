@@ -36,23 +36,18 @@ const CreateCollectibleEdit = () => {
     }
   }, []);
 
-  /*if (sessionStorage.getItem("apiToken")) {
-    var apiToken = sessionStorage.getItem("apiToken");
-    GetUdata(apiToken)
-  }*/
   var upProfile = async () => {
     console.log(form);
-    if (sessionStorage.getItem("apiToken")) {
-      var apiToken = sessionStorage.getItem("apiToken");
+    if (apiToken) {
       var formData = new FormData();
-      formData.append("display_name", udata.display_name);
-      formData.append("bio", udata.bio);
-      formData.append("custom_url", udata.custom_url);
-      formData.append("twitter_username", udata.twitter_username);
-      formData.append("personal_site", udata.personal_site);
-      formData.append("email", udata.email);
-      formData.append("profile_img_url", udata.profile_img_url);
-      formData.append("cover_img_url", udata.cover_img_url);
+      formData.append("display_name", udata.display_name !== undefined ? udata.display_name : null);
+      formData.append("bio", udata.bio !== undefined ? udata.bio : null);
+      formData.append("custom_url", udata.custom_url !== undefined ? udata.custom_url : null);
+      formData.append("twitter_username", udata.twitter_username !== undefined ? udata.twitter_username : null);
+      formData.append("personal_site", udata.personal_site !== undefined ? udata.personal_site : null);
+      formData.append("email", udata.email !== undefined ? udata.email : null);
+      formData.append("profile_img_url", udata.profile_img_url !== undefined ? udata.profile_img_url : null);
+      formData.append("cover_img_url", udata.cover_img_url !== undefined ? udata.cover_img_url : null);
       await axios
         .put("http://localhost:8000/v1/user/update", formData, {
           headers: {
@@ -61,6 +56,7 @@ const CreateCollectibleEdit = () => {
         })
         .then((res) => {
           console.log(res);
+          sessionStorage.setItem("userdata", JSON.stringify(res.data.data));
         });
     }
   };

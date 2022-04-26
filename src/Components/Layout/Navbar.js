@@ -37,6 +37,7 @@ const Navbar = (props) => {
       window.solana.request({ method: "disconnect" });
       window.solana.on("disconnect", () => console.log("disconnected!"));
       sessionStorage.removeItem("apiToken");
+      sessionStorage.removeItem("userdata");
       window.location.reload(false);
     }
 
@@ -45,6 +46,7 @@ const Navbar = (props) => {
       window.solflare.request({ method: "disconnect" });
       window.solflare.on("disconnect", () => console.log("disconnected!"));
       sessionStorage.removeItem("apiToken");
+      sessionStorage.removeItem("userdata");
       window.location.reload(false);
     }
   };
