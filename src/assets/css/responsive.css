@@ -1329,6 +1329,7 @@
     display: none;
   }
 
+  .home-artwork-week-day>.d-flex .art-list,
   .artwork-item {
     width: 50%;
     margin-right: 15px !important;
@@ -1336,7 +1337,7 @@
     display: inline-block;
     vertical-align: top;
   }
-
+  .home-artwork-week-day>.d-flex .art-list:nth-child(3n),
   .artwork-item:nth-child(3n) {
     margin-right: 15px !important;
   }

@@ -714,7 +714,7 @@ const Home = () => {
             <div className="col-sm-12 col-md-7 col-lg-7 home-artwork-week-day position-relative d-flex flex-column align-items-stretch justify-content-between">
               <div className="d-flex overflow-auto justify-content-between w-100 justify-content-between">
                 {all_atwork.map((artwork, key) => (
-                  <div key={key}>
+                  <div key={key} className="art-list">
                     <ArtWork
                       title={artwork.my_title}
                       artworkimg={artwork.artimg}
@@ -749,14 +749,12 @@ const Home = () => {
           <div className="topSellerContent mt-5">
             <div className="d-flex">
               {top_seller_profile.map((top_seller_profile, key) => (
-                <div key={key}>
                   <TopCard
                     topcoverimg={top_seller_profile.topcover_img}
                     topuserimg={top_seller_profile.topuser_img}
                     title={top_seller_profile.topuser_name}
                     Price={top_seller_profile.topuser_price}
                   />
-                </div>
               ))}
             </div>
           </div>
@@ -784,14 +782,12 @@ const Home = () => {
           <div className="topSellerContent mt-5">
             <div className="d-flex">
               {top_buyers_profile.map((top_seller_profile, key) => (
-                <div key={key}>
                   <TopCard
                     topcoverimg={top_seller_profile.topcover_img}
                     topuserimg={top_seller_profile.topuser_img}
                     title={top_seller_profile.topuser_name}
                     Price={top_seller_profile.topuser_price}
                   />
-                </div>
               ))}
             </div>
           </div>
@@ -813,7 +809,6 @@ const Home = () => {
 
           <div className="row  mt-5">
             {hot_bide.map((bide_desk, key) => (
-              <div key={key}>
                 <HotBids
                   Coverimg={bide_desk.cover_bide}
                   heartcount={bide_desk.bide_heartcount}
@@ -823,7 +818,6 @@ const Home = () => {
                   bid={bide_desk.bide_bid}
                   isOpenInProfile={false}
                 />
-              </div>
             ))}
           </div>
         </div>
@@ -849,7 +843,6 @@ const Home = () => {
           >
             {slide_hot_bid.map((bide_desk, key) => (
               <SwiperSlide>
-                <div key={key}>
                   <HotBids
                     Coverimg={bide_desk.cover_bide}
                     heartcount={bide_desk.bide_heartcount}
@@ -859,7 +852,6 @@ const Home = () => {
                     bid={bide_desk.bide_bid}
                     isOpenInProfile={false}
                   />
-                </div>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -881,7 +873,6 @@ const Home = () => {
 
           <div className="row mt-5">
             {live_auction.map((live_a, key) => (
-              <div key={key}>
                 <LiveAuctions
                   Coverimg={live_a.cover_img}
                   title={live_a.auction_name}
@@ -893,7 +884,6 @@ const Home = () => {
                   bid={live_a.auction_bid}
                   isOpenInProfile={false}
                 />
-              </div>
             ))}
           </div>
         </div>
@@ -919,7 +909,6 @@ const Home = () => {
           >
             {slide_live_auction.map((live_a, key) => (
               <SwiperSlide>
-                <div key={key}>
                   <LiveAuctions
                     Coverimg={live_a.cover_img}
                     title={live_a.auction_name}
@@ -931,7 +920,6 @@ const Home = () => {
                     bid={live_a.auction_bid}
                     isOpenInProfile={false}
                   />
-                </div>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -954,14 +942,12 @@ const Home = () => {
           <div className="topSellerContent mt-5">
             <div className="d-flex overflow-auto justify-content-between w-100 mb-4">
               {top_card.map((collr_, key) => (
-                <div key={key}>
                   <TopCard
                     topcoverimg={collr_.top_cover}
                     topuserimg={collr_.top_user}
                     title={collr_.top_name}
                     Price={collr_.top_price}
                   />
-                </div>
               ))}
             </div>
           </div>
@@ -989,14 +975,13 @@ const Home = () => {
             >
               {slide_data.map((collr_, key) => (
                 <SwiperSlide>
-                  <div key={key}>
+                  
                     <TopCard
                       topcoverimg={collr_.top_cover}
                       topuserimg={collr_.top_user}
                       title={collr_.top_name}
                       Price={collr_.top_price}
                     />
-                  </div>
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -1041,7 +1026,7 @@ const Home = () => {
             >
               <div className="row">
                 {live_auction.map((live_a, key) => (
-                  <div key={key}>
+                  
                     <LiveAuctions
                       Coverimg={live_a.cover_img}
                       title={live_a.auction_name}
@@ -1053,7 +1038,6 @@ const Home = () => {
                       bid={live_a.auction_bid}
                       isOpenInProfile={false}
                     />
-                  </div>
                 ))}
 
                 {hot_bide.map((bide_desk, ho_B) => (
@@ -1078,7 +1062,7 @@ const Home = () => {
             >
               <div className="row">
                 {live_auction.map((live_a, key) => (
-                  <div key={key}>
+                  
                     <LiveAuctions
                       Coverimg={live_a.cover_img}
                       title={live_a.auction_name}
@@ -1090,7 +1074,6 @@ const Home = () => {
                       bid={live_a.auction_bid}
                       isOpenInProfile={false}
                     />
-                  </div>
                 ))}
               </div>
             </div>
@@ -1103,7 +1086,7 @@ const Home = () => {
             >
               <div className="row">
                 {live_auction.map((live_a, key) => (
-                  <div key={key}>
+                  
                     <LiveAuctions
                       Coverimg={live_a.cover_img}
                       title={live_a.auction_name}
@@ -1115,7 +1098,6 @@ const Home = () => {
                       bid={live_a.auction_bid}
                       isOpenInProfile={false}
                     />
-                  </div>
                 ))}
               </div>
             </div>
@@ -1128,7 +1110,7 @@ const Home = () => {
             >
               <div className="row">
                 {live_auction.map((live_a, key) => (
-                  <div key={key}>
+                  
                     <LiveAuctions
                       Coverimg={live_a.cover_img}
                       title={live_a.auction_name}
@@ -1140,7 +1122,6 @@ const Home = () => {
                       bid={live_a.auction_bid}
                       isOpenInProfile={false}
                     />
-                  </div>
                 ))}
               </div>
             </div>
@@ -1153,7 +1134,7 @@ const Home = () => {
             >
               <div className="row">
                 {live_auction.map((live_a, key) => (
-                  <div key={key}>
+                  
                     <LiveAuctions
                       Coverimg={live_a.cover_img}
                       title={live_a.auction_name}
@@ -1165,7 +1146,6 @@ const Home = () => {
                       bid={live_a.auction_bid}
                       isOpenInProfile={false}
                     />
-                  </div>
                 ))}
               </div>
             </div>
@@ -1177,7 +1157,7 @@ const Home = () => {
             >
               <div className="row">
                 {live_auction.map((live_a, key) => (
-                  <div key={key}>
+                  
                     <LiveAuctions
                       Coverimg={live_a.cover_img}
                       title={live_a.auction_name}
@@ -1189,7 +1169,6 @@ const Home = () => {
                       bid={live_a.auction_bid}
                       isOpenInProfile={false}
                     />
-                  </div>
                 ))}
               </div>
             </div>
@@ -1202,7 +1181,7 @@ const Home = () => {
             >
               <div className="row">
                 {live_auction.map((live_a, key) => (
-                  <div key={key}>
+                  
                     <LiveAuctions
                       Coverimg={live_a.cover_img}
                       title={live_a.auction_name}
@@ -1214,7 +1193,6 @@ const Home = () => {
                       bid={live_a.auction_bid}
                       isOpenInProfile={false}
                     />
-                  </div>
                 ))}
               </div>
             </div>

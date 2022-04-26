@@ -515,6 +515,13 @@ footer section .footer-in-email {
   flex-wrap: wrap;
 }
 
+.home-artwork-week-day>.d-flex .art-list{
+  width: 31.3%;
+}
+.home-artwork-week-day>.d-flex .art-list .artwork-item{
+  width: 100%;
+}
+
 .artwork-item:last-child {
   margin-right: 0 !important;
 }
