@@ -21,7 +21,7 @@ const UpcomingCollectionsSec = () => {
             />
             <p>The soundtrack to the enchanted world of Cryptoloria.</p>
             <div className="upcoming-collections-time">
-              <span>1 January 2021</span>
+              <span>1 January 2022</span>
               <span>5pm GMT</span>
             </div>
             <ul className="upcoming-soon-collections-count-list">
@@ -56,7 +56,7 @@ const UpcomingCollectionsSec = () => {
               universe.{" "}
             </p>
             <div className="upcoming-collections-time">
-              <span>1 January 2021</span>
+              <span>1 January 2022</span>
               <span>5pm GMT</span>
             </div>
             <ul className="upcoming-soon-collections-count-list">
@@ -90,7 +90,7 @@ const UpcomingCollectionsSec = () => {
             />
             <p>One of five comic book editions</p>
             <div className="upcoming-collections-time">
-              <span>30 January 2021</span>
+              <span>30 January 2022</span>
               <span>5pm GMT</span>
             </div>
             <ul className="upcoming-soon-collections-count-list">

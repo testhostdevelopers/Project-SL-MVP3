@@ -170,7 +170,6 @@ const CreateCollectibleMulti = () => {
                   <p style={{ color: "red" }}>{filesize}</p>
                   <input
                     type="file"
-                    multiple
                     accept="image/*,video/mp4,video/x-m4v,video/*,image/x-png,image/gif,image/jpeg"
                     onChange={handleprofilepicUploader}
                     ref={profileUploader}

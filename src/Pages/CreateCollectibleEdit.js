@@ -5,12 +5,12 @@ import CheckFillClrIcon from "../assets/img/icons/custom/Group_1454.svg";
 import axios from "axios";
 
 const CreateCollectibleEdit = () => {
-  var [udata, setUdata] = useState();
+  var apiToken = sessionStorage.getItem("apiToken");
+  const [udata, setUdata] = useState({});
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
-
   var form = {
     dname: "",
     bio: "",
@@ -22,9 +22,7 @@ const CreateCollectibleEdit = () => {
     cover: {},
   };
   useEffect(() => {
-    if (sessionStorage.getItem("apiToken")) {
-      console.log("api");
-      var apiToken = sessionStorage.getItem("apiToken");
+    if (apiToken) {
       axios
         .get("http://localhost:8000/v1/user/getUser", {
           headers: {
@@ -33,28 +31,23 @@ const CreateCollectibleEdit = () => {
         })
         .then((res) => {
           setUdata(res.data.data);
-          console.log(udata);
+          // console.log(res.data.data);
         });
     }
-  }, [udata]);
+  }, []);
 
-  /*if (sessionStorage.getItem("apiToken")) {
-    var apiToken = sessionStorage.getItem("apiToken");
-    GetUdata(apiToken)
-  }*/
   var upProfile = async () => {
     console.log(form);
-    if (sessionStorage.getItem("apiToken")) {
-      var apiToken = sessionStorage.getItem("apiToken");
+    if (apiToken) {
       var formData = new FormData();
-      formData.append("display_name", udata.display_name);
-      formData.append("bio", udata.bio);
-      formData.append("custom_url", udata.custom_url);
-      formData.append("twitter_username", udata.twitter_username);
-      formData.append("personal_site", udata.personal_site);
-      formData.append("email", udata.email);
-      formData.append("profile_img_url", udata.profile_img_url);
-      formData.append("cover_img_url", udata.cover_img_url);
+      formData.append("display_name", udata.display_name !== undefined ? udata.display_name : null);
+      formData.append("bio", udata.bio !== undefined ? udata.bio : null);
+      formData.append("custom_url", udata.custom_url !== undefined ? udata.custom_url : null);
+      formData.append("twitter_username", udata.twitter_username !== undefined ? udata.twitter_username : null);
+      formData.append("personal_site", udata.personal_site !== undefined ? udata.personal_site : null);
+      formData.append("email", udata.email !== undefined ? udata.email : null);
+      formData.append("profile_img_url", udata.profile_img_url !== undefined ? udata.profile_img_url : null);
+      formData.append("cover_img_url", udata.cover_img_url !== undefined ? udata.cover_img_url : null);
       await axios
         .put("http://localhost:8000/v1/user/update", formData, {
           headers: {
@@ -63,6 +56,7 @@ const CreateCollectibleEdit = () => {
         })
         .then((res) => {
           console.log(res);
+          sessionStorage.setItem("userdata", JSON.stringify(res.data.data));
         });
     }
   };
@@ -172,8 +166,7 @@ const CreateCollectibleEdit = () => {
                     className="color-gray text-right"
                     style={{ fontSize: "10px" }}
                   >
-                    Link your Twitter account to gain more trust on the
-                    marketplace
+                    Link your Twitter account to gain more trust on the marketplace
                   </div>
                 </div>
                 <div className="prize-single-collectible">
@@ -264,7 +257,7 @@ const CreateCollectibleEdit = () => {
                     id="profileImg"
                     className="img-btn w-100 ml-0 "
                   />
-                  <label for="profileImg">
+                  <label htmlFor="profileImg">
                     {" "}
                     <img
                       src="/static/media/bg_img.156953d5.png"
@@ -298,7 +291,7 @@ const CreateCollectibleEdit = () => {
                     id="coverImg"
                     className="img-btn w-100 ml-0"
                   />
-                  <label for="coverImg">
+                  <label htmlFor="coverImg">
                     {" "}
                     <img
                       src="/static/media/bg_img.156953d5.png"
@@ -328,8 +321,8 @@ const CreateCollectibleEdit = () => {
 
                 <div className="col-sm-12 col-lg-6 ">
                   <span className="color-gray ">
-                    Proceed with verification process to get <br /> more
-                    visibility and gain trust on Starlight <br /> Marketplace.
+                    Proceed with verification process to get <br />
+                    more visibility and gain trust on Starlight <br /> Marketplace.
                   </span>
                 </div>
 

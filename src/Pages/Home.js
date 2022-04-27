@@ -545,7 +545,7 @@ const Home = () => {
                     </div>
                     <button
                       type="button"
-                      class="ant-btn ant-btn-default Explore Collection"
+                      className="ant-btn ant-btn-default Explore Collection"
                     >
                       <span>How to Buy</span>
                     </button>
@@ -565,7 +565,7 @@ const Home = () => {
                     </div>
                     <button
                       type="button"
-                      class="ant-btn ant-btn-default Explore Collection"
+                      className="ant-btn ant-btn-default Explore Collection"
                     >
                       <span>How to Buy</span>
                     </button>
@@ -625,7 +625,7 @@ const Home = () => {
                     </div>
                     <button
                       type="button"
-                      class="ant-btn ant-btn-default Explore Collection"
+                      className="ant-btn ant-btn-default Explore Collection"
                     >
                       <span>How to Buy</span>
                     </button>
@@ -665,7 +665,7 @@ const Home = () => {
                     </div>
                     <button
                       type="button"
-                      class="ant-btn ant-btn-default Explore Collection"
+                      className="ant-btn ant-btn-default Explore Collection"
                     >
                       <span>How to Buy</span>
                     </button>
@@ -713,12 +713,14 @@ const Home = () => {
 
             <div className="col-sm-12 col-md-7 col-lg-7 home-artwork-week-day position-relative d-flex flex-column align-items-stretch justify-content-between">
               <div className="d-flex overflow-auto justify-content-between w-100 justify-content-between">
-                {all_atwork.map((artwork) => (
-                  <ArtWork
-                    title={artwork.my_title}
-                    artworkimg={artwork.artimg}
-                    setOpenImage={(imgFlag) => setOpenImage(imgFlag)}
-                  />
+                {all_atwork.map((artwork, key) => (
+                  <div key={key} className="art-list">
+                    <ArtWork
+                      title={artwork.my_title}
+                      artworkimg={artwork.artimg}
+                      setOpenImage={(imgFlag) => setOpenImage(imgFlag)}
+                    />
+                  </div>
                 ))}
               </div>
             </div>
@@ -746,13 +748,13 @@ const Home = () => {
 
           <div className="topSellerContent mt-5">
             <div className="d-flex">
-              {top_seller_profile.map((top_seller_profile) => (
-                <TopCard
-                  topcoverimg={top_seller_profile.topcover_img}
-                  topuserimg={top_seller_profile.topuser_img}
-                  title={top_seller_profile.topuser_name}
-                  Price={top_seller_profile.topuser_price}
-                />
+              {top_seller_profile.map((top_seller_profile, key) => (
+                  <TopCard
+                    topcoverimg={top_seller_profile.topcover_img}
+                    topuserimg={top_seller_profile.topuser_img}
+                    title={top_seller_profile.topuser_name}
+                    Price={top_seller_profile.topuser_price}
+                  />
               ))}
             </div>
           </div>
@@ -779,13 +781,13 @@ const Home = () => {
 
           <div className="topSellerContent mt-5">
             <div className="d-flex">
-              {top_buyers_profile.map((top_seller_profile) => (
-                <TopCard
-                  topcoverimg={top_seller_profile.topcover_img}
-                  topuserimg={top_seller_profile.topuser_img}
-                  title={top_seller_profile.topuser_name}
-                  Price={top_seller_profile.topuser_price}
-                />
+              {top_buyers_profile.map((top_seller_profile, key) => (
+                  <TopCard
+                    topcoverimg={top_seller_profile.topcover_img}
+                    topuserimg={top_seller_profile.topuser_img}
+                    title={top_seller_profile.topuser_name}
+                    Price={top_seller_profile.topuser_price}
+                  />
               ))}
             </div>
           </div>
@@ -806,16 +808,16 @@ const Home = () => {
           </div>
 
           <div className="row  mt-5">
-            {hot_bide.map((bide_desk) => (
-              <HotBids
-                Coverimg={bide_desk.cover_bide}
-                heartcount={bide_desk.bide_heartcount}
-                time={bide_desk.bide_time}
-                title={bide_desk.bide_name}
-                WETH={bide_desk.bide_weth}
-                bid={bide_desk.bide_bid}
-                isOpenInProfile={false}
-              />
+            {hot_bide.map((bide_desk, key) => (
+                <HotBids
+                  Coverimg={bide_desk.cover_bide}
+                  heartcount={bide_desk.bide_heartcount}
+                  time={bide_desk.bide_time}
+                  title={bide_desk.bide_name}
+                  WETH={bide_desk.bide_weth}
+                  bid={bide_desk.bide_bid}
+                  isOpenInProfile={false}
+                />
             ))}
           </div>
         </div>
@@ -839,17 +841,17 @@ const Home = () => {
             slidesPerView={1}
             navigation={true}
           >
-            {slide_hot_bid.map((bide_desk) => (
+            {slide_hot_bid.map((bide_desk, key) => (
               <SwiperSlide>
-                <HotBids
-                  Coverimg={bide_desk.cover_bide}
-                  heartcount={bide_desk.bide_heartcount}
-                  time={bide_desk.bide_time}
-                  title={bide_desk.bide_name}
-                  WETH={bide_desk.bide_weth}
-                  bid={bide_desk.bide_bid}
-                  isOpenInProfile={false}
-                />
+                  <HotBids
+                    Coverimg={bide_desk.cover_bide}
+                    heartcount={bide_desk.bide_heartcount}
+                    time={bide_desk.bide_time}
+                    title={bide_desk.bide_name}
+                    WETH={bide_desk.bide_weth}
+                    bid={bide_desk.bide_bid}
+                    isOpenInProfile={false}
+                  />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -870,18 +872,18 @@ const Home = () => {
           </div>
 
           <div className="row mt-5">
-            {live_auction.map((live_a) => (
-              <LiveAuctions
-                Coverimg={live_a.cover_img}
-                title={live_a.auction_name}
-                heartcount={live_a.h_count}
-                User1={live_a.auc_user1}
-                User2={live_a.auc_user2}
-                User3={live_a.auc_user3}
-                WETH={live_a.auction_WETH}
-                bid={live_a.auction_bid}
-                isOpenInProfile={false}
-              />
+            {live_auction.map((live_a, key) => (
+                <LiveAuctions
+                  Coverimg={live_a.cover_img}
+                  title={live_a.auction_name}
+                  heartcount={live_a.h_count}
+                  User1={live_a.auc_user1}
+                  User2={live_a.auc_user2}
+                  User3={live_a.auc_user3}
+                  WETH={live_a.auction_WETH}
+                  bid={live_a.auction_bid}
+                  isOpenInProfile={false}
+                />
             ))}
           </div>
         </div>
@@ -905,19 +907,19 @@ const Home = () => {
             slidesPerView={1}
             navigation={true}
           >
-            {slide_live_auction.map((live_a) => (
+            {slide_live_auction.map((live_a, key) => (
               <SwiperSlide>
-                <LiveAuctions
-                  Coverimg={live_a.cover_img}
-                  title={live_a.auction_name}
-                  heartcount={live_a.h_count}
-                  User1={live_a.auc_user1}
-                  User2={live_a.auc_user2}
-                  User3={live_a.auc_user3}
-                  WETH={live_a.auction_WETH}
-                  bid={live_a.auction_bid}
-                  isOpenInProfile={false}
-                />
+                  <LiveAuctions
+                    Coverimg={live_a.cover_img}
+                    title={live_a.auction_name}
+                    heartcount={live_a.h_count}
+                    User1={live_a.auc_user1}
+                    User2={live_a.auc_user2}
+                    User3={live_a.auc_user3}
+                    WETH={live_a.auction_WETH}
+                    bid={live_a.auction_bid}
+                    isOpenInProfile={false}
+                  />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -939,13 +941,13 @@ const Home = () => {
 
           <div className="topSellerContent mt-5">
             <div className="d-flex overflow-auto justify-content-between w-100 mb-4">
-              {top_card.map((collr_) => (
-                <TopCard
-                  topcoverimg={collr_.top_cover}
-                  topuserimg={collr_.top_user}
-                  title={collr_.top_name}
-                  Price={collr_.top_price}
-                />
+              {top_card.map((collr_, key) => (
+                  <TopCard
+                    topcoverimg={collr_.top_cover}
+                    topuserimg={collr_.top_user}
+                    title={collr_.top_name}
+                    Price={collr_.top_price}
+                  />
               ))}
             </div>
           </div>
@@ -971,14 +973,15 @@ const Home = () => {
               slidesPerView={1}
               navigation={true}
             >
-              {slide_data.map((collr_) => (
+              {slide_data.map((collr_, key) => (
                 <SwiperSlide>
-                  <TopCard
-                    topcoverimg={collr_.top_cover}
-                    topuserimg={collr_.top_user}
-                    title={collr_.top_name}
-                    Price={collr_.top_price}
-                  />
+                  
+                    <TopCard
+                      topcoverimg={collr_.top_cover}
+                      topuserimg={collr_.top_user}
+                      title={collr_.top_name}
+                      Price={collr_.top_price}
+                    />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -1022,18 +1025,19 @@ const Home = () => {
               aria-labelledby="all-tab"
             >
               <div className="row">
-                {live_auction.map((live_a) => (
-                  <LiveAuctions
-                    Coverimg={live_a.cover_img}
-                    title={live_a.auction_name}
-                    heartcount={live_a.h_count}
-                    User1={live_a.auc_user1}
-                    User2={live_a.auc_user2}
-                    User3={live_a.auc_user3}
-                    WETH={live_a.auction_WETH}
-                    bid={live_a.auction_bid}
-                    isOpenInProfile={false}
-                  />
+                {live_auction.map((live_a, key) => (
+                  
+                    <LiveAuctions
+                      Coverimg={live_a.cover_img}
+                      title={live_a.auction_name}
+                      heartcount={live_a.h_count}
+                      User1={live_a.auc_user1}
+                      User2={live_a.auc_user2}
+                      User3={live_a.auc_user3}
+                      WETH={live_a.auction_WETH}
+                      bid={live_a.auction_bid}
+                      isOpenInProfile={false}
+                    />
                 ))}
 
                 {hot_bide.map((bide_desk, ho_B) => (
@@ -1057,18 +1061,19 @@ const Home = () => {
               aria-labelledby="art-tab"
             >
               <div className="row">
-                {live_auction.map((live_a) => (
-                  <LiveAuctions
-                    Coverimg={live_a.cover_img}
-                    title={live_a.auction_name}
-                    heartcount={live_a.h_count}
-                    User1={live_a.auc_user1}
-                    User2={live_a.auc_user2}
-                    User3={live_a.auc_user3}
-                    WETH={live_a.auction_WETH}
-                    bid={live_a.auction_bid}
-                    isOpenInProfile={false}
-                  />
+                {live_auction.map((live_a, key) => (
+                  
+                    <LiveAuctions
+                      Coverimg={live_a.cover_img}
+                      title={live_a.auction_name}
+                      heartcount={live_a.h_count}
+                      User1={live_a.auc_user1}
+                      User2={live_a.auc_user2}
+                      User3={live_a.auc_user3}
+                      WETH={live_a.auction_WETH}
+                      bid={live_a.auction_bid}
+                      isOpenInProfile={false}
+                    />
                 ))}
               </div>
             </div>
@@ -1080,18 +1085,19 @@ const Home = () => {
               aria-labelledby="photo-tab"
             >
               <div className="row">
-                {live_auction.map((live_a) => (
-                  <LiveAuctions
-                    Coverimg={live_a.cover_img}
-                    title={live_a.auction_name}
-                    heartcount={live_a.h_count}
-                    User1={live_a.auc_user1}
-                    User2={live_a.auc_user2}
-                    User3={live_a.auc_user3}
-                    WETH={live_a.auction_WETH}
-                    bid={live_a.auction_bid}
-                    isOpenInProfile={false}
-                  />
+                {live_auction.map((live_a, key) => (
+                  
+                    <LiveAuctions
+                      Coverimg={live_a.cover_img}
+                      title={live_a.auction_name}
+                      heartcount={live_a.h_count}
+                      User1={live_a.auc_user1}
+                      User2={live_a.auc_user2}
+                      User3={live_a.auc_user3}
+                      WETH={live_a.auction_WETH}
+                      bid={live_a.auction_bid}
+                      isOpenInProfile={false}
+                    />
                 ))}
               </div>
             </div>
@@ -1103,18 +1109,19 @@ const Home = () => {
               aria-labelledby="games-tab"
             >
               <div className="row">
-                {live_auction.map((live_a) => (
-                  <LiveAuctions
-                    Coverimg={live_a.cover_img}
-                    title={live_a.auction_name}
-                    heartcount={live_a.h_count}
-                    User1={live_a.auc_user1}
-                    User2={live_a.auc_user2}
-                    User3={live_a.auc_user3}
-                    WETH={live_a.auction_WETH}
-                    bid={live_a.auction_bid}
-                    isOpenInProfile={false}
-                  />
+                {live_auction.map((live_a, key) => (
+                  
+                    <LiveAuctions
+                      Coverimg={live_a.cover_img}
+                      title={live_a.auction_name}
+                      heartcount={live_a.h_count}
+                      User1={live_a.auc_user1}
+                      User2={live_a.auc_user2}
+                      User3={live_a.auc_user3}
+                      WETH={live_a.auction_WETH}
+                      bid={live_a.auction_bid}
+                      isOpenInProfile={false}
+                    />
                 ))}
               </div>
             </div>
@@ -1126,18 +1133,18 @@ const Home = () => {
               aria-labelledby="metaverses-tab"
             >
               <div className="row">
-                {live_auction.map((live_a) => (
-                  <LiveAuctions
-                    Coverimg={live_a.cover_img}
-                    title={live_a.auction_name}
-                    heartcount={live_a.h_count}
-                    User1={live_a.auc_user1}
-                    User2={live_a.auc_user2}
-                    User3={live_a.auc_user3}
-                    WETH={live_a.auction_WETH}
-                    bid={live_a.auction_bid}
-                    isOpenInProfile={false}
-                  />
+                {live_auction.map((live_a, key) => (
+                    <LiveAuctions
+                      Coverimg={live_a.cover_img}
+                      title={live_a.auction_name}
+                      heartcount={live_a.h_count}
+                      User1={live_a.auc_user1}
+                      User2={live_a.auc_user2}
+                      User3={live_a.auc_user3}
+                      WETH={live_a.auction_WETH}
+                      bid={live_a.auction_bid}
+                      isOpenInProfile={false}
+                    />
                 ))}
               </div>
             </div>
@@ -1148,18 +1155,19 @@ const Home = () => {
               aria-labelledby="music-tab"
             >
               <div className="row">
-                {live_auction.map((live_a) => (
-                  <LiveAuctions
-                    Coverimg={live_a.cover_img}
-                    title={live_a.auction_name}
-                    heartcount={live_a.h_count}
-                    User1={live_a.auc_user1}
-                    User2={live_a.auc_user2}
-                    User3={live_a.auc_user3}
-                    WETH={live_a.auction_WETH}
-                    bid={live_a.auction_bid}
-                    isOpenInProfile={false}
-                  />
+                {live_auction.map((live_a, key) => (
+                  
+                    <LiveAuctions
+                      Coverimg={live_a.cover_img}
+                      title={live_a.auction_name}
+                      heartcount={live_a.h_count}
+                      User1={live_a.auc_user1}
+                      User2={live_a.auc_user2}
+                      User3={live_a.auc_user3}
+                      WETH={live_a.auction_WETH}
+                      bid={live_a.auction_bid}
+                      isOpenInProfile={false}
+                    />
                 ))}
               </div>
             </div>
@@ -1171,18 +1179,19 @@ const Home = () => {
               aria-labelledby="memes-tab"
             >
               <div className="row">
-                {live_auction.map((live_a) => (
-                  <LiveAuctions
-                    Coverimg={live_a.cover_img}
-                    title={live_a.auction_name}
-                    heartcount={live_a.h_count}
-                    User1={live_a.auc_user1}
-                    User2={live_a.auc_user2}
-                    User3={live_a.auc_user3}
-                    WETH={live_a.auction_WETH}
-                    bid={live_a.auction_bid}
-                    isOpenInProfile={false}
-                  />
+                {live_auction.map((live_a, key) => (
+                  
+                    <LiveAuctions
+                      Coverimg={live_a.cover_img}
+                      title={live_a.auction_name}
+                      heartcount={live_a.h_count}
+                      User1={live_a.auc_user1}
+                      User2={live_a.auc_user2}
+                      User3={live_a.auc_user3}
+                      WETH={live_a.auction_WETH}
+                      bid={live_a.auction_bid}
+                      isOpenInProfile={false}
+                    />
                 ))}
               </div>
             </div>

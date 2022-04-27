@@ -9,6 +9,7 @@ export default function LiveAuctions({
   WETH,
   bid,
   heartcount,
+  liked = false,
   Coverimg,
   User1,
   User2,
@@ -55,8 +56,11 @@ export default function LiveAuctions({
           <div className="live-image">
             <img src={Coverimg} width="100%" alt="" />
             <div className="card-heart-icon">
-              <i className="fas fa-heart" />
-              {heartcount}
+              {liked ?
+                <><i className="fas fa-heart" /> {heartcount}</>
+                :
+                <><i className="far fa-heart" /> {heartcount}</>
+              }
             </div>
             <Dropdown overlay={menu}>
               <div

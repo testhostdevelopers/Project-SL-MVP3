@@ -31,14 +31,119 @@ const { TabPane } = Tabs;
 
 const Profile = (props) => {
   // console.log("props.pImage", props.pImage, "sdasadsa");
+  var apiToken = sessionStorage.getItem("apiToken");
+  const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [reportPopup, setReportPopup] = useState(false);
-
   const [buttonText, setButtonText] = useState("Add Cover");
-  var [udata, setUdata] = useState();
-
+  let [udata, setUdata] = useState();
+  let [userCollectibleList, setUserCollectibleList] = useState([]);
+  let [userCollectionList, setUserCollectionList] = useState([]);
+  let [userLikedCollectionsList, setUserLikedCollectionsList] = useState([]);
+  let [userLikedCollectibleList, setUserLikedCollectibleList] = useState([]);
+  const userCollectibleListFunc = async () => {
+    await axios
+      .get('http://localhost:8000/v1/collectible/getusercollectiblelist', {
+          data: {
+            user_id: userData._id
+          },
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        }
+      )
+      .then(response => {
+        response.data.data.forEach((element) => {
+          if (element.likedBy.includes(userData._id)) {
+            element.like = true;
+          } else {
+            element.like = false;
+          }
+        });
+        setUserCollectibleList(response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  const userLikedCollections = async () => {
+    await axios
+      .get('http://localhost:8000/v1/collection/getuserlikedcollectionslist', {
+          data: {
+            user_id: userData._id
+          },
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        }
+      )
+      .then(response => {
+        response.data.data.forEach((element) => {
+          if (element.likedBy.includes(userData._id)) {
+            element.like = true;
+          } else {
+            element.like = false;
+          }
+        });
+        setUserLikedCollectionsList(response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  const userLikedCollectible = async () => {
+    await axios
+      .get('http://localhost:8000/v1/collectible/getuserlikedcollectiblelist', {
+          data: {
+            user_id: userData._id
+          },
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        }
+      )
+      .then(response => {
+        response.data.data.forEach((element) => {
+          if (element.likedBy.includes(userData._id)) {
+            element.like = true;
+          } else {
+            element.like = false;
+          }
+        });
+        setUserLikedCollectibleList(response.data.data);
+        // console.log('setUserLikedCollectibleList', response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  const userCollectionListFunc = async () => {
+    await axios
+      .get('http://localhost:8000/v1/collection/getusercollectionlist', {
+          data: {
+            user_id: userData._id
+          },
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        }
+      )
+      .then(response => {
+        response.data.data.forEach((element) => {
+          if (element.likedBy.includes(userData._id)) {
+            element.like = true;
+          } else {
+            element.like = false;
+          }
+        });
+        setUserCollectionList(response.data.data);
+        // console.log('setUserCollectionList', response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   useEffect(() => {
     if (sessionStorage.getItem("apiToken")) {
-      var apiToken = sessionStorage.getItem("apiToken");
       axios
         .get("http://localhost:8000/v1/user/getUser", {
           headers: {
@@ -48,6 +153,10 @@ const Profile = (props) => {
         .then((res) => {
           setUdata(res.data.data);
         });
+      userCollectibleListFunc();
+      userCollectionListFunc();
+      userLikedCollections();
+      userLikedCollectible();
     }
   }, []);
 
@@ -71,7 +180,6 @@ const Profile = (props) => {
 
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
-
   const profileImage = React.useRef(null);
   const profileUploader = React.useRef(null);
 
@@ -111,7 +219,7 @@ const Profile = (props) => {
         }
         if (e.target.id === "profilephoto") {
           const reader = new FileReader();
-          const { current } = profileImage;
+          const {current} = profileImage;
           current.file = file;
           reader.onload = (e) => {
             current.src = e.target.result;
@@ -121,7 +229,6 @@ const Profile = (props) => {
       }
     }
   };
-
   /*const handleprofilepicUploadr = async (e) => {
     const [file] = e.target.files;
     if (file) {
@@ -182,7 +289,7 @@ const Profile = (props) => {
                     </div>
 
                     <label
-                      for="uploadcoverphoto"
+                      htmlFor="uploadcoverphoto"
                       className="bg-white border-gray edit-profile"
                     >
                       {" "}
@@ -235,11 +342,11 @@ const Profile = (props) => {
                     <div className="profile-usr-info">
                       <p>
                         {udata == null ? "" : udata.bio}{" "}
-                        <a href="#0" className="read-more-link">
+                        {udata === null && udata.bio.length > 50 ? <a href="#0" className="read-more-link">
                           Read more
-                        </a>
+                        </a> : ""}
                       </p>
-                      <a href="#0" className="website-link">
+                      <a href={udata === undefined ? "" : udata.personal_site} className="website-link">
                         <span>
                           <img src={EarthIcon} alt={""} />
                         </span>
@@ -247,10 +354,10 @@ const Profile = (props) => {
                       </a>
                       <div className="follows-block">
                         <span>
-                          <b>127 </b>Followers
+                          <b>{udata == null || udata.followers == null ? "0" : udata.followers} </b>Followers
                         </span>
                         <span>
-                          <b>17 </b>Following
+                        <b>{udata == null || udata.following == null ? "0" : udata.following} </b>Following
                         </span>
                       </div>
                     </div>
@@ -277,7 +384,7 @@ const Profile = (props) => {
                             />
                           </svg>
                         </button>
-                        <ProfileLinks />
+                        <ProfileLinks/>
                       </div>
 
                       <Dropdown overlay={singleoption}>
@@ -303,7 +410,7 @@ const Profile = (props) => {
               </header>
 
               <main className="profile-tab-menu">
-                <Tabs defaultActiveKey="4" centered>
+                <Tabs defaultActiveKey="3" centered>
                   <TabPane tab="On sale" key="1">
                     <div className="row mt-5 mb-5">
                       <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
@@ -367,71 +474,130 @@ const Profile = (props) => {
                       </div>
                     </div>
                   </TabPane>
-                  <TabPane tab="Created" key="3">
-                    <div className="row mt-5 mb-5">
-                      <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
-                        <h3>Not items found</h3>
-                        <span className="color-gray">
+                  <TabPane tab={'My Collectible' + ' (' + userCollectibleList.length + ')'} key="3">
+                    <div className="liveAuction proile-liked-filter">
+                      {userCollectibleList.length > 0 ?
+                        <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                          <div className="row ">
+                            {userCollectibleList.map((SingleCollectible, key) => (
+                              <LiveAuctions
+                                Coverimg={artWorkWeek1}
+                                liked={SingleCollectible.like}
+                                title={SingleCollectible.title}
+                                heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                                User1={topSellerUser1}
+                                User2={topSellerUser2}
+                                User3={topSellerUser3}
+                                WETH={SingleCollectible.price}
+                                bid="Highest bid 1/1"
+                              />
+                            ))}
+                          </div>
+                        </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                          <h3>Not items found</h3>
+                          <span className="color-gray">
                           Come back soon or browse the items on our marketplace.
                         </span>
-                        <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
-                          Browse marketplace
-                        </button>
-                      </div>
+                          <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
+                            Browse marketplace
+                          </button>
+                        </div>}
                     </div>
                   </TabPane>
-                  <TabPane tab="Liked (2)" key="4">
+                  <TabPane tab={'My Collection' + ' (' + userCollectionList.length + ')'} key="4">
                     <div className="liveAuction proile-liked-filter">
-                      <div className="row ">
-                        <LiveAuctions
-                          Coverimg={artWorkWeek1}
-                          title="Memescalf#782021"
-                          heartcount="24"
-                          User1={topSellerUser1}
-                          User2={topSellerUser2}
-                          User3={topSellerUser3}
-                          WETH="1.2 WETH"
-                          bid="Highest bid 1/1"
-                        />
-                        <LiveAuctions
-                          Coverimg={artWorkWeek1}
-                          title="Memescalf#782021"
-                          heartcount="24"
-                          User1={topSellerUser1}
-                          User2={topSellerUser2}
-                          User3={topSellerUser3}
-                          WETH="1.2 WETH"
-                          bid="Highest bid 1/1"
-                        />
-                        <LiveAuctions
-                          Coverimg={artWorkWeek1}
-                          title="Memescalf#782021"
-                          heartcount="24"
-                          User1={topSellerUser1}
-                          User2={topSellerUser2}
-                          User3={topSellerUser3}
-                          WETH="1.2 WETH"
-                          bid="Highest bid 1/1"
-                        />
-                        <LiveAuctions
-                          Coverimg={artWorkWeek1}
-                          title="Memescalf#782021"
-                          heartcount="24"
-                          User1={topSellerUser1}
-                          User2={topSellerUser2}
-                          User3={topSellerUser3}
-                          WETH="1.2 WETH"
-                          bid="Highest bid 1/1"
-                        />
-                      </div>
+                      {userCollectionList.length > 0 ?
+                        <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                          <div className="row ">
+                            {userCollectionList.map((SingleCollection, key) => (
+                              <LiveAuctions
+                                Coverimg={artWorkWeek1}
+                                liked={SingleCollection.like}
+                                title={SingleCollection.title}
+                                heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
+                                User1={topSellerUser1}
+                                User2={topSellerUser2}
+                                User3={topSellerUser3}
+                                WETH={SingleCollection.price}
+                                bid="Highest bid 1/1"
+                              />
+                            ))}
+                          </div>
+                        </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                          <h3>Not items found</h3>
+                          <span className="color-gray">
+                          Come back soon or browse the items on our marketplace.
+                        </span>
+                          <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
+                            Browse marketplace
+                          </button>
+                        </div>}
                     </div>
                   </TabPane>
-
-                  <TabPane tab="Activity" key="5">
+                  <TabPane tab={'Liked Collectible (' + userLikedCollectibleList.length + ')'} key="5">
+                    <div className="liveAuction proile-liked-filter">
+                      {userLikedCollectibleList.length > 0 ?
+                        <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                          <div className="row ">
+                        {userLikedCollectibleList.map((SingleCollectible, key) => (
+                          <LiveAuctions
+                            Coverimg={artWorkWeek1}
+                            liked={SingleCollectible.like}
+                            title={SingleCollectible.title}
+                            heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                            User1={topSellerUser1}
+                            User2={topSellerUser2}
+                            User3={topSellerUser3}
+                            WETH="1.2 WETH"
+                            bid="Highest bid 1/1"
+                          />
+                        ))}
+                      </div>
+                        </div>: <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                          <h3>Not items found</h3>
+                          <span className="color-gray">
+                          Come back soon or browse the items on our marketplace.
+                        </span>
+                          <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
+                            Browse marketplace
+                          </button>
+                        </div>}
+                    </div>
+                  </TabPane>
+                  <TabPane tab={'Liked Collections (' + userLikedCollectionsList.length + ')'} key="6">
+                    <div className="liveAuction proile-liked-filter">
+                      {userLikedCollectibleList.length > 0 ?
+                        <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                          <div className="row ">
+                            {userLikedCollectionsList.map((SingleCollection, key) => (
+                              <LiveAuctions
+                                Coverimg={artWorkWeek1}
+                                liked={SingleCollection.like}
+                                title={SingleCollection.title}
+                                heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
+                                User1={topSellerUser1}
+                                User2={topSellerUser2}
+                                User3={topSellerUser3}
+                                WETH="1.2 WETH"
+                                bid="Highest bid 1/1"
+                              />
+                            ))}
+                          </div>
+                        </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                          <h3>Not items found</h3>
+                          <span className="color-gray">
+                          Come back soon or browse the items on our marketplace.
+                        </span>
+                          <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
+                            Browse marketplace
+                          </button>
+                        </div>}
+                    </div>
+                  </TabPane>
+                  <TabPane tab="Activity" key="7">
                     <Activitytab />
                   </TabPane>
-
-                  <TabPane tab="Following (4)" key="6">
+                  <TabPane tab="Following (4)" key="8">
                     <div className="topSeller">
                       <div className="w-100 d-flex justify-content-end">
                         <button className="profile-activity-filter-mobile d-web-none">
@@ -510,7 +676,7 @@ const Profile = (props) => {
                       </div>
                     </div>
                   </TabPane>
-                  <TabPane tab="Followers (12)" key="7">
+                  <TabPane tab="Followers (12)" key="9">
                     <div className="topSeller">
                       <div className="">
                         <div className="w-100 d-flex justify-content-end">
@@ -591,7 +757,7 @@ const Profile = (props) => {
                       </div>
                     </div>
                   </TabPane>
-                  <TabPane tab="Hidden" key="8">
+                  <TabPane tab="Hidden" key="10">
                     <div className="row mt-5 mb-5">
                       <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                         <h3>Not items found</h3>

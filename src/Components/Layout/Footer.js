@@ -198,7 +198,7 @@ const Footer = () => {
               className="d-flex justify-content-between"
               style={{ fontSize: "12px" }}
             >
-              <div className="d-mobile-none">© 2021, All Rights Reserved.</div>
+              <div className="d-mobile-none">© 2022, All Rights Reserved.</div>
               <div className="margin-mobile-left"><Link to="#0" className="ft-link">Privacy Policy</Link></div>
               <div className="ml-3"><Link to="#0" className="ft-link">Terms of Service</Link></div>
               <div className="d-sm-block d-lg-none">Language: English</div>
@@ -252,7 +252,7 @@ const Footer = () => {
             </div>
 
             <div className="d-web-none">
-              <small>© 2021, All Rights Reserved.</small>
+              <small>© 2022, All Rights Reserved.</small>
             </div>
           </div>
         </div>
