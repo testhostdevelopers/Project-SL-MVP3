@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { Menu, Dropdown } from "antd";
 import ReportPopup from "../Components/Popup/ReportPopup";
 // import { Link } from "react-router-dom";
@@ -6,8 +7,10 @@ import ReportPopup from "../Components/Popup/ReportPopup";
 
 export default function LiveAuctions({
   title,
+  id = '',
   WETH,
   bid,
+  isCollection = false,
   heartcount,
   liked = false,
   Coverimg,
@@ -16,13 +19,62 @@ export default function LiveAuctions({
   User3,
   isOpenInProfile,
 }) {
+  var apiToken = sessionStorage.getItem("apiToken");
+  const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [ReportPopups, setReportPopup] = useState(false);
   // const [singlePopup, setSinglePopup] = useState(false);
   // console.log('singlePopup', singlePopup);
   const lastSegment = window.location.pathname.substring(
     window.location.pathname.lastIndexOf("/") + 1
   );
-  // console.log(lastSegment);
+  const likeCollectible = async () => {
+    let a = '';
+    if (isCollection === true) {
+      a = 'collection';
+    } else {
+      a = 'collectible';
+    }
+    if (id.length) {
+      await axios
+        .put('http://localhost:8000/v1/' + a + '/like/' + id, {
+          user: userData._id
+        }, {
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        })
+        .then(response => {
+          console.log('response', response);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  };
+  const disLikeCollectible = async () => {
+    let a = '';
+    if (isCollection === true) {
+      a = 'collection';
+    } else {
+      a = 'collectible';
+    }
+    if (id.length) {
+      await axios
+        .put('http://localhost:8000/v1/' + a + '/unlike/' + id, {
+          user: userData._id
+        }, {
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        })
+        .then(response => {
+          console.log('response', response);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  };
   let menu;
   if (lastSegment === "Profile") {
     menu = (
@@ -57,9 +109,9 @@ export default function LiveAuctions({
             <img src={Coverimg} width="100%" alt="" />
             <div className="card-heart-icon">
               {liked ?
-                <><i className="fas fa-heart" /> {heartcount}</>
+                <><i onClick={disLikeCollectible} className="fas fa-heart" /> {heartcount}</>
                 :
-                <><i className="far fa-heart" /> {heartcount}</>
+                <><i onClick={likeCollectible} className="far fa-heart" /> {heartcount}</>
               }
             </div>
             <Dropdown overlay={menu}>

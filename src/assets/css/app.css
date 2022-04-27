@@ -750,6 +750,7 @@ footer section .footer-in-email {
 .liveAuction .card-heart-icon i {
   color: var(--red-color);
   margin-right: 5px;
+  cursor: pointer;
 }
 
 .liveAuction .card-select-icon {
