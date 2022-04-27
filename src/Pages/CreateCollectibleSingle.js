@@ -10,9 +10,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Keyboard, Pagination, Navigation } from "swiper/core";
 import { motion } from "framer-motion";
 import Arweave from "arweave";
+import { NFTStorage, File, Blob } from 'nft.storage'; 
 import axios from "axios";
 
 SwiperCore.use([Keyboard, Pagination, Navigation]);
+
+const NFT_STORAGE_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEYyNGU0OEJjMTdBMzE3Q2MzYjY4RjYyMEFEMTE3NTRDMDdmMDYxZWIiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY0ODE5MDI0NzY5MiwibmFtZSI6Im5mdCJ9.twfnx5glu50givzgLNy0-I_ocYZXQ97MxKZkLeCGzL4';
+const client = new NFTStorage({ token: NFT_STORAGE_TOKEN })
+var pubKey;
 
 const CreateCollectibleSingle = () => {
   const apiToken = sessionStorage.getItem("apiToken");
@@ -58,7 +63,7 @@ const CreateCollectibleSingle = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const imageUpload = async (file) => {
-    // console.log("imageUpload file details:-", file);
+    console.log("imageUpload file details:-", file);
     const arweave = Arweave.init({
       host: "arweave.net", // Hostname or IP address for a Arweave host
       port: 443, // Port
@@ -106,6 +111,56 @@ const CreateCollectibleSingle = () => {
     //   setUdata({ img_path: imageUrl })
   };
 
+  const uploadNftStorage = async (file) => {
+    console.log(file)
+    let fileExt = file.name.split(".").pop();
+    let readers = new FileReader();
+    readers.readAsDataURL(file);
+    const imageFile = new File([ file ], { type: `image/${fileExt}` })
+    console.log(imageFile)
+    console.log(fileExt)
+    const metadata = await client.store({
+      image: imageFile,
+      name: "Storing the World's Most Valuable Virtual Assets with NFT.Storage",
+      description: "The metaverse is here. Where is it all being stored?",
+      properties: {
+        type: "blog-post",
+        origins: {
+          http: "https://nft.storage/blog/post/2021-11-30-hello-world-nft-storage/",
+          ipfs: "ipfs://bafybeieh4gpvatp32iqaacs6xqxqitla4drrkyyzq6dshqqsilkk3fqmti/blog/post/2021-11-30-hello-world-nft-storage/"
+        },
+        authors: [{ name: "David Choi" }],
+        content: {
+          "text/markdown": "The last year has witnessed the explosion of NFTs onto the world’s mainstage. From fine art to collectibles to music and media, NFTs are quickly demonstrating just how quickly grassroots Web3 communities can grow, and perhaps how much closer we are to mass adoption than we may have previously thought. <... remaining content omitted ...>"
+        }
+      }
+    })
+    console.log(metadata)
+
+    const imageUrl = metadata.url;
+    const imageUrlNft = metadata.ipnft + '.ipfs.nftstorage.link';
+    console.log(imageUrl)
+    console.log(imageUrlNft)
+    setUdata({...udata, img_path: imageUrlNft })
+
+    // const connection = new Connection(  
+    //   clusterApiUrl('devnet'),
+    //   'confirmed',
+    // );
+    // const keypair = Keypair.generate();
+    // const feePayerAirdropSignature = await connection.requestAirdrop(keypair.publicKey, LAMPORTS_PER_SOL);
+    // await connection.confirmTransaction(feePayerAirdropSignature);
+
+    // const mintNFTResponse = await actions.mintNFT({
+    //   connection,
+    //   wallet: new NodeWallet(keypair),
+    //   uri: imageUrl,
+    //   maxSupply: 1
+    // });
+
+    // console.log(mintNFTResponse);
+  }
+
   const handleprofilepicUploadr = (e) => {
     const file = e.target.files[0];
     // console.log('file', file);
@@ -125,9 +180,7 @@ const CreateCollectibleSingle = () => {
         }
       };
       reader.readAsDataURL(file);
-      imageUpload(e.target.files[0]).then((res) => {
-        // console.log(res);
-      });
+      uploadNftStorage(e.target.files[0]);
     }
   };
 
@@ -154,14 +207,15 @@ const CreateCollectibleSingle = () => {
         collection_id: udata.collection_id,
         title: udata.title,
         description: udata.description,
-        royalties: 11,
-        is_single: true,
+        royalties: 11,                                                                                                                                                                                                                                                                                                            
+        is_single: true,  
         img_path: udata.img_path,
         digital_key: "11",
         user_id: user_id._id,
         properties: udata.properties,
         alt_text_nft: udata.alterText,
       };
+      console.log(udata)
 
       // formData.append('put_on_market_place',udata.putOnMarket);
       // formData.append('price',price);
