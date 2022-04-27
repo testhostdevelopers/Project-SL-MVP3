@@ -12,6 +12,8 @@ import { motion } from "framer-motion";
 import Arweave from "arweave";
 import { NFTStorage, File, Blob } from 'nft.storage'; 
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 SwiperCore.use([Keyboard, Pagination, Navigation]);
 
@@ -216,7 +218,6 @@ const CreateCollectibleSingle = () => {
         alt_text_nft: udata.alterText,
       };
       console.log(udata)
-
       // formData.append('put_on_market_place',udata.putOnMarket);
       // formData.append('price',price);
       // formData.append('price_type',udata.price_type);
@@ -234,13 +235,24 @@ const CreateCollectibleSingle = () => {
       // console.log(formData);
       // console.log(form);
       await axios.post('http://localhost:8000/v1/collectible/create', form,
-      {
+        {
           headers: {
-              "Authorization" : `Bearer ${apiToken}`,
+            "Authorization": `Bearer ${apiToken}`,
           }
-      }).then((res) => {
-          // console.log(res)
-      });
+        })
+        .then((res) => {
+          console.log(res);
+          if(res.data.response_code === "API_ERROR") {
+            toast("" + res.data.error.message);
+          } else if (res.data.response_code === "API_SUCCESS") {
+            toast("" + res.data.message);
+          }
+        })
+        .catch(error => {
+          // this.setState({ errorMessage: error.message });
+          console.log('There was an error!', error);
+          toast("" + error);
+        });
     }
   };
 
@@ -263,7 +275,7 @@ const CreateCollectibleSingle = () => {
           setSingleCollectionPopup={setSingleCollectionPopup}
         />
       )}
-
+      <ToastContainer />
       <motion.section
         initial="hidden"
         animate="visible"

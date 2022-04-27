@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import priceP from "../assets/img/icons/custom/price_p.svg";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import starticon from "../assets/img/icons/custom/star_icon.png";
 import sonsuz from "../assets/img/icons/custom/open_p.png";
 import plus from "../assets/img/icons/custom/plus.svg";
@@ -108,14 +110,26 @@ const CreateCollectibleMulti = () => {
         properties: udata.properties,
         alt_text_nft: udata.alterText,
       };
+      console.log(form);
       await axios.post('http://localhost:8000/v1/collectible/create', form,
         {
           headers: {
             "Authorization" : `Bearer ${apiToken}`,
           }
-        }).then((res) => {
-        // console.log(res)
-      });
+        })
+        .then((res) => {
+          console.log(res);
+          if(res.data.response_code === "API_ERROR") {
+            toast("" + res.data.error.message);
+          } else if (res.data.response_code === "API_SUCCESS") {
+            toast("" + res.data.message);
+          }
+        })
+        .catch(error => {
+          // this.setState({ errorMessage: error.message });
+          console.log('There was an error!', error);
+          toast("" + error);
+        });
     }
   };
 
@@ -126,7 +140,7 @@ const CreateCollectibleMulti = () => {
           setSingleCollectionPopup={setSingleCollectionPopup}
         />
       )}
-
+      <ToastContainer />
       <motion.section
         initial="hidden"
         animate="visible"
