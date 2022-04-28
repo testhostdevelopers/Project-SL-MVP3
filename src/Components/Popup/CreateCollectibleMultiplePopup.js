@@ -13,6 +13,12 @@ const CreateCollectibleMultiplePopup = (props) => {
   let {setSingleCollectionPopup} = props;
   let [collectibleData, setCollectibleData] = useState({});
 
+  const makeURL = (text) => {
+    text = 'starlight.com/' + text.toLowerCase().replace(/ /g,'-').replace(/[^\w-]+/g,'');
+    // console.log(text);
+    return text;
+  }
+
   const handleCollectionPicUpload = (e) => {
     const file = e.target.files[0];
     setCollectibleData({...collectibleData, main_img: file.name});
@@ -183,16 +189,16 @@ const CreateCollectibleMultiplePopup = (props) => {
             <span className="color-gray mr-2">starlight.com/</span>
             <input
               type="text"
-              placeholder="Enter your custom URL  "
+              placeholder="Enter your custom URL"
               onChange={(e) => {
-                setCollectibleData({...collectibleData, custom_url: 'starlight.com/' + e.target.value});
+                setCollectibleData({...collectibleData, custom_url: makeURL(e.target.value)});
                 // console.log('collectibleData', collectibleData);
               }}
               className=" w-100 "
             />
           </div>
           <p className="color-gray">
-            <small>Will be used as public profile</small>
+            <small><b><u>{collectibleData.custom_url}</u></b></small>
           </p>
         </div>
 

@@ -624,7 +624,7 @@ const CreateCollectibleSingle = () => {
 
                 <div className="prize-single-collectible">
                   <input
-                    type="text"
+                    type="number"
                     onChange={(e) => {
                       setUdata({ ...udata, royalties: e.target.value });
                     }}

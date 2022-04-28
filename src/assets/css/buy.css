@@ -55,6 +55,7 @@
 .buy-art-work-week .card-heart-icon i {
   color: var(--red-color);
   margin-right: 5px;
+  cursor: pointer;
 }
 
 .buy-art-work-week .card-select-icon {

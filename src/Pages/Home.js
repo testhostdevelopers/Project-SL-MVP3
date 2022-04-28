@@ -835,7 +835,7 @@ const Home = () => {
           <div className="row  mt-5">
             {liveAuctionList.slice(0, 8).map((SingleCollectible, key) => (
               <LiveAuctions
-                isCollection={true}
+                isCollection={false}
                 id={SingleCollectible._id}
                 Coverimg={artWorkWeek1}
                 liked={SingleCollectible.like}
@@ -903,7 +903,7 @@ const Home = () => {
           <div className="row mt-5">
             {liveAuctionList.slice(0, 8).map((SingleCollectible, key) => (
               <LiveAuctions
-                isCollection={true}
+                isCollection={false}
                 id={SingleCollectible._id}
                 Coverimg={artWorkWeek1}
                 liked={SingleCollectible.like}
