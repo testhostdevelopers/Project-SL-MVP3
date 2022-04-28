@@ -416,9 +416,9 @@ const Navbar = (props) => {
                         {UPubKey == null ? "" : cutPkey}
                       </h4>
                       <div className="notipopup-display">
-                        <a href="/edit-profile" className="color-ping">
+                        <Link to="/edit-profile" className="color-ping">
                           <b>Set display name</b>
-                        </a>
+                        </Link>
                         {/* <a href="#0" className="color-ping" for="profilephoto" onClick={() => profileUploader.current.click()}><b>Upload profile picture</b></a>
                                                 <div className="profile-user-pictures">
                                                     <input
@@ -1026,9 +1026,9 @@ const Navbar = (props) => {
                             {UPubKey == null ? "" : cutPkey}
                           </h4>
                           <div className="notipopup-display">
-                            <a href="/edit-profile" className="color-ping">
-                              <b>Set display name</b>
-                            </a>
+                            <Link to="/edit-profile" className="color-ping">
+                              <b>Set display name 2</b>
+                            </Link>
                             <a
                               className="color-ping"
                               href="/#"

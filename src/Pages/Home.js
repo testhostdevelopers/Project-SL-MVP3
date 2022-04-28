@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Select } from "antd";
 import { motion } from "framer-motion";
@@ -40,6 +40,7 @@ import TopCard from "../Components/TopCard";
 import LiveAuctions from "../Components/LiveAuctions";
 import HotBids from "../Components/HotBids";
 import QuickExplore from "../Components/Tabs/QuickExplore";
+import axios from "axios";
 
 // const { TabPane } = Tabs;
 // const { Option } = Select;
@@ -47,7 +48,10 @@ import QuickExplore from "../Components/Tabs/QuickExplore";
 SwiperCore.use([Keyboard, Pagination, Navigation, Autoplay]);
 
 const Home = () => {
+  var apiToken = sessionStorage.getItem("apiToken");
+  const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   let [openImage, setOpenImage] = useState(false);
+  let [liveAuctionList, setLiveAuctionList] = useState([]);
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -443,6 +447,27 @@ const Home = () => {
     },
   ];
 
+  const getallcollectiblelist = async () => {
+    await axios
+      .get('http://localhost:8000/v1/collectible/getallcollectiblelist', {})
+      .then(response => {
+        response.data.data.forEach((element) => {
+          if (element.likedBy.includes(userData._id)) {
+            element.like = true;
+          } else {
+            element.like = false;
+          }
+        });
+        setLiveAuctionList(response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    getallcollectiblelist();
+  }, []);
+
   return (
     <>
       {openImage && <FullScreenImage setOpenImage={setOpenImage} />}
@@ -808,16 +833,20 @@ const Home = () => {
           </div>
 
           <div className="row  mt-5">
-            {hot_bide.map((bide_desk, key) => (
-                <HotBids
-                  Coverimg={bide_desk.cover_bide}
-                  heartcount={bide_desk.bide_heartcount}
-                  time={bide_desk.bide_time}
-                  title={bide_desk.bide_name}
-                  WETH={bide_desk.bide_weth}
-                  bid={bide_desk.bide_bid}
-                  isOpenInProfile={false}
-                />
+            {liveAuctionList.slice(0, 8).map((SingleCollectible, key) => (
+              <LiveAuctions
+                isCollection={false}
+                id={SingleCollectible._id}
+                Coverimg={artWorkWeek1}
+                liked={SingleCollectible.like}
+                title={SingleCollectible.title}
+                heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                User1={topSellerUser1}
+                User2={topSellerUser2}
+                User3={topSellerUser3}
+                WETH={SingleCollectible.price}
+                bid="Highest bid 1/1"
+              />
             ))}
           </div>
         </div>
@@ -872,18 +901,20 @@ const Home = () => {
           </div>
 
           <div className="row mt-5">
-            {live_auction.map((live_a, key) => (
-                <LiveAuctions
-                  Coverimg={live_a.cover_img}
-                  title={live_a.auction_name}
-                  heartcount={live_a.h_count}
-                  User1={live_a.auc_user1}
-                  User2={live_a.auc_user2}
-                  User3={live_a.auc_user3}
-                  WETH={live_a.auction_WETH}
-                  bid={live_a.auction_bid}
-                  isOpenInProfile={false}
-                />
+            {liveAuctionList.slice(0, 8).map((SingleCollectible, key) => (
+              <LiveAuctions
+                isCollection={false}
+                id={SingleCollectible._id}
+                Coverimg={artWorkWeek1}
+                liked={SingleCollectible.like}
+                title={SingleCollectible.title}
+                heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                User1={topSellerUser1}
+                User2={topSellerUser2}
+                User3={topSellerUser3}
+                WETH={SingleCollectible.price}
+                bid="Highest bid 1/1"
+              />
             ))}
           </div>
         </div>
@@ -1061,7 +1092,7 @@ const Home = () => {
               aria-labelledby="art-tab"
             >
               <div className="row">
-                {live_auction.map((live_a, key) => (
+                {liveAuctionList.map((live_a, key) => (
                   
                     <LiveAuctions
                       Coverimg={live_a.cover_img}
@@ -1109,7 +1140,7 @@ const Home = () => {
               aria-labelledby="games-tab"
             >
               <div className="row">
-                {live_auction.map((live_a, key) => (
+                {liveAuctionList.map((live_a, key) => (
                   
                     <LiveAuctions
                       Coverimg={live_a.cover_img}

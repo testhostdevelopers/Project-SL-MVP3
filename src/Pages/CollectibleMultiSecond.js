@@ -159,7 +159,7 @@ const CollectibleMultiSecond = () => {
                 </div>
 
                 <div className="prize-single-collectible">
-                  <input type="text" placeholder="10" />
+                  <input type="number" placeholder="10" />
                   <span className="color-gray ">%</span>
                 </div>
 

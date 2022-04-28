@@ -481,6 +481,8 @@ const Profile = (props) => {
                           <div className="row ">
                             {userCollectibleList.map((SingleCollectible, key) => (
                               <LiveAuctions
+                                isCollection={false}
+                                id={SingleCollectible._id}
                                 Coverimg={artWorkWeek1}
                                 liked={SingleCollectible.like}
                                 title={SingleCollectible.title}
@@ -511,6 +513,8 @@ const Profile = (props) => {
                           <div className="row ">
                             {userCollectionList.map((SingleCollection, key) => (
                               <LiveAuctions
+                                isCollection={true}
+                                id={SingleCollection._id}
                                 Coverimg={artWorkWeek1}
                                 liked={SingleCollection.like}
                                 title={SingleCollection.title}
@@ -541,6 +545,8 @@ const Profile = (props) => {
                           <div className="row ">
                         {userLikedCollectibleList.map((SingleCollectible, key) => (
                           <LiveAuctions
+                            isCollection={false}
+                            id={SingleCollectible._id}
                             Coverimg={artWorkWeek1}
                             liked={SingleCollectible.like}
                             title={SingleCollectible.title}
@@ -571,6 +577,8 @@ const Profile = (props) => {
                           <div className="row ">
                             {userLikedCollectionsList.map((SingleCollection, key) => (
                               <LiveAuctions
+                                isCollection={true}
+                                id={SingleCollection._id}
                                 Coverimg={artWorkWeek1}
                                 liked={SingleCollection.like}
                                 title={SingleCollection.title}
