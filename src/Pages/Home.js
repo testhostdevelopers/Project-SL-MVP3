@@ -449,15 +449,7 @@ const Home = () => {
 
   const getallcollectiblelist = async () => {
     await axios
-      .get('http://localhost:8000/v1/collectible/getallcollectiblelist', {
-          data: {
-            user_id: userData._id
-          },
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          }
-        }
-      )
+      .get('http://localhost:8000/v1/collectible/getallcollectiblelist', {})
       .then(response => {
         response.data.data.forEach((element) => {
           if (element.likedBy.includes(userData._id)) {
@@ -473,9 +465,7 @@ const Home = () => {
       });
   };
   useEffect(() => {
-    if (sessionStorage.getItem("apiToken")) {
-      getallcollectiblelist();
-    }
+    getallcollectiblelist();
   }, []);
 
   return (

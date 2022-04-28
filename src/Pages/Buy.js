@@ -15,9 +15,7 @@ import CheckOut from "../Components/Popup/CheckOut";
 import { Menu, Dropdown } from "antd";
 import { motion } from "framer-motion";
 import Buytab from "../Components/Tabs/Buytab";
-import ArtworkWeek from "./ArtworkWeek";
-// import FilterProperties from "../Components/FilterProperties";
-// import FilterCategory from "../Components/FilterCategory";
+// import ArtworkWeek from "./ArtworkWeek";
 import BuyHistory from "../Components/BuyCopmponent/BuyHistory";
 import BuyAuction from "../Components/BuyCopmponent/BuyAuction";
 import axios from "axios";
@@ -226,12 +224,12 @@ const Buy = () => {
                   <div className="ml-4 d-flex flex-column">
                     <b className="text-secondary">Creator</b>
                     <div className="mt-3">
-            <span className="user-img">
-              <img src={logo} width="36" alt="" />
-            </span>
+                      <span className="user-img">
+                        <img src={logo} width="36" alt="" />
+                      </span>
                       <span className="ml-3">
-              <b>EdenSwap</b>
-            </span>
+                        <b>EdenSwap</b>
+                      </span>
                     </div>
                   </div>
                 </div>
