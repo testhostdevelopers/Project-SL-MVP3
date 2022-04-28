@@ -21,30 +21,75 @@ import ArtworkWeek from "./ArtworkWeek";
 import BuyHistory from "../Components/BuyCopmponent/BuyHistory";
 import BuyAuction from "../Components/BuyCopmponent/BuyAuction";
 import axios from "axios";
+import logo from "../assets/img/icons/custom/logo.svg";
+import start from "../assets/img/icons/custom/start.svg";
 
 const Buy = () => {
   const apiToken = sessionStorage.getItem("apiToken");
-  // const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
+  const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const { collectibleId } = useParams();
-  console.log('collectibleId', collectibleId);
+  // console.log('collectibleId', collectibleId);
   const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
+  const [singleCollectibleData, setSingleCollectibleData] = useState([]);
   const [singlePopup, setSinglePopup] = useState(false);
   const [errorPopups, setErrorPopup] = useState(false);
   const [sharePopup, setsharePopup] = useState(false);
   const [reportPopup, setReportPopup] = useState(false);
   const [helpPopup, sethelpPopup] = useState(false);
   const [CheckOutPopup, setCheckOutPopup] = useState(false);
+  const likeCollectible = async () => {
+    console.log('LikeCollectible');
+    let a = 'collectible';
+    await axios
+      .put('http://localhost:8000/v1/' + a + '/like/' + collectibleId, {
+        user: userData._id
+      }, {
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        }
+      })
+      .then(response => {
+        singleCollectible();
+        // console.log('LikeCollectible response', response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  const disLikeCollectible = async () => {
+    console.log('disLikeCollectible');
+    let a = 'collectible';
+    await axios
+      .put('http://localhost:8000/v1/' + a + '/unlike/' + collectibleId, {
+        user: userData._id
+      }, {
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        }
+      })
+      .then(response => {
+        // console.log('disLikeCollectible response', response);
+        singleCollectible();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  const singleCollectible = async () => {
+    axios
+      .get("http://localhost:8000/v1/collectible/singleCollectible/" + collectibleId, {
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        setSingleCollectibleData(res.data.data);
+      });
+  };
   useEffect(() => {
     if (apiToken) {
-      axios
-        .get("http://localhost:8000/v1/collectible/singleCollectible/" + collectibleId, {
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          },
-        })
-        .then((res) => {
-          console.log(res.data.data);
-        });
+      singleCollectible();
     }
   }, []);
   let [openImage, setOpenImage] = useState(false);
@@ -134,11 +179,15 @@ const Buy = () => {
               <div className="buy-art-work-week-card border-radius">
                 <div className="d-flex justify-content-between align-items-center">
                   <h3>
-                    <b>Artwork of the week</b>
+                    <b>{singleCollectibleData.title}</b>
                   </h3>
                   <div className="d-flex">
                     <div className="card-heart-icon">
-                      <i className="fas fa-heart" /> 24
+                      {singleCollectibleData.likedBy?.includes(userData._id) ?
+                        <><i onClick={disLikeCollectible} className="fas fa-heart" />{singleCollectibleData.likes}</>
+                        :
+                        <><i onClick={likeCollectible} className="far fa-heart" />{singleCollectibleData.likes}</>
+                      }
                     </div>
                     <Dropdown overlay={menu}>
                       <div
@@ -151,8 +200,46 @@ const Buy = () => {
                   </div>
                 </div>
 
-                {/*      /////////     Artwork week components    /////////   */}
-                <ArtworkWeek />
+                <div className="mt-3 bighest-bid-text">
+                  <b>
+                    <span className="">Highest bid </span>
+                    <span className="color-ping">0.066 wETH</span>
+                  </b>
+                </div>
+
+                <p className="mt-4">
+                  {singleCollectibleData.description}
+                </p>
+
+                <div className="w-100 d-flex mt-5 heading-text">
+                  <div className="d-flex flex-column">
+                    <b className="text-secondary">Creator</b>
+                    <div className="mt-3">
+            <span className="user-img">
+              <img src={userTick} width="36" alt="" />
+            </span>
+                      <span className="ml-3">
+              <b>Courtney</b>
+            </span>
+                    </div>
+                  </div>
+                  <div className="ml-4 d-flex flex-column">
+                    <b className="text-secondary">Creator</b>
+                    <div className="mt-3">
+            <span className="user-img">
+              <img src={logo} width="36" alt="" />
+            </span>
+                      <span className="ml-3">
+              <b>EdenSwap</b>
+            </span>
+                    </div>
+                  </div>
+                </div>
+
+                <button className="artwork-sales-btn  btn-primary-outline-responsive mt-4 pt-2 pb-2 pl-3 pr-3 text-dark d-flex align-items-center">
+                  <img src={start} className="mr-2" width="16" alt="" /> 10% of sales will
+                  go to creator
+                </button>
 
                 <div className="mt-5">
                   {/*      /////////     Buytab components    /////////   */}
@@ -311,7 +398,6 @@ const Buy = () => {
                   <div className="tab-pane-bottom-solid" />
                 </div>
 
-                {/*  //////////       Buy Auction Data         ////////  */}
                 <BuyAuction />
 
                 <div className="row d-flex justify-content-center mt-5 action-btn buy-highest-bid-block-btn">
