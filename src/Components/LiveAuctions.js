@@ -134,7 +134,7 @@ export default function LiveAuctions({
               </div>
             </div>
 
-            <h6>{title}</h6>
+            <a href={'/buy/'+id}><h6>{title}</h6></a>
 
             <div className="d-flex justify-content-between align-items-center">
               <div className="text-danger">

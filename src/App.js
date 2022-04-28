@@ -76,7 +76,7 @@ const App = () => {
           <Route path="/" component={Home} exact />
           <Route path="/cryptoloria" component={Cryptoloria} exact />
           <Route path="/explore" component={Explore} exact />
-          <Route path="/buy" component={Buy} exact />
+          <Route path="/buy/:collectibleId" component={Buy} exact />
           <Route path="/collection" component={Collection} exact />
           <Route
             path="/signIn"

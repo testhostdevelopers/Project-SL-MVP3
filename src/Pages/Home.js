@@ -447,9 +447,9 @@ const Home = () => {
     },
   ];
 
-  const liveAuctionListFunc = async () => {
+  const getallcollectiblelist = async () => {
     await axios
-      .get('http://localhost:8000/v1/collection/getallcollection', {
+      .get('http://localhost:8000/v1/collectible/getallcollectiblelist', {
           data: {
             user_id: userData._id
           },
@@ -474,7 +474,7 @@ const Home = () => {
   };
   useEffect(() => {
     if (sessionStorage.getItem("apiToken")) {
-      liveAuctionListFunc();
+      getallcollectiblelist();
     }
   }, []);
 
@@ -843,16 +843,20 @@ const Home = () => {
           </div>
 
           <div className="row  mt-5">
-            {hot_bide.map((bide_desk, key) => (
-                <HotBids
-                  Coverimg={bide_desk.cover_bide}
-                  heartcount={bide_desk.bide_heartcount}
-                  time={bide_desk.bide_time}
-                  title={bide_desk.bide_name}
-                  WETH={bide_desk.bide_weth}
-                  bid={bide_desk.bide_bid}
-                  isOpenInProfile={false}
-                />
+            {liveAuctionList.map((SingleCollectible, key) => (
+              <LiveAuctions
+                isCollection={true}
+                id={SingleCollectible._id}
+                Coverimg={artWorkWeek1}
+                liked={SingleCollectible.like}
+                title={SingleCollectible.title}
+                heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                User1={topSellerUser1}
+                User2={topSellerUser2}
+                User3={topSellerUser3}
+                WETH={SingleCollectible.price}
+                bid="Highest bid 1/1"
+              />
             ))}
           </div>
         </div>

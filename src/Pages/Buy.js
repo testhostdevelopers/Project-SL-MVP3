@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import artWorkWeekOne from "../assets/img/custom/artWorkWeekOne.png";
 import userTick from "../assets/img/custom/userTick.png";
 import AlienMonster from "../assets/img/icons/custom/alien-monster.svg";
@@ -19,8 +20,13 @@ import ArtworkWeek from "./ArtworkWeek";
 // import FilterCategory from "../Components/FilterCategory";
 import BuyHistory from "../Components/BuyCopmponent/BuyHistory";
 import BuyAuction from "../Components/BuyCopmponent/BuyAuction";
+import axios from "axios";
 
 const Buy = () => {
+  const apiToken = sessionStorage.getItem("apiToken");
+  // const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
+  const { collectibleId } = useParams();
+  console.log('collectibleId', collectibleId);
   const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
   const [singlePopup, setSinglePopup] = useState(false);
   const [errorPopups, setErrorPopup] = useState(false);
@@ -28,7 +34,19 @@ const Buy = () => {
   const [reportPopup, setReportPopup] = useState(false);
   const [helpPopup, sethelpPopup] = useState(false);
   const [CheckOutPopup, setCheckOutPopup] = useState(false);
-
+  useEffect(() => {
+    if (apiToken) {
+      axios
+        .get("http://localhost:8000/v1/collectible/singleCollectible/" + collectibleId, {
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data.data);
+        });
+    }
+  }, []);
   let [openImage, setOpenImage] = useState(false);
 
   const menu = (
