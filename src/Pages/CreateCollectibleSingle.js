@@ -530,7 +530,6 @@ const CreateCollectibleSingle = () => {
                   className="putOnMarketplace border-gray border-radius btn-primary-outline-responsive"
                   onClick={() => {
                     setSingleCollectionPopup(true);
-                    document.body.style.overflow = "hidden";
                   }}
                 >
                   <img src={plus} width="40" alt="" />
@@ -553,7 +552,11 @@ const CreateCollectibleSingle = () => {
                           collection_id: sing._id,
                         });
                       }}>
-                      <div className="putOnMarketplace ml-3 border-radius btn-primary-outline-responsive">
+                      <div className={`${
+                      udata.collection_id === sing._id
+                        ? "putOnMarketplace ml-3 border-radius btn-primary-outline-responsive"
+                        : "putOnMarketplace border-gray ml-3 border-radius"
+                    } `}>
                         <img src={sing.main_img} width="40" alt=""/>
                         <div className="starslide">{sing.title}</div>
                         <div>
