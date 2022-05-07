@@ -30,6 +30,7 @@ const Buy = () => {
   const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
   const [singleCollectibleData, setSingleCollectibleData] = useState([]);
   const [udata, setUdata] = useState([]);
+  const [bid, setBid] = useState([]);
   const [singlePopup, setSinglePopup] = useState(false);
   const [errorPopups, setErrorPopup] = useState(false);
   const [sharePopup, setsharePopup] = useState(false);
@@ -60,6 +61,25 @@ const Buy = () => {
     let a = 'collectible';
     await axios
       .put('http://localhost:8000/v1/' + a + '/unlike/' + collectibleId, {
+        user: userData._id
+      }, {
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        }
+      })
+      .then(response => {
+        // console.log('disLikeCollectible response', response);
+        singleCollectible();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  const placeBidCollectible = async () => {
+    console.log('placeBidCollectible');
+    let a = 'collectible';
+    await axios
+      .put('http://localhost:8000/v1/' + a + '/bid/' + collectibleId, {
         user: userData._id
       }, {
         headers: {
