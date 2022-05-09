@@ -103,17 +103,17 @@ export default function Filtersale({
           <ul className="filtersale-check">
             <li>
               <input type="checkbox" id="TimedAuction" value="Timed Auction" />
-              <label for="TimedAuction">Timed Auction</label>
+              <label htmlFor="TimedAuction">Timed Auction</label>
             </li>
 
             <li>
               <input type="checkbox" id="Fixedprice" value="Fixed price" />
-              <label for="Fixedprice">Fixed price</label>
+              <label htmlFor="Fixedprice">Fixed price</label>
             </li>
 
             <li>
               <input type="checkbox" id="Notforsale" value="Not for sale" />
-              <label for="Notforsale">Not for sale</label>
+              <label htmlFor="Notforsale">Not for sale</label>
             </li>
 
             <li>
@@ -122,7 +122,7 @@ export default function Filtersale({
                 id="Openforoffers"
                 value="Open for offers"
               />
-              <label for="Openforoffers">Open for offers</label>
+              <label htmlFor="Openforoffers">Open for offers</label>
             </li>
           </ul>
 
