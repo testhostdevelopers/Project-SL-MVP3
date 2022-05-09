@@ -30,7 +30,7 @@ const Buy = () => {
   const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
   const [singleCollectibleData, setSingleCollectibleData] = useState([]);
   const [udata, setUdata] = useState([]);
-  const [bid, setBid] = useState([]);
+  const [placedBids, setplacedBids] = useState([]);
   const [singlePopup, setSinglePopup] = useState(false);
   const [errorPopups, setErrorPopup] = useState(false);
   const [sharePopup, setsharePopup] = useState(false);
@@ -387,6 +387,7 @@ const Buy = () => {
                       aria-labelledby="pills-profile-tab"
                     >
                       <div className="w-100 d-flex justify-content-between mb-3">
+                        { singleCollectibleData.bids > 0 ? 's' : 'No Bids Yet!'}
                         <div className="d-flex">
                           <div className="user-img">
                             <img src={userTick} width="36" alt="" />

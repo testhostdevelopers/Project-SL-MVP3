@@ -27,9 +27,11 @@ const PlaceABidPopup = (props) => {
   const [placeBid, setPlaceBid] = useState({amount: 0});
 
   const handleSubmit = async () => {
+    const user_id = JSON.parse(sessionStorage.getItem("userdata")) || {};
     var bids = {
       amount: placeBid.amount,
       currency: selected,
+      user_id: user_id,
 
     };
     console.log('placeBidCollectible');
