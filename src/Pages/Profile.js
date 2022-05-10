@@ -759,8 +759,9 @@ const Profile = (props) => {
                                 <TopCard
                                   topcoverimg={topSeller4}
                                   topuserimg={topSellerUser1}
-                                  title="Courtney Henry"
-                                  follow="10.8k followers"
+                                  title={SingleUser.display_name}
+                                  id={SingleUser._id}
+                                  follow={SingleUser.followersCount + ' followers'}
                                   btnname="Unfollow"
                                 />
                               ))}
