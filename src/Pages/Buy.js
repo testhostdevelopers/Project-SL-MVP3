@@ -104,7 +104,7 @@ const Buy = () => {
       .then((res) => {
         console.log(res.data.data);
         setSingleCollectibleData(res.data.data);
-
+        console.log(singleCollectibleData)
         axios
           .get("http://localhost:8000/v1/user/getUser", {
             headers: {
@@ -225,7 +225,7 @@ const Buy = () => {
                     </Dropdown>
                   </div>
                 </div>
-                {udata.price_type == 'open_for_bid' ? 
+                {singleCollectibleData.price_type == 'open_for_bid' ? 
                 <div className="mt-3 bighest-bid-text">
                   <b>
                     <span className="">Highest bid </span>
@@ -387,26 +387,9 @@ const Buy = () => {
                       aria-labelledby="pills-profile-tab"
                     >
                       <div className="w-100 d-flex justify-content-between mb-3">
-                        <div className="d-flex">
-                          <div className="user-img">
-                            <img src={userTick} width="36" alt="" />
-                          </div>
-                          <div className="ml-4">
-                            <div>
-                              <b>0.0002 ETH </b>
-                              <span className="color-gray">by </span>
-                              <b>tanelen tivan </b>
-                              <span className="color-gray">
-                                for 10 editions
-                              </span>
-                            </div>
-                            <div>
-                              <span className="color-gray">
-                                26/072021, 16:28
-                              </span>
-                            </div>
-                          </div>
-                        </div>
+                        <ul>
+                          
+                        </ul>
                       </div>
                     </div>
 
@@ -421,18 +404,20 @@ const Buy = () => {
                   </div>
                   <div className="tab-pane-bottom-solid" />
                 </div>
-                {udata.price_type == 'time_auction' ? 
+                {singleCollectibleData.price_type == 'time_auction' ? 
                 <BuyAuction />
                           : '' }
                 <div className="row d-flex justify-content-center mt-5 action-btn buy-highest-bid-block-btn">
                   <div className="col-sm-12 col-lg-8 d-flex">
+                {singleCollectibleData.price_type == 'fixed_price' ? 
                     <button
-                      className="btn-ping  w-100"
-                      onClick={() => setCheckOutPopup(true)}
+                    className="btn-ping  w-100"
+                    onClick={() => setCheckOutPopup(true)}
                     >
                       Buy for 1.25 ETH
                     </button>
-                    {udata.price_type == 'open_for_bid' ? 
+                      : '' }
+                    {singleCollectibleData.price_type == 'open_for_bid' ? 
                     <button
                         className="btn-primary-outline ml-3 w-100"
                         onClick={() => setSingleCollectionPopup(true)}
