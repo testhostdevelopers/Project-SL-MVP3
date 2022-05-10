@@ -396,10 +396,10 @@ const Profile = (props) => {
                       </a>
                       <div className="follows-block">
                         <span>
-                          <b>{udata == null || udata.followers == null ? "0" : udata.followers} </b>Followers
+                          <b>{udata == null || udata.followersCount == null ? "0" : udata.followersCount} </b>Followers
                         </span>
                         <span>
-                        <b>{udata == null || udata.following == null ? "0" : udata.following} </b>Following
+                        <b>{udata == null || udata.followingCount == null ? "0" : udata.followingCount} </b>Following
                         </span>
                       </div>
                     </div>
@@ -762,7 +762,7 @@ const Profile = (props) => {
                                   title={SingleUser.display_name}
                                   id={SingleUser._id}
                                   follow={SingleUser.followersCount + ' followers'}
-                                  btnname="Unfollow"
+                                  btnname="Follow"
                                 />
                               ))}
                             </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
@@ -801,5 +801,4 @@ const Profile = (props) => {
     </>
   );
 };
-
 export default Profile;
