@@ -51,9 +51,9 @@ const Activity = () => {
   const findFilter = (key) => {
     Setlisting(key);
     let arr = [];
-    all_filter.forEach((v) => {
-      if (v.title === key) {
-        arr.push(v);
+    filterData.forEach((SingleData) => {
+      if (SingleData.filter.title === key) {
+        arr.push(SingleData);
       }
     });
     setFilterData(arr);
@@ -145,14 +145,14 @@ const Activity = () => {
                               {error_data}
                             </h5>
 
-                            {filterData.map(() => (
+                            {filterData.map((single) => (
                               <ActivityNumberCard
                                 activitynumbercardimg={ActivityCard}
                                 FillLabel={FillLabel}
-                                title="123456"
-                                filter={listing}
+                                title={single.collectible_id.title}
+                                filter={single.filter.title}
                                 pixelpunks="pixelpunks"
-                                eth="0.05 ETH"
+                                eth={single.collectible_id.price + " ETH"}
                                 seenstatus="Just now"
                               />
                             ))}
@@ -177,7 +177,7 @@ const Activity = () => {
                                     className={`btn-light mr-2 mt-2 bg-white ${
                                       listing === fill_.title ? "active" : ""
                                     } `}
-                                    onClick={() => findFilter(fill_.title)}
+                                    onClick={() => findFilter(fill_)}
                                   >
                                     <svg
                                       width="10"
