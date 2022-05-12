@@ -28,7 +28,7 @@ const Buy = () => {
   const { collectibleId } = useParams();
   // console.log('collectibleId', collectibleId);
   const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
-  const [singleCollectibleData, setSingleCollectibleData] = useState([]);
+  const [singleCollectibleData, setSingleCollectibleData] = useState({});
   const [udata, setUdata] = useState([]);
   const [placedBids, setplacedBids] = useState([]);
   const [singlePopup, setSinglePopup] = useState(false);
@@ -104,7 +104,6 @@ const Buy = () => {
       .then((res) => {
         console.log(res.data.data);
         setSingleCollectibleData(res.data.data);
-
         axios
           .get("http://localhost:8000/v1/user/getUser", {
             headers: {
@@ -114,6 +113,8 @@ const Buy = () => {
           .then((res) => {
             console.log(res.data);
             setUdata(res.data.data);
+            console.log(singleCollectibleData.bids[0].amount)
+
             // setSingleCollectibleData(res.data.data);
           });
       });
@@ -225,7 +226,7 @@ const Buy = () => {
                     </Dropdown>
                   </div>
                 </div>
-                {udata.price_type == 'open_for_bid' ? 
+                {singleCollectibleData.price_type == 'open_for_bid' ? 
                 <div className="mt-3 bighest-bid-text">
                   <b>
                     <span className="">Highest bid </span>
@@ -387,7 +388,6 @@ const Buy = () => {
                       aria-labelledby="pills-profile-tab"
                     >
                       <div className="w-100 d-flex justify-content-between mb-3">
-                        { singleCollectibleData.bids > 0 ? 's' : 'No Bids Yet!'}
                         <div className="d-flex">
                           <div className="user-img">
                             <img src={userTick} width="36" alt="" />
@@ -408,6 +408,11 @@ const Buy = () => {
                             </div>
                           </div>
                         </div>
+                      <ul>
+                      {/* { singleCollectibleData.bids.map((bids, key) =>(
+                        <li>{bids}</li>
+                      )) } */}
+                      </ul>
                       </div>
                     </div>
 
@@ -422,18 +427,20 @@ const Buy = () => {
                   </div>
                   <div className="tab-pane-bottom-solid" />
                 </div>
-                {udata.price_type == 'time_auction' ? 
+                {singleCollectibleData.price_type == 'time_auction' ? 
                 <BuyAuction />
                           : '' }
                 <div className="row d-flex justify-content-center mt-5 action-btn buy-highest-bid-block-btn">
                   <div className="col-sm-12 col-lg-8 d-flex">
+                {singleCollectibleData.price_type == 'fixed_price' ? 
                     <button
-                      className="btn-ping  w-100"
-                      onClick={() => setCheckOutPopup(true)}
+                    className="btn-ping  w-100"
+                    onClick={() => setCheckOutPopup(true)}
                     >
                       Buy for 1.25 ETH
                     </button>
-                    {udata.price_type == 'open_for_bid' ? 
+                      : '' }
+                    {singleCollectibleData.price_type == 'open_for_bid' ? 
                     <button
                         className="btn-primary-outline ml-3 w-100"
                         onClick={() => setSingleCollectionPopup(true)}
