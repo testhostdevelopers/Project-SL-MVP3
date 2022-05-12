@@ -1,62 +1,62 @@
-import React, { useState } from "react";
-// import activityCard from "../assets/img/custom/activity-card.png";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import ActivityNumberCard from "../Components/ActivityNumberCard";
 import FillLabel from "../assets/img/icons/custom/fill-label.svg";
 import ActivityCard from "../assets/img/custom/activity-cardonly.png";
 import { Tabs } from "antd";
+import axios from "axios";
 const { TabPane } = Tabs;
 
 const Activity = () => {
+  var apiToken = sessionStorage.getItem("apiToken");
+  const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [listing, Setlisting] = useState("Listing");
   const error_data = "";
-
-  const all_filter = [
-    {
-      name: "Listing",
-      _filter_: "Listing",
-    },
-    {
-      name: "Purchases",
-      _filter_: "Purchases",
-    },
-    {
-      name: "Sales",
-      _filter_: "Sales",
-    },
-    {
-      name: "Transfer",
-      _filter_: "Transfer",
-    },
-    {
-      name: "Burns",
-      _filter_: "Burns",
-    },
-    {
-      name: "Bids",
-      _filter_: "Bids",
-    },
-    {
-      name: "Like",
-      _filter_: "Like",
-    },
-    {
-      name: "Following",
-      _filter_: "Following",
-    },
-  ];
-
-  const [filterData, setFIlterData] = useState(all_filter);
-
+  const [all_filter, setAllFilter] = useState([]);
+  const [filterData, setFilterData] = useState(all_filter);
+  const getallactivityfilters = async () => {
+    await axios
+        .get('http://localhost:8000/v1/activityfilter/getallactivityfilters', {
+              data: {
+                user_id: userData._id
+              },
+              headers: {
+                Authorization: `Bearer ${apiToken}`,
+              }
+            })
+        .then(response => {
+          setAllFilter(response.data.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
+  const getusertransactions = async () => {
+    await axios
+        .get('http://localhost:8000/v1/transaction/getusertransactions', {
+          data: {
+            user_id: userData._id
+          },
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        })
+        .then(response => {
+          setFilterData(response.data.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
   const findFilter = (key) => {
     Setlisting(key);
     let arr = [];
     all_filter.forEach((v) => {
-      if (v._filter_ === key) {
+      if (v.title === key) {
         arr.push(v);
       }
     });
-    setFIlterData(arr);
+    setFilterData(arr);
   };
 
   // useEffect(() => {
@@ -71,7 +71,12 @@ const Activity = () => {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
-
+  useEffect(() => {
+    if (sessionStorage.getItem("apiToken")) {
+      getallactivityfilters();
+      getusertransactions();
+    }
+  }, []);
   return (
     <motion.section
       initial="hidden"
@@ -170,9 +175,9 @@ const Activity = () => {
                                 {all_filter.map((fill_) => (
                                   <button
                                     className={`btn-light mr-2 mt-2 bg-white ${
-                                      listing === fill_.name ? "active" : ""
+                                      listing === fill_.title ? "active" : ""
                                     } `}
-                                    onClick={() => findFilter(fill_.name)}
+                                    onClick={() => findFilter(fill_.title)}
                                   >
                                     <svg
                                       width="10"
@@ -192,7 +197,7 @@ const Activity = () => {
                                         fill="#121212"
                                       />
                                     </svg>
-                                    <span className="ml-2">{fill_.name}</span>
+                                    <span className="ml-2">{fill_.title}</span>
                                   </button>
                                 ))}
                               </div>

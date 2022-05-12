@@ -9,12 +9,12 @@ import TopCard from "../Components/TopCard";
 import ReportPopup from "../Components/Popup/ReportPopup";
 import Activitytab from "../Components/Tabs/Activitytab";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
-import topSeller3 from "../assets/img/custom/topSeller3.png";
+// import topSeller3 from "../assets/img/custom/topSeller3.png";
 import topSeller4 from "../assets/img/custom/topSeller4.png";
 import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
-import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
+// import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
 
 import EarthIcon from "../assets/img/icons/custom/earth.svg";
 
