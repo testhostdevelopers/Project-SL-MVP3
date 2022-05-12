@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HotBids from "../Components/HotBids";
 import { motion } from "framer-motion";
 import { Menu, Dropdown, Tabs } from "antd";
 import ReportPopup from "../Components/Popup/ReportPopup";
 import UpdateCoverPopup from "../Components/Popup/UpdateCoverPopup";
 import UpdateProfilePicPopup from "../Components/Popup/UpdateProfilePicPopup";
-
+import { useParams } from "react-router-dom";
 import addicon from "../assets/img/custom/Mask_Group.png";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 import artWorkWeek2 from "../assets/img/custom/artWorkWeek2.png";
@@ -22,11 +22,14 @@ import FilterRange from "../Components/FilterRange";
 import FilterProperties from "../Components/FilterProperties";
 import Activitytab from "../Components/Tabs/Activitytab";
 import ProfileLinks from "../Components/ProfileLinks";
+import axios from "axios";
 
 const { TabPane } = Tabs;
 // const { Option } = Select;
 
 const Collection = (props) => {
+  const { collectionId } = useParams();
+  console.log(collectionId)
   const [ReportPopups, setReportPopup] = useState(false);
   const [CoverPopup, setUpdateCoverPopup] = useState(false);
   const [profilePopup, setprofilePopup] = useState(false);
@@ -36,12 +39,31 @@ const Collection = (props) => {
   const [filterProperties, setFilterProperties] = useState(false);
   const [filtersale, setFiltersale] = useState(false);
   const [filterRange, setFilterRange] = useState(false);
+  const [singleCollectionData, setsingleCollectionData] = useState(false);
   const buttonText = "Edit Cover";
-
+  const apiToken = sessionStorage.getItem("apiToken");
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
+
+  const singleCollection = async () => {
+    axios
+      .get("http://localhost:8000/v1/collection/getCollection/" + collectionId, {
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        setsingleCollectionData(res.data.data)
+      });
+  };
+  useEffect(() => {
+    if (apiToken) {
+      singleCollection();
+    }
+  }, []);
 
   /*const menu = (
     <Menu>
@@ -118,7 +140,7 @@ const Collection = (props) => {
               <header>
                 <div className="position-relative">
                   <div className="border p-3 gray-color profile-pictures-cover">
-                    <img src={CollectionBannerBg} width="100%" alt="" />
+                    <img src={singleCollectionData.main_img} width="100%" alt="" />
 
                     <button
                       onClick={() => setUpdateCoverPopup(true)}
@@ -127,26 +149,15 @@ const Collection = (props) => {
                       {buttonText}
                     </button>
                   </div>
-                  <div className="profile-info-position">
-                    <div className="profile-user-pictures">
-                      <span
-                        onClick={() => setprofilePopup(true)}
-                        className="edit-proile-img"
-                      >
-                        <img src={addicon} alt={""} />
-                      </span>
-                      <img src={userProfilePictures} width="100%" alt="" />
-                    </div>
+                  <div className="profile-info-position mt-5 ">
                     <div className="mt-3 profile-usr-name-h3-size">
                       <h3>
-                        <b>Arlene McCoy</b>
+                        <b>{singleCollectionData.title}</b>
                       </h3>
-                      <div className="btn-gray text-center mt-3">
-                        <b>0xbAu7...f08a</b>
-                      </div>
+                      <p className="mt-3" >{singleCollectionData.description}</p>
                     </div>
 
-                    <div className="mt-4 d-flex justify-content-between align-items-center w-auto">
+                    <div className="mt-2 d-flex justify-content-between align-items-center w-auto">
                       <div className="share-profile">
                         <button className="bg-white border-gray profile-upload">
                           <svg

@@ -28,7 +28,7 @@ const Buy = () => {
   const { collectibleId } = useParams();
   // console.log('collectibleId', collectibleId);
   const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
-  const [singleCollectibleData, setSingleCollectibleData] = useState({});
+  const [singleCollectibleData, setSingleCollectibleData] = useState([]);
   const [udata, setUdata] = useState([]);
   const [placedBids, setplacedBids] = useState([]);
   const [singlePopup, setSinglePopup] = useState(false);
@@ -75,25 +75,7 @@ const Buy = () => {
         console.log(err);
       });
   };
-  const placeBidCollectible = async () => {
-    console.log('placeBidCollectible');
-    let a = 'collectible';
-    await axios
-      .put('http://localhost:8000/v1/' + a + '/bid/' + collectibleId, {
-        user: userData._id
-      }, {
-        headers: {
-          Authorization: `Bearer ${apiToken}`,
-        }
-      })
-      .then(response => {
-        // console.log('disLikeCollectible response', response);
-        singleCollectible();
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+
   const singleCollectible = async () => {
     axios
       .get("http://localhost:8000/v1/collectible/singleCollectible/" + collectibleId, {
@@ -104,6 +86,8 @@ const Buy = () => {
       .then((res) => {
         console.log(res.data.data);
         setSingleCollectibleData(res.data.data);
+        console.log(singleCollectibleData.bids)
+
         axios
           .get("http://localhost:8000/v1/user/getUser", {
             headers: {
@@ -113,9 +97,6 @@ const Buy = () => {
           .then((res) => {
             console.log(res.data);
             setUdata(res.data.data);
-            console.log(singleCollectibleData.bids[0].amount)
-
-            // setSingleCollectibleData(res.data.data);
           });
       });
   };
@@ -408,6 +389,7 @@ const Buy = () => {
                             </div>
                           </div>
                         </div>
+                            
                       <ul>
                       {/* { singleCollectibleData.bids.map((bids, key) =>(
                         <li>{bids}</li>
