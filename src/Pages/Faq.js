@@ -25,7 +25,7 @@ const Faq = () => {
             <div className="tabs">
               <div className="tab">
                 <input type="checkbox" id="rd1" name="rd" defaultChecked />
-                <label className="tab-label" for="rd1">
+                <label className="tab-label" htmlFor="rd1">
                   MarketPlace
                 </label>
                 <div className="tab-content sub-tabs-menu">
@@ -293,7 +293,7 @@ const Faq = () => {
               </div>
               <div className="tab">
                 <input type="checkbox" id="rd2" name="rd" />
-                <label className="tab-label" for="rd2">
+                <label className="tab-label" htmlFor="rd2">
                   Governance
                 </label>
                 <div className="tab-content">
@@ -303,7 +303,7 @@ const Faq = () => {
               </div>
               <div className="tab">
                 <input type="checkbox" id="rd3" name="rd" />
-                <label className="tab-label" for="rd3">
+                <label className="tab-label" htmlFor="rd3">
                   $---- token
                 </label>
                 <div className="tab-content">

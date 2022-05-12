@@ -143,7 +143,6 @@ const Buy = () => {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
-
   const properties = [
     { pr_name: singleCollectibleData.properties, pr_subname: "Wealth" },
   ];

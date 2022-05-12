@@ -18,7 +18,7 @@ export default function HotBids({
     window.location.pathname.lastIndexOf("/") + 1
   );
 
-  console.log(lastSegment);
+  // console.log(lastSegment);
   let menu;
   if (lastSegment === "Profile") {
     menu = (
