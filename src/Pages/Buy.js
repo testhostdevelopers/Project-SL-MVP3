@@ -29,6 +29,8 @@ const Buy = () => {
   // console.log('collectibleId', collectibleId);
   const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
   const [singleCollectibleData, setSingleCollectibleData] = useState([]);
+  const [udata, setUdata] = useState([]);
+  const [bid, setBid] = useState([]);
   const [singlePopup, setSinglePopup] = useState(false);
   const [errorPopups, setErrorPopup] = useState(false);
   const [sharePopup, setsharePopup] = useState(false);
@@ -73,6 +75,25 @@ const Buy = () => {
         console.log(err);
       });
   };
+  const placeBidCollectible = async () => {
+    console.log('placeBidCollectible');
+    let a = 'collectible';
+    await axios
+      .put('http://localhost:8000/v1/' + a + '/bid/' + collectibleId, {
+        user: userData._id
+      }, {
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        }
+      })
+      .then(response => {
+        // console.log('disLikeCollectible response', response);
+        singleCollectible();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   const singleCollectible = async () => {
     axios
       .get("http://localhost:8000/v1/collectible/singleCollectible/" + collectibleId, {
@@ -83,6 +104,18 @@ const Buy = () => {
       .then((res) => {
         console.log(res.data.data);
         setSingleCollectibleData(res.data.data);
+        console.log(singleCollectibleData)
+        axios
+          .get("http://localhost:8000/v1/user/getUser", {
+            headers: {
+              Authorization: `Bearer ${apiToken}`,
+            },
+          })
+          .then((res) => {
+            console.log(res.data);
+            setUdata(res.data.data);
+            // setSingleCollectibleData(res.data.data);
+          });
       });
   };
   useEffect(() => {
@@ -111,12 +144,7 @@ const Buy = () => {
     visible: { opacity: 1 },
   };
   const properties = [
-    { pr_name: "Eyes", pr_subname: "Empty" },
-    { pr_name: "Ears", pr_subname: "Empty" },
-    { pr_name: "Mouth", pr_subname: "Peircing" },
-    { pr_name: "Body", pr_subname: "Green" },
-    { pr_name: "Neck", pr_subname: "Empty" },
-    { pr_name: "Head", pr_subname: "Black Wreath" },
+    { pr_name: singleCollectibleData.properties, pr_subname: "Wealth" },
   ];
 
   const category = [
@@ -196,13 +224,14 @@ const Buy = () => {
                     </Dropdown>
                   </div>
                 </div>
-
+                {singleCollectibleData.price_type == 'open_for_bid' ? 
                 <div className="mt-3 bighest-bid-text">
                   <b>
                     <span className="">Highest bid </span>
                     <span className="color-ping">0.066 wETH</span>
                   </b>
                 </div>
+                      : '' }
 
                 <p className="mt-4">
                   {singleCollectibleData.description}
@@ -213,28 +242,21 @@ const Buy = () => {
                     <b className="text-secondary">Creator</b>
                     <div className="mt-3">
             <span className="user-img">
-              <img src={userTick} width="36" alt="" />
+              <img src={udata == null
+                ? ""
+                : "http://localhost:8000/" + udata.profile_img_url} width="36" alt="" />
             </span>
                       <span className="ml-3">
-              <b>Courtney</b>
+              <b>{udata == null
+                ? ""
+                : udata.display_name}</b>
             </span>
-                    </div>
-                  </div>
-                  <div className="ml-4 d-flex flex-column">
-                    <b className="text-secondary">Creator</b>
-                    <div className="mt-3">
-                      <span className="user-img">
-                        <img src={logo} width="36" alt="" />
-                      </span>
-                      <span className="ml-3">
-                        <b>EdenSwap</b>
-                      </span>
                     </div>
                   </div>
                 </div>
 
                 <button className="artwork-sales-btn  btn-primary-outline-responsive mt-4 pt-2 pb-2 pl-3 pr-3 text-dark d-flex align-items-center">
-                  <img src={start} className="mr-2" width="16" alt="" /> 10% of sales will
+                  <img src={start} className="mr-2" width="16" alt="" /> {singleCollectibleData.royalties}% of sales will
                   go to creator
                 </button>
 
@@ -257,11 +279,15 @@ const Buy = () => {
                         <div className="w-100 d-flex justify-content-between mb-3">
                           <div className="d-flex align-items-center">
                             <div className="user-img">
-                              <img src={userTick} width="36" alt="" />
+                            <img src={udata == null
+                              ? ""
+                              : "http://localhost:8000/" + udata.profile_img_url} width="36" alt="" />
                             </div>
                             <div className="ml-4">
                               <div>
-                                <b>Mad Scientist</b>
+                                <b>{udata == null
+                                  ? ""
+                                  : udata.display_name}</b>
                               </div>
                             </div>
                           </div>
@@ -360,26 +386,9 @@ const Buy = () => {
                       aria-labelledby="pills-profile-tab"
                     >
                       <div className="w-100 d-flex justify-content-between mb-3">
-                        <div className="d-flex">
-                          <div className="user-img">
-                            <img src={userTick} width="36" alt="" />
-                          </div>
-                          <div className="ml-4">
-                            <div>
-                              <b>0.0002 ETH </b>
-                              <span className="color-gray">by </span>
-                              <b>tanelen tivan </b>
-                              <span className="color-gray">
-                                for 10 editions
-                              </span>
-                            </div>
-                            <div>
-                              <span className="color-gray">
-                                26/072021, 16:28
-                              </span>
-                            </div>
-                          </div>
-                        </div>
+                        <ul>
+                          
+                        </ul>
                       </div>
                     </div>
 
@@ -394,24 +403,28 @@ const Buy = () => {
                   </div>
                   <div className="tab-pane-bottom-solid" />
                 </div>
-
+                {singleCollectibleData.price_type == 'time_auction' ? 
                 <BuyAuction />
-
+                          : '' }
                 <div className="row d-flex justify-content-center mt-5 action-btn buy-highest-bid-block-btn">
                   <div className="col-sm-12 col-lg-8 d-flex">
+                {singleCollectibleData.price_type == 'fixed_price' ? 
                     <button
-                      className="btn-ping  w-100"
-                      onClick={() => setCheckOutPopup(true)}
+                    className="btn-ping  w-100"
+                    onClick={() => setCheckOutPopup(true)}
                     >
                       Buy for 1.25 ETH
                     </button>
-
+                      : '' }
+                    {singleCollectibleData.price_type == 'open_for_bid' ? 
                     <button
-                      className="btn-primary-outline ml-3 w-100"
-                      onClick={() => setSingleCollectionPopup(true)}
-                    >
-                      Place a Bid
-                    </button>
+                        className="btn-primary-outline ml-3 w-100"
+                        onClick={() => setSingleCollectionPopup(true)}
+                      >
+                        Place a Bid
+                      </button>
+                          : '' }
+                    
                   </div>
                 </div>
               </div>
