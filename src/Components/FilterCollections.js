@@ -104,35 +104,35 @@ export default function FilterCollections({
           <ul className="filtercollection-check">
             <li>
               <input type="checkbox" id="Cryptoloria" value="Cryptoloria" />
-              <label for="Cryptoloria">
+              <label htmlFor="Cryptoloria">
                 <img src={userProfile} alt={""} /> Cryptoloria
               </label>
             </li>
 
             <li>
               <input type="checkbox" id="Art" value="Art" />
-              <label for="Art">
+              <label htmlFor="Art">
                 <img src={userProfile} alt={""} /> Art
               </label>
             </li>
 
             <li>
               <input type="checkbox" id="Photography" value="Photography" />
-              <label for="Photography">
+              <label htmlFor="Photography">
                 <img alt={""} src={userProfile} /> Photography
               </label>
             </li>
 
             <li>
               <input type="checkbox" id="Games" value="Games" />
-              <label for="Games">
+              <label htmlFor="Games">
                 <img alt={""} src={userProfile} /> Games
               </label>
             </li>
 
             <li>
               <input type="checkbox" id="Metaverses" value="Metaverses" />
-              <label for="Metaverses">
+              <label htmlFor="Metaverses">
                 <img alt={""} src={userProfile} /> Metaverses
               </label>
             </li>

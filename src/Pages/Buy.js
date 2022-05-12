@@ -110,7 +110,6 @@ const Buy = () => {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
-
   const properties = [
     { pr_name: "Eyes", pr_subname: "Empty" },
     { pr_name: "Ears", pr_subname: "Empty" },

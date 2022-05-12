@@ -116,7 +116,7 @@ export default function FilterCategory({
           <ul className="filtercategory-check">
             <li>
               <input type="radio" id="All" value="All" name="filtercategory" />
-              <label for="All" onClick={() => isActiveFunc()}>
+              <label htmlFor="All" onClick={() => isActiveFunc()}>
                 All
               </label>
             </li>
@@ -128,7 +128,7 @@ export default function FilterCategory({
                 value="Cryptoloria"
                 name="filtercategory"
               />
-              <label for="ctoCryptoloria" onClick={() => isActiveFunc()}>
+              <label htmlFor="ctoCryptoloria" onClick={() => isActiveFunc()}>
                 <img src={planet} alt={""} /> Cryptoloria
               </label>
             </li>
@@ -140,7 +140,7 @@ export default function FilterCategory({
                 value="Art"
                 name="filtercategory"
               />
-              <label for="ctoArt" onClick={() => isActiveFunc()}>
+              <label htmlFor="ctoArt" onClick={() => isActiveFunc()}>
                 <img src={Art} alt={""} /> Art
               </label>
             </li>
@@ -152,7 +152,7 @@ export default function FilterCategory({
                 value="Photography"
                 name="filtercategory"
               />
-              <label for="ctoPhotography" onClick={() => isActiveFunc()}>
+              <label htmlFor="ctoPhotography" onClick={() => isActiveFunc()}>
                 <img src={Photography} alt={""} /> Photography
               </label>
             </li>
@@ -164,7 +164,7 @@ export default function FilterCategory({
                 value="Games"
                 name="filtercategory"
               />
-              <label for="ctoGames" onClick={() => isActiveFunc()}>
+              <label htmlFor="ctoGames" onClick={() => isActiveFunc()}>
                 <img src={Games} alt={""} /> Games
               </label>
             </li>
@@ -176,7 +176,7 @@ export default function FilterCategory({
                 value="Metaverses"
                 name="filtercategory"
               />
-              <label for="ctoMetaverses" onClick={() => isActiveFunc()}>
+              <label htmlFor="ctoMetaverses" onClick={() => isActiveFunc()}>
                 <img src={Metaverses} alt={""} /> Metaverses
               </label>
             </li>
