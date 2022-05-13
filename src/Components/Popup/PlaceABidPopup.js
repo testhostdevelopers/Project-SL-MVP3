@@ -28,6 +28,7 @@ const PlaceABidPopup = (props) => {
   const user_id = JSON.parse(sessionStorage.getItem("userdata")) || {};
 
   const handleSubmit = async () => {
+    const user_id = JSON.parse(sessionStorage.getItem("userdata")) || {};
     var bids = {
       amount: placeBid.amount,
       currency: selected,

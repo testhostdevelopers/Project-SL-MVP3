@@ -245,7 +245,19 @@ const CreateCollectibleSingle = () => {
           if(res.data.response_code === "API_ERROR") {
             toast("" + res.data.error.message);
           } else if (res.data.response_code === "API_SUCCESS") {
-            toast("" + res.data.message);
+            var transactions = {
+              type: "collectible",
+              amount: 10
+            }
+            axios.put('http://localhost:8000/v1/user/transaction/create',transactions,
+            {
+              headers: {
+                "Authorization": `Bearer ${apiToken}`,
+              }  
+            }).then((res) => {
+              console.log(res);
+              toast("" + res.data.message);
+            })
           }
         })
         .catch(error => {

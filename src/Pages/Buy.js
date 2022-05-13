@@ -30,7 +30,8 @@ const Buy = () => {
   const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
   const [singleCollectibleData, setSingleCollectibleData] = useState([]);
   const [udata, setUdata] = useState([]);
-  // const [bid, setBid] = useState([]);
+
+  const [placedBids, setplacedBids] = useState([]);
   const [singlePopup, setSinglePopup] = useState(false);
   const [errorPopups, setErrorPopup] = useState(false);
   const [sharePopup, setsharePopup] = useState(false);
@@ -75,25 +76,7 @@ const Buy = () => {
         console.log(err);
       });
   };
-  const placeBidCollectible = async () => {
-    console.log('placeBidCollectible');
-    let a = 'collectible';
-    await axios
-      .put('http://localhost:8000/v1/' + a + '/bid/' + collectibleId, {
-        user: userData._id
-      }, {
-        headers: {
-          Authorization: `Bearer ${apiToken}`,
-        }
-      })
-      .then(response => {
-        // console.log('disLikeCollectible response', response);
-        singleCollectible();
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+
   const singleCollectible = async () => {
     axios
       .get("http://localhost:8000/v1/collectible/singleCollectible/" + collectibleId, {
@@ -104,7 +87,7 @@ const Buy = () => {
       .then((res) => {
         console.log(res.data.data);
         setSingleCollectibleData(res.data.data);
-        console.log(singleCollectibleData)
+        console.log(singleCollectibleData.bids)
         axios
           .get("http://localhost:8000/v1/user/getUser", {
             headers: {
@@ -114,7 +97,6 @@ const Buy = () => {
           .then((res) => {
             console.log(res.data);
             setUdata(res.data.data);
-            // setSingleCollectibleData(res.data.data);
           });
       });
   };
@@ -386,9 +368,33 @@ const Buy = () => {
                       aria-labelledby="pills-profile-tab"
                     >
                       <div className="w-100 d-flex justify-content-between mb-3">
-                        <ul>
-                          
-                        </ul>
+
+                        <div className="d-flex">
+                          <div className="user-img">
+                            <img src={userTick} width="36" alt="" />
+                          </div>
+                          <div className="ml-4">
+                            <div>
+                              <b>0.0002 ETH </b>
+                              <span className="color-gray">by </span>
+                              <b>tanelen tivan </b>
+                              <span className="color-gray">
+                                for 10 editions
+                              </span>
+                            </div>
+                            <div>
+                              <span className="color-gray">
+                                26/072021, 16:28
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                            
+                      <ul>
+                      {/* { singleCollectibleData.bids.map((bids, key) =>(
+                        <li>{bids}</li>
+                      )) } */}
+                      </ul>
                       </div>
                     </div>
 
