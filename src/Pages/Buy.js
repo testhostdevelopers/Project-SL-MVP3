@@ -219,7 +219,7 @@ const Buy = () => {
                   {singleCollectibleData.description}
                 </p>
 
-                <div className="w-100 d-flex mt-5 heading-text">
+                <div className="w-100 d-flex mt-3 heading-text">
                   <div className="d-flex flex-column">
                     <b className="text-secondary">Creator</b>
                     <div className="mt-3">
@@ -242,7 +242,7 @@ const Buy = () => {
                   go to creator
                 </button>
 
-                <div className="mt-5">
+                <div className="mt-4">
                   {/*      /////////     Buytab components    /////////   */}
                   <Buytab />
 
@@ -293,16 +293,13 @@ const Buy = () => {
                       <div className="details-tab-block">
                         <b className="text-secondary d-block mb-2">Category</b>
                         <ul className="category-btn-list">
-                          {category.map((categ, cat_k) => (
-                            <li key={cat_k}>
-                              <a href="#0">
-                                <span>
-                                  <img src={categ.cat_img} alt={""} />
-                                </span>
-                                {categ.cat_title}
+                            <li>
+                              <a href="#">
+                                {singleCollectibleData == null
+                                  ? ""
+                                  : singleCollectibleData.category}
                               </a>
                             </li>
-                          ))}
                         </ul>
                       </div>
                     </div>
