@@ -3,8 +3,14 @@ import { motion } from "framer-motion";
 import closeicon from "../../assets/img/custom/close.svg";
 // import PlaceABidFollowPopup from "./PlaceABidFollowPopup";
 // import { useLocation, Link } from "react-router-dom";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+
 
 const PlaceABidPopup = (props) => {
+  const { collectibleId } = useParams();
+  const apiToken = sessionStorage.getItem("apiToken");
+
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -13,17 +19,40 @@ const PlaceABidPopup = (props) => {
   let { setSingleCollectionPopup, setSinglePopup, setCheckOutPopup } = props;
 
   const options = [
+    { value: "SOL", label: "SOL" },
     { value: "ETH", label: "ETH" },
-    { value: "BTC", label: "BTC" },
-    { value: "DAI", label: "DAI" },
-    { value: "USDC", label: "USDC" },
-    { value: "Starlight", label: "Starlight" },
-    { value: "ASH", label: "ASH" },
-    { value: "ATRI", label: "ATRI" },
-    { value: "FIRST", label: "FIRST" },
   ];
 
-  const [selected, setSelected] = useState("ETH");
+  const [selected, setSelected] = useState("SOL");
+  const [placeBid, setPlaceBid] = useState({amount: 0});
+  const user_id = JSON.parse(sessionStorage.getItem("userdata")) || {};
+
+  const handleSubmit = async () => {
+    const user_id = JSON.parse(sessionStorage.getItem("userdata")) || {};
+    var bids = {
+      amount: placeBid.amount,
+      currency: selected,
+      user_id: user_id
+
+    };
+    console.log('placeBidCollectible');
+    let a = 'collectible';
+    await axios
+      .put('http://localhost:8000/v1/' + a + '/bid/' + collectibleId, {
+        bids
+      }, {
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        }
+      })
+      .then(response => {
+        console.log('bidCollectible response', response);
+        // singleCollectible();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
   return (
     <>
@@ -64,7 +93,7 @@ const PlaceABidPopup = (props) => {
           </h5>
 
           <div className="pt-2 pb-2 border-bottom d-flex justify-content-between bid-input">
-            <input type="text" className="formcontrol" placeholder="0.2" />
+            <input type="text" onChange={ (e) => setPlaceBid({ ...placeBid,amount: parseInt(e.target.value) + 0.0005 } ) } className="formcontrol" placeholder="0.2" />
             {/* <div>0.2</div> */}
             <div className="info">
               <span className="help" onClick={() => props.sethelpPopup(true)}>
@@ -111,44 +140,42 @@ const PlaceABidPopup = (props) => {
             </div>
           </div>
           <div className="color-gray">
-            <small>Must be atleast 0.2 wETH</small>
+            <small>Must be atleast 0.2 w{selected}</small>
           </div>
 
           <div className="mt-3 balance-info">
             <div className="d-flex justify-content-between mb-2">
               <div className="color-gray">Your bidding balance</div>
               <div>
-                <b>0 wETH</b>
+                <b>0 w{selected}</b>
               </div>
             </div>
 
             <div className="d-flex justify-content-between mb-2">
               <div className="color-gray">Your balance</div>
               <div>
-                <b>0.0506518 ETH</b>
+                <b>0.0506518 {selected}</b>
               </div>
             </div>
 
             <div className="d-flex justify-content-between mb-2">
               <div className="color-gray">Service fee</div>
               <div>
-                <b>0.0005 wETH</b>
+                <b>0.0005 w{selected}</b>
               </div>
             </div>
 
             <div className="d-flex justify-content-between mb-2">
               <div className="color-gray">You will pay</div>
               <div>
-                <b>0.0205 wETH</b>
+                <b>{placeBid == null ? '' : placeBid.amount } w{selected}</b>
               </div>
             </div>
           </div>
 
           <button
             className="btn-ping  w-100 mt-4 mb-3"
-            onClick={() => {
-              setSinglePopup(true);
-            }}
+            onClick={handleSubmit}
           >
             Place a bid
           </button>

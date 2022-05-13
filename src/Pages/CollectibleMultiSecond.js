@@ -67,7 +67,7 @@ const CollectibleMultiSecond = () => {
                     className="custom-control-input"
                     id="customSwitch1"
                   />
-                  <label className="custom-control-label" for="customSwitch1" />
+                  <label className="custom-control-label" htmlFor="customSwitch1" />
                 </div>
               </div>
 
@@ -85,7 +85,7 @@ const CollectibleMultiSecond = () => {
                     className="custom-control-input"
                     id="customSwitch1"
                   />
-                  <label className="custom-control-label" for="customSwitch1" />
+                  <label className="custom-control-label" htmlFor="customSwitch1" />
                 </div>
               </div>
 

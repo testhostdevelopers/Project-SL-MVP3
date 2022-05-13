@@ -13,6 +13,7 @@ import Token from "./Pages/Token";
 import Cryptoloria from "./Pages/Cryptoloria";
 import Explore from "./Pages/Explore";
 import Collection from "./Pages/Collection";
+import User_profile from "./Pages/user_profile";
 import UpcomingCollections from "./Pages/UpcomingCollections";
 import TokenPage from "./Pages/TokenPage";
 import Home from "./Pages/Home";
@@ -77,7 +78,8 @@ const App = () => {
           <Route path="/cryptoloria" component={Cryptoloria} exact />
           <Route path="/explore" component={Explore} exact />
           <Route path="/buy/:collectibleId" component={Buy} exact />
-          <Route path="/collection" component={Collection} exact />
+          <Route path="/collection/:collectionId" component={Collection} exact />
+          <Route path="/user_profile/:user_id" component={User_profile} exact />
           <Route
             path="/signIn"
             render={(props) => {

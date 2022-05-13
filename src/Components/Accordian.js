@@ -49,7 +49,7 @@ const Accordian = ({ AccordianField }) => {
                     value={suboptions.subtitle}
                     id={suboptions.subtitle}
                   />
-                  <label for={suboptions.subtitle}>
+                  <label htmlFor={suboptions.subtitle}>
                     {suboptions.subtitle}
                     <span>{suboptions.number}</span>
                   </label>

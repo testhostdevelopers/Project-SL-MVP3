@@ -9,7 +9,6 @@ import { Select } from "antd";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Keyboard, Pagination, Navigation } from "swiper/core";
 import { motion } from "framer-motion";
-// import Arweave from "arweave";
 import { NFTStorage, File } from 'nft.storage';
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
@@ -68,51 +67,51 @@ const CreateCollectibleSingle = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   /*const imageUpload = async (file) => {
-    console.log("imageUpload file details:-", file);
-    const arweave = Arweave.init({
-      host: "arweave.net", // Hostname or IP address for a Arweave host
-      port: 443, // Port
-      protocol: "TLS", // Network protocol http or https
-      timeout: 20000, // Network request timeouts in milliseconds
-      logging: false, // Enable network request logging
-    });
+    // console.log("imageUpload file details:-", file);
+    // const arweave = Arweave.init({
+    //   host: "arweave.net", // Hostname or IP address for a Arweave host
+    //   port: 443, // Port
+    //   protocol: "TLS", // Network protocol http or https
+    //   timeout: 20000, // Network request timeouts in milliseconds
+    //   logging: false, // Enable network request logging
+    // });
 
-    // Upload image to
+    // // Upload image to
 
-    let readers = new FileReader();
-    readers.readAsArrayBuffer(file);
+    // let readers = new FileReader();
+    // readers.readAsArrayBuffer(file);
 
-    let key = await arweave.wallets.generate();
+    // let key = await arweave.wallets.generate();
 
-    // console.log("arweave key", key);
-    // console.log("readers.result", readers.result);
+    // // console.log("arweave key", key);
+    // // console.log("readers.result", readers.result);
 
-    const wallet = await arweave.wallets.jwkToAddress(key);
-    console.log("wallet", wallet);
+    // const wallet = await arweave.wallets.jwkToAddress(key);
+    // console.log("wallet", wallet);
 
-    const transaction = await arweave.createTransaction(
-      {
-        data: readers.result,
-      },
-      key
-    );
+    // const transaction = await arweave.createTransaction(
+    //   {
+    //     data: readers.result,
+    //   },
+    //   key
+    // );
 
-    let fileExt = file.name.split(".").pop();
-    // console.log("fileExt", fileExt, `image/${fileExt}`);
-    transaction.addTag("Content-Type", `image/${fileExt}`);
-    // console.log("transaction", transaction);
+    // let fileExt = file.name.split(".").pop();
+    // // console.log("fileExt", fileExt, `image/${fileExt}`);
+    // transaction.addTag("Content-Type", `image/${fileExt}`);
+    // // console.log("transaction", transaction);
 
-    await arweave.transactions.sign(transaction, key);
+    // await arweave.transactions.sign(transaction, key);
 
-    // console.log(sign)
-    // console.log(transaction)
+    // // console.log(sign)
+    // // console.log(transaction)
 
-    const response = await arweave.transactions.post(transaction);
-    console.log("arweave.transactions.response", response);
+    // const response = await arweave.transactions.post(transaction);
+    // console.log("arweave.transactions.response", response);
 
-    const { id } = transaction;
-    const imageUrl = id ? `https://arweave.net/${id}` : undefined;
-    console.log("imageUrl", imageUrl);
+    // const { id } = transaction;
+    // const imageUrl = id ? `https://arweave.net/${id}` : undefined;
+    // console.log("imageUrl", imageUrl);
     //   setUdata({ img_path: imageUrl })
   };*/
 
@@ -185,7 +184,9 @@ const CreateCollectibleSingle = () => {
         }
       };
       reader.readAsDataURL(file);
-      // uploadNftStorage(e.target.files[0]);
+      uploadNftStorage(e.target.files[0]);
+      // imageUpload(e.target.files[0]);
+
     }
   };
 
@@ -260,39 +261,31 @@ const CreateCollectibleSingle = () => {
               "Authorization": `Bearer ${apiToken}`,
             }
           })
-          .then( async (res) => {
-            console.log(res);
-            if(res.data.response_code === "API_ERROR") {
-              toast("" + res.data.error.message);
-            } else if (res.data.response_code === "API_SUCCESS") {
-              toast("" + res.data.message);
-              const connection = new Connection(  
-                  clusterApiUrl('devnet'),
-                  'confirmed',
-                );
-                console.log(connection)
-                const keypair = Keypair.generate();
-                console.log(keypair)
-                const feePayerAirdropSignature = await connection.requestAirdrop(keypair.publicKey, LAMPORTS_PER_SOL);
-                console.log(feePayerAirdropSignature)
-                await connection.confirmTransaction(feePayerAirdropSignature);
-            
-                const mintNFTResponse = await actions.mintNFT({
-                  connection,
-                  wallet: new NodeWallet(keypair),
-                  uri: imageUrlNft,
-                  maxSupply: 1
-                });
-            
-                console.log(mintNFTResponse);
+        .then((res) => {
+          console.log(res);
+          if(res.data.response_code === "API_ERROR") {
+            toast("" + res.data.error.message);
+          } else if (res.data.response_code === "API_SUCCESS") {
+            var transactions = {
+              type: "collectible",
+              amount: 10
             }
-          })
-          .catch(error => {
-            // this.setState({ errorMessage: error.message });
-            console.log('There was an error!', error);
-            toast("" + error);
-          });
-      }
+            axios.put('http://localhost:8000/v1/user/transaction/create',transactions,
+            {
+              headers: {
+                "Authorization": `Bearer ${apiToken}`,
+              }  
+            }).then((res) => {
+              console.log(res);
+              toast("" + res.data.message);
+            })
+          }
+        })
+        .catch(error => {
+          // this.setState({ errorMessage: error.message });
+          console.log('There was an error!', error);
+          toast("" + error);
+        });
     }
   };
 
@@ -570,7 +563,6 @@ const CreateCollectibleSingle = () => {
                   className="putOnMarketplace border-gray border-radius btn-primary-outline-responsive"
                   onClick={() => {
                     setSingleCollectionPopup(true);
-                    document.body.style.overflow = "hidden";
                   }}
                 >
                   <img src={plus} width="40" alt="" />
@@ -593,7 +585,11 @@ const CreateCollectibleSingle = () => {
                           collection_id: sing._id,
                         });
                       }}>
-                      <div className="putOnMarketplace ml-3 border-radius btn-primary-outline-responsive">
+                      <div className={`${
+                      udata.collection_id === sing._id
+                        ? "putOnMarketplace ml-3 border-radius btn-primary-outline-responsive"
+                        : "putOnMarketplace border-gray ml-3 border-radius"
+                    } `}>
                         <img src={sing.main_img} width="40" alt=""/>
                         <div className="starslide">{sing.title}</div>
                         <div>
@@ -761,7 +757,7 @@ const CreateCollectibleSingle = () => {
           </div>
 
           <div className="mt-4">
-            <button onClick={handleSubmit} className="btn-ping  w-100">Save Item</button>
+            <button onClick={handleSubmit} className="btn-ping  w-100" >Save Item</button>
           </div>
 
           <div className="mt-4 color-gray text-center">
