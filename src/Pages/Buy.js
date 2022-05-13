@@ -19,7 +19,7 @@ import Buytab from "../Components/Tabs/Buytab";
 import BuyHistory from "../Components/BuyCopmponent/BuyHistory";
 import BuyAuction from "../Components/BuyCopmponent/BuyAuction";
 import axios from "axios";
-import logo from "../assets/img/icons/custom/logo.svg";
+// import logo from "../assets/img/icons/custom/logo.svg";
 import start from "../assets/img/icons/custom/start.svg";
 
 const Buy = () => {
@@ -30,7 +30,7 @@ const Buy = () => {
   const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
   const [singleCollectibleData, setSingleCollectibleData] = useState([]);
   const [udata, setUdata] = useState([]);
-  const [bid, setBid] = useState([]);
+  // const [bid, setBid] = useState([]);
   const [singlePopup, setSinglePopup] = useState(false);
   const [errorPopups, setErrorPopup] = useState(false);
   const [sharePopup, setsharePopup] = useState(false);
