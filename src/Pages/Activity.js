@@ -5,7 +5,7 @@ import FillLabel from "../assets/img/icons/custom/fill-label.svg";
 import ActivityCard from "../assets/img/custom/activity-cardonly.png";
 import { Tabs } from "antd";
 import axios from "axios";
-const { TabPane } = Tabs;
+// const { TabPane } = Tabs;
 
 const Activity = () => {
   var apiToken = sessionStorage.getItem("apiToken");

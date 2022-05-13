@@ -25,7 +25,7 @@ const PlaceABidPopup = (props) => {
 
   const [selected, setSelected] = useState("SOL");
   const [placeBid, setPlaceBid] = useState({amount: 0});
-  const user_id = JSON.parse(sessionStorage.getItem("userdata")) || {};
+  // const user_id = JSON.parse(sessionStorage.getItem("userdata")) || {};
 
   const handleSubmit = async () => {
     const user_id = JSON.parse(sessionStorage.getItem("userdata")) || {};

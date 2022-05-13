@@ -31,7 +31,7 @@ const Buy = () => {
   const [singleCollectibleData, setSingleCollectibleData] = useState([]);
   const [udata, setUdata] = useState([]);
 
-  const [placedBids, setplacedBids] = useState([]);
+  // const [placedBids, setplacedBids] = useState([]);
   const [singlePopup, setSinglePopup] = useState(false);
   const [errorPopups, setErrorPopup] = useState(false);
   const [sharePopup, setsharePopup] = useState(false);
@@ -206,7 +206,7 @@ const Buy = () => {
                     </Dropdown>
                   </div>
                 </div>
-                {singleCollectibleData.price_type == 'open_for_bid' ? 
+                {singleCollectibleData.price_type === 'open_for_bid' ?
                 <div className="mt-3 bighest-bid-text">
                   <b>
                     <span className="">Highest bid </span>
@@ -409,12 +409,12 @@ const Buy = () => {
                   </div>
                   <div className="tab-pane-bottom-solid" />
                 </div>
-                {singleCollectibleData.price_type == 'time_auction' ? 
+                {singleCollectibleData.price_type === 'time_auction' ?
                 <BuyAuction />
                           : '' }
                 <div className="row d-flex justify-content-center mt-5 action-btn buy-highest-bid-block-btn">
                   <div className="col-sm-12 col-lg-8 d-flex">
-                {singleCollectibleData.price_type == 'fixed_price' ? 
+                {singleCollectibleData.price_type === 'fixed_price' ?
                     <button
                     className="btn-ping  w-100"
                     onClick={() => setCheckOutPopup(true)}
@@ -422,7 +422,7 @@ const Buy = () => {
                       Buy for 1.25 ETH
                     </button>
                       : '' }
-                    {singleCollectibleData.price_type == 'open_for_bid' ? 
+                    {singleCollectibleData.price_type === 'open_for_bid' ?
                     <button
                         className="btn-primary-outline ml-3 w-100"
                         onClick={() => setSingleCollectionPopup(true)}
