@@ -9,7 +9,6 @@ import { Select } from "antd";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Keyboard, Pagination, Navigation } from "swiper/core";
 import { motion } from "framer-motion";
-// import Arweave from "arweave";
 import { NFTStorage, File } from 'nft.storage';
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
@@ -64,7 +63,7 @@ const CreateCollectibleSingle = () => {
     collectionListFunc();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const imageUpload = async (file) => {
+  /*const imageUpload = async (file) => {
     // console.log("imageUpload file details:-", file);
     // const arweave = Arweave.init({
     //   host: "arweave.net", // Hostname or IP address for a Arweave host
@@ -111,7 +110,7 @@ const CreateCollectibleSingle = () => {
     // const imageUrl = id ? `https://arweave.net/${id}` : undefined;
     // console.log("imageUrl", imageUrl);
     //   setUdata({ img_path: imageUrl })
-  };
+  };*/
 
   const uploadNftStorage = async (file) => {
     console.log(file)

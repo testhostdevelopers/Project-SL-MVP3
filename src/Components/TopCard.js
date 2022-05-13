@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 // import { Link } from "react-router-dom";
 
 export default function TopCard({
@@ -6,10 +7,35 @@ export default function TopCard({
   follow,
   btnname,
   datetime,
+  id,
   Price,
   topuserimg,
   topcoverimg,
 }) {
+    var apiToken = sessionStorage.getItem("apiToken");
+    const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
+    let temp = '';
+    const followUser = async () => {
+        if (btnname === "Unfollow") {
+            temp = "unfollow"
+        } else if (btnname === "Follow") {
+            temp = "follow"
+        }
+        await axios
+            .put('http://localhost:8000/v1/user/' + temp + '/' + id, {
+                user: userData._id
+            }, {
+                headers: {
+                    Authorization: `Bearer ${apiToken}`,
+                }
+            })
+            .then(response => {
+                console.log('response', response);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
   return (
     <div className="topSellerCard">
       <div className="w-100 topSellerCardImageover">
@@ -34,7 +60,7 @@ export default function TopCard({
         <h5 className="color-ping mt-2 mb-2">{follow}</h5>
         <small>{datetime}</small>
         <small>{Price}</small>
-        <button className="btn-ping w-100 mt-3">{btnname}</button>
+        <button onClick={followUser} className="btn-ping w-100 mt-3">{btnname}</button>
       </div>
     </div>
   );

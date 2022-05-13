@@ -19,7 +19,7 @@ import Buytab from "../Components/Tabs/Buytab";
 import BuyHistory from "../Components/BuyCopmponent/BuyHistory";
 import BuyAuction from "../Components/BuyCopmponent/BuyAuction";
 import axios from "axios";
-import logo from "../assets/img/icons/custom/logo.svg";
+// import logo from "../assets/img/icons/custom/logo.svg";
 import start from "../assets/img/icons/custom/start.svg";
 
 const Buy = () => {
@@ -30,6 +30,7 @@ const Buy = () => {
   const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
   const [singleCollectibleData, setSingleCollectibleData] = useState([]);
   const [udata, setUdata] = useState([]);
+
   const [placedBids, setplacedBids] = useState([]);
   const [singlePopup, setSinglePopup] = useState(false);
   const [errorPopups, setErrorPopup] = useState(false);
@@ -87,7 +88,6 @@ const Buy = () => {
         console.log(res.data.data);
         setSingleCollectibleData(res.data.data);
         console.log(singleCollectibleData.bids)
-
         axios
           .get("http://localhost:8000/v1/user/getUser", {
             headers: {
@@ -125,7 +125,6 @@ const Buy = () => {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
-
   const properties = [
     { pr_name: singleCollectibleData.properties, pr_subname: "Wealth" },
   ];
@@ -369,6 +368,7 @@ const Buy = () => {
                       aria-labelledby="pills-profile-tab"
                     >
                       <div className="w-100 d-flex justify-content-between mb-3">
+
                         <div className="d-flex">
                           <div className="user-img">
                             <img src={userTick} width="36" alt="" />

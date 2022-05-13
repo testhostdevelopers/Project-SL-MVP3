@@ -48,7 +48,7 @@ import axios from "axios";
 SwiperCore.use([Keyboard, Pagination, Navigation, Autoplay]);
 
 const Home = () => {
-  var apiToken = sessionStorage.getItem("apiToken");
+  // var apiToken = sessionStorage.getItem("apiToken");
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   let [openImage, setOpenImage] = useState(false);
   let [liveAuctionList, setLiveAuctionList] = useState([]);
@@ -494,8 +494,6 @@ const Home = () => {
                             <h6 style={{ fontSize: "18px" }}>
                                 A perfect place to buy and sell digital art, as well as updating <br /> your NFT collection.
                             </h6>
-
-
                             <div className="d-flex nft-start-counter align-items-start flex-column justify-content-between">
 
                                 <button className="btn-primary">Explore all</button>

@@ -419,7 +419,7 @@ const Navbar = (props) => {
                         <Link to="/edit-profile" className="color-ping">
                           <b>Set display name</b>
                         </Link>
-                        {/* <a href="#0" className="color-ping" for="profilephoto" onClick={() => profileUploader.current.click()}><b>Upload profile picture</b></a>
+                        {/* <a href="#0" className="color-ping" htmlFor="profilephoto" onClick={() => profileUploader.current.click()}><b>Upload profile picture</b></a>
                                                 <div className="profile-user-pictures">
                                                     <input
                                                         type="file"

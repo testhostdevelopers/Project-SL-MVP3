@@ -119,7 +119,7 @@ export default function FilterSort({
                 value="Recently added"
                 name="sorting"
               />
-              <label for="Recentlyadded" onClick={() => isActiveFunc()}>
+              <label htmlFor="Recentlyadded" onClick={() => isActiveFunc()}>
                 Recently added
               </label>
             </li>
@@ -131,7 +131,7 @@ export default function FilterSort({
                 value="Low to High"
                 name="sorting"
               />
-              <label for="LowtoHigh" onClick={() => isActiveFunc()}>
+              <label htmlFor="LowtoHigh" onClick={() => isActiveFunc()}>
                 Price: Low to High
               </label>
             </li>
@@ -143,7 +143,7 @@ export default function FilterSort({
                 value="High to Low"
                 name="sorting"
               />
-              <label for="HightoLow" onClick={() => isActiveFunc()}>
+              <label htmlFor="HightoLow" onClick={() => isActiveFunc()}>
                 Price: High to Low
               </label>
             </li>
@@ -155,7 +155,7 @@ export default function FilterSort({
                 value="Ending Soon"
                 name="sorting"
               />
-              <label for="endingsoon" onClick={() => isActiveFunc()}>
+              <label htmlFor="endingsoon" onClick={() => isActiveFunc()}>
                 Auction Ending Soon
               </label>
             </li>
