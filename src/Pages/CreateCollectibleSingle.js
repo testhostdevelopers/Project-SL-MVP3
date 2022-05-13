@@ -13,8 +13,8 @@ import { NFTStorage, File } from 'nft.storage';
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { actions, utils, programs, NodeWallet} from '@metaplex/js'; 
-import { clusterApiUrl, Connection, Keypair, LAMPORTS_PER_SOL } from '@solana/web3.js';
+// import { actions, utils, programs, NodeWallet} from '@metaplex/js'; 
+// import { clusterApiUrl, Connection, Keypair, LAMPORTS_PER_SOL } from '@solana/web3.js';
 
 
 SwiperCore.use([Keyboard, Pagination, Navigation]);
@@ -147,22 +147,22 @@ const CreateCollectibleSingle = () => {
     console.log(imageUrlNft)
     setUdata({...udata, img_path: imageUrlNft })
 
-    const connection = new Connection(  
-      clusterApiUrl('devnet'),
-      'confirmed',
-    );
-    const keypair = Keypair.generate();
-    const feePayerAirdropSignature = await connection.requestAirdrop(keypair.publicKey, LAMPORTS_PER_SOL);
-    await connection.confirmTransaction(feePayerAirdropSignature);
+    // const connection = new Connection(  
+    //   clusterApiUrl('devnet'),
+    //   'confirmed',
+    // );
+    // const keypair = Keypair.generate();
+    // const feePayerAirdropSignature = await connection.requestAirdrop(keypair.publicKey, LAMPORTS_PER_SOL);
+    // await connection.confirmTransaction(feePayerAirdropSignature);
 
-    const mintNFTResponse = await actions.mintNFT({
-      connection,
-      wallet: new NodeWallet(keypair),
-      uri: imageUrl,
-      maxSupply: 1
-    });
+    // const mintNFTResponse = await actions.mintNFT({
+    //   connection,
+    //   wallet: new NodeWallet(keypair),
+    //   uri: imageUrl,
+    //   maxSupply: 1
+    // });
 
-    console.log(mintNFTResponse);
+    // console.log(mintNFTResponse);
   }
 
   const handleprofilepicUploadr = (e) => {
@@ -286,6 +286,7 @@ const CreateCollectibleSingle = () => {
           console.log('There was an error!', error);
           toast("" + error);
         });
+     }
     }
   };
 
