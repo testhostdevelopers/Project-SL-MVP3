@@ -464,8 +464,18 @@ const Home = () => {
         console.log(err);
       });
   };
+
+  const getUserList = async () => {
+    axios
+        .get("http://localhost:8000/v1/user/getAllUser",)
+        .then((res) => {
+          // setUdata(res.data.data);
+          console.log(res.data.data);
+        });
+  }
   useEffect(() => {
     getallcollectiblelist();
+    getUserList()
   }, []);
 
   return (
