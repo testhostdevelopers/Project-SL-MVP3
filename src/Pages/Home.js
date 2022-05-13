@@ -48,10 +48,13 @@ import axios from "axios";
 SwiperCore.use([Keyboard, Pagination, Navigation, Autoplay]);
 
 const Home = () => {
-  // var apiToken = sessionStorage.getItem("apiToken");
+  var apiToken = sessionStorage.getItem("apiToken");
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   let [openImage, setOpenImage] = useState(false);
   let [liveAuctionList, setLiveAuctionList] = useState([]);
+  let [topSellerUser, setTopSellerUser] = useState([]);
+  let [topBuyerUser, setTopBuyerUser] = useState({});
+
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -464,8 +467,48 @@ const Home = () => {
         console.log(err);
       });
   };
+  const getTopBuyerUser = async () => {
+    await axios
+        .get('http://localhost:8000/v1/user/getTopBuyerUser', {
+          data: {
+            user_id: userData._id
+          },
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        })
+        .then(response => {
+          if (response.data.data) {
+            setTopBuyerUser(response.data.data);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
+  const getTopSellerUser = async () => {
+    await axios
+        .get('http://localhost:8000/v1/user/getTopSellerUser', {
+          data: {
+            user_id: userData._id
+          },
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        })
+        .then(response => {
+          if (response.data.data) {
+            setTopSellerUser(response.data.data);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
   useEffect(() => {
     getallcollectiblelist();
+    getTopSellerUser();
+    getTopBuyerUser();
   }, []);
 
   return (
@@ -771,7 +814,7 @@ const Home = () => {
 
           <div className="topSellerContent mt-5">
             <div className="d-flex">
-              {top_seller_profile.map((top_seller_profile, key) => (
+              {topSellerUser.map((top_seller_profile, key) => (
                   <TopCard
                     topcoverimg={top_seller_profile.topcover_img}
                     topuserimg={top_seller_profile.topuser_img}
@@ -804,7 +847,7 @@ const Home = () => {
 
           <div className="topSellerContent mt-5">
             <div className="d-flex">
-              {top_buyers_profile.map((top_seller_profile, key) => (
+              {topBuyerUser.map((top_seller_profile, key) => (
                   <TopCard
                     topcoverimg={top_seller_profile.topcover_img}
                     topuserimg={top_seller_profile.topuser_img}

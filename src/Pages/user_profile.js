@@ -36,7 +36,7 @@ const User_profile = (props) => {
   const userData = {};
   const [reportPopup, setReportPopup] = useState(false);
   const [buttonText, setButtonText] = useState("Add Cover");
-  let [udata, setUdata] = useState();
+  let [udata, setUdata] = useState({});
   let [userCollectibleList, setUserCollectibleList] = useState([]);
   let [userCollectionList, setUserCollectionList] = useState([]);
   let [userLikedCollectionsList, setUserLikedCollectionsList] = useState([]);
