@@ -10,10 +10,10 @@ const { TabPane } = Tabs;
 const Activity = () => {
   var apiToken = sessionStorage.getItem("apiToken");
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
-  const [listing, Setlisting] = useState("Listing");
+  const [filterValue, setFilterValue] = useState("Listing");
   const error_data = "";
   const [all_filter, setAllFilter] = useState([]);
-  const [filterData, setFilterData] = useState(all_filter);
+  const [transactionData, setTransactionData] = useState(all_filter);
   const getallactivityfilters = async () => {
     await axios
         .get('http://localhost:8000/v1/activityfilter/getallactivityfilters', {
@@ -42,30 +42,30 @@ const Activity = () => {
           }
         })
         .then(response => {
-          setFilterData(response.data.data);
+          setTransactionData(response.data.data);
         })
         .catch(err => {
           console.log(err);
         });
   };
   const findFilter = (key) => {
-    Setlisting(key);
+    setFilterValue(key);
     let arr = [];
-    filterData.forEach((SingleData) => {
+    transactionData.forEach((SingleData) => {
       if (SingleData.filter.title === key) {
         arr.push(SingleData);
       }
     });
-    setFilterData(arr);
+    setTransactionData(arr);
   };
 
   // useEffect(() => {
-  //     if(filterData.length > 0){
+  //     if(transactionData.length > 0){
   //         seterror_data('');
   //     } else{
   //         seterror_data('Data Not Found..!')
   //     }
-  // }, [filterData]);
+  // }, [transactionData]);
 
   const variants = {
     hidden: { opacity: 0 },
@@ -130,14 +130,7 @@ const Activity = () => {
 
                       <div className="topSellerContent Collection-topSellerContent">
                         <div className="filtername">
-                          {listing === "Listing" ? <h6>Listing</h6> : ""}
-                          {listing === "Purchases" ? <h6>Purchases</h6> : ""}
-                          {listing === "Sales" ? <h6>Sales</h6> : ""}
-                          {listing === "Transfer" ? <h6>Transfer</h6> : ""}
-                          {listing === "Burn" ? <h6>Burn</h6> : ""}
-                          {listing === "Bids" ? <h6>Bids</h6> : ""}
-                          {listing === "Likes" ? <h6>Likes</h6> : ""}
-                          {listing === "Followings" ? <h6>Likes</h6> : ""}
+                          <h6>{filterValue}</h6>
                         </div>
                         <div className="row align-items-start">
                           <div className="d-flex col-lg-8 activity activity-number-card-left">
@@ -145,7 +138,7 @@ const Activity = () => {
                               {error_data}
                             </h5>
 
-                            {filterData.map((single) => (
+                            {transactionData.map((single) => (
                               <ActivityNumberCard
                                 activitynumbercardimg={ActivityCard}
                                 FillLabel={FillLabel}
@@ -175,9 +168,9 @@ const Activity = () => {
                                 {all_filter.map((fill_) => (
                                   <button
                                     className={`btn-light mr-2 mt-2 bg-white ${
-                                      listing === fill_.title ? "active" : ""
+                                      filterValue === fill_.title ? "active" : ""
                                     } `}
-                                    onClick={() => findFilter(fill_)}
+                                    onClick={() => findFilter(fill_.title)}
                                   >
                                     <svg
                                       width="10"
