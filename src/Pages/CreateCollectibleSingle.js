@@ -13,6 +13,9 @@ import { NFTStorage, File } from 'nft.storage';
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { actions, utils, programs, NodeWallet} from '@metaplex/js'; 
+import { clusterApiUrl, Connection, Keypair, LAMPORTS_PER_SOL } from '@solana/web3.js';
+
 
 SwiperCore.use([Keyboard, Pagination, Navigation]);
 
@@ -117,7 +120,7 @@ const CreateCollectibleSingle = () => {
     let fileExt = file.name.split(".").pop();
     let readers = new FileReader();
     readers.readAsDataURL(file);
-    const imageFile = new File([ file ], { type: `image/${fileExt}` })
+    const imageFile = new File([ file ], file.name , { type: `image/${fileExt}` })
     console.log(imageFile)
     console.log(fileExt)
     const metadata = await client.store({
@@ -144,28 +147,28 @@ const CreateCollectibleSingle = () => {
     console.log(imageUrlNft)
     setUdata({...udata, img_path: imageUrlNft })
 
-    // const connection = new Connection(  
-    //   clusterApiUrl('devnet'),
-    //   'confirmed',
-    // );
-    // const keypair = Keypair.generate();
-    // const feePayerAirdropSignature = await connection.requestAirdrop(keypair.publicKey, LAMPORTS_PER_SOL);
-    // await connection.confirmTransaction(feePayerAirdropSignature);
+    const connection = new Connection(  
+      clusterApiUrl('devnet'),
+      'confirmed',
+    );
+    const keypair = Keypair.generate();
+    const feePayerAirdropSignature = await connection.requestAirdrop(keypair.publicKey, LAMPORTS_PER_SOL);
+    await connection.confirmTransaction(feePayerAirdropSignature);
 
-    // const mintNFTResponse = await actions.mintNFT({
-    //   connection,
-    //   wallet: new NodeWallet(keypair),
-    //   uri: imageUrl,
-    //   maxSupply: 1
-    // });
+    const mintNFTResponse = await actions.mintNFT({
+      connection,
+      wallet: new NodeWallet(keypair),
+      uri: imageUrl,
+      maxSupply: 1
+    });
 
-    // console.log(mintNFTResponse);
+    console.log(mintNFTResponse);
   }
 
   const handleprofilepicUploadr = (e) => {
     const file = e.target.files[0];
     // console.log('file', file);
-    setUdata({ ...udata, img_path: e.target.files[0].name });
+    setUdata({ ...udata, img_path: e.target.files[0] });
     if (file) {
       const reader = new FileReader();
       const { current } = profileImage;
@@ -183,6 +186,7 @@ const CreateCollectibleSingle = () => {
       reader.readAsDataURL(file);
       uploadNftStorage(e.target.files[0]);
       // imageUpload(e.target.files[0]);
+
     }
   };
 
@@ -217,29 +221,46 @@ const CreateCollectibleSingle = () => {
         properties: udata.properties,
         alt_text_nft: udata.alterText,
       };
-      console.log(udata)
-      // formData.append('put_on_market_place',udata.putOnMarket);
-      // formData.append('price',price);
-      // formData.append('price_type',udata.price_type);
-      // formData.append('price_currency',udata.price_currency);
-      // formData.append('unlock_once_purchased',udata.oncePurchase);
-      // formData.append('collection_id',udata.description);
-      // formData.append('title',udata.title);
-      // formData.append('description',udata.description);
-      // formData.append('royalties',udata.royalties);
-      // formData.append('img_path',udata.description);
-      // formData.append('digital_key',udata.description);
-      // formData.append('properties',udata.properties);
-      // formData.append('alt_text_nft',udata.alterText);
-      // console.log(udata);
-      // console.log(formData);
-      // console.log(form);
-      await axios.post('http://localhost:8000/v1/collectible/create', form,
-        {
-          headers: {
-            "Authorization": `Bearer ${apiToken}`,
+      var file = form.img_path;
+      console.log(file)
+      let fileExt = file.name.split(".").pop();
+      let readers = new FileReader();
+      readers.readAsDataURL(file);
+      const imageFile = new File([ file ], file.name , { type: `image/${fileExt}` })
+      console.log(imageFile)
+      console.log(fileExt)
+      const metadata = await client.store({
+        image: imageFile,
+        name: form.title,
+        description: form.description,
+        properties: {
+          type: "blog-post",
+          origins: {
+            http: "https://nft.storage/blog/post/2021-11-30-hello-world-nft-storage/",
+            ipfs: "ipfs://bafybeieh4gpvatp32iqaacs6xqxqitla4drrkyyzq6dshqqsilkk3fqmti/blog/post/2021-11-30-hello-world-nft-storage/"
+          },
+          authors: [{ name: "David Choi" }],
+          content: {
+            "text/markdown": "The last year has witnessed the explosion of NFTs onto the world’s mainstage. From fine art to collectibles to music and media, NFTs are quickly demonstrating just how quickly grassroots Web3 communities can grow, and perhaps how much closer we are to mass adoption than we may have previously thought. <... remaining content omitted ...>"
           }
-        })
+        }
+      })
+      console.log(metadata)
+
+      const imageUrl = metadata.url;
+      const imageUrlNft = metadata.ipnft + '.ipfs.nftstorage.link';
+      console.log(imageUrl)
+      console.log(imageUrlNft)
+      setUdata({...udata, img_path: imageUrlNft })
+      form.img_path = imageUrlNft;
+      if(imageUrlNft){
+        console.log(udata)
+        await axios.post('http://localhost:8000/v1/collectible/create', form,
+          {
+            headers: {
+              "Authorization": `Bearer ${apiToken}`,
+            }
+          })
         .then((res) => {
           console.log(res);
           if(res.data.response_code === "API_ERROR") {
