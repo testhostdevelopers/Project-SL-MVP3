@@ -112,7 +112,7 @@ const Activitytab = () => {
               {listing === "Burns" ? <h6>Burn</h6> : ""}
               {listing === "Bids" ? <h6>Bids</h6> : ""}
               {listing === "Like" ? <h6>Likes</h6> : ""}
-              {listing === "Following" ? <h6>Likes</h6> : ""}
+              {listing === "Following" ? <h6>Following</h6> : ""}
             </div>
             <div className="row align-items-start">
               <div className="d-flex col-lg-8 activity activity-number-card-left">
