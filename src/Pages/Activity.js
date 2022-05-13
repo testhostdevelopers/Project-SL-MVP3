@@ -13,7 +13,9 @@ const Activity = () => {
   const [filterValue, setFilterValue] = useState("Listing");
   const error_data = "";
   const [all_filter, setAllFilter] = useState([]);
-  const [transactionData, setTransactionData] = useState(all_filter);
+  const [transactionData, setTransactionData] = useState([]);
+  const [showTransactionData, setShowTransactionData] = useState(true);
+  const [filterTransactionData, setFilterTransactionData] = useState([]);
   const getallactivityfilters = async () => {
     await axios
         .get('http://localhost:8000/v1/activityfilter/getallactivityfilters', {
@@ -50,22 +52,17 @@ const Activity = () => {
   };
   const findFilter = (key) => {
     setFilterValue(key);
+    setShowTransactionData(false);
     let arr = [];
     transactionData.forEach((SingleData) => {
       if (SingleData.filter.title === key) {
+        console.log('SingleData', SingleData.filter.title);
         arr.push(SingleData);
       }
     });
-    setTransactionData(arr);
+    console.log('arr', arr);
+    setFilterTransactionData(arr);
   };
-
-  // useEffect(() => {
-  //     if(transactionData.length > 0){
-  //         seterror_data('');
-  //     } else{
-  //         seterror_data('Data Not Found..!')
-  //     }
-  // }, [transactionData]);
 
   const variants = {
     hidden: { opacity: 0 },
@@ -137,18 +134,32 @@ const Activity = () => {
                             <h5 id="not_match" style={{ color: "red" }}>
                               {error_data}
                             </h5>
-
-                            {transactionData.map((single) => (
-                              <ActivityNumberCard
-                                activitynumbercardimg={ActivityCard}
-                                FillLabel={FillLabel}
-                                title={single.collectible_id.title}
-                                filter={single.filter.title}
-                                pixelpunks="pixelpunks"
-                                eth={single.collectible_id.price + " ETH"}
-                                seenstatus="Just now"
-                              />
-                            ))}
+                            {showTransactionData > 0 ?
+                                <>
+                                  {transactionData.map((single) => (
+                                      <ActivityNumberCard
+                                          activitynumbercardimg={ActivityCard}
+                                          FillLabel={FillLabel}
+                                          title={single.collectible_id.title}
+                                          filter={single.filter.title}
+                                          pixelpunks="pixelpunks"
+                                          eth={single.collectible_id.price + " ETH"}
+                                          seenstatus="Just now"
+                                      />
+                                  ))}
+                                </> : <>
+                                  {filterTransactionData.map((single) => (
+                                      <ActivityNumberCard
+                                          activitynumbercardimg={ActivityCard}
+                                          FillLabel={FillLabel}
+                                          title={single.collectible_id.title}
+                                          filter={single.filter.title}
+                                          pixelpunks="pixelpunks"
+                                          eth={single.collectible_id.price + " ETH"}
+                                          seenstatus="Just now"
+                                      />
+                                  ))}
+                                </>}
                           </div>
                           <div className="col-sm-12 col-lg-4 mb-4 activity-number-card-right">
                             <div className="filters-listing-reset">
