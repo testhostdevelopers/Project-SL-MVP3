@@ -45,7 +45,7 @@ const User_profile = (props) => {
   let [userLikedCollectibleList, setUserLikedCollectibleList] = useState([]);
   const userCollectibleListFunc = async () => {
     await axios
-      .get('http://localhost:8000/v1/collectible/getusercollectiblelist', {
+      .get('http://be.starlight.webcase.me/v1/collectible/getusercollectiblelist', {
           data: {
             user_id: user_id
           },
@@ -70,7 +70,7 @@ const User_profile = (props) => {
   };
   const userLikedCollections = async () => {
     await axios
-      .get('http://localhost:8000/v1/collection/getuserlikedcollectionslist', {
+      .get('http://be.starlight.webcase.me/v1/collection/getuserlikedcollectionslist', {
           data: {
             user_id: userData._id
           },
@@ -95,7 +95,7 @@ const User_profile = (props) => {
   };
   const userLikedCollectible = async () => {
     await axios
-      .get('http://localhost:8000/v1/collectible/getuserlikedcollectiblelist', {
+      .get('http://be.starlight.webcase.me/v1/collectible/getuserlikedcollectiblelist', {
           data: {
             user_id: userData._id
           },
@@ -121,7 +121,7 @@ const User_profile = (props) => {
   };
   const userCollectionListFunc = async () => {
     await axios
-      .get('http://localhost:8000/v1/collection/getusercollectionlist', {
+      .get('http://be.starlight.webcase.me/v1/collection/getusercollectionlist', {
           data: {
             user_id: userData._id
           },
@@ -148,7 +148,7 @@ const User_profile = (props) => {
   useEffect(() => {
     if (sessionStorage.getItem("apiToken")) {
       axios
-        .get("http://localhost:8000/v1/user/getUser", {
+        .get("http://be.starlight.webcase.me/v1/user/getUser", {
           data: {
             _id: user_id
           },
@@ -201,7 +201,7 @@ const User_profile = (props) => {
         formData.append("profile_img_url", ig);
       }
       await axios
-        .put("http://localhost:8000/v1/user/update", formData, {
+        .put("http://be.starlight.webcase.me/v1/user/update", formData, {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           },
@@ -283,7 +283,7 @@ const User_profile = (props) => {
                         src={
                           udata == null
                             ? ""
-                            : "http://localhost:8000/" + udata.cover_img_url
+                            : "http://be.starlight.webcase.me/" + udata.cover_img_url
                         }
                         ref={uploadedImage}
                         style={{
@@ -325,7 +325,7 @@ const User_profile = (props) => {
                           src={
                             udata == null
                               ? ""
-                              : "http://localhost:8000/" + udata.profile_img_url
+                              : "http://be.starlight.webcase.me/" + udata.profile_img_url
                           }
                           ref={profileImage}
                           style={{

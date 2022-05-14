@@ -39,7 +39,7 @@ const CreateCollectibleMultiplePopup = (props) => {
         user_id: user_id,
       };
       // console.log(form);
-      await axios.post('http://localhost:8000/v1/collection/create', form,
+      await axios.post('http://be.starlight.webcase.me/v1/collection/create', form,
         {
           headers: {
             "Authorization": `Bearer ${apiToken}`,

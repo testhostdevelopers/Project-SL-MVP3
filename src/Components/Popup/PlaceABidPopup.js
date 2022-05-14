@@ -38,7 +38,7 @@ const PlaceABidPopup = (props) => {
     console.log('placeBidCollectible');
     let a = 'collectible';
     await axios
-      .put('http://localhost:8000/v1/' + a + '/bid/' + collectibleId, {
+      .put('http://be.starlight.webcase.me/v1/' + a + '/bid/' + collectibleId, {
         bids
       }, {
         headers: {

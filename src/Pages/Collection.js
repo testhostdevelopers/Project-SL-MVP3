@@ -49,7 +49,7 @@ const Collection = (props) => {
 
   const singleCollection = async () => {
     axios
-      .get("http://localhost:8000/v1/collection/getCollection/" + collectionId, {
+      .get("http://be.starlight.webcase.me/v1/collection/getCollection/" + collectionId, {
         headers: {
           Authorization: `Bearer ${apiToken}`,
         },

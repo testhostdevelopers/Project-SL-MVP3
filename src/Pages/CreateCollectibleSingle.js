@@ -49,7 +49,7 @@ const CreateCollectibleSingle = () => {
   const profileUploader = React.useRef(null);
   const collectionListFunc = async () => {
     await axios({
-      url: 'http://localhost:8000/v1/collection/getAllCollection',
+      url: 'http://be.starlight.webcase.me/v1/collection/getAllCollection',
       method: 'get',
       headers: {
         "Authorization": `Bearer ${apiToken}`,
@@ -255,7 +255,7 @@ const CreateCollectibleSingle = () => {
       form.img_path = imageUrlNft;
       if(imageUrlNft){
         console.log(udata)
-        await axios.post('http://localhost:8000/v1/collectible/create', form,
+        await axios.post('http://be.starlight.webcase.me/v1/collectible/create', form,
           {
             headers: {
               "Authorization": `Bearer ${apiToken}`,
@@ -270,7 +270,7 @@ const CreateCollectibleSingle = () => {
               type: "collectible",
               amount: 10
             }
-            axios.put('http://localhost:8000/v1/user/transaction/create',transactions,
+            axios.put('http://be.starlight.webcase.me/v1/user/transaction/create',transactions,
             {
               headers: {
                 "Authorization": `Bearer ${apiToken}`,

@@ -42,7 +42,7 @@ const Buy = () => {
     console.log('LikeCollectible');
     let a = 'collectible';
     await axios
-      .put('http://localhost:8000/v1/' + a + '/like/' + collectibleId, {
+      .put('http://be.starlight.webcase.me/v1/' + a + '/like/' + collectibleId, {
         user: userData._id
       }, {
         headers: {
@@ -61,7 +61,7 @@ const Buy = () => {
     console.log('disLikeCollectible');
     let a = 'collectible';
     await axios
-      .put('http://localhost:8000/v1/' + a + '/unlike/' + collectibleId, {
+      .put('http://be.starlight.webcase.me/v1/' + a + '/unlike/' + collectibleId, {
         user: userData._id
       }, {
         headers: {
@@ -79,7 +79,7 @@ const Buy = () => {
 
   const singleCollectible = async () => {
     axios
-      .get("http://localhost:8000/v1/collectible/singleCollectible/" + collectibleId, {
+      .get("http://be.starlight.webcase.me/v1/collectible/singleCollectible/" + collectibleId, {
         headers: {
           Authorization: `Bearer ${apiToken}`,
         },
@@ -89,7 +89,7 @@ const Buy = () => {
         setSingleCollectibleData(res.data.data);
         console.log(singleCollectibleData.bids)
         axios
-          .get("http://localhost:8000/v1/user/getUser", {
+          .get("http://be.starlight.webcase.me/v1/user/getUser", {
             headers: {
               Authorization: `Bearer ${apiToken}`,
             },
@@ -226,7 +226,7 @@ const Buy = () => {
             <span className="user-img">
               <img src={udata == null
                 ? ""
-                : "http://localhost:8000/" + udata.profile_img_url} width="36" alt="" />
+                : "http://be.starlight.webcase.me/" + udata.profile_img_url} width="36" alt="" />
             </span>
                       <span className="ml-3">
               <b>{udata == null
@@ -263,7 +263,7 @@ const Buy = () => {
                             <div className="user-img">
                             <img src={udata == null
                               ? ""
-                              : "http://localhost:8000/" + udata.profile_img_url} width="36" alt="" />
+                              : "http://be.starlight.webcase.me/" + udata.profile_img_url} width="36" alt="" />
                             </div>
                             <div className="ml-4">
                               <div>

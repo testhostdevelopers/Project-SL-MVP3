@@ -18,7 +18,7 @@ const Activity = () => {
   const [filterTransactionData, setFilterTransactionData] = useState([]);
   const getallactivityfilters = async () => {
     await axios
-        .get('http://localhost:8000/v1/activityfilter/getallactivityfilters', {
+        .get('http://be.starlight.webcase.me/v1/activityfilter/getallactivityfilters', {
               data: {
                 user_id: userData._id
               },
@@ -35,7 +35,7 @@ const Activity = () => {
   };
   const getusertransactions = async () => {
     await axios
-        .get('http://localhost:8000/v1/transaction/getusertransactions', {
+        .get('http://be.starlight.webcase.me/v1/transaction/getusertransactions', {
           data: {
             user_id: userData._id
           },

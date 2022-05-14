@@ -449,7 +449,7 @@ const Home = () => {
 
   const getallcollectiblelist = async () => {
     await axios
-      .get('http://localhost:8000/v1/collectible/getallcollectiblelist', {})
+      .get('http://be.starlight.webcase.me/v1/collectible/getallcollectiblelist', {})
       .then(response => {
         response.data.data.forEach((element) => {
           if (element.likedBy.includes(userData._id)) {

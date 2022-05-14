@@ -24,7 +24,7 @@ const CreateCollectibleEdit = () => {
   useEffect(() => {
     if (apiToken) {
       axios
-        .get("http://localhost:8000/v1/user/getUser", {
+        .get("http://be.starlight.webcase.me/v1/user/getUser", {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           },
@@ -49,7 +49,7 @@ const CreateCollectibleEdit = () => {
       formData.append("profile_img_url", udata.profile_img_url !== undefined ? udata.profile_img_url : null);
       formData.append("cover_img_url", udata.cover_img_url !== undefined ? udata.cover_img_url : null);
       await axios
-        .put("http://localhost:8000/v1/user/update", formData, {
+        .put("http://be.starlight.webcase.me/v1/user/update", formData, {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           },

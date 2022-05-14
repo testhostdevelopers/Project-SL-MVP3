@@ -44,7 +44,7 @@ const Profile = (props) => {
   let [userFollowingUsersList, setUserFollowingUsersList] = useState([]);
   const getFollowerUsers = async () => {
     await axios
-        .get('http://localhost:8000/v1/user/getFollowerUsers', {
+        .get('http://be.starlight.webcase.me/v1/user/getFollowerUsers', {
               data: {
                 user_id: userData._id
               },
@@ -63,7 +63,7 @@ const Profile = (props) => {
   };
   const getFollowingUsers = async () => {
     await axios
-        .get('http://localhost:8000/v1/user/getFollowingUsers', {
+        .get('http://be.starlight.webcase.me/v1/user/getFollowingUsers', {
               data: {
                 user_id: userData._id
               },
@@ -82,7 +82,7 @@ const Profile = (props) => {
   };
   const userCollectibleListFunc = async () => {
     await axios
-      .get('http://localhost:8000/v1/collectible/getusercollectiblelist', {
+      .get('http://be.starlight.webcase.me/v1/collectible/getusercollectiblelist', {
           data: {
             user_id: userData._id
           },
@@ -107,7 +107,7 @@ const Profile = (props) => {
   };
   const userLikedCollections = async () => {
     await axios
-      .get('http://localhost:8000/v1/collection/getuserlikedcollectionslist', {
+      .get('http://be.starlight.webcase.me/v1/collection/getuserlikedcollectionslist', {
           data: {
             user_id: userData._id
           },
@@ -132,7 +132,7 @@ const Profile = (props) => {
   };
   const userLikedCollectible = async () => {
     await axios
-      .get('http://localhost:8000/v1/collectible/getuserlikedcollectiblelist', {
+      .get('http://be.starlight.webcase.me/v1/collectible/getuserlikedcollectiblelist', {
           data: {
             user_id: userData._id
           },
@@ -158,7 +158,7 @@ const Profile = (props) => {
   };
   const userCollectionListFunc = async () => {
     await axios
-      .get('http://localhost:8000/v1/collection/getusercollectionlist', {
+      .get('http://be.starlight.webcase.me/v1/collection/getusercollectionlist', {
           data: {
             user_id: userData._id
           },
@@ -185,7 +185,7 @@ const Profile = (props) => {
   useEffect(() => {
     if (sessionStorage.getItem("apiToken")) {
       axios
-        .get("http://localhost:8000/v1/user/getUser", {
+        .get("http://be.starlight.webcase.me/v1/user/getUser", {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           },
@@ -237,7 +237,7 @@ const Profile = (props) => {
         formData.append("profile_img_url", ig);
       }
       await axios
-        .put("http://localhost:8000/v1/user/update", formData, {
+        .put("http://be.starlight.webcase.me/v1/user/update", formData, {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           },
@@ -319,7 +319,7 @@ const Profile = (props) => {
                         src={
                           udata == null
                             ? ""
-                            : "http://localhost:8000/" + udata.cover_img_url
+                            : "http://be.starlight.webcase.me/" + udata.cover_img_url
                         }
                         ref={uploadedImage}
                         style={{
@@ -361,7 +361,7 @@ const Profile = (props) => {
                           src={
                             udata == null
                               ? ""
-                              : "http://localhost:8000/" + udata.profile_img_url
+                              : "http://be.starlight.webcase.me/" + udata.profile_img_url
                           }
                           ref={profileImage}
                           style={{

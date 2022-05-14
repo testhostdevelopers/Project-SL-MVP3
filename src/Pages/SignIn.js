@@ -29,13 +29,13 @@ const connectStore = async (pkey, wal, con) => {
     localStorage.setItem("PublicKey", pkey);
     localStorage.setItem("wallet", wal);
     axios
-      .post("http://localhost:8000/v1/user/signup", {
+      .post("http://be.starlight.webcase.me/v1/user/signup", {
         walletToken: pkey,
         walletName: wal,
       })
       .then((res) => {
         axios
-          .put("http://localhost:8000/v1/user/gettoken", {
+          .put("http://be.starlight.webcase.me/v1/user/gettoken", {
             walletToken: pkey,
           })
           .then((r) => {

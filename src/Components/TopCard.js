@@ -22,7 +22,7 @@ export default function TopCard({
             temp = "follow"
         }
         await axios
-            .put('http://localhost:8000/v1/user/' + temp + '/' + id, {
+            .put('http://be.starlight.webcase.me/v1/user/' + temp + '/' + id, {
                 user: userData._id
             }, {
                 headers: {

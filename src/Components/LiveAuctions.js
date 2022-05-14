@@ -36,7 +36,7 @@ export default function LiveAuctions({
     }
     if (id.length) {
       await axios
-        .put('http://localhost:8000/v1/' + a + '/like/' + id, {
+        .put('http://be.starlight.webcase.me/v1/' + a + '/like/' + id, {
           user: userData._id
         }, {
           headers: {
@@ -60,7 +60,7 @@ export default function LiveAuctions({
     }
     if (id.length) {
       await axios
-        .put('http://localhost:8000/v1/' + a + '/unlike/' + id, {
+        .put('http://be.starlight.webcase.me/v1/' + a + '/unlike/' + id, {
           user: userData._id
         }, {
           headers: {
