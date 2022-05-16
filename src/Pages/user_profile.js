@@ -16,7 +16,7 @@ import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
 import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
-
+import { Config } from '../utils/config';           
 import EarthIcon from "../assets/img/icons/custom/earth.svg";
 
 var UPubKey = null,
@@ -45,7 +45,7 @@ const User_profile = (props) => {
   let [userLikedCollectibleList, setUserLikedCollectibleList] = useState([]);
   const userCollectibleListFunc = async () => {
     await axios
-      .get('http://localhost:8000/v1/collectible/getusercollectiblelist', {
+      .get(`${Config.baseURL}v1/collectible/getusercollectiblelist`, {
           data: {
             user_id: user_id
           },
@@ -70,7 +70,7 @@ const User_profile = (props) => {
   };
   const userLikedCollections = async () => {
     await axios
-      .get('http://localhost:8000/v1/collection/getuserlikedcollectionslist', {
+      .get(`${Config.baseURL}v1/collection/getuserlikedcollectionslist`, {
           data: {
             user_id: userData._id
           },
@@ -95,7 +95,7 @@ const User_profile = (props) => {
   };
   const userLikedCollectible = async () => {
     await axios
-      .get('http://localhost:8000/v1/collectible/getuserlikedcollectiblelist', {
+      .get(`${Config.baseURL}v1/collectible/getuserlikedcollectiblelist`, {
           data: {
             user_id: userData._id
           },
@@ -121,7 +121,7 @@ const User_profile = (props) => {
   };
   const userCollectionListFunc = async () => {
     await axios
-      .get('http://localhost:8000/v1/collection/getusercollectionlist', {
+      .get(`${Config.baseURL}v1/collection/getusercollectionlist`, {
           data: {
             user_id: userData._id
           },
@@ -148,7 +148,7 @@ const User_profile = (props) => {
   useEffect(() => {
     if (sessionStorage.getItem("apiToken")) {
       axios
-        .get("http://localhost:8000/v1/user/userGetId/"+ user_id, {
+        .get(`${Config.baseURL}v1/user/userGetId/`+ user_id, {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           },
@@ -198,7 +198,7 @@ const User_profile = (props) => {
         formData.append("profile_img_url", ig);
       }
       await axios
-        .put("http://localhost:8000/v1/user/update", formData, {
+        .put(`${Config.baseURL}v1/user/update`, formData, {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           },
@@ -280,7 +280,7 @@ const User_profile = (props) => {
                         src={
                           udata == null
                             ? ""
-                            : "http://localhost:8000/" + udata.cover_img_url
+                            : `${Config.baseURL}` + udata.cover_img_url
                         }
                         ref={uploadedImage}
                         style={{
@@ -322,7 +322,7 @@ const User_profile = (props) => {
                           src={
                             udata == null
                               ? ""
-                              : "http://localhost:8000/" + udata.profile_img_url
+                              : `${Config.baseURL}` + udata.profile_img_url
                           }
                           ref={profileImage}
                           style={{

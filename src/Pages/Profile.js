@@ -15,7 +15,7 @@ import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
 // import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
-
+import { Config } from '../utils/config';           
 import EarthIcon from "../assets/img/icons/custom/earth.svg";
 
 var UPubKey = null,
@@ -44,7 +44,7 @@ const Profile = (props) => {
   let [userFollowingUsersList, setUserFollowingUsersList] = useState([]);
   const getFollowerUsers = async () => {
     await axios
-        .get('http://localhost:8000/v1/user/getFollowerUsers', {
+        .get(`${Config.baseURL}v1/user/getFollowerUsers`, {
               data: {
                 user_id: userData._id
               },
@@ -63,7 +63,7 @@ const Profile = (props) => {
   };
   const getFollowingUsers = async () => {
     await axios
-        .get('http://localhost:8000/v1/user/getFollowingUsers', {
+        .get(`${Config.baseURL}v1/user/getFollowingUsers`, {
               data: {
                 user_id: userData._id
               },
@@ -82,7 +82,7 @@ const Profile = (props) => {
   };
   const userCollectibleListFunc = async () => {
     await axios
-      .get('http://localhost:8000/v1/collectible/getusercollectiblelist', {
+      .get(`${Config.baseURL}v1/collectible/getusercollectiblelist`, {
           data: {
             user_id: userData._id
           },
@@ -107,7 +107,7 @@ const Profile = (props) => {
   };
   const userLikedCollections = async () => {
     await axios
-      .get('http://localhost:8000/v1/collection/getuserlikedcollectionslist', {
+      .get(`${Config.baseURL}v1/collection/getuserlikedcollectionslist`, {
           data: {
             user_id: userData._id
           },
@@ -132,7 +132,7 @@ const Profile = (props) => {
   };
   const userLikedCollectible = async () => {
     await axios
-      .get('http://localhost:8000/v1/collectible/getuserlikedcollectiblelist', {
+      .get(`${Config.baseURL}v1/collectible/getuserlikedcollectiblelist`, {
           data: {
             user_id: userData._id
           },
@@ -158,7 +158,7 @@ const Profile = (props) => {
   };
   const userCollectionListFunc = async () => {
     await axios
-      .get('http://localhost:8000/v1/collection/getusercollectionlist', {
+      .get(`${Config.baseURL}v1/collection/getusercollectionlist`, {
           data: {
             user_id: userData._id
           },
@@ -185,7 +185,7 @@ const Profile = (props) => {
   useEffect(() => {
     if (sessionStorage.getItem("apiToken")) {
       axios
-        .get("http://localhost:8000/v1/user/getUser", {
+        .get(`${Config.baseURL}v1/user/getUser`, {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           },
@@ -237,7 +237,7 @@ const Profile = (props) => {
         formData.append("profile_img_url", ig);
       }
       await axios
-        .put("http://localhost:8000/v1/user/update", formData, {
+        .put(`${Config.baseURL}v1/user/update`, formData, {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           },
@@ -319,7 +319,7 @@ const Profile = (props) => {
                         src={
                           udata == null
                             ? ""
-                            : "http://localhost:8000/" + udata.cover_img_url
+                            : `${Config.baseURL}` + udata.cover_img_url
                         }
                         ref={uploadedImage}
                         style={{
@@ -361,7 +361,7 @@ const Profile = (props) => {
                           src={
                             udata == null
                               ? ""
-                              : "http://localhost:8000/" + udata.profile_img_url
+                              : `${Config.baseURL}` + udata.profile_img_url
                           }
                           ref={profileImage}
                           style={{
@@ -525,7 +525,7 @@ const Profile = (props) => {
                               <LiveAuctions
                                 isCollection={false}
                                 id={SingleCollectible._id}
-                                Coverimg={artWorkWeek1}
+                                Coverimg={"https://"+SingleCollectible.img_path}
                                 liked={SingleCollectible.like}
                                 title={SingleCollectible.title}
                                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}

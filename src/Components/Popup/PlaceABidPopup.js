@@ -5,6 +5,7 @@ import closeicon from "../../assets/img/custom/close.svg";
 // import { useLocation, Link } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Config } from '../../utils/config';           
 
 
 const PlaceABidPopup = (props) => {
@@ -38,7 +39,7 @@ const PlaceABidPopup = (props) => {
     console.log('placeBidCollectible');
     let a = 'collectible';
     await axios
-      .put('http://localhost:8000/v1/' + a + '/bid/' + collectibleId, {
+      .put(`${Config.baseURL}v1/` + a + '/bid/' + collectibleId, {
         bids
       }, {
         headers: {

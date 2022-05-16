@@ -5,6 +5,7 @@ import FillLabel from "../assets/img/icons/custom/fill-label.svg";
 import ActivityCard from "../assets/img/custom/activity-cardonly.png";
 import { Tabs } from "antd";
 import axios from "axios";
+import { Config } from '../utils/config';           
 const { TabPane } = Tabs;
 
 const Activity = () => {
@@ -18,7 +19,7 @@ const Activity = () => {
   const [filterTransactionData, setFilterTransactionData] = useState([]);
   const getallactivityfilters = async () => {
     await axios
-        .get('http://localhost:8000/v1/activityfilter/getallactivityfilters', {
+        .get(`${Config.baseURL}v1/activityfilter/getallactivityfilters`, {
               data: {
                 user_id: userData._id
               },
@@ -35,7 +36,7 @@ const Activity = () => {
   };
   const getusertransactions = async () => {
     await axios
-        .get('http://localhost:8000/v1/transaction/getusertransactions', {
+        .get(`${Config.baseURL}v1/transaction/getusertransactions`, {
           data: {
             user_id: userData._id
           },

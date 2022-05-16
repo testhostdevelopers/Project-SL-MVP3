@@ -13,6 +13,7 @@ import { NFTStorage, File } from 'nft.storage';
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Config } from '../utils/config';           
 // import { actions, utils, programs, NodeWallet} from '@metaplex/js'; 
 // import { clusterApiUrl, Connection, Keypair, LAMPORTS_PER_SOL } from '@solana/web3.js';
 
@@ -54,7 +55,7 @@ const CreateCollectibleSingle = () => {
   const profileUploader = React.useRef(null);
   const collectionListFunc = async () => {
     await axios({
-      url: 'http://localhost:8000/v1/collection/getAllCollection',
+      url: `${Config.baseURL}v1/collection/getAllCollection`,
       method: 'get',
       headers: {
         "Authorization": `Bearer ${apiToken}`,
@@ -147,8 +148,10 @@ const CreateCollectibleSingle = () => {
       }
     };
     console.log(metadata)
-
-    const out = await client.storeDirectory(file,metadata);
+    var m = new File([metadata],"metadata.json",{ type: "text/json" });
+    console.log(m)
+    const out = await client.storeDirectory(file,m);
+    console.log(out)
     const imageUrlNft = out + '.ipfs.nftstorage.link/' + file[0].name;
     console.log(imageUrlNft)
 
@@ -236,7 +239,7 @@ const CreateCollectibleSingle = () => {
       var file = form.img_path;
       console.log(file)
         console.log(udata)
-        await axios.post('http://localhost:8000/v1/collectible/create', form,
+        await axios.post(`${Config.baseURL}v1/collectible/create`, form,
           {
             headers: {
               "Authorization": `Bearer ${apiToken}`,
@@ -251,7 +254,7 @@ const CreateCollectibleSingle = () => {
               type: "collectible",
               amount: 10
             }
-            // axios.put('http://localhost:8000/v1/user/transaction/create',transactions,
+            // axios.put(`${Config.baseURL}v1/user/transaction/create`,transactions,
             // {
             //   headers: {
             //     "Authorization": `Bearer ${apiToken}`,

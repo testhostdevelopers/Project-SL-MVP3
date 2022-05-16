@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 // import { Link } from "react-router-dom";
+import { Config } from '../utils/config';           
 
 export default function TopCard({
   title,
@@ -22,7 +23,7 @@ export default function TopCard({
             temp = "follow"
         }
         await axios
-            .put('http://localhost:8000/v1/user/' + temp + '/' + id, {
+            .put(`${Config.baseURL}v1/user/` + temp + '/' + id, {
                 user: userData._id
             }, {
                 headers: {

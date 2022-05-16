@@ -21,6 +21,7 @@ import BuyAuction from "../Components/BuyCopmponent/BuyAuction";
 import axios from "axios";
 // import logo from "../assets/img/icons/custom/logo.svg";
 import start from "../assets/img/icons/custom/start.svg";
+import { Config } from '../utils/config';           
 
 const Buy = () => {
   const apiToken = sessionStorage.getItem("apiToken");
@@ -42,7 +43,7 @@ const Buy = () => {
     console.log('LikeCollectible');
     let a = 'collectible';
     await axios
-      .put('http://localhost:8000/v1/' + a + '/like/' + collectibleId, {
+      .put(`${Config.baseURL}` + a + '/like/' + collectibleId, {
         user: userData._id
       }, {
         headers: {
@@ -61,7 +62,7 @@ const Buy = () => {
     console.log('disLikeCollectible');
     let a = 'collectible';
     await axios
-      .put('http://localhost:8000/v1/' + a + '/unlike/' + collectibleId, {
+      .put(`${Config.baseURL}` + a + '/unlike/' + collectibleId, {
         user: userData._id
       }, {
         headers: {
@@ -78,18 +79,19 @@ const Buy = () => {
   };
 
   const singleCollectible = async () => {
-    axios
-      .get("http://localhost:8000/v1/collectible/singleCollectible/" + collectibleId, {
+    await axios
+      .get(`${Config.baseURL}v1/collectible/singleCollectible/` + collectibleId, {
         headers: {
           Authorization: `Bearer ${apiToken}`,
         },
       })
       .then((res) => {
         console.log(res.data.data);
+        console.log(process.env.REACT_APP_API_URL)
         setSingleCollectibleData(res.data.data);
         console.log(singleCollectibleData.bids)
         axios
-          .get("http://localhost:8000/v1/user/getUser", {
+          .get(`${Config.baseURL}v1/user/getUser`, {
             headers: {
               Authorization: `Bearer ${apiToken}`,
             },
@@ -172,7 +174,7 @@ const Buy = () => {
           <div className="row">
             <div className="col-sm-12 col-lg-6">
               <img
-                src={artWorkWeekOne}
+                src={"https://"+singleCollectibleData.img_path}
                 className="border-radius"
                 width="100%"
                 alt=""
@@ -226,7 +228,7 @@ const Buy = () => {
             <span className="user-img">
               <img src={udata == null
                 ? ""
-                : "http://localhost:8000/" + udata.profile_img_url} width="36" alt="" />
+                : `${Config.baseURL}` + udata.profile_img_url} width="36" alt="" />
             </span>
                       <span className="ml-3">
               <b>{udata == null
@@ -263,7 +265,7 @@ const Buy = () => {
                             <div className="user-img">
                             <img src={udata == null
                               ? ""
-                              : "http://localhost:8000/" + udata.profile_img_url} width="36" alt="" />
+                              : `${Config.baseURL}` + udata.profile_img_url} width="36" alt="" />
                             </div>
                             <div className="ml-4">
                               <div>
