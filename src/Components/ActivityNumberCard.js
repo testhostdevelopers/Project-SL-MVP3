@@ -8,6 +8,7 @@ export default function ActivityNumberCard({
   seenstatus,
   activitynumbercardimg,
   FillLabel,
+  info,
   not_match,
 }) {
   return (
@@ -23,10 +24,11 @@ export default function ActivityNumberCard({
           <h4>{title}</h4>
           <p>
             {filter}
-            <span>🎉</span>
-            <span>{pixelpunks}</span>
-            for
-            <span>{eth}</span>
+            {/*<span>🎉</span>*/}
+            {/*<span>{pixelpunks}</span>*/}
+            {/*for*/}
+            {/*<span>{eth}</span>*/}
+            <span>{info}</span>
           </p>
           <span className="seenstatus">{seenstatus}</span>
         </div>

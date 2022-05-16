@@ -51,8 +51,7 @@ const Profile = (props) => {
               headers: {
                 Authorization: `Bearer ${apiToken}`,
               }
-            }
-        )
+            })
         .then(response => {
           console.log('getFollowerUsers', response.data.data);
           setUserFollowerUsersList(response.data.data);
