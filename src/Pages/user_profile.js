@@ -10,12 +10,10 @@ import TopCard from "../Components/TopCard";
 import ReportPopup from "../Components/Popup/ReportPopup";
 import Activitytab from "../Components/Tabs/Activitytab";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
-// import topSeller3 from "../assets/img/custom/topSeller3.png";
 import topSeller4 from "../assets/img/custom/topSeller4.png";
 import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
-// import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
 
 import EarthIcon from "../assets/img/icons/custom/earth.svg";
 
@@ -34,9 +32,15 @@ const User_profile = (props) => {
   const { user_id } = useParams();
   var apiToken = sessionStorage.getItem("apiToken");
   const userData = {};
+  const currentUserData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [reportPopup, setReportPopup] = useState(false);
-  const [buttonText, setButtonText] = useState("Add Cover");
+  const [followButtonText, setFollowButtonText] = useState('Follow');
+  console.log('currentUserData.following.indexOf(user_id)', currentUserData.following.indexOf(user_id));
+  if (currentUserData.following.indexOf(user_id) >= 0) {
+    // setFollowButtonText("Unfollow");
+  }
   let [udata, setUdata] = useState({});
+  const [buttonText, setButtonText] = useState("Add Cover");
   let [userCollectibleList, setUserCollectibleList] = useState([]);
   let [userCollectionList, setUserCollectionList] = useState([]);
   let [userLikedCollectionsList, setUserLikedCollectionsList] = useState([]);
@@ -171,6 +175,25 @@ const User_profile = (props) => {
       .catch(err => {
         console.log(err);
       });
+  };
+  const followButton = async () => {
+    await axios
+        .put('http://localhost:8000/v1/user/' + followButtonText.toLowerCase() + '/' + user_id, {
+          user: currentUserData._id
+        }, {
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        })
+        .then(response => {
+          if (response.data.response_code === "API_SUCCESS") {
+            // setFollowButtonText('Unfollow');
+          }
+          // console.log('response', response);
+        })
+        .catch(err => {
+          console.log(err);
+        });
   };
   useEffect(() => {
     if (sessionStorage.getItem("apiToken")) {
@@ -389,20 +412,20 @@ const User_profile = (props) => {
                       </a>
                       <div className="follows-block">
                         <span>
-                          <b>{udata == null || udata.followers == null ? "0" : udata.followers} </b>Followers
+                          <b>{udata == null || udata.followersCount == null ? "0" : udata.followersCount} </b>Followers
                         </span>
                         <span>
-                        <b>{udata == null || udata.following == null ? "0" : udata.following} </b>Following
+                        <b>{udata == null || udata.followingCount == null ? "0" : udata.followingCount} </b>Following
                         </span>
                       </div>
                     </div>
 
                     <div className="mt-4 d-flex justify-content-between align-items-center">
-                      <Link to="/edit-profile">
-                        <button className="bg-white border-gray edit-profile">
-                          <b>Edit Profile</b>
-                        </button>
-                      </Link>
+                      <button className="bg-white border-gray edit-profile" onClick={() => {
+                        followButton();
+                      }}>
+                        <b>{followButtonText}</b>
+                      </button>
                       <div className="share-profile">
                         <button className="bg-white border-gray profile-upload">
                           <svg
