@@ -814,7 +814,7 @@ const Home = () => {
 
           <div className="topSellerContent mt-5">
             <div className="d-flex">
-              {topSellerUser.map((top_seller_profile, key) => (
+              {top_seller_profile.map((top_seller_profile, key) => (
                   <TopCard
                     topcoverimg={top_seller_profile.topcover_img}
                     topuserimg={top_seller_profile.topuser_img}
@@ -847,7 +847,7 @@ const Home = () => {
 
           <div className="topSellerContent mt-5">
             <div className="d-flex">
-              {topBuyerUser.map((top_seller_profile, key) => (
+              {top_buyers_profile.map((top_seller_profile, key) => (
                   <TopCard
                     topcoverimg={top_seller_profile.topcover_img}
                     topuserimg={top_seller_profile.topuser_img}
