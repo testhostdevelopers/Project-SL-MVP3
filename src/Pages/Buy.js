@@ -111,10 +111,15 @@ const Buy = () => {
 
   const menu = (
     <Menu>
-      <Menu.Item onClick={() => setSingleCollectionPopup(true)}>
-        New bid
-      </Menu.Item>
-      <Menu.Item onClick={() => setCheckOutPopup(true)}>Purchase now</Menu.Item>
+      {singleCollectibleData.price_type == 'time_auction' || singleCollectibleData.price_type == 'open_for_bid'  ? 
+        <Menu.Item onClick={() => setSingleCollectionPopup(true)}>
+          New bid
+        </Menu.Item> : " "
+      }
+      {singleCollectibleData.price_type == 'fixed_price' ? 
+        <Menu.Item onClick={() => setCheckOutPopup(true)}>Purchase now</Menu.Item>
+         : "" 
+      }
       <div className="mt-3 mb-3 border-bottom w-100" />
       <Menu.Item>View on opensea</Menu.Item>
       <Menu.Item>Refresh Metadata</Menu.Item>
@@ -409,7 +414,8 @@ const Buy = () => {
                   <div className="tab-pane-bottom-solid" />
                 </div>
                 {singleCollectibleData.price_type == 'time_auction' ? 
-                <BuyAuction />
+                <BuyAuction props={singleCollectibleData} />
+                
                           : '' }
                 <div className="row d-flex justify-content-center mt-5 action-btn buy-highest-bid-block-btn">
                   <div className="col-sm-12 col-lg-8 d-flex">

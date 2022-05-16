@@ -591,7 +591,7 @@ const Profile = (props) => {
                           <LiveAuctions
                             isCollection={false}
                             id={SingleCollectible._id}
-                            Coverimg={artWorkWeek1}
+                            Coverimg={"https://"+SingleCollectible.img_path}
                             liked={SingleCollectible.like}
                             title={SingleCollectible.title}
                             heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}

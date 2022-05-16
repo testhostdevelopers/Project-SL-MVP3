@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import topSellerUser4 from "../../assets/img/custom/topSellerUser4.png";
+import axios from "axios";
+import { Config } from '../../utils/config';           
 
-const BuyAuction = () => {
+
+const BuyAuction = (props) => {
   const [day, setDay] = useState(1);
   const [hour, setHour] = useState(3);
   const [min, setMin] = useState(43);
   const [seconds, setSeconds] = useState(44);
 
   useEffect(() => {
+    
     const interval = setInterval(() => {
       if (seconds > 0) {
         setSeconds(seconds - 1);
@@ -90,6 +94,12 @@ const BuyAuction = () => {
           </div>
         </div>
       </div>
+      <button
+        className="btn-primary-outline mt-3 ml-3 w-100"
+        // onClick={() => setSingleCollectionPopup(true)}
+      >
+        Place a Bid
+      </button>
       <div>
         {day === 0 && hour === 0 && min === 0 && seconds === 0
           ? "All Auction Done"
