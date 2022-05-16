@@ -15,6 +15,7 @@ import { motion } from "framer-motion";
 // import MultiCollectibleDetails from "./MultiCollectibleDetails";
 import AdvanceCollectionSetting from "./AdvanceCollectionSetting";
 import axios from "axios";
+import { Config } from '../utils/config';           
 // const { Option } = Select;
 
 SwiperCore.use([Keyboard, Pagination, Navigation]);
@@ -42,7 +43,7 @@ const CreateCollectibleMulti = () => {
   const profileUploader = React.useRef(null);
   const collectionListFunc = async () => {
     await axios({
-      url: 'http://localhost:8000/v1/collection/getAllCollection',
+      url: `${Config.baseURL}v1/collection/getAllCollection`,
       method: 'get',
       headers: {
         "Authorization": `Bearer ${apiToken}`,
@@ -111,7 +112,7 @@ const CreateCollectibleMulti = () => {
         alt_text_nft: udata.alterText,
       };
       console.log(form);
-      await axios.post('http://localhost:8000/v1/collectible/create', form,
+      await axios.post(`${Config.baseURL}v1/collectible/create`, form,
         {
           headers: {
             "Authorization" : `Bearer ${apiToken}`,

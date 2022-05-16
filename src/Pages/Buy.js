@@ -21,6 +21,7 @@ import BuyAuction from "../Components/BuyCopmponent/BuyAuction";
 import axios from "axios";
 // import logo from "../assets/img/icons/custom/logo.svg";
 import start from "../assets/img/icons/custom/start.svg";
+import { Config } from '../utils/config';           
 
 const Buy = () => {
   const apiToken = sessionStorage.getItem("apiToken");
@@ -42,7 +43,7 @@ const Buy = () => {
     console.log('LikeCollectible');
     let a = 'collectible';
     await axios
-      .put('http://localhost:8000/v1/' + a + '/like/' + collectibleId, {
+      .put(`${Config.baseURL}` + a + '/like/' + collectibleId, {
         user: userData._id
       }, {
         headers: {
@@ -61,7 +62,7 @@ const Buy = () => {
     console.log('disLikeCollectible');
     let a = 'collectible';
     await axios
-      .put('http://localhost:8000/v1/' + a + '/unlike/' + collectibleId, {
+      .put(`${Config.baseURL}` + a + '/unlike/' + collectibleId, {
         user: userData._id
       }, {
         headers: {
@@ -78,18 +79,19 @@ const Buy = () => {
   };
 
   const singleCollectible = async () => {
-    axios
-      .get("http://localhost:8000/v1/collectible/singleCollectible/" + collectibleId, {
+    await axios
+      .get(`${Config.baseURL}v1/collectible/singleCollectible/` + collectibleId, {
         headers: {
           Authorization: `Bearer ${apiToken}`,
         },
       })
       .then((res) => {
         console.log(res.data.data);
+        console.log(process.env.REACT_APP_API_URL)
         setSingleCollectibleData(res.data.data);
         console.log(singleCollectibleData.bids)
         axios
-          .get("http://localhost:8000/v1/user/getUser", {
+          .get(`${Config.baseURL}v1/user/getUser`, {
             headers: {
               Authorization: `Bearer ${apiToken}`,
             },
@@ -109,10 +111,15 @@ const Buy = () => {
 
   const menu = (
     <Menu>
-      <Menu.Item onClick={() => setSingleCollectionPopup(true)}>
-        New bid
-      </Menu.Item>
-      <Menu.Item onClick={() => setCheckOutPopup(true)}>Purchase now</Menu.Item>
+      {singleCollectibleData.price_type == 'time_auction' || singleCollectibleData.price_type == 'open_for_bid'  ? 
+        <Menu.Item onClick={() => setSingleCollectionPopup(true)}>
+          New bid
+        </Menu.Item> : " "
+      }
+      {singleCollectibleData.price_type == 'fixed_price' ? 
+        <Menu.Item onClick={() => setCheckOutPopup(true)}>Purchase now</Menu.Item>
+         : "" 
+      }
       <div className="mt-3 mb-3 border-bottom w-100" />
       <Menu.Item>View on opensea</Menu.Item>
       <Menu.Item>Refresh Metadata</Menu.Item>
@@ -172,7 +179,7 @@ const Buy = () => {
           <div className="row">
             <div className="col-sm-12 col-lg-6">
               <img
-                src={artWorkWeekOne}
+                src={"https://"+singleCollectibleData.img_path}
                 className="border-radius"
                 width="100%"
                 alt=""
@@ -219,14 +226,14 @@ const Buy = () => {
                   {singleCollectibleData.description}
                 </p>
 
-                <div className="w-100 d-flex mt-5 heading-text">
+                <div className="w-100 d-flex mt-3 heading-text">
                   <div className="d-flex flex-column">
                     <b className="text-secondary">Creator</b>
                     <div className="mt-3">
             <span className="user-img">
               <img src={udata == null
                 ? ""
-                : "http://localhost:8000/" + udata.profile_img_url} width="36" alt="" />
+                : `${Config.baseURL}` + udata.profile_img_url} width="36" alt="" />
             </span>
                       <span className="ml-3">
               <b>{udata == null
@@ -242,7 +249,7 @@ const Buy = () => {
                   go to creator
                 </button>
 
-                <div className="mt-5">
+                <div className="mt-4">
                   {/*      /////////     Buytab components    /////////   */}
                   <Buytab />
 
@@ -263,7 +270,7 @@ const Buy = () => {
                             <div className="user-img">
                             <img src={udata == null
                               ? ""
-                              : "http://localhost:8000/" + udata.profile_img_url} width="36" alt="" />
+                              : `${Config.baseURL}` + udata.profile_img_url} width="36" alt="" />
                             </div>
                             <div className="ml-4">
                               <div>
@@ -293,16 +300,13 @@ const Buy = () => {
                       <div className="details-tab-block">
                         <b className="text-secondary d-block mb-2">Category</b>
                         <ul className="category-btn-list">
-                          {category.map((categ, cat_k) => (
-                            <li key={cat_k}>
-                              <a href="#0">
-                                <span>
-                                  <img src={categ.cat_img} alt={""} />
-                                </span>
-                                {categ.cat_title}
+                            <li>
+                              <a href="#">
+                                {singleCollectibleData == null
+                                  ? ""
+                                  : singleCollectibleData.category}
                               </a>
                             </li>
-                          ))}
                         </ul>
                       </div>
                     </div>
@@ -409,8 +413,9 @@ const Buy = () => {
                   </div>
                   <div className="tab-pane-bottom-solid" />
                 </div>
-                {singleCollectibleData.price_type === 'time_auction' ?
-                <BuyAuction />
+                {singleCollectibleData.price_type == 'time_auction' ? 
+                <BuyAuction props={singleCollectibleData} />
+        
                           : '' }
                 <div className="row d-flex justify-content-center mt-5 action-btn buy-highest-bid-block-btn">
                   <div className="col-sm-12 col-lg-8 d-flex">

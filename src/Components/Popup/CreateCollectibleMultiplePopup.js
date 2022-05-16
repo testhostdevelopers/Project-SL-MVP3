@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {motion} from "framer-motion";
 import closeicon from "../../assets/img/custom/close.svg";
 import axios from "axios";
+import { Config } from '../../utils/config';           
 
 const CreateCollectibleMultiplePopup = (props) => {
   const variants = {
@@ -39,7 +40,7 @@ const CreateCollectibleMultiplePopup = (props) => {
         user_id: user_id,
       };
       // console.log(form);
-      await axios.post('http://localhost:8000/v1/collection/create', form,
+      await axios.post(`${Config.baseURL}v1/collection/create`, form,
         {
           headers: {
             "Authorization": `Bearer ${apiToken}`,

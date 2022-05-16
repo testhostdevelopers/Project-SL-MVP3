@@ -41,7 +41,7 @@ import LiveAuctions from "../Components/LiveAuctions";
 import HotBids from "../Components/HotBids";
 import QuickExplore from "../Components/Tabs/QuickExplore";
 import axios from "axios";
-
+import { Config } from '../utils/config';           
 // const { TabPane } = Tabs;
 // const { Option } = Select;
 
@@ -452,7 +452,7 @@ const Home = () => {
 
   const getallcollectiblelist = async () => {
     await axios
-      .get('http://localhost:8000/v1/collectible/getallcollectiblelist', {})
+      .get(`${Config.baseURL}v1/collectible/getallcollectiblelist`, {})
       .then(response => {
         response.data.data.forEach((element) => {
           if (element.likedBy.includes(userData._id)) {
@@ -467,6 +467,14 @@ const Home = () => {
         console.log(err);
       });
   };
+  const getUserList = async () => {
+    axios
+        .get(`${Config.baseURL}v1/user/getAllUser`,)
+        .then((res) => {
+          // setUdata(res.data.data);
+          console.log(res.data.data);
+        });
+  }
   const getTopBuyerUser = async () => {
     await axios
         .get('http://localhost:8000/v1/user/getTopBuyerUser', {
@@ -878,7 +886,7 @@ const Home = () => {
               <LiveAuctions
                 isCollection={false}
                 id={SingleCollectible._id}
-                Coverimg={artWorkWeek1}
+                Coverimg={"https://"+SingleCollectible.img_path}
                 liked={SingleCollectible.like}
                 title={SingleCollectible.title}
                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
@@ -946,7 +954,7 @@ const Home = () => {
               <LiveAuctions
                 isCollection={false}
                 id={SingleCollectible._id}
-                Coverimg={artWorkWeek1}
+                Coverimg={"https://"+SingleCollectible.img_path}
                 liked={SingleCollectible.like}
                 title={SingleCollectible.title}
                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}

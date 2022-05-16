@@ -14,7 +14,8 @@ import topSeller4 from "../assets/img/custom/topSeller4.png";
 import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
-
+import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
+import { Config } from '../utils/config';           
 import EarthIcon from "../assets/img/icons/custom/earth.svg";
 
 var UPubKey = null,
@@ -104,7 +105,7 @@ const User_profile = (props) => {
   };
   const userLikedCollections = async () => {
     await axios
-      .get('http://localhost:8000/v1/collection/getuserlikedcollectionslist/' + user_id, {
+      .get(`${Config.baseURL}v1/collection/getuserlikedcollectionslist`, {
           data: {
             user_id: userData._id
           },
@@ -128,7 +129,7 @@ const User_profile = (props) => {
   };
   const userLikedCollectible = async () => {
     await axios
-      .get('http://localhost:8000/v1/collectible/getuserlikedcollectiblelist/' + user_id, {
+      .get(`${Config.baseURL}v1/collectible/getuserlikedcollectiblelist`, {
           data: {
             user_id: userData._id
           },
@@ -153,7 +154,7 @@ const User_profile = (props) => {
   };
   const userCollectionListFunc = async () => {
     await axios
-      .get('http://localhost:8000/v1/collection/getusercollectionlist/' + user_id, {
+      .get(`${Config.baseURL}v1/collection/getusercollectionlist`, {
           data: {
             user_id: userData._id
           },
@@ -198,10 +199,7 @@ const User_profile = (props) => {
   useEffect(() => {
     if (sessionStorage.getItem("apiToken")) {
       axios
-          .get("http://localhost:8000/v1/user/getSingleUser/" + user_id, {
-          data: {
-            _id: user_id
-          },
+        .get(`${Config.baseURL}v1/user/userGetId/`+ user_id, {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           },
@@ -253,7 +251,7 @@ const User_profile = (props) => {
         formData.append("profile_img_url", ig);
       }
       await axios
-        .put("http://localhost:8000/v1/user/update", formData, {
+        .put(`${Config.baseURL}v1/user/update`, formData, {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           },
@@ -335,7 +333,7 @@ const User_profile = (props) => {
                         src={
                           udata == null
                             ? ""
-                            : "http://localhost:8000/" + udata.cover_img_url
+                            : `${Config.baseURL}` + udata.cover_img_url
                         }
                         ref={uploadedImage}
                         style={{
@@ -377,7 +375,7 @@ const User_profile = (props) => {
                           src={
                             udata == null
                               ? ""
-                              : "http://localhost:8000/" + udata.profile_img_url
+                              : `${Config.baseURL}` + udata.profile_img_url
                           }
                           ref={profileImage}
                           style={{
@@ -392,9 +390,6 @@ const User_profile = (props) => {
                       <h3>
                         <b>{udata == null ? "" : udata.display_name}</b>
                       </h3>
-                      <div className="btn-gray text-center mt-3">
-                        <b>{UPubKey == null ? "" : cutPkey}</b>
-                      </div>
                     </div>
 
                     <div className="profile-usr-info">
@@ -532,7 +527,7 @@ const User_profile = (props) => {
                       </div>
                     </div>
                   </TabPane>
-                  <TabPane tab={'My Collectible' + ' (' + userCollectibleList.length + ')'} key="3">
+                  <TabPane tab={'Collectible' + ' (' + userCollectibleList.length + ')'} key="3">
                     <div className="liveAuction proile-liked-filter">
                       {userCollectibleList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
@@ -564,7 +559,7 @@ const User_profile = (props) => {
                         </div>}
                     </div>
                   </TabPane>
-                  <TabPane tab={'My Collection' + ' (' + userCollectionList.length + ')'} key="4">
+                  <TabPane tab={'Collection' + ' (' + userCollectionList.length + ')'} key="4">
                     <div className="liveAuction proile-liked-filter">
                       {userCollectionList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
@@ -581,70 +576,6 @@ const User_profile = (props) => {
                                 User2={topSellerUser2}
                                 User3={topSellerUser3}
                                 WETH={SingleCollection.price}
-                                bid="Highest bid 1/1"
-                              />
-                            ))}
-                          </div>
-                        </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
-                          <h3>Not items found</h3>
-                          <span className="color-gray">
-                          Come back soon or browse the items on our marketplace.
-                        </span>
-                          <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
-                            Browse marketplace
-                          </button>
-                        </div>}
-                    </div>
-                  </TabPane>
-                  <TabPane tab={'Liked Collectible (' + userLikedCollectibleList.length + ')'} key="5">
-                    <div className="liveAuction proile-liked-filter">
-                      {userLikedCollectibleList.length > 0 ?
-                        <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
-                          <div className="row ">
-                        {userLikedCollectibleList.map((SingleCollectible, key) => (
-                          <LiveAuctions
-                            isCollection={false}
-                            id={SingleCollectible._id}
-                            Coverimg={artWorkWeek1}
-                            liked={SingleCollectible.like}
-                            title={SingleCollectible.title}
-                            heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                            User1={topSellerUser1}
-                            User2={topSellerUser2}
-                            User3={topSellerUser3}
-                            WETH="1.2 WETH"
-                            bid="Highest bid 1/1"
-                          />
-                        ))}
-                      </div>
-                        </div>: <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
-                          <h3>Not items found</h3>
-                          <span className="color-gray">
-                          Come back soon or browse the items on our marketplace.
-                        </span>
-                          <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
-                            Browse marketplace
-                          </button>
-                        </div>}
-                    </div>
-                  </TabPane>
-                  <TabPane tab={'Liked Collections (' + userLikedCollectionsList.length + ')'} key="6">
-                    <div className="liveAuction proile-liked-filter">
-                      {userLikedCollectibleList.length > 0 ?
-                        <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
-                          <div className="row ">
-                            {userLikedCollectionsList.map((SingleCollection, key) => (
-                              <LiveAuctions
-                                isCollection={true}
-                                id={SingleCollection._id}
-                                Coverimg={artWorkWeek1}
-                                liked={SingleCollection.like}
-                                title={SingleCollection.title}
-                                heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
-                                User1={topSellerUser1}
-                                User2={topSellerUser2}
-                                User3={topSellerUser3}
-                                WETH="1.2 WETH"
                                 bid="Highest bid 1/1"
                               />
                             ))}
@@ -788,19 +719,6 @@ const User_profile = (props) => {
                               </div>
                           }
                         </div>
-                      </div>
-                    </div>
-                  </TabPane>
-                  <TabPane tab="Hidden" key="10">
-                    <div className="row mt-5 mb-5">
-                      <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
-                        <h3>Not items found</h3>
-                        <span className="color-gray">
-                          Come back soon or browse the items on our marketplace.
-                        </span>
-                        <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
-                          Browse marketplace
-                        </button>
                       </div>
                     </div>
                   </TabPane>

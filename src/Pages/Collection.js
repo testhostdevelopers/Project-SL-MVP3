@@ -23,6 +23,7 @@ import FilterProperties from "../Components/FilterProperties";
 import Activitytab from "../Components/Tabs/Activitytab";
 import ProfileLinks from "../Components/ProfileLinks";
 import axios from "axios";
+import { Config } from '../utils/config';           
 
 const { TabPane } = Tabs;
 // const { Option } = Select;
@@ -49,7 +50,7 @@ const Collection = (props) => {
 
   const singleCollection = async () => {
     axios
-      .get("http://localhost:8000/v1/collection/getCollection/" + collectionId, {
+      .get(`${Config.baseURL}v1/collection/getCollection/` + collectionId, {
         headers: {
           Authorization: `Bearer ${apiToken}`,
         },

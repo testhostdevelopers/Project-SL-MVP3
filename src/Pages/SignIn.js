@@ -5,6 +5,7 @@ import axios from "axios";
 import WhatWallet from "../Components/Popup/Whatwallet";
 import phantom from "../assets/img/icons/custom/phantom.png";
 import solflare from "../assets/img/icons/custom/solflare.png";
+import { Config } from '../utils/config';           
 // import signInBanner from "../assets/img/custom/signInBanner.png";
 // import metamask from "../assets/img/custom/metamask.svg";
 // import Torus from "../assets/img/icons/custom/Torus.svg";
@@ -29,13 +30,13 @@ const connectStore = async (pkey, wal, con) => {
     localStorage.setItem("PublicKey", pkey);
     localStorage.setItem("wallet", wal);
     axios
-      .post("http://localhost:8000/v1/user/signup", {
+      .post(`${Config.baseURL}v1/user/signup`, {
         walletToken: pkey,
         walletName: wal,
       })
       .then((res) => {
         axios
-          .put("http://localhost:8000/v1/user/gettoken", {
+          .put(`${Config.baseURL}v1/user/gettoken`, {
             walletToken: pkey,
           })
           .then((r) => {

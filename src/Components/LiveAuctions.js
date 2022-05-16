@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Menu, Dropdown } from "antd";
 import ReportPopup from "../Components/Popup/ReportPopup";
+import { Config } from '../utils/config';           
 // import { Link } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 
@@ -36,7 +37,7 @@ export default function LiveAuctions({
     }
     if (id.length) {
       await axios
-        .put('http://localhost:8000/v1/' + a + '/like/' + id, {
+        .put(`${Config.baseURL}v1/` + a + '/like/' + id, {
           user: userData._id
         }, {
           headers: {
@@ -60,7 +61,7 @@ export default function LiveAuctions({
     }
     if (id.length) {
       await axios
-        .put('http://localhost:8000/v1/' + a + '/unlike/' + id, {
+        .put(`${Config.baseURL}v1/` + a + '/unlike/' + id, {
           user: userData._id
         }, {
           headers: {

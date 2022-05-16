@@ -13,6 +13,7 @@ import { NFTStorage, File } from 'nft.storage';
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Config } from '../utils/config';           
 // import { actions, utils, programs, NodeWallet} from '@metaplex/js'; 
 // import { clusterApiUrl, Connection, Keypair, LAMPORTS_PER_SOL } from '@solana/web3.js';
 
@@ -21,6 +22,10 @@ SwiperCore.use([Keyboard, Pagination, Navigation]);
 
 const NFT_STORAGE_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEYyNGU0OEJjMTdBMzE3Q2MzYjY4RjYyMEFEMTE3NTRDMDdmMDYxZWIiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY0ODE5MDI0NzY5MiwibmFtZSI6Im5mdCJ9.twfnx5glu50givzgLNy0-I_ocYZXQ97MxKZkLeCGzL4';
 const client = new NFTStorage({ token: NFT_STORAGE_TOKEN })
+// const nft = new NFTStorage({
+//   endpoint: "https://api.nft.storage",
+//   token: NFT_STORAGE_TOKEN,
+// });
 // var pubKey;
 
 const CreateCollectibleSingle = () => {
@@ -38,6 +43,7 @@ const CreateCollectibleSingle = () => {
     is_single: true,
     price_currency: "SOL",
     price_type: "fixed_price",
+    category: "Art",
   });
   let [price, setPrice] = useState(0);
   let [collection_list, setcollectionList] = useState([]);
@@ -49,7 +55,7 @@ const CreateCollectibleSingle = () => {
   const profileUploader = React.useRef(null);
   const collectionListFunc = async () => {
     await axios({
-      url: 'http://localhost:8000/v1/collection/getAllCollection',
+      url: `${Config.baseURL}v1/collection/getAllCollection`,
       method: 'get',
       headers: {
         "Authorization": `Bearer ${apiToken}`,
@@ -117,14 +123,16 @@ const CreateCollectibleSingle = () => {
 
   const uploadNftStorage = async (file) => {
     console.log(file)
-    let fileExt = file.name.split(".").pop();
-    let readers = new FileReader();
-    readers.readAsDataURL(file);
-    const imageFile = new File([ file ], file.name , { type: `image/${fileExt}` })
-    console.log(imageFile)
-    console.log(fileExt)
-    const metadata = await client.store({
-      image: imageFile,
+    // let fileExt = file.name.split(".").pop();
+    // let readers = new FileReader();
+    // readers.readAsDataURL(file);
+    // const imageFile = new File([ file ], file.name , { type: `image/${fileExt}` })
+    // console.log(imageFile)
+    // console.log(fileExt)
+   
+    
+
+    const metadata = {
       name: "Storing the World's Most Valuable Virtual Assets with NFT.Storage",
       description: "The metaverse is here. Where is it all being stored?",
       properties: {
@@ -138,13 +146,18 @@ const CreateCollectibleSingle = () => {
           "text/markdown": "The last year has witnessed the explosion of NFTs onto the world’s mainstage. From fine art to collectibles to music and media, NFTs are quickly demonstrating just how quickly grassroots Web3 communities can grow, and perhaps how much closer we are to mass adoption than we may have previously thought. <... remaining content omitted ...>"
         }
       }
-    })
+    };
     console.log(metadata)
-
-    const imageUrl = metadata.url;
-    const imageUrlNft = metadata.ipnft + '.ipfs.nftstorage.link';
-    console.log(imageUrl)
+    var m = new File([metadata],"metadata.json",{ type: "text/json" });
+    console.log(m)
+    const out = await client.storeDirectory(file,m);
+    console.log(out)
+    const imageUrlNft = out + '.ipfs.nftstorage.link/' + file[0].name;
     console.log(imageUrlNft)
+
+    // const imageUrl = metadata.url;
+
+    
     setUdata({...udata, img_path: imageUrlNft })
 
     // const connection = new Connection(  
@@ -184,7 +197,7 @@ const CreateCollectibleSingle = () => {
         }
       };
       reader.readAsDataURL(file);
-      uploadNftStorage(e.target.files[0]);
+      uploadNftStorage(e.target.files);
       // imageUpload(e.target.files[0]);
 
     }
@@ -194,6 +207,7 @@ const CreateCollectibleSingle = () => {
   // console.log(filesize, "setfilesize");
 
   const price_one = ["SOL", "BTC"];
+  const category = ["Cryptoloria", "Art","Photography","Games","Metaverses"];
 
   const [showDetail, setShowDetail] = useState(true);
 
@@ -220,42 +234,12 @@ const CreateCollectibleSingle = () => {
         user_id: user_id._id,
         properties: udata.properties,
         alt_text_nft: udata.alterText,
+        category: udata.category
       };
       var file = form.img_path;
       console.log(file)
-      let fileExt = file.name.split(".").pop();
-      let readers = new FileReader();
-      readers.readAsDataURL(file);
-      const imageFile = new File([ file ], file.name , { type: `image/${fileExt}` })
-      console.log(imageFile)
-      console.log(fileExt)
-      const metadata = await client.store({
-        image: imageFile,
-        name: form.title,
-        description: form.description,
-        properties: {
-          type: "blog-post",
-          origins: {
-            http: "https://nft.storage/blog/post/2021-11-30-hello-world-nft-storage/",
-            ipfs: "ipfs://bafybeieh4gpvatp32iqaacs6xqxqitla4drrkyyzq6dshqqsilkk3fqmti/blog/post/2021-11-30-hello-world-nft-storage/"
-          },
-          authors: [{ name: "David Choi" }],
-          content: {
-            "text/markdown": "The last year has witnessed the explosion of NFTs onto the world’s mainstage. From fine art to collectibles to music and media, NFTs are quickly demonstrating just how quickly grassroots Web3 communities can grow, and perhaps how much closer we are to mass adoption than we may have previously thought. <... remaining content omitted ...>"
-          }
-        }
-      })
-      console.log(metadata)
-
-      const imageUrl = metadata.url;
-      const imageUrlNft = metadata.ipnft + '.ipfs.nftstorage.link';
-      console.log(imageUrl)
-      console.log(imageUrlNft)
-      setUdata({...udata, img_path: imageUrlNft })
-      form.img_path = imageUrlNft;
-      if(imageUrlNft){
         console.log(udata)
-        await axios.post('http://localhost:8000/v1/collectible/create', form,
+        await axios.post(`${Config.baseURL}v1/collectible/create`, form,
           {
             headers: {
               "Authorization": `Bearer ${apiToken}`,
@@ -270,15 +254,15 @@ const CreateCollectibleSingle = () => {
               type: "collectible",
               amount: 10
             }
-            axios.put('http://localhost:8000/v1/user/transaction/create',transactions,
-            {
-              headers: {
-                "Authorization": `Bearer ${apiToken}`,
-              }  
-            }).then((res) => {
-              console.log(res);
-              toast("" + res.data.message);
-            })
+            // axios.put(`${Config.baseURL}v1/user/transaction/create`,transactions,
+            // {
+            //   headers: {
+            //     "Authorization": `Bearer ${apiToken}`,
+            //   }  
+            // }).then((res) => {
+            //   console.log(res);
+            //   toast("" + res.data.message);
+            // })
           }
         })
         .catch(error => {
@@ -286,7 +270,7 @@ const CreateCollectibleSingle = () => {
           console.log('There was an error!', error);
           toast("" + error);
         });
-     }
+     
     }
   };
 
@@ -499,8 +483,37 @@ const CreateCollectibleSingle = () => {
                   </div>
                 </div>
 
+                <div className="prize-single-collectible d-flex flex-column mt-0 ">
+                  <div className="d-flex justify-content-between mt-0">
+                    <b className="mt-2">
+                      <h5>Category</h5>
+                    </b>
+                    <div className="d-flex justify-content-between align-items-center">
+                      
+                      <span className="color-gray">
+                        <div className="d-flex border">
+                         
+                          <Select
+                            className="section-select-filter ml-0"
+                            onChange={(e) => {
+                              setUdata({...udata, category: e});
+                            }}
+                            defaultValue="Art"
+                          >
+                            {category.map((x, y) => (
+                              <Select.Option value={x} key={y}>
+                                {x}
+                              </Select.Option>
+                            ))}
+                          </Select>
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+                </div>
                 <div className="prize-single-collectible d-flex flex-column">
-                  <div className="d-flex justify-content-between mt-3">
+
+                  <div className="d-flex justify-content-between mt-1">
                     <b>
                       <h5>Unlock once Purchased</h5>
                     </b>
