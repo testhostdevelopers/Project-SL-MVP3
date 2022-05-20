@@ -3,11 +3,10 @@ import { motion } from "framer-motion";
 import ActivityNumberCard from "../Components/ActivityNumberCard";
 import FillLabel from "../assets/img/icons/custom/fill-label.svg";
 import ActivityCard from "../assets/img/custom/activity-cardonly.png";
-import { Tabs } from "antd";
 import axios from "axios";
-import { Config } from '../utils/config';           
-const { TabPane } = Tabs;
-
+import { Config } from '../utils/config';
+// import { Tabs } from "antd";
+// const { TabPane } = Tabs;
 
 const Activity = () => {
   var apiToken = sessionStorage.getItem("apiToken");
@@ -18,6 +17,9 @@ const Activity = () => {
   const [transactionData, setTransactionData] = useState([]);
   const [showTransactionData, setShowTransactionData] = useState(true);
   const [filterTransactionData, setFilterTransactionData] = useState([]);
+  const resetFilterValue = async () => {
+    findFilter('All');
+  }
   const getallactivityfilters = async () => {
     await axios
         .get(`${Config.baseURL}v1/activityfilter/getallactivityfilters`, {
@@ -68,11 +70,11 @@ const Activity = () => {
       setFilterTransactionData(arr);
     }
   };
-
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
+
   useEffect(() => {
     if (sessionStorage.getItem("apiToken")) {
       getallactivityfilters();
@@ -170,7 +172,7 @@ const Activity = () => {
                             </h5>
                             <h5>
                               <b>
-                                <a href="/#" className="text-pink">
+                                <a className="text-pink" onClick={resetFilterValue}>
                                   Reset filter
                                 </a>
                               </b>
