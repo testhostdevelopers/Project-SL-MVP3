@@ -63,7 +63,7 @@ const Activity = () => {
       let arr = [];
       transactionData.forEach((SingleData) => {
         if (SingleData.filter.title === key) {
-          console.log('SingleData', SingleData.filter.title);
+          // console.log('SingleData', SingleData.filter.title);
           arr.push(SingleData);
         }
       });
