@@ -35,6 +35,8 @@ const { TabPane } = Tabs;
 const Collection = (props) => {
   const { collectionId } = useParams();
   // console.log(collectionId);
+  const userdata = JSON.parse(sessionStorage.getItem("userdata")) || {};
+  const apiToken = sessionStorage.getItem("apiToken");
   const [ReportPopups, setReportPopup] = useState(false);
   const [CoverPopup, setUpdateCoverPopup] = useState(false);
   const [profilePopup, setprofilePopup] = useState(false);
@@ -47,7 +49,6 @@ const Collection = (props) => {
   const [singleCollectionData, setsingleCollectionData] = useState(false);
   let [userCollectionList, setUserCollectionList] = useState([]);
   const buttonText = "Edit Cover";
-  const apiToken = sessionStorage.getItem("apiToken");
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -74,6 +75,13 @@ const Collection = (props) => {
             }
         )
         .then(response => {
+          response.data.data.forEach((element, index) => {
+            if (element.likedBy.includes(userdata._id)) {
+              response.data.data[index].like = true;
+            } else {
+              response.data.data[index].like = false;
+            }
+          });
           setUserCollectionList(response.data.data);
           console.log('setUserCollectionList', response.data.data);
         })
@@ -305,9 +313,11 @@ const Collection = (props) => {
                         {userCollectionList.map((SingleCollection, key) => (
                           <LiveAuctions
                             key={key}
+                            liked={SingleCollection.like}
                             Coverimg={"https://"+SingleCollection.img_path}
                             heartcount={SingleCollection.likes}
                             time={SingleCollection.createdAt}
+                            id={SingleCollection._id}
                             title={SingleCollection.title}
                             WETH={SingleCollection.price}
                             bid={SingleCollection.price}
