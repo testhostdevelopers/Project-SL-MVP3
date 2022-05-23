@@ -62,9 +62,6 @@ const Activity = () => {
           console.log(err);
         });
   };
-  const loadMore = async () => {
-    getusertransactions();
-  };
   const findFilter = (key) => {
     setFilterValue(key);
     if (key === 'All') {
@@ -80,6 +77,10 @@ const Activity = () => {
       });
       setFilterTransactionData(arr);
     }
+  };
+  const loadMore = async () => {
+    getusertransactions();
+    findFilter(filterValue);
   };
   const variants = {
     hidden: { opacity: 0 },
