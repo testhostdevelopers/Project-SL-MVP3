@@ -7,16 +7,15 @@ import ProfileLinks from "../Components/ProfileLinks";
 import LiveAuctions from "../Components/LiveAuctions";
 import TopCard from "../Components/TopCard";
 import ReportPopup from "../Components/Popup/ReportPopup";
-import Activitytab from "../Components/Tabs/Activitytab";
+// import Activitytab from "../Components/Tabs/Activitytab";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
-// import topSeller3 from "../assets/img/custom/topSeller3.png";
 import topSeller4 from "../assets/img/custom/topSeller4.png";
 import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
-// import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
 import { Config } from '../utils/config';           
 import EarthIcon from "../assets/img/icons/custom/earth.svg";
+import Activity from "./Activity";
 
 var UPubKey = null,
   cutPkey;
@@ -32,10 +31,10 @@ const { TabPane } = Tabs;
 const Profile = (props) => {
   // console.log("props.pImage", props.pImage, "sdasadsa");
   var apiToken = sessionStorage.getItem("apiToken");
-  const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
+  // const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [reportPopup, setReportPopup] = useState(false);
   const [buttonText, setButtonText] = useState("Add Cover");
-  let [udata, setUdata] = useState();
+  let [udata, setUdata] = useState(JSON.parse(sessionStorage.getItem("userdata")) || {});
   let [userCollectibleList, setUserCollectibleList] = useState([]);
   let [userCollectionList, setUserCollectionList] = useState([]);
   let [userLikedCollectionsList, setUserLikedCollectionsList] = useState([]);
@@ -46,7 +45,7 @@ const Profile = (props) => {
     await axios
         .get(`${Config.baseURL}v1/user/getFollowerUsers`, {
               data: {
-                user_id: userData._id
+                user_id: udata._id
               },
               headers: {
                 Authorization: `Bearer ${apiToken}`,
@@ -64,7 +63,7 @@ const Profile = (props) => {
     await axios
         .get(`${Config.baseURL}v1/user/getFollowingUsers`, {
               data: {
-                user_id: userData._id
+                user_id: udata._id
               },
               headers: {
                 Authorization: `Bearer ${apiToken}`,
@@ -83,7 +82,7 @@ const Profile = (props) => {
     await axios
       .get(`${Config.baseURL}v1/collectible/getusercollectiblelist`, {
           data: {
-            user_id: userData._id
+            user_id: udata._id
           },
           headers: {
             Authorization: `Bearer ${apiToken}`,
@@ -92,7 +91,7 @@ const Profile = (props) => {
       )
       .then(response => {
         response.data.data.forEach((element) => {
-          if (element.likedBy.includes(userData._id)) {
+          if (element.likedBy.includes(udata._id)) {
             element.like = true;
           } else {
             element.like = false;
@@ -108,7 +107,7 @@ const Profile = (props) => {
     await axios
       .get(`${Config.baseURL}v1/collection/getuserlikedcollectionslist`, {
           data: {
-            user_id: userData._id
+            user_id: udata._id
           },
           headers: {
             Authorization: `Bearer ${apiToken}`,
@@ -117,7 +116,7 @@ const Profile = (props) => {
       )
       .then(response => {
         response.data.data.forEach((element) => {
-          if (element.likedBy.includes(userData._id)) {
+          if (element.likedBy.includes(udata._id)) {
             element.like = true;
           } else {
             element.like = false;
@@ -133,7 +132,7 @@ const Profile = (props) => {
     await axios
       .get(`${Config.baseURL}v1/collectible/getuserlikedcollectiblelist`, {
           data: {
-            user_id: userData._id
+            user_id: udata._id
           },
           headers: {
             Authorization: `Bearer ${apiToken}`,
@@ -142,7 +141,7 @@ const Profile = (props) => {
       )
       .then(response => {
         response.data.data.forEach((element) => {
-          if (element.likedBy.includes(userData._id)) {
+          if (element.likedBy.includes(udata._id)) {
             element.like = true;
           } else {
             element.like = false;
@@ -159,7 +158,7 @@ const Profile = (props) => {
     await axios
       .get(`${Config.baseURL}v1/collection/getusercollectionlist`, {
           data: {
-            user_id: userData._id
+            user_id: udata._id
           },
           headers: {
             Authorization: `Bearer ${apiToken}`,
@@ -168,7 +167,7 @@ const Profile = (props) => {
       )
       .then(response => {
         response.data.data.forEach((element) => {
-          if (element.likedBy.includes(userData._id)) {
+          if (element.likedBy.includes(udata._id)) {
             element.like = true;
           } else {
             element.like = false;
@@ -529,8 +528,8 @@ const Profile = (props) => {
                                 title={SingleCollectible.title}
                                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
                                 User1={topSellerUser1}
-                                User2={topSellerUser2}
                                 User3={topSellerUser3}
+                                User2={topSellerUser2}
                                 WETH={SingleCollectible.price}
                                 bid="Highest bid 1/1"
                               />
@@ -648,7 +647,7 @@ const Profile = (props) => {
                     </div>
                   </TabPane>
                   <TabPane tab="Activity" key="7">
-                    <Activitytab />
+                    <Activity />
                   </TabPane>
                   <TabPane tab={'Following (' + userFollowingUsersList.length + ')'} key="8">
                     <div className="topSeller">

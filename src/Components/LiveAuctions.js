@@ -12,6 +12,7 @@ export default function LiveAuctions({
   WETH,
   bid,
   isCollection = false,
+  isLiveAuctions = true,
   heartcount,
   liked = false,
   Coverimg,
@@ -126,17 +127,20 @@ export default function LiveAuctions({
           </div>
 
           <div className="bg-white p-4">
-            <div className="live-user-list">
-              <img src={User1} width="36px" alt="" />
-              <img src={User2} width="36px" alt="" />
-              <img src={User3} width="36px" alt="" />
-              <div className="live-card-tick">
-                <i className="fas fa-check" />
-              </div>
-            </div>
+            {isLiveAuctions === true ?
+                <div className="live-user-list">
+                  <img src={User1} width="36px" alt="" />
+                  <img src={User2} width="36px" alt="" />
+                  <img src={User3} width="36px" alt="" />
+                  <div className="live-card-tick">
+                    <i className="fas fa-check" />
+                  </div>
+                </div> : <></>
+            }
 
-            <a href={'/buy/'+id}><h6>{title}</h6></a>
-
+            {isCollection === true?
+                <a href={'/collection/'+id}><h6>{title}</h6></a> : <a href={'/buy/'+id}><h6>{title}</h6></a>
+            }
             <div className="d-flex justify-content-between align-items-center">
               <div className="text-danger">
                 <b>{WETH}</b>

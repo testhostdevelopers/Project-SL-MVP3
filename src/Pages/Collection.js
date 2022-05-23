@@ -1,36 +1,42 @@
 import React, { useState, useEffect } from "react";
-import HotBids from "../Components/HotBids";
+import axios from "axios";
+import LiveAuctions from "../Components/LiveAuctions";
 import { motion } from "framer-motion";
 import { Menu, Dropdown, Tabs } from "antd";
 import ReportPopup from "../Components/Popup/ReportPopup";
 import UpdateCoverPopup from "../Components/Popup/UpdateCoverPopup";
 import UpdateProfilePicPopup from "../Components/Popup/UpdateProfilePicPopup";
 import { useParams } from "react-router-dom";
-// import addicon from "../assets/img/custom/Mask_Group.png";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 import artWorkWeek2 from "../assets/img/custom/artWorkWeek2.png";
 import artWorkWeek3 from "../assets/img/custom/artWorkWeek3.png";
 import artWorkWeek4 from "../assets/img/custom/artWorkWeek4.png";
 import propertiesicon from "../assets/img/custom/properties.svg";
-// import CollectionBannerBg from "../assets/img/custom/Collection-banner-bg.png";
-// import userProfilePictures from "../assets/img/custom/userProfilePictures.png";
 import FilterSort from "../Components/FilterSort";
 import FilterCategory from "../Components/FilterCategory";
-// import FilterCollections from "../Components/FilterCollections";
 import Filtersale from "../Components/Filtersale";
 import FilterRange from "../Components/FilterRange";
 import FilterProperties from "../Components/FilterProperties";
 import Activitytab from "../Components/Tabs/Activitytab";
 import ProfileLinks from "../Components/ProfileLinks";
-import axios from "axios";
-import { Config } from '../utils/config';           
+import { Config } from '../utils/config';
+import Activity from "./Activity";
+import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
+import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
+import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
+// import addicon from "../assets/img/custom/Mask_Group.png";
+// import CollectionBannerBg from "../assets/img/custom/Collection-banner-bg.png";
+// import userProfilePictures from "../assets/img/custom/userProfilePictures.png";
+// import FilterCollections from "../Components/FilterCollections";
 
 const { TabPane } = Tabs;
 // const { Option } = Select;
 
 const Collection = (props) => {
   const { collectionId } = useParams();
-  console.log(collectionId)
+  // console.log(collectionId);
+  const userdata = JSON.parse(sessionStorage.getItem("userdata")) || {};
+  const apiToken = sessionStorage.getItem("apiToken");
   const [ReportPopups, setReportPopup] = useState(false);
   const [CoverPopup, setUpdateCoverPopup] = useState(false);
   const [profilePopup, setprofilePopup] = useState(false);
@@ -41,8 +47,8 @@ const Collection = (props) => {
   const [filtersale, setFiltersale] = useState(false);
   const [filterRange, setFilterRange] = useState(false);
   const [singleCollectionData, setsingleCollectionData] = useState(false);
+  let [userCollectionList, setUserCollectionList] = useState([]);
   const buttonText = "Edit Cover";
-  const apiToken = sessionStorage.getItem("apiToken");
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -56,13 +62,37 @@ const Collection = (props) => {
         },
       })
       .then((res) => {
-        console.log(res.data.data);
+        console.log( 'collection/getCollection', res.data.data);
         setsingleCollectionData(res.data.data)
       });
+  };
+  const userCollectionListFunc = async () => {
+    await axios
+        .get(`${Config.baseURL}v1/collectible/getcollectioncollectiblelist/` + collectionId, {
+              headers: {
+                Authorization: `Bearer ${apiToken}`,
+              }
+            }
+        )
+        .then(response => {
+          response.data.data.forEach((element, index) => {
+            if (element.likedBy.includes(userdata._id)) {
+              response.data.data[index].like = true;
+            } else {
+              response.data.data[index].like = false;
+            }
+          });
+          setUserCollectionList(response.data.data);
+          console.log('setUserCollectionList', response.data.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
   };
   useEffect(() => {
     if (apiToken) {
       singleCollection();
+      userCollectionListFunc();
     }
   }, []);
 
@@ -80,41 +110,6 @@ const Collection = (props) => {
       <Menu.Item onClick={() => setReportPopup(true)}>Report</Menu.Item>
     </Menu>
   );
-
-  const hot_bide = [
-    {
-      cover_bide: artWorkWeek2,
-      bide_heartcount: "23",
-      bide_time: "3H : 15M : 50S left",
-      bide_name: "Memescalf#782021",
-      bide_weth: "1.3 WETH",
-      bide_bid: "Highest bid 1/1",
-    },
-    {
-      cover_bide: artWorkWeek3,
-      bide_heartcount: "25",
-      bide_time: "7H : 13M : 50S left",
-      bide_name: "Memescalf#782022",
-      bide_weth: "1.6 WETH",
-      bide_bid: "Highest bid 1/16",
-    },
-    {
-      cover_bide: artWorkWeek1,
-      bide_heartcount: "26",
-      bide_time: "8H : 20M : 50S left",
-      bide_name: "Memescalf#782023",
-      bide_weth: "1.2 WETH",
-      bide_bid: "Highest bid 6/6",
-    },
-    {
-      cover_bide: artWorkWeek4,
-      bide_heartcount: "26",
-      bide_time: "8H : 40M : 50S left",
-      bide_name: "Memescalf#782022",
-      bide_weth: "1.2 WETH",
-      bide_bid: "Highest bid 6/5",
-    },
-  ];
 
   return (
     <>
@@ -141,7 +136,7 @@ const Collection = (props) => {
               <header>
                 <div className="position-relative">
                   <div className="border p-3 gray-color profile-pictures-cover">
-                    <img src={singleCollectionData.main_img} width="100%" alt="" />
+                    <img src={"https://" + singleCollectionData.main_img} width="100%" alt=""/>
 
                     <button
                       onClick={() => setUpdateCoverPopup(true)}
@@ -315,23 +310,26 @@ const Collection = (props) => {
                         </ul>
                       </div>
                       <div className="row  mt-5">
-                        {hot_bide.map((bide_desk, ho_B) => (
-                          <HotBids
-                            key={ho_B}
-                            Coverimg={bide_desk.cover_bide}
-                            heartcount={bide_desk.bide_heartcount}
-                            time={bide_desk.bide_time}
-                            title={bide_desk.bide_name}
-                            WETH={bide_desk.bide_weth}
-                            bid={bide_desk.bide_bid}
+                        {userCollectionList.map((SingleCollection, key) => (
+                          <LiveAuctions
+                            key={key}
+                            liked={SingleCollection.like}
+                            Coverimg={"https://"+SingleCollection.img_path}
+                            heartcount={SingleCollection.likes}
+                            time={SingleCollection.createdAt}
+                            id={SingleCollection._id}
+                            title={SingleCollection.title}
+                            WETH={SingleCollection.price}
+                            bid={SingleCollection.price}
                             isOpenInProfile={false}
+                            isLiveAuctions={false}
                           />
                         ))}
                       </div>
                     </div>
                   </TabPane>
                   <TabPane tab="Activity" key="2">
-                    <Activitytab />
+                    <Activity />
                   </TabPane>
                 </Tabs>
               </main>
