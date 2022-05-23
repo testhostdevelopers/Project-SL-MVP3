@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import artWorkWeekOne from "../assets/img/custom/artWorkWeekOne.png";
+// import artWorkWeekOne from "../assets/img/custom/artWorkWeekOne.png";
 import userTick from "../assets/img/custom/userTick.png";
 import AlienMonster from "../assets/img/icons/custom/alien-monster.svg";
 import RainbowIcon from "../assets/img/icons/custom/rainbow.svg";
@@ -21,7 +21,7 @@ import BuyAuction from "../Components/BuyCopmponent/BuyAuction";
 import axios from "axios";
 // import logo from "../assets/img/icons/custom/logo.svg";
 import start from "../assets/img/icons/custom/start.svg";
-import { Config } from '../utils/config';           
+import { Config } from '../utils/config';
 
 const Buy = () => {
   const apiToken = sessionStorage.getItem("apiToken");
@@ -39,11 +39,12 @@ const Buy = () => {
   const [reportPopup, setReportPopup] = useState(false);
   const [helpPopup, sethelpPopup] = useState(false);
   const [CheckOutPopup, setCheckOutPopup] = useState(false);
+  let [openImage, setOpenImage] = useState(false);
   const likeCollectible = async () => {
-    console.log('LikeCollectible');
+    // console.log('LikeCollectible');
     let a = 'collectible';
     await axios
-      .put(`${Config.baseURL}` + a + '/like/' + collectibleId, {
+      .put(`${Config.baseURL}v1/` + a + '/like/' + collectibleId, {
         user: userData._id
       }, {
         headers: {
@@ -59,10 +60,10 @@ const Buy = () => {
       });
   };
   const disLikeCollectible = async () => {
-    console.log('disLikeCollectible');
+    // console.log('disLikeCollectible');
     let a = 'collectible';
     await axios
-      .put(`${Config.baseURL}` + a + '/unlike/' + collectibleId, {
+      .put(`${Config.baseURL}v1/` + a + '/unlike/' + collectibleId, {
         user: userData._id
       }, {
         headers: {
@@ -77,7 +78,6 @@ const Buy = () => {
         console.log(err);
       });
   };
-
   const singleCollectible = async () => {
     await axios
       .get(`${Config.baseURL}v1/collectible/singleCollectible/` + collectibleId, {
@@ -86,10 +86,9 @@ const Buy = () => {
         },
       })
       .then((res) => {
-        console.log(res.data.data);
-        console.log(process.env.REACT_APP_API_URL)
+        // console.log(res.data.data);
         setSingleCollectibleData(res.data.data);
-        console.log(singleCollectibleData.bids)
+        // console.log(singleCollectibleData.bids)
         axios
           .get(`${Config.baseURL}v1/user/getUser`, {
             headers: {
@@ -97,17 +96,17 @@ const Buy = () => {
             },
           })
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             setUdata(res.data.data);
           });
       });
   };
+
   useEffect(() => {
     if (apiToken) {
       singleCollectible();
     }
   }, []);
-  let [openImage, setOpenImage] = useState(false);
 
   const menu = (
     <Menu>
@@ -413,7 +412,7 @@ const Buy = () => {
                   </div>
                   <div className="tab-pane-bottom-solid" />
                 </div>
-                {singleCollectibleData.price_type == 'time_auction' ? 
+                {singleCollectibleData.price_type === 'time_auction' ?
                 <BuyAuction props={singleCollectibleData} />
         
                           : '' }
