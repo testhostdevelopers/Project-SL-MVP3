@@ -134,9 +134,9 @@ export default function LiveAuctions({
                 <i className="fas fa-check" />
               </div>
             </div>
-
-            <a href={'/buy/'+id}><h6>{title}</h6></a>
-
+            {isCollection === true?
+                <a href={'/collection/'+id}><h6>{title}</h6></a> : <a href={'/buy/'+id}><h6>{title}</h6></a>
+            }
             <div className="d-flex justify-content-between align-items-center">
               <div className="text-danger">
                 <b>{WETH}</b>
