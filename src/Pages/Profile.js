@@ -528,8 +528,8 @@ const Profile = (props) => {
                                 title={SingleCollectible.title}
                                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
                                 User1={topSellerUser1}
-                                User2={topSellerUser2}
                                 User3={topSellerUser3}
+                                User2={topSellerUser2}
                                 WETH={SingleCollectible.price}
                                 bid="Highest bid 1/1"
                               />

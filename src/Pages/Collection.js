@@ -136,7 +136,7 @@ const Collection = (props) => {
               <header>
                 <div className="position-relative">
                   <div className="border p-3 gray-color profile-pictures-cover">
-                    <img src={singleCollectionData.main_img} width="100%" alt="" />
+                    <img src={"https://" + singleCollectionData.main_img} width="100%" alt=""/>
 
                     <button
                       onClick={() => setUpdateCoverPopup(true)}
@@ -322,9 +322,7 @@ const Collection = (props) => {
                             WETH={SingleCollection.price}
                             bid={SingleCollection.price}
                             isOpenInProfile={false}
-                            User1={topSellerUser1}
-                            User2={topSellerUser2}
-                            User3={topSellerUser3}
+                            isLiveAuctions={false}
                           />
                         ))}
                       </div>

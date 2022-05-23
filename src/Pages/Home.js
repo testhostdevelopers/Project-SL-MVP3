@@ -1142,7 +1142,6 @@ const Home = () => {
             >
               <div className="row">
                 {liveAuctionList.map((live_a, key) => (
-                  
                     <LiveAuctions
                       Coverimg={live_a.cover_img}
                       title={live_a.auction_name}
@@ -1166,7 +1165,6 @@ const Home = () => {
             >
               <div className="row">
                 {live_auction.map((live_a, key) => (
-                  
                     <LiveAuctions
                       Coverimg={live_a.cover_img}
                       title={live_a.auction_name}
@@ -1181,7 +1179,6 @@ const Home = () => {
                 ))}
               </div>
             </div>
-
             <div
               className="tab-pane w-100 fade"
               id="games"
@@ -1190,7 +1187,6 @@ const Home = () => {
             >
               <div className="row">
                 {liveAuctionList.map((live_a, key) => (
-                  
                     <LiveAuctions
                       Coverimg={live_a.cover_img}
                       title={live_a.auction_name}
@@ -1236,7 +1232,6 @@ const Home = () => {
             >
               <div className="row">
                 {live_auction.map((live_a, key) => (
-                  
                     <LiveAuctions
                       Coverimg={live_a.cover_img}
                       title={live_a.auction_name}

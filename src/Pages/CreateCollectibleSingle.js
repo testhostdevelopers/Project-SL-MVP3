@@ -250,10 +250,10 @@ const CreateCollectibleSingle = () => {
           if(res.data.response_code === "API_ERROR") {
             toast("" + res.data.error.message);
           } else if (res.data.response_code === "API_SUCCESS") {
-            var transactions = {
+            /*var transactions = {
               type: "collectible",
               amount: 10
-            }
+            }*/
             // axios.put(`${Config.baseURL}v1/user/transaction/create`,transactions,
             // {
             //   headers: {
@@ -263,6 +263,7 @@ const CreateCollectibleSingle = () => {
             //   console.log(res);
             //   toast("" + res.data.message);
             // })
+            toast("" + res.data.message);
           }
         })
         .catch(error => {
