@@ -15,6 +15,8 @@ const Activity = () => {
   const error_data = "";
   const [all_filter, setAllFilter] = useState([]);
   const [transactionData, setTransactionData] = useState([]);
+  const [offset, setOffset] = useState(0);
+  const [limit, setLimit] = useState(10);
   const [showTransactionData, setShowTransactionData] = useState(true);
   const [filterTransactionData, setFilterTransactionData] = useState([]);
   const resetFilterValue = async () => {
@@ -39,7 +41,7 @@ const Activity = () => {
   };
   const getusertransactions = async () => {
     await axios
-        .get(`${Config.baseURL}v1/transaction/getusertransactions/0/10`, {
+        .get(`${Config.baseURL}v1/transaction/getusertransactions/` + offset + '/' + limit, {
           data: {
             user_id: userData._id
           },
@@ -48,11 +50,20 @@ const Activity = () => {
           }
         })
         .then(response => {
-          setTransactionData(response.data.data);
+          setOffset(offset + parseInt(response.data.data.length))
+          if (offset === 0 ) {
+            setTransactionData(response.data.data);
+          } else {
+            setTransactionData(transactionData => [...transactionData, ...response.data.data]);
+            console.log('transactionData', transactionData);
+          }
         })
         .catch(err => {
           console.log(err);
         });
+  };
+  const loadMore = async () => {
+    getusertransactions();
   };
   const findFilter = (key) => {
     setFilterValue(key);
@@ -162,7 +173,16 @@ const Activity = () => {
                                       seenstatus={new Date(single.createdAt).toLocaleString()}
                                   />
                               ))}
-                            </>}
+                            </>
+                        }
+                        <div className="d-flex">
+                          <button
+                              className="btn btn-primary"
+                              onClick={loadMore}
+                          >
+                            Load More
+                          </button>
+                        </div>
                       </div>
                       <div className="col-sm-12 col-lg-4 mb-4 activity-number-card-right">
                         <div className="filters-listing-reset">
