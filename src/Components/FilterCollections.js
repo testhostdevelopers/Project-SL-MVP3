@@ -50,7 +50,7 @@ export default function FilterCollections({
     setCheckedValues(arr);
   }, [filterCollections]);
 
-  console.log(checkedValues, "checked values");
+  // console.log(checkedValues, "checked values");
   // console.log(document.querySelectorAll(".custom-filter ul input[type='checkbox']"), 'checkboxes')
   return (
     <li>

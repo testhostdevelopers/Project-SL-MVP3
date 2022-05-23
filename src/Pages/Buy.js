@@ -104,18 +104,18 @@ const Buy = () => {
 
   useEffect(() => {
     if (apiToken) {
-      singleCollectible();
+      singleCollectible().then(r => {});
     }
   }, []);
 
   const menu = (
     <Menu>
-      {singleCollectibleData.price_type == 'time_auction' || singleCollectibleData.price_type == 'open_for_bid'  ? 
+      {singleCollectibleData.price_type === 'time_auction' || singleCollectibleData.price_type === 'open_for_bid'  ?
         <Menu.Item onClick={() => setSingleCollectionPopup(true)}>
           New bid
         </Menu.Item> : " "
       }
-      {singleCollectibleData.price_type == 'fixed_price' ? 
+      {singleCollectibleData.price_type === 'fixed_price' ?
         <Menu.Item onClick={() => setCheckOutPopup(true)}>Purchase now</Menu.Item>
          : "" 
       }
@@ -135,10 +135,10 @@ const Buy = () => {
     { pr_name: singleCollectibleData.properties, pr_subname: "Wealth" },
   ];
 
-  const category = [
-    { cat_img: RainbowIcon, cat_title: "Art" },
-    { cat_img: AlienMonster, cat_title: "Metaverse" },
-  ];
+  // const category = [
+  //   { cat_img: RainbowIcon, cat_title: "Art" },
+  //   { cat_img: AlienMonster, cat_title: "Metaverse" },
+  // ];
 
   return (
     <>
@@ -301,7 +301,7 @@ const Buy = () => {
                         <ul className="category-btn-list">
                             <li>
                               <a href="#">
-                                {singleCollectibleData == null
+                                {singleCollectibleData === null
                                   ? ""
                                   : singleCollectibleData.category}
                               </a>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import { Menu, Dropdown, Tabs } from "antd";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 import ProfileLinks from "../Components/ProfileLinks";
 import LiveAuctions from "../Components/LiveAuctions";
@@ -14,7 +14,7 @@ import topSeller4 from "../assets/img/custom/topSeller4.png";
 import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
-import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
+// import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
 import { Config } from '../utils/config';           
 import EarthIcon from "../assets/img/icons/custom/earth.svg";
 

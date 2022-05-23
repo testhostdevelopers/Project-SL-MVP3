@@ -58,14 +58,14 @@ export default function FilterSort({
     });
   };
 
-  console.log(
+  /*console.log(
     filterSort,
     filterCategory,
     filterCollections,
     filterProperties,
     filtersale,
     filterRange
-  );
+  );*/
   return (
     <li>
       <span className="label">Filter & Sort</span>

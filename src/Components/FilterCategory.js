@@ -61,14 +61,14 @@ export default function FilterCategory({
     });
   };
 
-  console.log(
+  /*console.log(
     filterSort,
     filterCategory,
     filterCollections,
     filterProperties,
     filtersale,
     filterRange
-  );
+  );*/
   return (
     <li>
       <div className="icon">
