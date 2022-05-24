@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import TopCard from "../Components/TopCard";
 import { Tabs } from "antd";
 import { useParams } from "react-router-dom";
-import topSeller3 from "../assets/img/custom/topSeller3.png";
+// import topSeller3 from "../assets/img/custom/topSeller3.png";
 import topSeller4 from "../assets/img/custom/topSeller4.png";
 import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
-import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
+// import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
+import axios from "axios";
+import { Config } from "../utils/config";
+import LiveAuctions from "../Components/LiveAuctions";
+import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
+import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 // import activityCard from "../assets/img/custom/activity-card.png";
 // import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 // import ActivityNumberCard from "../Components/ActivityNumberCard";
@@ -20,10 +25,44 @@ const { TabPane } = Tabs;
 
 const Search = () => {
   const { keyword } = useParams();
+  var apiToken = sessionStorage.getItem("apiToken");
+  let [searchUsersList, setSearchUsersList] = useState([]);
+  let [searchCollectibleList, setSearchCollectibleList] = useState({});
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
+  const getSearchUsers = async () => {
+    await axios
+        .get(`${Config.baseURL}v1/user/search/`+ keyword, {
+          headers: {}
+        })
+        .then(response => {
+          console.log('Search Users List', response.data.data);
+          setSearchUsersList(response.data.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
+  const getSearchCollectible = async () => {
+    await axios
+        .get(`${Config.baseURL}v1/collectible/getsearchcollectiblelist/`+ keyword, {
+          headers: {}
+        })
+        .then(response => {
+          console.log('Search Collectible List', response.data.data);
+          setSearchCollectibleList(response.data.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
+  useEffect(() => {
+    console.log(apiToken);
+    getSearchUsers().then(r => {});
+    getSearchCollectible().then(r => {});
+  }, []);
 
   return (
     <motion.section
@@ -78,47 +117,38 @@ const Search = () => {
                     <div className="topSellerContent following-profile-topSellerContent">
                       <div className="row">
                         <div className="d-flex col-lg-12 activity ">
-                          <TopCard
-                            topcoverimg={topSeller4}
-                            topuserimg={topSellerUser1}
-                            title="Courtney Henry"
-                            follow="10.8k followers"
-                            btnname="Unfollow"
-                          />
-                          <TopCard
-                            topcoverimg={topSeller3}
-                            topuserimg={topSellerUser3}
-                            title="Arlene McCoy"
-                            follow="10.8k followers"
-                            btnname="Unfollow"
-                          />
-                          <TopCard
-                            topcoverimg={topSeller4}
-                            topuserimg={topSellerUser4}
-                            title="Bessie Cooper"
-                            follow="10.8k followers"
-                            btnname="Unfollow"
-                          />
-                          <TopCard
-                            topcoverimg={topSeller4}
-                            topuserimg={topSellerUser4}
-                            title="Jerome Bell"
-                            follow="10.8k followers"
-                            btnname="Unfollow"
-                          />
-                          <TopCard
-                            topcoverimg={topSeller4}
-                            topuserimg={topSellerUser4}
-                            title="Arlene McCoy"
-                            follow="10.8k followers"
-                            btnname="Unfollow"
-                          />
+                          {searchCollectibleList.length > 0 ?
+                            <>
+                              {searchCollectibleList.map((SingleCollection, key) => (
+                                <LiveAuctions
+                                  isCollection={true}
+                                  id={SingleCollection._id}
+                                  Coverimg={artWorkWeek1}
+                                  liked={SingleCollection.like}
+                                  title={SingleCollection.title}
+                                  heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
+                                  User1={topSellerUser1}
+                                  User2={topSellerUser2}
+                                  User3={topSellerUser3}
+                                  WETH="1.2 WETH"
+                                  bid="Highest bid 1/1"
+                                />
+                              ))}
+                            </> : <>
+                              <h3>Not items found</h3>
+                              <span className="color-gray">
+                                Come back soon or browse the items on our marketplace.
+                              </span>
+                              <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
+                                Browse marketplace
+                              </button>
+                            </>
+                          }
                         </div>
                       </div>
                     </div>
                   </div>
                 </TabPane>
-
                 <TabPane tab="Items" key="2">
                   <div className="row mt-5 mb-5">
                     <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
@@ -172,41 +202,28 @@ const Search = () => {
                       <div className="topSellerContent following-profile-topSellerContent">
                         <div className="row">
                           <div className="d-flex col-lg-12 activity">
-                            <TopCard
-                              topcoverimg={topSeller4}
-                              topuserimg={topSellerUser1}
-                              title="Courtney Henry"
-                              follow="10.8k followers"
-                              btnname="Unfollow"
-                            />
-                            <TopCard
-                              topcoverimg={topSeller3}
-                              topuserimg={topSellerUser3}
-                              title="Arlene McCoy"
-                              follow="10.8k followers"
-                              btnname="Follow"
-                            />
-                            <TopCard
-                              topcoverimg={topSeller4}
-                              topuserimg={topSellerUser4}
-                              title="Bessie Cooper"
-                              follow="10.8k followers"
-                              btnname="Unfollow"
-                            />
-                            <TopCard
-                              topcoverimg={topSeller4}
-                              topuserimg={topSellerUser4}
-                              title="Jerome Bell"
-                              follow="10.8k followers"
-                              btnname="Follow"
-                            />
-                            <TopCard
-                              topcoverimg={topSeller4}
-                              topuserimg={topSellerUser4}
-                              title="Arlene McCoy"
-                              follow="10.8k followers"
-                              btnname="Unfollow"
-                            />
+                            {searchUsersList.length > 0 ?
+                                <div className="d-flex col-lg-12 activity ">
+                                  {searchUsersList.map((SingleUser, key) => (
+                                      <TopCard
+                                          topcoverimg={topSeller4}
+                                          topuserimg={topSellerUser1}
+                                          title={SingleUser.display_name}
+                                          id={SingleUser._id}
+                                          follow={SingleUser.followersCount + ' followers'}
+                                          btnname="Follow"
+                                      />
+                                  ))}
+                                </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                                  <h3>Not items found</h3>
+                                  <span className="color-gray">
+                                    Come back soon or browse the items on our marketplace.
+                                  </span>
+                                  <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
+                                    Browse marketplace
+                                  </button>
+                                </div>
+                            }
                           </div>
                         </div>
                       </div>

@@ -474,7 +474,7 @@ const Home = () => {
           // setUdata(res.data.data);
           console.log(res.data.data);
         });
-  }
+  };
   const getTopBuyerUser = async () => {
     await axios
         .get('http://localhost:8000/v1/user/getTopBuyerUser', {
