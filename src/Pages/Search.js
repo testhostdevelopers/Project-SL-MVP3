@@ -3,23 +3,12 @@ import { motion } from "framer-motion";
 import TopCard from "../Components/TopCard";
 import { Tabs } from "antd";
 import { useParams } from "react-router-dom";
-// import topSeller3 from "../assets/img/custom/topSeller3.png";
-import topSeller4 from "../assets/img/custom/topSeller4.png";
 import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
-// import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
 import axios from "axios";
 import { Config } from "../utils/config";
 import LiveAuctions from "../Components/LiveAuctions";
-import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
-// import activityCard from "../assets/img/custom/activity-card.png";
-// import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
-// import ActivityNumberCard from "../Components/ActivityNumberCard";
-// import LiveAuctions from "../Components/LiveAuctions";
-// import FillLabel from "../assets/img/icons/custom/fill-label.svg";
-// import ActivityCard from "../assets/img/custom/activity-cardonly.png";
-// import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 
 const { TabPane } = Tabs;
 
@@ -69,10 +58,24 @@ const Search = () => {
           console.log(err);
         });
   };
+  const getSearchCollection = async () => {
+    await axios
+        .get(`${Config.baseURL}v1/collection/getsearchcollectionlist/`+ keyword, {
+          headers: {}
+        })
+        .then(response => {
+          console.log('Search Collection List', response.data.data);
+          setSearchCollectionList(response.data.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
   useEffect(() => {
     console.log(apiToken);
     getSearchUsers().then(r => {});
     getSearchCollectible().then(r => {});
+    getSearchCollection().then(r => {});
   }, []);
 
   return (
@@ -134,7 +137,7 @@ const Search = () => {
                                 <LiveAuctions
                                   isCollection={true}
                                   id={SingleCollection._id}
-                                  Coverimg={artWorkWeek1}
+                                  Coverimg={SingleCollection.main_img}
                                   liked={SingleCollection.like}
                                   title={SingleCollection.title}
                                   heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
@@ -207,7 +210,7 @@ const Search = () => {
                                 <LiveAuctions
                                   isCollection={true}
                                   id={SingleCollection._id}
-                                  Coverimg={artWorkWeek1}
+                                  Coverimg={'https://' + SingleCollection.img_path}
                                   liked={SingleCollection.like}
                                   title={SingleCollection.title}
                                   heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
@@ -279,8 +282,8 @@ const Search = () => {
                               <div className="d-flex col-lg-12 activity ">
                                 {searchUsersList.map((SingleUser, key) => (
                                   <TopCard
-                                    topcoverimg={topSeller4}
-                                    topuserimg={topSellerUser1}
+                                    topcoverimg={SingleUser.cover_img_url}
+                                    topuserimg={SingleUser.profile_img_url}
                                     title={SingleUser.display_name}
                                     id={SingleUser._id}
                                     follow={SingleUser.followersCount + ' followers'}
