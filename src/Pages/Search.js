@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import TopCard from "../Components/TopCard";
 import { Tabs } from "antd";
-
+import { useParams } from "react-router-dom";
 import topSeller3 from "../assets/img/custom/topSeller3.png";
 import topSeller4 from "../assets/img/custom/topSeller4.png";
 import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
@@ -18,7 +18,8 @@ import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
 
 const { TabPane } = Tabs;
 
-const search = () => {
+const Search = () => {
+  const { keyword } = useParams();
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -35,7 +36,7 @@ const search = () => {
         <div className="row">
           <div className="col-sm-12">
             <main className="profile-tab-menu">
-              <h2 className="mb-3">Search results for “Users”</h2>
+              <h2 className="mb-3">Search results for “{keyword}”</h2>
 
               <Tabs defaultActiveKey="3" centered>
                 <TabPane tab="Collections" key="1" style={{ color: "gray" }}>
@@ -221,4 +222,4 @@ const search = () => {
   );
 };
 
-export default search;
+export default Search;

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import searchLine from "../../assets/img/icons/custom/search-line.svg";
 // import vectorLogo from "../../assets/img/custom/Vector.svg";
 import menu4Line from "../../assets/img/icons/custom/menu-4-line.svg";
@@ -21,6 +22,7 @@ import searchline_white from "../../assets/img/icons/custom/search-line_white.sv
 import user2 from "../../assets/img/icons/custom/user2.png";
 
 const Navbar = (props) => {
+  let history = useHistory();
   var UPubKey = null,
     cutPkey;
 
@@ -241,7 +243,17 @@ const Navbar = (props) => {
     { listLink: "/", listName: "Subscribe" },
   ];
 
-  return (
+  const SearchInput = () => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter') {
+        console.log('search keyword', event.target.value);
+        history.push('/search/' + event.target.value);
+      }
+    }
+    return <input type="text" onKeyDown={handleKeyDown} placeholder="Search by creator, collectible or collection"/>
+  }
+
+    return (
     <>
       {CoinConverp && <CoinConver setCoinConverp={setCoinConverp} />}
       {/* {
@@ -733,10 +745,7 @@ const Navbar = (props) => {
                 <li className="nav-item">
                   <div className="navbar-search">
                     <i className="fas fa-search" />
-                    <input
-                      type="text"
-                      placeholder="Search by creator, collectible or collection"
-                    />
+                    <SearchInput />
                   </div>
                 </li>
 
