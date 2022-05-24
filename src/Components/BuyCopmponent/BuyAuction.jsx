@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import topSellerUser4 from "../../assets/img/custom/topSellerUser4.png";
-import axios from "axios";
-import { Config } from '../../utils/config';           
+// import axios from "axios";
+// import { Config } from '../../utils/config';
 
 
 const BuyAuction = (props) => {

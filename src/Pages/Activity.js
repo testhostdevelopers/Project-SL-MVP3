@@ -16,7 +16,7 @@ const Activity = () => {
   const [all_filter, setAllFilter] = useState([]);
   const [transactionData, setTransactionData] = useState([]);
   const [offset, setOffset] = useState(0);
-  const [limit, setLimit] = useState(10);
+  const limit = 10;
   const [showTransactionData, setShowTransactionData] = useState(true);
   const [filterTransactionData, setFilterTransactionData] = useState([]);
   const resetFilterValue = async () => {

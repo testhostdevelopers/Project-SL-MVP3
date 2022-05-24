@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-// import artWorkWeekOne from "../assets/img/custom/artWorkWeekOne.png";
 import userTick from "../assets/img/custom/userTick.png";
-import AlienMonster from "../assets/img/icons/custom/alien-monster.svg";
-import RainbowIcon from "../assets/img/icons/custom/rainbow.svg";
 import FinishedCollectiblePopup from "../Components/Popup/PlaceABidPopup";
 import PlaceABidFollowPopup from "../Components/Popup/PlaceABidFollowPopup";
 import ErrorPopup from "../Components/Popup/ErrorPopup";
@@ -15,13 +12,16 @@ import CheckOut from "../Components/Popup/CheckOut";
 import { Menu, Dropdown } from "antd";
 import { motion } from "framer-motion";
 import Buytab from "../Components/Tabs/Buytab";
-// import ArtworkWeek from "./ArtworkWeek";
 import BuyHistory from "../Components/BuyCopmponent/BuyHistory";
 import BuyAuction from "../Components/BuyCopmponent/BuyAuction";
 import axios from "axios";
-// import logo from "../assets/img/icons/custom/logo.svg";
 import start from "../assets/img/icons/custom/start.svg";
 import { Config } from '../utils/config';
+// import artWorkWeekOne from "../assets/img/custom/artWorkWeekOne.png";
+// import AlienMonster from "../assets/img/icons/custom/alien-monster.svg";
+// import RainbowIcon from "../assets/img/icons/custom/rainbow.svg";
+// import ArtworkWeek from "./ArtworkWeek";
+// import logo from "../assets/img/icons/custom/logo.svg";
 
 const Buy = () => {
   const apiToken = sessionStorage.getItem("apiToken");
