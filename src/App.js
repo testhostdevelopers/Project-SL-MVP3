@@ -24,7 +24,7 @@ import Profile from "./Pages/Profile";
 import Faq from "./Pages/Faq";
 import Activity from "./Pages/Activity";
 import Following from "./Pages/Following";
-import search from "./Pages/search";
+import Search from "./Pages/Search";
 import CreateCollectibleEdit from "./Pages/CreateCollectibleEdit";
 import "swiper/swiper-bundle.css";
 import {
@@ -151,7 +151,7 @@ const App = () => {
           {/*<Route path="/edit-profile" component={CreateCollectibleEdit} exact />*/}
           <Route path="/activity" component={Activity} exact />
           <Route path="/following" component={Following} exact />
-          <Route path="/search" component={search} exact />
+          <Route path="/search/:keyword" component={Search} exact />
         </Switch>
         <Footer />
       </Router>

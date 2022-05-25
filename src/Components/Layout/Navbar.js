@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import searchLine from "../../assets/img/icons/custom/search-line.svg";
-// import vectorLogo from "../../assets/img/custom/Vector.svg";
 import menu4Line from "../../assets/img/icons/custom/menu-4-line.svg";
-// import userProfilePictures from "../../assets/img/icons/custom/userNav.svg";
 import fabaLogo from "../../assets/img/custom/x.svg";
 import { useLocation, Link } from "react-router-dom";
 import userTick from "../../assets/img/custom/StarlightbalanceIcon.svg";
@@ -10,7 +9,6 @@ import grayPp from "../../assets/img/custom/grayPp.png";
 import McdoIcon from "../../assets/img/custom/mcdoicon.svg";
 import menuclose from "../../assets/img/custom/close.png";
 import BalanceIcon from "../../assets/img/custom/BalanceIcon.svg";
-// import starlight from "../../assets/img/custom/starlight.png";
 import BidingbalanceIcon from "../../assets/img/custom/BidingbalanceIcon.svg";
 import CoinConver from "../Popup/CoinConverPopup";
 import backmenu from "../../assets/img/custom/back-arrow.svg";
@@ -19,8 +17,11 @@ import closeicon from "../../assets/img/custom/close.svg";
 import notification_white from "../../assets/img/icons/custom/notification_white.svg";
 import searchline_white from "../../assets/img/icons/custom/search-line_white.svg";
 import user2 from "../../assets/img/icons/custom/user2.png";
-
+// import userProfilePictures from "../../assets/img/icons/custom/userNav.svg";
+// import vectorLogo from "../../assets/img/custom/Vector.svg";
+// import starlight from "../../assets/img/custom/starlight.png";
 const Navbar = (props) => {
+  let history = useHistory();
   var UPubKey = null,
     cutPkey;
 
@@ -241,7 +242,17 @@ const Navbar = (props) => {
     { listLink: "/", listName: "Subscribe" },
   ];
 
-  return (
+  const SearchInput = () => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter') {
+        console.log('search keyword', event.target.value);
+        history.push('/search/' + event.target.value);
+      }
+    }
+    return <input type="text" onKeyDown={handleKeyDown} placeholder="Search by creator, collectible or collection"/>
+  }
+
+    return (
     <>
       {CoinConverp && <CoinConver setCoinConverp={setCoinConverp} />}
       {/* {
@@ -733,10 +744,7 @@ const Navbar = (props) => {
                 <li className="nav-item">
                   <div className="navbar-search">
                     <i className="fas fa-search" />
-                    <input
-                      type="text"
-                      placeholder="Search by creator, collectible or collection"
-                    />
+                    <SearchInput />
                   </div>
                 </li>
 
@@ -1172,7 +1180,6 @@ const Navbar = (props) => {
 
                   <a
                     className="nav-link nav-dark-button d-sm-none d-lg-block"
-                    href="#0"
                     onClick={() => activeMode()}
                   >
                     {theme === true ? (
