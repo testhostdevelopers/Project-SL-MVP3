@@ -1064,7 +1064,7 @@ const Navbar = (props) => {
                                       <b onClick={setShowDisplayNameEdit(false)}>Set display name</b>
                                     </p> : <>
                                       <input type="text" defaultValue={udata.display_name? udata.display_name : ''} />
-                                      <button onClick={SetDisplayNameCall}>Save 2 {isShowDisplayNameEdit}1</button>
+                                      <button onClick={SetDisplayNameCall}>Save</button>
                                     </>
                               }
                               <a
