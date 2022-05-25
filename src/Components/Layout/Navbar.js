@@ -36,7 +36,7 @@ const Navbar = (props) => {
   const [openProfileDropMenu, setOpenProfileDropMenu] = useState(true);
   const [notificationPopup, setNotificationPopup] = useState(false);
   const [isShow, SetIsShow] = useState(false);
-  const [isShowDisplayNameEdit, setShowDisplayNameEdit] = useState(false);
+  const [isShowDisplayNameEdit, setShowDisplayNameEdit] = useState(true);
   const [isSubMenuShow, SetSubMenuShow] = useState(false);
   // const [closeNotification, setCloseNotification] = useState(true);
   const notifications = ["add your email", "subscribe", "go to website"];
