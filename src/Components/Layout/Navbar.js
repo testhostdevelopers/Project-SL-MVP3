@@ -26,13 +26,30 @@ import userImg from "../../assets/img/icons/custom/userProfilePictures.png";
 // import starlight from "../../assets/img/custom/starlight.png";
 const Navbar = (props) => {
   let history = useHistory();
+  const location = useLocation();
   var UPubKey = null,
     cutPkey;
+  var apiToken = sessionStorage.getItem("apiToken");
+  let [udata, setUdata] = useState(JSON.parse(sessionStorage.getItem("userdata")) || {});
+  const [CoinConverp, setCoinConverp] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem("theme"));
+  const [openProfileDropMenu, setOpenProfileDropMenu] = useState(true);
+  const [notificationPopup, setNotificationPopup] = useState(false);
+  const [isShow, SetIsShow] = useState(false);
+  const [isShowDisplayNameEdit, setShowDisplayNameEdit] = useState(false);
+  const [isSubMenuShow, SetSubMenuShow] = useState(false);
+  // const [closeNotification, setCloseNotification] = useState(true);
+  const notifications = ["add your email", "subscribe", "go to website"];
+  const [searchItem, SetsearchItem] = useState(false);
+  const [notificationsArr, setNotificationsArr] = useState(notifications);
+  const profileImage = React.useRef(null);
+  const profileUploader = React.useRef(null);
+  profileImage.current = props.pImage;
 
   if (localStorage.getItem("PublicKey")) {
     UPubKey = localStorage.getItem("PublicKey");
     cutPkey =
-      UPubKey.substring(0, 4) + "...." + UPubKey.substring(UPubKey.length - 4);
+        UPubKey.substring(0, 4) + "...." + UPubKey.substring(UPubKey.length - 4);
   }
   const apiToken = sessionStorage.getItem("apiToken");
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
@@ -291,9 +308,6 @@ const Navbar = (props) => {
           });
     }
   };
-  const profileImage = React.useRef(null);
-  const profileUploader = React.useRef(null);
-  profileImage.current = props.pImage;
   const list_drop = [
     { listLink: "/Token", listName: "Token" },
     { listLink: "/", listName: "Discussion" },
@@ -544,9 +558,7 @@ const Navbar = (props) => {
                         {UPubKey == null ? "" : cutPkey}
                       </h4>
                       <div className="notipopup-display">
-                        <Link to="/edit-profile" className="color-ping">
-                          <b>Set display name</b>
-                        </Link>
+                        <SetDisplayName />
                         {/* <a href="#0" className="color-ping" htmlFor="profilephoto" onClick={() => profileUploader.current.click()}><b>Upload profile picture</b></a>
                                                 <div className="profile-user-pictures">
                                                     <input
@@ -1128,7 +1140,6 @@ const Navbar = (props) => {
                   {sessionStorage.getItem("apiToken") ? (
                     <a
                       className="d-sm-none d-lg-block nav-link p-0 nav-dark-button mr-2 position-relative"
-                      href="/#"
                       onClick={() =>
                         setOpenProfileDropMenu(!openProfileDropMenu)
                       }
@@ -1178,9 +1189,7 @@ const Navbar = (props) => {
                             {UPubKey == null ? "" : cutPkey}
                           </h4>
                           <div className="notipopup-display">
-                            <Link to="/edit-profile" className="color-ping">
-                              <b>Set display name 2</b>
-                            </Link>
+                            <SetDisplayName />
                             <a
                               className="color-ping"
                               href="/#"
