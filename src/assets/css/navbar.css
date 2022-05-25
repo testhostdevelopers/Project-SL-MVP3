@@ -385,8 +385,8 @@ header {
   background-color: var(--bg-main);
   border-radius: 15px;
   position: absolute;
-  top: 50px;
-  right: 0;
+  top: 70px;
+  right: 70px;
   box-shadow: 0px 25px 60px rgba(0, 0, 0, 0.08);
   border: solid 1px var(--light-gray);
   z-index: 999;
