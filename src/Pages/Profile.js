@@ -24,7 +24,6 @@ if (localStorage.getItem("PublicKey")) {
 }
 
 const { TabPane } = Tabs;
-
 const Profile = (props) => {
   // console.log("props.pImage", props.pImage, "sdasadsa");
   const apiToken = sessionStorage.getItem("apiToken");

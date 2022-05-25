@@ -354,7 +354,7 @@ const Home = () => {
 
   useEffect(() => {
     getLiveAuctionCollectibleList().then(r => {});
-    getHotCollectionsList().then(r => {});
+    getHotCollectionsList().then(r => {}).then(r => {});
     getTopSellerUser().then(r => {});
     getTopBuyerUser().then(r => {});
   }, []);
