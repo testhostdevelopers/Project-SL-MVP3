@@ -29,7 +29,7 @@ if (localStorage.getItem("PublicKey")) {
 
 const { TabPane } = Tabs;
 
-const User_profile = (props) => {
+const User = (props) => {
   const { user_id } = useParams();
   var apiToken = sessionStorage.getItem("apiToken");
   const userData = {};
@@ -44,8 +44,8 @@ const User_profile = (props) => {
   const [buttonText, setButtonText] = useState("Add Cover");
   let [userCollectibleList, setUserCollectibleList] = useState([]);
   let [userCollectionList, setUserCollectionList] = useState([]);
-  let [userLikedCollectionsList, setUserLikedCollectionsList] = useState([]);
-  let [userLikedCollectibleList, setUserLikedCollectibleList] = useState([]);
+  // let [userLikedCollectionsList, setUserLikedCollectionsList] = useState([]);
+  // let [userLikedCollectibleList, setUserLikedCollectibleList] = useState([]);
   let [userFollowerUsersList, setUserFollowerUsersList] = useState([]);
   let [userFollowingUsersList, setUserFollowingUsersList] = useState([]);
   const getFollowerUsers = async () => {
@@ -103,7 +103,7 @@ const User_profile = (props) => {
         console.log(err);
       });
   };
-  const userLikedCollections = async () => {
+  /*const userLikedCollections = async () => {
     await axios
       .get(`${Config.baseURL}v1/collection/getuserlikedcollectionslist`, {
           data: {
@@ -126,8 +126,8 @@ const User_profile = (props) => {
       .catch(err => {
         console.log(err);
       });
-  };
-  const userLikedCollectible = async () => {
+  };*/
+  /*const userLikedCollectible = async () => {
     await axios
       .get(`${Config.baseURL}v1/collectible/getuserlikedcollectiblelist`, {
           data: {
@@ -151,7 +151,7 @@ const User_profile = (props) => {
       .catch(err => {
         console.log(err);
       });
-  };
+  };*/
   const userCollectionListFunc = async () => {
     await axios
       .get(`${Config.baseURL}v1/collection/getusercollectionlist`, {
@@ -209,8 +209,8 @@ const User_profile = (props) => {
         });
       userCollectibleListFunc();
       userCollectionListFunc();
-      userLikedCollections();
-      userLikedCollectible();
+      // userLikedCollections();
+      // userLikedCollectible();
       getFollowerUsers();
       getFollowingUsers();
     }
@@ -591,9 +591,9 @@ const User_profile = (props) => {
                         </div>}
                     </div>
                   </TabPane>
-                  <TabPane tab="Activity" key="7">
+                  {/*<TabPane tab="Activity" key="7">
                     <Activitytab />
-                  </TabPane>
+                  </TabPane>*/}
                   <TabPane tab={'Following (' + userFollowingUsersList.length + ')'} key="8">
                     <div className="topSeller">
                       <div className="w-100 d-flex justify-content-end">
@@ -732,4 +732,4 @@ const User_profile = (props) => {
   );
 };
 
-export default User_profile;
+export default User;
