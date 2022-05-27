@@ -8,14 +8,14 @@ import ProfileLinks from "../Components/ProfileLinks";
 import LiveAuctions from "../Components/LiveAuctions";
 import TopCard from "../Components/TopCard";
 import ReportPopup from "../Components/Popup/ReportPopup";
-import Activitytab from "../Components/Tabs/Activitytab";
+// import Activitytab from "../Components/Tabs/Activitytab";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 import topSeller4 from "../assets/img/custom/topSeller4.png";
 import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
 // import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
-import { Config } from '../utils/config';           
+import { Config } from '../utils/config';
 import EarthIcon from "../assets/img/icons/custom/earth.svg";
 
 var UPubKey = null,
@@ -36,7 +36,7 @@ const User = (props) => {
   const currentUserData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [reportPopup, setReportPopup] = useState(false);
   const [followButtonText, setFollowButtonText] = useState('Follow');
-  console.log('currentUserData.following.indexOf(user_id)', currentUserData.following.indexOf(user_id));
+  // console.log('currentUserData.following.indexOf(user_id)', currentUserData.following.indexOf(user_id));
   if (currentUserData.following.indexOf(user_id) >= 0) {
     // setFollowButtonText("Unfollow");
   }
@@ -300,7 +300,7 @@ const User = (props) => {
 
   return (
     <>
-      {reportPopup && <ReportPopup setReportPopup={setReportPopup} />}
+      {reportPopup && <ReportPopup type={'User'} setReportPopup={setReportPopup} />}
       <motion.section
         initial="hidden"
         animate="visible"

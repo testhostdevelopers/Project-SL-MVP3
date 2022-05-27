@@ -390,7 +390,7 @@ const Profile = (props) => {
                         <span>
                           <img src={EarthIcon} alt={""} />
                         </span>
-                        {udata == null ? "" : udata.personal_site}
+                        {udata == null ? "" : udata.personal_site}.
                       </a>
                       <div className="follows-block">
                         <span>
