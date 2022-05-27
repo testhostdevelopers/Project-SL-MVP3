@@ -52,7 +52,7 @@ const Profile = (props) => {
               }
             })
         .then(response => {
-          console.log('getFollowerUsers', response.data.data);
+          // console.log('getFollowerUsers', response.data.data);
           setUserFollowerUsersList(response.data.data);
         })
         .catch(err => {
@@ -71,7 +71,7 @@ const Profile = (props) => {
             }
         )
         .then(response => {
-          console.log('getFollowingUsers', response.data.data);
+          // console.log('getFollowingUsers', response.data.data);
           setUserFollowingUsersList(response.data.data);
         })
         .catch(err => {

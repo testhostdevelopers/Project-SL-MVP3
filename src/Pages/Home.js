@@ -828,6 +828,7 @@ const Home = () => {
                     topuserimg={top_seller_profile.topuser_img}
                     title={top_seller_profile.topuser_name}
                     Price={top_seller_profile.topuser_price}
+                    id={top_seller_profile.topuser_price}
                   />
               ))}
             </div>
@@ -860,6 +861,7 @@ const Home = () => {
                     topcoverimg={top_seller_profile.topcover_img}
                     topuserimg={top_seller_profile.topuser_img}
                     title={top_seller_profile.topuser_name}
+                    id={top_seller_profile.topuser_name}
                     Price={top_seller_profile.topuser_price}
                   />
               ))}
@@ -1026,6 +1028,7 @@ const Home = () => {
                     topcoverimg={collr_.top_cover}
                     topuserimg={collr_.top_user}
                     title={collr_.top_name}
+                    id={collr_.top_name}
                     Price={collr_.top_price}
                   />
               ))}
@@ -1055,11 +1058,11 @@ const Home = () => {
             >
               {slide_data.map((collr_, key) => (
                 <SwiperSlide>
-                  
                     <TopCard
                       topcoverimg={collr_.top_cover}
                       topuserimg={collr_.top_user}
                       title={collr_.top_name}
+                      id={collr_.top_name}
                       Price={collr_.top_price}
                     />
                 </SwiperSlide>
@@ -1106,7 +1109,6 @@ const Home = () => {
             >
               <div className="row">
                 {live_auction.map((live_a, key) => (
-                  
                     <LiveAuctions
                       Coverimg={live_a.cover_img}
                       title={live_a.auction_name}
@@ -1156,7 +1158,6 @@ const Home = () => {
                 ))}
               </div>
             </div>
-
             <div
               className="tab-pane w-100 fade"
               id="photo"
