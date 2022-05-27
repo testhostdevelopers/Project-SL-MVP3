@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
 // import { Link } from "react-router-dom";
-import { Config } from '../utils/config';           
+import { Config } from '../utils/config';
+import {Link} from "react-router-dom";
 
 export default function TopCard({
   title,
@@ -47,7 +48,6 @@ export default function TopCard({
           alt=""
         />
       </div>
-
       <div className="topSellectProfilePicture">
         <img src={topuserimg} width="100%" alt="" />
         <div className="confirmation">
@@ -56,7 +56,9 @@ export default function TopCard({
       </div>
       <div className="topSellerUserInfo">
         <h5>
-          <b>{title}</b>
+          <Link to={'/User/' + id}>
+            <b>{title}</b>
+          </Link>
         </h5>
         <h5 className="color-ping mt-2 mb-2">{follow}</h5>
         <small>{datetime}</small>
@@ -66,3 +68,4 @@ export default function TopCard({
     </div>
   );
 }
+
