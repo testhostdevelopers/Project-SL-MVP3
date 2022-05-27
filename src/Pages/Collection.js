@@ -171,7 +171,7 @@ const Collection = (props) => {
                           </svg>
                         </button>
 
-                        <ProfileLinks />
+                        <ProfileLinks id={userdata._id} />
                       </div>
 
                       <Dropdown overlay={singleoption}>

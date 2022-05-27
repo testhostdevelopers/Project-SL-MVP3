@@ -424,7 +424,7 @@ const Profile = (props) => {
                             />
                           </svg>
                         </button>
-                        <ProfileLinks/>
+                        <ProfileLinks id={udata._id}/>
                       </div>
 
                       <Dropdown overlay={singleoption}>
