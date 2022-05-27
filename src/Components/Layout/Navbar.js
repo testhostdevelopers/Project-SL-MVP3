@@ -328,7 +328,6 @@ const Navbar = (props) => {
               <div className="d-lg-none d-sm-block mr-1">
                 <a
                   className="nav-link nav-dark-button"
-                  href="/#"
                   onClick={() => activeMode()}
                 >
                   {theme === true ? (
