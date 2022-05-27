@@ -2,12 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Select } from "antd";
 import { motion } from "framer-motion";
-import SwiperCore, {
-  Keyboard,
-  Pagination,
-  Navigation,
-  Autoplay,
-} from "swiper/core";
+import SwiperCore, { Keyboard, Pagination, Navigation, Autoplay } from "swiper/core";
 import ArtWork from "../Components/ArtWork";
 import artWorkWeekOne from "../assets/img/custom/artWorkWeekOne.png";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
@@ -296,7 +291,7 @@ const Home = () => {
         console.log(err);
       });
   };
-  const getHotCollectionsList = async () => {
+  /*const getHotCollectionsList = async () => {
     await axios
         .get(`${Config.baseURL}v1/collection/hotcollectionslist/0/10`, {
               data: {
@@ -312,7 +307,7 @@ const Home = () => {
         .catch(err => {
           console.log(err);
         });
-  };
+  };*/
   const getTopBuyerUser = async () => {
     await axios
       .get(`${Config.baseURL}v1/user/getTopBuyerUser/0/10`, {
