@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Menu, Dropdown, Tabs } from "antd";
+import { Tabs } from "antd";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ProfileLinks from "../Components/ProfileLinks";
 import LiveAuctions from "../Components/LiveAuctions";
 import TopCard from "../Components/TopCard";
-import ReportPopup from "../Components/Popup/ReportPopup";
+// import ReportPopup from "../Components/Popup/ReportPopup";
 // import Activitytab from "../Components/Tabs/Activitytab";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 import topSeller4 from "../assets/img/custom/topSeller4.png";
@@ -32,7 +32,7 @@ const Profile = (props) => {
   // console.log("props.pImage", props.pImage, "sdasadsa");
   var apiToken = sessionStorage.getItem("apiToken");
   // const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
-  const [reportPopup, setReportPopup] = useState(false);
+  // const [reportPopup, setReportPopup] = useState(false);
   const [buttonText, setButtonText] = useState("Add Cover");
   let [udata, setUdata] = useState(JSON.parse(sessionStorage.getItem("userdata")) || {});
   let [userCollectibleList, setUserCollectibleList] = useState([]);
@@ -212,11 +212,11 @@ const Profile = (props) => {
       <Menu.Item onClick={() => setReportPopup(true)}>Report</Menu.Item>
     </Menu>
   );*/
-  const singleoption = (
+  /*const singleoption = (
     <Menu>
       <Menu.Item onClick={() => setReportPopup(true)}>Report</Menu.Item>
     </Menu>
-  );
+  );*/
 
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
@@ -284,7 +284,7 @@ const Profile = (props) => {
 
   return (
     <>
-      {reportPopup && <ReportPopup setReportPopup={setReportPopup} />}
+      {/*{reportPopup && <ReportPopup setReportPopup={setReportPopup} />}*/}
       <motion.section
         initial="hidden"
         animate="visible"
@@ -427,7 +427,7 @@ const Profile = (props) => {
                         <ProfileLinks id={udata._id}/>
                       </div>
 
-                      <Dropdown overlay={singleoption}>
+                      {/*<Dropdown overlay={singleoption}>
                         <button className="bg-white border-gray select">
                           <svg
                             width="14"
@@ -443,7 +443,7 @@ const Profile = (props) => {
                             />
                           </svg>
                         </button>
-                      </Dropdown>
+                      </Dropdown>*/}
                     </div>
                   </div>
                 </div>
@@ -766,8 +766,8 @@ const Profile = (props) => {
                             </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                               <h3>Not items found</h3>
                               <span className="color-gray">
-                        Come back soon or browse the items on our marketplace.
-                      </span>
+                                Come back soon or browse the items on our marketplace.
+                              </span>
                               <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
                                 Browse marketplace
                               </button>
@@ -799,4 +799,5 @@ const Profile = (props) => {
     </>
   );
 };
+
 export default Profile;
