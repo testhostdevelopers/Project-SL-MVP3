@@ -452,29 +452,22 @@ const Home = () => {
 
   const getallcollectiblelist = async () => {
     await axios
-      .get(`${Config.baseURL}v1/collectible/getallcollectiblelist`, {})
-      .then(response => {
-        response.data.data.forEach((element) => {
-          if (element.likedBy.includes(userData._id)) {
-            element.like = true;
-          } else {
-            element.like = false;
-          }
-        });
-        setLiveAuctionList(response.data.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-  const getUserList = async () => {
-    axios
-        .get(`${Config.baseURL}v1/user/getAllUser`,)
-        .then((res) => {
-          // setUdata(res.data.data);
-          console.log(res.data.data);
+        .get(`${Config.baseURL}v1/collectible/getallcollectiblelist`, {})
+        .then(response => {
+          response.data.data.forEach((element) => {
+            if (element.likedBy.includes(userData._id)) {
+              element.like = true;
+            } else {
+              element.like = false;
+            }
+          });
+          setLiveAuctionList(response.data.data);
+        })
+        .catch(err => {
+          console.log(err);
         });
   };
+
   const getTopBuyerUser = async () => {
     await axios
         .get('http://localhost:8000/v1/user/getTopBuyerUser', {
@@ -1274,11 +1267,11 @@ const Home = () => {
           </div>
         </div>
 
-        {/* <div className="w-100 mt-5 pl-3 pr-3">
-                    <div className="view-all-items">
-                        <button className="btn-primary-outline w-100"><b>View all</b></button>
-                    </div>
-                </div> */}
+        {/*<div className="w-100 mt-5 pl-3 pr-3">
+          <div className="view-all-items">
+            <button className="btn-primary-outline w-100"><b>View all</b></button>
+          </div>
+        </div>*/}
       </motion.section>
     </>
   );

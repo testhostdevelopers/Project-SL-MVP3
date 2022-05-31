@@ -427,8 +427,7 @@ const CreateCollectibleSingle = () => {
                   >
                     <img src={sonsuz} width="40" alt=""/>{" "}
                     <b>
-                      Open for <br/>
-                      bids
+                      Open for <br/> bids
                     </b>
                   </div>
                 </div>

@@ -62,32 +62,32 @@ const Collection = (props) => {
         },
       })
       .then((res) => {
-        console.log( 'collection/getCollection', res.data.data);
+        // console.log( 'collection/getCollection', res.data.data);
         setsingleCollectionData(res.data.data)
       });
   };
   const userCollectionListFunc = async () => {
     await axios
-        .get(`${Config.baseURL}v1/collectible/getcollectioncollectiblelist/` + collectionId, {
-              headers: {
-                Authorization: `Bearer ${apiToken}`,
-              }
+      .get(`${Config.baseURL}v1/collectible/getcollectioncollectiblelist/` + collectionId, {
+            headers: {
+              Authorization: `Bearer ${apiToken}`,
             }
-        )
-        .then(response => {
-          response.data.data.forEach((element, index) => {
-            if (element.likedBy.includes(userdata._id)) {
-              response.data.data[index].like = true;
-            } else {
-              response.data.data[index].like = false;
-            }
-          });
-          setUserCollectionList(response.data.data);
-          console.log('setUserCollectionList', response.data.data);
-        })
-        .catch(err => {
-          console.log(err);
+          }
+      )
+      .then(response => {
+        response.data.data.forEach((element, index) => {
+          if (element.likedBy.includes(userdata._id)) {
+            response.data.data[index].like = true;
+          } else {
+            response.data.data[index].like = false;
+          }
         });
+        setUserCollectionList(response.data.data);
+        console.log('setUserCollectionList', response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
   useEffect(() => {
     if (apiToken) {
@@ -113,7 +113,7 @@ const Collection = (props) => {
 
   return (
     <>
-      {ReportPopups && <ReportPopup setReportPopup={setReportPopup} />}
+      {ReportPopups && <ReportPopup type={'Collection'} id={collectionId} setReportPopup={setReportPopup} />}
       {CoverPopup && (
         <UpdateCoverPopup setUpdateCoverPopup={setUpdateCoverPopup} />
       )}

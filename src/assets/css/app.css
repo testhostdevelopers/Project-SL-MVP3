@@ -2801,6 +2801,7 @@ ul.react-tabs__tab-list>li {
 }
 
 .share-profile .nft-share-icons ul li span {
+  text-align: center;
   color: var(--tabs-bg);
 }
 

@@ -2,21 +2,17 @@ import React, { useState, useEffect } from "react";
 import priceP from "../assets/img/icons/custom/price_p.svg";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import starticon from "../assets/img/icons/custom/star_icon.png";
 import sonsuz from "../assets/img/icons/custom/open_p.png";
 import plus from "../assets/img/icons/custom/plus.svg";
-// import darkcircle from "../assets/img/icons/custom/darkcircle.svg";
 import { Link } from "react-router-dom";
 import CreateCollectibleMultiplePopup from "../Components/Popup/CreateCollectibleMultiplePopup";
 import { Select } from "antd";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Keyboard, Pagination, Navigation } from "swiper/core";
 import { motion } from "framer-motion";
-// import MultiCollectibleDetails from "./MultiCollectibleDetails";
 import AdvanceCollectionSetting from "./AdvanceCollectionSetting";
 import axios from "axios";
-import { Config } from '../utils/config';           
-// const { Option } = Select;
+import { Config } from '../utils/config';
 
 SwiperCore.use([Keyboard, Pagination, Navigation]);
 

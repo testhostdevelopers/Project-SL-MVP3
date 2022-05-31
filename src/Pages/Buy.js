@@ -159,7 +159,7 @@ const Buy = () => {
       )}
       {errorPopups && <ErrorPopup setErrorPopup={setErrorPopup} />}
       {sharePopup && <ShareThisNFTPopup setsharePopup={setsharePopup} />}
-      {reportPopup && <ReportPopup setReportPopup={setReportPopup} />}
+      {reportPopup && <ReportPopup type={'Collectible'} id={collectibleId} setReportPopup={setReportPopup} />}
       {helpPopup && <WhatIswETHPopup sethelpPopup={sethelpPopup} />}
       {CheckOutPopup && (
         <CheckOut
