@@ -18,14 +18,14 @@ import EarthIcon from "../assets/img/icons/custom/earth.svg";
 // import Activitytab from "../Components/Tabs/Activitytab";
 // import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
 
-var UPubKey = null,
+/*var UPubKey = null,
   cutPkey;
 
 if (localStorage.getItem("PublicKey")) {
   UPubKey = localStorage.getItem("PublicKey");
   cutPkey =
     UPubKey.substring(0, 4) + "...." + UPubKey.substring(UPubKey.length - 4);
-}
+}*/
 
 const { TabPane } = Tabs;
 
@@ -188,7 +188,7 @@ const User = (props) => {
         })
         .then(response => {
           if (response.data.response_code === "API_SUCCESS") {
-            // setFollowButtonText('Unfollow');
+            setFollowButtonText('Unfollow');
           }
           // console.log('response', response);
         })

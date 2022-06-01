@@ -38,6 +38,7 @@ const Profile = (props) => {
   let [userCollectibleList, setUserCollectibleList] = useState([]);
   let [userCollectionList, setUserCollectionList] = useState([]);
   let [userLikedCollectionsList, setUserLikedCollectionsList] = useState([]);
+  let [userOwnedCollectibleList, setUserOwnedCollectibleList] = useState([]);
   let [userLikedCollectibleList, setUserLikedCollectibleList] = useState([]);
   let [userFollowerUsersList, setUserFollowerUsersList] = useState([]);
   let [userFollowingUsersList, setUserFollowingUsersList] = useState([]);
@@ -128,6 +129,32 @@ const Profile = (props) => {
         console.log(err);
       });
   };
+  const userOwnedCollectible = async () => {
+    await axios
+      .get(`${Config.baseURL}v1/collectible/getuserownedcollectiblelist/` + udata._id, {
+          data: {
+            user_id: udata._id
+          },
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        }
+      )
+      .then(response => {
+        response.data.data.forEach((element) => {
+          if (element.likedBy.includes(udata._id)) {
+            element.like = true;
+          } else {
+            element.like = false;
+          }
+        });
+        setUserOwnedCollectibleList(response.data.data);
+        console.log('setUserOwnedCollectibleList', response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   const userLikedCollectible = async () => {
     await axios
       .get(`${Config.baseURL}v1/collectible/getuserlikedcollectiblelist`, {
@@ -191,12 +218,13 @@ const Profile = (props) => {
         .then((res) => {
           setUdata(res.data.data);
         });
-      userCollectibleListFunc();
-      userCollectionListFunc();
-      userLikedCollections();
-      userLikedCollectible();
-      getFollowerUsers();
-      getFollowingUsers();
+      userCollectibleListFunc().then(r => {});
+      userCollectionListFunc().then(r => {});
+      userLikedCollections().then(r => {});
+      userLikedCollectible().then(r => {});
+      userOwnedCollectible().then(r => {});
+      getFollowerUsers().then(r => {});
+      getFollowingUsers().then(r => {});
     }
   }, []);
 
@@ -464,53 +492,38 @@ const Profile = (props) => {
                       </div>
                     </div>
                   </TabPane>
-                  <TabPane tab="Owned" key="2">
+                  <TabPane tab={'Owned' + ' (' + userOwnedCollectibleList.length + ')'} key="2">
                     <div className="liveAuction proile-liked-filter">
                       <div className="row ">
-                        <LiveAuctions
-                          isOpenInProfile="true"
-                          Coverimg={artWorkWeek1}
-                          title="Memescalf#782021"
-                          heartcount="24"
-                          User1={topSellerUser1}
-                          User2={topSellerUser2}
-                          User3={topSellerUser3}
-                          WETH="1.2 WETH"
-                          bid="Highest bid 1/1"
-                        />
-                        <LiveAuctions
-                          isOpenInProfile="true"
-                          Coverimg={artWorkWeek1}
-                          title="Memescalf#782021"
-                          heartcount="24"
-                          User1={topSellerUser1}
-                          User2={topSellerUser2}
-                          User3={topSellerUser3}
-                          WETH="1.2 WETH"
-                          bid="Highest bid 1/1"
-                        />
-                        <LiveAuctions
-                          isOpenInProfile="true"
-                          Coverimg={artWorkWeek1}
-                          title="Memescalf#782021"
-                          heartcount="24"
-                          User1={topSellerUser1}
-                          User2={topSellerUser2}
-                          User3={topSellerUser3}
-                          WETH="1.2 WETH"
-                          bid="Highest bid 1/1"
-                        />
-                        <LiveAuctions
-                          isOpenInProfile="true"
-                          Coverimg={artWorkWeek1}
-                          title="Memescalf#782021"
-                          heartcount="24"
-                          User1={topSellerUser1}
-                          User2={topSellerUser2}
-                          User3={topSellerUser3}
-                          WETH="1.2 WETH"
-                          bid="Highest bid 1/1"
-                        />
+                        { userOwnedCollectibleList.length > 0 ?
+                          <>
+                            {userOwnedCollectibleList.map((SingleCollectible, key) => (
+                              <LiveAuctions
+                                isCollection={false}
+                                id={SingleCollectible._id}
+                                Coverimg={"https://"+SingleCollectible.img_path}
+                                liked={SingleCollectible.like}
+                                title={SingleCollectible.title}
+                                heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                                User1={topSellerUser1}
+                                User3={topSellerUser3}
+                                User2={topSellerUser2}
+                                WETH={SingleCollectible.price}
+                                bid="Highest bid 1/1"
+                              />
+                            ))}
+                          </> : <>
+                            <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                              <h3>Not items found</h3>
+                              <span className="color-gray">
+                                Come back soon or browse the items on our marketplace.
+                              </span>
+                              <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
+                                Browse marketplace
+                              </button>
+                            </div>
+                          </>
+                        }
                       </div>
                     </div>
                   </TabPane>

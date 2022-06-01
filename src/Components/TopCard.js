@@ -9,6 +9,7 @@ export default function TopCard({
   follow,
   btnname,
   datetime,
+  confirmation = false,
   id,
   Price,
   topuserimg,
@@ -50,9 +51,11 @@ export default function TopCard({
       </div>
       <div className="topSellectProfilePicture">
         <img src={topuserimg} width="100%" alt="" />
-        <div className="confirmation">
-          <i className="fas fa-check" />
-        </div>
+          {confirmation === true ?
+              <div className="confirmation">
+                <i className="fas fa-check"/>
+              </div> : <></>
+          }
       </div>
       <div className="topSellerUserInfo">
         <h5>

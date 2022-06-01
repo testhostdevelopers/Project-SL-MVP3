@@ -17,7 +17,7 @@ const PlaceABidPopup = (props) => {
     visible: { opacity: 1 },
   };
 
-  let { setSingleCollectionPopup, setSinglePopup, setCheckOutPopup } = props;
+  let { setSingleCollectionPopup, setCheckOutPopup } = props;
 
   const options = [
     { value: "SOL", label: "SOL" },
