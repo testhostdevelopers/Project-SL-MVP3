@@ -21,10 +21,6 @@ import topSeller3 from "../assets/img/custom/topSeller3.png";
 import topSeller4 from "../assets/img/custom/topSeller4.png";
 import topSeller5 from "../assets/img/custom/topSeller5.png";
 import topSeller6 from "../assets/img/custom/topSeller6.png";
-import topSeller7 from "../assets/img/custom/topSeller7.png";
-import topSeller8 from "../assets/img/custom/topSeller8.png";
-import topSeller9 from "../assets/img/custom/topSeller9.png";
-import topSeller10 from "../assets/img/custom/topSeller10.png";
 import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
@@ -32,9 +28,6 @@ import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
 import topSellerUser5 from "../assets/img/custom/topSellerUser5.png";
 import topSellerUser6 from "../assets/img/custom/topSellerUser6.png";
 import topSellerUser7 from "../assets/img/custom/topSellerUser7.png";
-import topSellerUser8 from "../assets/img/custom/topSellerUser8.png";
-import topSellerUser9 from "../assets/img/custom/topSellerUser9.png";
-import topSellerUser10 from "../assets/img/custom/topSellerUser10.png";
 import FullScreenImage from "../Components/Popup/FullScreenImage";
 import TopCard from "../Components/TopCard";
 import LiveAuctions from "../Components/LiveAuctions";
@@ -52,6 +45,7 @@ const Home = () => {
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   let [openImage, setOpenImage] = useState(false);
   let [liveAuctionList, setLiveAuctionList] = useState([]);
+  let [hotCollectionsList, setHotCollectionsList] = useState([]);
   let [topSellerUser, setTopSellerUser] = useState([]);
   let [topBuyerUser, setTopBuyerUser] = useState([]);
 
@@ -175,34 +169,68 @@ const Home = () => {
 
   const top_card = [
     {
-      top_cover: topSeller6,
-      top_user: topSellerUser3,
-      top_name: "Courtney Henry",
-      top_price: "$1,403",
+      "_id": "629486dd73e6b51d73d2d3fa",
+      "title": "ACollection",
+      "likes": 1,
+      "description": "Molestiae elit porr",
+      "symbol": "Est nostrum qui in r",
+      "custom_url": "starlight.com/dicta-fugiat-verita",
+      "main_img": "Screenshot-2022-05-17-053212-75x106.jpeg",
+      "user_id": "6278df59c8a4bccf46d4a2e2",
+      "likedBy": [
+        "6278df59c8a4bccf46d4a2e2"
+      ],
+      "createdAt": "2022-05-30T08:57:01.990Z",
+      "updatedAt": "2022-06-01T06:38:03.855Z",
+      "__v": 0
     },
     {
-      top_cover: topSeller2,
-      top_user: topSellerUser4,
-      top_name: "Courtney Henry",
-      top_price: "$3,403",
+      "_id": "629486ee73e6b51d73d2d3fe",
+      "title": "BCollection",
+      "likes": 1,
+      "description": "Praesentium tempore",
+      "symbol": "Sit quo quaerat a u",
+      "custom_url": "starlight.com/nesciunt-cupiditate",
+      "main_img": "local-windows-1-4f9fcfddfa1db889796b6dec477b9d1f.webp",
+      "user_id": "6278df59c8a4bccf46d4a2e2",
+      "likedBy": [
+        "6278df59c8a4bccf46d4a2e2"
+      ],
+      "createdAt": "2022-05-30T08:57:18.457Z",
+      "updatedAt": "2022-06-01T06:38:02.790Z",
+      "__v": 0
     },
     {
-      top_cover: topSeller3,
-      top_user: topSellerUser5,
-      top_name: "Courtney Henry",
-      top_price: "$5,403",
+      "_id": "629486dd73e6b51d73d2d3fa",
+      "title": "ACollection",
+      "likes": 1,
+      "description": "Molestiae elit porr",
+      "symbol": "Est nostrum qui in r",
+      "custom_url": "starlight.com/dicta-fugiat-verita",
+      "main_img": "Screenshot-2022-05-17-053212-75x106.jpeg",
+      "user_id": "6278df59c8a4bccf46d4a2e2",
+      "likedBy": [
+        "6278df59c8a4bccf46d4a2e2"
+      ],
+      "createdAt": "2022-05-30T08:57:01.990Z",
+      "updatedAt": "2022-06-01T06:38:03.855Z",
+      "__v": 0
     },
     {
-      top_cover: topSeller4,
-      top_user: topSellerUser6,
-      top_name: "Courtney Henry",
-      top_price: "$3,403",
-    },
-    {
-      top_cover: topSeller5,
-      top_user: topSellerUser7,
-      top_name: "Courtney Henry",
-      top_price: "$4,403",
+      "_id": "629486ee73e6b51d73d2d3fe",
+      "title": "BCollection",
+      "likes": 1,
+      "description": "Praesentium tempore",
+      "symbol": "Sit quo quaerat a u",
+      "custom_url": "starlight.com/nesciunt-cupiditate",
+      "main_img": "local-windows-1-4f9fcfddfa1db889796b6dec477b9d1f.webp",
+      "user_id": "6278df59c8a4bccf46d4a2e2",
+      "likedBy": [
+        "6278df59c8a4bccf46d4a2e2"
+      ],
+      "createdAt": "2022-05-30T08:57:18.457Z",
+      "updatedAt": "2022-06-01T06:38:02.790Z",
+      "__v": 0
     },
   ];
 
@@ -317,7 +345,7 @@ const Home = () => {
     },
   ];
 
-  const getallcollectiblelist = async () => {
+  const getLiveAuctionCollectibleList = async () => {
     await axios
       .get(`${Config.baseURL}v1/collectible/getallcollectiblelist/0/8`, {})
       .then(response => {
@@ -334,9 +362,26 @@ const Home = () => {
         console.log(err);
       });
   };
+  const getHotCollectionsList = async () => {
+    await axios
+        .get(`${Config.baseURL}v1/collection/hotcollectionslist/0/10`, {
+              data: {
+                user_id: userData._id
+              },
+              headers: {
+                Authorization: `Bearer ${apiToken}`,
+              }
+            })
+        .then(response => {
+          setHotCollectionsList(response.data.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
   const getTopBuyerUser = async () => {
     await axios
-      .get('http://localhost:8000/v1/user/getTopBuyerUser/0/10', {
+      .get(`${Config.baseURL}v1/user/getTopBuyerUser/0/10`, {
         data: {
           user_id: userData._id
         },
@@ -346,7 +391,7 @@ const Home = () => {
       })
       .then(response => {
         if (response.data.data) {
-          setTopBuyerUser(response.data.data);
+          setTopBuyerUser([...response.data.data]);
         }
       })
       .catch(err => {
@@ -355,7 +400,7 @@ const Home = () => {
   };
   const getTopSellerUser = async () => {
     await axios
-      .get('http://localhost:8000/v1/user/getTopSellerUser/0/10', {
+      .get(`${Config.baseURL}v1/user/getTopSellerUser/0/10`, {
         data: {
           user_id: userData._id
         },
@@ -365,7 +410,7 @@ const Home = () => {
       })
       .then(response => {
         if (response.data.data) {
-          setTopSellerUser(response.data.data);
+          setTopSellerUser([...response.data.data]);
         }
       })
       .catch(err => {
@@ -374,7 +419,8 @@ const Home = () => {
   };
 
   useEffect(() => {
-    getallcollectiblelist().then(r => {});
+    getLiveAuctionCollectibleList().then(r => {});
+    getHotCollectionsList().then(r => {});
     getTopSellerUser().then(r => {});
     getTopBuyerUser().then(r => {});
   }, []);
@@ -869,30 +915,34 @@ const Home = () => {
       </motion.section>
 
       <motion.section
-        initial="hidden"
-        animate="visible"
-        variants={variants}
-        className="topSeller live-auction-none-mobile"
+          initial="hidden"
+          animate="visible"
+          variants={variants}
+          className="liveAuction live-auction-none-mobile proile-liked-filter"
       >
         <div className="container-fluid">
-          <div className="w-100 headerSelect">
+          <div className="w-100">
             <h3>
               <b>Hot Collections</b>
             </h3>
           </div>
 
-          <div className="topSellerContent mt-5">
-            <div className="d-flex overflow-auto justify-content-between w-100 mb-4">
-              {top_card.map((collr_, key) => (
-                  <TopCard
-                    topcoverimg={collr_.top_cover}
-                    topuserimg={collr_.top_user}
-                    title={collr_.top_name}
-                    id={collr_.top_name}
-                    Price={collr_.top_price}
-                  />
-              ))}
-            </div>
+          <div className="row mt-5">
+            {liveAuctionList.slice(0, 8).map((SingleCollectible, key) => (
+                <LiveAuctions
+                    isCollection={false}
+                    id={SingleCollectible._id}
+                    Coverimg={"https://"+SingleCollectible.img_path}
+                    liked={SingleCollectible.like}
+                    title={SingleCollectible.title}
+                    heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                    User1={topSellerUser1}
+                    User2={topSellerUser2}
+                    User3={topSellerUser3}
+                    WETH={SingleCollectible.price}
+                    bid="Highest bid 1/1"
+                />
+            ))}
           </div>
         </div>
       </motion.section>

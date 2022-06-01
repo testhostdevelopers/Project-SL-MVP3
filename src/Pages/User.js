@@ -50,45 +50,45 @@ const User = (props) => {
   let [userFollowingUsersList, setUserFollowingUsersList] = useState([]);
   const getFollowerUsers = async () => {
     await axios
-        .get('http://localhost:8000/v1/user/getFollowerUsers/' + user_id, {
-          data: {
-            user_id: userData._id
-          },
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          }
-        })
-        .then(response => {
-          setUserFollowerUsersList(response.data.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      .get(Config.baseURL + 'v1/user/getFollowerUsers/' + user_id, {
+        data: {
+          user_id: userData._id
+        },
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        }
+      })
+      .then(response => {
+        setUserFollowerUsersList(response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
   const getFollowingUsers = async () => {
     await axios
-        .get('http://localhost:8000/v1/user/getFollowingUsers/' + user_id, {
-              data: {
-                user_id: userData._id
-              },
-              headers: {
-                Authorization: `Bearer ${apiToken}`,
-              }
-            })
-        .then(response => {
-          setUserFollowingUsersList(response.data.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      .get(Config.baseURL + 'v1/user/getFollowingUsers/' + user_id, {
+        data: {
+          user_id: userData._id
+        },
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        }
+      })
+      .then(response => {
+        setUserFollowingUsersList(response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
   const userCollectibleListFunc = async () => {
     await axios
-      .get('http://localhost:8000/v1/collectible/getusercollectiblelist/' + user_id, {
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          }
-        })
+      .get(Config.baseURL + 'v1/collectible/getusercollectiblelist/' + user_id, {
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        }
+      })
       .then(response => {
         response.data.data.forEach((element) => {
           if (element.likedBy.includes(userData._id)) {
@@ -179,22 +179,22 @@ const User = (props) => {
   };
   const followButton = async () => {
     await axios
-        .put('http://localhost:8000/v1/user/' + followButtonText.toLowerCase() + '/' + user_id, {
-          user: currentUserData._id
-        }, {
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          }
-        })
-        .then(response => {
-          if (response.data.response_code === "API_SUCCESS") {
-            setFollowButtonText('Unfollow');
-          }
-          // console.log('response', response);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      .put(Config.baseURL + 'v1/user/' + followButtonText.toLowerCase() + '/' + user_id, {
+        user: currentUserData._id
+      }, {
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        }
+      })
+      .then(response => {
+        if (response.data.response_code === "API_SUCCESS") {
+          setFollowButtonText('Unfollow');
+        }
+        // console.log('response', response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
   useEffect(() => {
     if (sessionStorage.getItem("apiToken")) {
