@@ -329,7 +329,7 @@ const Collection = (props) => {
                     </div>
                   </TabPane>
                   <TabPane tab="Activity" key="2">
-                    <Activity />
+                    <Activity page={'Collection'} />
                   </TabPane>
                 </Tabs>
               </main>

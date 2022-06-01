@@ -8,7 +8,9 @@ import { Config } from '../utils/config';
 // import { Tabs } from "antd";
 // const { TabPane } = Tabs;
 
-const Activity = () => {
+const Activity = (props) => {
+  let { page = 'Activity' } = props;
+  // console.log('page', page);
   var apiToken = sessionStorage.getItem("apiToken");
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [filterValue, setFilterValue] = useState("All");
@@ -39,9 +41,17 @@ const Activity = () => {
           console.log(err);
         });
   };
-  const getusertransactions = async () => {
-    await axios
-        .get(`${Config.baseURL}v1/transaction/getusertransactions/` + offset + '/' + limit, {
+  const gettransactions = async (page) => {
+    let API_URL = '';
+    if (page === 'Activity') {
+      API_URL = `${Config.baseURL}v1/transaction/gettransactions/` + offset + '/' + limit;
+
+    } else if (page === 'Profile') {
+      API_URL = `${Config.baseURL}v1/transaction/getusertransactions/` + offset + '/' + limit;
+    }
+    if (API_URL.length) {
+      await axios
+        .get(API_URL, {
           data: {
             user_id: userData._id
           },
@@ -51,16 +61,17 @@ const Activity = () => {
         })
         .then(response => {
           setOffset(offset + parseInt(response.data.data.length))
-          if (offset === 0 ) {
+          if (offset === 0) {
             setTransactionData(response.data.data);
           } else {
             setTransactionData(transactionData => [...transactionData, ...response.data.data]);
-            console.log('transactionData', transactionData);
+            // console.log('transactionData', transactionData);
           }
         })
         .catch(err => {
           console.log(err);
         });
+    }
   };
   const findFilter = (key) => {
     setFilterValue(key);
@@ -79,7 +90,8 @@ const Activity = () => {
     }
   };
   const loadMore = async () => {
-    getusertransactions();
+    // console.log('offset', offset, 'limit', limit);
+    gettransactions();
     findFilter(filterValue);
   };
   const variants = {
@@ -90,7 +102,7 @@ const Activity = () => {
   useEffect(() => {
     if (sessionStorage.getItem("apiToken")) {
       getallactivityfilters();
-      getusertransactions();
+      gettransactions(page);
     }
   }, []);
   return (
