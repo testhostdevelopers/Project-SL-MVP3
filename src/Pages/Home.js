@@ -167,73 +167,6 @@ const Home = () => {
     },
   ];
 
-  const top_card = [
-    {
-      "_id": "629486dd73e6b51d73d2d3fa",
-      "title": "ACollection",
-      "likes": 1,
-      "description": "Molestiae elit porr",
-      "symbol": "Est nostrum qui in r",
-      "custom_url": "starlight.com/dicta-fugiat-verita",
-      "main_img": "Screenshot-2022-05-17-053212-75x106.jpeg",
-      "user_id": "6278df59c8a4bccf46d4a2e2",
-      "likedBy": [
-        "6278df59c8a4bccf46d4a2e2"
-      ],
-      "createdAt": "2022-05-30T08:57:01.990Z",
-      "updatedAt": "2022-06-01T06:38:03.855Z",
-      "__v": 0
-    },
-    {
-      "_id": "629486ee73e6b51d73d2d3fe",
-      "title": "BCollection",
-      "likes": 1,
-      "description": "Praesentium tempore",
-      "symbol": "Sit quo quaerat a u",
-      "custom_url": "starlight.com/nesciunt-cupiditate",
-      "main_img": "local-windows-1-4f9fcfddfa1db889796b6dec477b9d1f.webp",
-      "user_id": "6278df59c8a4bccf46d4a2e2",
-      "likedBy": [
-        "6278df59c8a4bccf46d4a2e2"
-      ],
-      "createdAt": "2022-05-30T08:57:18.457Z",
-      "updatedAt": "2022-06-01T06:38:02.790Z",
-      "__v": 0
-    },
-    {
-      "_id": "629486dd73e6b51d73d2d3fa",
-      "title": "ACollection",
-      "likes": 1,
-      "description": "Molestiae elit porr",
-      "symbol": "Est nostrum qui in r",
-      "custom_url": "starlight.com/dicta-fugiat-verita",
-      "main_img": "Screenshot-2022-05-17-053212-75x106.jpeg",
-      "user_id": "6278df59c8a4bccf46d4a2e2",
-      "likedBy": [
-        "6278df59c8a4bccf46d4a2e2"
-      ],
-      "createdAt": "2022-05-30T08:57:01.990Z",
-      "updatedAt": "2022-06-01T06:38:03.855Z",
-      "__v": 0
-    },
-    {
-      "_id": "629486ee73e6b51d73d2d3fe",
-      "title": "BCollection",
-      "likes": 1,
-      "description": "Praesentium tempore",
-      "symbol": "Sit quo quaerat a u",
-      "custom_url": "starlight.com/nesciunt-cupiditate",
-      "main_img": "local-windows-1-4f9fcfddfa1db889796b6dec477b9d1f.webp",
-      "user_id": "6278df59c8a4bccf46d4a2e2",
-      "likedBy": [
-        "6278df59c8a4bccf46d4a2e2"
-      ],
-      "createdAt": "2022-05-30T08:57:18.457Z",
-      "updatedAt": "2022-06-01T06:38:02.790Z",
-      "__v": 0
-    },
-  ];
-
   const slide_data = [
     {
       top_cover: topSeller6,
@@ -928,7 +861,7 @@ const Home = () => {
           </div>
 
           <div className="row mt-5">
-            {liveAuctionList.slice(0, 8).map((SingleCollectible, key) => (
+            {hotCollectionsList.slice(0, 8).map((SingleCollectible, key) => (
                 <LiveAuctions
                     isCollection={false}
                     id={SingleCollectible._id}
