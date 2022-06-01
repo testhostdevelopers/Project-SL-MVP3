@@ -2,7 +2,9 @@ import React from "react";
 import axios from "axios";
 // import { Link } from "react-router-dom";
 import { Config } from '../utils/config';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import userImg from "../assets/img/icons/custom/userProfilePictures.png";
+import userCoverImg from "../assets/img/custom/topSeller3.png";
 
 export default function TopCard({
   title,
@@ -44,13 +46,27 @@ export default function TopCard({
       <div className="w-100 topSellerCardImageover">
         <img
           className="seller-banner-image"
-          src={topcoverimg}
+          src={
+            topcoverimg === 'null' || topcoverimg === null || topcoverimg === undefined
+                ? userCoverImg
+                : `${Config.baseURL}` + topcoverimg
+        }
           width="240"
-          alt=""
+          alt={topcoverimg}
+          // alt={title + ' Cover Picture'}
         />
       </div>
       <div className="topSellectProfilePicture">
-        <img src={topuserimg} width="100%" alt="" />
+        <img
+            src={
+                topuserimg === 'null' || topuserimg === null || topuserimg === undefined
+                    ? userImg
+                    : `${Config.baseURL}` + topuserimg
+            }
+            width="100%"
+            alt={topuserimg}
+            // alt={title + ' Profile Picture'}
+        />
           {confirmation === true ?
               <div className="confirmation">
                 <i className="fas fa-check"/>

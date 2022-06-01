@@ -52,59 +52,8 @@ const Home = () => {
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   let [openImage, setOpenImage] = useState(false);
   let [liveAuctionList, setLiveAuctionList] = useState([]);
-  let [topSellerUser, setTopSellerUser] = useState([
-    {
-      cover_img_url: topSeller2,
-      profile_img_url: topSellerUser1,
-      display_name: "Courtney Henry",
-    },
-    {
-      cover_img_url: topSeller3,
-      profile_img_url: topSellerUser2,
-      display_name: "Darlene Robertson",
-    },
-    {
-      cover_img_url: topSeller4,
-      profile_img_url: topSellerUser3,
-      display_name: "Robert Fox",
-    },
-    {
-      cover_img_url: topSeller5,
-      profile_img_url: topSellerUser4,
-      display_name: "Savannah Nguyen",
-    },
-    {
-      cover_img_url: topSeller6,
-      profile_img_url: topSellerUser5,
-      display_name: "Devon Lane",
-    },
-    {
-      cover_img_url: topSeller7,
-      profile_img_url: topSellerUser6,
-      display_name: "Arlene McCoy",
-    },
-    {
-      cover_img_url: topSeller8,
-      profile_img_url: topSellerUser7,
-      display_name: "Albert Flores",
-    },
-    {
-      cover_img_url: topSeller9,
-      profile_img_url: topSellerUser8,
-      display_name: "Kristin Watson",
-    },
-    {
-      cover_img_url: topSeller10,
-      profile_img_url: topSellerUser9,
-      display_name: "Cody Fisher",
-    },
-    {
-      cover_img_url: topSeller2,
-      profile_img_url: topSellerUser10,
-      display_name: "Courtney Henry",
-    },
-  ]);
-  let [topBuyerUser, setTopBuyerUser] = useState(topSellerUser);
+  let [topSellerUser, setTopSellerUser] = useState([]);
+  let [topBuyerUser, setTopBuyerUser] = useState([]);
 
   const variants = {
     hidden: { opacity: 0 },
@@ -397,7 +346,7 @@ const Home = () => {
       })
       .then(response => {
         if (response.data.data) {
-          // setTopBuyerUser(response.data.data);
+          setTopBuyerUser(response.data.data);
         }
       })
       .catch(err => {
@@ -416,7 +365,7 @@ const Home = () => {
       })
       .then(response => {
         if (response.data.data) {
-          // setTopSellerUser(response.data.data);
+          setTopSellerUser(response.data.data);
         }
       })
       .catch(err => {
