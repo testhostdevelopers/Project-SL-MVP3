@@ -100,6 +100,7 @@ const CreateCollectibleMulti = () => {
         is_single: false,
         title: udata.title,
         user_id: user_id._id,
+        owner_id: user_id._id,
         description: udata.description,
         royalties: 11,
         img_path: udata.img_path,
@@ -399,7 +400,7 @@ const CreateCollectibleMulti = () => {
               <div className="mt-3">
                 <div className="d-flex">
                   <h5>
-                    <b>Description 55555</b>{" "}
+                    <b>Description</b>{" "}
                   </h5>
                   <span>
               <small className="color-gray ml-2">(Optional)</small>

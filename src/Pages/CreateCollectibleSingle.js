@@ -232,6 +232,7 @@ const CreateCollectibleSingle = () => {
         img_path: udata.img_path,
         digital_key: "11",
         user_id: user_id._id,
+        owner_id: user_id._id,
         properties: udata.properties,
         alt_text_nft: udata.alterText,
         category: udata.category

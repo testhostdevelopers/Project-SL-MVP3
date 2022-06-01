@@ -42,31 +42,16 @@ const Activity = (props) => {
         });
   };
   const gettransactions = async (page) => {
+    let API_URL = '';
     if (page === 'Activity') {
-      await axios
-        .get(`${Config.baseURL}v1/transaction/gettransactions/` + offset + '/' + limit, {
-          data: {
-            user_id: userData._id
-          },
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          }
-        })
-        .then(response => {
-          setOffset(offset + parseInt(response.data.data.length))
-          if (offset === 0 ) {
-            setTransactionData(response.data.data);
-          } else {
-            setTransactionData(transactionData => [...transactionData, ...response.data.data]);
-            // console.log('transactionData', transactionData);
-          }
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      API_URL = `${Config.baseURL}v1/transaction/gettransactions/` + offset + '/' + limit;
+
     } else if (page === 'Profile') {
+      API_URL = `${Config.baseURL}v1/transaction/getusertransactions/` + offset + '/' + limit;
+    }
+    if (API_URL.length) {
       await axios
-        .get(`${Config.baseURL}v1/transaction/getusertransactions/` + offset + '/' + limit, {
+        .get(API_URL, {
           data: {
             user_id: userData._id
           },
@@ -76,7 +61,7 @@ const Activity = (props) => {
         })
         .then(response => {
           setOffset(offset + parseInt(response.data.data.length))
-          if (offset === 0 ) {
+          if (offset === 0) {
             setTransactionData(response.data.data);
           } else {
             setTransactionData(transactionData => [...transactionData, ...response.data.data]);
