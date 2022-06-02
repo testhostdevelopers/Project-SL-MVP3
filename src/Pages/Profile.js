@@ -40,6 +40,7 @@ const Profile = (props) => {
   let [userLikedCollectionsList, setUserLikedCollectionsList] = useState([]);
   let [userOwnedCollectibleList, setUserOwnedCollectibleList] = useState([]);
   let [userLikedCollectibleList, setUserLikedCollectibleList] = useState([]);
+  let [userHiddenCollectibleList, setUserHiddenCollectibleList] = useState([]);
   let [userFollowerUsersList, setUserFollowerUsersList] = useState([]);
   let [userFollowingUsersList, setUserFollowingUsersList] = useState([]);
   const getFollowerUsers = async () => {
@@ -790,17 +791,37 @@ const Profile = (props) => {
                       </div>
                     </div>
                   </TabPane>
-                  <TabPane tab="Hidden" key="10">
-                    <div className="row mt-5 mb-5">
-                      <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
-                        <h3>Not items found</h3>
-                        <span className="color-gray">
+                  <TabPane tab={'Hidden (' + userHiddenCollectibleList.length + ')'} key="10">
+                    <div className="liveAuction proile-liked-filter">
+                      {userHiddenCollectibleList.length > 0 ?
+                          <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                            <div className="row ">
+                              {userLikedCollectibleList.map((SingleCollectible, key) => (
+                                  <LiveAuctions
+                                      isCollection={false}
+                                      id={SingleCollectible._id}
+                                      Coverimg={"https://"+SingleCollectible.img_path}
+                                      liked={SingleCollectible.like}
+                                      title={SingleCollectible.title}
+                                      heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                                      User1={topSellerUser1}
+                                      User2={topSellerUser2}
+                                      User3={topSellerUser3}
+                                      WETH="1.2 WETH"
+                                      bid="Highest bid 1/1"
+                                  />
+                              ))}
+                            </div>
+                          </div>: <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                            <h3>Not items found</h3>
+                            <span className="color-gray">
                           Come back soon or browse the items on our marketplace.
                         </span>
-                        <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
-                          Browse marketplace
-                        </button>
-                      </div>
+                            <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
+                              Browse marketplace
+                            </button>
+                          </div>
+                      }
                     </div>
                   </TabPane>
                 </Tabs>
