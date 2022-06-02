@@ -18,14 +18,14 @@ import EarthIcon from "../assets/img/icons/custom/earth.svg";
 // import Activitytab from "../Components/Tabs/Activitytab";
 // import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
 
-var UPubKey = null,
+/*var UPubKey = null,
   cutPkey;
 
 if (localStorage.getItem("PublicKey")) {
   UPubKey = localStorage.getItem("PublicKey");
   cutPkey =
     UPubKey.substring(0, 4) + "...." + UPubKey.substring(UPubKey.length - 4);
-}
+}*/
 
 const { TabPane } = Tabs;
 
@@ -36,7 +36,7 @@ const User = (props) => {
   const currentUserData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [reportPopup, setReportPopup] = useState(false);
   const [followButtonText, setFollowButtonText] = useState('Follow');
-  // console.log('currentUserData.following.indexOf(user_id)', currentUserData.following.indexOf(user_id));
+  // console.log('currentUserData.following.indexOf(user_id)',currentUserData.following.indexOf(user_id));
   if (currentUserData.following.indexOf(user_id) >= 0) {
     // setFollowButtonText("Unfollow");
   }
@@ -50,45 +50,45 @@ const User = (props) => {
   let [userFollowingUsersList, setUserFollowingUsersList] = useState([]);
   const getFollowerUsers = async () => {
     await axios
-        .get('http://localhost:8000/v1/user/getFollowerUsers/' + user_id, {
-          data: {
-            user_id: userData._id
-          },
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          }
-        })
-        .then(response => {
-          setUserFollowerUsersList(response.data.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      .get(Config.baseURL + 'v1/user/getFollowerUsers/' + user_id, {
+        data: {
+          user_id: userData._id
+        },
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        }
+      })
+      .then(response => {
+        setUserFollowerUsersList(response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
   const getFollowingUsers = async () => {
     await axios
-        .get('http://localhost:8000/v1/user/getFollowingUsers/' + user_id, {
-              data: {
-                user_id: userData._id
-              },
-              headers: {
-                Authorization: `Bearer ${apiToken}`,
-              }
-            })
-        .then(response => {
-          setUserFollowingUsersList(response.data.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      .get(Config.baseURL + 'v1/user/getFollowingUsers/' + user_id, {
+        data: {
+          user_id: userData._id
+        },
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        }
+      })
+      .then(response => {
+        setUserFollowingUsersList(response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
   const userCollectibleListFunc = async () => {
     await axios
-      .get('http://localhost:8000/v1/collectible/getusercollectiblelist/' + user_id, {
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          }
-        })
+      .get(Config.baseURL + 'v1/collectible/getusercollectiblelist/' + user_id, {
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        }
+      })
       .then(response => {
         response.data.data.forEach((element) => {
           if (element.likedBy.includes(userData._id)) {
@@ -179,22 +179,22 @@ const User = (props) => {
   };
   const followButton = async () => {
     await axios
-        .put('http://localhost:8000/v1/user/' + followButtonText.toLowerCase() + '/' + user_id, {
-          user: currentUserData._id
-        }, {
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          }
-        })
-        .then(response => {
-          if (response.data.response_code === "API_SUCCESS") {
-            // setFollowButtonText('Unfollow');
-          }
-          // console.log('response', response);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      .put(Config.baseURL + 'v1/user/' + followButtonText.toLowerCase() + '/' + user_id, {
+        user: currentUserData._id
+      }, {
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        }
+      })
+      .then(response => {
+        if (response.data.response_code === "API_SUCCESS") {
+          setFollowButtonText('Unfollow');
+        }
+        // console.log('response', response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
   useEffect(() => {
     if (sessionStorage.getItem("apiToken")) {
@@ -527,7 +527,7 @@ const User = (props) => {
                       </div>
                     </div>
                   </TabPane>
-                  <TabPane tab={'Collectible' + ' (' + userCollectibleList.length + ')'} key="3">
+                  <TabPane tab={'Collectible (' + userCollectibleList.length + ')'} key="3">
                     <div className="liveAuction proile-liked-filter">
                       {userCollectibleList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
@@ -559,7 +559,7 @@ const User = (props) => {
                         </div>}
                     </div>
                   </TabPane>
-                  <TabPane tab={'Collection' + ' (' + userCollectionList.length + ')'} key="4">
+                  <TabPane tab={'Collection (' + userCollectionList.length + ')'} key="4">
                     <div className="liveAuction proile-liked-filter">
                       {userCollectionList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">

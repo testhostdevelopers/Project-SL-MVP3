@@ -15,7 +15,7 @@ const { TabPane } = Tabs;
 const Search = () => {
   const { keyword } = useParams();
   var apiToken = sessionStorage.getItem("apiToken");
-  let [udata, setUdata] = useState(JSON.parse(sessionStorage.getItem("userdata")) || {});
+  let udata = JSON.parse(sessionStorage.getItem("userdata")) || {};
   let [searchUsersList, setSearchUsersList] = useState([]);
   let [searchCollectibleList, setSearchCollectibleList] = useState({});
   let [searchCollectionList, setSearchCollectionList] = useState({});

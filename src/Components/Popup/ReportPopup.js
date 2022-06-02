@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
-// import {useParams} from "react-router-dom";
+import { Config } from '../../utils/config';
 import {toast, ToastContainer} from "react-toastify";
 
 const ReportPopup = (props) => {
@@ -21,11 +21,11 @@ const ReportPopup = (props) => {
     }
     let API_URL = '';
     if (type === 'User') {
-      API_URL = 'http://localhost:8000/v1/user/reportuser/' + id;
+      API_URL = `${Config.baseURL}v1/user/reportuser/` + id;
     } else if (type === 'Collectible') {
-      API_URL = 'http://localhost:8000/v1/collectible/reportcollectible/' + id;
+      API_URL = `${Config.baseURL}v1/collectible/reportcollectible/` + id;
     } else if (type === 'Collection') {
-      API_URL = 'http://localhost:8000/v1/collection/reportcollection/' + id;
+      API_URL = `${Config.baseURL}v1/collection/reportcollection/` + id;
     }
     if (API_URL.length) {
       await axios

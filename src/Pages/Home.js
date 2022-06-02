@@ -21,10 +21,6 @@ import topSeller3 from "../assets/img/custom/topSeller3.png";
 import topSeller4 from "../assets/img/custom/topSeller4.png";
 import topSeller5 from "../assets/img/custom/topSeller5.png";
 import topSeller6 from "../assets/img/custom/topSeller6.png";
-import topSeller7 from "../assets/img/custom/topSeller7.png";
-import topSeller8 from "../assets/img/custom/topSeller8.png";
-import topSeller9 from "../assets/img/custom/topSeller9.png";
-import topSeller10 from "../assets/img/custom/topSeller10.png";
 import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
@@ -32,9 +28,6 @@ import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
 import topSellerUser5 from "../assets/img/custom/topSellerUser5.png";
 import topSellerUser6 from "../assets/img/custom/topSellerUser6.png";
 import topSellerUser7 from "../assets/img/custom/topSellerUser7.png";
-import topSellerUser8 from "../assets/img/custom/topSellerUser8.png";
-import topSellerUser9 from "../assets/img/custom/topSellerUser9.png";
-import topSellerUser10 from "../assets/img/custom/topSellerUser10.png";
 import FullScreenImage from "../Components/Popup/FullScreenImage";
 import TopCard from "../Components/TopCard";
 import LiveAuctions from "../Components/LiveAuctions";
@@ -52,8 +45,9 @@ const Home = () => {
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   let [openImage, setOpenImage] = useState(false);
   let [liveAuctionList, setLiveAuctionList] = useState([]);
+  let [hotCollectionsList, setHotCollectionsList] = useState([]);
   let [topSellerUser, setTopSellerUser] = useState([]);
-  let [topBuyerUser, setTopBuyerUser] = useState({});
+  let [topBuyerUser, setTopBuyerUser] = useState([]);
 
   const variants = {
     hidden: { opacity: 0 },
@@ -93,140 +87,6 @@ const Home = () => {
     "This month",
     "Last 6 months",
     "Last 1 year",
-  ];
-
-  const top_seller_profile = [
-    {
-      topcover_img: topSeller2,
-      topuser_img: topSellerUser1,
-      topuser_name: "Courtney Henry",
-      topuser_price: "$1,403",
-    },
-    {
-      topcover_img: topSeller3,
-      topuser_img: topSellerUser2,
-      topuser_name: "Darlene Robertson",
-      topuser_price: "$1,403",
-    },
-    {
-      topcover_img: topSeller4,
-      topuser_img: topSellerUser3,
-      topuser_name: "Robert Fox",
-      topuser_price: "$1,403",
-    },
-    {
-      topcover_img: topSeller5,
-      topuser_img: topSellerUser4,
-      topuser_name: "Savannah Nguyen",
-      topuser_price: "$1,403",
-    },
-    {
-      topcover_img: topSeller6,
-      topuser_img: topSellerUser5,
-      topuser_name: "Devon Lane",
-      topuser_price: "$1,403",
-    },
-    {
-      topcover_img: topSeller7,
-      topuser_img: topSellerUser6,
-      topuser_name: "Arlene McCoy",
-      topuser_price: "$1,403",
-    },
-    {
-      topcover_img: topSeller8,
-      topuser_img: topSellerUser7,
-      topuser_name: "Albert Flores",
-      topuser_price: "$1,403",
-    },
-    {
-      topcover_img: topSeller9,
-      topuser_img: topSellerUser8,
-      topuser_name: "Kristin Watson",
-      topuser_price: "$1,403",
-    },
-    {
-      topcover_img: topSeller10,
-      topuser_img: topSellerUser9,
-      topuser_name: "Cody Fisher",
-      topuser_price: "$1,403",
-    },
-    {
-      topcover_img: topSeller2,
-      topuser_img: topSellerUser10,
-      topuser_name: "Courtney Henry",
-      topuser_price: "$1,403",
-    },
-  ];
-
-  const top_buyer = [
-    "Today",
-    "This week",
-    "This month",
-    "Last 6 months",
-    "Last 1 year",
-  ];
-
-  const top_buyers_profile = [
-    {
-      topcover_img: topSeller2,
-      topuser_img: topSellerUser1,
-      topuser_name: "Courtney Henry",
-      topuser_price: "$1,403",
-    },
-    {
-      topcover_img: topSeller3,
-      topuser_img: topSellerUser2,
-      topuser_name: "Darlene Robertson",
-      topuser_price: "$1,403",
-    },
-    {
-      topcover_img: topSeller4,
-      topuser_img: topSellerUser3,
-      topuser_name: "Robert Fox",
-      topuser_price: "$1,403",
-    },
-    {
-      topcover_img: topSeller5,
-      topuser_img: topSellerUser4,
-      topuser_name: "Savannah Nguyen",
-      topuser_price: "$1,403",
-    },
-    {
-      topcover_img: topSeller6,
-      topuser_img: topSellerUser5,
-      topuser_name: "Devon Lane",
-      topuser_price: "$1,403",
-    },
-    {
-      topcover_img: topSeller7,
-      topuser_img: topSellerUser6,
-      topuser_name: "Arlene McCoy",
-      topuser_price: "$1,403",
-    },
-    {
-      topcover_img: topSeller8,
-      topuser_img: topSellerUser7,
-      topuser_name: "Albert Flores",
-      topuser_price: "$1,403",
-    },
-    {
-      topcover_img: topSeller9,
-      topuser_img: topSellerUser8,
-      topuser_name: "Kristin Watson",
-      topuser_price: "$1,403",
-    },
-    {
-      topcover_img: topSeller10,
-      topuser_img: topSellerUser9,
-      topuser_name: "Cody Fisher",
-      topuser_price: "$1,403",
-    },
-    {
-      topcover_img: topSeller2,
-      topuser_img: topSellerUser10,
-      topuser_name: "Courtney Henry",
-      topuser_price: "$1,403",
-    },
   ];
 
   const live_auction = [
@@ -307,39 +167,6 @@ const Home = () => {
     },
   ];
 
-  const top_card = [
-    {
-      top_cover: topSeller6,
-      top_user: topSellerUser3,
-      top_name: "Courtney Henry",
-      top_price: "$1,403",
-    },
-    {
-      top_cover: topSeller2,
-      top_user: topSellerUser4,
-      top_name: "Courtney Henry",
-      top_price: "$3,403",
-    },
-    {
-      top_cover: topSeller3,
-      top_user: topSellerUser5,
-      top_name: "Courtney Henry",
-      top_price: "$5,403",
-    },
-    {
-      top_cover: topSeller4,
-      top_user: topSellerUser6,
-      top_name: "Courtney Henry",
-      top_price: "$3,403",
-    },
-    {
-      top_cover: topSeller5,
-      top_user: topSellerUser7,
-      top_name: "Courtney Henry",
-      top_price: "$4,403",
-    },
-  ];
-
   const slide_data = [
     {
       top_cover: topSeller6,
@@ -407,6 +234,7 @@ const Home = () => {
       bide_bid: "Highest bid 6/5",
     },
   ];
+
   const slide_live_auction = [
     {
       cover_img: artWorkWeek1,
@@ -450,66 +278,84 @@ const Home = () => {
     },
   ];
 
-  const getallcollectiblelist = async () => {
+  const getLiveAuctionCollectibleList = async () => {
     await axios
-        .get(`${Config.baseURL}v1/collectible/getallcollectiblelist`, {})
+      .get(`${Config.baseURL}v1/collectible/getallcollectiblelist/0/8`, {})
+      .then(response => {
+        response.data.data.forEach((element) => {
+          if (element.likedBy.includes(userData._id)) {
+            element.like = true;
+          } else {
+            element.like = false;
+          }
+        });
+        setLiveAuctionList(response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  const getHotCollectionsList = async () => {
+    await axios
+        .get(`${Config.baseURL}v1/collection/hotcollectionslist/0/10`, {
+              data: {
+                user_id: userData._id
+              },
+              headers: {
+                Authorization: `Bearer ${apiToken}`,
+              }
+            })
         .then(response => {
-          response.data.data.forEach((element) => {
-            if (element.likedBy.includes(userData._id)) {
-              element.like = true;
-            } else {
-              element.like = false;
-            }
-          });
-          setLiveAuctionList(response.data.data);
+          setHotCollectionsList(response.data.data);
         })
         .catch(err => {
           console.log(err);
         });
   };
-
   const getTopBuyerUser = async () => {
     await axios
-        .get('http://localhost:8000/v1/user/getTopBuyerUser', {
-          data: {
-            user_id: userData._id
-          },
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          }
-        })
-        .then(response => {
-          if (response.data.data) {
-            setTopBuyerUser(response.data.data);
-          }
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      .get(`${Config.baseURL}v1/user/getTopBuyerUser/0/10`, {
+        data: {
+          user_id: userData._id
+        },
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        }
+      })
+      .then(response => {
+        if (response.data.data) {
+          setTopBuyerUser([...response.data.data]);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
   const getTopSellerUser = async () => {
     await axios
-        .get('http://localhost:8000/v1/user/getTopSellerUser', {
-          data: {
-            user_id: userData._id
-          },
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          }
-        })
-        .then(response => {
-          if (response.data.data) {
-            setTopSellerUser(response.data.data);
-          }
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      .get(`${Config.baseURL}v1/user/getTopSellerUser/0/10`, {
+        data: {
+          user_id: userData._id
+        },
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        }
+      })
+      .then(response => {
+        if (response.data.data) {
+          setTopSellerUser([...response.data.data]);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
+
   useEffect(() => {
-    getallcollectiblelist();
-    getTopSellerUser();
-    getTopBuyerUser();
+    getLiveAuctionCollectibleList().then(r => {});
+    getHotCollectionsList().then(r => {});
+    getTopSellerUser().then(r => {});
+    getTopBuyerUser().then(r => {});
   }, []);
 
   return (
@@ -815,14 +661,14 @@ const Home = () => {
 
           <div className="topSellerContent mt-5">
             <div className="d-flex">
-              {top_seller_profile.map((top_seller_profile, key) => (
-                  <TopCard
-                    topcoverimg={top_seller_profile.topcover_img}
-                    topuserimg={top_seller_profile.topuser_img}
-                    title={top_seller_profile.topuser_name}
-                    Price={top_seller_profile.topuser_price}
-                    id={top_seller_profile.topuser_price}
-                  />
+              {topSellerUser.map((top_seller_profile, key) => (
+                <TopCard
+                  topcoverimg={top_seller_profile.cover_img_url}
+                  topuserimg={top_seller_profile.profile_img_url}
+                  title={top_seller_profile.display_name}
+                  confirmation={top_seller_profile.verified}
+                  id={top_seller_profile._id}
+                />
               ))}
             </div>
           </div>
@@ -841,7 +687,7 @@ const Home = () => {
               <b>Top Buyers</b>
             </h3>
             <Select className="section-select-filter" defaultValue="day">
-              {top_buyer.map((x, y) => (
+              {top_seller.map((x, y) => (
                 <Select.Option key={y}>{x}</Select.Option>
               ))}
             </Select>
@@ -849,14 +695,14 @@ const Home = () => {
 
           <div className="topSellerContent mt-5">
             <div className="d-flex">
-              {top_buyers_profile.map((top_seller_profile, key) => (
-                  <TopCard
-                    topcoverimg={top_seller_profile.topcover_img}
-                    topuserimg={top_seller_profile.topuser_img}
-                    title={top_seller_profile.topuser_name}
-                    id={top_seller_profile.topuser_name}
-                    Price={top_seller_profile.topuser_price}
-                  />
+              {topBuyerUser.map((top_seller_profile, key) => (
+                <TopCard
+                  topcoverimg={top_seller_profile.cover_img_url}
+                  topuserimg={top_seller_profile.profile_img_url}
+                  title={top_seller_profile.display_name}
+                  confirmation={top_seller_profile.verified}
+                  id={top_seller_profile._id}
+                />
               ))}
             </div>
           </div>
@@ -1002,30 +848,34 @@ const Home = () => {
       </motion.section>
 
       <motion.section
-        initial="hidden"
-        animate="visible"
-        variants={variants}
-        className="topSeller live-auction-none-mobile"
+          initial="hidden"
+          animate="visible"
+          variants={variants}
+          className="liveAuction live-auction-none-mobile proile-liked-filter"
       >
         <div className="container-fluid">
-          <div className="w-100 headerSelect">
+          <div className="w-100">
             <h3>
               <b>Hot Collections</b>
             </h3>
           </div>
 
-          <div className="topSellerContent mt-5">
-            <div className="d-flex overflow-auto justify-content-between w-100 mb-4">
-              {top_card.map((collr_, key) => (
-                  <TopCard
-                    topcoverimg={collr_.top_cover}
-                    topuserimg={collr_.top_user}
-                    title={collr_.top_name}
-                    id={collr_.top_name}
-                    Price={collr_.top_price}
-                  />
-              ))}
-            </div>
+          <div className="row mt-5">
+            {hotCollectionsList.slice(0, 8).map((SingleCollectible, key) => (
+                <LiveAuctions
+                    isCollection={false}
+                    id={SingleCollectible._id}
+                    Coverimg={"https://"+SingleCollectible.img_path}
+                    liked={SingleCollectible.like}
+                    title={SingleCollectible.title}
+                    heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                    User1={topSellerUser1}
+                    User2={topSellerUser2}
+                    User3={topSellerUser3}
+                    WETH={SingleCollectible.price}
+                    bid="Highest bid 1/1"
+                />
+            ))}
           </div>
         </div>
       </motion.section>
@@ -1270,6 +1120,7 @@ const Home = () => {
         {/*<div className="w-100 mt-5 pl-3 pr-3">
           <div className="view-all-items">
             <button className="btn-primary-outline w-100"><b>View all</b></button>
+
           </div>
         </div>*/}
       </motion.section>

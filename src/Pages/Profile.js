@@ -38,7 +38,10 @@ const Profile = (props) => {
   let [userCollectibleList, setUserCollectibleList] = useState([]);
   let [userCollectionList, setUserCollectionList] = useState([]);
   let [userLikedCollectionsList, setUserLikedCollectionsList] = useState([]);
+  let [userOwnedCollectibleList, setUserOwnedCollectibleList] = useState([]);
   let [userLikedCollectibleList, setUserLikedCollectibleList] = useState([]);
+  let [userHiddenCollectibleList, setUserHiddenCollectibleList] = useState([]);
+  let [userOnSaleCollectibleList, setUserOnSaleCollectibleList] = useState([]);
   let [userFollowerUsersList, setUserFollowerUsersList] = useState([]);
   let [userFollowingUsersList, setUserFollowingUsersList] = useState([]);
   const getFollowerUsers = async () => {
@@ -128,6 +131,32 @@ const Profile = (props) => {
         console.log(err);
       });
   };
+  const userOwnedCollectible = async () => {
+    await axios
+      .get(`${Config.baseURL}v1/collectible/getuserownedcollectiblelist/` + udata._id, {
+          data: {
+            user_id: udata._id
+          },
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        }
+      )
+      .then(response => {
+        response.data.data.forEach((element) => {
+          if (element.likedBy.includes(udata._id)) {
+            element.like = true;
+          } else {
+            element.like = false;
+          }
+        });
+        setUserOwnedCollectibleList(response.data.data);
+        console.log('setUserOwnedCollectibleList', response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   const userLikedCollectible = async () => {
     await axios
       .get(`${Config.baseURL}v1/collectible/getuserlikedcollectiblelist`, {
@@ -191,12 +220,13 @@ const Profile = (props) => {
         .then((res) => {
           setUdata(res.data.data);
         });
-      userCollectibleListFunc();
-      userCollectionListFunc();
-      userLikedCollections();
-      userLikedCollectible();
-      getFollowerUsers();
-      getFollowingUsers();
+      userCollectibleListFunc().then(r => {});
+      userCollectionListFunc().then(r => {});
+      userLikedCollections().then(r => {});
+      userLikedCollectible().then(r => {});
+      userOwnedCollectible().then(r => {});
+      getFollowerUsers().then(r => {});
+      getFollowingUsers().then(r => {});
     }
   }, []);
 
@@ -451,70 +481,75 @@ const Profile = (props) => {
 
               <main className="profile-tab-menu">
                 <Tabs defaultActiveKey="3" centered>
-                  <TabPane tab="On sale" key="1">
-                    <div className="row mt-5 mb-5">
-                      <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
-                        <h3>Not items found</h3>
-                        <span className="color-gray">
-                          Come back soon or browse the items on our marketplace.
-                        </span>
-                        <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
-                          Browse marketplace
-                        </button>
-                      </div>
+                  <TabPane tab={'On Sale (' + userOnSaleCollectibleList.length + ')'} key="1">
+                    <div className="liveAuction proile-liked-filter">
+                      {userOnSaleCollectibleList.length > 0 ?
+                        <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                          <div className="row ">
+                            {userLikedCollectibleList.map((SingleCollectible, key) => (
+                              <LiveAuctions
+                                isCollection={false}
+                                id={SingleCollectible._id}
+                                Coverimg={"https://"+SingleCollectible.img_path}
+                                liked={SingleCollectible.like}
+                                title={SingleCollectible.title}
+                                heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                                User1={topSellerUser1}
+                                User2={topSellerUser2}
+                                User3={topSellerUser3}
+                                WETH={SingleCollectible.price + ' WETH'}
+                                bid="Highest bid 1/1"
+                              />
+                            ))}
+                          </div>
+                        </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                          <h3>Not items found</h3>
+                          <span className="color-gray">
+                            Come back soon or browse the items on our marketplace.
+                          </span>
+                          <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
+                            Browse marketplace
+                          </button>
+                        </div>
+                      }
                     </div>
                   </TabPane>
-                  <TabPane tab="Owned" key="2">
+                  <TabPane tab={'Owned (' + userOwnedCollectibleList.length + ')'} key="2">
                     <div className="liveAuction proile-liked-filter">
                       <div className="row ">
-                        <LiveAuctions
-                          isOpenInProfile="true"
-                          Coverimg={artWorkWeek1}
-                          title="Memescalf#782021"
-                          heartcount="24"
-                          User1={topSellerUser1}
-                          User2={topSellerUser2}
-                          User3={topSellerUser3}
-                          WETH="1.2 WETH"
-                          bid="Highest bid 1/1"
-                        />
-                        <LiveAuctions
-                          isOpenInProfile="true"
-                          Coverimg={artWorkWeek1}
-                          title="Memescalf#782021"
-                          heartcount="24"
-                          User1={topSellerUser1}
-                          User2={topSellerUser2}
-                          User3={topSellerUser3}
-                          WETH="1.2 WETH"
-                          bid="Highest bid 1/1"
-                        />
-                        <LiveAuctions
-                          isOpenInProfile="true"
-                          Coverimg={artWorkWeek1}
-                          title="Memescalf#782021"
-                          heartcount="24"
-                          User1={topSellerUser1}
-                          User2={topSellerUser2}
-                          User3={topSellerUser3}
-                          WETH="1.2 WETH"
-                          bid="Highest bid 1/1"
-                        />
-                        <LiveAuctions
-                          isOpenInProfile="true"
-                          Coverimg={artWorkWeek1}
-                          title="Memescalf#782021"
-                          heartcount="24"
-                          User1={topSellerUser1}
-                          User2={topSellerUser2}
-                          User3={topSellerUser3}
-                          WETH="1.2 WETH"
-                          bid="Highest bid 1/1"
-                        />
+                        { userOwnedCollectibleList.length > 0 ?
+                          <>
+                            {userOwnedCollectibleList.map((SingleCollectible, key) => (
+                              <LiveAuctions
+                                isCollection={false}
+                                id={SingleCollectible._id}
+                                Coverimg={"https://"+SingleCollectible.img_path}
+                                liked={SingleCollectible.like}
+                                title={SingleCollectible.title}
+                                heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                                User1={topSellerUser1}
+                                User3={topSellerUser3}
+                                User2={topSellerUser2}
+                                WETH={SingleCollectible.price + ' WETH'}
+                                bid="Highest bid 1/1"
+                              />
+                            ))}
+                          </> : <>
+                            <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                              <h3>Not items found</h3>
+                              <span className="color-gray">
+                                Come back soon or browse the items on our marketplace.
+                              </span>
+                              <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
+                                Browse marketplace
+                              </button>
+                            </div>
+                          </>
+                        }
                       </div>
                     </div>
                   </TabPane>
-                  <TabPane tab={'My Collectible' + ' (' + userCollectibleList.length + ')'} key="3">
+                  <TabPane tab={'My Collectible (' + userCollectibleList.length + ')'} key="3">
                     <div className="liveAuction proile-liked-filter">
                       {userCollectibleList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
@@ -530,7 +565,7 @@ const Profile = (props) => {
                                 User1={topSellerUser1}
                                 User3={topSellerUser3}
                                 User2={topSellerUser2}
-                                WETH={SingleCollectible.price}
+                                WETH={SingleCollectible.price + ' WETH'}
                                 bid="Highest bid 1/1"
                               />
                             ))}
@@ -538,8 +573,8 @@ const Profile = (props) => {
                         </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                           <h3>Not items found</h3>
                           <span className="color-gray">
-                          Come back soon or browse the items on our marketplace.
-                        </span>
+                            Come back soon or browse the items on our marketplace.
+                          </span>
                           <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
                             Browse marketplace
                           </button>
@@ -547,7 +582,7 @@ const Profile = (props) => {
                       }
                     </div>
                   </TabPane>
-                  <TabPane tab={'My Collection' + ' (' + userCollectionList.length + ')'} key="4">
+                  <TabPane tab={'My Collection (' + userCollectionList.length + ')'} key="4">
                     <div className="liveAuction proile-liked-filter">
                       {userCollectionList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
@@ -571,8 +606,8 @@ const Profile = (props) => {
                         </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                           <h3>Not items found</h3>
                           <span className="color-gray">
-                          Come back soon or browse the items on our marketplace.
-                        </span>
+                            Come back soon or browse the items on our marketplace.
+                          </span>
                           <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
                             Browse marketplace
                           </button>
@@ -585,23 +620,23 @@ const Profile = (props) => {
                       {userLikedCollectibleList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                           <div className="row ">
-                        {userLikedCollectibleList.map((SingleCollectible, key) => (
-                          <LiveAuctions
-                            isCollection={false}
-                            id={SingleCollectible._id}
-                            Coverimg={"https://"+SingleCollectible.img_path}
-                            liked={SingleCollectible.like}
-                            title={SingleCollectible.title}
-                            heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                            User1={topSellerUser1}
-                            User2={topSellerUser2}
-                            User3={topSellerUser3}
-                            WETH="1.2 WETH"
-                            bid="Highest bid 1/1"
-                          />
-                        ))}
-                      </div>
-                        </div>: <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                            {userLikedCollectibleList.map((SingleCollectible, key) => (
+                              <LiveAuctions
+                                isCollection={false}
+                                id={SingleCollectible._id}
+                                Coverimg={"https://"+SingleCollectible.img_path}
+                                liked={SingleCollectible.like}
+                                title={SingleCollectible.title}
+                                heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                                User1={topSellerUser1}
+                                User2={topSellerUser2}
+                                User3={topSellerUser3}
+                                WETH={SingleCollectible.price + ' WETH'}
+                                bid="Highest bid 1/1"
+                              />
+                            ))}
+                          </div>
+                        </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                           <h3>Not items found</h3>
                           <span className="color-gray">
                           Come back soon or browse the items on our marketplace.
@@ -777,17 +812,37 @@ const Profile = (props) => {
                       </div>
                     </div>
                   </TabPane>
-                  <TabPane tab="Hidden" key="10">
-                    <div className="row mt-5 mb-5">
-                      <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
-                        <h3>Not items found</h3>
-                        <span className="color-gray">
-                          Come back soon or browse the items on our marketplace.
-                        </span>
-                        <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
-                          Browse marketplace
-                        </button>
-                      </div>
+                  <TabPane tab={'Hidden (' + userHiddenCollectibleList.length + ')'} key="10">
+                    <div className="liveAuction proile-liked-filter">
+                      {userHiddenCollectibleList.length > 0 ?
+                        <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                          <div className="row ">
+                            {userLikedCollectibleList.map((SingleCollectible, key) => (
+                              <LiveAuctions
+                                isCollection={false}
+                                id={SingleCollectible._id}
+                                Coverimg={"https://"+SingleCollectible.img_path}
+                                liked={SingleCollectible.like}
+                                title={SingleCollectible.title}
+                                heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                                User1={topSellerUser1}
+                                User2={topSellerUser2}
+                                User3={topSellerUser3}
+                                WETH={SingleCollectible.price + ' WETH'}
+                                bid="Highest bid 1/1"
+                              />
+                            ))}
+                          </div>
+                        </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                          <h3>Not items found</h3>
+                          <span className="color-gray">
+                            Come back soon or browse the items on our marketplace.
+                          </span>
+                          <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
+                            Browse marketplace
+                          </button>
+                        </div>
+                      }
                     </div>
                   </TabPane>
                 </Tabs>
