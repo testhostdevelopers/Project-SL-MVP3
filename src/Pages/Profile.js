@@ -492,7 +492,7 @@ const Profile = (props) => {
                       </div>
                     </div>
                   </TabPane>
-                  <TabPane tab={'Owned' + ' (' + userOwnedCollectibleList.length + ')'} key="2">
+                  <TabPane tab={'Owned (' + userOwnedCollectibleList.length + ')'} key="2">
                     <div className="liveAuction proile-liked-filter">
                       <div className="row ">
                         { userOwnedCollectibleList.length > 0 ?
@@ -527,7 +527,7 @@ const Profile = (props) => {
                       </div>
                     </div>
                   </TabPane>
-                  <TabPane tab={'My Collectible' + ' (' + userCollectibleList.length + ')'} key="3">
+                  <TabPane tab={'My Collectible (' + userCollectibleList.length + ')'} key="3">
                     <div className="liveAuction proile-liked-filter">
                       {userCollectibleList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
@@ -551,8 +551,8 @@ const Profile = (props) => {
                         </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                           <h3>Not items found</h3>
                           <span className="color-gray">
-                          Come back soon or browse the items on our marketplace.
-                        </span>
+                            Come back soon or browse the items on our marketplace.
+                          </span>
                           <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
                             Browse marketplace
                           </button>
@@ -560,7 +560,7 @@ const Profile = (props) => {
                       }
                     </div>
                   </TabPane>
-                  <TabPane tab={'My Collection' + ' (' + userCollectionList.length + ')'} key="4">
+                  <TabPane tab={'My Collection (' + userCollectionList.length + ')'} key="4">
                     <div className="liveAuction proile-liked-filter">
                       {userCollectionList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
@@ -584,8 +584,8 @@ const Profile = (props) => {
                         </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                           <h3>Not items found</h3>
                           <span className="color-gray">
-                          Come back soon or browse the items on our marketplace.
-                        </span>
+                            Come back soon or browse the items on our marketplace.
+                          </span>
                           <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
                             Browse marketplace
                           </button>

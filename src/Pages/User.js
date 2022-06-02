@@ -36,7 +36,7 @@ const User = (props) => {
   const currentUserData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [reportPopup, setReportPopup] = useState(false);
   const [followButtonText, setFollowButtonText] = useState('Follow');
-  // console.log('currentUserData.following.indexOf(user_id)', currentUserData.following.indexOf(user_id));
+  // console.log('currentUserData.following.indexOf(user_id)',currentUserData.following.indexOf(user_id));
   if (currentUserData.following.indexOf(user_id) >= 0) {
     // setFollowButtonText("Unfollow");
   }
@@ -527,7 +527,7 @@ const User = (props) => {
                       </div>
                     </div>
                   </TabPane>
-                  <TabPane tab={'Collectible' + ' (' + userCollectibleList.length + ')'} key="3">
+                  <TabPane tab={'Collectible (' + userCollectibleList.length + ')'} key="3">
                     <div className="liveAuction proile-liked-filter">
                       {userCollectibleList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
@@ -559,7 +559,7 @@ const User = (props) => {
                         </div>}
                     </div>
                   </TabPane>
-                  <TabPane tab={'Collection' + ' (' + userCollectionList.length + ')'} key="4">
+                  <TabPane tab={'Collection (' + userCollectionList.length + ')'} key="4">
                     <div className="liveAuction proile-liked-filter">
                       {userCollectionList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">

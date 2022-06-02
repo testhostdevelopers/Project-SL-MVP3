@@ -220,7 +220,6 @@ const Buy = () => {
                   </b>
                 </div>
                       : '' }
-
                 <p className="mt-4">
                   {singleCollectibleData.description}
                 </p>
@@ -229,16 +228,16 @@ const Buy = () => {
                   <div className="d-flex flex-column">
                     <b className="text-secondary">Creator</b>
                     <div className="mt-3">
-            <span className="user-img">
-              <img src={udata == null
-                ? ""
-                : `${Config.baseURL}` + udata.profile_img_url} width="36" alt="" />
-            </span>
+                      <span className="user-img">
+                        <img src={udata == null
+                          ? ""
+                          : `${Config.baseURL}` + udata.profile_img_url} width="36" alt="" />
+                      </span>
                       <span className="ml-3">
-              <b>{udata == null
-                ? ""
-                : udata.display_name}</b>
-            </span>
+                        <b>{udata == null
+                          ? ""
+                          : udata.display_name}</b>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -249,7 +248,6 @@ const Buy = () => {
                 </button>
 
                 <div className="mt-4">
-                  {/*      /////////     Buytab components    /////////   */}
                   <Buytab />
 
                   <div
@@ -301,7 +299,7 @@ const Buy = () => {
                         <ul className="category-btn-list">
                             <li>
                               <a href="#">
-                                {singleCollectibleData === null
+                                {singleCollectibleData.category === undefined
                                   ? ""
                                   : singleCollectibleData.category}
                               </a>
@@ -413,9 +411,9 @@ const Buy = () => {
                   <div className="tab-pane-bottom-solid" />
                 </div>
                 {singleCollectibleData.price_type === 'time_auction' ?
-                <BuyAuction props={singleCollectibleData} />
-        
-                          : '' }
+                  <BuyAuction props={singleCollectibleData} />
+                  : ''
+                }
                 <div className="row d-flex justify-content-center mt-5 action-btn buy-highest-bid-block-btn">
                   <div className="col-sm-12 col-lg-8 d-flex">
                 {singleCollectibleData.price_type === 'fixed_price' ?
@@ -434,7 +432,6 @@ const Buy = () => {
                         Place a Bid
                       </button>
                           : '' }
-                    
                   </div>
                 </div>
               </div>

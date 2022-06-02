@@ -1181,6 +1181,7 @@ const Navbar = (props) => {
                   <a
                     className="nav-link nav-dark-button d-sm-none d-lg-block"
                     onClick={() => activeMode()}
+                    href={''}
                   >
                     {theme === true ? (
                       <svg

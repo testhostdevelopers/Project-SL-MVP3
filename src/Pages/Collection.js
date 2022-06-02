@@ -91,8 +91,8 @@ const Collection = (props) => {
   };
   useEffect(() => {
     if (apiToken) {
-      singleCollection();
-      userCollectionListFunc();
+      singleCollection().then(r => {});
+      userCollectionListFunc().then(r => {});
     }
   }, []);
 
@@ -175,7 +175,7 @@ const Collection = (props) => {
                       </div>
 
                       <Dropdown overlay={singleoption}>
-                        <button className="bg-white border-gray select">
+                        <button className="bg-white border-gray select ">
                           <svg
                             width="14"
                             height="4"

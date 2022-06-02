@@ -101,8 +101,8 @@ const Activity = (props) => {
 
   useEffect(() => {
     if (sessionStorage.getItem("apiToken")) {
-      getallactivityfilters();
-      gettransactions(page);
+      getallactivityfilters().then(r => {});
+      gettransactions(page).then(r => {});
     }
   }, []);
   return (
