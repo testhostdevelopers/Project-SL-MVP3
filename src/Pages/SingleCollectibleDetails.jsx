@@ -9,7 +9,7 @@ const SingleCollectibleDetails = () => {
             <b>Title</b>
           </h5>
 
-          <div className="prize-single-collectible">
+          <div className="prize-single-collectible ">
             <input
               type="text"
               placeholder="e. g. Redeemable T-Shirt with logo"

@@ -44,8 +44,7 @@ const CreateCollectible = () => {
             </h1>
 
             <p className="color-gray mt-3">
-              Choose “single” if you want your collectible to be one of a kind
-              or ”multiple” if you want to sell one collectible multiple times.
+              Choose “single” if you want your collectible to be one of a kind or ”multiple” if you want to sell one collectible multiple times.
             </p>
 
             <div className="mt-4 d-flex create-collectible-select">
@@ -73,8 +72,7 @@ const CreateCollectible = () => {
               </div>
             </div>
             <p className="color-gray mt-3">
-              We do not own your private keys and cannot access your funds
-              without your confirmation.
+              We do not own your private keys and cannot access your funds without your confirmation.
             </p>
           </div>
         </div>
