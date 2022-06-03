@@ -8,7 +8,7 @@ import LiveAuctions from "../Components/LiveAuctions";
 import TopCard from "../Components/TopCard";
 import ReportPopup from "../Components/Popup/ReportPopup";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
-import topSeller4 from "../assets/img/custom/topSeller4.png";
+// import topSeller4 from "../assets/img/custom/topSeller4.png";
 import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
@@ -44,6 +44,8 @@ const User = (props) => {
   const [buttonText, setButtonText] = useState("Add Cover");
   let [userCollectibleList, setUserCollectibleList] = useState([]);
   let [userCollectionList, setUserCollectionList] = useState([]);
+  let [userOwnedCollectibleList, setUserOwnedCollectibleList] = useState([]);
+  let [userOnSaleCollectibleList, setUserOnSaleCollectibleList] = useState([]);
   // let [userLikedCollectionsList, setUserLikedCollectionsList] = useState([]);
   // let [userLikedCollectibleList, setUserLikedCollectibleList] = useState([]);
   let [userFollowerUsersList, setUserFollowerUsersList] = useState([]);
@@ -102,6 +104,32 @@ const User = (props) => {
       .catch(err => {
         console.log(err);
       });
+  };
+  const userOwnedCollectible = async () => {
+    await axios
+        .get(`${Config.baseURL}v1/collectible/getuserownedcollectiblelist/` + udata._id, {
+              data: {
+                user_id: udata._id
+              },
+              headers: {
+                Authorization: `Bearer ${apiToken}`,
+              }
+            }
+        )
+        .then(response => {
+          response.data.data.forEach((element) => {
+            if (element.likedBy.includes(udata._id)) {
+              element.like = true;
+            } else {
+              element.like = false;
+            }
+          });
+          setUserOwnedCollectibleList(response.data.data);
+          console.log('setUserOwnedCollectibleList', response.data.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
   };
   /*const userLikedCollections = async () => {
     await axios
@@ -464,66 +492,71 @@ const User = (props) => {
 
               <main className="profile-tab-menu">
                 <Tabs defaultActiveKey="3" centered>
-                  <TabPane tab="On sale" key="1">
-                    <div className="row mt-5 mb-5">
-                      <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
-                        <h3>Not items found</h3>
-                        <span className="color-gray">
-                          Come back soon or browse the items on our marketplace.
-                        </span>
-                        <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
-                          Browse marketplace
-                        </button>
-                      </div>
+                  <TabPane tab={'On Sale (' + userOnSaleCollectibleList.length + ')'} key="1">
+                    <div className="liveAuction proile-liked-filter">
+                      {userOnSaleCollectibleList.length > 0 ?
+                          <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                            <div className="row ">
+                              {userOnSaleCollectibleList.map((SingleCollectible, key) => (
+                                  <LiveAuctions
+                                      isCollection={false}
+                                      id={SingleCollectible._id}
+                                      Coverimg={"https://"+SingleCollectible.img_path}
+                                      liked={SingleCollectible.like}
+                                      title={SingleCollectible.title}
+                                      heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                                      User1={topSellerUser1}
+                                      User2={topSellerUser2}
+                                      User3={topSellerUser3}
+                                      WETH={SingleCollectible.price + ' WETH'}
+                                      bid="Highest bid 1/1"
+                                  />
+                              ))}
+                            </div>
+                          </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                            <h3>Not items found</h3>
+                            <span className="color-gray">
+                            Come back soon or browse the items on our marketplace.
+                          </span>
+                            <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
+                              Browse marketplace
+                            </button>
+                          </div>
+                      }
                     </div>
                   </TabPane>
-                  <TabPane tab="Owned" key="2">
+                  <TabPane tab={'Owned (' + userOwnedCollectibleList.length + ')'} key="2">
                     <div className="liveAuction proile-liked-filter">
                       <div className="row ">
-                        <LiveAuctions
-                          isOpenInProfile="true"
-                          Coverimg={artWorkWeek1}
-                          title="Memescalf#782021"
-                          heartcount="24"
-                          User1={topSellerUser1}
-                          User2={topSellerUser2}
-                          User3={topSellerUser3}
-                          WETH="1.2 WETH"
-                          bid="Highest bid 1/1"
-                        />
-                        <LiveAuctions
-                          isOpenInProfile="true"
-                          Coverimg={artWorkWeek1}
-                          title="Memescalf#782021"
-                          heartcount="24"
-                          User1={topSellerUser1}
-                          User2={topSellerUser2}
-                          User3={topSellerUser3}
-                          WETH="1.2 WETH"
-                          bid="Highest bid 1/1"
-                        />
-                        <LiveAuctions
-                          isOpenInProfile="true"
-                          Coverimg={artWorkWeek1}
-                          title="Memescalf#782021"
-                          heartcount="24"
-                          User1={topSellerUser1}
-                          User2={topSellerUser2}
-                          User3={topSellerUser3}
-                          WETH="1.2 WETH"
-                          bid="Highest bid 1/1"
-                        />
-                        <LiveAuctions
-                          isOpenInProfile="true"
-                          Coverimg={artWorkWeek1}
-                          title="Memescalf#782021"
-                          heartcount="24"
-                          User1={topSellerUser1}
-                          User2={topSellerUser2}
-                          User3={topSellerUser3}
-                          WETH="1.2 WETH"
-                          bid="Highest bid 1/1"
-                        />
+                        { userOwnedCollectibleList.length > 0 ?
+                            <>
+                              {userOwnedCollectibleList.map((SingleCollectible, key) => (
+                                  <LiveAuctions
+                                      isCollection={false}
+                                      id={SingleCollectible._id}
+                                      Coverimg={"https://"+SingleCollectible.img_path}
+                                      liked={SingleCollectible.like}
+                                      title={SingleCollectible.title}
+                                      heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                                      User1={topSellerUser1}
+                                      User3={topSellerUser3}
+                                      User2={topSellerUser2}
+                                      WETH={SingleCollectible.price + ' WETH'}
+                                      bid="Highest bid 1/1"
+                                  />
+                              ))}
+                            </> : <>
+                              <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                                <h3>Not items found</h3>
+                                <span className="color-gray">
+                                Come back soon or browse the items on our marketplace.
+                              </span>
+                                <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
+                                  Browse marketplace
+                                </button>
+                              </div>
+                            </>
+                        }
                       </div>
                     </div>
                   </TabPane>
