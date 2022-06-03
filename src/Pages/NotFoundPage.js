@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import {Link} from "react-router-dom";
 
 const NotFoundPage = () => {
     const variants = {
@@ -19,7 +20,8 @@ const NotFoundPage = () => {
                     <div className="col-sm-12">
                         <div className="w-100">
                             <h3 className="main-title">
-                                <b>404 - Page Not Found</b>
+                                <b>404 - Page Not Found - </b>
+                                <Link to="/">Homepage</Link>
                             </h3>
                         </div>
                     </div>
