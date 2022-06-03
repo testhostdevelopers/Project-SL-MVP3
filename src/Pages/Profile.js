@@ -413,7 +413,7 @@ const Profile = (props) => {
                           Read more
                         </a> : ""}
                       </p>
-                      <a href={udata === undefined ? "" : udata.personal_site} className="website-link">
+                      <a rel="noopener" target="_blank" href={udata === undefined ? "" : udata.personal_site} className="website-link">
                         <span>
                           <img src={EarthIcon} alt={""} />
                         </span>
