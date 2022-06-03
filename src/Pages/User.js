@@ -633,26 +633,26 @@ const User = (props) => {
                       <div className="topSellerContent following-profile-topSellerContent">
                         <div className="row">
                           {userFollowingUsersList.length > 0 ?
-                              <div className="d-flex col-lg-12 activity ">
-                                {userFollowingUsersList.map((SingleUser, key) => (
-                                    <TopCard
-                                        topcoverimg={topSeller4}
-                                        topuserimg={topSellerUser1}
-                                        title={SingleUser.display_name}
-                                        id={SingleUser._id}
-                                        follow={SingleUser.followersCount + ' followers'}
-                                        btnname="Unfollow"
-                                    />
-                                ))}
-                              </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
-                                <h3>Not items found</h3>
-                                <span className="color-gray">
-                                Come back soon or browse the items on our marketplace.
-                              </span>
-                                <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
-                                  Browse marketplace
-                                </button>
-                              </div>
+                            <div className="d-flex col-lg-12 activity ">
+                              {userFollowingUsersList.map((SingleUser, key) => (
+                                <TopCard
+                                  topcoverimg={SingleUser.cover_img_url}
+                                  topuserimg={SingleUser.profile_img_url}
+                                  title={SingleUser.display_name}
+                                  id={SingleUser._id}
+                                  follow={SingleUser.followersCount + ' followers'}
+                                  btnname={SingleUser.isImFollowing ? "Unfollow" : "Follow"}
+                                />
+                              ))}
+                            </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                              <h3>Not items found</h3>
+                              <span className="color-gray">
+                              Come back soon or browse the items on our marketplace.
+                            </span>
+                              <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
+                                Browse marketplace
+                              </button>
+                            </div>
                           }
                         </div>
                       </div>
@@ -697,26 +697,26 @@ const User = (props) => {
                       <div className="topSellerContent following-profile-topSellerContent">
                         <div className="row">
                           {userFollowerUsersList.length > 0 ?
-                              <div className="d-flex col-lg-12 activity ">
-                                {userFollowerUsersList.map((SingleUser, key) => (
-                                    <TopCard
-                                        topcoverimg={topSeller4}
-                                        topuserimg={topSellerUser1}
-                                        title={SingleUser.display_name}
-                                        id={SingleUser._id}
-                                        follow={SingleUser.followersCount + ' followers'}
-                                        btnname="Follow"
-                                    />
-                                ))}
-                              </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
-                                <h3>Not items found</h3>
-                                <span className="color-gray">
-                                  Come back soon or browse the items on our marketplace.
-                                </span>
-                                <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
-                                  Browse marketplace
-                                </button>
-                              </div>
+                            <div className="d-flex col-lg-12 activity ">
+                              {userFollowerUsersList.map((SingleUser, key) => (
+                                <TopCard
+                                  topcoverimg={SingleUser.cover_img_url}
+                                  topuserimg={SingleUser.profile_img_url}
+                                  title={SingleUser.display_name}
+                                  id={SingleUser._id}
+                                  follow={SingleUser.followersCount + ' followers'}
+                                  btnname={SingleUser.isImFollowing ? "Unfollow" : "Follow"}
+                                />
+                              ))}
+                            </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
+                              <h3>Not items found</h3>
+                              <span className="color-gray">
+                                Come back soon or browse the items on our marketplace.
+                              </span>
+                              <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
+                                Browse marketplace
+                              </button>
+                            </div>
                           }
                         </div>
                       </div>

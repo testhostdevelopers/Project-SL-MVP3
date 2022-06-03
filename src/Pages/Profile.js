@@ -726,12 +726,12 @@ const Profile = (props) => {
                             <div className="d-flex col-lg-12 activity ">
                               {userFollowingUsersList.map((SingleUser, key) => (
                                 <TopCard
-                                    topcoverimg={topSeller4}
-                                    topuserimg={topSellerUser1}
-                                    title={SingleUser.display_name}
-                                    id={SingleUser._id}
-                                    follow={SingleUser.followersCount + ' followers'}
-                                    btnname="Unfollow"
+                                  topcoverimg={SingleUser.cover_img_url}
+                                  topuserimg={SingleUser.profile_img_url}
+                                  title={SingleUser.display_name}
+                                  id={SingleUser._id}
+                                  follow={SingleUser.followersCount + ' followers'}
+                                  btnname={SingleUser.isImFollowing ? "Unfollow" : "Follow"}
                                 />
                               ))}
                             </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
@@ -790,12 +790,12 @@ const Profile = (props) => {
                             <div className="d-flex col-lg-12 activity ">
                               {userFollowerUsersList.map((SingleUser, key) => (
                                 <TopCard
-                                  topcoverimg={topSeller4}
-                                  topuserimg={topSellerUser1}
+                                  topcoverimg={SingleUser.cover_img_url}
+                                  topuserimg={SingleUser.profile_img_url}
                                   title={SingleUser.display_name}
                                   id={SingleUser._id}
                                   follow={SingleUser.followersCount + ' followers'}
-                                  btnname="Follow"
+                                  btnname={SingleUser.isImFollowing ? "Unfollow" : "Follow"}
                                 />
                               ))}
                             </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
