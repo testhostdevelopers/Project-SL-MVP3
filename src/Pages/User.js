@@ -8,7 +8,6 @@ import LiveAuctions from "../Components/LiveAuctions";
 import TopCard from "../Components/TopCard";
 import ReportPopup from "../Components/Popup/ReportPopup";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
-// import topSeller4 from "../assets/img/custom/topSeller4.png";
 import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
@@ -17,15 +16,6 @@ import EarthIcon from "../assets/img/icons/custom/earth.svg";
 // import { Link } from "react-router-dom";
 // import Activitytab from "../Components/Tabs/Activitytab";
 // import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
-
-/*var UPubKey = null,
-  cutPkey;
-
-if (localStorage.getItem("PublicKey")) {
-  UPubKey = localStorage.getItem("PublicKey");
-  cutPkey =
-    UPubKey.substring(0, 4) + "...." + UPubKey.substring(UPubKey.length - 4);
-}*/
 
 const { TabPane } = Tabs;
 
