@@ -8,6 +8,7 @@ import "./assets/css/responsive.css";
 import Navbar from "./Components/Layout/Navbar";
 import Footer from "./Components/Layout/Footer";
 import Buy from "./Pages/Buy";
+import NotFoundPage from "./Pages/NotFoundPage";
 import SignIn from "./Pages/SignIn";
 import Token from "./Pages/Token";
 import Cryptoloria from "./Pages/Cryptoloria";
@@ -152,6 +153,7 @@ const App = () => {
           <Route path="/activity" component={Activity} exact />
           <Route path="/following" component={Following} exact />
           <Route path="/search/:keyword" component={Search} exact />
+          <Route component={NotFoundPage} />
         </Switch>
         <Footer />
       </Router>
