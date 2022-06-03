@@ -6,10 +6,7 @@ import axios from "axios";
 import ProfileLinks from "../Components/ProfileLinks";
 import LiveAuctions from "../Components/LiveAuctions";
 import TopCard from "../Components/TopCard";
-// import ReportPopup from "../Components/Popup/ReportPopup";
-// import Activitytab from "../Components/Tabs/Activitytab";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
-import topSeller4 from "../assets/img/custom/topSeller4.png";
 import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
@@ -416,7 +413,7 @@ const Profile = (props) => {
                           Read more
                         </a> : ""}
                       </p>
-                      <a href={udata === undefined ? "" : udata.personal_site} className="website-link">
+                      <a rel="noopener" target="_blank" href={udata === undefined ? "" : udata.personal_site} className="website-link">
                         <span>
                           <img src={EarthIcon} alt={""} />
                         </span>
@@ -726,12 +723,12 @@ const Profile = (props) => {
                             <div className="d-flex col-lg-12 activity ">
                               {userFollowingUsersList.map((SingleUser, key) => (
                                 <TopCard
-                                    topcoverimg={topSeller4}
-                                    topuserimg={topSellerUser1}
-                                    title={SingleUser.display_name}
-                                    id={SingleUser._id}
-                                    follow={SingleUser.followersCount + ' followers'}
-                                    btnname="Unfollow"
+                                  topcoverimg={SingleUser.cover_img_url}
+                                  topuserimg={SingleUser.profile_img_url}
+                                  title={SingleUser.display_name}
+                                  id={SingleUser._id}
+                                  follow={SingleUser.followersCount + ' followers'}
+                                  btnname={SingleUser.isImFollowing ? "Unfollow" : "Follow"}
                                 />
                               ))}
                             </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
@@ -790,12 +787,12 @@ const Profile = (props) => {
                             <div className="d-flex col-lg-12 activity ">
                               {userFollowerUsersList.map((SingleUser, key) => (
                                 <TopCard
-                                  topcoverimg={topSeller4}
-                                  topuserimg={topSellerUser1}
+                                  topcoverimg={SingleUser.cover_img_url}
+                                  topuserimg={SingleUser.profile_img_url}
                                   title={SingleUser.display_name}
                                   id={SingleUser._id}
                                   follow={SingleUser.followersCount + ' followers'}
-                                  btnname="Follow"
+                                  btnname={SingleUser.isImFollowing ? "Unfollow" : "Follow"}
                                 />
                               ))}
                             </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
