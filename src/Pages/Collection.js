@@ -137,7 +137,6 @@ const Collection = (props) => {
                 <div className="position-relative">
                   <div className="border p-3 gray-color profile-pictures-cover">
                     <img src={"https://" + singleCollectionData.main_img} width="100%" alt=""/>
-
                     <button
                       onClick={() => setUpdateCoverPopup(true)}
                       className="bg-white border-gray edit-profile"

@@ -17,20 +17,38 @@ import closeicon from "../../assets/img/custom/close.svg";
 import notification_white from "../../assets/img/icons/custom/notification_white.svg";
 import searchline_white from "../../assets/img/icons/custom/search-line_white.svg";
 import user2 from "../../assets/img/icons/custom/user2.png";
+import axios from "axios";
+import {Config} from "../../utils/config";
 // import userProfilePictures from "../../assets/img/icons/custom/userNav.svg";
 // import vectorLogo from "../../assets/img/custom/Vector.svg";
 // import starlight from "../../assets/img/custom/starlight.png";
 const Navbar = (props) => {
   let history = useHistory();
+  const location = useLocation();
   var UPubKey = null,
     cutPkey;
+  var apiToken = sessionStorage.getItem("apiToken");
+  let [udata, setUdata] = useState(JSON.parse(sessionStorage.getItem("userdata")) || {});
+  const [CoinConverp, setCoinConverp] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem("theme"));
+  const [openProfileDropMenu, setOpenProfileDropMenu] = useState(true);
+  const [notificationPopup, setNotificationPopup] = useState(false);
+  const [isShow, SetIsShow] = useState(false);
+  const [isShowDisplayNameEdit, setShowDisplayNameEdit] = useState(true);
+  const [isSubMenuShow, SetSubMenuShow] = useState(false);
+  // const [closeNotification, setCloseNotification] = useState(true);
+  const notifications = ["add your email", "subscribe", "go to website"];
+  const [searchItem, SetsearchItem] = useState(false);
+  const [notificationsArr, setNotificationsArr] = useState(notifications);
+  const profileImage = React.useRef(null);
+  const profileUploader = React.useRef(null);
+  profileImage.current = props.pImage;
 
   if (localStorage.getItem("PublicKey")) {
     UPubKey = localStorage.getItem("PublicKey");
     cutPkey =
-      UPubKey.substring(0, 4) + "...." + UPubKey.substring(UPubKey.length - 4);
+        UPubKey.substring(0, 4) + "...." + UPubKey.substring(UPubKey.length - 4);
   }
-
   const signOut = () => {
     var wal = localStorage.getItem("wallet");
     if (wal === "phantom") {
@@ -51,13 +69,6 @@ const Navbar = (props) => {
       window.location.reload(false);
     }
   };
-
-  const [CoinConverp, setCoinConverp] = useState(false);
-  const [theme, setTheme] = useState(localStorage.getItem("theme"));
-  const [openProfileDropMenu, setOpenProfileDropMenu] = useState(false);
-  const [notificationPopup, setNotificationPopup] = useState(false);
-
-  const location = useLocation();
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -220,20 +231,9 @@ const Navbar = (props) => {
     }
   };
 
-  const [isShow, SetIsShow] = useState(false);
-  const [isSubMenuShow, SetSubMenuShow] = useState(false);
-  // const [closeNotification, setCloseNotification] = useState(true);
-  const notifications = ["add your email", "subscribe", "go to website"];
-  const [searchItem, SetsearchItem] = useState(false);
-  const [notificationsArr, setNotificationsArr] = useState(notifications);
-
   const deleteHandler = (index) => {
     setNotificationsArr(notificationsArr.filter((item, i) => i !== index));
   };
-
-  const profileImage = React.useRef(null);
-  const profileUploader = React.useRef(null);
-  profileImage.current = props.pImage;
 
   const list_drop = [
     { listLink: "/Token", listName: "Token" },
@@ -251,6 +251,27 @@ const Navbar = (props) => {
     }
     return <input type="text" onKeyDown={handleKeyDown} placeholder="Search by creator, collectible or collection"/>
   }
+
+  const SetDisplayNameCall = async (event) => {
+    await axios
+        .put(`${Config.baseURL}v1/user/updatedisplayname/` + udata._id, {
+          display_name: event.target.value
+        }, {
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        })
+        .then(response => {
+          console.log('response', response.data.data);
+          if (response.data.data.response_code === "API_SUCCESS") {
+            setUdata(response.data.data);
+            sessionStorage.setItem("userdata", JSON.stringify(response.data.data));
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
 
     return (
     <>
@@ -307,7 +328,6 @@ const Navbar = (props) => {
               <div className="d-lg-none d-sm-block mr-1">
                 <a
                   className="nav-link nav-dark-button"
-                  href="/#"
                   onClick={() => activeMode()}
                 >
                   {theme === true ? (
@@ -418,18 +438,24 @@ const Navbar = (props) => {
                       <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                     </svg>
                   )}
-
-                  {openProfileDropMenu === false ? (
+                </a>
+                {openProfileDropMenu === false ? (
                     ""
-                  ) : (
+                ) : (
                     <div className="openProfileDropMenu">
                       <h4 className="text-left">
                         {UPubKey == null ? "" : cutPkey}
                       </h4>
                       <div className="notipopup-display">
-                        <Link to="/edit-profile" className="color-ping">
-                          <b>Set display name</b>
-                        </Link>
+                        {
+                          !isShowDisplayNameEdit ?
+                              <p className="color-ping">
+                                <b onClick={setShowDisplayNameEdit(false)}>Set display name</b>
+                              </p> : <>
+                                <input type="text" defaultValue={udata.display_name? udata.display_name : ''} />
+                                <button onClick={SetDisplayNameCall}>Save 1</button>
+                              </>
+                        }
                         {/* <a href="#0" className="color-ping" htmlFor="profilephoto" onClick={() => profileUploader.current.click()}><b>Upload profile picture</b></a>
                                                 <div className="profile-user-pictures">
                                                     <input
@@ -498,9 +524,9 @@ const Navbar = (props) => {
                           <div className="d-flex">
                             <div>
                               <img
-                                src={BidingbalanceIcon}
-                                width="36"
-                                alt={""}
+                                  src={BidingbalanceIcon}
+                                  width="36"
+                                  alt={""}
                               />
                             </div>
 
@@ -516,17 +542,17 @@ const Navbar = (props) => {
 
                           <a className="nav-link nav-dark-button" href="/#">
                             <svg
-                              width="20"
-                              height="20"
-                              viewBox="0 0 14 12"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 14 12"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                fillRule="evenodd"
-                                clipRule="evenodd"
-                                d="M6.02452 4.24267L6.96719 3.3L3.66719 0L0.367188 3.3L1.31052 4.24267L3.00052 2.552V11.3333H4.33385V2.552L6.02452 4.24267ZM10.3352 12.0001L13.6352 8.70008L12.6925 7.75741L11.0018 9.44808V0.666748H9.66849L9.66916 9.44808L7.97782 7.75741L7.03516 8.70008L10.3352 12.0001Z"
-                                fill="black"
+                                  fillRule="evenodd"
+                                  clipRule="evenodd"
+                                  d="M6.02452 4.24267L6.96719 3.3L3.66719 0L0.367188 3.3L1.31052 4.24267L3.00052 2.552V11.3333H4.33385V2.552L6.02452 4.24267ZM10.3352 12.0001L13.6352 8.70008L12.6925 7.75741L11.0018 9.44808V0.666748H9.66849L9.66916 9.44808L7.97782 7.75741L7.03516 8.70008L10.3352 12.0001Z"
+                                  fill="black"
                               />
                             </svg>
                           </a>
@@ -556,29 +582,28 @@ const Navbar = (props) => {
                         <h6>Autoplay</h6>
                         <div className="custom-control custom-switch">
                           <input
-                            type="checkbox"
-                            className="custom-control-input"
-                            id="profileSwitch3"
+                              type="checkbox"
+                              className="custom-control-input"
+                              id="profileSwitch3"
                           />
                           <label
-                            className="custom-control-label"
-                            htmlFor="profileSwitch3"
+                              className="custom-control-label"
+                              htmlFor="profileSwitch3"
                           />
                         </div>
                       </div>
 
                       <div className="d-flex justify-content-between">
                         <h6
-                          onClick={() => {
-                            signOut();
-                          }}
+                            onClick={() => {
+                              signOut();
+                            }}
                         >
                           Sign out
                         </h6>
                       </div>
                     </div>
-                  )}
-                </a>
+                )}
               </div>
             </div>
 
@@ -982,160 +1007,164 @@ const Navbar = (props) => {
                   )}
 
                   {sessionStorage.getItem("apiToken") ? (
-                    <a
-                      className="d-sm-none d-lg-block nav-link p-0 nav-dark-button mr-2 position-relative"
-                      href="/#"
-                      onClick={() =>
-                        setOpenProfileDropMenu(!openProfileDropMenu)
-                      }
-                    >
-                      <div className="toggle_btn">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          className="bi bi-person-fill"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                        </svg>
-                      </div>
+                    <>
+                      <a
+                        className="d-sm-none d-lg-block nav-link p-0 nav-dark-button mr-2 position-relative"
+                        onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)}
+                      >
+                        <div className="toggle_btn">
+                          <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              className="bi bi-person-fill"
+                              viewBox="0 0 16 16"
+                          >
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                          </svg>
+                        </div>
 
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={props.handleprofilepicUploadr}
-                        ref={profileUploader}
-                        style={{
-                          display: "none",
-                        }}
-                      />
-                      <img
-                        className="my_pro"
-                        alt={""}
-                        src=""
-                        ref={props.profileImage}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          position: "absolute",
-                          borderRadius: "30px",
-                          padding: "3px",
-                          inlineSize: "auto",
-                        }}
-                      />
-
-                      {openProfileDropMenu === false ? (
-                        ""
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={props.handleprofilepicUploadr}
+                            ref={profileUploader}
+                            style={{
+                              display: "none",
+                            }}
+                        />
+                        <img
+                            className="my_pro"
+                            alt={""}
+                            src=""
+                            ref={props.profileImage}
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              position: "absolute",
+                              borderRadius: "30px",
+                              padding: "3px",
+                              inlineSize: "auto",
+                            }}
+                        />
+                      </a>
+                      { openProfileDropMenu === false ? (
+                          ""
                       ) : (
-                        <div className="notificationPopup">
-                          <h4 className="text-left">
-                            {UPubKey == null ? "" : cutPkey}
-                          </h4>
-                          <div className="notipopup-display">
-                            <Link to="/edit-profile" className="color-ping">
-                              <b>Set display name 2</b>
-                            </Link>
-                            <a
-                              className="color-ping"
-                              href="/#"
-                              onClick={() => profileUploader.current.click()}
-                            >
-                              <b>Upload profile picture</b>
-                            </a>
-                          </div>
-
-                          <div className="border-section pt-3 mt-3">
-                            <div className="d-flex justify-content-between mb-3">
-                              <div className="d-flex">
-                                <div className="token-img">
-                                  <img alt={""} src={userTick} width="36" />
-                                </div>
-
-                                <div className="ml-3">
-                                  <div>
-                                    <span className="color-gray">
-                                      Starlight balance
-                                    </span>
-                                  </div>
-                                  <div className="text-left">0 Starlight</div>
-                                </div>
-                              </div>
-
-                              <div>
-                                <button className="btn-dark-outline">
-                                  Claim
-                                </button>
-                              </div>
-                            </div>
-
-                            <div className="d-flex justify-content-between mb-3">
-                              <div className="d-flex">
-                                <div className="token-img">
-                                  <img alt={""} src={BalanceIcon} width="36" />
-                                </div>
-
-                                <div className="ml-3">
-                                  <div className="text-left">
-                                    <span className="color-gray">Balance</span>
-                                  </div>
-                                  <div className="text-left">0 Starlight</div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="d-flex justify-content-between mb-3">
-                              <div className="d-flex">
-                                <div className="token-img">
-                                  <img
-                                    alt={""}
-                                    src={BidingbalanceIcon}
-                                    width="36"
-                                  />
-                                </div>
-
-                                <div className="ml-3">
-                                  <div>
-                                    <span className="color-gray">
-                                      Biding balance
-                                    </span>
-                                  </div>
-                                  <div className="text-left">0 weTH</div>
-                                </div>
-                              </div>
-
+                          <div className="notificationPopup">
+                            <h4 className="text-left">
+                              {UPubKey == null ? "" : cutPkey}
+                            </h4>
+                            <div className="notipopup-display">
+                              {
+                                !isShowDisplayNameEdit ?
+                                    <p className="color-ping">
+                                      <b onClick={setShowDisplayNameEdit(false)}>Set display name</b>
+                                    </p> : <>
+                                      <input type="text" defaultValue={udata.display_name? udata.display_name : ''} />
+                                      <button onClick={SetDisplayNameCall}>Save</button>
+                                    </>
+                              }
                               <a
-                                className="nav-link nav-dark-button dd"
-                                href="/#"
-                                onClick={() => setCoinConverp(true)}
+                                  className="color-ping"
+                                  href="/#"
+                                  onClick={() => profileUploader.current.click()}
                               >
-                                <svg
-                                  width="14"
-                                  height="12"
-                                  viewBox="0 0 14 12"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M6.02452 4.24267L6.96719 3.3L3.66719 0L0.367188 3.3L1.31052 4.24267L3.00052 2.552V11.3333H4.33385V2.552L6.02452 4.24267ZM10.3352 12.0001L13.6352 8.70008L12.6925 7.75741L11.0018 9.44808V0.666748H9.66849L9.66916 9.44808L7.97782 7.75741L7.03516 8.70008L10.3352 12.0001Z"
-                                    fill="black"
-                                  />
-                                </svg>
+                                <b>Upload profile picture</b>
                               </a>
                             </div>
 
-                            <div className="add-funds-with-btn">
-                              Add funds with
-                              <span>
+                            <div className="border-section pt-3 mt-3">
+                              <div className="d-flex justify-content-between mb-3">
+                                <div className="d-flex">
+                                  <div className="token-img">
+                                    <img alt={""} src={userTick} width="36" />
+                                  </div>
+
+                                  <div className="ml-3">
+                                    <div>
+                                    <span className="color-gray">
+                                      Starlight balance
+                                    </span>
+                                    </div>
+                                    <div className="text-left">0 Starlight</div>
+                                  </div>
+                                </div>
+
+                                <div>
+                                  <button className="btn-dark-outline">
+                                    Claim
+                                  </button>
+                                </div>
+                              </div>
+
+                              <div className="d-flex justify-content-between mb-3">
+                                <div className="d-flex">
+                                  <div className="token-img">
+                                    <img alt={""} src={BalanceIcon} width="36" />
+                                  </div>
+
+                                  <div className="ml-3">
+                                    <div className="text-left">
+                                      <span className="color-gray">Balance</span>
+                                    </div>
+                                    <div className="text-left">0 Starlight</div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="d-flex justify-content-between mb-3">
+                                <div className="d-flex">
+                                  <div className="token-img">
+                                    <img
+                                        alt={""}
+                                        src={BidingbalanceIcon}
+                                        width="36"
+                                    />
+                                  </div>
+
+                                  <div className="ml-3">
+                                    <div>
+                                    <span className="color-gray">
+                                      Biding balance
+                                    </span>
+                                    </div>
+                                    <div className="text-left">0 weTH</div>
+                                  </div>
+                                </div>
+
+                                <a
+                                    className="nav-link nav-dark-button dd"
+                                    href="/#"
+                                    onClick={() => setCoinConverp(true)}
+                                >
+                                  <svg
+                                      width="14"
+                                      height="12"
+                                      viewBox="0 0 14 12"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                        fillRule="evenodd"
+                                        clipRule="evenodd"
+                                        d="M6.02452 4.24267L6.96719 3.3L3.66719 0L0.367188 3.3L1.31052 4.24267L3.00052 2.552V11.3333H4.33385V2.552L6.02452 4.24267ZM10.3352 12.0001L13.6352 8.70008L12.6925 7.75741L11.0018 9.44808V0.666748H9.66849L9.66916 9.44808L7.97782 7.75741L7.03516 8.70008L10.3352 12.0001Z"
+                                        fill="black"
+                                    />
+                                  </svg>
+                                </a>
+                              </div>
+
+                              <div className="add-funds-with-btn">
+                                Add funds with
+                                <span>
                                 <img src={McdoIcon} alt={""} />
                               </span>
+                              </div>
                             </div>
-                          </div>
 
-                          {/* <div className="d-flex justify-content-between mb-3 mt-3">
+                            {/* <div className="d-flex justify-content-between mb-3 mt-3">
                                                         <Link to="/Profile"> <h6>My Profile</h6></Link>
                                                     </div>
 
@@ -1143,37 +1172,37 @@ const Navbar = (props) => {
                                                         <Link to="/CreateCollectibleEdit"><h6>Edit Profile</h6></Link>
                                                     </div> */}
 
-                          <div className="d-flex justify-content-between align-items-center mb-3">
-                            <h6 className="m-0">Manage funds</h6>
-                          </div>
+                            <div className="d-flex justify-content-between align-items-center mb-3">
+                              <h6 className="m-0">Manage funds</h6>
+                            </div>
 
-                          <div className="d-flex justify-content-between mb-3">
-                            <h6>Autoplay</h6>
-                            <div className="custom-control custom-switch">
-                              <input
-                                type="checkbox"
-                                className="custom-control-input"
-                                id="profileSwitch1"
-                              />
-                              <label
-                                className="custom-control-label"
-                                htmlFor="profileSwitch1"
-                              />
+                            <div className="d-flex justify-content-between mb-3">
+                              <h6>Autoplay</h6>
+                              <div className="custom-control custom-switch">
+                                <input
+                                    type="checkbox"
+                                    className="custom-control-input"
+                                    id="profileSwitch1"
+                                />
+                                <label
+                                    className="custom-control-label"
+                                    htmlFor="profileSwitch1"
+                                />
+                              </div>
+                            </div>
+
+                            <div className="d-flex justify-content-between">
+                              <h6
+                                  onClick={() => {
+                                    signOut();
+                                  }}
+                              >
+                                Sign out
+                              </h6>
                             </div>
                           </div>
-
-                          <div className="d-flex justify-content-between">
-                            <h6
-                              onClick={() => {
-                                signOut();
-                              }}
-                            >
-                              Sign out
-                            </h6>
-                          </div>
-                        </div>
                       )}
-                    </a>
+                    </>
                   ) : (
                     ""
                   )}

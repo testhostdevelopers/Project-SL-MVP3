@@ -235,12 +235,12 @@ const User = (props) => {
         .then((res) => {
           setUdata(res.data.data);
         });
-      userCollectibleListFunc();
-      userCollectionListFunc();
-      // userLikedCollections();
-      // userLikedCollectible();
-      getFollowerUsers();
-      getFollowingUsers();
+      userCollectibleListFunc().then(r => {});
+      userCollectionListFunc().then(r => {});
+      // userLikedCollections().then(r => {});
+      // userLikedCollectible().then(r => {});
+      getFollowerUsers().then(r => {});
+      getFollowingUsers().then(r => {});
     }
   }, []);
 

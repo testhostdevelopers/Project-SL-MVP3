@@ -750,8 +750,7 @@ const CreateCollectibleSingle = () => {
                   <div className="mt-2">
                     <small>
                       <span className="color-gray">
-                        Text that will be used in VoiceOver for people with
-                        disabilities.
+                        Text that will be used in VoiceOver for people with disabilities.
                       </span>
                     </small>
                   </div>
