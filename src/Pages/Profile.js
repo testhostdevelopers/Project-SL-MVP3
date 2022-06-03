@@ -679,7 +679,7 @@ const Profile = (props) => {
                     </div>
                   </TabPane>
                   <TabPane tab="Activity" key="7">
-                    <Activity page={'Profile'} />
+                    <Activity page={'User'} userId={udata._id} />
                   </TabPane>
                   <TabPane tab={'Following (' + userFollowingUsersList.length + ')'} key="8">
                     <div className="topSeller">

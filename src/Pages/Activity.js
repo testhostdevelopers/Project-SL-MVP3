@@ -9,7 +9,7 @@ import { Config } from '../utils/config';
 // const { TabPane } = Tabs;
 
 const Activity = (props) => {
-  let { page = 'Activity' } = props;
+  let {page = 'Activity', collectionId = '', userId = ''} = props;
   // console.log('page', page);
   var apiToken = sessionStorage.getItem("apiToken");
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
@@ -45,9 +45,12 @@ const Activity = (props) => {
     let API_URL = '';
     if (page === 'Activity') {
       API_URL = `${Config.baseURL}v1/transaction/gettransactions/` + offset + '/' + limit;
-
-    } else if (page === 'Profile') {
-      API_URL = `${Config.baseURL}v1/transaction/getusertransactions/` + offset + '/' + limit;
+    }
+    else if (page === 'User') {
+      API_URL = `${Config.baseURL}v1/transaction/getusertransactions/` + userId + `/` + offset + '/' + limit;
+    }
+    else if (page === 'Collection') {
+      API_URL = `${Config.baseURL}v1/transaction/getcollectiontransactions/` + collectionId + `/` + offset + '/' + limit;
     }
     if (API_URL.length) {
       await axios
@@ -91,7 +94,7 @@ const Activity = (props) => {
   };
   const loadMore = async () => {
     // console.log('offset', offset, 'limit', limit);
-    gettransactions();
+    await gettransactions();
     findFilter(filterValue);
   };
   const variants = {

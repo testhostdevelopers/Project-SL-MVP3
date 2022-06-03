@@ -293,7 +293,7 @@ const Search = () => {
                               </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                                 <h3>Not items found</h3>
                                 <span className="color-gray">
-                                  Come back soon or browse the items on our marketplace.
+                                  Come back soon or browse the items on our marketplace
                                 </span>
                                 <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
                                   Browse marketplace
