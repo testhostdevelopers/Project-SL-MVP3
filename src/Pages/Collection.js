@@ -83,7 +83,7 @@ const Collection = (props) => {
           }
         });
         setUserCollectionList(response.data.data);
-        console.log('setUserCollectionList', response.data.data);
+        // console.log('setUserCollectionList', response.data.data);
       })
       .catch(err => {
         console.log(err);
@@ -173,7 +173,6 @@ const Collection = (props) => {
 
                         <ProfileLinks id={userdata._id} />
                       </div>
-
                       <Dropdown overlay={singleoption}>
                         <button className="bg-white border-gray select ">
                           <svg

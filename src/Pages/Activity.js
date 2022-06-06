@@ -20,6 +20,7 @@ const Activity = (props) => {
   const [offset, setOffset] = useState(0);
   const limit = 10;
   const [showTransactionData, setShowTransactionData] = useState(true);
+  const [LoadMore, setShowLoadMore] = useState(false);
   const [filterTransactionData, setFilterTransactionData] = useState([]);
   const resetFilterValue = async () => {
     findFilter('All');
@@ -42,6 +43,7 @@ const Activity = (props) => {
         });
   };
   const gettransactions = async (page) => {
+    // console.log('page', page);
     let API_URL = '';
     if (page === 'Activity') {
       API_URL = `${Config.baseURL}v1/transaction/gettransactions/` + offset + '/' + limit;
@@ -70,6 +72,11 @@ const Activity = (props) => {
             setTransactionData(transactionData => [...transactionData, ...response.data.data]);
             // console.log('transactionData', transactionData);
           }
+          if(parseInt(response.data.data.length) === limit) {
+            setShowLoadMore(true);
+          } else {
+            setShowLoadMore(false);
+          }
         })
         .catch(err => {
           console.log(err);
@@ -94,7 +101,7 @@ const Activity = (props) => {
   };
   const loadMore = async () => {
     // console.log('offset', offset, 'limit', limit);
-    await gettransactions();
+    await gettransactions(page);
     findFilter(filterValue);
   };
   const variants = {
@@ -191,14 +198,15 @@ const Activity = (props) => {
                               ))}
                             </>
                         }
-                        <div className="d-flex">
-                          <button
-                              className="btn btn-primary"
-                              onClick={loadMore}
-                          >
-                            Load More
-                          </button>
-                        </div>
+                        { LoadMore ?
+                            <div className="d-flex">
+                              <button
+                                  className="btn btn-primary"
+                                  onClick={loadMore}
+                              >
+                                Load More
+                              </button>
+                            </div> : <></> }
                       </div>
                       <div className="col-sm-12 col-lg-4 mb-4 activity-number-card-right">
                         <div className="filters-listing-reset">

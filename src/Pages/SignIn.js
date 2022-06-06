@@ -40,7 +40,7 @@ const connectStore = async (pkey, wal, con) => {
             walletToken: pkey,
           })
           .then((r) => {
-            sessionStorage.setItem("apiToken", r.data.data.apiToken);
+            sessionStorage.setItem("apiToken", JSON.stringify(r.data.data.userdata.apiToken));
             sessionStorage.setItem("userdata", JSON.stringify(r.data.data.userdata));
             window.location.reload(false);
           });
