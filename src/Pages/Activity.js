@@ -108,9 +108,9 @@ const Activity = (props) => {
     let title = '';
     if (activity?.filter?.title === 'Like' || activity?.filter?.title === 'UnLike' ) {
       if (activity.collectible_id) {
-        title = activity.name + ' ' + activity?.collectible_id?.title
+        title = activity.user_id?.display_name + ' ' + activity.name + ' ' + activity?.collectible_id?.title
       } else if (activity.collection_id) {
-        title = activity.name + ' ' + activity?.collection_id?.title
+        title = activity.user_id?.display_name + ' ' + activity.name + ' ' + activity?.collection_id?.title
       }
     return title;
     } else if (activity?.filter?.title === 'Following') {
