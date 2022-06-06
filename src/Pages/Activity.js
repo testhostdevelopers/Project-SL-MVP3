@@ -104,6 +104,20 @@ const Activity = (props) => {
     await gettransactions(page);
     findFilter(filterValue);
   };
+  const makeTitle = (activity) => {
+    let title = '';
+    if (activity?.filter?.title === 'Like' || activity?.filter?.title === 'UnLike' ) {
+      if (activity.collectible_id) {
+        title = activity.name + ' ' + activity?.collectible_id?.title
+      } else if (activity.collection_id) {
+        title = activity.name + ' ' + activity?.collection_id?.title
+      }
+    return title;
+    } else if (activity?.filter?.title === 'Following') {
+      title = activity.user_id.display_name + ' ' + activity.name
+    }
+    return title;
+  };
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -176,8 +190,8 @@ const Activity = (props) => {
                                   <ActivityNumberCard
                                       activitynumbercardimg={ActivityCard}
                                       FillLabel={FillLabel}
-                                      title={single.collectible_id !== undefined ? single.collectible_id.title : single.user_id.display_name }
-                                      filter={single.filter.title + ' ' + single.name? single.name : ''}
+                                      title={makeTitle(single)}
+                                      filter={single.filter.title}
                                       // pixelpunks="pixelpunks"
                                       // eth={single.collectible_id !== undefined ? single.collectible_id.price + ' ETH' : ' '}
                                       seenstatus={new Date(single.createdAt).toLocaleString()}
@@ -188,8 +202,8 @@ const Activity = (props) => {
                                   <ActivityNumberCard
                                       activitynumbercardimg={ActivityCard}
                                       FillLabel={FillLabel}
-                                      title={single.collectible_id !== undefined ? single.collectible_id.title : single.user_id.display_name }
-                                      filter={single.filter.title + ' ' + single.name? single.name : ''}
+                                      title={makeTitle(single)}
+                                      filter={single.filter.title}
                                       info={single.info !== undefined ? single.info : '' }
                                       // pixelpunks="pixelpunks"
                                       // eth={single.collectible_id.price + " ETH"}
