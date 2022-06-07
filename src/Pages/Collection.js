@@ -83,7 +83,7 @@ const Collection = (props) => {
           }
         });
         setUserCollectionList(response.data.data);
-        console.log('setUserCollectionList', response.data.data);
+        // console.log('setUserCollectionList', response.data.data);
       })
       .catch(err => {
         console.log(err);
@@ -173,7 +173,6 @@ const Collection = (props) => {
 
                         <ProfileLinks id={userdata._id} />
                       </div>
-
                       <Dropdown overlay={singleoption}>
                         <button className="bg-white border-gray select ">
                           <svg
@@ -316,7 +315,12 @@ const Collection = (props) => {
                             liked={SingleCollection.like}
                             Coverimg={"https://"+SingleCollection.img_path}
                             heartcount={SingleCollection.likes}
-                            time={SingleCollection.createdAt}
+                            time={new Date(SingleCollection.createdAt).toLocaleString('en-US', {
+                              weekday: 'long',
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric'
+                            })}
                             id={SingleCollection._id}
                             title={SingleCollection.title}
                             WETH={SingleCollection.price}

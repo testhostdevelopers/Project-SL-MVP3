@@ -20,6 +20,7 @@ const Activity = (props) => {
   const [offset, setOffset] = useState(0);
   const limit = 10;
   const [showTransactionData, setShowTransactionData] = useState(true);
+  const [LoadMore, setShowLoadMore] = useState(false);
   const [filterTransactionData, setFilterTransactionData] = useState([]);
   const resetFilterValue = async () => {
     findFilter('All');
@@ -42,6 +43,7 @@ const Activity = (props) => {
         });
   };
   const gettransactions = async (page) => {
+    // console.log('page', page);
     let API_URL = '';
     if (page === 'Activity') {
       API_URL = `${Config.baseURL}v1/transaction/gettransactions/` + offset + '/' + limit;
@@ -70,6 +72,11 @@ const Activity = (props) => {
             setTransactionData(transactionData => [...transactionData, ...response.data.data]);
             // console.log('transactionData', transactionData);
           }
+          if(parseInt(response.data.data.length) === limit) {
+            setShowLoadMore(true);
+          } else {
+            setShowLoadMore(false);
+          }
         })
         .catch(err => {
           console.log(err);
@@ -94,8 +101,21 @@ const Activity = (props) => {
   };
   const loadMore = async () => {
     // console.log('offset', offset, 'limit', limit);
-    await gettransactions();
+    await gettransactions(page);
     findFilter(filterValue);
+  };
+  const makeTitle = (activity) => {
+    let title = '';
+    if (activity?.filter?.title === 'Like' || activity?.filter?.title === 'UnLike' ) {
+      if (activity.collectible_id) {
+        title = activity.user_id?.display_name + ' ' + activity.name + ' ' + activity?.collectible_id?.title
+      } else if (activity.collection_id) {
+        title = activity.user_id?.display_name + ' ' + activity.name + ' ' + activity?.collection_id?.title
+      }
+    } else if (activity?.filter?.title === 'Following') {
+      title = activity.user_id.display_name + ' ' + activity.name
+    }
+    return title;
   };
   const variants = {
     hidden: { opacity: 0 },
@@ -169,11 +189,19 @@ const Activity = (props) => {
                                   <ActivityNumberCard
                                       activitynumbercardimg={ActivityCard}
                                       FillLabel={FillLabel}
-                                      title={single.collectible_id !== undefined ? single.collectible_id.title : single.user_id.display_name }
-                                      filter={single.filter.title + ' ' + single.name? single.name : ''}
+                                      title={makeTitle(single)}
+                                      filter={single.filter.title}
                                       // pixelpunks="pixelpunks"
                                       // eth={single.collectible_id !== undefined ? single.collectible_id.price + ' ETH' : ' '}
-                                      seenstatus={new Date(single.createdAt).toLocaleString()}
+                                      seenstatus={new Date(single.createdAt).toLocaleString('en-US', {
+                                        weekday: 'long',
+                                        year: 'numeric',
+                                        month: 'long',
+                                        hour: 'numeric',
+                                        minute: 'numeric',
+                                        second: 'numeric',
+                                        day: 'numeric'
+                                      })}
                                   />
                               ))}
                             </> : <>
@@ -181,24 +209,33 @@ const Activity = (props) => {
                                   <ActivityNumberCard
                                       activitynumbercardimg={ActivityCard}
                                       FillLabel={FillLabel}
-                                      title={single.collectible_id !== undefined ? single.collectible_id.title : single.user_id.display_name }
-                                      filter={single.filter.title + ' ' + single.name? single.name : ''}
+                                      title={makeTitle(single)}
+                                      filter={single.filter.title}
                                       info={single.info !== undefined ? single.info : '' }
                                       // pixelpunks="pixelpunks"
                                       // eth={single.collectible_id.price + " ETH"}
-                                      seenstatus={new Date(single.createdAt).toLocaleString()}
+                                      seenstatus={new Date(single.createdAt).toLocaleString('en-US', {
+                                        weekday: 'long',
+                                        year: 'numeric',
+                                        month: 'long',
+                                        hour: 'numeric',
+                                        minute: 'numeric',
+                                        second: 'numeric',
+                                        day: 'numeric'
+                                      })}
                                   />
                               ))}
                             </>
                         }
-                        <div className="d-flex">
-                          <button
-                              className="btn btn-primary"
-                              onClick={loadMore}
-                          >
-                            Load More
-                          </button>
-                        </div>
+                        { LoadMore ?
+                            <div className="d-flex">
+                              <button
+                                  className="btn btn-primary"
+                                  onClick={loadMore}
+                              >
+                                Load More
+                              </button>
+                            </div> : <></> }
                       </div>
                       <div className="col-sm-12 col-lg-4 mb-4 activity-number-card-right">
                         <div className="filters-listing-reset">
