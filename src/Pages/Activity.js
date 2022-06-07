@@ -112,7 +112,6 @@ const Activity = (props) => {
       } else if (activity.collection_id) {
         title = activity.user_id?.display_name + ' ' + activity.name + ' ' + activity?.collection_id?.title
       }
-    return title;
     } else if (activity?.filter?.title === 'Following') {
       title = activity.user_id.display_name + ' ' + activity.name
     }
