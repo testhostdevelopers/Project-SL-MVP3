@@ -193,7 +193,15 @@ const Activity = (props) => {
                                       filter={single.filter.title}
                                       // pixelpunks="pixelpunks"
                                       // eth={single.collectible_id !== undefined ? single.collectible_id.price + ' ETH' : ' '}
-                                      seenstatus={new Date(single.createdAt).toLocaleString()}
+                                      seenstatus={new Date(single.createdAt).toLocaleString('en-US', {
+                                        weekday: 'long',
+                                        year: 'numeric',
+                                        month: 'long',
+                                        hour: 'numeric',
+                                        minute: 'numeric',
+                                        second: 'numeric',
+                                        day: 'numeric'
+                                      })}
                                   />
                               ))}
                             </> : <>
@@ -206,7 +214,15 @@ const Activity = (props) => {
                                       info={single.info !== undefined ? single.info : '' }
                                       // pixelpunks="pixelpunks"
                                       // eth={single.collectible_id.price + " ETH"}
-                                      seenstatus={new Date(single.createdAt).toLocaleString()}
+                                      seenstatus={new Date(single.createdAt).toLocaleString('en-US', {
+                                        weekday: 'long',
+                                        year: 'numeric',
+                                        month: 'long',
+                                        hour: 'numeric',
+                                        minute: 'numeric',
+                                        second: 'numeric',
+                                        day: 'numeric'
+                                      })}
                                   />
                               ))}
                             </>

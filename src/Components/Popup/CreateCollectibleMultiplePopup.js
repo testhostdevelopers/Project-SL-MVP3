@@ -150,6 +150,7 @@ const CreateCollectibleMultiplePopup = (props) => {
                 setCollectibleData({...collectibleData, symbol: e.target.value});
                 // console.log('collectibleData', collectibleData);
               }}
+              required={true}
               className="w-100"
             />
           </div>

@@ -315,7 +315,12 @@ const Collection = (props) => {
                             liked={SingleCollection.like}
                             Coverimg={"https://"+SingleCollection.img_path}
                             heartcount={SingleCollection.likes}
-                            time={SingleCollection.createdAt}
+                            time={new Date(SingleCollection.createdAt).toLocaleString('en-US', {
+                              weekday: 'long',
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric'
+                            })}
                             id={SingleCollection._id}
                             title={SingleCollection.title}
                             WETH={SingleCollection.price}
