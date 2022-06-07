@@ -115,7 +115,7 @@ const CreateCollectibleMultiplePopup = (props) => {
             <h5>
               <b>Display name</b>
             </h5>{" "}
-            <span className="color-gray ml-2">(Optional)</span>
+            <span className="color-gray ml-2">(Token name cannot be changed)</span>
           </div>
 
           <div className="pt-2 pb-2 border-bottom d-flex justify-content-between prize-single-collectible">
@@ -129,9 +129,9 @@ const CreateCollectibleMultiplePopup = (props) => {
               className="w-100"
             />
           </div>
-          <div className="color-gray">
+          {/*<div className="color-gray">
             <small>(Token name cannot be changed)</small>
-          </div>
+          </div>*/}
         </div>
 
         <div className="mt-2">
