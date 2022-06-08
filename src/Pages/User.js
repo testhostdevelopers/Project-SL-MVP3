@@ -26,18 +26,14 @@ const User = (props) => {
   const currentUserData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [reportPopup, setReportPopup] = useState(false);
   const [followButtonText, setFollowButtonText] = useState('Follow');
-  // console.log('currentUserData.following.indexOf(user_id)',currentUserData.following.indexOf(user_id));
   if (currentUserData.following.indexOf(user_id) >= 0) {
     // setFollowButtonText("Unfollow");
   }
   let [udata, setUdata] = useState({});
-  const [buttonText, setButtonText] = useState("Add Cover");
   let [userCollectibleList, setUserCollectibleList] = useState([]);
   let [userCollectionList, setUserCollectionList] = useState([]);
   let [userOwnedCollectibleList, setUserOwnedCollectibleList] = useState([]);
   let [userOnSaleCollectibleList, setUserOnSaleCollectibleList] = useState([]);
-  // let [userLikedCollectionsList, setUserLikedCollectionsList] = useState([]);
-  // let [userLikedCollectibleList, setUserLikedCollectibleList] = useState([]);
   let [userFollowerUsersList, setUserFollowerUsersList] = useState([]);
   let [userFollowingUsersList, setUserFollowingUsersList] = useState([]);
   const getFollowerUsers = async () => {
@@ -50,7 +46,14 @@ const User = (props) => {
           Authorization: `Bearer ${apiToken}`,
         }
       })
-      .then(response => {
+      .then(async response => {
+        await response.data.data.forEach((element) => {
+          if (element.followers.includes(udata._id)) {
+            element.isImFollowing = true;
+          } else {
+            element.isImFollowing = false;
+          }
+        });
         setUserFollowerUsersList(response.data.data);
       })
       .catch(err => {
@@ -121,55 +124,6 @@ const User = (props) => {
           console.log(err);
         });
   };
-  /*const userLikedCollections = async () => {
-    await axios
-      .get(`${Config.baseURL}v1/collection/getuserlikedcollectionslist`, {
-          data: {
-            user_id: userData._id
-          },
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          }
-        })
-      .then(response => {
-        response.data.data.forEach((element) => {
-          if (element.likedBy.includes(userData._id)) {
-            element.like = true;
-          } else {
-            element.like = false;
-          }
-        });
-        setUserLikedCollectionsList(response.data.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };*/
-  /*const userLikedCollectible = async () => {
-    await axios
-      .get(`${Config.baseURL}v1/collectible/getuserlikedcollectiblelist`, {
-          data: {
-            user_id: userData._id
-          },
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          }
-        })
-      .then(response => {
-        response.data.data.forEach((element) => {
-          if (element.likedBy.includes(userData._id)) {
-            element.like = true;
-          } else {
-            element.like = false;
-          }
-        });
-        setUserLikedCollectibleList(response.data.data);
-        // console.log('setUserLikedCollectibleList', response.data.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };*/
   const userCollectionListFunc = async () => {
     await axios
       .get(`${Config.baseURL}v1/collection/getusercollectionlist`, {
@@ -225,12 +179,10 @@ const User = (props) => {
         .then((res) => {
           setUdata(res.data.data);
         });
-      userCollectibleListFunc();
-      userCollectionListFunc();
-      // userLikedCollections();
-      // userLikedCollectible();
-      getFollowerUsers();
-      getFollowingUsers();
+      userCollectibleListFunc().then(r => {});
+      userCollectionListFunc().then(r => {});
+      getFollowerUsers().then(r => {});
+      getFollowingUsers().then(r => {});
     }
   }, []);
 
@@ -238,83 +190,11 @@ const User = (props) => {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
-  /*const menu = (
-    <Menu>
-      <Menu.Item>Change Price</Menu.Item>
-      <Menu.Item>Transfer Token</Menu.Item>
-      <Menu.Item>Burn Token</Menu.Item>
-      <Menu.Item onClick={() => setReportPopup(true)}>Report</Menu.Item>
-    </Menu>
-  );*/
   const singleoption = (
     <Menu>
       <Menu.Item onClick={() => setReportPopup(true)}>Report</Menu.Item>
     </Menu>
   );
-
-  const uploadedImage = React.useRef(null);
-  const imageUploader = React.useRef(null);
-  const profileImage = React.useRef(null);
-  const profileUploader = React.useRef(null);
-
-  const handleImageUpload = async (e) => {
-    const ig = e.target.files[0];
-    if (sessionStorage.getItem("apiToken")) {
-      var apiToken = sessionStorage.getItem("apiToken");
-      var formData = new FormData();
-      if (e.target.id === "uploadcoverphoto") {
-        formData.append("cover_img_url", ig);
-      }
-      if (e.target.id === "profilephoto") {
-        formData.append("profile_img_url", ig);
-      }
-      await axios
-        .put(`${Config.baseURL}v1/user/update`, formData, {
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          },
-        })
-        .then((res) => {
-          // console.log(res)
-        });
-      const [file] = e.target.files;
-      if (file) {
-        if (e.target.id === "uploadcoverphoto") {
-          const reader = new FileReader();
-          const { current } = uploadedImage;
-          current.file = file;
-          reader.onload = (e) => {
-            current.src = e.target.result;
-            if (e.target.result) {
-              setButtonText("Edit Cover");
-            }
-          };
-          reader.readAsDataURL(file);
-        }
-        if (e.target.id === "profilephoto") {
-          const reader = new FileReader();
-          const {current} = profileImage;
-          current.file = file;
-          reader.onload = (e) => {
-            current.src = e.target.result;
-          };
-          reader.readAsDataURL(file);
-        }
-      }
-    }
-  };
-  /*const handleprofilepicUploadr = async (e) => {
-    const [file] = e.target.files;
-    if (file) {
-        const reader = new FileReader();
-        const { current } = profileImage;
-        current.file = file;
-        reader.onload = e => {
-            current.src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
-  };*/
 
   return (
     <>
@@ -331,29 +211,17 @@ const User = (props) => {
               <header>
                 <div className="position-relative">
                   <div className="border p-3 gray-color profile-pictures-cover">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleImageUpload}
-                      ref={imageUploader}
-                      id="uploadcoverphoto"
-                      style={{
-                        display: "none",
-                      }}
-                    />
                     <div
                       className="coverpic"
-                      onClick={() => imageUploader.current.click()}
                     >
                       <img
-                        alt={""}
+                        alt={"cover pic"}
                         id="mydat"
                         src={
                           udata == null
                             ? ""
                             : `${Config.baseURL}` + udata.cover_img_url
                         }
-                        ref={uploadedImage}
                         style={{
                           width: "100%",
                           height: "100%",
@@ -361,41 +229,20 @@ const User = (props) => {
                         }}
                       />
                     </div>
-
-                    <label
-                      htmlFor="uploadcoverphoto"
-                      className="bg-white border-gray edit-profile"
-                    >
-                      {" "}
-                      {buttonText}
-                    </label>
                   </div>
 
                   <div className="profile-info-position">
                     <div className="profile-user-pictures">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                        ref={profileUploader}
-                        id="profilephoto"
-                        style={{
-                          display: "none",
-                        }}
-                      />
                       <div
                         className="profile-pic"
-                        onClick={() => profileUploader.current.click()}
                       >
-                        <label>Add Profile Picture</label>
                         <img
-                          alt={""}
+                          alt={"profile-pic"}
                           src={
                             udata == null
                               ? ""
                               : `${Config.baseURL}` + udata.profile_img_url
                           }
-                          ref={profileImage}
                           style={{
                             width: "100%",
                             height: "100%",
@@ -409,7 +256,6 @@ const User = (props) => {
                         <b>{udata == null ? "" : udata.display_name}</b>
                       </h3>
                     </div>
-
                     <div className="profile-usr-info">
                       <p>
                         {udata == null ? "" : udata.bio}{" "}
@@ -432,7 +278,6 @@ const User = (props) => {
                         </span>
                       </div>
                     </div>
-
                     <div className="mt-4 d-flex justify-content-between align-items-center">
                       <button className="bg-white border-gray edit-profile" onClick={() => {
                         followButton();
@@ -614,9 +459,6 @@ const User = (props) => {
                         </div>}
                     </div>
                   </TabPane>
-                  {/*<TabPane tab="Activity" key="7">
-                    <Activitytab />
-                  </TabPane>*/}
                   <TabPane tab={'Following (' + userFollowingUsersList.length + ')'} key="8">
                     <div className="topSeller">
                       <div className="w-100 d-flex justify-content-end">
@@ -664,7 +506,7 @@ const User = (props) => {
                                   title={SingleUser.display_name}
                                   id={SingleUser._id}
                                   follow={SingleUser.followersCount + ' followers'}
-                                  btnname={SingleUser.isImFollowing ? "Unfollow" : "Follow"}
+                                  btnname={"Unfollow"}
                                 />
                               ))}
                             </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
