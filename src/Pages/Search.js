@@ -29,7 +29,7 @@ const Search = () => {
           headers: {}
         })
         .then(response => {
-          console.log('Search Users List', response.data.data);
+          // console.log('Search Users List', response.data.data);
           if (apiToken) {
             response.data.data.forEach((element) => {
               if (element.followers.includes(udata._id)) {
@@ -51,7 +51,14 @@ const Search = () => {
           headers: {}
         })
         .then(response => {
-          console.log('Search Collectible List', response.data.data);
+          response.data.data.forEach((element) => {
+            if (element.likedBy.includes(udata._id)) {
+              element.like = true;
+            } else {
+              element.like = false;
+            }
+          });
+          // console.log('Search Collectible List', response.data.data);
           setSearchCollectibleList(response.data.data);
         })
         .catch(err => {
@@ -64,6 +71,13 @@ const Search = () => {
           headers: {}
         })
         .then(response => {
+          response.data.data.forEach((element) => {
+            if (element.likedBy.includes(udata._id)) {
+              element.like = true;
+            } else {
+              element.like = false;
+            }
+          });
           console.log('Search Collection List', response.data.data);
           setSearchCollectionList(response.data.data);
         })
@@ -72,7 +86,7 @@ const Search = () => {
         });
   };
   useEffect(() => {
-    console.log(apiToken);
+    // console.log(apiToken);
     getSearchUsers().then(r => {});
     getSearchCollectible().then(r => {});
     getSearchCollection().then(r => {});
@@ -208,7 +222,7 @@ const Search = () => {
                             <>
                               {searchCollectibleList.map((SingleCollection, key) => (
                                 <LiveAuctions
-                                  isCollection={true}
+                                  isCollection={false}
                                   id={SingleCollection._id}
                                   Coverimg={'https://' + SingleCollection.img_path}
                                   liked={SingleCollection.like}

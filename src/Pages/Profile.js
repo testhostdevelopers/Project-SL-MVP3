@@ -122,6 +122,7 @@ const Profile = (props) => {
         }
       )
       .then(response => {
+        // console.log('getuserlikedcollectionslist', response.data.data);
         response.data.data.forEach((element) => {
           if (element.likedBy.includes(udata._id)) {
             element.like = true;
@@ -654,7 +655,7 @@ const Profile = (props) => {
                   </TabPane>
                   <TabPane tab={'Liked Collections (' + userLikedCollectionsList.length + ')'} key="6">
                     <div className="liveAuction proile-liked-filter">
-                      {userLikedCollectibleList.length > 0 ?
+                      {userLikedCollectionsList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                           <div className="row ">
                             {userLikedCollectionsList.map((SingleCollection, key) => (
