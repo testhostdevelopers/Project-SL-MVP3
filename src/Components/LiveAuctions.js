@@ -102,6 +102,8 @@ export default function LiveAuctions({
       {ReportPopups && (
         <ReportPopup
           // setSinglePopup={setSinglePopup}
+          type={isCollection === true ? 'Collection' : 'Collectible'}
+          id={id}
           setReportPopup={setReportPopup}
         />
       )}

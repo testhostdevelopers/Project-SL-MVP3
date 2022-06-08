@@ -7,6 +7,8 @@ export default function HotBids({
   title,
   WETH,
   bid,
+  isCollection = false,
+  id='',
   heartcount,
   Coverimg,
   time,
@@ -42,6 +44,8 @@ export default function HotBids({
     <>
       {ReportPopups && (
         <ReportPopup
+          type={isCollection === true ? 'Collection' : 'Collectible'}
+          id={id}
           // setSinglePopup={setSinglePopup}
           setReportPopup={setReportPopup}
         />

@@ -39,8 +39,8 @@ const Profile = (props) => {
   let [userLikedCollectibleList, setUserLikedCollectibleList] = useState([]);
   let [userHiddenCollectibleList, setUserHiddenCollectibleList] = useState([]);
   let [userOnSaleCollectibleList, setUserOnSaleCollectibleList] = useState([]);
-  let [userFollowerUsersList, setUserFollowerUsersList] = useState([]);
-  let [userFollowingUsersList, setUserFollowingUsersList] = useState([]);
+  let [userFollowerList, setUserFollowerList] = useState([]);
+  let [userFollowingList, setUserFollowingList] = useState([]);
   const getFollowerUsers = async () => {
     await axios
         .get(`${Config.baseURL}v1/user/getFollowerUsers`, {
@@ -51,9 +51,16 @@ const Profile = (props) => {
                 Authorization: `Bearer ${apiToken}`,
               }
             })
-        .then(response => {
-          // console.log('getFollowerUsers', response.data.data);
-          setUserFollowerUsersList(response.data.data);
+        .then(async response => {
+          await response.data.data.forEach((element) => {
+            if (element.followers.includes(udata._id)) {
+              element.isImFollowing = true;
+            } else {
+              element.isImFollowing = false;
+            }
+          });
+          // console.log('getFollowerUsers', response.data.data)
+          setUserFollowerList(response.data.data);
         })
         .catch(err => {
           console.log(err);
@@ -72,7 +79,7 @@ const Profile = (props) => {
         )
         .then(response => {
           // console.log('getFollowingUsers', response.data.data);
-          setUserFollowingUsersList(response.data.data);
+          setUserFollowingList(response.data.data);
         })
         .catch(err => {
           console.log(err);
@@ -115,6 +122,7 @@ const Profile = (props) => {
         }
       )
       .then(response => {
+        // console.log('getuserlikedcollectionslist', response.data.data);
         response.data.data.forEach((element) => {
           if (element.likedBy.includes(udata._id)) {
             element.like = true;
@@ -148,7 +156,7 @@ const Profile = (props) => {
           }
         });
         setUserOwnedCollectibleList(response.data.data);
-        console.log('setUserOwnedCollectibleList', response.data.data);
+        // console.log('setUserOwnedCollectibleList', response.data.data);
       })
       .catch(err => {
         console.log(err);
@@ -200,7 +208,7 @@ const Profile = (props) => {
           }
         });
         setUserCollectionList(response.data.data);
-        // console.log('setUserCollectionList', response.data.data);
+        // console.log('setUserCollectionList',response.data.data);
       })
       .catch(err => {
         console.log(err);
@@ -647,7 +655,7 @@ const Profile = (props) => {
                   </TabPane>
                   <TabPane tab={'Liked Collections (' + userLikedCollectionsList.length + ')'} key="6">
                     <div className="liveAuction proile-liked-filter">
-                      {userLikedCollectibleList.length > 0 ?
+                      {userLikedCollectionsList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                           <div className="row ">
                             {userLikedCollectionsList.map((SingleCollection, key) => (
@@ -681,7 +689,7 @@ const Profile = (props) => {
                   <TabPane tab="Activity" key="7">
                     <Activity page={'User'} userId={udata._id} />
                   </TabPane>
-                  <TabPane tab={'Following (' + userFollowingUsersList.length + ')'} key="8">
+                  <TabPane tab={'Following (' + userFollowingList.length + ')'} key="8">
                     <div className="topSeller">
                       <div className="w-100 d-flex justify-content-end">
                         <button className="profile-activity-filter-mobile d-web-none">
@@ -719,16 +727,16 @@ const Profile = (props) => {
 
                       <div className="topSellerContent following-profile-topSellerContent">
                         <div className="row">
-                          {userFollowingUsersList.length > 0 ?
+                          {userFollowingList.length > 0 ?
                             <div className="d-flex col-lg-12 activity ">
-                              {userFollowingUsersList.map((SingleUser, key) => (
+                              {userFollowingList.map((SingleUser, key) => (
                                 <TopCard
                                   topcoverimg={SingleUser.cover_img_url}
                                   topuserimg={SingleUser.profile_img_url}
                                   title={SingleUser.display_name}
                                   id={SingleUser._id}
                                   follow={SingleUser.followersCount + ' followers'}
-                                  btnname={SingleUser.isImFollowing ? "Unfollow" : "Follow"}
+                                  btnname={"Unfollow"}
                                 />
                               ))}
                             </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
@@ -745,7 +753,7 @@ const Profile = (props) => {
                       </div>
                     </div>
                   </TabPane>
-                  <TabPane tab={'Followers (' + userFollowerUsersList.length + ')'} key="9">
+                  <TabPane tab={'Followers (' + userFollowerList.length + ')'} key="9">
                     <div className="topSeller">
                       <div className="w-100 d-flex justify-content-end">
                         <button className="profile-activity-filter-mobile d-web-none">
@@ -783,9 +791,9 @@ const Profile = (props) => {
 
                       <div className="topSellerContent following-profile-topSellerContent">
                         <div className="row">
-                          {userFollowerUsersList.length > 0 ?
+                          {userFollowerList.length > 0 ?
                             <div className="d-flex col-lg-12 activity ">
-                              {userFollowerUsersList.map((SingleUser, key) => (
+                              {userFollowerList.map((SingleUser, key) => (
                                 <TopCard
                                   topcoverimg={SingleUser.cover_img_url}
                                   topuserimg={SingleUser.profile_img_url}

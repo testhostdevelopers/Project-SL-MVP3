@@ -115,6 +115,23 @@ const Activity = (props) => {
     } else if (activity?.filter?.title === 'Following') {
       title = activity.user_id.display_name + ' ' + activity.name
     }
+    if (title === '') {
+      title = activity.name;
+    }
+    return title;
+  };
+  const img = (activity) => {
+    // console.log('activity', activity);
+    let title = ActivityCard;
+    if (activity.collectible_id) {
+      title = "https://" + activity.collectible_id.img_path
+    }
+    else if (activity.collection_id) {
+      title = activity.collection_id.main_img
+    }
+    else if (activity.followed_user_id) {
+      title = `${Config.baseURL}` + activity.followed_user_id.profile_img_url
+    }
     return title;
   };
   const variants = {
@@ -184,48 +201,48 @@ const Activity = (props) => {
                           {error_data}
                         </h5>
                         {showTransactionData > 0 ?
-                            <>
-                              {transactionData.map((single) => (
-                                  <ActivityNumberCard
-                                      activitynumbercardimg={ActivityCard}
-                                      FillLabel={FillLabel}
-                                      title={makeTitle(single)}
-                                      filter={single.filter.title}
-                                      // pixelpunks="pixelpunks"
-                                      // eth={single.collectible_id !== undefined ? single.collectible_id.price + ' ETH' : ' '}
-                                      seenstatus={new Date(single.createdAt).toLocaleString('en-US', {
-                                        weekday: 'long',
-                                        year: 'numeric',
-                                        month: 'long',
-                                        hour: 'numeric',
-                                        minute: 'numeric',
-                                        second: 'numeric',
-                                        day: 'numeric'
-                                      })}
-                                  />
-                              ))}
-                            </> : <>
-                              {filterTransactionData.map((single) => (
-                                  <ActivityNumberCard
-                                      activitynumbercardimg={ActivityCard}
-                                      FillLabel={FillLabel}
-                                      title={makeTitle(single)}
-                                      filter={single.filter.title}
-                                      info={single.info !== undefined ? single.info : '' }
-                                      // pixelpunks="pixelpunks"
-                                      // eth={single.collectible_id.price + " ETH"}
-                                      seenstatus={new Date(single.createdAt).toLocaleString('en-US', {
-                                        weekday: 'long',
-                                        year: 'numeric',
-                                        month: 'long',
-                                        hour: 'numeric',
-                                        minute: 'numeric',
-                                        second: 'numeric',
-                                        day: 'numeric'
-                                      })}
-                                  />
-                              ))}
-                            </>
+                          <>
+                            {transactionData.map((single) => (
+                              <ActivityNumberCard
+                                activitynumbercardimg={img(single)}
+                                FillLabel={FillLabel}
+                                title={makeTitle(single)}
+                                filter={single.filter.title}
+                                // pixelpunks="pixelpunks"
+                                // eth={single.collectible_id !== undefined ? single.collectible_id.price + ' ETH' : ' '}
+                                seenstatus={new Date(single.createdAt).toLocaleString('en-US', {
+                                  weekday: 'long',
+                                  year: 'numeric',
+                                  month: 'long',
+                                  hour: 'numeric',
+                                  minute: 'numeric',
+                                  second: 'numeric',
+                                  day: 'numeric'
+                                })}
+                              />
+                            ))}
+                          </> : <>
+                            {filterTransactionData.map((single) => (
+                              <ActivityNumberCard
+                                activitynumbercardimg={img(single)}
+                                FillLabel={FillLabel}
+                                title={makeTitle(single)}
+                                filter={single.filter.title}
+                                info={single.info !== undefined ? single.info : '' }
+                                // pixelpunks="pixelpunks"
+                                // eth={single.collectible_id.price + " ETH"}
+                                seenstatus={new Date(single.createdAt).toLocaleString('en-US', {
+                                  weekday: 'long',
+                                  year: 'numeric',
+                                  month: 'long',
+                                  hour: 'numeric',
+                                  minute: 'numeric',
+                                  second: 'numeric',
+                                  day: 'numeric'
+                                  })}
+                              />
+                            ))}
+                          </>
                         }
                         { LoadMore ?
                             <div className="d-flex">

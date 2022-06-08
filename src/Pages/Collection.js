@@ -48,7 +48,7 @@ const Collection = (props) => {
   const [filterRange, setFilterRange] = useState(false);
   const [singleCollectionData, setsingleCollectionData] = useState(false);
   let [userCollectionList, setUserCollectionList] = useState([]);
-  const buttonText = "Edit Cover";
+  // const buttonText = "Edit Cover";
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -96,15 +96,6 @@ const Collection = (props) => {
     }
   }, []);
 
-  /*const menu = (
-    <Menu>
-      <Menu.Item>Change Price</Menu.Item>
-      <Menu.Item>Transfer Token</Menu.Item>
-      <Menu.Item>Burn Token</Menu.Item>
-      <Menu.Item onClick={() => setReportPopup(true)}>Report</Menu.Item>
-    </Menu>
-  );*/
-
   const singleoption = (
     <Menu>
       <Menu.Item onClick={() => setReportPopup(true)}>Report</Menu.Item>
@@ -138,17 +129,17 @@ const Collection = (props) => {
                   <div className="border p-3 gray-color profile-pictures-cover">
                     <img src={"https://" + singleCollectionData.main_img} width="100%" alt=""/>
 
-                    <button
+                    {/*<button
                       onClick={() => setUpdateCoverPopup(true)}
                       className="bg-white border-gray edit-profile"
                     >
                       {buttonText}
-                    </button>
+                    </button>*/}
                   </div>
                   <div className="profile-info-position mt-5 ">
                     <div className="mt-3 profile-usr-name-h3-size">
                       <h3>
-                        <b>{singleCollectionData.title}</b>
+                        <b>{singleCollectionData.title} 114</b>
                       </h3>
                       <p className="mt-3" >{singleCollectionData.description}</p>
                     </div>
@@ -319,7 +310,10 @@ const Collection = (props) => {
                               weekday: 'long',
                               year: 'numeric',
                               month: 'long',
-                              day: 'numeric'
+                              day: 'numeric',
+                              hour: 'numeric',
+                              minute: 'numeric',
+                              second: 'numeric',
                             })}
                             id={SingleCollection._id}
                             title={SingleCollection.title}
