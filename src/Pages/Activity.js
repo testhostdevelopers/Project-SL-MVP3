@@ -115,6 +115,9 @@ const Activity = (props) => {
     } else if (activity?.filter?.title === 'Following') {
       title = activity.user_id.display_name + ' ' + activity.name
     }
+    if (title === '') {
+      title = activity.name;
+    }
     return title;
   };
   const img = (activity) => {
