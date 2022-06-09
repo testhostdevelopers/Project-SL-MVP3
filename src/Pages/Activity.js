@@ -106,6 +106,9 @@ const Activity = (props) => {
   };
   const makeTitle = (activity) => {
     let title = '';
+    if (activity.user_id?._id === userData._id) {
+      activity.user_id.display_name = "You";
+    }
     if (activity?.filter?.title === 'Like' || activity?.filter?.title === 'UnLike' ) {
       if (activity.collectible_id) {
         title = activity.user_id?.display_name + ' ' + activity.name + ' ' + activity?.collectible_id?.title
@@ -208,7 +211,7 @@ const Activity = (props) => {
                                 FillLabel={FillLabel}
                                 title={makeTitle(single)}
                                 filter={single.filter.title}
-                                // pixelpunks="pixelpunks"
+                                //pixelpunks="pixelpunks"
                                 // eth={single.collectible_id !== undefined ? single.collectible_id.price + ' ETH' : ' '}
                                 seenstatus={new Date(single.createdAt).toLocaleString('en-US', {
                                   weekday: 'long',

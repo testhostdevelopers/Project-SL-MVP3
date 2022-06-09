@@ -218,8 +218,7 @@ const Buy = () => {
                     <span className="">Highest bid </span>
                     <span className="color-ping">0.066 wETH</span>
                   </b>
-                </div>
-                      : '' }
+                </div> : '' }
                 <p className="mt-4">
                   {singleCollectibleData.description}
                 </p>
@@ -405,7 +404,7 @@ const Buy = () => {
                       role="tabpanel"
                       aria-labelledby="pills-contact-tab"
                     >
-                      <BuyHistory />
+                      <BuyHistory collectibleId={collectibleId} />
                     </div>
                   </div>
                   <div className="tab-pane-bottom-solid" />
