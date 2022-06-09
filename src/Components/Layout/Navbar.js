@@ -31,7 +31,7 @@ const Navbar = (props) => {
       UPubKey.substring(0, 4) + "...." + UPubKey.substring(UPubKey.length - 4);
   }
 
-  const signOut = () => {
+  const signOut = () =>   {
     var wal = localStorage.getItem("wallet");
     if (wal === "phantom") {
       window.solana.disconnect();
@@ -51,7 +51,6 @@ const Navbar = (props) => {
       window.location.reload(false);
     }
   };
-
   const [CoinConverp, setCoinConverp] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme"));
   const [openProfileDropMenu, setOpenProfileDropMenu] = useState(false);
@@ -224,7 +223,7 @@ const Navbar = (props) => {
   const [isSubMenuShow, SetSubMenuShow] = useState(false);
   // const [closeNotification, setCloseNotification] = useState(true);
   const notifications = ["add your email", "subscribe", "go to website"];
-  const [searchItem, SetsearchItem] = useState(false);
+  const [searchItem, SetSearchItem] = useState(false);
   const [notificationsArr, setNotificationsArr] = useState(notifications);
 
   const deleteHandler = (index) => {
@@ -285,7 +284,7 @@ const Navbar = (props) => {
                 <a
                   className="nav-link nav-dark-button"
                   href="/#"
-                  onClick={() => SetsearchItem(!searchItem)}
+                  onClick={() => SetSearchItem(!searchItem)}
                 >
                   {theme === true ? (
                     <img
@@ -885,7 +884,6 @@ const Navbar = (props) => {
                   {location.pathname !== "/" ? (
                     <a
                       className="nav-link d-sm-none d-lg-block nav-dark-button notification-popup-outline position-relative mr-2"
-                      href="/#"
                     >
                       <svg
                         width="16"
@@ -939,8 +937,7 @@ const Navbar = (props) => {
                                   <div className="text-left">{n}</div>
                                   <div className="text-left">
                                     <span className="color-gray">
-                                      to get all the important notifications
-                                      right into your inbox
+                                      to get all the important notifications right into your inbox
                                     </span>
                                   </div>
 

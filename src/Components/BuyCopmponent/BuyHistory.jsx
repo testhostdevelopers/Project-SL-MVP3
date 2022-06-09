@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import userTick from "../../assets/img/custom/userTick.png";
+import { Config } from "../../utils/config";
+import axios from "axios";
 
-const BuyHistory = () => {
-  const buy_history = [
+const BuyHistory = (props) => {
+  let {page = 'Activity', collectibleId = '', userId = ''} = props;
+  const apiToken = sessionStorage.getItem("apiToken");
+  const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
+  /*const buy_history = [
     {
       hist_img: userTick,
       hist_title: "Listen 1 edition for",
       hist_coin: "0.024 ETH",
       hist_who: "By",
-      hist_name: "Mad Scientist",
+      hist_name: "Mad",
       hist_time: "1 hour ago",
     },
     {
@@ -24,7 +29,7 @@ const BuyHistory = () => {
       hist_title: "Listen 5 edition for",
       hist_coin: "0.024 Bitcoin",
       hist_who: "By",
-      hist_name: "Piter",
+      hist_name: "AAA",
       hist_time: "4 hour ago",
     },
     {
@@ -43,25 +48,56 @@ const BuyHistory = () => {
       hist_name: "Robert",
       hist_time: "7 hour ago",
     },
-  ];
+  ];*/
+  const [historyData, setHistory] = useState([]);
+  const getHistory = async () => {
+    if (collectibleId.length > 0) {
+      console.log('collectionId.length', collectibleId.length);
+      await axios
+          .get(`${Config.baseURL}v1/collectible/getcollectiblehistory/` + collectibleId, {
+            data: {
+              user_id: userData._id
+            },
+            headers: {
+              Authorization: `Bearer ${apiToken}`,
+            }
+          })
+          .then(response => {
+            if (response.data.response_code === "API_SUCCESS") {
+              setHistory(response.data.data);
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
+    } else {
+      console.log('length', collectibleId.length);
+    }
+  };
+  useEffect(() => {
+    if (sessionStorage.getItem("apiToken")) {
+      getHistory().then(r => {});
+    }
+  }, []);
 
   return (
     <>
-      {buy_history.map((buy_, hi_) => (
-        <div key={hi_} className="w-100 d-flex justify-content-between mb-3">
+      {historyData.map((singleData, counter) => (
+        <div key={counter} className="w-100 d-flex justify-content-between mb-3">
           <div className="d-flex">
             <div className="user-img">
-              <img src={buy_.hist_img} width="36" alt="" />
+              <img src={"https://" + singleData.collectible_id.img_path} width="36" alt="" />
             </div>
             <div className="ml-4">
               <div>
-                <span className="color-gray"> {buy_.hist_title} </span>
-                <b>{buy_.hist_coin} </b>
+                <span className="color-gray"> {singleData.collectible_id.title} </span>
+                <b>{singleData.collectible_id.price} </b>
               </div>
               <div>
-                <span className="color-gray"> {buy_.hist_who} </span>
-                <b>{buy_.hist_name}</b>
-                <span className="color-gray"> {buy_.hi} </span>
+                <span className="color-orange"><b>{singleData.filter.title} </b> </span>
+                <span className="color-gray">By </span>
+                <b>{singleData.user_id.display_name}</b>
+                {/*<span className="color-gray"> {singleData.collectible_id.hi} </span>*/}
               </div>
             </div>
           </div>

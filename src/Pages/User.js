@@ -195,7 +195,6 @@ const User = (props) => {
       <Menu.Item onClick={() => setReportPopup(true)}>Report</Menu.Item>
     </Menu>
   );
-
   return (
     <>
       {reportPopup && <ReportPopup id={user_id} type={'User'} setReportPopup={setReportPopup} />}
