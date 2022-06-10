@@ -44,11 +44,12 @@ const Collection = (props) => {
   const [filterCategory, setFilterCategory] = useState(false);
   const [filterCollections, setFilterCollections] = useState(false);
   const [filterProperties, setFilterProperties] = useState(false);
+  const [EditCover, setEditCover] = useState(false);
   const [filtersale, setFiltersale] = useState(false);
   const [filterRange, setFilterRange] = useState(false);
   const [singleCollectionData, setsingleCollectionData] = useState(false);
   let [userCollectionList, setUserCollectionList] = useState([]);
-  // const buttonText = "Edit Cover";
+  const buttonText = "Edit Cover";
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -62,8 +63,13 @@ const Collection = (props) => {
         },
       })
       .then((res) => {
-        // console.log( 'collection/getCollection', res.data.data);
-        setsingleCollectionData(res.data.data)
+        // console.log( 'collection info', res.data.data);
+        if (res.data.data) {
+          if (userdata._id === res.data.data.user_id?._id) {
+            setEditCover(true);
+          }
+          setsingleCollectionData(res.data.data)
+        }
       });
   };
   const userCollectionListFunc = async () => {
@@ -128,13 +134,16 @@ const Collection = (props) => {
                 <div className="position-relative">
                   <div className="border p-3 gray-color profile-pictures-cover">
                     <img src={"https://" + singleCollectionData.main_img} width="100%" alt=""/>
-
-                    {/*<button
-                      onClick={() => setUpdateCoverPopup(true)}
-                      className="bg-white border-gray edit-profile"
-                    >
-                      {buttonText}
-                    </button>*/}
+                    {
+                      EditCover === true ? <>
+                        <button
+                          onClick={() => setUpdateCoverPopup(true)}
+                          className="bg-white border-gray edit-profile"
+                        >
+                          {buttonText}
+                        </button>
+                      </> : <></>
+                    }
                   </div>
                   <div className="profile-info-position mt-5 ">
                     <div className="mt-3 profile-usr-name-h3-size">
