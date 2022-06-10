@@ -139,7 +139,7 @@ const Collection = (props) => {
                   <div className="profile-info-position mt-5 ">
                     <div className="mt-3 profile-usr-name-h3-size">
                       <h3>
-                        <b>{singleCollectionData.title} 114</b>
+                        <b>{singleCollectionData.title}</b>
                       </h3>
                       <p className="mt-3" >{singleCollectionData.description}</p>
                     </div>
