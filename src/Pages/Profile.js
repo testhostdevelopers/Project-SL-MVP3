@@ -60,7 +60,7 @@ const Profile = (props) => {
             }
           });
           // console.log('getFollowerUsers', response.data.data)
-          setUserFollowerList(response.data.data);
+          setUserFollowerList(Object.entries(response.data.data));
         })
         .catch(err => {
           console.log(err);
@@ -79,7 +79,7 @@ const Profile = (props) => {
         )
         .then(response => {
           // console.log('getFollowingUsers', response.data.data);
-          setUserFollowingList(response.data.data);
+          setUserFollowingList(Object.entries(response.data.data));
         })
         .catch(err => {
           console.log(err);
@@ -104,7 +104,7 @@ const Profile = (props) => {
             element.like = false;
           }
         });
-        setUserCollectibleList(response.data.data);
+        setUserCollectibleList(Object.entries(response.data.data));
       })
       .catch(err => {
         console.log(err);
@@ -130,7 +130,7 @@ const Profile = (props) => {
             element.like = false;
           }
         });
-        setUserLikedCollectionsList(response.data.data);
+        setUserLikedCollectionsList(Object.entries(response.data.data));
       })
       .catch(err => {
         console.log(err);
@@ -155,7 +155,7 @@ const Profile = (props) => {
             element.like = false;
           }
         });
-        setUserOwnedCollectibleList(response.data.data);
+        setUserOwnedCollectibleList(Object.entries(response.data.data));
         // console.log('setUserOwnedCollectibleList', response.data.data);
       })
       .catch(err => {
@@ -181,7 +181,7 @@ const Profile = (props) => {
             element.like = false;
           }
         });
-        setUserLikedCollectibleList(response.data.data);
+        setUserLikedCollectibleList(Object.entries(response.data.data));
         // console.log('setUserLikedCollectibleList', response.data.data);
       })
       .catch(err => {
@@ -207,7 +207,7 @@ const Profile = (props) => {
             element.like = false;
           }
         });
-        setUserCollectionList(response.data.data);
+        setUserCollectionList(Object.entries(response.data.data));
         // console.log('setUserCollectionList',response.data.data);
       })
       .catch(err => {
@@ -689,7 +689,7 @@ const Profile = (props) => {
                   <TabPane tab="Activity" key="7">
                     <Activity page={'User'} userId={udata._id} />
                   </TabPane>
-                  <TabPane tab={'Following (' + userFollowingList.length + ')'} key="8">
+                  <TabPane tab={'Following (' + (userFollowingList.length) + ')'} key="8">
                     <div className="topSeller">
                       <div className="w-100 d-flex justify-content-end">
                         <button className="profile-activity-filter-mobile d-web-none">
@@ -753,7 +753,7 @@ const Profile = (props) => {
                       </div>
                     </div>
                   </TabPane>
-                  <TabPane tab={'Followers (' + userFollowerList.length + ')'} key="9">
+                  <TabPane tab={'Followers (' + (userFollowerList.length) + ')'} key="9">
                     <div className="topSeller">
                       <div className="w-100 d-flex justify-content-end">
                         <button className="profile-activity-filter-mobile d-web-none">
@@ -788,7 +788,6 @@ const Profile = (props) => {
                           </svg>
                         </button>
                       </div>
-
                       <div className="topSellerContent following-profile-topSellerContent">
                         <div className="row">
                           {userFollowerList.length > 0 ?
@@ -800,7 +799,7 @@ const Profile = (props) => {
                                   title={SingleUser.display_name}
                                   id={SingleUser._id}
                                   follow={SingleUser.followersCount + ' followers'}
-                                  btnname={SingleUser.isImFollowing ? "Unfollow" : "Follow"}
+                                  btnname={!SingleUser.isImFollowing ? "Unfollow" : "Follow"}
                                 />
                               ))}
                             </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
