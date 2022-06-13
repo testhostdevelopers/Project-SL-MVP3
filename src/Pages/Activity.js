@@ -133,6 +133,9 @@ const Activity = (props) => {
       title = activity.collection_id.main_img
     }
     else if (activity.followed_user_id) {
+      if (activity.followed_user_id.profile_img_url === "null") {
+        return title;
+      }
       title = `${Config.baseURL}` + activity.followed_user_id.profile_img_url
     }
     return title;

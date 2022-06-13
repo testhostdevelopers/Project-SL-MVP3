@@ -60,7 +60,7 @@ const Profile = (props) => {
             }
           });
           // console.log('getFollowerUsers', response.data.data)
-          setUserFollowerList(response.data.data);
+          setUserFollowerList(Object.entries(response.data.data));
         })
         .catch(err => {
           console.log(err);
@@ -79,7 +79,7 @@ const Profile = (props) => {
         )
         .then(response => {
           // console.log('getFollowingUsers', response.data.data);
-          setUserFollowingList(response.data.data);
+          setUserFollowingList(Object.entries(response.data.data));
         })
         .catch(err => {
           console.log(err);
@@ -104,7 +104,7 @@ const Profile = (props) => {
             element.like = false;
           }
         });
-        setUserCollectibleList(response.data.data);
+        setUserCollectibleList(Object.entries(response.data.data));
       })
       .catch(err => {
         console.log(err);
@@ -130,7 +130,7 @@ const Profile = (props) => {
             element.like = false;
           }
         });
-        setUserLikedCollectionsList(response.data.data);
+        setUserLikedCollectionsList(Object.entries(response.data.data));
       })
       .catch(err => {
         console.log(err);
@@ -155,7 +155,7 @@ const Profile = (props) => {
             element.like = false;
           }
         });
-        setUserOwnedCollectibleList(response.data.data);
+        setUserOwnedCollectibleList(Object.entries(response.data.data));
         // console.log('setUserOwnedCollectibleList', response.data.data);
       })
       .catch(err => {
@@ -181,7 +181,7 @@ const Profile = (props) => {
             element.like = false;
           }
         });
-        setUserLikedCollectibleList(response.data.data);
+        setUserLikedCollectibleList(Object.entries(response.data.data));
         // console.log('setUserLikedCollectibleList', response.data.data);
       })
       .catch(err => {
@@ -207,7 +207,7 @@ const Profile = (props) => {
             element.like = false;
           }
         });
-        setUserCollectionList(response.data.data);
+        setUserCollectionList(Object.entries(response.data.data));
         // console.log('setUserCollectionList',response.data.data);
       })
       .catch(err => {
