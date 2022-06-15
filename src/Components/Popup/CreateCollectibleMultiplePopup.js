@@ -67,7 +67,10 @@ const CreateCollectibleMultiplePopup = (props) => {
         method: "post",
         url: `${Config.baseURL}v1/collection/create`,
         data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Authorization": `Bearer ${apiToken}`,
+        },
       }).then((res) => {
         // console.log('res.data.data.length', res.statusText);
         if (res.statusText === "OK") {
@@ -148,6 +151,7 @@ const CreateCollectibleMultiplePopup = (props) => {
               <input
                   type="text"
                   placeholder="Enter token name"
+                  required={true}
                   onChange={(e) => {
                     setCollectibleData({...collectibleData, title: e.target.value});
                     // console.log('collectibleData', collectibleData);
