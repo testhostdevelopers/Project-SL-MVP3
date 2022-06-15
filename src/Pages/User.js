@@ -219,7 +219,7 @@ const User = (props) => {
                         src={
                           udata == null
                             ? ""
-                            : `${Config.baseURL}` + udata.cover_img_url
+                            : udata.cover_img_url
                         }
                         style={{
                           width: "100%",
@@ -240,7 +240,7 @@ const User = (props) => {
                           src={
                             udata == null
                               ? ""
-                              : `${Config.baseURL}` + udata.profile_img_url
+                              : udata.profile_img_url
                           }
                           style={{
                             width: "100%",

@@ -352,7 +352,7 @@ const Profile = (props) => {
                         src={
                           udata == null
                             ? ""
-                            : `${Config.baseURL}` + udata.cover_img_url
+                            : udata.cover_img_url
                         }
                         ref={uploadedImage}
                         style={{
@@ -394,7 +394,7 @@ const Profile = (props) => {
                           src={
                             udata == null
                               ? ""
-                              : `${Config.baseURL}` + udata.profile_img_url
+                              : udata.profile_img_url
                           }
                           ref={profileImage}
                           style={{
