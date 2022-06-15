@@ -35,7 +35,7 @@ const CreateCollectibleMultiplePopup = (props) => {
       // console.log(collectibleData);
       event.preventDefault();
       const formData = new FormData();
-      formData.append("file", selectedFile);
+      // formData.append("file", selectedFile);
       formData.append("title", collectibleData.title);
       formData.append("description", collectibleData.description);
       formData.append("symbol", collectibleData.symbol);
@@ -43,34 +43,19 @@ const CreateCollectibleMultiplePopup = (props) => {
       formData.append("main_img", collectibleData.main_img);
       formData.append("user_id", user_id._id);
 
-      /*let form = {
+      let form = {
         title: collectibleData.title,
         description: collectibleData.description,
         symbol: collectibleData.symbol,
         custom_url: collectibleData.custom_url,
         main_img: collectibleData.main_img,
         user_id: user_id,
-      };*/
+      };
       // console.log(form);
-      /*await axios.post(`${Config.baseURL}v1/collection/create`, form, {
+      await axios.post(`${Config.baseURL}v1/collection/create`, formData, {
         headers: {
           "Authorization": `Bearer ${apiToken}`,
         }
-      }).then((res) => {
-        // console.log('res.data.data.length', res.statusText);
-        if (res.statusText === "OK") {
-          setSingleCollectionPopup(false);
-          // console.log(res)
-        }
-      });*/
-      await axios({
-        method: "post",
-        url: `${Config.baseURL}v1/collection/create`,
-        data: formData,
-        headers: {
-          "Content-Type": "multipart/form-data",
-          "Authorization": `Bearer ${apiToken}`,
-        },
       }).then((res) => {
         // console.log('res.data.data.length', res.statusText);
         if (res.statusText === "OK") {
@@ -78,6 +63,26 @@ const CreateCollectibleMultiplePopup = (props) => {
           // console.log(res)
         }
       });
+      // await axios({
+      //   method: "post",
+      //   url: `${Config.baseURL}v1/collection/create`,
+      //   // params: formData,
+      //   data: formData,
+      //   // body: {
+      //   //   data: formData,
+      //   //   file: formData.file,
+      //   // },
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //     "Authorization": `Bearer ${apiToken}`,
+      //   },
+      // }).then((res) => {
+      //   // console.log('res.data.data.length', res.statusText);
+      //   if (res.statusText === "OK") {
+      //     setSingleCollectionPopup(false);
+      //     // console.log(res)
+      //   }
+      // });
     }
   };
 
