@@ -264,19 +264,28 @@ const Profile = (props) => {
       var formData = new FormData();
       if (e.target.id === "uploadcoverphoto") {
         formData.append("cover_img_url", ig);
+        await axios
+            .put(`${Config.baseURL}v1/user/updatecoverpic/` + udata._id, formData, {
+              headers: {
+                Authorization: `Bearer ${apiToken}`,
+              },
+            })
+            .then((res) => {
+              // console.log(res)
+            });
       }
       if (e.target.id === "profilephoto") {
         formData.append("profile_img_url", ig);
+        await axios
+            .put(`${Config.baseURL}v1/user/updateprofilepic/` + udata._id, formData, {
+              headers: {
+                Authorization: `Bearer ${apiToken}`,
+              },
+            })
+            .then((res) => {
+              // console.log(res)
+            });
       }
-      await axios
-        .put(`${Config.baseURL}v1/user/update`, formData, {
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          },
-        })
-        .then((res) => {
-          // console.log(res)
-        });
       const [file] = e.target.files;
       if (file) {
         if (e.target.id === "uploadcoverphoto") {
