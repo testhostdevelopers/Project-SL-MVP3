@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {motion} from "framer-motion";
 import closeicon from "../../assets/img/custom/close.svg";
 import axios from "axios";
-import { Config } from '../../utils/config';           
+import { Config } from '../../utils/config';
 
 const CreateCollectibleMultiplePopup = (props) => {
   const variants = {
@@ -43,14 +43,14 @@ const CreateCollectibleMultiplePopup = (props) => {
       formData.append("main_img", collectibleData.main_img);
       formData.append("user_id", user_id._id);
 
-      let form = {
+      /*let form = {
         title: collectibleData.title,
         description: collectibleData.description,
         symbol: collectibleData.symbol,
         custom_url: collectibleData.custom_url,
         main_img: collectibleData.main_img,
         user_id: user_id,
-      };
+      };*/
       // console.log(form);
       await axios.post(`${Config.baseURL}v1/collection/create`, formData, {
         headers: {
@@ -63,26 +63,6 @@ const CreateCollectibleMultiplePopup = (props) => {
           // console.log(res)
         }
       });
-      // await axios({
-      //   method: "post",
-      //   url: `${Config.baseURL}v1/collection/create`,
-      //   // params: formData,
-      //   data: formData,
-      //   // body: {
-      //   //   data: formData,
-      //   //   file: formData.file,
-      //   // },
-      //   headers: {
-      //     "Content-Type": "multipart/form-data",
-      //     "Authorization": `Bearer ${apiToken}`,
-      //   },
-      // }).then((res) => {
-      //   // console.log('res.data.data.length', res.statusText);
-      //   if (res.statusText === "OK") {
-      //     setSingleCollectionPopup(false);
-      //     // console.log(res)
-      //   }
-      // });
     }
   };
 

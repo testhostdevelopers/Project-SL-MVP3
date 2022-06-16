@@ -48,6 +48,7 @@ const Collection = (props) => {
   const [filtersale, setFiltersale] = useState(false);
   const [filterRange, setFilterRange] = useState(false);
   const [singleCollectionData, setsingleCollectionData] = useState(false);
+  const [CoverImg, setCoverImg] = useState(artWorkWeek1);
   let [userCollectibleList, setUserCollectibleList] = useState([]);
   const buttonText = "Edit Cover";
   const variants = {
@@ -67,6 +68,7 @@ const Collection = (props) => {
         if (res.data.data) {
           if (userdata._id === res.data.data.user_id?._id) {
             setEditCover(true);
+            setCoverImg(res.data.data.main_img);
           }
           setsingleCollectionData(res.data.data)
         }
@@ -112,7 +114,7 @@ const Collection = (props) => {
     <>
       {ReportPopups && <ReportPopup type={'Collection'} id={collectionId} setReportPopup={setReportPopup} />}
       {CoverPopup && (
-        <UpdateCoverPopup setUpdateCoverPopup={setUpdateCoverPopup} />
+        <UpdateCoverPopup setUpdateCoverPopup={setUpdateCoverPopup} setCoverImg={setCoverImg} collectionID={collectionId} />
       )}
       {profilePopup && (
         <UpdateProfilePicPopup setprofilePopup={setprofilePopup} />
@@ -133,8 +135,7 @@ const Collection = (props) => {
               <header>
                 <div className="position-relative">
                   <div className="border p-3 gray-color profile-pictures-cover">
-                    {/*<img src={"https://" + singleCollectionData.main_img} width="100%" alt=""/>*/}
-                    <img src={singleCollectionData?.main_img?.indexOf('https://storage.googleapis.com') > -1 ? singleCollectionData?.main_img : artWorkWeek1} width="100%" alt=""/>
+                    <img src={CoverImg} width="100%" alt=""/>
                     {
                       EditCover === true ? <>
                         <button
