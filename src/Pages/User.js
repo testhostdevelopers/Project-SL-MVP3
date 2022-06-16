@@ -334,7 +334,7 @@ const User = (props) => {
                                   <LiveAuctions
                                       isCollection={false}
                                       id={SingleCollectible._id}
-                                      Coverimg={"https://"+SingleCollectible.img_path}
+                                      Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
                                       liked={SingleCollectible.like}
                                       title={SingleCollectible.title}
                                       heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
@@ -367,7 +367,7 @@ const User = (props) => {
                                   <LiveAuctions
                                       isCollection={false}
                                       id={SingleCollectible._id}
-                                      Coverimg={"https://"+SingleCollectible.img_path}
+                                      Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
                                       liked={SingleCollectible.like}
                                       title={SingleCollectible.title}
                                       heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
@@ -402,7 +402,7 @@ const User = (props) => {
                               <LiveAuctions
                                 isCollection={false}
                                 id={SingleCollectible._id}
-                                Coverimg={artWorkWeek1}
+                                Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
                                 liked={SingleCollectible.like}
                                 title={SingleCollectible.title}
                                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
