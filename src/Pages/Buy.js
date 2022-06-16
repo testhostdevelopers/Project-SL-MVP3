@@ -178,10 +178,10 @@ const Buy = () => {
           <div className="row">
             <div className="col-sm-12 col-lg-6">
               <img
-                src={singleCollectibleData.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + singleCollectibleData.img_path : artWorkWeek1}
+                src={singleCollectibleData.img_path?.indexOf('nftstorage.link') > -1 ? 'https://' + singleCollectibleData.img_path : artWorkWeekOne}
                 className="border-radius"
                 width="100%"
-                alt=""
+                alt={singleCollectibleData.title + ' image'}
                 onClick={() => {
                   setOpenImage(true);
                   document.body.style.overflow = "hidden";
