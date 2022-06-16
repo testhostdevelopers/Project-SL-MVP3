@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import ActivityNumberCard from "../Components/ActivityNumberCard";
 import FillLabel from "../assets/img/icons/custom/fill-label.svg";
 import ActivityCard from "../assets/img/custom/activity-cardonly.png";
+import userImg from "../assets/img/icons/custom/userProfilePictures.png";
 import axios from "axios";
 import { Config } from '../utils/config';
 // import { Tabs } from "antd";
@@ -131,12 +132,14 @@ const Activity = (props) => {
     }
     else if (activity.collection_id) {
       defaultImg = activity.collection_id.main_img
+      defaultImg = activity.collection_id.main_img.indexOf('https://storage.googleapis.com') > -1 ? activity.collection_id.main_img : ActivityCard
     }
     else if (activity.followed_user_id) {
       if (activity.followed_user_id.profile_img_url === "null") {
-        return defaultImg;
+        defaultImg = userImg;
+      } else {
+        defaultImg = activity.followed_user_id.profile_img_url
       }
-      defaultImg = `${Config.baseURL}` + activity.followed_user_id.profile_img_url
     }
     return defaultImg;
   };
