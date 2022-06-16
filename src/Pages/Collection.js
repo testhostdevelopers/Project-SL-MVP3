@@ -313,7 +313,7 @@ const Collection = (props) => {
                           <LiveAuctions
                             key={key}
                             liked={SingleCollection.like}
-                            Coverimg={"https://"+SingleCollection.img_path}
+                            Coverimg={SingleCollection.main_img}
                             heartcount={SingleCollection.likes}
                             time={new Date(SingleCollection.createdAt).toLocaleString('en-US', {
                               weekday: 'long',

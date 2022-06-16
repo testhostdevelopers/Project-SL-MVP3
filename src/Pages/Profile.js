@@ -6,7 +6,7 @@ import axios from "axios";
 import ProfileLinks from "../Components/ProfileLinks";
 import LiveAuctions from "../Components/LiveAuctions";
 import TopCard from "../Components/TopCard";
-import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
+// import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
@@ -604,7 +604,7 @@ const Profile = (props) => {
                               <LiveAuctions
                                 isCollection={true}
                                 id={SingleCollection._id}
-                                Coverimg={artWorkWeek1}
+                                Coverimg={SingleCollection.main_img}
                                 liked={SingleCollection.like}
                                 title={SingleCollection.title}
                                 heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
@@ -670,7 +670,7 @@ const Profile = (props) => {
                               <LiveAuctions
                                 isCollection={true}
                                 id={SingleCollection._id}
-                                Coverimg={artWorkWeek1}
+                                Coverimg={SingleCollection.main_img}
                                 liked={SingleCollection.like}
                                 title={SingleCollection.title}
                                 heartcount={SingleCollection.likes ? SingleCollection.likes : 0}

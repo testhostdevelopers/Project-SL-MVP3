@@ -9,6 +9,7 @@ import axios from "axios";
 import { Config } from "../utils/config";
 import LiveAuctions from "../Components/LiveAuctions";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
+import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 
 const { TabPane } = Tabs;
 
@@ -151,7 +152,7 @@ const Search = () => {
                                 <LiveAuctions
                                   isCollection={true}
                                   id={SingleCollection._id}
-                                  Coverimg={SingleCollection.main_img}
+                                  Coverimg={SingleCollection.main_img.indexOf('https://storage.googleapis.com') > -1 ? SingleCollection.main_img : artWorkWeek1}
                                   liked={SingleCollection.like}
                                   title={SingleCollection.title}
                                   heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
@@ -224,7 +225,7 @@ const Search = () => {
                                 <LiveAuctions
                                   isCollection={false}
                                   id={SingleCollection._id}
-                                  Coverimg={'https://' + SingleCollection.img_path}
+                                  Coverimg={SingleCollection.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollection.img_path : artWorkWeek1}
                                   liked={SingleCollection.like}
                                   title={SingleCollection.title}
                                   heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
