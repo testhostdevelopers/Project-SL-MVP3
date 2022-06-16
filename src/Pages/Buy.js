@@ -17,7 +17,7 @@ import BuyAuction from "../Components/BuyCopmponent/BuyAuction";
 import axios from "axios";
 import start from "../assets/img/icons/custom/start.svg";
 import { Config } from '../utils/config';
-// import artWorkWeekOne from "../assets/img/custom/artWorkWeekOne.png";
+import artWorkWeekOne from "../assets/img/custom/artWorkWeekOne.png";
 // import AlienMonster from "../assets/img/icons/custom/alien-monster.svg";
 // import RainbowIcon from "../assets/img/icons/custom/rainbow.svg";
 // import ArtworkWeek from "./ArtworkWeek";
@@ -178,7 +178,7 @@ const Buy = () => {
           <div className="row">
             <div className="col-sm-12 col-lg-6">
               <img
-                src={"https://"+singleCollectibleData.img_path}
+                src={singleCollectibleData?.img_path?.indexOf('nftstorage.link') > -1 ? 'https://' + singleCollectibleData.img_path : artWorkWeekOne}
                 className="border-radius"
                 width="100%"
                 alt=""
@@ -230,7 +230,7 @@ const Buy = () => {
                       <span className="user-img">
                         <img src={udata == null
                           ? ""
-                          : `${Config.baseURL}` + udata.profile_img_url} width="36" alt="" />
+                          : udata.profile_img_url} width="36" alt="" />
                       </span>
                       <span className="ml-3">
                         <b>{udata == null
@@ -266,7 +266,7 @@ const Buy = () => {
                             <div className="user-img">
                             <img src={udata == null
                               ? ""
-                              : `${Config.baseURL}` + udata.profile_img_url} width="36" alt="" />
+                              : udata.profile_img_url} width="36" alt="" />
                             </div>
                             <div className="ml-4">
                               <div>

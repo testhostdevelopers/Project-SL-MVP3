@@ -125,20 +125,20 @@ const Activity = (props) => {
   };
   const img = (activity) => {
     // console.log('activity', activity);
-    let title = ActivityCard;
+    let defaultImg = ActivityCard;
     if (activity.collectible_id) {
-      title = "https://" + activity.collectible_id.img_path
+      defaultImg = activity.collectible_id.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + activity.collectible_id.img_path : defaultImg
     }
     else if (activity.collection_id) {
-      title = activity.collection_id.main_img
+      defaultImg = activity.collection_id.main_img
     }
     else if (activity.followed_user_id) {
       if (activity.followed_user_id.profile_img_url === "null") {
-        return title;
+        return defaultImg;
       }
-      title = `${Config.baseURL}` + activity.followed_user_id.profile_img_url
+      defaultImg = `${Config.baseURL}` + activity.followed_user_id.profile_img_url
     }
-    return title;
+    return defaultImg;
   };
   const variants = {
     hidden: { opacity: 0 },
