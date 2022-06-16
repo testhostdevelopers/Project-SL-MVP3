@@ -16,7 +16,7 @@ import FilterProperties from "../Components/FilterProperties";
 import ProfileLinks from "../Components/ProfileLinks";
 import { Config } from '../utils/config';
 import Activity from "./Activity";
-// import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
+import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 // import artWorkWeek2 from "../assets/img/custom/artWorkWeek2.png";
 // import artWorkWeek3 from "../assets/img/custom/artWorkWeek3.png";
 // import artWorkWeek4 from "../assets/img/custom/artWorkWeek4.png";
@@ -133,7 +133,8 @@ const Collection = (props) => {
               <header>
                 <div className="position-relative">
                   <div className="border p-3 gray-color profile-pictures-cover">
-                    <img src={"https://" + singleCollectionData.main_img} width="100%" alt=""/>
+                    {/*<img src={"https://" + singleCollectionData.main_img} width="100%" alt=""/>*/}
+                    <img src={singleCollectionData.main_img.indexOf('https://storage.googleapis.com') > -1 ? singleCollectionData.main_img : artWorkWeek1} width="100%" alt=""/>
                     {
                       EditCover === true ? <>
                         <button
@@ -313,7 +314,7 @@ const Collection = (props) => {
                           <LiveAuctions
                             key={key}
                             liked={SingleCollection.like}
-                            Coverimg={"https://"+SingleCollection.img_path}
+                            Coverimg={SingleCollection.main_img.indexOf('https://storage.googleapis.com') > -1 ? SingleCollection.main_img : artWorkWeek1}
                             heartcount={SingleCollection.likes}
                             time={new Date(SingleCollection.createdAt).toLocaleString('en-US', {
                               weekday: 'long',

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import userTick from "../../assets/img/custom/userTick.png";
 import { Config } from "../../utils/config";
 import axios from "axios";
+import artWorkWeek1 from "../../../src/assets/img/custom/artWorkWeek1.png";
 
 const BuyHistory = (props) => {
   let {page = 'Activity', collectibleId = '', userId = ''} = props;
@@ -86,7 +87,7 @@ const BuyHistory = (props) => {
         <div key={counter} className="w-100 d-flex justify-content-between mb-3">
           <div className="d-flex">
             <div className="user-img">
-              <img src={"https://" + singleData.collectible_id.img_path} width="36" alt="" />
+              <img src={singleData.collectible_id.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + singleData.collectible_id.img_path : artWorkWeek1} width="36" alt="" />
             </div>
             <div className="ml-4">
               <div>

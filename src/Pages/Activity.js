@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import ActivityNumberCard from "../Components/ActivityNumberCard";
 import FillLabel from "../assets/img/icons/custom/fill-label.svg";
 import ActivityCard from "../assets/img/custom/activity-cardonly.png";
+import userImg from "../assets/img/icons/custom/userProfilePictures.png";
 import axios from "axios";
 import { Config } from '../utils/config';
 // import { Tabs } from "antd";
@@ -125,20 +126,22 @@ const Activity = (props) => {
   };
   const img = (activity) => {
     // console.log('activity', activity);
-    let title = ActivityCard;
+    let defaultImg = ActivityCard;
     if (activity.collectible_id) {
-      title = "https://" + activity.collectible_id.img_path
+      defaultImg = activity.collectible_id.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + activity.collectible_id.img_path : defaultImg
     }
     else if (activity.collection_id) {
-      title = activity.collection_id.main_img
+      defaultImg = activity.collection_id.main_img
+      defaultImg = activity.collection_id.main_img.indexOf('https://storage.googleapis.com') > -1 ? activity.collection_id.main_img : ActivityCard
     }
     else if (activity.followed_user_id) {
       if (activity.followed_user_id.profile_img_url === "null") {
-        return title;
+        defaultImg = userImg;
+      } else {
+        defaultImg = activity.followed_user_id.profile_img_url
       }
-      title = `${Config.baseURL}` + activity.followed_user_id.profile_img_url
     }
-    return title;
+    return defaultImg;
   };
   const variants = {
     hidden: { opacity: 0 },

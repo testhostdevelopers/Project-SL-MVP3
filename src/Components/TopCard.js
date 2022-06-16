@@ -47,13 +47,12 @@ export default function TopCard({
         <img
           className="seller-banner-image"
           src={
-            topcoverimg === 'null' || topcoverimg === null || topcoverimg === undefined
+                topcoverimg === 'null' || topcoverimg === null || topcoverimg === undefined
                 ? userCoverImg
-                : `${Config.baseURL}` + topcoverimg
-        }
+                : topcoverimg
+              }
           width="240"
-          alt={topcoverimg}
-          // alt={title + ' Cover Picture'}
+          alt={title + ' Cover Picture'}
         />
       </div>
       <div className="topSellectProfilePicture">
@@ -61,11 +60,10 @@ export default function TopCard({
             src={
                 topuserimg === 'null' || topuserimg === null || topuserimg === undefined
                     ? userImg
-                    : `${Config.baseURL}` + topuserimg
+                    : topuserimg
             }
             width="100%"
-            alt={topuserimg}
-            // alt={title + ' Profile Picture'}
+            alt={title + ' Profile Picture'}
         />
           {confirmation === true ?
               <div className="confirmation">

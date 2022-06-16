@@ -107,8 +107,7 @@ const User = (props) => {
               headers: {
                 Authorization: `Bearer ${apiToken}`,
               }
-            }
-        )
+            })
         .then(response => {
           response.data.data.forEach((element) => {
             if (element.likedBy.includes(udata._id)) {
@@ -126,7 +125,7 @@ const User = (props) => {
   };
   const userCollectionListFunc = async () => {
     await axios
-      .get(`${Config.baseURL}v1/collection/getusercollectionlist`, {
+        .get(`${Config.baseURL}v1/collection/getusercollectionlist/` + udata._id, {
           data: {
             user_id: userData._id
           },
@@ -134,20 +133,20 @@ const User = (props) => {
             Authorization: `Bearer ${apiToken}`,
           }
         })
-      .then(response => {
-        response.data.data.forEach((element) => {
-          if (element.likedBy.includes(userData._id)) {
-            element.like = true;
-          } else {
-            element.like = false;
-          }
+        .then(response => {
+          response.data.data.forEach((element) => {
+            if (element.likedBy.includes(userData._id)) {
+              element.like = true;
+            } else {
+              element.like = false;
+            }
+          });
+          setUserCollectionList(response.data.data);
+          // console.log('setUserCollectionList', response.data.data);
+        })
+        .catch(err => {
+          console.log(err);
         });
-        setUserCollectionList(response.data.data);
-        // console.log('setUserCollectionList', response.data.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
   };
   const followButton = async () => {
     await axios
@@ -335,7 +334,7 @@ const User = (props) => {
                                   <LiveAuctions
                                       isCollection={false}
                                       id={SingleCollectible._id}
-                                      Coverimg={"https://"+SingleCollectible.img_path}
+                                      Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
                                       liked={SingleCollectible.like}
                                       title={SingleCollectible.title}
                                       heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
@@ -368,7 +367,7 @@ const User = (props) => {
                                   <LiveAuctions
                                       isCollection={false}
                                       id={SingleCollectible._id}
-                                      Coverimg={"https://"+SingleCollectible.img_path}
+                                      Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
                                       liked={SingleCollectible.like}
                                       title={SingleCollectible.title}
                                       heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
@@ -403,7 +402,7 @@ const User = (props) => {
                               <LiveAuctions
                                 isCollection={false}
                                 id={SingleCollectible._id}
-                                Coverimg={artWorkWeek1}
+                                Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
                                 liked={SingleCollectible.like}
                                 title={SingleCollectible.title}
                                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
@@ -435,7 +434,7 @@ const User = (props) => {
                               <LiveAuctions
                                 isCollection={true}
                                 id={SingleCollection._id}
-                                Coverimg={artWorkWeek1}
+                                Coverimg={SingleCollection.main_img}
                                 liked={SingleCollection.like}
                                 title={SingleCollection.title}
                                 heartcount={SingleCollection.likes ? SingleCollection.likes : 0}

@@ -9,6 +9,7 @@ import axios from "axios";
 import { Config } from "../utils/config";
 import LiveAuctions from "../Components/LiveAuctions";
 import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
+import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 
 const { TabPane } = Tabs;
 
@@ -151,7 +152,7 @@ const Search = () => {
                                 <LiveAuctions
                                   isCollection={true}
                                   id={SingleCollection._id}
-                                  Coverimg={SingleCollection.main_img}
+                                  Coverimg={SingleCollection.main_img.indexOf('https://storage.googleapis.com') > -1 ? SingleCollection.main_img : artWorkWeek1}
                                   liked={SingleCollection.like}
                                   title={SingleCollection.title}
                                   heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
@@ -220,14 +221,14 @@ const Search = () => {
                         <div className="d-flex col-lg-12 activity ">
                           {searchCollectibleList.length > 0 ?
                             <>
-                              {searchCollectibleList.map((SingleCollection, key) => (
+                              {searchCollectibleList.map((SingleCollectible, key) => (
                                 <LiveAuctions
                                   isCollection={false}
-                                  id={SingleCollection._id}
-                                  Coverimg={'https://' + SingleCollection.img_path}
-                                  liked={SingleCollection.like}
-                                  title={SingleCollection.title}
-                                  heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
+                                  id={SingleCollectible._id}
+                                  Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
+                                  liked={SingleCollectible.like}
+                                  title={SingleCollectible.title}
+                                  heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
                                   User1={topSellerUser1}
                                   User2={topSellerUser2}
                                   User3={topSellerUser3}

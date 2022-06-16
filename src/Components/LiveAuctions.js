@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Menu, Dropdown } from "antd";
 import ReportPopup from "../Components/Popup/ReportPopup";
-import { Config } from '../utils/config';           
+import { Config } from '../utils/config';
+import artWorkWeek1 from "../../src/assets/img/custom/artWorkWeek1.png";
 // import { Link } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 
@@ -15,7 +16,7 @@ export default function LiveAuctions({
   isLiveAuctions = true,
   heartcount,
   liked = false,
-  Coverimg,
+  Coverimg = artWorkWeek1,
   User1,
   User2,
   User3,
@@ -110,7 +111,7 @@ export default function LiveAuctions({
       <div className="col-sm-12 col-lg-3">
         <div className="liveAuction-card-container">
           <div className="live-image">
-            <img src={Coverimg} width="100%" alt="" />
+            <img src={Coverimg} width="100%" alt={title} />
             <div className="card-heart-icon">
               {liked ?
                 <><i onClick={disLikeCollectible} className="fas fa-heart" /> {heartcount}</>
