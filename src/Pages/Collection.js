@@ -34,7 +34,7 @@ const { TabPane } = Tabs;
 
 const Collection = (props) => {
   const { collectionId } = useParams();
-  // console.log(collectionId);
+  console.log(collectionId);
   const userdata = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const apiToken = sessionStorage.getItem("apiToken");
   const [ReportPopups, setReportPopup] = useState(false);
@@ -48,7 +48,7 @@ const Collection = (props) => {
   const [filtersale, setFiltersale] = useState(false);
   const [filterRange, setFilterRange] = useState(false);
   const [singleCollectionData, setsingleCollectionData] = useState(false);
-  let [userCollectionList, setUserCollectionList] = useState([]);
+  let [userCollectibleList, setUserCollectibleList] = useState([]);
   const buttonText = "Edit Cover";
   const variants = {
     hidden: { opacity: 0 },
@@ -88,7 +88,7 @@ const Collection = (props) => {
             response.data.data[index].like = false;
           }
         });
-        setUserCollectionList(response.data.data);
+        setUserCollectibleList(response.data.data);
         // console.log('setUserCollectionList', response.data.data);
       })
       .catch(err => {
@@ -134,7 +134,7 @@ const Collection = (props) => {
                 <div className="position-relative">
                   <div className="border p-3 gray-color profile-pictures-cover">
                     {/*<img src={"https://" + singleCollectionData.main_img} width="100%" alt=""/>*/}
-                    <img src={singleCollectionData.main_img.indexOf('https://storage.googleapis.com') > -1 ? singleCollectionData.main_img : artWorkWeek1} width="100%" alt=""/>
+                    <img src={singleCollectionData?.main_img?.indexOf('https://storage.googleapis.com') > -1 ? singleCollectionData?.main_img : artWorkWeek1} width="100%" alt=""/>
                     {
                       EditCover === true ? <>
                         <button
@@ -310,13 +310,13 @@ const Collection = (props) => {
                         </ul>
                       </div>
                       <div className="row  mt-5">
-                        {userCollectionList.map((SingleCollection, key) => (
+                        {userCollectibleList.map((SingleCollectible, key) => (
                           <LiveAuctions
                             key={key}
-                            liked={SingleCollection.like}
-                            Coverimg={SingleCollection.main_img.indexOf('https://storage.googleapis.com') > -1 ? SingleCollection.main_img : artWorkWeek1}
-                            heartcount={SingleCollection.likes}
-                            time={new Date(SingleCollection.createdAt).toLocaleString('en-US', {
+                            liked={SingleCollectible.like}
+                            Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
+                            heartcount={SingleCollectible.likes}
+                            time={new Date(SingleCollectible.createdAt).toLocaleString('en-US', {
                               weekday: 'long',
                               year: 'numeric',
                               month: 'long',
@@ -325,10 +325,10 @@ const Collection = (props) => {
                               minute: 'numeric',
                               second: 'numeric',
                             })}
-                            id={SingleCollection._id}
-                            title={SingleCollection.title}
-                            WETH={SingleCollection.price}
-                            bid={SingleCollection.price}
+                            id={SingleCollectible._id}
+                            title={SingleCollectible.title}
+                            WETH={SingleCollectible.price}
+                            bid={SingleCollectible.price}
                             isOpenInProfile={false}
                             isLiveAuctions={false}
                           />

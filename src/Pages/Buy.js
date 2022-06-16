@@ -178,7 +178,7 @@ const Buy = () => {
           <div className="row">
             <div className="col-sm-12 col-lg-6">
               <img
-                src={singleCollectibleData?.img_path?.indexOf('nftstorage.link') > -1 ? 'https://' + singleCollectibleData.img_path : artWorkWeekOne}
+                src={singleCollectibleData.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + singleCollectibleData.img_path : artWorkWeek1}
                 className="border-radius"
                 width="100%"
                 alt=""
