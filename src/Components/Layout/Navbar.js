@@ -860,7 +860,7 @@ const Navbar = (props) => {
                     </ul>
                   </div>
                 </li>
-                <div className=""/>
+                {/*<div className=""/>*/}
                 <li className="nav-item d-sm-none d-lg-block p-0 d-flex align-items-center">
                   <Link to="/create" className="nav-link p-0">
                     <button className="btn btn-primary">Create</button>
