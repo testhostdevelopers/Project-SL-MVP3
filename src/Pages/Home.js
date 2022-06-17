@@ -44,6 +44,7 @@ const Home = () => {
   var apiToken = sessionStorage.getItem("apiToken");
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   let [openImage, setOpenImage] = useState(false);
+  let [openImagePath, setOpenImagePath] = useState(artWorkWeek1);
   let [liveAuctionList, setLiveAuctionList] = useState([]);
   let [hotCollectionsList, setHotCollectionsList] = useState([]);
   let [topSellerUser, setTopSellerUser] = useState([]);
@@ -360,7 +361,7 @@ const Home = () => {
 
   return (
     <>
-      {openImage && <FullScreenImage setOpenImage={setOpenImage} />}
+      {openImage && <FullScreenImage setOpenImage={setOpenImage} Image={openImagePath} />}
       <motion.section
         initial="hidden"
         animate="visible"
@@ -450,11 +451,7 @@ const Home = () => {
                     <div id="main-heading">Name of Collection</div>
                     <div id="by">By Lorem Ipsum</div>
                     <div id="sub-heading">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book.
+                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                     </div>
                     <button
                       type="button"
@@ -470,11 +467,7 @@ const Home = () => {
                     <div id="main-heading">Name of Collection</div>
                     <div id="by">By Lorem Ipsum</div>
                     <div id="sub-heading">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book.
+                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                     </div>
                     <button
                       type="button"
@@ -612,6 +605,7 @@ const Home = () => {
                 width="95%"
                 alt=""
                 onClick={() => {
+                  setOpenImagePath(artWorkWeekOne);
                   setOpenImage(true);
                   document.body.style.overflow = "hidden";
                 }}
@@ -629,9 +623,12 @@ const Home = () => {
                 {all_atwork.map((artwork, key) => (
                   <div key={key} className="art-list">
                     <ArtWork
-                      title={artwork.my_title}
+                      title={artwork.my_title + '111'}
                       artworkimg={artwork.artimg}
-                      setOpenImage={(imgFlag) => setOpenImage(imgFlag)}
+                      setOpenImage={(imgFlag) => {
+                        setOpenImagePath(artwork.artimg)
+                        setOpenImage(imgFlag);
+                      }}
                     />
                   </div>
                 ))}
@@ -1099,7 +1096,6 @@ const Home = () => {
             >
               <div className="row">
                 {live_auction.map((live_a, key) => (
-                  
                     <LiveAuctions
                       Coverimg={live_a.cover_img}
                       title={live_a.auction_name}

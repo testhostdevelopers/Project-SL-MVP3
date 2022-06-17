@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 // import myimg from "../../assets/img/myimg2.jpg";
 
 const FullScreenImage = (props) => {
-  let { setOpenImage } = props;
+  let { setOpenImage, Image = artWork } = props;
 
   const variants = {
     hidden: { opacity: 0 },
@@ -48,7 +48,7 @@ const FullScreenImage = (props) => {
           <div className="row d-flex justify-content-center">
             <div className="">
               <div className="full-screen-img">
-                <img src={artWork} alt={""} />
+                <img src={Image} alt={""} />
               </div>
             </div>
           </div>

@@ -142,7 +142,7 @@ const Buy = () => {
 
   return (
     <>
-      {openImage && <FullScreenImage setOpenImage={setOpenImage} />}
+      {openImage && <FullScreenImage setOpenImage={setOpenImage} Image={singleCollectibleData.img_path?.indexOf('nftstorage.link') > -1 ? 'https://' + singleCollectibleData.img_path : artWorkWeekOne} />}
       {singleCollectionPopup && (
         <FinishedCollectiblePopup
           setSinglePopup={setSinglePopup}
