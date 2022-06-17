@@ -34,7 +34,7 @@ const Following = () => {
   const [filterProperties, setFilterProperties] = useState(false);
   const [filtersale, setFiltersale] = useState(false);
   const [filterRange, setFilterRange] = useState(false);
-  let [hot_bide, setHotCollectionsList] = useState([]);
+  let [collectionsList, setCollectionsList] = useState([]);
   let offset = 0;
   let limit = 12;
   const variants = {
@@ -56,20 +56,34 @@ const Following = () => {
         // console.log('response.data', response.data);
         if (response.data.response_code === "API_SUCCESS") {
           response.data.data.forEach((element, index) => {
+            response.data.data[index].show = true;
             if (element.likedBy.includes(userData._id)) {
               response.data.data[index].like = true;
             } else {
               response.data.data[index].like = false;
             }
           });
-          setHotCollectionsList(response.data.data);
+          setCollectionsList(response.data.data);
         }
       })
       .catch(err => {
         console.log(err);
       });
   };
-  // console.log('filterCategory', filterCategory);
+  if (filterCategory) {
+    // console.log('filterCategory', filterCategory);
+    collectionsList.forEach((SingleData, key) => {
+      if (filterCategory === "All") {
+        collectionsList[key].show = true;
+      } else if (filterCategory.length) {
+        if (SingleData.category === filterCategory) {
+          collectionsList[key].show = true;
+        } else {
+          collectionsList[key].show = false;
+        }
+      }
+    });
+  }
   useEffect(() => {
     getAllCollectibleList().then(r => {});
   }, []);
@@ -200,28 +214,31 @@ const Following = () => {
           </div>
 
           <div className="row  mt-5">
-            {hot_bide.map((SingleCollectible, key) => (
+            {collectionsList.map((SingleCollectible, key) => (
+              SingleCollectible.show ? <>
                 <LiveAuctions
-                    key={key}
-                    liked={SingleCollectible.like}
-                    Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
-                    heartcount={SingleCollectible.likes}
-                    time={new Date(SingleCollectible.createdAt).toLocaleString('en-US', {
-                      weekday: 'long',
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                      hour: 'numeric',
-                      minute: 'numeric',
-                      second: 'numeric',
-                    })}
-                    id={SingleCollectible._id}
-                    title={SingleCollectible.title}
-                    WETH={SingleCollectible.price}
-                    bid={SingleCollectible.price}
-                    isOpenInProfile={false}
-                    isLiveAuctions={false}
+                  key={key}
+                  liked={SingleCollectible.like}
+                  Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
+                  heartcount={SingleCollectible.likes}
+                  time={new Date(SingleCollectible.createdAt).toLocaleString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    second: 'numeric',
+                  })}
+                  id={SingleCollectible._id}
+                  title={SingleCollectible.title}
+                  WETH={SingleCollectible.price}
+                  bid={SingleCollectible.price}
+                  isOpenInProfile={false}
+                  isLiveAuctions={false}
+                  bid="Highest bid 1/1"
                 />
+              </> : <></>
             ))}
           </div>
         </div>
