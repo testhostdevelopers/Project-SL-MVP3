@@ -76,11 +76,7 @@ const Following = () => {
       if (filterCategory === "All") {
         collectionsList[key].show = true;
       } else if (filterCategory.length) {
-        if (SingleData.category === filterCategory) {
-          collectionsList[key].show = true;
-        } else {
-          collectionsList[key].show = false;
-        }
+        collectionsList[key].show = SingleData.category === filterCategory;
       }
     });
   }
@@ -233,7 +229,6 @@ const Following = () => {
                   id={SingleCollectible._id}
                   title={SingleCollectible.title}
                   WETH={SingleCollectible.price}
-                  bid={SingleCollectible.price}
                   isOpenInProfile={false}
                   isLiveAuctions={false}
                   bid="Highest bid 1/1"
