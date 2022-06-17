@@ -8,52 +8,10 @@ const BuyHistory = (props) => {
   let {page = 'Activity', collectibleId = '', userId = ''} = props;
   const apiToken = sessionStorage.getItem("apiToken");
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
-  /*const buy_history = [
-    {
-      hist_img: userTick,
-      hist_title: "Listen 1 edition for",
-      hist_coin: "0.024 ETH",
-      hist_who: "By",
-      hist_name: "Mad",
-      hist_time: "1 hour ago",
-    },
-    {
-      hist_img: userTick,
-      hist_title: "Listen 3 edition for",
-      hist_coin: "0.024 Startlight",
-      hist_who: "By",
-      hist_name: "Sam",
-      hist_time: "1/2 hour ago",
-    },
-    {
-      hist_img: userTick,
-      hist_title: "Listen 5 edition for",
-      hist_coin: "0.024 Bitcoin",
-      hist_who: "By",
-      hist_name: "AAA",
-      hist_time: "4 hour ago",
-    },
-    {
-      hist_img: userTick,
-      hist_title: "Listen 7 edition for",
-      hist_coin: "0.024 Bitcoin",
-      hist_who: "By",
-      hist_name: "Piter",
-      hist_time: "2 hour ago",
-    },
-    {
-      hist_img: userTick,
-      hist_title: "Listen 4 edition for",
-      hist_coin: "0.024 Bitcoin",
-      hist_who: "By",
-      hist_name: "Robert",
-      hist_time: "7 hour ago",
-    },
-  ];*/
   const [historyData, setHistory] = useState([]);
   const getHistory = async () => {
     if (collectibleId.length > 0) {
-      console.log('collectionId.length', collectibleId.length);
+      // console.log('collectionId.length', collectibleId.length);
       await axios
           .get(`${Config.baseURL}v1/collectible/getcollectiblehistory/` + collectibleId, {
             data: {

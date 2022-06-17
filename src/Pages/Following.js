@@ -41,7 +41,6 @@ const Following = () => {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
-
   const getAllCollectibleList = async () => {
     await axios
       .get(`${Config.baseURL}v1/collectible/getallcollectiblelist/` + offset + `/` + limit, {
@@ -79,6 +78,23 @@ const Following = () => {
         collectionsList[key].show = SingleData.category === filterCategory;
       }
     });
+  }
+  if (filterSort) {
+    if (filterSort === "RecentlyAdded") {
+      collectionsList.sort((a, b) => {
+        let da = new Date(a.createdAt),
+            db = new Date(b.createdAt);
+        return db - da;
+      });
+    } else if (filterSort === "LowtoHigh") {
+      collectionsList.sort((a, b) => {
+        return a.price - b.price;
+      });
+    } else if (filterSort === "HightoLow") {
+      collectionsList.sort((a, b) => {
+        return b.price - a.price;
+      });
+    }
   }
   useEffect(() => {
     getAllCollectibleList().then(r => {});
