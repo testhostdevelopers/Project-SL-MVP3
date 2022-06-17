@@ -8,7 +8,7 @@ const ShareThisNFTPopup = (props) => {
     visible: { opacity: 1 },
   };
 
-  let { setsharePopup } = props;
+  let { setsharePopup, id = ''} = props;
 
   return (
     <motion.div
@@ -34,7 +34,8 @@ const ShareThisNFTPopup = (props) => {
         <div className="nft-share-icons">
           <ul>
             <li>
-              <a href="#0">
+              <a href={"https://twitter.com/intent/tweet?text=Hello, See This NFT here...&url=" + window.location.host + "/buy/" + id}
+                 rel="noopener" target="_blank">
                 <span>
                   <i className="fab fa-twitter" />
                 </span>
@@ -42,7 +43,7 @@ const ShareThisNFTPopup = (props) => {
               </a>
             </li>
             <li>
-              <a href="#0">
+              <a href={"https://www.facebook.com/sharer/sharer.php?u=" + window.location.host + "/User/" + id} rel="noopener" target="_blank">
                 <span>
                   <i className="fab fa-facebook-f" />
                 </span>
@@ -50,7 +51,7 @@ const ShareThisNFTPopup = (props) => {
               </a>
             </li>
             <li>
-              <a href="#0">
+              <a href={"https://telegram.me/share/url?text=Hello, See This NFT here...&url=" + window.location.host + "/User/" + id} rel="noopener" target="_blank">
                 <span>
                   <i className="fab fa-telegram-plane" />
                 </span>
@@ -58,7 +59,8 @@ const ShareThisNFTPopup = (props) => {
               </a>
             </li>
             <li>
-              <a href="#0">
+              <a href={"mailto:?subject=Hello&amp;body=Hello See This NFT here. " + window.location.host + "/User/" + id}
+                 title="Share by Email">
                 <span>
                   <i className="fas fa-envelope" />
                 </span>

@@ -4,6 +4,7 @@ import { Menu, Dropdown } from "antd";
 import ReportPopup from "../Components/Popup/ReportPopup";
 import { Config } from '../utils/config';
 import artWorkWeek1 from "../../src/assets/img/custom/artWorkWeek1.png";
+import ShareThisNFTPopup from "./Popup/ShareThisNFTPopup";
 // import { Link } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 
@@ -25,6 +26,7 @@ export default function LiveAuctions({
   var apiToken = sessionStorage.getItem("apiToken");
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [ReportPopups, setReportPopup] = useState(false);
+  const [sharePopup, setsharePopup] = useState(false);
   // const [singlePopup, setSinglePopup] = useState(false);
   // console.log('singlePopup', singlePopup);
   const lastSegment = window.location.pathname.substring(
@@ -92,7 +94,7 @@ export default function LiveAuctions({
     menu = (
       <Menu>
         <Menu.Item>Refresh Matedata</Menu.Item>
-        <Menu.Item>Share</Menu.Item>
+        <Menu.Item onClick={() => setsharePopup(true)}>Share</Menu.Item>
         <Menu.Item onClick={() => setReportPopup(true)}>Report</Menu.Item>
       </Menu>
     );
@@ -100,6 +102,7 @@ export default function LiveAuctions({
 
   return (
     <>
+      {sharePopup && <ShareThisNFTPopup setsharePopup={setsharePopup} id={id} />}
       {ReportPopups && (
         <ReportPopup
           // setSinglePopup={setSinglePopup}
