@@ -12,7 +12,7 @@ import { Config } from '../utils/config';
 const Activity = (props) => {
   let {page = 'Activity', collectionId = '', userId = ''} = props;
   // console.log('page', page);
-  var apiToken = sessionStorage.getItem("apiToken");
+  const apiToken = sessionStorage.getItem("apiToken");
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [filterValue, setFilterValue] = useState("All");
   const error_data = "";

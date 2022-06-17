@@ -41,7 +41,7 @@ import { Config } from '../utils/config';
 SwiperCore.use([Keyboard, Pagination, Navigation, Autoplay]);
 
 const Home = () => {
-  var apiToken = sessionStorage.getItem("apiToken");
+  const apiToken = sessionStorage.getItem("apiToken");
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   let [openImage, setOpenImage] = useState(false);
   let [openImagePath, setOpenImagePath] = useState(artWorkWeek1);

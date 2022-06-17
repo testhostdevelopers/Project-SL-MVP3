@@ -23,7 +23,7 @@ export default function LiveAuctions({
   User3,
   isOpenInProfile,
 }) {
-  var apiToken = sessionStorage.getItem("apiToken");
+  const apiToken = sessionStorage.getItem("apiToken");
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [ReportPopups, setReportPopup] = useState(false);
   const [sharePopup, setsharePopup] = useState(false);

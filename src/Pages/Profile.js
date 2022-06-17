@@ -27,7 +27,7 @@ const { TabPane } = Tabs;
 
 const Profile = (props) => {
   // console.log("props.pImage", props.pImage, "sdasadsa");
-  var apiToken = sessionStorage.getItem("apiToken");
+  const apiToken = sessionStorage.getItem("apiToken");
   // const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   // const [reportPopup, setReportPopup] = useState(false);
   const [buttonText, setButtonText] = useState("Add Cover");
@@ -260,7 +260,7 @@ const Profile = (props) => {
   const handleImageUpload = async (e) => {
     const ig = e.target.files[0];
     if (sessionStorage.getItem("apiToken")) {
-      var apiToken = sessionStorage.getItem("apiToken");
+      const apiToken = sessionStorage.getItem("apiToken");
       var formData = new FormData();
       if (e.target.id === "uploadcoverphoto") {
         formData.append("cover_img_url", ig);

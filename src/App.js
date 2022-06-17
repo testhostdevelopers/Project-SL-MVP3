@@ -38,7 +38,7 @@ import {
 
 const App = () => {
   const [pImage, setpImage] = useState("");
-  console.log("pImage", pImage);
+  // console.log("pImage", pImage);
   const profileImage = React.useRef(null);
   const handleprofilepicUploadr = (e) => {
     const [file] = e.target.files;

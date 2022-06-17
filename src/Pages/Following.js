@@ -25,7 +25,7 @@ import LiveAuctions from "../Components/LiveAuctions";
 // const { Option } = Select;
 
 const Following = () => {
-  var apiToken = sessionStorage.getItem("apiToken");
+  const apiToken = sessionStorage.getItem("apiToken");
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   let [openImage, setOpenImage] = useState(false);
   const [filterSort, setFilterSort] = useState(false);
@@ -42,79 +42,36 @@ const Following = () => {
     visible: { opacity: 1 },
   };
 
-  /*const menu = (
-    <Menu>
-      <Menu.Item>Change Price</Menu.Item>
-      <Menu.Item>Transfer Token</Menu.Item>
-      <Menu.Item>Burn Token</Menu.Item>
-      <Menu.Item>Report</Menu.Item>
-    </Menu>
-  );*/
-  /*const hot_bide = [
-    {
-      cover_bide: artWorkWeek2,
-      bide_heartcount: "23",
-      bide_time: "3H : 15M : 50S left",
-      bide_name: "Memescalf#782021",
-      bide_weth: "1.3 WETH",
-      bide_bid: "Highest bid 1/1",
-    },
-    {
-      cover_bide: artWorkWeek3,
-      bide_heartcount: "25",
-      bide_time: "7H : 13M : 50S left",
-      bide_name: "Memescalf#782022",
-      bide_weth: "1.6 WETH",
-      bide_bid: "Highest bid 1/16",
-    },
-    {
-      cover_bide: artWorkWeek1,
-      bide_heartcount: "26",
-      bide_time: "8H : 20M : 50S left",
-      bide_name: "Memescalf#782023",
-      bide_weth: "1.2 WETH",
-      bide_bid: "Highest bid 6/6",
-    },
-    {
-      cover_bide: artWorkWeek4,
-      bide_heartcount: "26",
-      bide_time: "8H : 40M : 50S left",
-      bide_name: "Memescalf#782022",
-      bide_weth: "1.2 WETH",
-      bide_bid: "Highest bid 6/5",
-    },
-  ];*/
-
-  const getHotCollectionsList = async () => {
+  const getAllCollectibleList = async () => {
     await axios
-        .get(`${Config.baseURL}v1/collectible/getallcollectiblelist/` + offset + `/` + limit, {
-          data: {
-            user_id: userData._id
-          },
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          }
-        })
-        .then(response => {
-          // console.log('response.data', response.data);
-          if (response.data.response_code === "API_SUCCESS") {
-            response.data.data.forEach((element, index) => {
-              if (element.likedBy.includes(userData._id)) {
-                response.data.data[index].like = true;
-              } else {
-                response.data.data[index].like = false;
-              }
-            });
-            setHotCollectionsList(response.data.data);
-          }
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      .get(`${Config.baseURL}v1/collectible/getallcollectiblelist/` + offset + `/` + limit, {
+        data: {
+          user_id: userData._id
+        },
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        }
+      })
+      .then(response => {
+        // console.log('response.data', response.data);
+        if (response.data.response_code === "API_SUCCESS") {
+          response.data.data.forEach((element, index) => {
+            if (element.likedBy.includes(userData._id)) {
+              response.data.data[index].like = true;
+            } else {
+              response.data.data[index].like = false;
+            }
+          });
+          setHotCollectionsList(response.data.data);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
-
+  // console.log('filterCategory', filterCategory);
   useEffect(() => {
-    getHotCollectionsList().then(r => {});
+    getAllCollectibleList().then(r => {});
   }, []);
 
   return (

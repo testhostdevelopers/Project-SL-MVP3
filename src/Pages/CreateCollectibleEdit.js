@@ -6,7 +6,7 @@ import axios from "axios";
 import { Config } from '../utils/config';           
 
 const CreateCollectibleEdit = () => {
-  var apiToken = sessionStorage.getItem("apiToken");
+  const apiToken = sessionStorage.getItem("apiToken");
   const [udata, setUdata] = useState({});
   const variants = {
     hidden: { opacity: 0 },

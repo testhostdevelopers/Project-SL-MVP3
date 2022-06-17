@@ -46,7 +46,7 @@ export default function FilterCategory({
     let checkedV = document.querySelectorAll(
       ".filtercategory-check input[type='radio']"
     );
-    console.log(checkedV, "elements");
+    // console.log('checkedV', checkedV);
     setTimeout(() => {
       setValueForInput(checkedV);
     }, 100);
@@ -54,9 +54,10 @@ export default function FilterCategory({
 
   const setValueForInput = (array) => {
     array.forEach((ele) => {
-      console.log(ele.checked, "checked", ele.id);
       if (ele.checked === true) {
+        // console.log("FilterCategory", ele.checked, ele.value);
         setCheckedValues(ele.value);
+        setFilterCategory(ele.value);
       }
     });
   };

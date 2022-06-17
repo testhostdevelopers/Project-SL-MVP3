@@ -21,7 +21,7 @@ const { TabPane } = Tabs;
 
 const User = (props) => {
   const { user_id } = useParams();
-  var apiToken = sessionStorage.getItem("apiToken");
+  const apiToken = sessionStorage.getItem("apiToken");
   const userData = {};
   const currentUserData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [reportPopup, setReportPopup] = useState(false);
