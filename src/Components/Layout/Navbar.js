@@ -17,6 +17,8 @@ import closeicon from "../../assets/img/custom/close.svg";
 import notification_white from "../../assets/img/icons/custom/notification_white.svg";
 import searchline_white from "../../assets/img/icons/custom/search-line_white.svg";
 import user2 from "../../assets/img/icons/custom/user2.png";
+import axios from "axios";
+import {Config} from "../../utils/config";
 // import userProfilePictures from "../../assets/img/icons/custom/userNav.svg";
 // import vectorLogo from "../../assets/img/custom/Vector.svg";
 // import starlight from "../../assets/img/custom/starlight.png";
@@ -218,16 +220,68 @@ const Navbar = (props) => {
       document.documentElement.style.setProperty("--bothblack", "#000");
     }
   };
-
+  const apiToken = sessionStorage.getItem("apiToken");
+  const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [isShow, SetIsShow] = useState(false);
   const [isSubMenuShow, SetSubMenuShow] = useState(false);
   // const [closeNotification, setCloseNotification] = useState(true);
-  const notifications = ["add your email", "subscribe", "go to website"];
   const [searchItem, SetSearchItem] = useState(false);
-  const [notificationsArr, setNotificationsArr] = useState(notifications);
-
+  const [email, setEmail] = useState(userData?.email ? userData?.email : '');
+  const [website, setWebsite] = useState(userData?.personal_site ? userData?.personal_site : '');
+  const [isSubscribe, setIsSubscribe] = useState(userData?.isSubscribe ? userData?.isSubscribe : false);
+  const [notificationsArr, setNotificationsArr] = useState(["Add your email", "subscribe", "go to website"]);
+  const getInputValue = (event)=>{
+    setEmail(event.target.value);
+    setWebsite(event.target.value);
+  };
   const deleteHandler = (index) => {
-    setNotificationsArr(notificationsArr.filter((item, i) => i !== index));
+      setNotificationsArr(notificationsArr.filter((item, i) => i !== index));
+    };
+  const notifiedHandler = async (index) => {
+    // console.log('value is:', index);
+    if (apiToken.length > 0 && email.length === 0) {
+      return
+    }
+    if (index === 0) {
+      await axios
+          .put(`${Config.baseURL}v1/user/updateemail/` + userData._id, {email: email}, {
+            headers: {
+              Authorization: `Bearer ${apiToken}`,
+            }
+          })
+          .then(response => {
+            console.log('response', response);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+    } else if (index === 1) {
+      await axios
+          .put(`${Config.baseURL}v1/user/updatesubscription/` + userData._id, {email: email, isSubscribe: isSubscribe}, {
+            headers: {
+              Authorization: `Bearer ${apiToken}`,
+            }
+          })
+          .then(response => {
+            console.log('response', response);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+    } else if (index === 2) {
+      await axios
+          .put(`${Config.baseURL}v1/user/updatewebsite/` + userData._id, {personal_site: website}, {
+            headers: {
+              Authorization: `Bearer ${apiToken}`,
+            }
+          })
+          .then(response => {
+            console.log('response', response);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+    }
   };
 
   const profileImage = React.useRef(null);
@@ -910,7 +964,7 @@ const Navbar = (props) => {
                             <div
                               className="color-ping text-left"
                               onClick={() => {
-                                setNotificationPopup();
+                                setNotificationPopup(!notificationPopup);
                               }}
                             >
                               See all
@@ -956,6 +1010,7 @@ const Navbar = (props) => {
                                         borderBottomLeftRadius: "30px",
                                       }}
                                       placeholder="Your email"
+                                      onChange={getInputValue}
                                     />
                                     <button
                                       className="single-create-collectible btn-ping pt-0 pb-0 pl-4 pr-4 "
@@ -963,6 +1018,7 @@ const Navbar = (props) => {
                                         fontSize: "12px",
                                         marginLeft: "-15px",
                                       }}
+                                      onClick={() => notifiedHandler(index)}
                                     >
                                       <small>Get notified</small>
                                     </button>
