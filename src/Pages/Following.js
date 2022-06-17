@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import HotBids from "../Components/HotBids";
+import React, { useState, useEffect } from "react";
+// import HotBids from "../Components/HotBids";
 import { motion } from "framer-motion";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
-import artWorkWeek2 from "../assets/img/custom/artWorkWeek2.png";
-import artWorkWeek3 from "../assets/img/custom/artWorkWeek3.png";
-import artWorkWeek4 from "../assets/img/custom/artWorkWeek4.png";
+// import artWorkWeek2 from "../assets/img/custom/artWorkWeek2.png";
+// import artWorkWeek3 from "../assets/img/custom/artWorkWeek3.png";
+// import artWorkWeek4 from "../assets/img/custom/artWorkWeek4.png";
 import propertiesicon from "../assets/img/custom/properties.svg";
 import FilterSort from "../Components/FilterSort";
 import FullScreenImage from "../Components/Popup/FullScreenImage";
@@ -13,6 +13,9 @@ import FilterCollections from "../Components/FilterCollections";
 import Filtersale from "../Components/Filtersale";
 import FilterRange from "../Components/FilterRange";
 import FilterProperties from "../Components/FilterProperties";
+import axios from "axios";
+import {Config} from "../utils/config";
+import LiveAuctions from "../Components/LiveAuctions";
 // import categoryicon from "../assets/img/custom/category-icon.svg";
 // import fabaLogo from "../assets/img/custom/x.svg";
 // import { Menu, Dropdown, Select } from "antd";
@@ -22,6 +25,8 @@ import FilterProperties from "../Components/FilterProperties";
 // const { Option } = Select;
 
 const Following = () => {
+  var apiToken = sessionStorage.getItem("apiToken");
+  const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   let [openImage, setOpenImage] = useState(false);
   const [filterSort, setFilterSort] = useState(false);
   const [filterCategory, setFilterCategory] = useState(false);
@@ -29,7 +34,9 @@ const Following = () => {
   const [filterProperties, setFilterProperties] = useState(false);
   const [filtersale, setFiltersale] = useState(false);
   const [filterRange, setFilterRange] = useState(false);
-
+  let [hot_bide, setHotCollectionsList] = useState([]);
+  let offset = 0;
+  let limit = 12;
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -43,8 +50,7 @@ const Following = () => {
       <Menu.Item>Report</Menu.Item>
     </Menu>
   );*/
-
-  const hot_bide = [
+  /*const hot_bide = [
     {
       cover_bide: artWorkWeek2,
       bide_heartcount: "23",
@@ -77,7 +83,39 @@ const Following = () => {
       bide_weth: "1.2 WETH",
       bide_bid: "Highest bid 6/5",
     },
-  ];
+  ];*/
+
+  const getHotCollectionsList = async () => {
+    await axios
+        .get(`${Config.baseURL}v1/collectible/getallcollectiblelist/` + offset + `/` + limit, {
+          data: {
+            user_id: userData._id
+          },
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        })
+        .then(response => {
+          // console.log('response.data', response.data);
+          if (response.data.response_code === "API_SUCCESS") {
+            response.data.data.forEach((element, index) => {
+              if (element.likedBy.includes(userData._id)) {
+                response.data.data[index].like = true;
+              } else {
+                response.data.data[index].like = false;
+              }
+            });
+            setHotCollectionsList(response.data.data);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
+
+  useEffect(() => {
+    getHotCollectionsList().then(r => {});
+  }, []);
 
   return (
     <>
@@ -205,17 +243,28 @@ const Following = () => {
           </div>
 
           <div className="row  mt-5">
-            {hot_bide.map((bide_desk, ho_B) => (
-              <HotBids
-                key={ho_B}
-                Coverimg={bide_desk.cover_bide}
-                heartcount={bide_desk.bide_heartcount}
-                time={bide_desk.bide_time}
-                title={bide_desk.bide_name}
-                WETH={bide_desk.bide_weth}
-                bid={bide_desk.bide_bid}
-                isOpenInProfile={false}
-              />
+            {hot_bide.map((SingleCollectible, key) => (
+                <LiveAuctions
+                    key={key}
+                    liked={SingleCollectible.like}
+                    Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
+                    heartcount={SingleCollectible.likes}
+                    time={new Date(SingleCollectible.createdAt).toLocaleString('en-US', {
+                      weekday: 'long',
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                      hour: 'numeric',
+                      minute: 'numeric',
+                      second: 'numeric',
+                    })}
+                    id={SingleCollectible._id}
+                    title={SingleCollectible.title}
+                    WETH={SingleCollectible.price}
+                    bid={SingleCollectible.price}
+                    isOpenInProfile={false}
+                    isLiveAuctions={false}
+                />
             ))}
           </div>
         </div>
