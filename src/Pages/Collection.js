@@ -7,6 +7,7 @@ import ReportPopup from "../Components/Popup/ReportPopup";
 import UpdateCoverPopup from "../Components/Popup/UpdateCoverPopup";
 import UpdateProfilePicPopup from "../Components/Popup/UpdateProfilePicPopup";
 import { useParams } from "react-router-dom";
+import addicon from "../assets/img/custom/Mask_Group.png";
 import propertiesicon from "../assets/img/custom/properties.svg";
 import FilterSort from "../Components/FilterSort";
 import FilterCategory from "../Components/FilterCategory";
@@ -49,6 +50,7 @@ const Collection = (props) => {
   const [filterRange, setFilterRange] = useState(false);
   const [singleCollectionData, setsingleCollectionData] = useState(false);
   const [CoverImg, setCoverImg] = useState(artWorkWeek1);
+  const [ProfileImg, setProfileImg] = useState(artWorkWeek1);
   let [userCollectibleList, setUserCollectibleList] = useState([]);
   const buttonText = "Edit Cover";
   const variants = {
@@ -68,7 +70,8 @@ const Collection = (props) => {
         if (res.data.data) {
           if (userdata._id === res.data.data.user_id?._id) {
             setEditCover(true);
-            setCoverImg(res.data.data.main_img);
+            setProfileImg(res.data.data.main_img);
+            setCoverImg(res.data.data.cover_img);
           }
           setsingleCollectionData(res.data.data)
         }
@@ -117,7 +120,7 @@ const Collection = (props) => {
         <UpdateCoverPopup setUpdateCoverPopup={setUpdateCoverPopup} setCoverImg={setCoverImg} collectionID={collectionId} />
       )}
       {profilePopup && (
-        <UpdateProfilePicPopup setprofilePopup={setprofilePopup} />
+        <UpdateProfilePicPopup setprofilePopup={setprofilePopup} setProfileImg={setProfileImg} collectionID={collectionId} />
       )}
       {filterProperties && (
         <FilterProperties setFilterProperties={setFilterProperties} />
@@ -135,7 +138,7 @@ const Collection = (props) => {
               <header>
                 <div className="position-relative">
                   <div className="border p-3 gray-color profile-pictures-cover">
-                    <img src={CoverImg} width="100%" alt=""/>
+                    <img src={CoverImg} width="100%" alt="" style={{objectFit: "fill"}} />
                     {
                       EditCover === true ? <>
                         <button
@@ -147,7 +150,16 @@ const Collection = (props) => {
                       </> : <></>
                     }
                   </div>
-                  <div className="profile-info-position mt-5 ">
+                  <div className="profile-info-position">
+                    <div className="profile-user-pictures">
+                        <span
+                          onClick={() => setprofilePopup(true)}
+                          className="edit-proile-img"
+                        >
+                          <img src={addicon} alt={""} />
+                        </span>
+                        <img src={ProfileImg} width="100%" style={{height: "100%"}} alt="" />
+                    </div>
                     <div className="mt-3 profile-usr-name-h3-size">
                       <h3>
                         <b>{singleCollectionData.title}</b>

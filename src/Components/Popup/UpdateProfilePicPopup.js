@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
+import { Config } from '../../utils/config';
 import closeicon from "../../assets/img/custom/close.svg";
 
 const UpdateProfilePicPopup = (props) => {
@@ -9,6 +11,39 @@ const UpdateProfilePicPopup = (props) => {
   };
 
   let { setprofilePopup } = props;
+
+  let { setUpdateCoverPopup, collectionID, setProfileImg } = props;
+  const apiToken = sessionStorage.getItem("apiToken");
+  const [file, setFile] = useState();
+
+  function handleChange(event) {
+    setFile(event.target.files[0])
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    const url = `${Config.baseURL}v1/collection/updateimg/` + collectionID;
+    const formData = new FormData();
+    formData.append('main_img', file);
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${apiToken}`,
+        'content-type': 'multipart/form-data',
+      },
+    };
+    axios
+        .put(url, formData, config)
+        .then((response) => {
+          console.log(response.data.data);
+          if (response.data.response_code === "API_SUCCESS") {
+            if (response.data.response_code === "API_SUCCESS") {
+              setProfileImg(response.data.data.main_img);
+              setprofilePopup(false);
+            }
+          }
+      });
+  }
+
 
   return (
     <motion.div
@@ -34,11 +69,17 @@ const UpdateProfilePicPopup = (props) => {
           Upload new profile picture for your profile. We recommend to upload
           images in 200x200 resolution.
         </p>
-
+        <form onSubmit={handleSubmit}>
         <div className="upload-file-field">
-          <input type="file" placeholder="Choose image" className="" />
-          <label className="btn-ping w-100 mb-0">Choose image</label>
-        </div>
+          <input type="file" placeholder="Choose image" onChange={handleChange} accept="image/png, image/jpeg"/>
+            <label className="btn-ping w-100 mb-0">Choose image</label>
+          </div>
+          <br/>
+          <div className="upload-file-field">
+            <input type="submit" value={'Submit'} />
+            <label className="btn-ping w-100 mb-0">Submit</label>
+          </div>
+        </form>
       </div>
     </motion.div>
   );

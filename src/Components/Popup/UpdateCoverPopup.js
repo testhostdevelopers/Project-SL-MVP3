@@ -21,7 +21,7 @@ const UpdateCoverPopup = (props) => {
     event.preventDefault()
     const url = `${Config.baseURL}v1/collection/updateimg/` + collectionID;
     const formData = new FormData();
-    formData.append('main_img', file);
+    formData.append('cover_img', file);
     const config = {
       headers: {
         "Authorization": `Bearer ${apiToken}`,
