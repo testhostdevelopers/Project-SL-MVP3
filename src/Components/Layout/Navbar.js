@@ -19,6 +19,8 @@ import searchline_white from "../../assets/img/icons/custom/search-line_white.sv
 import user2 from "../../assets/img/icons/custom/user2.png";
 import axios from "axios";
 import {Config} from "../../utils/config";
+import ActivityCard from "../../assets/img/custom/activity-cardonly.png";
+import userImg from "../../assets/img/icons/custom/userProfilePictures.png";
 // import userProfilePictures from "../../assets/img/icons/custom/userNav.svg";
 // import vectorLogo from "../../assets/img/custom/Vector.svg";
 // import starlight from "../../assets/img/custom/starlight.png";
@@ -32,7 +34,8 @@ const Navbar = (props) => {
     cutPkey =
       UPubKey.substring(0, 4) + "...." + UPubKey.substring(UPubKey.length - 4);
   }
-
+  const apiToken = sessionStorage.getItem("apiToken");
+  const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const signOut = () =>   {
     var wal = localStorage.getItem("wallet");
     if (wal === "phantom") {
@@ -57,7 +60,6 @@ const Navbar = (props) => {
   const [theme, setTheme] = useState(localStorage.getItem("theme"));
   const [openProfileDropMenu, setOpenProfileDropMenu] = useState(false);
   const [notificationPopup, setNotificationPopup] = useState(false);
-
   const location = useLocation();
 
   useEffect(() => {
@@ -220,8 +222,6 @@ const Navbar = (props) => {
       document.documentElement.style.setProperty("--bothblack", "#000");
     }
   };
-  const apiToken = sessionStorage.getItem("apiToken");
-  const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [isShow, SetIsShow] = useState(false);
   const [isSubMenuShow, SetSubMenuShow] = useState(false);
   // const [closeNotification, setCloseNotification] = useState(true);
@@ -229,7 +229,14 @@ const Navbar = (props) => {
   const [email, setEmail] = useState(userData?.email ? userData?.email : '');
   const [website, setWebsite] = useState(userData?.personal_site ? userData?.personal_site : '');
   const [isSubscribe, setIsSubscribe] = useState(userData?.isSubscribe ? userData?.isSubscribe : false);
-  const [notificationsArr, setNotificationsArr] = useState(["Add your email", "subscribe", "go to website"]);
+  const [notificationsActivity, setNotificationsActivity] = useState([]);
+  const [notificationsArr, setNotificationsArr] = useState(
+      [
+        [email.length ? null : "Add your email", email, "Set your email"],
+        [isSubscribe ? null : "subscribe", email, "to get all the important notifications right into your inbox"],
+        [website.length ? null : "go to website", website, "Set your Website"],
+      ]
+  );
   const getInputValue = (event)=>{
     setEmail(event.target.value);
     setWebsite(event.target.value);
@@ -256,8 +263,9 @@ const Navbar = (props) => {
             console.log(err);
           });
     } else if (index === 1) {
+      setIsSubscribe(true);
       await axios
-          .put(`${Config.baseURL}v1/user/updatesubscription/` + userData._id, {email: email, isSubscribe: isSubscribe}, {
+          .put(`${Config.baseURL}v1/user/updatesubscription/` + userData._id, {email: email, isSubscribe: true}, {
             headers: {
               Authorization: `Bearer ${apiToken}`,
             }
@@ -283,18 +291,73 @@ const Navbar = (props) => {
           });
     }
   };
-
   const profileImage = React.useRef(null);
   const profileUploader = React.useRef(null);
   profileImage.current = props.pImage;
-
   const list_drop = [
     { listLink: "/Token", listName: "Token" },
     { listLink: "/", listName: "Discussion" },
     { listLink: "/", listName: "Suggest feature" },
     { listLink: "/", listName: "Subscribe" },
   ];
-
+  const makeTitle = (activity) => {
+    let title = '';
+    if (activity.user_id?._id === userData._id) {
+      activity.user_id.display_name = "You";
+    }
+    if (activity?.filter?.title === 'Like' || activity?.filter?.title === 'UnLike' ) {
+      if (activity.collectible_id) {
+        title = activity.user_id?.display_name + ' ' + activity.name + ' ' + activity?.collectible_id?.title
+      } else if (activity.collection_id) {
+        title = activity.user_id?.display_name + ' ' + activity.name + ' ' + activity?.collection_id?.title
+      }
+    } else if (activity?.filter?.title === 'Following') {
+      title = activity.user_id.display_name + ' ' + activity.name
+    }
+    if (title === '') {
+      title = activity.name;
+    }
+    return title;
+  };
+  const img = (activity) => {
+    // console.log('activity', activity);
+    let defaultImg = ActivityCard;
+    if (activity.collectible_id) {
+      defaultImg = activity.collectible_id.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + activity.collectible_id.img_path : defaultImg
+    }
+    else if (activity.collection_id) {
+      defaultImg = activity.collection_id.main_img
+      defaultImg = activity.collection_id.main_img.indexOf('https://storage.googleapis.com') > -1 ? activity.collection_id.main_img : ActivityCard
+    }
+    else if (activity.followed_user_id) {
+      if (activity.followed_user_id.profile_img_url === "null") {
+        defaultImg = userImg;
+      } else {
+        defaultImg = activity.followed_user_id.profile_img_url
+      }
+    }
+    return defaultImg;
+  };
+  const getNotifications = async () => {
+    await axios
+        .get(`${Config.baseURL}v1/transaction/getusertransactions/` + userData._id + `/0/5`, {
+          data: {
+            user_id: userData._id
+          },
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        })
+        .then(response => {
+          setNotificationsActivity(response?.data?.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
+  if (!notificationsActivity.length) {
+    getNotifications().then(r => {});
+  }
   const SearchInput = () => {
     const handleKeyDown = (event) => {
       if (event.key === 'Enter') {
@@ -304,7 +367,6 @@ const Navbar = (props) => {
     }
     return <input type="text" onKeyDown={handleKeyDown} placeholder="Search by creator, collectible or collection"/>
   }
-
     return (
     <>
       {CoinConverp && <CoinConver setCoinConverp={setCoinConverp} />}
@@ -972,60 +1034,87 @@ const Navbar = (props) => {
                           </div>
 
                           {notificationsArr.map((n, index) => (
-                            <div
-                              key={index}
-                              className={`d-flex justify-content-between notification-ping-bg position-relative p-4 `}
-                            >
-                              <div
-                                className="popup-close-btn-outline"
-                                onClick={() => deleteHandler(index)}
-                              >
-                                <img alt={""} src={closeicon} />
-                              </div>
-                              <div className="d-flex">
-                                <div>
-                                  <img alt={""} src={grayPp} width="56" />
-                                </div>
-
-                                <div className="ml-3">
-                                  <div className="text-left">{n}</div>
-                                  <div className="text-left">
-                                    <span className="color-gray">
-                                      to get all the important notifications right into your inbox
-                                    </span>
-                                  </div>
-
+                            <div>
+                              {n[0] != null ? <>
+                                <div
+                                  key={index}
+                                  className={`d-flex justify-content-between notification-ping-bg position-relative p-4 `}
+                                >
                                   <div
-                                    className="d-flex justify-content-between gray-color mt-3"
-                                    style={{ borderRadius: "30px" }}
+                                      className="popup-close-btn-outline"
+                                      onClick={() => deleteHandler(index)}
                                   >
-                                    <input
-                                      width="100%"
-                                      className="border-none bg-white"
-                                      style={{
-                                        border: "none",
-                                        paddingLeft: "10px",
-                                        outline: "none",
-                                        borderTopLeftRadius: "30px",
-                                        borderBottomLeftRadius: "30px",
-                                      }}
-                                      placeholder="Your email"
-                                      onChange={getInputValue}
-                                    />
-                                    <button
-                                      className="single-create-collectible btn-ping pt-0 pb-0 pl-4 pr-4 "
-                                      style={{
-                                        fontSize: "12px",
-                                        marginLeft: "-15px",
-                                      }}
-                                      onClick={() => notifiedHandler(index)}
-                                    >
-                                      <small>Get notified</small>
-                                    </button>
+                                    <img alt={""} src={closeicon} />
+                                  </div>
+                                  <div className="d-flex">
+                                    <div>
+                                      <img alt={""} src={grayPp} width="56" />
+                                    </div>
+
+                                    <div className="ml-3">
+                                      <div className="text-left">{n[0]}</div>
+                                      <div className="text-left">
+                                        <span className="color-gray">
+                                          {n[2]}
+                                        </span>
+                                      </div>
+
+                                      <div
+                                          className="d-flex justify-content-between gray-color mt-3"
+                                          style={{ borderRadius: "30px" }}
+                                      >
+                                        <input
+                                            width="100%"
+                                            className="border-none bg-white"
+                                            style={{
+                                              border: "none",
+                                              paddingLeft: "10px",
+                                              outline: "none",
+                                              borderTopLeftRadius: "30px",
+                                              borderBottomLeftRadius: "30px",
+                                            }}
+                                            value={n[1]}
+                                            placeholder="Your email"
+                                            onChange={getInputValue}
+                                        />
+                                        <button
+                                            className="single-create-collectible btn-ping pt-0 pb-0 pl-4 pr-4 "
+                                            style={{
+                                              fontSize: "12px",
+                                              marginLeft: "-15px",
+                                            }}
+                                            onClick={() => notifiedHandler(index)}
+                                        >
+                                          <small>Get notified</small>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </> : <></>}
+                            </div>
+                          ))}
+                          {notificationsActivity.map((n, index) => (
+                              <div
+                                  key={index}
+                                  className={`d-flex justify-content-between notification-ping-bg position-relative p-4 `}
+                              >
+                                <div
+                                    className="popup-close-btn-outline"
+                                    // onClick={() => deleteHandler(index)}
+                                >
+                                  <img alt={""} src={closeicon} />
+                                </div>
+                                <div className="d-flex">
+                                  <div>
+                                    <img alt={""} src={img(n)} width={25} height={25}/>
+                                  </div>
+
+                                  <div className="ml-3">
+                                    <div className="text-left">{makeTitle(n)}</div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
                           ))}
                         </div>
                       )}

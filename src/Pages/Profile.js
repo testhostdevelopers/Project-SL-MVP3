@@ -60,7 +60,7 @@ const Profile = (props) => {
             }
           });
           // console.log('getFollowerUsers', response.data.data)
-          setUserFollowerList((response.data.data));
+          setUserFollowerList(response.data.data);
         })
         .catch(err => {
           console.log(err);
@@ -77,8 +77,8 @@ const Profile = (props) => {
               }
             })
         .then(response => {
-          // console.log('getFollowingUsers', response.data.data);
-          setUserFollowingList(Object.entries(response.data.data));
+          // console.log('getFollowingUsers', (response.data.data));
+          setUserFollowingList(response.data.data);
         })
         .catch(err => {
           console.log(err);
