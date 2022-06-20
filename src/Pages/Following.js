@@ -96,6 +96,19 @@ const Following = () => {
       });
     }
   }
+  if (filterCollections) {
+    filterCollections.forEach((SingleCollection, key) => {
+      // console.log('SingleCollection', SingleCollection);
+      collectionsList.forEach((SingleData, key) => {
+        if (SingleData.collection_id.title === SingleCollection) {
+          collectionsList[key].show = true;
+        } else {
+          // collectionsList[key].show = false;
+        }
+      });
+    });
+  }
+  console.log('filterCollections', filterCollections);
   useEffect(() => {
     getAllCollectibleList().then(r => {});
   }, []);

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import categoryicon from "../assets/img/custom/category-icon.svg";
 import userProfile from "../assets/img/custom/userProfilePictures.png";
+import axios from "axios";
+import {Config} from "../utils/config";
 
 export default function FilterCollections({
   setFilterSort,
@@ -16,12 +18,17 @@ export default function FilterCollections({
   setFiltersale,
   setFilterRange,
 }) {
+  const apiToken = sessionStorage.getItem("apiToken");
+  const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [isChecked, setIsChecked] = useState(false);
   const [checkedValues, setCheckedValues] = useState([]);
+  let [collectionsList, setCollectionsList] = useState([]);
+  let offset = 0;
+  let limit = 5;
   const handleToggle = () => {
     setFilterSort(false);
     setFilterCategory(false);
-    setFilterCollections(!filterCollections);
+    setFilterCollections(checkedValues);
     setFilterProperties(false);
     setFiltersale(false);
     setFilterRange(false);
@@ -36,6 +43,26 @@ export default function FilterCollections({
       ele.checked = false;
     });
   };
+  const getCollectionList = async () => {
+    await axios
+        .get(`${Config.baseURL}v1/collection/getcollectionname/` + offset + `/` + limit, {
+          data: {
+            user_id: userData._id
+          },
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        })
+        .then(response => {
+          // console.log('response.data', response.data);
+          if (response.data.response_code === "API_SUCCESS") {
+            setCollectionsList(response.data.data);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
   useEffect(() => {
     let checkedV = document.querySelectorAll(
       ".filtercollection-check input[type='checkbox']"
@@ -48,9 +75,11 @@ export default function FilterCollections({
       }
     });
     setCheckedValues(arr);
+    if (collectionsList.length === 0) {
+      getCollectionList().then(r => {});
+    }
   }, [filterCollections]);
-
-  // console.log(checkedValues, "checked values");
+  // console.log("checked values", checkedValues);
   // console.log(document.querySelectorAll(".custom-filter ul input[type='checkbox']"), 'checkboxes')
   return (
     <li>
@@ -102,55 +131,27 @@ export default function FilterCollections({
             <input type="text" placeholder="Search in collections" />
           </span>
           <ul className="filtercollection-check">
-            <li>
-              <input type="checkbox" id="Cryptoloria" value="Cryptoloria" />
-              <label htmlFor="Cryptoloria">
-                <img src={userProfile} alt={""} /> Cryptoloria
-              </label>
-            </li>
-
-            <li>
-              <input type="checkbox" id="Art" value="Art" />
-              <label htmlFor="Art">
-                <img src={userProfile} alt={""} /> Art
-              </label>
-            </li>
-
-            <li>
-              <input type="checkbox" id="Photography" value="Photography" />
-              <label htmlFor="Photography">
-                <img alt={""} src={userProfile} /> Photography
-              </label>
-            </li>
-
-            <li>
-              <input type="checkbox" id="Games" value="Games" />
-              <label htmlFor="Games">
-                <img alt={""} src={userProfile} /> Games
-              </label>
-            </li>
-
-            <li>
-              <input type="checkbox" id="Metaverses" value="Metaverses" />
-              <label htmlFor="Metaverses">
-                <img alt={""} src={userProfile} /> Metaverses
-              </label>
-            </li>
+            {collectionsList.map((SingleCollectible) => (
+              <li key={SingleCollectible._id}>
+                <input type="checkbox" id={SingleCollectible._id} value={SingleCollectible.title} />
+                <label htmlFor={SingleCollectible._id}>
+                  <img src={SingleCollectible.main_img} alt={""} /> {SingleCollectible.title}
+                </label>
+              </li>
+            ))}
           </ul>
 
           <div className="filter-button">
             <a
               className="btn btn-primary-outline"
-              href="/#"
               onClick={() => unCheckedCheckBox()}
             >
               Clear
             </a>
             <a
               className="btn btn-primary"
-              href="/#"
               onClick={() => {
-                setFilterCollections(false);
+                setFilterCollections(checkedValues);
                 setIsChecked(false);
               }}
             >
