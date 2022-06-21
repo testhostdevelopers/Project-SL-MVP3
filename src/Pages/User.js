@@ -278,7 +278,7 @@ const User = (props) => {
                     </div>
                     <div className="mt-4 d-flex justify-content-between align-items-center">
                       <button className="bg-white border-gray edit-profile" onClick={() => {
-                        followButton();
+                        followButton().then(r => {});
                       }}>
                         <b>{followButtonText}</b>
                       </button>

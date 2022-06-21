@@ -361,7 +361,7 @@ const Navbar = (props) => {
   const SearchInput = () => {
     const handleKeyDown = (event) => {
       if (event.key === 'Enter') {
-        console.log('search keyword', event.target.value);
+        // console.log('search keyword ', event.target.value);
         history.push('/search/' + event.target.value);
       }
     }
