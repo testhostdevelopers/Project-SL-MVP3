@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import categoryicon from "../assets/img/custom/category-icon.svg";
-import userProfile from "../assets/img/custom/userProfilePictures.png";
+// import userProfile from "../assets/img/custom/userProfilePictures.png";
 import axios from "axios";
 import {Config} from "../utils/config";
 
@@ -76,7 +76,9 @@ export default function FilterCollections({
     });
     setCheckedValues(arr);
     if (collectionsList.length === 0) {
-      getCollectionList().then(r => {});
+      if (sessionStorage.getItem("apiToken")) {
+        getCollectionList().then(r => {});
+      }
     }
   }, [filterCollections]);
   // console.log("checked values", checkedValues);

@@ -110,7 +110,9 @@ const Following = () => {
   }
   console.log('filterCollections', filterCollections);
   useEffect(() => {
-    getAllCollectibleList().then(r => {});
+    if (sessionStorage.getItem("apiToken")) {
+      getAllCollectibleList().then(r => {});
+    }
   }, []);
 
   return (

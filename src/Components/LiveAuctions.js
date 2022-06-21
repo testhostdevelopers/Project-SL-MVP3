@@ -5,7 +5,7 @@ import ReportPopup from "../Components/Popup/ReportPopup";
 import { Config } from '../utils/config';
 import artWorkWeek1 from "../../src/assets/img/custom/artWorkWeek1.png";
 import ShareThisNFTPopup from "./Popup/ShareThisNFTPopup";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 
 export default function LiveAuctions({
@@ -145,7 +145,7 @@ export default function LiveAuctions({
             }
 
             {isCollection === true?
-                <a href={'/collection/'+id}><h6>{title}</h6></a> : <a href={'/buy/'+id}><h6>{title}</h6></a>
+                <Link to={'/collection/'+id}><h6>{title}</h6></Link> : <Link to={'/buy/'+id}><h6>{title} 321</h6></Link>
             }
             <div className="d-flex justify-content-between align-items-center">
               <div className="text-danger">

@@ -76,7 +76,7 @@ const SignIn = () => {
     if ("solflare" in window) {
       // const provider = window.solflare;
       //   if (provider.isSolFlare) {
-      const solRes = window.solflare.connect();
+      // const solRes = window.solflare.connect();
       window.solflare.on("connect", () =>
         connectStore(window.solflare.publicKey.toString(), "solflare", true)
       );

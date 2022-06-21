@@ -339,21 +339,23 @@ const Navbar = (props) => {
     return defaultImg;
   };
   const getNotifications = async () => {
-    await axios
-        .get(`${Config.baseURL}v1/transaction/getusertransactions/` + userData._id + `/0/5`, {
-          data: {
-            user_id: userData._id
-          },
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          }
-        })
-        .then(response => {
-          setNotificationsActivity(response?.data?.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+    if (sessionStorage.getItem("apiToken")) {
+      await axios
+          .get(`${Config.baseURL}v1/transaction/getusertransactions/` + userData._id + `/0/5`, {
+            data: {
+              user_id: userData._id
+            },
+            headers: {
+              Authorization: `Bearer ${apiToken}`,
+            }
+          })
+          .then(response => {
+            setNotificationsActivity(response?.data?.data);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+    }
   };
   if (!notificationsActivity.length) {
     getNotifications().then(r => {});

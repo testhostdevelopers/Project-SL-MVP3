@@ -56,7 +56,7 @@ const App = () => {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
-    if (sessionStorage.getItem("apiToken")) {
+    if (sessionStorage.getItem("apiToken") || sessionStorage.getItem("userdata")) {
       setIsAuthenticated(true);
     }
   }, []);

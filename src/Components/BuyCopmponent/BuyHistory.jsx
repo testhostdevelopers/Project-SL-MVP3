@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import userTick from "../../assets/img/custom/userTick.png";
+// import userTick from "../../assets/img/custom/userTick.png";
 import { Config } from "../../utils/config";
 import axios from "axios";
 import artWorkWeek1 from "../../../src/assets/img/custom/artWorkWeek1.png";
