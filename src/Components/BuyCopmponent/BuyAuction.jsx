@@ -9,7 +9,9 @@ const BuyAuction = (props) => {
   const [hour, setHour] = useState(3);
   const [min, setMin] = useState(43);
   const [seconds, setSeconds] = useState(44);
-
+  const data = props;
+  var length = data.props.bids.length;
+  console.log(data.props.bids.length);
   useEffect(() => {
     
     const interval = setInterval(() => {
@@ -43,23 +45,25 @@ const BuyAuction = (props) => {
   return (
     <>
       <div className="d-flex mt-4 justify-content-center mt-5 buy-font buy-highest-bid-block">
-        <div className="pr-3 border-right buy-highest-bid-block-left">
-          <span className="text-secondary">Highest bid by </span>
-          <span>
-            <b> The first of art</b>
-          </span>
-          <div className="d-flex mt-2">
-            <div className="user-img">
-              <img src={topSellerUser4} width="42" alt="" />
-            </div>
-            <div className="ml-3">
-              <h5 className="m-1">
-                <b>0.066 wETH</b>
-              </h5>
-              <div className="text-secondary">~$261</div>
+          { data && data.props.bids.length > 0 ? 
+          <div className="pr-3 border-right buy-highest-bid-block-left">
+            <span className="text-secondary">Highest bid by </span>
+            <span>
+              <b> The first of art</b>
+            </span>
+            <div className="d-flex mt-2">
+              <div className="user-img">
+                <img src={topSellerUser4} width="42" alt="" />
+              </div>
+              <div className="ml-3">
+                <h5 className="m-1">
+                  <b>0.066 wETH</b>
+                </h5>
+                <div className="text-secondary">~$261</div>
+              </div>
             </div>
           </div>
-        </div>
+          : '' }
 
         <div className="pl-3 buy-highest-bid-block-right">
           <div className="text-secondary">Auction ends in</div>
@@ -94,12 +98,12 @@ const BuyAuction = (props) => {
           </div>
         </div>
       </div>
-      <button
+      {/* <button
         className="btn-primary-outline mt-3 ml-3 w-100"
         // onClick={() => setSingleCollectionPopup(true)}
       >
         Place a Bid
-      </button>
+      </button> */}
       <div>
         {day === 0 && hour === 0 && min === 0 && seconds === 0
           ? "All Auction Done"
