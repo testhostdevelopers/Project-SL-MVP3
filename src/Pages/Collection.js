@@ -98,6 +98,24 @@ const Collection = (props) => {
       });
     });
   }
+  if (filterRange) {
+    console.log('filterRange', filterRange);
+    if (filterRange[0] > 0 || filterRange[1] > 0) {
+      userCollectibleList.forEach((SingleData, key) => {
+        if (SingleData.price > filterRange[0] && SingleData.price < filterRange[1]) {
+          console.log('SingleData.price > filterRange[0]', SingleData.price);
+          userCollectibleList[key].show = true;
+        } else {
+          console.log('SingleData.price', SingleData.price);
+          userCollectibleList[key].show = false;
+        }
+      });
+    } else {
+      userCollectibleList.forEach((SingleData, key) => {
+        userCollectibleList[key].show = true;
+      });
+    }
+  }
   const singleCollection = async () => {
     axios
       .get(`${Config.baseURL}v1/collection/getCollection/` + collectionId, {
@@ -135,7 +153,7 @@ const Collection = (props) => {
           response.data.data[index].show = true;
         });
         setUserCollectibleList(response.data.data);
-        console.log('setUserCollectionList', response.data.data);
+        // console.log('setUserCollectionList', response.data.data);
       })
       .catch(err => {
         console.log(err);
