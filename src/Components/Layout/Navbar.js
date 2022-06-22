@@ -358,7 +358,7 @@ const Navbar = (props) => {
     }
   };
   if (!notificationsActivity.length) {
-    getNotifications().then(r => {});
+    // getNotifications().then(r => {});
   }
   const SearchInput = () => {
     const handleKeyDown = (event) => {

@@ -5,8 +5,7 @@ import closeicon from "../../assets/img/custom/close.svg";
 // import { useLocation, Link } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { Config } from '../../utils/config';           
-
+import { Config } from '../../utils/config';
 
 const PlaceABidPopup = (props) => {
   const { collectibleId } = useParams();
@@ -34,14 +33,11 @@ const PlaceABidPopup = (props) => {
       amount: placeBid.amount,
       currency: selected,
       user_id: user_id
-
     };
     console.log('placeBidCollectible');
     let a = 'collectible';
     await axios
-      .put(`${Config.baseURL}v1/` + a + '/bid/' + collectibleId, {
-        bids
-      }, {
+      .put(`${Config.baseURL}v1/` + a + '/bid/' + collectibleId, { bids }, {
         headers: {
           Authorization: `Bearer ${apiToken}`,
         }
@@ -94,7 +90,7 @@ const PlaceABidPopup = (props) => {
           </h5>
 
           <div className="pt-2 pb-2 border-bottom d-flex justify-content-between bid-input">
-            <input type="text" onChange={ (e) => setPlaceBid({ ...placeBid,amount: parseInt(e.target.value) + 0.0005 } ) } className="formcontrol" placeholder="0.2" />
+            <input type="number" onChange={ (e) => setPlaceBid({ ...placeBid,amount: parseInt(e.target.value) + 0.0005 } ) } className="formcontrol" placeholder="0.2" />
             {/* <div>0.2</div> */}
             <div className="info">
               <span className="help" onClick={() => props.sethelpPopup(true)}>
