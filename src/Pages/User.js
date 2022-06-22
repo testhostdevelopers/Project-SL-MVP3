@@ -21,7 +21,7 @@ const { TabPane } = Tabs;
 
 const User = (props) => {
   const { user_id } = useParams();
-  var apiToken = sessionStorage.getItem("apiToken");
+  const apiToken = sessionStorage.getItem("apiToken");
   const userData = {};
   const currentUserData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [reportPopup, setReportPopup] = useState(false);
@@ -278,7 +278,7 @@ const User = (props) => {
                     </div>
                     <div className="mt-4 d-flex justify-content-between align-items-center">
                       <button className="bg-white border-gray edit-profile" onClick={() => {
-                        followButton();
+                        followButton().then(r => {});
                       }}>
                         <b>{followButtonText}</b>
                       </button>

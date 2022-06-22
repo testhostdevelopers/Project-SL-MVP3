@@ -142,7 +142,7 @@ const Buy = () => {
 
   return (
     <>
-      {openImage && <FullScreenImage setOpenImage={setOpenImage} />}
+      {openImage && <FullScreenImage setOpenImage={setOpenImage} Image={singleCollectibleData.img_path?.indexOf('nftstorage.link') > -1 ? 'https://' + singleCollectibleData.img_path : artWorkWeekOne} />}
       {singleCollectionPopup && (
         <FinishedCollectiblePopup
           setSinglePopup={setSinglePopup}
@@ -158,7 +158,7 @@ const Buy = () => {
         />
       )}
       {errorPopups && <ErrorPopup setErrorPopup={setErrorPopup} />}
-      {sharePopup && <ShareThisNFTPopup setsharePopup={setsharePopup} />}
+      {sharePopup && <ShareThisNFTPopup setsharePopup={setsharePopup} id={collectibleId} />}
       {reportPopup && <ReportPopup type={'Collectible'} id={collectibleId} setReportPopup={setReportPopup} />}
       {helpPopup && <WhatIswETHPopup sethelpPopup={sethelpPopup} />}
       {CheckOutPopup && (

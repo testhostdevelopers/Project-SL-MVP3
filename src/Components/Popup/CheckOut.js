@@ -79,7 +79,7 @@ const CheckOut = (props) => {
                 </h5>
                 <div className="pt-2 pb-2 border-bottom d-flex justify-content-between bid-input">
                   <input
-                    type="text"
+                    type="number"
                     className="formcontrol"
                     placeholder="0.2"
                   />

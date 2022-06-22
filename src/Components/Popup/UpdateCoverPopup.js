@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { Config } from '../../utils/config';
@@ -21,7 +21,7 @@ const UpdateCoverPopup = (props) => {
     event.preventDefault()
     const url = `${Config.baseURL}v1/collection/updateimg/` + collectionID;
     const formData = new FormData();
-    formData.append('main_img', file);
+    formData.append('cover_img', file);
     const config = {
       headers: {
         "Authorization": `Bearer ${apiToken}`,

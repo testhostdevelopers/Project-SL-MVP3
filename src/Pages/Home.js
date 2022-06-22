@@ -41,9 +41,10 @@ import { Config } from '../utils/config';
 SwiperCore.use([Keyboard, Pagination, Navigation, Autoplay]);
 
 const Home = () => {
-  var apiToken = sessionStorage.getItem("apiToken");
+  const apiToken = sessionStorage.getItem("apiToken");
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   let [openImage, setOpenImage] = useState(false);
+  let [openImagePath, setOpenImagePath] = useState(artWorkWeek1);
   let [liveAuctionList, setLiveAuctionList] = useState([]);
   let [hotCollectionsList, setHotCollectionsList] = useState([]);
   let [topSellerUser, setTopSellerUser] = useState([]);
@@ -360,7 +361,7 @@ const Home = () => {
 
   return (
     <>
-      {openImage && <FullScreenImage setOpenImage={setOpenImage} />}
+      {openImage && <FullScreenImage setOpenImage={setOpenImage} Image={openImagePath} />}
       <motion.section
         initial="hidden"
         animate="visible"
@@ -450,11 +451,7 @@ const Home = () => {
                     <div id="main-heading">Name of Collection</div>
                     <div id="by">By Lorem Ipsum</div>
                     <div id="sub-heading">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book.
+                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                     </div>
                     <button
                       type="button"
@@ -470,11 +467,7 @@ const Home = () => {
                     <div id="main-heading">Name of Collection</div>
                     <div id="by">By Lorem Ipsum</div>
                     <div id="sub-heading">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book.
+                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                     </div>
                     <button
                       type="button"
@@ -612,6 +605,7 @@ const Home = () => {
                 width="95%"
                 alt=""
                 onClick={() => {
+                  setOpenImagePath(artWorkWeekOne);
                   setOpenImage(true);
                   document.body.style.overflow = "hidden";
                 }}
@@ -629,9 +623,12 @@ const Home = () => {
                 {all_atwork.map((artwork, key) => (
                   <div key={key} className="art-list">
                     <ArtWork
-                      title={artwork.my_title}
+                      title={artwork.my_title + '111'}
                       artworkimg={artwork.artimg}
-                      setOpenImage={(imgFlag) => setOpenImage(imgFlag)}
+                      setOpenImage={(imgFlag) => {
+                        setOpenImagePath(artwork.artimg)
+                        setOpenImage(imgFlag);
+                      }}
                     />
                   </div>
                 ))}
@@ -663,6 +660,7 @@ const Home = () => {
             <div className="d-flex">
               {topSellerUser.map((top_seller_profile, key) => (
                 <TopCard
+                  key={top_seller_profile._id}
                   topcoverimg={top_seller_profile.cover_img_url}
                   topuserimg={top_seller_profile.profile_img_url}
                   title={top_seller_profile.display_name}
@@ -697,6 +695,7 @@ const Home = () => {
             <div className="d-flex">
               {topBuyerUser.map((top_seller_profile, key) => (
                 <TopCard
+                  key={top_seller_profile._id}
                   topcoverimg={top_seller_profile.cover_img_url}
                   topuserimg={top_seller_profile.profile_img_url}
                   title={top_seller_profile.display_name}
@@ -725,6 +724,7 @@ const Home = () => {
           <div className="row  mt-5">
             {liveAuctionList.slice(0, 8).map((SingleCollectible, key) => (
               <LiveAuctions
+                key={SingleCollectible._id}
                 isCollection={false}
                 id={SingleCollectible._id}
                 Coverimg={SingleCollectible.img_path?.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
@@ -762,15 +762,16 @@ const Home = () => {
           >
             {slide_hot_bid.map((bide_desk, key) => (
               <SwiperSlide>
-                  <HotBids
-                    Coverimg={bide_desk.cover_bide}
-                    heartcount={bide_desk.bide_heartcount}
-                    time={bide_desk.bide_time}
-                    title={bide_desk.bide_name}
-                    WETH={bide_desk.bide_weth}
-                    bid={bide_desk.bide_bid}
-                    isOpenInProfile={false}
-                  />
+                <HotBids
+                  key={bide_desk._id}
+                  Coverimg={bide_desk.cover_bide}
+                  heartcount={bide_desk.bide_heartcount}
+                  time={bide_desk.bide_time}
+                  title={bide_desk.bide_name}
+                  WETH={bide_desk.bide_weth}
+                  bid={bide_desk.bide_bid}
+                  isOpenInProfile={false}
+                />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -793,6 +794,7 @@ const Home = () => {
           <div className="row mt-5">
             {liveAuctionList.slice(0, 8).map((SingleCollectible, key) => (
               <LiveAuctions
+                key={SingleCollectible._id}
                 isCollection={false}
                 id={SingleCollectible._id}
                 Coverimg={SingleCollectible.img_path?.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
@@ -830,17 +832,18 @@ const Home = () => {
           >
             {slide_live_auction.map((live_a, key) => (
               <SwiperSlide>
-                  <LiveAuctions
-                    Coverimg={live_a.cover_img}
-                    title={live_a.auction_name}
-                    heartcount={live_a.h_count}
-                    User1={live_a.auc_user1}
-                    User2={live_a.auc_user2}
-                    User3={live_a.auc_user3}
-                    WETH={live_a.auction_WETH}
-                    bid={live_a.auction_bid}
-                    isOpenInProfile={false}
-                  />
+                <LiveAuctions
+                  key={live_a._id}
+                  Coverimg={live_a.cover_img}
+                  title={live_a.auction_name}
+                  heartcount={live_a.h_count}
+                  User1={live_a.auc_user1}
+                  User2={live_a.auc_user2}
+                  User3={live_a.auc_user3}
+                  WETH={live_a.auction_WETH}
+                  bid={live_a.auction_bid}
+                  isOpenInProfile={false}
+                />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -862,19 +865,20 @@ const Home = () => {
 
           <div className="row mt-5">
             {hotCollectionsList.slice(0, 8).map((SingleCollectible, key) => (
-                <LiveAuctions
-                    isCollection={false}
-                    id={SingleCollectible._id}
-                    Coverimg={SingleCollectible.img_path?.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
-                    liked={SingleCollectible.like}
-                    title={SingleCollectible.title}
-                    heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                    User1={topSellerUser1}
-                    User2={topSellerUser2}
-                    User3={topSellerUser3}
-                    WETH={SingleCollectible.price}
-                    bid="Highest bid 1/1"
-                />
+              <LiveAuctions
+                key={SingleCollectible._id}
+                isCollection={false}
+                id={SingleCollectible._id}
+                Coverimg={SingleCollectible.img_path?.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
+                liked={SingleCollectible.like}
+                title={SingleCollectible.title}
+                heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                User1={topSellerUser1}
+                User2={topSellerUser2}
+                User3={topSellerUser3}
+                WETH={SingleCollectible.price}
+                bid="Highest bid 1/1"
+              />
             ))}
           </div>
         </div>
@@ -901,13 +905,14 @@ const Home = () => {
             >
               {slide_data.map((collr_, key) => (
                 <SwiperSlide>
-                    <TopCard
-                      topcoverimg={collr_.top_cover}
-                      topuserimg={collr_.top_user}
-                      title={collr_.top_name}
-                      id={collr_.top_name}
-                      Price={collr_.top_price}
-                    />
+                  <TopCard
+                    key={collr_._id}
+                    topcoverimg={collr_.top_cover}
+                    topuserimg={collr_.top_user}
+                    title={collr_.top_name}
+                    id={collr_.top_name}
+                    Price={collr_.top_price}
+                  />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -952,17 +957,18 @@ const Home = () => {
             >
               <div className="row">
                 {live_auction.map((live_a, key) => (
-                    <LiveAuctions
-                      Coverimg={live_a.cover_img}
-                      title={live_a.auction_name}
-                      heartcount={live_a.h_count}
-                      User1={live_a.auc_user1}
-                      User2={live_a.auc_user2}
-                      User3={live_a.auc_user3}
-                      WETH={live_a.auction_WETH}
-                      bid={live_a.auction_bid}
-                      isOpenInProfile={false}
-                    />
+                  <LiveAuctions
+                    key={live_a._id}
+                    Coverimg={live_a.cover_img}
+                    title={live_a.auction_name}
+                    heartcount={live_a.h_count}
+                    User1={live_a.auc_user1}
+                    User2={live_a.auc_user2}
+                    User3={live_a.auc_user3}
+                    WETH={live_a.auction_WETH}
+                    bid={live_a.auction_bid}
+                    isOpenInProfile={false}
+                  />
                 ))}
 
                 {hot_bide.map((bide_desk, ho_B) => (
@@ -987,17 +993,18 @@ const Home = () => {
             >
               <div className="row">
                 {liveAuctionList.map((live_a, key) => (
-                    <LiveAuctions
-                      Coverimg={live_a.cover_img}
-                      title={live_a.auction_name}
-                      heartcount={live_a.h_count}
-                      User1={live_a.auc_user1}
-                      User2={live_a.auc_user2}
-                      User3={live_a.auc_user3}
-                      WETH={live_a.auction_WETH}
-                      bid={live_a.auction_bid}
-                      isOpenInProfile={false}
-                    />
+                  <LiveAuctions
+                    key={live_a._id}
+                    Coverimg={live_a.cover_img}
+                    title={live_a.auction_name}
+                    heartcount={live_a.h_count}
+                    User1={live_a.auc_user1}
+                    User2={live_a.auc_user2}
+                    User3={live_a.auc_user3}
+                    WETH={live_a.auction_WETH}
+                    bid={live_a.auction_bid}
+                    isOpenInProfile={false}
+                  />
                 ))}
               </div>
             </div>
@@ -1009,17 +1016,18 @@ const Home = () => {
             >
               <div className="row">
                 {live_auction.map((live_a, key) => (
-                    <LiveAuctions
-                      Coverimg={live_a.cover_img}
-                      title={live_a.auction_name}
-                      heartcount={live_a.h_count}
-                      User1={live_a.auc_user1}
-                      User2={live_a.auc_user2}
-                      User3={live_a.auc_user3}
-                      WETH={live_a.auction_WETH}
-                      bid={live_a.auction_bid}
-                      isOpenInProfile={false}
-                    />
+                  <LiveAuctions
+                    key={live_a._id}
+                    Coverimg={live_a.cover_img}
+                    title={live_a.auction_name}
+                    heartcount={live_a.h_count}
+                    User1={live_a.auc_user1}
+                    User2={live_a.auc_user2}
+                    User3={live_a.auc_user3}
+                    WETH={live_a.auction_WETH}
+                    bid={live_a.auction_bid}
+                    isOpenInProfile={false}
+                  />
                 ))}
               </div>
             </div>
@@ -1031,17 +1039,18 @@ const Home = () => {
             >
               <div className="row">
                 {liveAuctionList.map((live_a, key) => (
-                    <LiveAuctions
-                      Coverimg={live_a.cover_img}
-                      title={live_a.auction_name}
-                      heartcount={live_a.h_count}
-                      User1={live_a.auc_user1}
-                      User2={live_a.auc_user2}
-                      User3={live_a.auc_user3}
-                      WETH={live_a.auction_WETH}
-                      bid={live_a.auction_bid}
-                      isOpenInProfile={false}
-                    />
+                  <LiveAuctions
+                    key={live_a._id}
+                    Coverimg={live_a.cover_img}
+                    title={live_a.auction_name}
+                    heartcount={live_a.h_count}
+                    User1={live_a.auc_user1}
+                    User2={live_a.auc_user2}
+                    User3={live_a.auc_user3}
+                    WETH={live_a.auction_WETH}
+                    bid={live_a.auction_bid}
+                    isOpenInProfile={false}
+                  />
                 ))}
               </div>
             </div>
@@ -1054,17 +1063,18 @@ const Home = () => {
             >
               <div className="row">
                 {live_auction.map((live_a, key) => (
-                    <LiveAuctions
-                      Coverimg={live_a.cover_img}
-                      title={live_a.auction_name}
-                      heartcount={live_a.h_count}
-                      User1={live_a.auc_user1}
-                      User2={live_a.auc_user2}
-                      User3={live_a.auc_user3}
-                      WETH={live_a.auction_WETH}
-                      bid={live_a.auction_bid}
-                      isOpenInProfile={false}
-                    />
+                  <LiveAuctions
+                    key={live_a._id}
+                    Coverimg={live_a.cover_img}
+                    title={live_a.auction_name}
+                    heartcount={live_a.h_count}
+                    User1={live_a.auc_user1}
+                    User2={live_a.auc_user2}
+                    User3={live_a.auc_user3}
+                    WETH={live_a.auction_WETH}
+                    bid={live_a.auction_bid}
+                    isOpenInProfile={false}
+                  />
                 ))}
               </div>
             </div>
@@ -1076,17 +1086,18 @@ const Home = () => {
             >
               <div className="row">
                 {live_auction.map((live_a, key) => (
-                    <LiveAuctions
-                      Coverimg={live_a.cover_img}
-                      title={live_a.auction_name}
-                      heartcount={live_a.h_count}
-                      User1={live_a.auc_user1}
-                      User2={live_a.auc_user2}
-                      User3={live_a.auc_user3}
-                      WETH={live_a.auction_WETH}
-                      bid={live_a.auction_bid}
-                      isOpenInProfile={false}
-                    />
+                  <LiveAuctions
+                    key={live_a._id}
+                    Coverimg={live_a.cover_img}
+                    title={live_a.auction_name}
+                    heartcount={live_a.h_count}
+                    User1={live_a.auc_user1}
+                    User2={live_a.auc_user2}
+                    User3={live_a.auc_user3}
+                    WETH={live_a.auction_WETH}
+                    bid={live_a.auction_bid}
+                    isOpenInProfile={false}
+                  />
                 ))}
               </div>
             </div>
@@ -1099,18 +1110,18 @@ const Home = () => {
             >
               <div className="row">
                 {live_auction.map((live_a, key) => (
-                  
-                    <LiveAuctions
-                      Coverimg={live_a.cover_img}
-                      title={live_a.auction_name}
-                      heartcount={live_a.h_count}
-                      User1={live_a.auc_user1}
-                      User2={live_a.auc_user2}
-                      User3={live_a.auc_user3}
-                      WETH={live_a.auction_WETH}
-                      bid={live_a.auction_bid}
-                      isOpenInProfile={false}
-                    />
+                  <LiveAuctions
+                    key={live_a._id}
+                    Coverimg={live_a.cover_img}
+                    title={live_a.auction_name}
+                    heartcount={live_a.h_count}
+                    User1={live_a.auc_user1}
+                    User2={live_a.auc_user2}
+                    User3={live_a.auc_user3}
+                    WETH={live_a.auction_WETH}
+                    bid={live_a.auction_bid}
+                    isOpenInProfile={false}
+                  />
                 ))}
               </div>
             </div>

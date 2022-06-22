@@ -43,7 +43,7 @@ export default function FilterSort({
     let checkedV = document.querySelectorAll(
       ".filtersort-check input[type='radio']"
     );
-    console.log(checkedV, "elements");
+    // console.log(checkedV, "elements");
     setTimeout(() => {
       setValueForInput(checkedV);
     }, 100);
@@ -51,9 +51,10 @@ export default function FilterSort({
 
   const setValueForInput = (array) => {
     array.forEach((ele) => {
-      console.log(ele.checked, "checked", ele.id);
       if (ele.checked === true) {
+        console.log(ele.checked, "checked", ele.id);
         setCheckedValues(ele.value);
+        setFilterSort(ele.value);
       }
     });
   };
@@ -116,7 +117,7 @@ export default function FilterSort({
               <input
                 type="radio"
                 id="Recentlyadded"
-                value="Recently added"
+                value="RecentlyAdded"
                 name="sorting"
               />
               <label htmlFor="Recentlyadded" onClick={() => isActiveFunc()}>
@@ -128,7 +129,7 @@ export default function FilterSort({
               <input
                 type="radio"
                 id="LowtoHigh"
-                value="Low to High"
+                value="LowtoHigh"
                 name="sorting"
               />
               <label htmlFor="LowtoHigh" onClick={() => isActiveFunc()}>
@@ -140,7 +141,7 @@ export default function FilterSort({
               <input
                 type="radio"
                 id="HightoLow"
-                value="High to Low"
+                value="HightoLow"
                 name="sorting"
               />
               <label htmlFor="HightoLow" onClick={() => isActiveFunc()}>

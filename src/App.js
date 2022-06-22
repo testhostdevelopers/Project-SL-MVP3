@@ -38,7 +38,7 @@ import {
 
 const App = () => {
   const [pImage, setpImage] = useState("");
-  console.log("pImage", pImage);
+  // console.log("pImage", pImage);
   const profileImage = React.useRef(null);
   const handleprofilepicUploadr = (e) => {
     const [file] = e.target.files;
@@ -56,7 +56,7 @@ const App = () => {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
-    if (sessionStorage.getItem("apiToken")) {
+    if (sessionStorage.getItem("apiToken") || sessionStorage.getItem("userdata")) {
       setIsAuthenticated(true);
     }
   }, []);
@@ -78,9 +78,54 @@ const App = () => {
           <Route path="/" component={Home} exact />
           <Route path="/cryptoloria" component={Cryptoloria} exact />
           <Route path="/explore" component={Explore} exact />
-          <Route path="/buy/:collectibleId" component={Buy} exact />
-          <Route path="/collection/:collectionId" component={Collection} exact />
-          <Route path="/user/:user_id" component={User} exact />
+          <Route
+              path="/buy/:collectibleId"
+              render={() => {
+                if (isAuthenticated === true) {
+                  return <Buy />;
+                } else {
+                  return (
+                      <Redirect
+                          to={{
+                            pathname: "/signin",
+                          }}
+                      />
+                  );
+                }
+              }}
+          />
+          <Route
+              path="/collection/:collectionId"
+              render={() => {
+                  if (isAuthenticated === true) {
+                      return <Collection />;
+                  } else {
+                      return (
+                          <Redirect
+                              to={{
+                                  pathname: "/signin",
+                              }}
+                          />
+                      );
+                  }
+              }}
+          />
+          <Route
+              path="/user/:user_id"
+              render={() => {
+                  if (isAuthenticated === true) {
+                      return <User />;
+                  } else {
+                      return (
+                          <Redirect
+                              to={{
+                                  pathname: "/signin",
+                              }}
+                          />
+                      );
+                  }
+              }}
+          />
           <Route
             path="/signIn"
             render={(props) => {
@@ -149,8 +194,22 @@ const App = () => {
               }
             }}
           />
-          {/*<Route path="/edit-profile" component={CreateCollectibleEdit} exact />*/}
-          <Route path="/activity" component={Activity} exact />
+          <Route
+              path="/activity"
+              render={() => {
+                if (isAuthenticated === true) {
+                  return <Activity />;
+                } else {
+                  return (
+                      <Redirect
+                          to={{
+                            pathname: "/signin",
+                          }}
+                      />
+                  );
+                }
+              }}
+          />
           <Route path="/following" component={Following} exact />
           <Route path="/search/:keyword" component={Search} exact />
           <Route component={NotFoundPage} />

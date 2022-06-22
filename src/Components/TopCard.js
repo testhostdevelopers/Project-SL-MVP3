@@ -17,7 +17,7 @@ export default function TopCard({
   topuserimg,
   topcoverimg,
 }) {
-    var apiToken = sessionStorage.getItem("apiToken");
+    const apiToken = sessionStorage.getItem("apiToken");
     const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
     let temp = '';
     const followUser = async () => {

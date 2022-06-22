@@ -27,7 +27,7 @@ const { TabPane } = Tabs;
 
 const Profile = (props) => {
   // console.log("props.pImage", props.pImage, "sdasadsa");
-  var apiToken = sessionStorage.getItem("apiToken");
+  const apiToken = sessionStorage.getItem("apiToken");
   // const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   // const [reportPopup, setReportPopup] = useState(false);
   const [buttonText, setButtonText] = useState("Add Cover");
@@ -60,7 +60,7 @@ const Profile = (props) => {
             }
           });
           // console.log('getFollowerUsers', response.data.data)
-          setUserFollowerList((response.data.data));
+          setUserFollowerList(response.data.data);
         })
         .catch(err => {
           console.log(err);
@@ -77,8 +77,8 @@ const Profile = (props) => {
               }
             })
         .then(response => {
-          // console.log('getFollowingUsers', response.data.data);
-          setUserFollowingList(Object.entries(response.data.data));
+          // console.log('getFollowingUsers', (response.data.data));
+          setUserFollowingList(response.data.data);
         })
         .catch(err => {
           console.log(err);
@@ -260,7 +260,7 @@ const Profile = (props) => {
   const handleImageUpload = async (e) => {
     const ig = e.target.files[0];
     if (sessionStorage.getItem("apiToken")) {
-      var apiToken = sessionStorage.getItem("apiToken");
+      const apiToken = sessionStorage.getItem("apiToken");
       var formData = new FormData();
       if (e.target.id === "uploadcoverphoto") {
         formData.append("cover_img_url", ig);
