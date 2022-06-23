@@ -62,6 +62,21 @@ const CreateCollectibleEdit = () => {
     }
   };
 
+  const sendOtp = async (email) => {
+    if (apiToken) {
+      axios
+        .post(`${Config.baseURL}v1/user/email/send`, {
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          },
+        })
+        .then((res) => {
+          // setUdata(res.data.data);
+          console.log(res);
+        });
+    }
+  }
+
   return (
     <>
       <motion.section
@@ -231,7 +246,7 @@ const CreateCollectibleEdit = () => {
                     placeholder="PixelDrops@gmail.com"
                   />
                   <span className="color-gray ">
-                    <button className="btn-primary-outline">Confirm</button>
+                    <button onClick={() => sendOtp(udata.email)}className="btn-primary-outline">Confirm</button>
                   </span>
                 </div>
               </div>
