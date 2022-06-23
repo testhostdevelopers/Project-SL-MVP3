@@ -35,7 +35,7 @@ const { TabPane } = Tabs;
 
 const Collection = (props) => {
   const { collectionId } = useParams();
-  console.log(collectionId);
+  // console.log(collectionId);
   const userdata = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const apiToken = sessionStorage.getItem("apiToken");
   const [ReportPopups, setReportPopup] = useState(false);
@@ -57,7 +57,65 @@ const Collection = (props) => {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
-
+  if (filterCategory) {
+    console.log('filterCategory', filterCategory);
+    userCollectibleList.forEach((SingleData, key) => {
+      if (filterCategory === "All") {
+        userCollectibleList[key].show = true;
+      } else if (filterCategory.length) {
+        console.log('SingleData.category', SingleData.category);
+        userCollectibleList[key].show = SingleData.category === filterCategory;
+      }
+    });
+  }
+  if (filterSort) {
+    console.log('filterSort', filterSort);
+    if (filterSort === "RecentlyAdded") {
+      userCollectibleList.sort((a, b) => {
+        let da = new Date(a.createdAt),
+            db = new Date(b.createdAt);
+        return db - da;
+      });
+    } else if (filterSort === "LowtoHigh") {
+      userCollectibleList.sort((a, b) => {
+        return a.price - b.price;
+      });
+    } else if (filterSort === "HightoLow") {
+      userCollectibleList.sort((a, b) => {
+        return b.price - a.price;
+      });
+    }
+  }
+  if (filterCollections) {
+    filterCollections.forEach((SingleCollection, key) => {
+      console.log('SingleCollection', SingleCollection);
+      userCollectibleList.forEach((SingleData, key) => {
+        if (SingleData.collection_id.title === SingleCollection) {
+          userCollectibleList[key].show = true;
+        } else {
+          // userCollectibleList[key].show = false;
+        }
+      });
+    });
+  }
+  if (filterRange) {
+    console.log('filterRange', filterRange);
+    if (filterRange[0] > 0 || filterRange[1] > 0) {
+      userCollectibleList.forEach((SingleData, key) => {
+        if (SingleData.price > filterRange[0] && SingleData.price < filterRange[1]) {
+          console.log('SingleData.price > filterRange[0]', SingleData.price);
+          userCollectibleList[key].show = true;
+        } else {
+          console.log('SingleData.price', SingleData.price);
+          userCollectibleList[key].show = false;
+        }
+      });
+    } else {
+      userCollectibleList.forEach((SingleData, key) => {
+        userCollectibleList[key].show = true;
+      });
+    }
+  }
   const singleCollection = async () => {
     axios
       .get(`${Config.baseURL}v1/collection/getCollection/` + collectionId, {
@@ -92,6 +150,7 @@ const Collection = (props) => {
           } else {
             response.data.data[index].like = false;
           }
+          response.data.data[index].show = true;
         });
         setUserCollectibleList(response.data.data);
         // console.log('setUserCollectionList', response.data.data);
@@ -324,27 +383,29 @@ const Collection = (props) => {
                       </div>
                       <div className="row  mt-5">
                         {userCollectibleList.map((SingleCollectible, key) => (
-                          <LiveAuctions
-                            key={key}
-                            liked={SingleCollectible.like}
-                            Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
-                            heartcount={SingleCollectible.likes}
-                            time={new Date(SingleCollectible.createdAt).toLocaleString('en-US', {
-                              weekday: 'long',
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric',
-                              hour: 'numeric',
-                              minute: 'numeric',
-                              second: 'numeric',
-                            })}
-                            id={SingleCollectible._id}
-                            title={SingleCollectible.title}
-                            WETH={SingleCollectible.price}
-                            bid={SingleCollectible.price}
-                            isOpenInProfile={false}
-                            isLiveAuctions={false}
-                          />
+                          SingleCollectible.show ? <>
+                            <LiveAuctions
+                              key={key + SingleCollectible._id}
+                              liked={SingleCollectible.like}
+                              Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
+                              heartcount={SingleCollectible.likes}
+                              time={new Date(SingleCollectible.createdAt).toLocaleString('en-US', {
+                                weekday: 'long',
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                                hour: 'numeric',
+                                minute: 'numeric',
+                                second: 'numeric',
+                              })}
+                              id={SingleCollectible._id}
+                              title={SingleCollectible.title}
+                              WETH={SingleCollectible.price}
+                              bid={SingleCollectible.price}
+                              isOpenInProfile={false}
+                              isLiveAuctions={false}
+                            />
+                          </> : <></>
                         ))}
                       </div>
                     </div>

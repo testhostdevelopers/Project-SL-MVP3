@@ -3024,7 +3024,7 @@ div.ant-select-dropdown {
 }
 
 .rangeselect .input {
-  width: 48.5%;
+  width: 32.5%;
   position: relative;
   margin-bottom: 10px;
 }
@@ -3064,9 +3064,10 @@ div.ant-select-dropdown {
   box-sizing: border-box;
   border-radius: 56px;
   height: 48px;
-  padding: 0 50px 0 15px;
+  padding: 0 0 0 15px;
   font-size: 14px;
   font-weight: bold;
+  text-align: center;
 }
 
 .navbar-search.property-search {

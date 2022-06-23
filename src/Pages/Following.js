@@ -108,6 +108,24 @@ const Following = () => {
       });
     });
   }
+  if (filterRange) {
+    console.log('filterRange', filterRange);
+    if (filterRange[0] > 0 || filterRange[1] > 0) {
+      collectionsList.forEach((SingleData, key) => {
+        if (SingleData.price > filterRange[0] && SingleData.price < filterRange[1]) {
+          console.log('SingleData.price > filterRange[0]', SingleData.price);
+          collectionsList[key].show = true;
+        } else {
+          // console.log('SingleData.price', SingleData.price);
+          collectionsList[key].show = false;
+        }
+      });
+    } else {
+      collectionsList.forEach((SingleData, key) => {
+        collectionsList[key].show = true;
+      });
+    }
+  }
   console.log('filterCollections', filterCollections);
   useEffect(() => {
     if (sessionStorage.getItem("apiToken")) {

@@ -35,6 +35,16 @@ export default function FilterRange({
     node.forEach((ele) => {
       ele.value = "";
     });
+    handleToggle();
+  };
+  const getValue = () => {
+    let node = document.querySelectorAll(".rangeselect input");
+    let a=[];
+    node.forEach((ele, index) => {
+      // console.log('ele', ele.value);
+      a.push(ele.value);
+    });
+    setFilterRange(a);
   };
 
   const select_filer = ["ETH", "WETH", "BTC", "DOGE"];
@@ -66,7 +76,7 @@ export default function FilterRange({
               fill="currentColor"
               aria-hidden="true"
             >
-              <path d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"></path>
+              <path d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"/>
             </svg>
           </span>
         </span>
@@ -84,23 +94,26 @@ export default function FilterRange({
         >
           <div className="input">
             <span>
-              <input type="text" placeholder="0" />
+              <input type="number" placeholder="0" />
             </span>
 
-            <Select className="section-select-filter" defaultValue="ETH">
+              {/*<Select className="section-select-filter" defaultValue="ETH">
               {select_filer.map((x, y) => (
                 <Select.Option key={y}>{x}</Select.Option>
               ))}
-            </Select>
+            </Select>*/}
           </div>
 
           <div className="input">
             <span>
-              <input type="text" placeholder="0" />
+              <input type="number" placeholder="0" />
             </span>
-            <Select className="section-select-filter" defaultValue="ETH">
+          </div>
+
+          <div className="input">
+            <Select className="section-select-filter" value="ETH">
               {select_filer.map((x, y) => (
-                <Select.Option key={y}>{x}</Select.Option>
+                  <Select.Option value={x} key={y}>{x}</Select.Option>
               ))}
             </Select>
           </div>
@@ -108,17 +121,13 @@ export default function FilterRange({
           <div className="filter-button">
             <a
               className="btn btn-primary-outline"
-              href="/#"
               onClick={() => unCheckedCheckBox()}
             >
               Clear
             </a>
             <a
               className="btn btn-primary"
-              href="/#"
-              /*onClick={() => {
-                setActive(false);
-              }}*/
+              onClick={() => getValue()}
             >
               Apply
             </a>

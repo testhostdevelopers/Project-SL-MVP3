@@ -93,8 +93,7 @@ const Profile = (props) => {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           }
-        }
-      )
+        })
       .then(response => {
         response.data.data.forEach((element) => {
           if (element.likedBy.includes(udata._id)) {
@@ -118,8 +117,7 @@ const Profile = (props) => {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           }
-        }
-      )
+        })
       .then(response => {
         // console.log('getuserlikedcollectionslist', response.data.data);
         response.data.data.forEach((element) => {
@@ -144,8 +142,7 @@ const Profile = (props) => {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           }
-        }
-      )
+        })
       .then(response => {
         response.data.data.forEach((element) => {
           if (element.likedBy.includes(udata._id)) {
@@ -161,6 +158,56 @@ const Profile = (props) => {
         console.log(err);
       });
   };
+  const userHiddenCollectible = async () => {
+    await axios
+        .get(`${Config.baseURL}v1/collectible/getuserhiddencollectiblelist/` + udata._id + '/0/100', {
+              data: {
+                user_id: udata._id
+              },
+              headers: {
+                Authorization: `Bearer ${apiToken}`,
+              }
+            })
+        .then(response => {
+          response.data.data.forEach((element) => {
+            if (element.likedBy.includes(udata._id)) {
+              element.like = true;
+            } else {
+              element.like = false;
+            }
+          });
+          setUserHiddenCollectibleList(response.data.data);
+          // console.log('userHiddenCollectibleList', response.data.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
+  const userOnSaleCollectible = async () => {
+    await axios
+        .get(`${Config.baseURL}v1/collectible/getuseronsalecollectiblelist/` + udata._id + '/0/100', {
+            data: {
+                user_id: udata._id
+            },
+            headers: {
+                Authorization: `Bearer ${apiToken}`,
+            }
+        })
+        .then(response => {
+            response.data.data.forEach((element) => {
+                if (element.likedBy.includes(udata._id)) {
+                    element.like = true;
+                } else {
+                    element.like = false;
+                }
+            });
+            setUserOnSaleCollectibleList(response.data.data);
+            // console.log('setUserOnSaleCollectibleList', response.data.data);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    };
   const userLikedCollectible = async () => {
     await axios
       .get(`${Config.baseURL}v1/collectible/getuserlikedcollectiblelist`, {
@@ -170,8 +217,7 @@ const Profile = (props) => {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           }
-        }
-      )
+        })
       .then(response => {
         response.data.data.forEach((element) => {
           if (element.likedBy.includes(udata._id)) {
@@ -196,8 +242,7 @@ const Profile = (props) => {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           }
-        }
-      )
+        })
       .then(response => {
         response.data.data.forEach((element) => {
           if (element.likedBy.includes(udata._id)) {
@@ -213,22 +258,24 @@ const Profile = (props) => {
         console.log(err);
       });
   };
-  useEffect(() => {
+  useEffect(async () => {
     if (sessionStorage.getItem("apiToken")) {
-      axios
-        .get(`${Config.baseURL}v1/user/getUser`, {
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          },
-        })
-        .then((res) => {
-          setUdata(res.data.data);
-        });
+      await axios
+          .get(`${Config.baseURL}v1/user/getUser`, {
+            headers: {
+              Authorization: `Bearer ${apiToken}`,
+            },
+          })
+          .then((res) => {
+            setUdata(res.data.data);
+          });
       userCollectibleListFunc().then(r => {});
       userCollectionListFunc().then(r => {});
       userLikedCollections().then(r => {});
       userLikedCollectible().then(r => {});
       userOwnedCollectible().then(r => {});
+      userHiddenCollectible().then(r => {});
+      userOnSaleCollectible().then(r => {});
       getFollowerUsers().then(r => {});
       getFollowingUsers().then(r => {});
     }
@@ -499,7 +546,7 @@ const Profile = (props) => {
                       {userOnSaleCollectibleList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                           <div className="row ">
-                            {userLikedCollectibleList.map((SingleCollectible, key) => (
+                            {userOnSaleCollectibleList.map((SingleCollectible, key) => (
                               <LiveAuctions
                                 isCollection={false}
                                 id={SingleCollectible._id}
@@ -829,7 +876,7 @@ const Profile = (props) => {
                       {userHiddenCollectibleList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                           <div className="row ">
-                            {userLikedCollectibleList.map((SingleCollectible, key) => (
+                            {userHiddenCollectibleList.map((SingleCollectible, key) => (
                               <LiveAuctions
                                 isCollection={false}
                                 id={SingleCollectible._id}
