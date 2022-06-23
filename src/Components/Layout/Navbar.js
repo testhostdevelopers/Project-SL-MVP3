@@ -424,7 +424,7 @@ const Navbar = (props) => {
               <div className="d-lg-none d-sm-block mr-1">
                 <a
                   className="nav-link nav-dark-button"
-                  href="/#"
+                  href="#"
                   onClick={() => activeMode()}
                 >
                   {theme === true ? (
@@ -1325,7 +1325,7 @@ const Navbar = (props) => {
                   <a
                     className="nav-link nav-dark-button d-sm-none d-lg-block"
                     onClick={() => activeMode()}
-                    href={''}
+                    href={'#'}
                   >
                     {theme === true ? (
                       <svg
