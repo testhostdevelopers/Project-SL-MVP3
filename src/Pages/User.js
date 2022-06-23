@@ -48,7 +48,7 @@ const User = (props) => {
       })
       .then(async response => {
         await response.data.data.forEach((element) => {
-          if (element.followers.includes(udata._id)) {
+          if (element.followers.includes(user_id)) {
             element.isImFollowing = true;
           } else {
             element.isImFollowing = false;
@@ -100,7 +100,7 @@ const User = (props) => {
   };
   const userOwnedCollectible = async () => {
     await axios
-        .get(`${Config.baseURL}v1/collectible/getuserownedcollectiblelist/` + udata._id, {
+        .get(`${Config.baseURL}v1/collectible/getuserownedcollectiblelist/` + user_id, {
               data: {
                 user_id: udata._id
               },
@@ -110,7 +110,7 @@ const User = (props) => {
             })
         .then(response => {
           response.data.data.forEach((element) => {
-            if (element.likedBy.includes(udata._id)) {
+            if (element.likedBy.includes(user_id)) {
               element.like = true;
             } else {
               element.like = false;
@@ -123,9 +123,9 @@ const User = (props) => {
           console.log(err);
         });
   };
-  const userCollectionListFunc = async () => {
+  const userOnSaleCollectible = async () => {
     await axios
-        .get(`${Config.baseURL}v1/collection/getusercollectionlist/` + udata._id, {
+        .get(`${Config.baseURL}v1/collectible/getuseronsalecollectiblelist/` + user_id + '/0/100', {
           data: {
             user_id: userData._id
           },
@@ -135,14 +135,41 @@ const User = (props) => {
         })
         .then(response => {
           response.data.data.forEach((element) => {
-            if (element.likedBy.includes(userData._id)) {
+            if (element.likedBy.includes(user_id)) {
               element.like = true;
             } else {
               element.like = false;
             }
           });
-          setUserCollectionList(response.data.data);
-          // console.log('setUserCollectionList', response.data.data);
+          setUserOnSaleCollectibleList(response.data.data);
+          // console.log('setUserOnSaleCollectibleList', response.data.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
+  const userCollectionListFunc = async () => {
+    await axios
+        .get(`${Config.baseURL}v1/collection/getusercollectionlist/` + user_id, {
+          data: {
+            user_id: userData._id
+          },
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        })
+        .then(response => {
+          if (response.data.data) {
+            response.data.data.forEach((element) => {
+              if (element.likedBy.includes(userData._id)) {
+                element.like = true;
+              } else {
+                element.like = false;
+              }
+            });
+            setUserCollectionList(response.data.data);
+            // console.log('setUserCollectionList', response.data.data);
+          }
         })
         .catch(err => {
           console.log(err);
@@ -182,6 +209,8 @@ const User = (props) => {
       userCollectionListFunc().then(r => {});
       getFollowerUsers().then(r => {});
       getFollowingUsers().then(r => {});
+      userOwnedCollectible().then(r => {});
+      userOnSaleCollectible().then(r => {});
     }
   }, []);
 

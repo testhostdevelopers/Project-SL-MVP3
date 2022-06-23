@@ -183,6 +183,31 @@ const Profile = (props) => {
           console.log(err);
         });
   };
+  const userOnSaleCollectible = async () => {
+    await axios
+        .get(`${Config.baseURL}v1/collectible/getuseronsalecollectiblelist/` + udata._id + '/0/100', {
+            data: {
+                user_id: udata._id
+            },
+            headers: {
+                Authorization: `Bearer ${apiToken}`,
+            }
+        })
+        .then(response => {
+            response.data.data.forEach((element) => {
+                if (element.likedBy.includes(udata._id)) {
+                    element.like = true;
+                } else {
+                    element.like = false;
+                }
+            });
+            setUserOnSaleCollectibleList(response.data.data);
+            // console.log('setUserOnSaleCollectibleList', response.data.data);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    };
   const userLikedCollectible = async () => {
     await axios
       .get(`${Config.baseURL}v1/collectible/getuserlikedcollectiblelist`, {
@@ -250,6 +275,7 @@ const Profile = (props) => {
       userLikedCollectible().then(r => {});
       userOwnedCollectible().then(r => {});
       userHiddenCollectible().then(r => {});
+      userOnSaleCollectible().then(r => {});
       getFollowerUsers().then(r => {});
       getFollowingUsers().then(r => {});
     }
@@ -520,7 +546,7 @@ const Profile = (props) => {
                       {userOnSaleCollectibleList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                           <div className="row ">
-                            {userLikedCollectibleList.map((SingleCollectible, key) => (
+                            {userOnSaleCollectibleList.map((SingleCollectible, key) => (
                               <LiveAuctions
                                 isCollection={false}
                                 id={SingleCollectible._id}
