@@ -116,7 +116,7 @@ const Following = () => {
           console.log('SingleData.price > filterRange[0]', SingleData.price);
           collectionsList[key].show = true;
         } else {
-          console.log('SingleData.price', SingleData.price);
+          // console.log('SingleData.price', SingleData.price);
           collectionsList[key].show = false;
         }
       });
