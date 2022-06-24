@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import CheckFillClrIcon from "../assets/img/icons/custom/Group_1454.svg";
 import axios from "axios";
-import { Config } from '../utils/config';           
+import { Config } from '../utils/config';          
+import {toast, ToastContainer} from "react-toastify";
 
 const CreateCollectibleEdit = () => {
   const apiToken = sessionStorage.getItem("apiToken");
@@ -62,8 +63,44 @@ const CreateCollectibleEdit = () => {
     }
   };
 
+  const sendOtp = async (email) => {
+        if (apiToken) {
+            axios
+                .post(`${Config.baseURL}v1/user/email/send`, {
+                    headers: {
+                        Authorization: `Bearer ${apiToken}`,
+                    },
+                })
+            .then((res) => {
+                // setUdata(res.data.data);
+                console.log(res);
+            });
+        }
+    }   
+
+    var verificationRequest = async () => {
+        if (apiToken) {
+          var formData = new FormData();
+          formData.append("isVerificationRequested",true);
+          await axios
+            .put(`${Config.baseURL}v1/user/updateVerify/${udata._id}`, formData, {
+              headers: {
+                Authorization: `Bearer ${apiToken}`,
+              },
+            })
+            .then((res) => {
+              console.log(res);
+              if(res.data.response_code === 'API_SUCCESS'){
+                    toast("Verification Request successful!");
+                    console.log(res)
+              }
+            });
+        }
+      };
+
   return (
     <>
+        <ToastContainer />
       <motion.section
         initial="hidden"
         animate="visible"
@@ -231,7 +268,7 @@ const CreateCollectibleEdit = () => {
                     placeholder="PixelDrops@gmail.com"
                   />
                   <span className="color-gray ">
-                    <button className="btn-primary-outline">Confirm</button>
+                    <button  onClick={() => sendOtp(udata.email)} className="btn-primary-outline">Confirm</button>
                   </span>
                 </div>
               </div>
@@ -269,8 +306,8 @@ const CreateCollectibleEdit = () => {
                   {udata == null
                     ? ""
                     : typeof udata.profile_img_url == "object"
-                    ? udata.profile_img_url.name
-                    : udata.profile_img_url}
+                    ? udata.profile_img_url.name.split("/")[5]
+                    : udata.profile_img_url ? udata.profile_img_url.split("/")[5] : udata.profile_img_url }
                 </div>
               </div>
 
@@ -303,8 +340,8 @@ const CreateCollectibleEdit = () => {
                   {udata == null
                     ? ""
                     : typeof udata.cover_img_url == "object"
-                    ? udata.cover_img_url.name
-                    : udata.cover_img_url}
+                    ? udata.cover_img_url.name.split("/")[5]
+                    : udata.cover_img_url ? udata.cover_img_url.split("/")[5] : udata.cover_img_url}
                 </div>
               </div>
             </div>
@@ -321,17 +358,27 @@ const CreateCollectibleEdit = () => {
                 </div>
 
                 <div className="col-sm-12 col-lg-6 ">
+                {
+                    udata.isVerificationRequested === false ?
                   <span className="color-gray ">
                     Proceed with verification process to get <br />
                     more visibility and gain trust on Starlight <br /> Marketplace.
                   </span>
+                  : 
+                  <span className="color-gray ">
+                    Your verification request is under review 
+                  </span>
+                }
                 </div>
-
-                <div className="col-sm-12 col-lg-4 text-right ">
-                  <button className=" btn-primary-outline profile-edit-verified-btn w-50">
-                    Get Verified
-                  </button>
-                </div>
+                    {
+                    udata.isVerificationRequested === false ?
+                        <div className="col-sm-12 col-lg-4 text-right ">
+                        <button onClick={() => verificationRequest()} className=" btn-primary-outline profile-edit-verified-btn w-50">
+                            Get Verified
+                        </button>
+                        </div>
+                     : ''
+                    }
               </div>
             </div>
 

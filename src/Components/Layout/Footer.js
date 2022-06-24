@@ -10,8 +10,8 @@ const Footer = () => {
     <footer>
       <section className="m-0">
         <div className="container-fluid">
-          <div className="row footer-column-flex-border pb-5 mb-5">
-            <div className="col-sm-6 col-lg-4 footer-column mb-4">
+          <div className="row footer-column-flex-border mb-5">
+            <div className="col-sm-6 col-lg-4 footer-column">
               <div className="footer-title d-flex align-items-center">
                 <img src={fabaLogo} width="36" alt="" />
                 <h3 className="ml-2 text-dark">
@@ -30,8 +30,8 @@ const Footer = () => {
                   </span>
                 </li>
               </ul>
-
-              <div className="w-100 d-flex footer-in-mail-container">
+              <iframe frameBorder={'0'} title="email" src="https://cdn.forms-content.sg-form.com/27795463-f388-11ec-b371-fa2d36eed1d6"/>
+              {/* <div className="w-100 d-flex footer-in-mail-container">
                 <input
                   type="email"
                   className="footer-in-email"
@@ -44,8 +44,9 @@ const Footer = () => {
                   {" "}
                   I'm in
                 </button>
-              </div>
+              </div> */}
             </div>
+      
 
             <div className="col-sm-6 col-lg-3 footer-column-flex mb-4">
               <div className="footer-title">
