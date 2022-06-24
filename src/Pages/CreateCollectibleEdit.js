@@ -242,10 +242,17 @@ const CreateCollectibleEdit = () => {
                   <b> Upload Profile Picture</b>
                 </h5>
               </div>
-              <div className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center">
-                <div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>
-                <div className="mt-3">
+              <div
+                className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center"
+                style={{
+                  backgroundImage: 'url("' + udata.profile_img_url + '")',
+                  backgroundRepeat: 'round',
+                }}
+              >
+                {/*<div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>*/}
+                <div className="mt-3" style={{ cursor: 'pointer'}}>
                   <input
+                    style={{ cursor: 'pointer'}}
                     type="file"
                     accept="image/*"
                     name="profile"
@@ -258,19 +265,20 @@ const CreateCollectibleEdit = () => {
                     id="profileImg"
                     className="img-btn w-100 ml-0 "
                   />
-                  <label htmlFor="profileImg">
+                  <label htmlFor="profileImg" style={{ cursor: 'pointer'}}>
                     {" "}
                     <img
                       src="/static/media/bg_img.156953d5.png"
                       alt={""}
-                    />{" "}
+                      style={{ cursor: 'pointer'}}
+                    />
                   </label>
-                  <br />
-                  {udata == null
+                  {/*<br />*/}
+                  {/*{udata == null
                     ? ""
                     : typeof udata.profile_img_url == "object"
                     ? udata.profile_img_url.name
-                    : udata.profile_img_url}
+                    : udata.profile_img_url}*/}
                 </div>
               </div>
 
@@ -279,10 +287,17 @@ const CreateCollectibleEdit = () => {
                   <b> Upload Cover Image</b>
                 </h5>
               </div>
-              <div className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center">
-                <div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>
-                <div className="mt-3">
+              <div
+                  className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center"
+                  style={{
+                    backgroundImage: 'url("' + udata.cover_img_url + '")',
+                    backgroundRepeat: 'round',
+                  }}
+              >
+                {/*<div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>*/}
+                <div className="mt-3" style={{ cursor: 'pointer'}}>
                   <input
+                    style={{ cursor: 'pointer'}}
                     type="file"
                     accept="image/*"
                     name="cover"
@@ -292,19 +307,13 @@ const CreateCollectibleEdit = () => {
                     id="coverImg"
                     className="img-btn w-100 ml-0"
                   />
-                  <label htmlFor="coverImg">
-                    {" "}
+                  <label htmlFor="coverImg" style={{ cursor: 'pointer'}}>
                     <img
                       src="/static/media/bg_img.156953d5.png"
                       alt={""}
-                    />{" "}
+                      style={{ cursor: 'pointer'}}
+                    />
                   </label>
-                  <br />
-                  {udata == null
-                    ? ""
-                    : typeof udata.cover_img_url == "object"
-                    ? udata.cover_img_url.name
-                    : udata.cover_img_url}
                 </div>
               </div>
             </div>
