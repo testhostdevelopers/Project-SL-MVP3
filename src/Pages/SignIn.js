@@ -47,7 +47,8 @@ const SignIn = () => {
               sessionStorage.setItem("apiToken", JSON.stringify(r.data.data.userdata.apiToken));
               sessionStorage.setItem("userdata", JSON.stringify(r.data.data.userdata));
               window.location.reload(false);
-              window.solana.connect();
+              // window.solana.connect();
+              window.solana.request({ method: "connect" })
             });
         });
     }
@@ -61,6 +62,7 @@ const SignIn = () => {
     try {
       if ("solana" in window) {
         const resp = window.solana.connect();
+        window.solana.request({ method: "connect", params: { onlyIfTrusted: true }});
         // resp.publicKey.toString();
         window.solana.on("connect", () =>
           connectStore(window.solana.publicKey.toString(), "phantom", true)
@@ -77,7 +79,7 @@ const SignIn = () => {
     if ("solflare" in window) {
       // const provider = window.solflare;
       //   if (provider.isSolFlare) {
-      // const solRes = window.solflare.connect();
+      const solRes = window.solflare.connect();
       window.solflare.on("connect", () =>
         connectStore(window.solflare.publicKey.toString(), "solflare", true)
       );

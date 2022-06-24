@@ -307,7 +307,7 @@ const CreateCollectibleEdit = () => {
                     ? ""
                     : typeof udata.profile_img_url == "object"
                     ? udata.profile_img_url.name.split("/")[5]
-                    : udata.profile_img_url.split("/")[5]}
+                    : udata.profile_img_url ? udata.profile_img_url.split("/")[5] : udata.profile_img_url }
                 </div>
               </div>
 
@@ -341,7 +341,7 @@ const CreateCollectibleEdit = () => {
                     ? ""
                     : typeof udata.cover_img_url == "object"
                     ? udata.cover_img_url.name.split("/")[5]
-                    : udata.cover_img_url.split("/")[5]}
+                    : udata.cover_img_url ? udata.cover_img_url.split("/")[5] : udata.cover_img_url}
                 </div>
               </div>
             </div>
