@@ -21,13 +21,15 @@ export default function Filtersale({
   // const [isActive, setActive] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [checkedValues, setCheckedValues] = useState([]);
+  const [show, setShow] = useState(false);
   const handleToggle = () => {
     setFilterSort(false);
     setFilterCategory(false);
     setFilterCollections(false);
     setFilterProperties(false);
-    setFiltersale(!filtersale);
     setFilterRange(false);
+    setFiltersale(checkedValues);
+    setShow(!show);
   };
   const unCheckedCheckBox = () => {
     setFiltersale(false);
@@ -52,7 +54,7 @@ export default function Filtersale({
     });
     setCheckedValues(arr);
   }, [filtersale]);
-
+  // setFiltersale(checkedValues);
   // console.log(checkedValues, "checked values");
   // console.log(document.querySelectorAll(".custom-filter ul input[type='checkbox']"), 'checkboxes')
   return (
@@ -84,7 +86,7 @@ export default function Filtersale({
               fill="currentColor"
               aria-hidden="true"
             >
-              <path d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"></path>
+              <path d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"/>
             </svg>
           </span>
         </span>
@@ -97,30 +99,27 @@ export default function Filtersale({
         filterRange === false) && (
         <div
           className={`app ${
-            filtersale ? "custom-filter show-filter" : "custom-filter"
+            show ? "custom-filter show-filter" : "custom-filter"
           }`}
         >
           <ul className="filtersale-check">
             <li>
-              <input type="checkbox" id="TimedAuction" value="Timed Auction" />
+              <input type="checkbox" id="TimedAuction" value="time_auction" />
               <label htmlFor="TimedAuction">Timed Auction</label>
             </li>
 
             <li>
-              <input type="checkbox" id="Fixedprice" value="Fixed price" />
+              <input type="checkbox" id="Fixedprice" value="fixed_price" />
               <label htmlFor="Fixedprice">Fixed price</label>
             </li>
 
             <li>
-              <input type="checkbox" id="Notforsale" value="Not for sale" />
+              <input type="checkbox" id="Notforsale" value="not_for_sale" />
               <label htmlFor="Notforsale">Not for sale</label>
             </li>
 
             <li>
-              <input
-                type="checkbox"
-                id="Openforoffers"
-                value="Open for offers"
+              <input type="checkbox" id="Openforoffers" value="open_for_bid"
               />
               <label htmlFor="Openforoffers">Open for offers</label>
             </li>
@@ -129,17 +128,16 @@ export default function Filtersale({
           <div className="filter-button">
             <a
               className="btn btn-primary-outline"
-              href="/#"
               onClick={() => unCheckedCheckBox()}
             >
               Clear
             </a>
             <a
               className="btn btn-primary"
-              href="/#"
               onClick={() => {
-                setFiltersale(false);
+                setFiltersale(filtersale);
                 setIsChecked(false);
+                handleToggle();
               }}
             >
               Apply

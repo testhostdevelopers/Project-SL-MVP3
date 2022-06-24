@@ -28,11 +28,11 @@ const Following = () => {
   const apiToken = sessionStorage.getItem("apiToken");
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   let [openImage, setOpenImage] = useState(false);
-  const [filterSort, setFilterSort] = useState(false);
   const [filterCategory, setFilterCategory] = useState(false);
+  const [filterSort, setFilterSort] = useState(false);
   const [filterCollections, setFilterCollections] = useState(false);
   const [filterProperties, setFilterProperties] = useState(false);
-  const [filtersale, setFiltersale] = useState(false);
+  const [filtersale, setFiltersale] = useState([]);
   const [filterRange, setFilterRange] = useState(false);
   let [collectionsList, setCollectionsList] = useState([]);
   let offset = 0;
@@ -126,7 +126,16 @@ const Following = () => {
       });
     }
   }
-  console.log('filterCollections', filterCollections);
+  if (filtersale.length) {
+    // console.log('filtersale', filtersale);
+    collectionsList.forEach((SingleData, key) => {
+      collectionsList[key].show = filtersale.includes(SingleData.price_type);
+    });
+  } else if (filtersale == []) {
+    collectionsList.forEach((SingleData, key) => {
+      collectionsList[key].show = true;
+    });
+  }
   useEffect(() => {
     if (sessionStorage.getItem("apiToken")) {
       getAllCollectibleList().then(r => {});
