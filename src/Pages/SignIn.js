@@ -22,35 +22,36 @@ let data = {
   pubKey: "",
 };
 
-const connectStore = async (pkey, wal, con) => {
-  data.conEstablished = con;
-  if (data.conEstablished === true) {
-    data.pubKey = pkey;
-    data.wallet = wal;
-    localStorage.setItem("PublicKey", pkey);
-    localStorage.setItem("wallet", wal);
-    axios
-      .post(`${Config.baseURL}v1/user/signup`, {
-        walletToken: pkey,
-        walletName: wal,
-      })
-      .then((res) => {
-        axios
-          .put(`${Config.baseURL}v1/user/gettoken`, {
-            walletToken: pkey,
-          })
-          .then((r) => {
-            sessionStorage.setItem("apiToken", JSON.stringify(r.data.data.userdata.apiToken));
-            sessionStorage.setItem("userdata", JSON.stringify(r.data.data.userdata));
-            window.location.reload(false);
-          });
-      });
-  }
-};
 
 const SignIn = () => {
   const [Whatwallet, setWhatwallet] = useState(false);
   const navRef = React.useRef(null);
+  const connectStore = async (pkey, wal, con) => {
+    data.conEstablished = con;
+    if (data.conEstablished === true) {
+      data.pubKey = pkey;
+      data.wallet = wal;
+      localStorage.setItem("PublicKey", pkey);
+      localStorage.setItem("wallet", wal);
+      axios
+        .post(`${Config.baseURL}v1/user/signup`, {
+          walletToken: pkey,
+          walletName: wal,
+        })
+        .then((res) => {
+          axios
+            .put(`${Config.baseURL}v1/user/gettoken`, {
+              walletToken: pkey,
+            })
+            .then((r) => {
+              sessionStorage.setItem("apiToken", JSON.stringify(r.data.data.userdata.apiToken));
+              sessionStorage.setItem("userdata", JSON.stringify(r.data.data.userdata));
+              window.location.reload(false);
+              window.solana.connect();
+            });
+        });
+    }
+  };
 
   const variants = {
     hidden: { opacity: 0 },
@@ -60,16 +61,16 @@ const SignIn = () => {
     try {
       if ("solana" in window) {
         const resp = window.solana.connect();
-        resp.publicKey.toString();
+        // resp.publicKey.toString();
+        window.solana.on("connect", () =>
+          connectStore(window.solana.publicKey.toString(), "phantom", true)
+        );
       } else {
         window.open("https://phantom.app/", "_blank");
       }
     } catch (err) {
       console.log(err);
     }
-    window.solana.on("connect", () =>
-      connectStore(window.solana.publicKey.toString(), "phantom", true)
-    );
   };
 
   const connectSolflare = () => {
