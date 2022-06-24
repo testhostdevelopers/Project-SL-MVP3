@@ -367,35 +367,30 @@ const Buy = () => {
                       role="tabpanel"
                       aria-labelledby="pills-profile-tab"
                     >
-                      <div className="w-100 d-flex justify-content-between mb-3">
-
-                        <div className="d-flex">
-                          <div className="user-img">
-                            <img src={userTick} width="36" alt="" />
-                          </div>
-                          <div className="ml-4">
-                            <div>
-                              <b>0.0002 ETH </b>
-                              <span className="color-gray">by </span>
-                              <b>tanelen tivan </b>
-                              <span className="color-gray">
-                                for 10 editions
-                              </span>
+                      {singleCollectibleData?.bids?.map((singleBid, key) =>(
+                          <div className="w-100 d-flex justify-content-between mb-3">
+                            <div className="d-flex">
+                              <div className="user-img">
+                                <img src={singleBid.user_id.profile_img_url} width="36" alt="" />
+                              </div>
+                              <div className="ml-4">
+                                <div>
+                                  <b>{singleBid.amount} {singleBid.currency} </b>
+                                  <span className="color-gray">by </span>
+                                  <b>{singleBid.user_id.display_name} </b>
+                                  <span className="color-gray">
+                                    for 10 editions
+                                  </span>
+                                </div>
+                                <div>
+                                  <span className="color-gray">
+                                    26/072021, 16:28
+                                  </span>
+                                </div>
+                              </div>
                             </div>
-                            <div>
-                              <span className="color-gray">
-                                26/072021, 16:28
-                              </span>
-                            </div>
                           </div>
-                        </div>
-                            
-                      <ul>
-                      {/* { singleCollectibleData.bids.map((bids, key) =>(
-                        <li>{bids}</li>
-                      )) } */}
-                      </ul>
-                      </div>
+                      ))}
                     </div>
 
                     <div
