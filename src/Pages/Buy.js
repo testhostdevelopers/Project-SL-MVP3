@@ -148,6 +148,7 @@ const Buy = () => {
           setSinglePopup={setSinglePopup}
           sethelpPopup={sethelpPopup}
           setSingleCollectionPopup={setSingleCollectionPopup}
+          singleCollectibleData={singleCollectibleData}
         />
       )}
       {singlePopup && (
