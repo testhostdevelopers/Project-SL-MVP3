@@ -96,9 +96,9 @@ const QuickExplore = () => {
           </a>
         </li>
       </ul>
-      <button className="btn-primary-outline-big mt-0 d-mobile-none quick-explore-filter-buton">
-        View All
-      </button>
+      {/*<button className="btn-primary-outline-big mt-0 d-mobile-none quick-explore-filter-buton">*/}
+      {/*  View All*/}
+      {/*</button>*/}
     </>
   );
 };
