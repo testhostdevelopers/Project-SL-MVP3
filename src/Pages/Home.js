@@ -299,7 +299,7 @@ const Home = () => {
   };
   const getHotCollectionsList = async () => {
     await axios
-        .get(`${Config.baseURL}v1/collection/hotcollectionslist/0/10`, {
+        .get(`${Config.baseURL}v1/collection/hotcollectionslist/0/8`, {
               data: {
                 user_id: userData._id
               },
@@ -765,7 +765,7 @@ const Home = () => {
                 User2={topSellerUser2}
                 User3={topSellerUser3}
                 WETH={SingleCollectible.price}
-                bid="Highest bid 1/1"
+                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
               />
             ))}
           </div>
@@ -835,7 +835,7 @@ const Home = () => {
                 User2={topSellerUser2}
                 User3={topSellerUser3}
                 WETH={SingleCollectible.price}
-                bid="Highest bid 1/1"
+                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
               />
             ))}
           </div>
@@ -894,20 +894,19 @@ const Home = () => {
           </div>
 
           <div className="row mt-5">
-            {hotCollectionsList.slice(0, 8).map((SingleCollectible, key) => (
+            {hotCollectionsList.slice(0, 8).map((SingleCollection, key) => (
               <LiveAuctions
-                key={SingleCollectible._id}
-                isCollection={false}
-                id={SingleCollectible._id}
-                Coverimg={SingleCollectible.img_path?.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
-                liked={SingleCollectible.like}
-                title={SingleCollectible.title}
-                heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                User1={topSellerUser1}
-                User2={topSellerUser2}
-                User3={topSellerUser3}
-                WETH={SingleCollectible.price}
-                bid="Highest bid 1/1"
+                  isCollection={true}
+                  id={SingleCollection._id}
+                  Coverimg={SingleCollection.main_img.indexOf('https://storage.googleapis.com') > -1 ? SingleCollection.main_img : artWorkWeek1}
+                  liked={SingleCollection.like}
+                  title={SingleCollection.title}
+                  heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
+                  User1={topSellerUser1}
+                  User2={topSellerUser2}
+                  User3={topSellerUser3}
+                  WETH="1.2 WETH"
+                  bid="Highest bid 1/1"
               />
             ))}
           </div>
@@ -1006,7 +1005,7 @@ const Home = () => {
                     WETH={SingleCollectible.price}
                     isOpenInProfile={false}
                     isLiveAuctions={false}
-                    bid="Highest bid 1/1"
+                    bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
                   />
                 ))}
               </div>
@@ -1039,7 +1038,7 @@ const Home = () => {
                       WETH={SingleCollectible.price}
                       isOpenInProfile={false}
                       isLiveAuctions={false}
-                      bid="Highest bid 1/1"
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
                     /> : <></>
                 ))}
               </div>
@@ -1072,7 +1071,7 @@ const Home = () => {
                       WETH={SingleCollectible.price}
                       isOpenInProfile={false}
                       isLiveAuctions={false}
-                      bid="Highest bid 1/1"
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
                     /> : <></>
                 ))}
               </div>
@@ -1105,7 +1104,7 @@ const Home = () => {
                       WETH={SingleCollectible.price}
                       isOpenInProfile={false}
                       isLiveAuctions={false}
-                      bid="Highest bid 1/1"
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
                     /> : <></>
                 ))}
               </div>
@@ -1139,7 +1138,7 @@ const Home = () => {
                       WETH={SingleCollectible.price}
                       isOpenInProfile={false}
                       isLiveAuctions={false}
-                      bid="Highest bid 1/1"
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
                     /> : <></>
                 ))}
               </div>
@@ -1172,7 +1171,7 @@ const Home = () => {
                       WETH={SingleCollectible.price}
                       isOpenInProfile={false}
                       isLiveAuctions={false}
-                      bid="Highest bid 1/1"
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
                     /> : <></>
                 ))}
               </div>
@@ -1206,7 +1205,7 @@ const Home = () => {
                       WETH={SingleCollectible.price}
                       isOpenInProfile={false}
                       isLiveAuctions={false}
-                      bid="Highest bid 1/1"
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
                     /> : <></>
                 ))}
               </div>
