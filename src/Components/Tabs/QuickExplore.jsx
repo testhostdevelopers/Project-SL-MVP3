@@ -43,7 +43,6 @@ const QuickExplore = () => {
             Photography
           </a>
         </li>
-
         <li className="nav-item" role="presentation">
           <a
             className="nav-link"
@@ -57,7 +56,6 @@ const QuickExplore = () => {
             Games
           </a>
         </li>
-
         <li className="nav-item" role="presentation">
           <a
             className="nav-link"
@@ -71,7 +69,6 @@ const QuickExplore = () => {
             Metaverses
           </a>
         </li>
-
         <li className="nav-item" role="presentation">
           <a
             className="nav-link"
@@ -85,7 +82,6 @@ const QuickExplore = () => {
             Music
           </a>
         </li>
-
         <li className="nav-item" role="presentation">
           <a
             className="nav-link"
