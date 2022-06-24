@@ -52,6 +52,9 @@ export default function Filtersale({
         arr.push(ele.value);
       }
     });
+    if (arr.length == 0) {
+      setIsChecked(false);
+    }
     setCheckedValues(arr);
   }, [filtersale]);
   // setFiltersale(checkedValues);
