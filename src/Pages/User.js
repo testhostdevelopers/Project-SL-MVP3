@@ -26,9 +26,9 @@ const User = (props) => {
   const currentUserData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [reportPopup, setReportPopup] = useState(false);
   const [followButtonText, setFollowButtonText] = useState('Follow');
-  if (currentUserData.following.indexOf(user_id) >= 0) {
+  /*if (currentUserData.following.indexOf(user_id) >= 0) {
     // setFollowButtonText("Unfollow");
-  }
+  }*/
   let [udata, setUdata] = useState({});
   let [userCollectibleList, setUserCollectibleList] = useState([]);
   let [userCollectionList, setUserCollectionList] = useState([]);
