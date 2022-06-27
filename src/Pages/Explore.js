@@ -4,7 +4,7 @@ import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 import artWorkWeek2 from "../assets/img/custom/artWorkWeek2.png";
 import artWorkWeek3 from "../assets/img/custom/artWorkWeek3.png";
 import artWorkWeek4 from "../assets/img/custom/artWorkWeek4.png";
-import propertiesicon from "../assets/img/custom/properties.svg";
+// import propertiesicon from "../assets/img/custom/properties.svg";
 import HotBids from "../Components/HotBids";
 import FullScreenImage from "../Components/Popup/FullScreenImage";
 import FilterSort from "../Components/FilterSort";
@@ -12,7 +12,7 @@ import FilterCategory from "../Components/FilterCategory";
 import FilterCollections from "../Components/FilterCollections";
 import Filtersale from "../Components/Filtersale";
 import FilterRange from "../Components/FilterRange";
-import FilterProperties from "../Components/FilterProperties";
+// import FilterProperties from "../Components/FilterProperties";
 
 // const { TabPane } = Tabs;
 // const { Option } = Select;
@@ -101,7 +101,7 @@ const Cryptoloria = () => {
                 setFiltersale={setFiltersale}
                 setFilterRange={setFilterRange}
               />
-              <li>
+              {/*<li>
                 <span className="label">Properties</span>
                 <div className="icon">
                   <img src={propertiesicon} alt={""} />
@@ -133,7 +133,7 @@ const Cryptoloria = () => {
                     </span>
                   </span>
                 </div>
-              </li>
+              </li>*/}
               <Filtersale
                 filterSort={filterSort}
                 filterCategory={filterCategory}

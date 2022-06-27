@@ -203,7 +203,7 @@ const Following = () => {
                 setFiltersale={setFiltersale}
                 setFilterRange={setFilterRange}
               />
-              <li>
+              {/*<li>
                 <span className="label">Properties</span>
                 <div className="icon">
                   <img src={propertiesicon} alt={""} />
@@ -235,7 +235,7 @@ const Following = () => {
                     </span>
                   </span>
                 </div>
-              </li>
+              </li>*/}
               <Filtersale
                 filterSort={filterSort}
                 filterCategory={filterCategory}

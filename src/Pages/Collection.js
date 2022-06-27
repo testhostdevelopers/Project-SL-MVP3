@@ -326,7 +326,7 @@ const Collection = (props) => {
                                 setFiltersale={setFiltersale} 
                                 setFilterRange={setFilterRange} 
                             /> */}
-                          <li>
+                          {/*<li>
                             <span className="label">Properties</span>
                             <div className="icon">
                               <img src={propertiesicon} alt={""} />
@@ -360,7 +360,7 @@ const Collection = (props) => {
                                 </span>
                               </span>
                             </div>
-                          </li>
+                          </li>*/}
                           <Filtersale
                             filterSort={filterSort}
                             filterCategory={filterCategory}
