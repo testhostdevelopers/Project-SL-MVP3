@@ -29,18 +29,20 @@ const Search = () => {
         .get(`${Config.baseURL}v1/user/search/`+ keyword, {
           headers: {}
         })
-        .then(response => {
+        .then(async response => {
           // console.log('Search Users List', response.data.data);
           if (apiToken) {
-            response.data.data.forEach((element) => {
+            await response.data.data.forEach((element) => {
               if (element.followers.includes(udata._id)) {
                 element.isImFollowing = true;
               } else {
                 element.isImFollowing = false;
               }
             });
+            setSearchUsersList(response.data.data);
+          } else {
+            setSearchUsersList(response.data.data);
           }
-          setSearchUsersList(response.data.data);
         })
         .catch(err => {
           console.log(err);
