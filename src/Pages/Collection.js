@@ -191,9 +191,9 @@ const Collection = (props) => {
       {profilePopup && (
         <UpdateProfilePicPopup setprofilePopup={setprofilePopup} setProfileImg={setProfileImg} collectionID={collectionId} />
       )}
-      {filterProperties && (
+      {/*{filterProperties && (
         <FilterProperties setFilterProperties={setFilterProperties} />
-      )}
+      )}*/}
 
       <motion.section
         initial="hidden"

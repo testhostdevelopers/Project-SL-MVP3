@@ -43,9 +43,9 @@ const Cryptoloria = () => {
   return (
     <>
       {openImage && <FullScreenImage setOpenImage={setOpenImage} />}
-      {filterProperties && (
+      {/*{filterProperties && (
         <FilterProperties setFilterProperties={setFilterProperties} />
-      )}
+      )}*/}
 
       <motion.section
         initial="hidden"
