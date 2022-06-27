@@ -1128,7 +1128,7 @@ const Navbar = (props) => {
                   {sessionStorage.getItem("apiToken") ? (
                     <a
                       className="d-sm-none d-lg-block nav-link p-0 nav-dark-button mr-2 position-relative"
-                      href="/#"
+                      href="#"
                       onClick={() =>
                         setOpenProfileDropMenu(!openProfileDropMenu)
                       }
