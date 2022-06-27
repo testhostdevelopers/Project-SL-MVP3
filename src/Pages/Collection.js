@@ -58,7 +58,7 @@ const Collection = (props) => {
     visible: { opacity: 1 },
   };
   if (filterCategory) {
-    console.log('filterCategory', filterCategory);
+    // console.log('filterCategory', filterCategory);
     userCollectibleList.forEach((SingleData, key) => {
       if (filterCategory === "All") {
         userCollectibleList[key].show = true;
@@ -99,7 +99,7 @@ const Collection = (props) => {
     });
   }
   if (filterRange) {
-    console.log('filterRange', filterRange);
+    // console.log('filterRange', filterRange);
     if (filterRange[0] > 0 || filterRange[1] > 0) {
       userCollectibleList.forEach((SingleData, key) => {
         if (SingleData.price > filterRange[0] && SingleData.price < filterRange[1]) {
@@ -115,6 +115,16 @@ const Collection = (props) => {
         userCollectibleList[key].show = true;
       });
     }
+  }
+  if (filtersale.length) {
+    // console.log('filtersale', filtersale);
+    userCollectibleList.forEach((SingleData, key) => {
+      userCollectibleList[key].show = filtersale.includes(SingleData.price_type);
+    });
+  } else if (filtersale == []) {
+    userCollectibleList.forEach((SingleData, key) => {
+      userCollectibleList[key].show = true;
+    });
   }
   const singleCollection = async () => {
     axios

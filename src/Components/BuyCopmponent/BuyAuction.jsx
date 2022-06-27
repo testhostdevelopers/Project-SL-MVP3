@@ -3,17 +3,17 @@ import topSellerUser4 from "../../assets/img/custom/topSellerUser4.png";
 // import axios from "axios";
 // import { Config } from '../../utils/config';
 
-
 const BuyAuction = (props) => {
   const [day, setDay] = useState(1);
   const [hour, setHour] = useState(3);
   const [min, setMin] = useState(43);
   const [seconds, setSeconds] = useState(44);
   const data = props;
-  var length = data.props.bids.length;
-  console.log(data.props.bids.length);
+  // var length = data.props.bids.length;
+  // console.log(data.props.bids);
+  // console.log(Math.max(...data.props.bids.map(o => o.amount)));
   useEffect(() => {
-    
+
     const interval = setInterval(() => {
       if (seconds > 0) {
         setSeconds(seconds - 1);

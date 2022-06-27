@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import CheckFillClrIcon from "../assets/img/icons/custom/Group_1454.svg";
 import axios from "axios";
-import { Config } from '../utils/config';          
+import { Config } from '../utils/config';
 import {toast, ToastContainer} from "react-toastify";
 
 const CreateCollectibleEdit = () => {
@@ -76,7 +76,7 @@ const CreateCollectibleEdit = () => {
                 console.log(res);
             });
         }
-    }   
+    }
 
     var verificationRequest = async () => {
         if (apiToken) {
@@ -279,10 +279,17 @@ const CreateCollectibleEdit = () => {
                   <b> Upload Profile Picture</b>
                 </h5>
               </div>
-              <div className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center">
-                <div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>
-                <div className="mt-3">
+              <div
+                className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center"
+                style={{
+                  backgroundImage: 'url("' + udata.profile_img_url + '")',
+                  backgroundRepeat: 'round',
+                }}
+              >
+                {/*<div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>*/}
+                <div className="mt-3" style={{ cursor: 'pointer'}}>
                   <input
+                    style={{ cursor: 'pointer'}}
                     type="file"
                     accept="image/*"
                     name="profile"
@@ -295,19 +302,20 @@ const CreateCollectibleEdit = () => {
                     id="profileImg"
                     className="img-btn w-100 ml-0 "
                   />
-                  <label htmlFor="profileImg">
+                  <label htmlFor="profileImg" style={{ cursor: 'pointer'}}>
                     {" "}
                     <img
                       src="/static/media/bg_img.156953d5.png"
                       alt={""}
-                    />{" "}
+                      style={{ cursor: 'pointer'}}
+                    />
                   </label>
-                  <br />
-                  {udata == null
+                  {/*<br />*/}
+                  {/*{udata == null
                     ? ""
                     : typeof udata.profile_img_url == "object"
                     ? udata.profile_img_url.name.split("/")[5]
-                    : udata.profile_img_url ? udata.profile_img_url.split("/")[5] : udata.profile_img_url }
+                    : udata.profile_img_url ? udata.profile_img_url.split("/")[5] : udata.profile_img_url }*/}
                 </div>
               </div>
 
@@ -316,10 +324,17 @@ const CreateCollectibleEdit = () => {
                   <b> Upload Cover Image</b>
                 </h5>
               </div>
-              <div className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center">
-                <div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>
-                <div className="mt-3">
+              <div
+                  className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center"
+                  style={{
+                    backgroundImage: 'url("' + udata.cover_img_url + '")',
+                    backgroundRepeat: 'round',
+                  }}
+              >
+                {/*<div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>*/}
+                <div className="mt-3" style={{ cursor: 'pointer'}}>
                   <input
+                    style={{ cursor: 'pointer'}}
                     type="file"
                     accept="image/*"
                     name="cover"
@@ -329,19 +344,13 @@ const CreateCollectibleEdit = () => {
                     id="coverImg"
                     className="img-btn w-100 ml-0"
                   />
-                  <label htmlFor="coverImg">
-                    {" "}
+                  <label htmlFor="coverImg" style={{ cursor: 'pointer'}}>
                     <img
                       src="/static/media/bg_img.156953d5.png"
                       alt={""}
-                    />{" "}
+                      style={{ cursor: 'pointer'}}
+                    />
                   </label>
-                  <br />
-                  {udata == null
-                    ? ""
-                    : typeof udata.cover_img_url == "object"
-                    ? udata.cover_img_url.name.split("/")[5]
-                    : udata.cover_img_url ? udata.cover_img_url.split("/")[5] : udata.cover_img_url}
                 </div>
               </div>
             </div>
@@ -364,9 +373,9 @@ const CreateCollectibleEdit = () => {
                     Proceed with verification process to get <br />
                     more visibility and gain trust on Starlight <br /> Marketplace.
                   </span>
-                  : 
+                  :
                   <span className="color-gray ">
-                    Your verification request is under review 
+                    Your verification request is under review
                   </span>
                 }
                 </div>

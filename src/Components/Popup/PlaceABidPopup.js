@@ -16,7 +16,7 @@ const PlaceABidPopup = (props) => {
     visible: { opacity: 1 },
   };
 
-  let { setSingleCollectionPopup, setCheckOutPopup } = props;
+  let { setSingleCollectionPopup, singleCollectibleData } = props;
 
   const options = [
     { value: "SOL", label: "SOL" },
@@ -25,30 +25,32 @@ const PlaceABidPopup = (props) => {
 
   const [selected, setSelected] = useState("SOL");
   const [placeBid, setPlaceBid] = useState({amount: 0});
-  // const user_id = JSON.parse(sessionStorage.getItem("userdata")) || {};
-
   const handleSubmit = async () => {
-    const user_id = JSON.parse(sessionStorage.getItem("userdata")) || {};
-    var bids = {
-      amount: placeBid.amount,
-      currency: selected,
-      user_id: user_id
-    };
-    console.log('placeBidCollectible');
-    let a = 'collectible';
-    await axios
-      .put(`${Config.baseURL}v1/` + a + '/bid/' + collectibleId, { bids }, {
-        headers: {
-          Authorization: `Bearer ${apiToken}`,
-        }
-      })
-      .then(response => {
-        console.log('bidCollectible response', response);
-        // singleCollectible();
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    console.log('max bid', Math.max(...singleCollectibleData.bids.map(o => o.amount)));
+    if (placeBid.amount > Math.max(...singleCollectibleData.bids.map(o => o.amount))) {
+      const user_id = JSON.parse(sessionStorage.getItem("userdata")) || {};
+      var bids = {
+        amount: placeBid.amount,
+        currency: selected,
+        user_id: user_id._id
+      };
+      // console.log('placeBidCollectible');
+      await axios
+          .put(`${Config.baseURL}v1/` + 'collectible/bid/' + collectibleId, {bids}, {
+            headers: {
+              Authorization: `Bearer ${apiToken}`,
+            }
+          })
+          .then(response => {
+            // console.log('bidCollectible response', response);
+            if (response.data.response_code === "API_SUCCESS") {
+              setSingleCollectionPopup(false);
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
+    }
   }
 
   return (
@@ -66,7 +68,7 @@ const PlaceABidPopup = (props) => {
               className="popup-close-btn-outline cursor-pointer"
               onClick={() => {
                 setSingleCollectionPopup(false);
-                setCheckOutPopup(false);
+                // setCheckOutPopup(false);
                 document.body.style.overflow = "scroll";
               }}
             >
