@@ -11,30 +11,39 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Keyboard, Pagination, Navigation } from "swiper/core";
 import { motion } from "framer-motion";
 import AdvanceCollectionSetting from "./AdvanceCollectionSetting";
+import { NFTStorage, File } from 'nft.storage';
 import axios from "axios";
+import 'react-toastify/dist/ReactToastify.css';
 import { Config } from '../utils/config';
 
 SwiperCore.use([Keyboard, Pagination, Navigation]);
 
+const NFT_STORAGE_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEYyNGU0OEJjMTdBMzE3Q2MzYjY4RjYyMEFEMTE3NTRDMDdmMDYxZWIiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY0ODE5MDI0NzY5MiwibmFtZSI6Im5mdCJ9.twfnx5glu50givzgLNy0-I_ocYZXQ97MxKZkLeCGzL4';
+const client = new NFTStorage({ token: NFT_STORAGE_TOKEN })
+
 const CreateCollectibleMulti = () => {
   const apiToken = sessionStorage.getItem("apiToken");
-  const user_id = JSON.parse(sessionStorage.getItem("userdata"));
+  const user_id = JSON.parse(sessionStorage.getItem("userdata")) || {};
+  // console.log('user_id', user_id);
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
   let [udata, setUdata] = useState({
+    user_id: user_id._id,
     oncePurchase: false,
     putOnMarket: false,
-    user_id: user_id._id,
     is_single: false,
     price_currency: "SOL",
     price_type: "fixed_price",
+    category: "Art",
   });
   let [price, setPrice] = useState(0);
-  const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
-  const [filesize, setfilesize] = useState("");
   let [collection_list, setcollectionList] = useState([]);
+  const [filesize, setfilesize] = useState("");
+  const [changetext, setChangetext] = useState(
+    "Upload file to preview your brand new NFT"
+  );
   const profileImage = React.useRef(null);
   const profileUploader = React.useRef(null);
   const collectionListFunc = async () => {
@@ -56,38 +65,150 @@ const CreateCollectibleMulti = () => {
     collectionListFunc();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handlePriceChange = (e) => {
-    let price = e;
-    let less = price * 0.025;
-    let final = price - less;
-    // console.log(final, less);
-    setPrice(final);
-  };
-  
-  const handleprofilepicUploader = (e) => {
-    const [file] = e.target.files;
+  /*const imageUpload = async (file) => {
+    // console.log("imageUpload file details:-", file);
+    // const arweave = Arweave.init({
+    //   host: "arweave.net", // Hostname or IP address for a Arweave host
+    //   port: 443, // Port
+    //   protocol: "TLS", // Network protocol http or https
+    //   timeout: 20000, // Network request timeouts in milliseconds
+    //   logging: false, // Enable network request logging
+    // });
+
+    // // Upload image to
+
+    // let readers = new FileReader();
+    // readers.readAsArrayBuffer(file);
+
+    // let key = await arweave.wallets.generate();
+
+    // // console.log("arweave key", key);
+    // // console.log("readers.result", readers.result);
+
+    // const wallet = await arweave.wallets.jwkToAddress(key);
+    // console.log("wallet", wallet);
+
+    // const transaction = await arweave.createTransaction(
+    //   {
+    //     data: readers.result,
+    //   },
+    //   key
+    // );
+
+    // let fileExt = file.name.split(".").pop();
+    // // console.log("fileExt", fileExt, `image/${fileExt}`);
+    // transaction.addTag("Content-Type", `image/${fileExt}`);
+    // // console.log("transaction", transaction);
+
+    // await arweave.transactions.sign(transaction, key);
+
+    // // console.log(sign)
+    // // console.log(transaction)
+
+    // const response = await arweave.transactions.post(transaction);
+    // console.log("arweave.transactions.response", response);
+
+    // const { id } = transaction;
+    // const imageUrl = id ? `https://arweave.net/${id}` : undefined;
+    // console.log("imageUrl", imageUrl);
+    //   setUdata({ img_path: imageUrl })
+  };*/
+
+  const uploadNftStorage = async (file) => {
+    console.log(file)
+    // let fileExt = file.name.split(".").pop();
+    // let readers = new FileReader();
+    // readers.readAsDataURL(file);
+    // const imageFile = new File([ file ], file.name , { type: `image/${fileExt}` })
+    // console.log(imageFile)
+    // console.log(fileExt)
+   
+    
+
+    const metadata = {
+      name: "Storing the World's Most Valuable Virtual Assets with NFT.Storage",
+      description: "The metaverse is here. Where is it all being stored?",
+      properties: {
+        type: "blog-post",
+        origins: {
+          http: "https://nft.storage/blog/post/2021-11-30-hello-world-nft-storage/",
+          ipfs: "ipfs://bafybeieh4gpvatp32iqaacs6xqxqitla4drrkyyzq6dshqqsilkk3fqmti/blog/post/2021-11-30-hello-world-nft-storage/"
+        },
+        authors: [{ name: "David Choi" }],
+        content: {
+          "text/markdown": "The last year has witnessed the explosion of NFTs onto the world’s mainstage. From fine art to collectibles to music and media, NFTs are quickly demonstrating just how quickly grassroots Web3 communities can grow, and perhaps how much closer we are to mass adoption than we may have previously thought. <... remaining content omitted ...>"
+        }
+      }
+    };
+    console.log(metadata)
+    var m = new File([metadata],"metadata.json",{ type: "text/json" });
+    console.log(m)
+    const out = await client.storeDirectory(file,m);
+    console.log(out)
+    const imageUrlNft = out + '.ipfs.nftstorage.link/' + file[0].name;
+    console.log(imageUrlNft)
+
+    // const imageUrl = metadata.url;
+
+    
+    setUdata({...udata, img_path: imageUrlNft })
+
+    // const connection = new Connection(  
+    //   clusterApiUrl('devnet'),
+    //   'confirmed',
+    // );
+    // const keypair = Keypair.generate();
+    // const feePayerAirdropSignature = await connection.requestAirdrop(keypair.publicKey, LAMPORTS_PER_SOL);
+    // await connection.confirmTransaction(feePayerAirdropSignature);
+
+    // const mintNFTResponse = await actions.mintNFT({
+    //   connection,
+    //   wallet: new NodeWallet(keypair),
+    //   uri: imageUrl,
+    //   maxSupply: 1
+    // });
+
+    // console.log(mintNFTResponse);
+  }
+
+  const handleprofilepicUploadr = (e) => {
+    const file = e.target.files[0];
+    // console.log('file', file);
+    setUdata({ ...udata, img_path: e.target.files[0] });
     if (file) {
       const reader = new FileReader();
       const { current } = profileImage;
       current.file = file;
-      setUdata({ ...udata, img_path: e.target.files[0].name });
       reader.onload = (e) => {
         current.src = e.target.result;
         if (!file) {
-          setfilesize("Please select Valid Image.");
+          setfilesize("Please select Valid Image .");
           return false;
+        }
+        if (e.target.result) {
+          setChangetext("");
         }
       };
       reader.readAsDataURL(file);
+      uploadNftStorage(e.target.files);
+      // imageUpload(e.target.files[0]);
+
     }
   };
 
-  const price_one = ["ETH", "BTC", "USDC", "Starlight", "ASH", "ATRI", "FIRST"];
+  const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
+  // console.log(filesize, "setfilesize");
 
-  const [showDetail, setShowDetail] = useState(false);
+  const price_one = ["SOL", "BTC"];
+  const category = ["Cryptoloria", "Art","Photography","Games","Metaverses"];
+
+  const [showDetail, setShowDetail] = useState(true);
+
   const handleToggle = () => setShowDetail(!showDetail);
+
   const handleSubmit = async () => {
     if (apiToken) {
+      // let apiToken = sessionStorage.getItem('apiToken');
       let formData = new FormData();
       formData.append("aaa", "aaaaa");
       let form = {
@@ -97,29 +218,47 @@ const CreateCollectibleMulti = () => {
         price_currency: udata.price_currency,
         unlock_once_purchased: udata.oncePurchase,
         collection_id: udata.collection_id,
-        is_single: false,
         title: udata.title,
-        user_id: user_id._id,
-        owner_id: user_id._id,
         description: udata.description,
-        royalties: 11,
+        royalties: 11,                                                                                                                                                                                                                                                                                                            
+        is_single: false,  
         img_path: udata.img_path,
         digital_key: "11",
+        user_id: user_id._id,
+        creator_id: user_id._id,
+        owner_id: user_id._id,
+        creator_id: user_id._id,
         properties: udata.properties,
         alt_text_nft: udata.alterText,
+        category: udata.category
       };
-      console.log(form);
-      await axios.post(`${Config.baseURL}v1/collectible/create`, form,
-        {
-          headers: {
-            "Authorization" : `Bearer ${apiToken}`,
-          }
-        })
+      var file = form.img_path;
+      console.log(file)
+        console.log(udata)
+        await axios.post(`${Config.baseURL}v1/collectible/create`, form,
+          {
+            headers: {
+              "Authorization": `Bearer ${apiToken}`,
+            }
+          })
         .then((res) => {
           console.log(res);
           if(res.data.response_code === "API_ERROR") {
             toast("" + res.data.error.message);
           } else if (res.data.response_code === "API_SUCCESS") {
+            /*var transactions = {
+              type: "collectible",
+              amount: 10
+            }*/
+            // axios.put(`${Config.baseURL}v1/user/transaction/create`,transactions,
+            // {
+            //   headers: {
+            //     "Authorization": `Bearer ${apiToken}`,
+            //   }  
+            // }).then((res) => {
+            //   console.log(res);
+            //   toast("" + res.data.message);
+            // })
             toast("" + res.data.message);
           }
         })
@@ -128,7 +267,20 @@ const CreateCollectibleMulti = () => {
           console.log('There was an error!', error);
           toast("" + error);
         });
+     
     }
+  };
+
+  const handlePriceChange = (e) => {
+    let price = e;
+    let less = price * 0.025;
+    let final = price - less;
+    // console.log(final, less);
+    setPrice(final);
+  };
+
+  const handleRadio = (val) => {
+    setUdata({ ...udata, price_type: val });
   };
 
   return (
@@ -183,7 +335,7 @@ const CreateCollectibleMulti = () => {
                   <input
                     type="file"
                     accept="image/*,video/mp4,video/x-m4v,video/*,image/x-png,image/gif,image/jpeg"
-                    onChange={handleprofilepicUploader}
+                    onChange={handleprofilepicUploadr}
                     ref={profileUploader}
                     id="profilephoto"
                     style={{
@@ -221,22 +373,42 @@ const CreateCollectibleMulti = () => {
                   Enter price to allow user instantly purchase your NFT
                 </div>
 
-                <div className="d-flex justify-content-between mt-3">
-                  <div className="putOnMarketplace border-radius btn-primary-outline-responsive col-sm-12 col-md-5">
-                    <img src={priceP} width="32" alt="" />
+               
+                <div className="d-flex justify-content-between mt-4">
+                  <div
+                    onClick={() => {
+                      handleRadio("fixed_price");
+                    }}
+                    className={`${
+                      udata.price_type === "fixed_price"
+                        ? "putOnMarketplace border-radius btn-primary-outline-responsive"
+                        : "putOnMarketplace border-gray  border-radius"
+                    } `}
+                  >
+                    <img src={priceP} width="32" alt=""/>
                     <b>
                       {" "}
-                      Fixed <br /> Price
+                      Fixed
+                      <br />
+                      Price
                     </b>
                   </div>
-                  <div className="putOnMarketplace border-radius border-gray col-sm-12 col-md-5">
-                    <img src={sonsuz} width="40" alt="" />{" "}
+                  <div
+                    onClick={() => {
+                      handleRadio("open_for_bid");
+                    }}
+                    className={`${
+                      udata.price_type === "open_for_bid"
+                        ? "putOnMarketplace border-radius btn-primary-outline-responsive"
+                        : "putOnMarketplace border-gray  border-radius"
+                    } `}
+                  >
+                    <img src={sonsuz} width="40" alt=""/>{" "}
                     <b>
-                      Open for <br /> bids
+                      Open for <br/> bids
                     </b>
                   </div>
                 </div>
-
                 <div className="mt-5">
                   <h5>
                     <b>Price</b>
@@ -279,9 +451,38 @@ const CreateCollectibleMulti = () => {
                       <div className="mt-2 text-right">
                         <b>
                           <span className="color-gray">You will receive </span>{" "}
-                          <span>0 ETH</span>
+                          <span>{price}</span>
                         </b>
                       </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="prize-single-collectible d-flex flex-column mt-0 ">
+                  <div className="d-flex justify-content-between mt-0">
+                    <b className="mt-2">
+                      <h5>Category</h5>
+                    </b>
+                    <div className="d-flex justify-content-between align-items-center">
+                      
+                      <span className="color-gray">
+                        <div className="d-flex border">
+                         
+                          <Select
+                            className="section-select-filter ml-0"
+                            onChange={(e) => {
+                              setUdata({...udata, category: e});
+                            }}
+                            defaultValue="Art"
+                          >
+                            {category.map((x, y) => (
+                              <Select.Option value={x} key={y}>
+                                {x}
+                              </Select.Option>
+                            ))}
+                          </Select>
+                        </div>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -292,8 +493,14 @@ const CreateCollectibleMulti = () => {
                       <h5>Unlock once Purchased</h5>
                     </b>
                     <div className="custom-control custom-switch">
-                      <input
+                    <input
                         type="checkbox"
+                        onChange={(e) => {
+                          setUdata({
+                            ...udata,
+                            oncePurchase: e.target.checked,
+                          });
+                        }}
                         className="custom-control-input"
                         id="customSwitch2"
                       />
@@ -316,7 +523,7 @@ const CreateCollectibleMulti = () => {
             <div className="col-sm-12 col-md-5 pl-5 brand-new-nfp">
               <b>Preview</b>
               <div className="border-gray upload-box text-center border-radius mt-4 color-gray d-flex justify-content-center align-items-center p-5">
-                <label>Upload file to preview your brand new NFT</label>
+                <label>Upload file to preview your brand new NFT</label>  
 
                 <img
                   alt={""}
@@ -366,7 +573,11 @@ const CreateCollectibleMulti = () => {
                         collection_id: sing._id,
                       });
                     }}>
-                      <div className="putOnMarketplace ml-3 border-radius btn-primary-outline-responsive">
+                       <div className={`${
+                      udata.collection_id === sing._id
+                        ? "putOnMarketplace ml-3 border-radius btn-primary-outline-responsive"
+                        : "putOnMarketplace border-gray ml-3 border-radius"
+                    } `}>
                         <img src={sing.main_img} width="40" alt=""/>
                         <div className="starslide">{sing.title}</div>
                         <div>
@@ -408,9 +619,13 @@ const CreateCollectibleMulti = () => {
                 </div>
 
                 <div className="prize-single-collectible">
-                  <input
+                <input
                     type="text"
-                    placeholder="e. g.  “After purchasing you will be able to get the real T-Shirt””"
+                    onChange={(e) => {
+                      setUdata({ ...udata, description: e.target.value });
+                    }}
+                    value={udata === null ? "" : udata.description}
+                    placeholder="e. g.  “After purchasing you will be able to get the real T-Shirt"
                   />
                 </div>
 
@@ -430,7 +645,14 @@ const CreateCollectibleMulti = () => {
                 </div>
 
                 <div className="prize-single-collectible">
-                  <input type="number" placeholder="10" />
+                  <input
+                      type="number" 
+                      onChange={(e) => {
+                        setUdata({ ...udata, royalties: e.target.value });
+                      }}
+                      value={udata == null ? "" : udata.royalties}
+                      placeholder="10"
+                    />
                   <span className="color-gray ">%</span>
                 </div>
 
@@ -466,7 +688,66 @@ const CreateCollectibleMulti = () => {
               </div>
             </div>
 
-            {showDetail && <AdvanceCollectionSetting />}
+            {showDetail && (
+              <div className="col-sm-12 col-lg-7 slowmotion">
+                <div className="mt-5">
+                  <div className="d-flex">
+                    <h5>
+                      <b>Properties</b>
+                    </h5>
+                    <span>
+                      <small className="color-gray ml-2">(Optional)</small>
+                    </span>
+                  </div>
+
+                  <div className="d-flex">
+                    <div className="prize-single-collectible d-flex w-100">
+                      <input
+                        type="text"
+                        onChange={(e) => {
+                          setUdata({ ...udata, properties: e.target.value });
+                        }}
+                        placeholder="e. g.  Size"
+                      />
+                    </div>
+
+                    <div className="prize-single-collectible d-flex w-100 ml-3">
+                      <input type="text" placeholder="e. g.  Medium" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-5">
+                  <div className="d-flex">
+                    <h5>
+                      <b>Alternative text for NFT</b>
+                    </h5>
+                    <span>
+                      <small className="color-gray ml-2">(Optional)</small>
+                    </span>
+                  </div>
+
+                  <div className="prize-single-collectible">
+                    <input
+                      type="text"
+                      onChange={(e) => {
+                        setUdata({ ...udata, alterText: e.target.value });
+                      }}
+                      placeholder="Describe the Image in detail"
+                    />
+                  </div>
+
+                  <div className="mt-2">
+                    <small>
+                      <span className="color-gray">
+                        Text that will be used in VoiceOver for people with
+                        disabilities.
+                      </span>
+                    </small>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="mt-5">
