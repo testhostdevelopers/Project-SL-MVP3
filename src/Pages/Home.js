@@ -824,8 +824,6 @@ const Home = () => {
                   liked={SingleCollection.like}
                   title={SingleCollection.title}
                   heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
-                  WETH="1.2 WETH"
-                  bid="Highest bid 1/1"
               />
             ))}
           </div>

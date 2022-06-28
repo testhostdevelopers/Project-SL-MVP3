@@ -158,11 +158,6 @@ const Search = () => {
                                   liked={SingleCollection.like}
                                   title={SingleCollection.title}
                                   heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
-                                  User1={topSellerUser1}
-                                  User2={topSellerUser2}
-                                  User3={topSellerUser3}
-                                  WETH="1.2 WETH"
-                                  bid="Highest bid 1/1"
                                 />
                               ))}
                             </> : <>
@@ -231,9 +226,9 @@ const Search = () => {
                                   liked={SingleCollectible.like}
                                   title={SingleCollectible.title}
                                   heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                                  User1={topSellerUser1}
-                                  User2={topSellerUser2}
-                                  User3={topSellerUser3}
+                                  User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                                  User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                                  User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
                                   WETH="1.2 WETH"
                                   bid="Highest bid 1/1"
                                 />

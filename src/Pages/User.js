@@ -367,9 +367,9 @@ const User = (props) => {
                                       liked={SingleCollectible.like}
                                       title={SingleCollectible.title}
                                       heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                                      User1={topSellerUser1}
-                                      User2={topSellerUser2}
-                                      User3={topSellerUser3}
+                                      User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                                      User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                                      User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
                                       WETH={SingleCollectible.price + ' WETH'}
                                       bid="Highest bid 1/1"
                                   />
@@ -400,9 +400,9 @@ const User = (props) => {
                                       liked={SingleCollectible.like}
                                       title={SingleCollectible.title}
                                       heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                                      User1={topSellerUser1}
-                                      User3={topSellerUser3}
-                                      User2={topSellerUser2}
+                                      User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                                      User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                                      User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
                                       WETH={SingleCollectible.price + ' WETH'}
                                       bid="Highest bid 1/1"
                                   />
@@ -435,9 +435,9 @@ const User = (props) => {
                                 liked={SingleCollectible.like}
                                 title={SingleCollectible.title}
                                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                                User1={topSellerUser1}
-                                User2={topSellerUser2}
-                                User3={topSellerUser3}
+                                User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                                User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                                User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
                                 WETH={SingleCollectible.price}
                                 bid="Highest bid 1/1"
                               />
@@ -467,11 +467,6 @@ const User = (props) => {
                                 liked={SingleCollection.like}
                                 title={SingleCollection.title}
                                 heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
-                                User1={topSellerUser1}
-                                User2={topSellerUser2}
-                                User3={topSellerUser3}
-                                WETH={SingleCollection.price}
-                                bid="Highest bid 1/1"
                               />
                             ))}
                           </div>
