@@ -169,7 +169,9 @@ export default function LiveAuctions({
                       <b>{WETH} WETH</b> : <></>
                   }
               </div>
-              <small className="text-secondary">{bid}</small>
+              {!isCollection ?
+                  <small className="text-secondary">{bid}</small> : <></>
+              }
             </div>
           </div>
         </div>

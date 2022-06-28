@@ -687,7 +687,7 @@ const Home = () => {
                 User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
                 User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
                 WETH={SingleCollectible.price}
-                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
               />
             ))}
           </div>
@@ -757,7 +757,7 @@ const Home = () => {
                 User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
                 User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
                 WETH={SingleCollectible.price}
-                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
               />
             ))}
           </div>
@@ -922,7 +922,7 @@ const Home = () => {
                     WETH={SingleCollectible.price}
                     isOpenInProfile={false}
                     isLiveAuctions={false}
-                    bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                    bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                   />
                 ))}
               </div>
@@ -955,7 +955,7 @@ const Home = () => {
                       WETH={SingleCollectible.price}
                       isOpenInProfile={false}
                       isLiveAuctions={false}
-                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                     /> : <></>
                 ))}
               </div>
@@ -988,7 +988,7 @@ const Home = () => {
                       WETH={SingleCollectible.price}
                       isOpenInProfile={false}
                       isLiveAuctions={false}
-                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                     /> : <></>
                 ))}
               </div>
@@ -1021,7 +1021,7 @@ const Home = () => {
                       WETH={SingleCollectible.price}
                       isOpenInProfile={false}
                       isLiveAuctions={false}
-                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                     /> : <></>
                 ))}
               </div>
@@ -1055,7 +1055,7 @@ const Home = () => {
                       WETH={SingleCollectible.price}
                       isOpenInProfile={false}
                       isLiveAuctions={false}
-                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                     /> : <></>
                 ))}
               </div>
@@ -1088,7 +1088,7 @@ const Home = () => {
                       WETH={SingleCollectible.price}
                       isOpenInProfile={false}
                       isLiveAuctions={false}
-                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                     /> : <></>
                 ))}
               </div>
@@ -1122,7 +1122,7 @@ const Home = () => {
                       WETH={SingleCollectible.price}
                       isOpenInProfile={false}
                       isLiveAuctions={false}
-                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                     /> : <></>
                 ))}
               </div>

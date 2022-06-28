@@ -289,7 +289,7 @@ const Following = () => {
                   WETH={SingleCollectible.price}
                   isOpenInProfile={false}
                   isLiveAuctions={false}
-                  bid="Highest bid 1/1"
+                  bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                 />
               </> : <></>
             ))}

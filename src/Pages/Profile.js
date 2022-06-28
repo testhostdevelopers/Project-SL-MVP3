@@ -558,7 +558,7 @@ const Profile = (props) => {
                                 User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
                                 User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
                                 WETH={SingleCollectible.price}
-                                bid="Highest bid 1/1"
+                                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                               />
                             ))}
                           </div>
@@ -591,7 +591,7 @@ const Profile = (props) => {
                                 User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
                                 User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
                                 WETH={SingleCollectible.price}
-                                bid="Highest bid 1/1"
+                                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                               />
                             ))}
                           </> : <>
@@ -626,7 +626,7 @@ const Profile = (props) => {
                                 User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
                                 User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
                                 WETH={SingleCollectible.price}
-                                bid="Highest bid 1/1"
+                                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                               />
                             ))}
                           </div>
@@ -687,7 +687,7 @@ const Profile = (props) => {
                                 User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
                                 User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
                                 WETH={SingleCollectible.price}
-                                bid="Highest bid 1/1"
+                                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                               />
                             ))}
                           </div>
@@ -878,7 +878,7 @@ const Profile = (props) => {
                                 User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
                                 User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
                                 WETH={SingleCollectible.price}
-                                bid="Highest bid 1/1"
+                                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                               />
                             ))}
                           </div>
