@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 export default function LiveAuctions({
   title,
   id = '',
-  WETH,
+  WETH = 0,
   bid,
   isCollection = false,
   isLiveAuctions = true,
@@ -160,12 +160,14 @@ export default function LiveAuctions({
                 </div> : <></>
             }
 
-            {isCollection === true?
+            {isCollection === true ?
                 <Link to={'/collection/'+id}><h6>{title}</h6></Link> : <Link to={'/buy/'+id}><h6>{title} 321</h6></Link>
             }
             <div className="d-flex justify-content-between align-items-center">
               <div className="text-danger">
-                <b>{WETH}</b>
+                  {!isCollection ?
+                      <b>{WETH} WETH</b> : <></>
+                  }
               </div>
               <small className="text-secondary">{bid}</small>
             </div>

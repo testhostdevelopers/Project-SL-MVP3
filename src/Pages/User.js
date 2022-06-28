@@ -370,7 +370,7 @@ const User = (props) => {
                                       User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
                                       User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
                                       User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
-                                      WETH={SingleCollectible.price + ' WETH'}
+                                      WETH={SingleCollectible.price}
                                       bid="Highest bid 1/1"
                                   />
                               ))}
@@ -403,7 +403,7 @@ const User = (props) => {
                                       User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
                                       User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
                                       User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
-                                      WETH={SingleCollectible.price + ' WETH'}
+                                      WETH={SingleCollectible.price}
                                       bid="Highest bid 1/1"
                                   />
                               ))}
