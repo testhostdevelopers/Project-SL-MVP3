@@ -29,18 +29,20 @@ const Search = () => {
         .get(`${Config.baseURL}v1/user/search/`+ keyword, {
           headers: {}
         })
-        .then(response => {
+        .then(async response => {
           // console.log('Search Users List', response.data.data);
           if (apiToken) {
-            response.data.data.forEach((element) => {
+            await response.data.data.forEach((element) => {
               if (element.followers.includes(udata._id)) {
                 element.isImFollowing = true;
               } else {
                 element.isImFollowing = false;
               }
             });
+            setSearchUsersList(response.data.data);
+          } else {
+            setSearchUsersList(response.data.data);
           }
-          setSearchUsersList(response.data.data);
         })
         .catch(err => {
           console.log(err);
@@ -156,11 +158,6 @@ const Search = () => {
                                   liked={SingleCollection.like}
                                   title={SingleCollection.title}
                                   heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
-                                  User1={topSellerUser1}
-                                  User2={topSellerUser2}
-                                  User3={topSellerUser3}
-                                  WETH="1.2 WETH"
-                                  bid="Highest bid 1/1"
                                 />
                               ))}
                             </> : <>
@@ -229,9 +226,9 @@ const Search = () => {
                                   liked={SingleCollectible.like}
                                   title={SingleCollectible.title}
                                   heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                                  User1={topSellerUser1}
-                                  User2={topSellerUser2}
-                                  User3={topSellerUser3}
+                                  User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                                  User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                                  User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
                                   WETH="1.2 WETH"
                                   bid="Highest bid 1/1"
                                 />

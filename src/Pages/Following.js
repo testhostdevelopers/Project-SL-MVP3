@@ -56,11 +56,7 @@ const Following = () => {
         if (response.data.response_code === "API_SUCCESS") {
           response.data.data.forEach((element, index) => {
             response.data.data[index].show = true;
-            if (element.likedBy.includes(userData._id)) {
-              response.data.data[index].like = true;
-            } else {
-              response.data.data[index].like = false;
-            }
+            response.data.data[index].like = !!element.likedBy.includes(userData._id);
           });
           setCollectionsList(response.data.data);
         }
@@ -137,17 +133,15 @@ const Following = () => {
     });
   }
   useEffect(() => {
-    if (sessionStorage.getItem("apiToken")) {
-      getAllCollectibleList().then(r => {});
-    }
+    getAllCollectibleList().then(r => {});
   }, []);
 
   return (
     <>
       {openImage && <FullScreenImage setOpenImage={setOpenImage} />}
-      {filterProperties && (
+      {/*{filterProperties && (
         <FilterProperties setFilterProperties={setFilterProperties} />
-      )}
+      )}*/}
 
       <motion.section
         initial="hidden"
@@ -203,7 +197,7 @@ const Following = () => {
                 setFiltersale={setFiltersale}
                 setFilterRange={setFilterRange}
               />
-              <li>
+              {/*<li>
                 <span className="label">Properties</span>
                 <div className="icon">
                   <img src={propertiesicon} alt={""} />
@@ -235,7 +229,7 @@ const Following = () => {
                     </span>
                   </span>
                 </div>
-              </li>
+              </li>*/}
               <Filtersale
                 filterSort={filterSort}
                 filterCategory={filterCategory}
@@ -289,7 +283,7 @@ const Following = () => {
                   WETH={SingleCollectible.price}
                   isOpenInProfile={false}
                   isLiveAuctions={false}
-                  bid="Highest bid 1/1"
+                  bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                 />
               </> : <></>
             ))}

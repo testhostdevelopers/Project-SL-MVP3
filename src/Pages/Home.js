@@ -49,7 +49,7 @@ const Home = () => {
   let [hotCollectionsList, setHotCollectionsList] = useState([]);
   let [topSellerUser, setTopSellerUser] = useState([]);
   let [topBuyerUser, setTopBuyerUser] = useState([]);
-  let [collectionsList, setCollectionsList] = useState([]);
+  let [QuickExploreCollectible, setQuickExploreCollectible] = useState([]);
 
   const variants = {
     hidden: { opacity: 0 },
@@ -89,84 +89,6 @@ const Home = () => {
     "This month",
     "Last 6 months",
     "Last 1 year",
-  ];
-
-  const live_auction = [
-    {
-      cover_img: artWorkWeek1,
-      auction_name: "Memescalf#782021",
-      h_count: "24",
-      auc_user1: topSellerUser1,
-      auc_user2: topSellerUser2,
-      auc_user3: topSellerUser3,
-      auction_WETH: "1.2 WETH",
-      auction_bid: "Highest bid 1/1",
-    },
-    {
-      cover_img: artWorkWeek2,
-      auction_name: "Memescalf#782022",
-      h_count: "27",
-      auc_user1: topSellerUser1,
-      auc_user2: topSellerUser2,
-      auc_user3: topSellerUser3,
-      auction_WETH: "1.3 WETH",
-      auction_bid: "Highest bid 1/1",
-    },
-    {
-      cover_img: artWorkWeek3,
-      auction_name: "Memescalf#782021",
-      h_count: "30",
-      auc_user1: topSellerUser1,
-      auc_user2: topSellerUser2,
-      auc_user3: topSellerUser3,
-      auction_WETH: "1.7 WETH",
-      auction_bid: "Highest bid 1/1",
-    },
-    {
-      cover_img: artWorkWeek4,
-      auction_name: "Memescalf#782022",
-      h_count: "36",
-      auc_user1: topSellerUser1,
-      auc_user2: topSellerUser2,
-      auc_user3: topSellerUser3,
-      auction_WETH: "1.6 WETH",
-      auction_bid: "Highest bid 1/1",
-    },
-  ];
-
-  const hot_bide = [
-    {
-      cover_bide: artWorkWeek2,
-      bide_heartcount: "23",
-      bide_time: "3H : 15M : 50S left",
-      bide_name: "Memescalf#782021",
-      bide_weth: "1.3 WETH",
-      bide_bid: "Highest bid 1/1",
-    },
-    {
-      cover_bide: artWorkWeek3,
-      bide_heartcount: "25",
-      bide_time: "7H : 13M : 50S left",
-      bide_name: "Memescalf#782022",
-      bide_weth: "1.6 WETH",
-      bide_bid: "Highest bid 1/16",
-    },
-    {
-      cover_bide: artWorkWeek1,
-      bide_heartcount: "26",
-      bide_time: "8H : 20M : 50S left",
-      bide_name: "Memescalf#782023",
-      bide_weth: "1.2 WETH",
-      bide_bid: "Highest bid 6/6",
-    },
-    {
-      cover_bide: artWorkWeek4,
-      bide_heartcount: "26",
-      bide_time: "8H : 40M : 50S left",
-      bide_name: "Memescalf#782022",
-      bide_weth: "1.2 WETH",
-      bide_bid: "Highest bid 6/5",
-    },
   ];
 
   const slide_data = [
@@ -373,7 +295,7 @@ const Home = () => {
                 response.data.data[index].like = false;
               }
             });
-            setCollectionsList(response.data.data);
+            setQuickExploreCollectible(response.data.data);
           }
         })
         .catch(err => {
@@ -761,11 +683,11 @@ const Home = () => {
                 liked={SingleCollectible.like}
                 title={SingleCollectible.title}
                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                User1={topSellerUser1}
-                User2={topSellerUser2}
-                User3={topSellerUser3}
+                User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
                 WETH={SingleCollectible.price}
-                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
               />
             ))}
           </div>
@@ -831,11 +753,11 @@ const Home = () => {
                 liked={SingleCollectible.like}
                 title={SingleCollectible.title}
                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                User1={topSellerUser1}
-                User2={topSellerUser2}
-                User3={topSellerUser3}
+                User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
                 WETH={SingleCollectible.price}
-                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
               />
             ))}
           </div>
@@ -902,11 +824,6 @@ const Home = () => {
                   liked={SingleCollection.like}
                   title={SingleCollection.title}
                   heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
-                  User1={topSellerUser1}
-                  User2={topSellerUser2}
-                  User3={topSellerUser3}
-                  WETH="1.2 WETH"
-                  bid="Highest bid 1/1"
               />
             ))}
           </div>
@@ -985,7 +902,7 @@ const Home = () => {
               aria-labelledby="all-tab"
             >
               <div className="row">
-                {collectionsList.map((SingleCollectible, key) => (
+                {QuickExploreCollectible.map((SingleCollectible, key) => (
                   <LiveAuctions
                     key={key}
                     liked={SingleCollectible.like}
@@ -1005,7 +922,7 @@ const Home = () => {
                     WETH={SingleCollectible.price}
                     isOpenInProfile={false}
                     isLiveAuctions={false}
-                    bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                    bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                   />
                 ))}
               </div>
@@ -1017,7 +934,7 @@ const Home = () => {
               aria-labelledby="art-tab"
             >
               <div className="row">
-                {collectionsList.map((SingleCollectible, key) => (
+                {QuickExploreCollectible.map((SingleCollectible, key) => (
                   SingleCollectible.category === "Art" ?
                     <LiveAuctions
                       key={key}
@@ -1038,7 +955,7 @@ const Home = () => {
                       WETH={SingleCollectible.price}
                       isOpenInProfile={false}
                       isLiveAuctions={false}
-                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                     /> : <></>
                 ))}
               </div>
@@ -1050,7 +967,7 @@ const Home = () => {
               aria-labelledby="photo-tab"
             >
               <div className="row">
-                {collectionsList.map((SingleCollectible, key) => (
+                {QuickExploreCollectible.map((SingleCollectible, key) => (
                   SingleCollectible.category === "Photography" ?
                     <LiveAuctions
                       key={key}
@@ -1071,7 +988,7 @@ const Home = () => {
                       WETH={SingleCollectible.price}
                       isOpenInProfile={false}
                       isLiveAuctions={false}
-                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                     /> : <></>
                 ))}
               </div>
@@ -1083,7 +1000,7 @@ const Home = () => {
               aria-labelledby="games-tab"
             >
               <div className="row">
-                {collectionsList.map((SingleCollectible, key) => (
+                {QuickExploreCollectible.map((SingleCollectible, key) => (
                   SingleCollectible.category === "Games" ?
                     <LiveAuctions
                       key={key}
@@ -1104,7 +1021,7 @@ const Home = () => {
                       WETH={SingleCollectible.price}
                       isOpenInProfile={false}
                       isLiveAuctions={false}
-                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                     /> : <></>
                 ))}
               </div>
@@ -1117,7 +1034,7 @@ const Home = () => {
               aria-labelledby="metaverses-tab"
             >
               <div className="row">
-                {collectionsList.map((SingleCollectible, key) => (
+                {QuickExploreCollectible.map((SingleCollectible, key) => (
                   SingleCollectible.category === "Metaverse" ?
                     <LiveAuctions
                       key={key}
@@ -1138,7 +1055,7 @@ const Home = () => {
                       WETH={SingleCollectible.price}
                       isOpenInProfile={false}
                       isLiveAuctions={false}
-                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                     /> : <></>
                 ))}
               </div>
@@ -1150,7 +1067,7 @@ const Home = () => {
               aria-labelledby="music-tab"
             >
               <div className="row">
-                {collectionsList.map((SingleCollectible, key) => (
+                {QuickExploreCollectible.map((SingleCollectible, key) => (
                   SingleCollectible.category === "Music" ?
                     <LiveAuctions
                       key={key}
@@ -1171,7 +1088,7 @@ const Home = () => {
                       WETH={SingleCollectible.price}
                       isOpenInProfile={false}
                       isLiveAuctions={false}
-                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                     /> : <></>
                 ))}
               </div>
@@ -1184,7 +1101,7 @@ const Home = () => {
               aria-labelledby="memes-tab"
             >
               <div className="row">
-                {collectionsList.map((SingleCollectible, key) => (
+                {QuickExploreCollectible.map((SingleCollectible, key) => (
                   SingleCollectible.category === "Meme" ?
                     <LiveAuctions
                       key={key}
@@ -1205,7 +1122,7 @@ const Home = () => {
                       WETH={SingleCollectible.price}
                       isOpenInProfile={false}
                       isLiveAuctions={false}
-                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                     /> : <></>
                 ))}
               </div>

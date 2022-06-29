@@ -7,6 +7,16 @@ const ProfileLinks = ({id}) => {
         <h3>Share link to this page</h3>
         <ul>
           <li>
+            <a onClick={() =>  navigator.clipboard.writeText(window.location.host + "/User/" + id)}
+               rel="noopener" target="_blank"
+            >
+                <span>
+                  <i className="fas fa-clipboard"/>
+                </span>
+              Copy
+            </a>
+          </li>
+          <li>
             <a href={"https://twitter.com/intent/tweet?text=Hello, See my profile here...&url=" + window.location.host + "/User/" + id}
                rel="noopener" target="_blank">
               <span>

@@ -32,11 +32,9 @@ const Whatwallet = (props) => {
         </div>
 
         <p>
-          Wallets are used to send, receive, and store digital assets like
-          Ether. Wallets come in many forms. They are either built into your
-          browser.an extension added to your browser, a piece of hardware
-          plugged into your computer or even an app on your phone. For more
-          information about wallets, see this explanation.
+          Wallets are used to send, receive, and store digital assets like Ether. Wallets come in many forms. They are either built into your browser.
+          an extension added to your browser, a piece of hardware plugged into your computer or even an app on your phone.
+          For more information about wallets, see this explanation.
         </p>
       </div>
     </motion.div>

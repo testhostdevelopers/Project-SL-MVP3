@@ -86,7 +86,7 @@ const Buy = () => {
         },
       })
       .then((res) => {
-        // console.log(res.data.data);
+        console.log(res.data.data);
         setSingleCollectibleData(res.data.data);
         // console.log(singleCollectibleData.bids)
         axios
@@ -314,53 +314,35 @@ const Buy = () => {
                       role="tabpanel"
                       aria-labelledby="pills-home-tab"
                     >
-                      <div className="w-100 d-flex justify-content-between mb-3">
-                        <div className="d-flex">
-                          <div className="user-img">
-                            <img src={userTick} width="36" alt="" />
-                          </div>
-                          <div className="ml-4">
-                            <div>
+                      {singleCollectibleData?.owner_id?.map((singleBid, key) =>(
+                          <div className="w-100 d-flex justify-content-between mb-3">
+                            <div className="d-flex">
+                              <div className="user-img">
+                                <img src={userTick} width="36" alt="" />
+                              </div>
+                              <div className="ml-4">
+                                <div>
                               <span className="color-gray">
                                 Listed 1 edition for
                               </span>{" "}
-                              <b> 0.024 ETH</b>
+                                  <b> 0.024 ETH</b>
+                                </div>
+                                <div>
+                                  <span className="color-gray">By </span>
+                                  <b>Mad Scientist</b>{" "}
+                                  <span className="color-gray"> 1 hour ago</span>
+                                </div>
+                              </div>
                             </div>
-                            <div>
-                              <span className="color-gray">By </span>
-                              <b>Mad Scientist</b>{" "}
-                              <span className="color-gray"> 1 hour ago</span>
-                            </div>
-                          </div>
-                        </div>
 
-                        <button
-                          onClick={() => setCheckOutPopup(true)}
-                          className="new-buy btn-ping"
-                        >
-                          Buy
-                        </button>
-                      </div>
-
-                      <div className="w-100 d-flex justify-content-between mb-3">
-                        <div className="d-flex">
-                          <div className="user-img">
-                            <img src={userTick} width="36" alt="" />
+                            <button
+                                onClick={() => setCheckOutPopup(true)}
+                                className="new-buy btn-ping"
+                            >
+                              Buy
+                            </button>
                           </div>
-                          <div className="ml-4">
-                            <div>
-                              <span className="color-gray">
-                                Listed 1 edition for
-                              </span>{" "}
-                              <b> 0.024 ETH</b>
-                            </div>
-                            <div>
-                              <span className="color-gray">1 edition </span>
-                              <b>not for sale</b>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      ))}
                     </div>
                     <div
                       className="tab-pane fade"
