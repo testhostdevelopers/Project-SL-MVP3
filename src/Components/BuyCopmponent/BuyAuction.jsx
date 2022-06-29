@@ -1,45 +1,75 @@
 import React, { useState, useEffect } from "react";
 import topSellerUser4 from "../../assets/img/custom/topSellerUser4.png";
-// import axios from "axios";
-// import { Config } from '../../utils/config';
+import axios from "axios";
+import { Config } from '../../utils/config';
 
 const BuyAuction = (props) => {
-  const [day, setDay] = useState(1);
-  const [hour, setHour] = useState(3);
-  const [min, setMin] = useState(43);
-  const [seconds, setSeconds] = useState(44);
+  const apiToken = sessionStorage.getItem("apiToken");
+  const [day, setDay] = useState(0);
+  const [hour, setHour] = useState(0);
+  const [min, setMin] = useState(0);
+  const [seconds, setSeconds] = useState(4);
   const data = props;
-  // var length = data.props.bids.length;
-  // console.log(data.props.bids);
-  // console.log(Math.max(...data.props.bids.map(o => o.amount)));
+  var length = data.props.bids.length;
+  console.log(data.props);
+  const update = async () => {
+    await axios
+      .put(`${Config.baseURL}v1/collectible/update/`,{
+        isAuctionCompleted: true,
+        _collectible_id: data.props._id
+      }, {
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        },
+      })
+      .then((res) => {
+        // console.log(res.data.data);
+        // setSingleCollectibleData(res.data.data);
+        // console.log(singleCollectibleData.bids)
+       
+      });
+  };
   useEffect(() => {
-
-    const interval = setInterval(() => {
-      if (seconds > 0) {
-        setSeconds(seconds - 1);
+    if(seconds !== 0 || min !== 0 || hour !== 0 || day !== 0){
+      const interval = setInterval(() => {
+        if (seconds > 0) {
+          setSeconds(seconds - 1);
+        }
+        if (seconds === 0) {
+          if (min === 0) {
+            clearInterval(interval);
+          } else {
+            setMin(min - 1);
+            setSeconds(59);
+          }
+          if (hour === 0) {
+            clearInterval(interval);
+            setHour(hour - 1);
+            setMin(59);
+          }
+          if (day === 0) {
+            clearInterval(interval);
+            setDay(day - 1);
+            setHour(24);
+          }
+          if(seconds === 0 && min === 0 && hour === 0 && day === 0){
+            setDay(0);
+            setHour(0);
+            setMin(0);
+            setSeconds(0);
+          }
+        } 
+      }, 1000);
+      
+      return () => {
+          clearInterval(interval);
       }
-      if (seconds === 0) {
-        if (min === 0) {
-          clearInterval(interval);
-        } else {
-          setMin(min - 1);
-          setSeconds(59);
-        }
-        if (hour === 0) {
-          clearInterval(interval);
-          setHour(hour - 1);
-          setMin(59);
-        }
-        if (day === 0) {
-          clearInterval(interval);
-          setDay(day - 1);
-          setHour(24);
-        }
-      }
-    }, 1000);
-    return () => {
-      clearInterval(interval);
     };
+    if((seconds === 0 && min === 0 && hour === 0 && day === 0) && data.props.isAuctionCompleted === false ){
+      if (apiToken) {
+        update();
+      }
+    }
   });
 
   return (
@@ -104,11 +134,11 @@ const BuyAuction = (props) => {
       >
         Place a Bid
       </button> */}
-      <div>
-        {day === 0 && hour === 0 && min === 0 && seconds === 0
+      {/* <div>
+        {day === 0 && hour === 0 && min === 0 && seconds === 0 
           ? "All Auction Done"
           : ""}
-      </div>
+      </div> */}
     </>
   );
 };

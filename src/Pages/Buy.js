@@ -387,17 +387,21 @@ const Buy = () => {
                   </div>
                   <div className="tab-pane-bottom-solid" />
                 </div>
-                {singleCollectibleData.price_type === 'time_auction' ?
+                {singleCollectibleData.price_type === 'time_auction' && singleCollectibleData.isAuctionCompleted === false ?
                   <BuyAuction props={singleCollectibleData} /> 
                   : ''
                 }
-                {singleCollectibleData.price_type === 'time_auction' ?
+                {singleCollectibleData.price_type === 'time_auction' && singleCollectibleData.isAuctionCompleted === false ?
                   <button
                     className="btn-primary-outline ml-3 mt-3 w-100"
                     onClick={() => setSingleCollectionPopup(true)}
                   >
                     Place a Bid
                   </button>
+                  : ''
+                }
+                {singleCollectibleData.price_type === 'time_auction' && singleCollectibleData.isAuctionCompleted === true ?
+                  <h3>Auction is completed</h3>
                   : ''
                 }
                 <div className="row d-flex justify-content-center mt-5 action-btn buy-highest-bid-block-btn">
