@@ -64,7 +64,7 @@ const SignIn = () => {
     try {
       if ("solana" in window) {
         const resp = window.solana.connect();
-        window.solana.request({ method: "connect"});
+        // window.solana.request({ method: "connect"});
         // resp.publicKey.toString();
         window.solana.on("connect", () =>
           connectStore(window.solana.publicKey.toString(), "phantom", true)

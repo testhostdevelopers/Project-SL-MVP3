@@ -200,12 +200,12 @@ const CreateCollectibleEdit = () => {
                   <h5 className="m-0">
                     <b>Twitter Username</b>
                   </h5>
-                  <div
+                  {/* <div
                     className="color-gray text-right"
                     style={{ fontSize: "10px" }}
                   >
                     Link your Twitter account to gain more trust on the marketplace
-                  </div>
+                  </div> */}
                 </div>
                 <div className="prize-single-collectible">
                   <input
@@ -218,9 +218,9 @@ const CreateCollectibleEdit = () => {
                     value={udata === undefined ? "" : udata.twitter_username}
                     placeholder="@PixelDrops"
                   />
-                  <span className="color-gray ">
+                  {/* <span className="color-gray ">
                     <button className="btn-primary-outline">Link</button>
-                  </span>
+                  </span> */}
                 </div>
               </div>
 
@@ -267,9 +267,9 @@ const CreateCollectibleEdit = () => {
                     }}
                     placeholder="PixelDrops@gmail.com"
                   />
-                  <span className="color-gray ">
+                  {/* <span className="color-gray ">
                     <button  onClick={() => sendOtp(udata.email)} className="btn-primary-outline">Confirm</button>
-                  </span>
+                  </span> */}
                 </div>
               </div>
             </div>
