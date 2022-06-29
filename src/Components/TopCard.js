@@ -71,6 +71,7 @@ export default function TopCard({
             }
             width="100%"
             alt={title + ' Profile Picture'}
+            style={{ borderRadius: "70%", height: "100%" }}
         />
           {confirmation === true ?
               <div className="confirmation">
