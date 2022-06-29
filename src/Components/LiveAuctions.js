@@ -127,9 +127,9 @@ export default function LiveAuctions({
             <img src={Coverimg} width="100%" alt={title} />
             <div className="card-heart-icon">
               {liked1 ?
-                <><i onClick={disLikeCollectible} className="fas fa-heart" /> {heartcount1}</>
+                <><i onClick={apiToken ? disLikeCollectible : null} className="fas fa-heart" /> {heartcount1}</>
                 :
-                <><i onClick={likeCollectible} className="far fa-heart" /> {heartcount1}</>
+                <><i onClick={apiToken ? likeCollectible : null} className="far fa-heart" /> {heartcount1}</>
               }
             </div>
             <Dropdown overlay={menu}>

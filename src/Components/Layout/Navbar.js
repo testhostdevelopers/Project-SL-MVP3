@@ -338,7 +338,7 @@ const Navbar = (props) => {
     }
     return defaultImg;
   };
-  const getNotifications = async () => {
+  /*const getNotifications = async () => {
     if (sessionStorage.getItem("apiToken")) {
       await axios
           .get(`${Config.baseURL}v1/transaction/getusertransactions/` + userData._id + `/0/5`, {
@@ -356,7 +356,7 @@ const Navbar = (props) => {
             console.log(err);
           });
     }
-  };
+  };*/
   if (!notificationsActivity.length) {
     // getNotifications().then(r => {});
   }

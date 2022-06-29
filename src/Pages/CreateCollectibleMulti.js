@@ -10,7 +10,7 @@ import { Select } from "antd";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Keyboard, Pagination, Navigation } from "swiper/core";
 import { motion } from "framer-motion";
-import AdvanceCollectionSetting from "./AdvanceCollectionSetting";
+// import AdvanceCollectionSetting from "./AdvanceCollectionSetting";
 import { NFTStorage, File } from 'nft.storage';
 import axios from "axios";
 import 'react-toastify/dist/ReactToastify.css';
@@ -227,7 +227,6 @@ const CreateCollectibleMulti = () => {
         user_id: user_id._id,
         creator_id: user_id._id,
         owner_id: user_id._id,
-        creator_id: user_id._id,
         properties: udata.properties,
         alt_text_nft: udata.alterText,
         category: udata.category

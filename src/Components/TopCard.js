@@ -86,8 +86,13 @@ export default function TopCard({
         </h5>
         <h5 className="color-ping mt-2 mb-2">{follow}</h5>
         <small>{datetime}</small>
-        <small>{Price}</small>
-        <button onClick={followUser} className="btn-ping w-100 mt-3">{btnname1}</button>
+        <small>{Price} &nbsp;</small>
+          { apiToken ?
+              <button onClick={apiToken ? followUser : null} className="btn-ping w-100 mt-3">{btnname1}</button> :
+              <Link to={'/User/' + id} className="btn-ping w-100 mt-3">
+                  <b>View Profile</b>
+              </Link>
+          }
       </div>
     </div>
   );
