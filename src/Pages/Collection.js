@@ -8,12 +8,12 @@ import UpdateCoverPopup from "../Components/Popup/UpdateCoverPopup";
 import UpdateProfilePicPopup from "../Components/Popup/UpdateProfilePicPopup";
 import { useParams } from "react-router-dom";
 import addicon from "../assets/img/custom/Mask_Group.png";
-import propertiesicon from "../assets/img/custom/properties.svg";
+// import propertiesicon from "../assets/img/custom/properties.svg";
 import FilterSort from "../Components/FilterSort";
 import FilterCategory from "../Components/FilterCategory";
 import Filtersale from "../Components/Filtersale";
 import FilterRange from "../Components/FilterRange";
-import FilterProperties from "../Components/FilterProperties";
+// import FilterProperties from "../Components/FilterProperties";
 import ProfileLinks from "../Components/ProfileLinks";
 import { Config } from '../utils/config';
 import Activity from "./Activity";
@@ -58,7 +58,7 @@ const Collection = (props) => {
     visible: { opacity: 1 },
   };
   if (filterCategory) {
-    console.log('filterCategory', filterCategory);
+    // console.log('filterCategory', filterCategory);
     userCollectibleList.forEach((SingleData, key) => {
       if (filterCategory === "All") {
         userCollectibleList[key].show = true;
@@ -99,7 +99,7 @@ const Collection = (props) => {
     });
   }
   if (filterRange) {
-    console.log('filterRange', filterRange);
+    // console.log('filterRange', filterRange);
     if (filterRange[0] > 0 || filterRange[1] > 0) {
       userCollectibleList.forEach((SingleData, key) => {
         if (SingleData.price > filterRange[0] && SingleData.price < filterRange[1]) {
@@ -115,6 +115,16 @@ const Collection = (props) => {
         userCollectibleList[key].show = true;
       });
     }
+  }
+  if (filtersale.length) {
+    // console.log('filtersale', filtersale);
+    userCollectibleList.forEach((SingleData, key) => {
+      userCollectibleList[key].show = filtersale.includes(SingleData.price_type);
+    });
+  } else if (filtersale == []) {
+    userCollectibleList.forEach((SingleData, key) => {
+      userCollectibleList[key].show = true;
+    });
   }
   const singleCollection = async () => {
     axios
@@ -181,9 +191,9 @@ const Collection = (props) => {
       {profilePopup && (
         <UpdateProfilePicPopup setprofilePopup={setprofilePopup} setProfileImg={setProfileImg} collectionID={collectionId} />
       )}
-      {filterProperties && (
+      {/*{filterProperties && (
         <FilterProperties setFilterProperties={setFilterProperties} />
-      )}
+      )}*/}
 
       <motion.section
         initial="hidden"
@@ -316,7 +326,7 @@ const Collection = (props) => {
                                 setFiltersale={setFiltersale} 
                                 setFilterRange={setFilterRange} 
                             /> */}
-                          <li>
+                          {/*<li>
                             <span className="label">Properties</span>
                             <div className="icon">
                               <img src={propertiesicon} alt={""} />
@@ -350,7 +360,7 @@ const Collection = (props) => {
                                 </span>
                               </span>
                             </div>
-                          </li>
+                          </li>*/}
                           <Filtersale
                             filterSort={filterSort}
                             filterCategory={filterCategory}

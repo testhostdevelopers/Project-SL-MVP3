@@ -24,9 +24,7 @@ const Footer = () => {
               <ul className="footer-menu">
                 <li>
                   <span className="color-gray">
-                    The Eden Smart Chain is a low latency, cross platform smart
-                    contract chain for digital assets, fiat on-ramping and
-                    dApps.
+                    The Eden Smart Chain is a low latency, cross platform smart contract chain for digital assets, fiat on-ramping and dApps.
                   </span>
                 </li>
               </ul>

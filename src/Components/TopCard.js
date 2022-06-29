@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
-// import { Link } from "react-router-dom";
 import { Config } from '../utils/config';
 import { Link } from "react-router-dom";
 import userImg from "../assets/img/icons/custom/userProfilePictures.png";
@@ -19,11 +18,12 @@ export default function TopCard({
 }) {
     const apiToken = sessionStorage.getItem("apiToken");
     const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
+    let [btnname1, setbtnname1] = useState(btnname);
     let temp = '';
     const followUser = async () => {
-        if (btnname === "Unfollow") {
+        if (btnname1 === "Unfollow") {
             temp = "unfollow"
-        } else if (btnname === "Follow") {
+        } else if (btnname1 === "Follow") {
             temp = "follow"
         }
         await axios
@@ -35,7 +35,14 @@ export default function TopCard({
                 }
             })
             .then(response => {
-                console.log('response', response);
+                // console.log('response', response);
+                if (response.data.response_code === "API_SUCCESS") {
+                    if (btnname1 === "Unfollow") {
+                        setbtnname1('Follow');
+                    } else if (btnname1 === "Follow") {
+                        setbtnname1('Unfollow');
+                    }
+                }
             })
             .catch(err => {
                 console.log(err);
@@ -79,8 +86,13 @@ export default function TopCard({
         </h5>
         <h5 className="color-ping mt-2 mb-2">{follow}</h5>
         <small>{datetime}</small>
-        <small>{Price}</small>
-        <button onClick={followUser} className="btn-ping w-100 mt-3">{btnname}</button>
+        <small>{Price} &nbsp;</small>
+          { apiToken ?
+              <button onClick={apiToken ? followUser : null} className="btn-ping w-100 mt-3">{btnname1}</button> :
+              <Link to={'/User/' + id} className="btn-ping w-100 mt-3">
+                  <b>View Profile</b>
+              </Link>
+          }
       </div>
     </div>
   );

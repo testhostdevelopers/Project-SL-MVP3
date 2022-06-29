@@ -34,6 +34,16 @@ const ShareThisNFTPopup = (props) => {
         <div className="nft-share-icons">
           <ul>
             <li>
+              <a onClick={() =>  navigator.clipboard.writeText(window.location.host + "/buy/" + id)}
+                 rel="noopener" target="_blank"
+              >
+                <span>
+                  <i className="fas fa-clipboard"/>
+                </span>
+                Copy
+              </a>
+            </li>
+            <li>
               <a href={"https://twitter.com/intent/tweet?text=Hello, See This NFT here...&url=" + window.location.host + "/buy/" + id}
                  rel="noopener" target="_blank">
                 <span>

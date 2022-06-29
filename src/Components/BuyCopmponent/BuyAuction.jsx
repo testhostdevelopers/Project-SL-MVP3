@@ -3,7 +3,6 @@ import topSellerUser4 from "../../assets/img/custom/topSellerUser4.png";
 import axios from "axios";
 import { Config } from '../../utils/config';
 
-
 const BuyAuction = (props) => {
   const apiToken = sessionStorage.getItem("apiToken");
   const [day, setDay] = useState(0);

@@ -8,9 +8,9 @@ import LiveAuctions from "../Components/LiveAuctions";
 import TopCard from "../Components/TopCard";
 import ReportPopup from "../Components/Popup/ReportPopup";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
-import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
-import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
-import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
+// import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
+// import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
+// import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
 import { Config } from '../utils/config';
 import EarthIcon from "../assets/img/icons/custom/earth.svg";
 // import { Link } from "react-router-dom";
@@ -26,9 +26,9 @@ const User = (props) => {
   const currentUserData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [reportPopup, setReportPopup] = useState(false);
   const [followButtonText, setFollowButtonText] = useState('Follow');
-  if (currentUserData.following.indexOf(user_id) >= 0) {
+  /*if (currentUserData.following.indexOf(user_id) >= 0) {
     // setFollowButtonText("Unfollow");
-  }
+  }*/
   let [udata, setUdata] = useState({});
   let [userCollectibleList, setUserCollectibleList] = useState([]);
   let [userCollectionList, setUserCollectionList] = useState([]);
@@ -367,11 +367,11 @@ const User = (props) => {
                                       liked={SingleCollectible.like}
                                       title={SingleCollectible.title}
                                       heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                                      User1={topSellerUser1}
-                                      User2={topSellerUser2}
-                                      User3={topSellerUser3}
-                                      WETH={SingleCollectible.price + ' WETH'}
-                                      bid="Highest bid 1/1"
+                                      User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                                      User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                                      User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
+                                      WETH={SingleCollectible.price}
+                                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                                   />
                               ))}
                             </div>
@@ -400,11 +400,11 @@ const User = (props) => {
                                       liked={SingleCollectible.like}
                                       title={SingleCollectible.title}
                                       heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                                      User1={topSellerUser1}
-                                      User3={topSellerUser3}
-                                      User2={topSellerUser2}
-                                      WETH={SingleCollectible.price + ' WETH'}
-                                      bid="Highest bid 1/1"
+                                      User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                                      User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                                      User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
+                                      WETH={SingleCollectible.price}
+                                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                                   />
                               ))}
                             </> : <>
@@ -435,19 +435,19 @@ const User = (props) => {
                                 liked={SingleCollectible.like}
                                 title={SingleCollectible.title}
                                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                                User1={topSellerUser1}
-                                User2={topSellerUser2}
-                                User3={topSellerUser3}
+                                User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                                User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                                User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
                                 WETH={SingleCollectible.price}
-                                bid="Highest bid 1/1"
+                                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                               />
                             ))}
                           </div>
                         </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                           <h3>Not items found</h3>
                           <span className="color-gray">
-                          Come back soon or browse the items on our marketplace.
-                        </span>
+                            Come back soon or browse the items on our marketplace.
+                          </span>
                           <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
                             Browse marketplace
                           </button>
@@ -467,11 +467,6 @@ const User = (props) => {
                                 liked={SingleCollection.like}
                                 title={SingleCollection.title}
                                 heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
-                                User1={topSellerUser1}
-                                User2={topSellerUser2}
-                                User3={topSellerUser3}
-                                WETH={SingleCollection.price}
-                                bid="Highest bid 1/1"
                               />
                             ))}
                           </div>
