@@ -314,23 +314,30 @@ const Buy = () => {
                       role="tabpanel"
                       aria-labelledby="pills-home-tab"
                     >
-                      {singleCollectibleData?.owner_id?.map((singleBid, key) =>(
+                      {/*{singleCollectibleData?.owner_id?.map((singleBid, key) =>(*/}
                           <div className="w-100 d-flex justify-content-between mb-3">
                             <div className="d-flex">
                               <div className="user-img">
-                                <img src={userTick} width="36" alt="" />
+                                <img src={singleCollectibleData?.owner_id?.profile_img_url} width="36" alt="" />
                               </div>
                               <div className="ml-4">
                                 <div>
-                              <span className="color-gray">
-                                Listed 1 edition for
-                              </span>{" "}
-                                  <b> 0.024 ETH</b>
+                                  <span className="color-gray">
+                                    Listed 1 edition for
+                                  </span>{" "}
+                                  <b> {singleCollectibleData.price} {singleCollectibleData.price_currency}</b>
                                 </div>
                                 <div>
                                   <span className="color-gray">By </span>
-                                  <b>Mad Scientist</b>{" "}
-                                  <span className="color-gray"> 1 hour ago</span>
+                                  <b>{singleCollectibleData?.owner_id?.display_name}</b>{" "}
+                                  <span className="color-gray"> {new Date(singleCollectibleData.createdAt).toLocaleString('en-US', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric',
+                                    hour: 'numeric',
+                                    minute: 'numeric',
+                                    second: 'numeric',
+                                  })}</span>
                                 </div>
                               </div>
                             </div>
@@ -342,7 +349,7 @@ const Buy = () => {
                               Buy
                             </button>
                           </div>
-                      ))}
+                      {/*))}*/}
                     </div>
                     <div
                       className="tab-pane fade"
