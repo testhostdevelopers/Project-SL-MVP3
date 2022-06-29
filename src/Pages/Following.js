@@ -66,7 +66,7 @@ const Following = () => {
       });
   };
   if (filterCategory) {
-    // console.log('filterCategory', filterCategory);
+    console.log('filterCategory', filterCategory);
     collectionsList.forEach((SingleData, key) => {
       if (filterCategory === "All") {
         collectionsList[key].show = true;
@@ -76,6 +76,7 @@ const Following = () => {
     });
   }
   if (filterSort) {
+    console.log('filterSort', filterSort);
     if (filterSort === "RecentlyAdded") {
       collectionsList.sort((a, b) => {
         let da = new Date(a.createdAt),
@@ -93,6 +94,7 @@ const Following = () => {
     }
   }
   if (filterCollections) {
+    console.log('filterCollections', filterCollections);
     filterCollections.forEach((SingleCollection, key) => {
       // console.log('SingleCollection', SingleCollection);
       collectionsList.forEach((SingleData, key) => {
@@ -109,7 +111,7 @@ const Following = () => {
     if (filterRange[0] > 0 || filterRange[1] > 0) {
       collectionsList.forEach((SingleData, key) => {
         if (SingleData.price > filterRange[0] && SingleData.price < filterRange[1]) {
-          console.log('SingleData.price > filterRange[0]', SingleData.price);
+          // console.log('SingleData.price > filterRange[0]', SingleData.price);
           collectionsList[key].show = true;
         } else {
           // console.log('SingleData.price', SingleData.price);
@@ -123,14 +125,15 @@ const Following = () => {
     }
   }
   if (filtersale.length) {
-    // console.log('filtersale', filtersale);
+    console.log('filtersale', filtersale);
     collectionsList.forEach((SingleData, key) => {
       collectionsList[key].show = filtersale.includes(SingleData.price_type);
     });
-  } else if (filtersale == []) {
-    collectionsList.forEach((SingleData, key) => {
+  } else if (filtersale === []) {
+    console.log('filtersale', filtersale);
+    /*collectionsList.forEach((SingleData, key) => {
       collectionsList[key].show = true;
-    });
+    });*/
   }
   useEffect(() => {
     getAllCollectibleList().then(r => {});
