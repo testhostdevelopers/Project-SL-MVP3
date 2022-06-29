@@ -87,7 +87,7 @@ export default function TopCard({
         <h5 className="color-ping mt-2 mb-2">{follow}</h5>
         <small>{datetime}</small>
         <small>{Price}</small>
-        <button onClick={followUser} className="btn-ping w-100 mt-3">{btnname1}</button>
+        <button onClick={apiToken ? followUser : null} className="btn-ping w-100 mt-3">{btnname1}</button>
       </div>
     </div>
   );

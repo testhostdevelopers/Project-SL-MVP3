@@ -3,12 +3,12 @@ import { motion } from "framer-motion";
 import TopCard from "../Components/TopCard";
 import { Tabs } from "antd";
 import { useParams } from "react-router-dom";
-import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
-import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
+// import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
+// import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
+// import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
 import axios from "axios";
 import { Config } from "../utils/config";
 import LiveAuctions from "../Components/LiveAuctions";
-import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 
 const { TabPane } = Tabs;
@@ -305,7 +305,7 @@ const Search = () => {
                               </div> : <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                                 <h3>Not items found</h3>
                                 <span className="color-gray">
-                                  Come back soon or browse the items on our marketplace
+                                  Come back soon or browse the items on our marketplace.
                                 </span>
                                 <button className="bg-white profile-not-found-browse-btn mt-4 edit-profile w-25">
                                   Browse marketplace
