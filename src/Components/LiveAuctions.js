@@ -51,7 +51,7 @@ export default function LiveAuctions({
           }
         })
         .then(response => {
-          console.log('response', response);
+          // console.log('response', response);
           if (response.data.response_code === "API_SUCCESS") {
             setLiked1(true);
             setHeartcount1(heartcount1 + 1);
@@ -79,7 +79,7 @@ export default function LiveAuctions({
           }
         })
         .then(response => {
-          console.log('response', response);
+          // console.log('response', response);
           if (response.data.response_code === "API_SUCCESS") {
             setLiked1(false);
             setHeartcount1(heartcount1 - 1);

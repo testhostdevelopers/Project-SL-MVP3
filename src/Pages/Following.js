@@ -56,11 +56,7 @@ const Following = () => {
         if (response.data.response_code === "API_SUCCESS") {
           response.data.data.forEach((element, index) => {
             response.data.data[index].show = true;
-            if (element.likedBy.includes(userData._id)) {
-              response.data.data[index].like = true;
-            } else {
-              response.data.data[index].like = false;
-            }
+            response.data.data[index].like = !!element.likedBy.includes(userData._id);
           });
           setCollectionsList(response.data.data);
         }
@@ -137,9 +133,7 @@ const Following = () => {
     });
   }
   useEffect(() => {
-    if (sessionStorage.getItem("apiToken")) {
-      getAllCollectibleList().then(r => {});
-    }
+    getAllCollectibleList().then(r => {});
   }, []);
 
   return (

@@ -257,7 +257,7 @@ const Navbar = (props) => {
             }
           })
           .then(response => {
-            console.log('response', response);
+            // console.log('response', response);
           })
           .catch(err => {
             console.log(err);
@@ -271,7 +271,7 @@ const Navbar = (props) => {
             }
           })
           .then(response => {
-            console.log('response', response);
+            // console.log('response', response);
           })
           .catch(err => {
             console.log(err);
@@ -284,7 +284,7 @@ const Navbar = (props) => {
             }
           })
           .then(response => {
-            console.log('response', response);
+            // console.log('response', response);
           })
           .catch(err => {
             console.log(err);
