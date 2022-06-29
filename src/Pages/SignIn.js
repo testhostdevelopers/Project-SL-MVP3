@@ -51,6 +51,7 @@ const SignIn = () => {
               window.solana.connect();
               window.solana.request({ method: "connect" });
               window.solana.on("connect",() => console.log("connect"))
+              window.solana.connect();
             });
         });
     }
