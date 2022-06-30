@@ -47,6 +47,7 @@ const Home = () => {
   let [openImage, setOpenImage] = useState(false);
   let [openImagePath, setOpenImagePath] = useState(artWorkWeek1);
   let [dashboard, setDashboard] = useState([]);
+  let [dashboardArtWork, setDashboardArtWork] = useState([]);
   let [liveAuctionList, setLiveAuctionList] = useState([]);
   let [hotCollectionsList, setHotCollectionsList] = useState([]);
   let [topSellerUser, setTopSellerUser] = useState([]);
@@ -57,33 +58,6 @@ const Home = () => {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
-
-  const all_atwork = [
-    {
-      my_title: "Butterfly",
-      artimg: artWorkWeek1,
-    },
-    {
-      my_title: "Butterfly",
-      artimg: artWorkWeek2,
-    },
-    {
-      my_title: "Butterfly",
-      artimg: artWorkWeek3,
-    },
-    {
-      my_title: "Butterfly",
-      artimg: artWorkWeek4,
-    },
-    {
-      my_title: "Butterfly",
-      artimg: artWorkWeek5,
-    },
-    {
-      my_title: "Butterfly",
-      artimg: artWorkWeek6,
-    },
-  ];
 
   const top_seller = [
     "Today",
@@ -210,7 +184,14 @@ const Home = () => {
         .then(response => {
           console.log('getDashboard', response.data);
           if (response.data.response_code === "API_SUCCESS") {
-            setDashboard(response.data.data);
+            response.data.data.forEach((element) => {
+              if (element.artType === "collectible") {
+                dashboardArtWork.push(element);
+              } else if (element.artType === "collection") {
+                dashboard.push(element);
+              }
+            });
+            // setDashboard(response.data.data);
           }
         })
         .catch(err => {
@@ -393,12 +374,10 @@ const Home = () => {
                   disableOnInteraction: false,
                 }}
               >
-                {dashboard.map((SingleSlide, key) => (
-                  <>
-                    {SingleSlide.artType === "collection" ?
-                      <SwiperSlide>
-                        <img src={SingleSlide?.collection_id?.main_img} width="100%" alt={""} />
-                        {/* <div className="slider-content">
+                {dashboard.slice(0, 4).map((SingleSlide, key) => (
+                    <SwiperSlide>
+                      <img src={SingleSlide?.collection_id?.main_img} width="100%" alt={""} />
+                      {/* <div className="slider-content">
                                       <img src={topSellerUser1} width="52px" height="52px" />
                                       <div className="slider-conter-absolute d-flex">
                                           <div className="d-flex flex-column">
@@ -418,23 +397,21 @@ const Home = () => {
                                           <small>@gshsj56</small>
                                       </div>
                                   </div> */}
-                        <div id="message-container">
-                          <div id="main-heading">{SingleSlide?.collection_id?.title}</div>
-                          {/*<div id="by">By {SingleSlide?.collection_id?.title}</div>*/}
-                          <div id="sub-heading">
-                            {SingleSlide?.collection_id?.description}
-                          </div>
-                          <Link to={'/collection/' + SingleSlide?.collection_id?._id}>
+                      <div id="message-container">
+                        <div id="main-heading">{SingleSlide?.collection_id?.title}</div>
+                        {/*<div id="by">By {SingleSlide?.collection_id?.title}</div>*/}
+                        <div id="sub-heading">
+                          {SingleSlide?.collection_id?.description}
+                        </div>
+                        <Link to={'/collection/' + SingleSlide?.collection_id?._id}>
                           <button
                               type="button"
                               className="ant-btn ant-btn-default Explore Collection"
                           >
                             <span>How to Buy</span>
                           </button></Link>
-                        </div>
-                      </SwiperSlide> : <></>
-                    }
-                  </>
+                      </div>
+                    </SwiperSlide>
                 ))}
                 {/*<SwiperSlide>
                   <img src={artWorkWeek2} width="100%" alt={""} />
@@ -575,19 +552,19 @@ const Home = () => {
           <div className="row mt-5">
             <div className="col-sm-12 col-md-5 col-lg-5 position-relative">
               <img
-                src={artWorkWeekOne}
+                src={'https://' + dashboardArtWork[0]?.collectible_id?.img_path}
                 className="cursor-pointer"
                 width="95%"
                 alt=""
                 onClick={() => {
-                  setOpenImagePath(artWorkWeekOne);
+                  setOpenImagePath('https://' + dashboardArtWork[0]?.collectible_id?.img_path);
                   setOpenImage(true);
                   document.body.style.overflow = "hidden";
                 }}
               />
               <div className="art-work-description-container">
                 <h4 className="mb-0">
-                  <b>The Black</b>
+                  <b>{dashboardArtWork[0]?.collectible_id?.title}</b>
                 </h4>
                 <small>Original Series</small>
               </div>
@@ -595,13 +572,13 @@ const Home = () => {
 
             <div className="col-sm-12 col-md-7 col-lg-7 home-artwork-week-day position-relative d-flex flex-column align-items-stretch justify-content-between">
               <div className="d-flex overflow-auto justify-content-between w-100 justify-content-between">
-                {all_atwork.map((artwork, key) => (
+                {dashboardArtWork.slice(1,7) .map((artwork, key) => (
                   <div key={key} className="art-list">
                     <ArtWork
-                      title={artwork.my_title + '111'}
-                      artworkimg={artwork.artimg}
+                      title={artwork.collectible_id.title}
+                      artworkimg={'https://' + artwork.collectible_id.img_path}
                       setOpenImage={(imgFlag) => {
-                        setOpenImagePath(artwork.artimg)
+                        setOpenImagePath('https://' + artwork.collectible_id.img_path)
                         setOpenImage(imgFlag);
                       }}
                     />
