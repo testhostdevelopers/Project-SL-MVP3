@@ -16,8 +16,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Config } from '../utils/config';           
 // import { actions, utils, programs, NodeWallet} from '@metaplex/js'; 
 // import { clusterApiUrl, Connection, Keypair, LAMPORTS_PER_SOL } from '@solana/web3.js';
-
-
 SwiperCore.use([Keyboard, Pagination, Navigation]);
 
 const NFT_STORAGE_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEYyNGU0OEJjMTdBMzE3Q2MzYjY4RjYyMEFEMTE3NTRDMDdmMDYxZWIiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY0ODE5MDI0NzY5MiwibmFtZSI6Im5mdCJ9.twfnx5glu50givzgLNy0-I_ocYZXQ97MxKZkLeCGzL4';
@@ -69,8 +67,8 @@ const CreateCollectibleSingle = () => {
       });
   }
   useEffect(() => {
-    collectionListFunc();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    collectionListFunc().then(r => {});
+  }, []);
 
   /*const imageUpload = async (file) => {
     // console.log("imageUpload file details:-", file);
@@ -208,7 +206,6 @@ const CreateCollectibleSingle = () => {
 
   const price_one = ["SOL", "BTC"];
   const category = ["Cryptoloria", "Art","Photography","Games","Metaverses"];
-
   const [showDetail, setShowDetail] = useState(true);
 
   const handleToggle = () => setShowDetail(!showDetail);
@@ -294,6 +291,8 @@ const CreateCollectibleSingle = () => {
       {singleCollectionPopup && (
         <CreateCollectibleMultiplePopup
           setSingleCollectionPopup={setSingleCollectionPopup}
+          collection_list={collection_list}
+          setcollectionList={setcollectionList}
         />
       )}
       <ToastContainer />

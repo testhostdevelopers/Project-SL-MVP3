@@ -12,7 +12,7 @@ const CreateCollectibleMultiplePopup = (props) => {
   const user_id = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const profileUploader = React.useRef(null);
   const [selectedFile, setSelectedFile] = React.useState(null);
-  let {setSingleCollectionPopup} = props;
+  let {setSingleCollectionPopup, collection_list, setcollectionList} = props;
   let [collectibleData, setCollectibleData] = useState({});
 
   const makeURL = (text) => {
@@ -60,6 +60,8 @@ const CreateCollectibleMultiplePopup = (props) => {
         // console.log('res.data.data.length', res.statusText);
         if (res.statusText === "OK") {
           setSingleCollectionPopup(false);
+          collection_list.push(res.data.data);
+          setcollectionList(collection_list);
           // console.log(res)
         }
       });
