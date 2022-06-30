@@ -34,7 +34,8 @@ import LiveAuctions from "../Components/LiveAuctions";
 import HotBids from "../Components/HotBids";
 import QuickExplore from "../Components/Tabs/QuickExplore";
 import axios from "axios";
-import { Config } from '../utils/config';           
+import { Config } from '../utils/config';
+import {Link} from "react-router-dom";
 // const { TabPane } = Tabs;
 // const { Option } = Select;
 
@@ -45,6 +46,7 @@ const Home = () => {
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   let [openImage, setOpenImage] = useState(false);
   let [openImagePath, setOpenImagePath] = useState(artWorkWeek1);
+  let [dashboard, setDashboard] = useState([]);
   let [liveAuctionList, setLiveAuctionList] = useState([]);
   let [hotCollectionsList, setHotCollectionsList] = useState([]);
   let [topSellerUser, setTopSellerUser] = useState([]);
@@ -202,6 +204,19 @@ const Home = () => {
     },
   ];
 
+  const getDashboard = async () => {
+    await axios
+        .get(`${Config.baseURL}v1/dashboard/getdashboard`)
+        .then(response => {
+          console.log('getDashboard', response.data);
+          if (response.data.response_code === "API_SUCCESS") {
+            setDashboard(response.data.data);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
   const getLiveAuctionCollectibleList = async () => {
     await axios
       .get(`${Config.baseURL}v1/collectible/getallcollectiblelist/0/8`, {})
@@ -304,6 +319,7 @@ const Home = () => {
   };
 
   useEffect(() => {
+    getDashboard().then(r => {});
     getLiveAuctionCollectibleList().then(r => {});
     getHotCollectionsList().then(r => {});
     getTopSellerUser().then(r => {});
@@ -377,43 +393,50 @@ const Home = () => {
                   disableOnInteraction: false,
                 }}
               >
-                <SwiperSlide>
-                  <img src={artWorkWeek1} width="100%" alt={""} />
-                  {/* <div className="slider-content">
-                                        <img src={topSellerUser1} width="52px" height="52px" />
-                                        <div className="slider-conter-absolute d-flex">
-                                            <div className="d-flex flex-column">
-                                                <small>Current Bid</small>
-                                                <div className="d-flex align-items-end">
-                                                    <h5><b>2.20 ETH</b></h5>
-                                                    <small className="ml-2">($3,321,45)</small>
-                                                </div>
-                                            </div>
-                                            <div className="d-flex flex-column">
-                                                <small style={{ marginTop: "-3px", marginBottom: "2px" }}>Remaining time</small>
-                                                <h5 style={{ fontSize: "18px" }}>23H : 11M: 32S</h5>
-                                            </div>
-                                        </div>
-                                        <div className="ml-3 d-flex flex-column position-relative">
-                                            Liquid Abstract Painting
-                                            <small>@gshsj56</small>
-                                        </div>
-                                    </div> */}
-                  <div id="message-container">
-                    <div id="main-heading">Name of Collection</div>
-                    <div id="by">By Lorem Ipsum</div>
-                    <div id="sub-heading">
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                    </div>
-                    <button
-                      type="button"
-                      className="ant-btn ant-btn-default Explore Collection"
-                    >
-                      <span>How to Buy</span>
-                    </button>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
+                {dashboard.map((SingleSlide, key) => (
+                  <>
+                    {SingleSlide.artType === "collection" ?
+                      <SwiperSlide>
+                        <img src={SingleSlide?.collection_id?.main_img} width="100%" alt={""} />
+                        {/* <div className="slider-content">
+                                      <img src={topSellerUser1} width="52px" height="52px" />
+                                      <div className="slider-conter-absolute d-flex">
+                                          <div className="d-flex flex-column">
+                                              <small>Current Bid</small>
+                                              <div className="d-flex align-items-end">
+                                                  <h5><b>2.20 ETH</b></h5>
+                                                  <small className="ml-2">($3,321,45)</small>
+                                              </div>
+                                          </div>
+                                          <div className="d-flex flex-column">
+                                              <small style={{ marginTop: "-3px", marginBottom: "2px" }}>Remaining time</small>
+                                              <h5 style={{ fontSize: "18px" }}>23H : 11M: 32S</h5>
+                                          </div>
+                                      </div>
+                                      <div className="ml-3 d-flex flex-column position-relative">
+                                          Liquid Abstract Painting
+                                          <small>@gshsj56</small>
+                                      </div>
+                                  </div> */}
+                        <div id="message-container">
+                          <div id="main-heading">{SingleSlide?.collection_id?.title}</div>
+                          {/*<div id="by">By {SingleSlide?.collection_id?.title}</div>*/}
+                          <div id="sub-heading">
+                            {SingleSlide?.collection_id?.description}
+                          </div>
+                          <Link to={'/collection/' + SingleSlide?.collection_id?._id}>
+                          <button
+                              type="button"
+                              className="ant-btn ant-btn-default Explore Collection"
+                          >
+                            <span>How to Buy</span>
+                          </button></Link>
+                        </div>
+                      </SwiperSlide> : <></>
+                    }
+                  </>
+                ))}
+                {/*<SwiperSlide>
                   <img src={artWorkWeek2} width="100%" alt={""} />
                   <div id="message-container">
                     <div id="main-heading">Name of Collection</div>
@@ -428,7 +451,7 @@ const Home = () => {
                       <span>How to Buy</span>
                     </button>
                   </div>
-                  {/* <div className="slider-content">
+                   <div className="slider-content">
                                         <img src={topSellerUser1} width="52px" height="52px" />
                                         <div className="slider-conter-absolute d-flex">
                                             <div className="d-flex flex-column">
@@ -447,11 +470,11 @@ const Home = () => {
                                             Liquid Abstract Painting
                                             <small>@gshsj56</small>
                                         </div>
-                                    </div> */}
+                                    </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <img src={artWorkWeek3} width="100%" alt={""} />
-                  {/* <div className="slider-content">
+                   <div className="slider-content">
                                         <img src={topSellerUser1} width="52px" height="52px" />
                                         <div className="slider-conter-absolute d-flex">
                                             <div className="d-flex flex-column">
@@ -470,7 +493,7 @@ const Home = () => {
                                             Liquid Abstract Painting
                                             <small>@gshsj56</small>
                                         </div>
-                                    </div> */}
+                                    </div>
                   <div id="message-container">
                     <div id="main-heading">Name of Collection</div>
                     <div id="by">By Lorem Ipsum</div>
@@ -491,7 +514,7 @@ const Home = () => {
                 </SwiperSlide>
                 <SwiperSlide>
                   <img src={artWorkWeek4} width="100%" alt={""} />
-                  {/* <div className="slider-content">
+                   <div className="slider-content">
                                         <img src={topSellerUser1} width="52px" height="52px" />
                                         <div className="slider-conter-absolute d-flex">
                                             <div className="d-flex flex-column">
@@ -510,7 +533,7 @@ const Home = () => {
                                             Liquid Abstract Painting
                                             <small>@gshsj56</small>
                                         </div>
-                                    </div> */}
+                                    </div>
                   <div id="message-container">
                     <div id="main-heading">Name of Collection</div>
                     <div id="by">By Lorem Ipsum</div>
@@ -528,7 +551,7 @@ const Home = () => {
                       <span>How to Buy</span>
                     </button>
                   </div>
-                </SwiperSlide>
+                </SwiperSlide>*/}
               </Swiper>
             </div>
           </div>
