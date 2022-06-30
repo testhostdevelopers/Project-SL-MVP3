@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import CheckFillClrIcon from "../assets/img/icons/custom/Group_1454.svg";
 import axios from "axios";
-import { Config } from '../utils/config';           
+import { Config } from '../utils/config';
+import {toast, ToastContainer} from "react-toastify";
 
 const CreateCollectibleEdit = () => {
   const apiToken = sessionStorage.getItem("apiToken");
@@ -63,22 +64,43 @@ const CreateCollectibleEdit = () => {
   };
 
   const sendOtp = async (email) => {
-    if (apiToken) {
-      axios
-        .post(`${Config.baseURL}v1/user/email/send`, {
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          },
-        })
-        .then((res) => {
-          // setUdata(res.data.data);
-          console.log(res);
-        });
+        if (apiToken) {
+            axios
+                .post(`${Config.baseURL}v1/user/email/send`, {
+                    headers: {
+                        Authorization: `Bearer ${apiToken}`,
+                    },
+                })
+            .then((res) => {
+                // setUdata(res.data.data);
+                console.log(res);
+            });
+        }
     }
-  }
+
+    var verificationRequest = async () => {
+        if (apiToken) {
+          var formData = new FormData();
+          formData.append("isVerificationRequested",true);
+          await axios
+            .put(`${Config.baseURL}v1/user/updateVerify/${udata._id}`, formData, {
+              headers: {
+                Authorization: `Bearer ${apiToken}`,
+              },
+            })
+            .then((res) => {
+              console.log(res);
+              if(res.data.response_code === 'API_SUCCESS'){
+                    toast("Verification Request successful!");
+                    console.log(res)
+              }
+            });
+        }
+      };
 
   return (
     <>
+        <ToastContainer />
       <motion.section
         initial="hidden"
         animate="visible"
@@ -178,12 +200,12 @@ const CreateCollectibleEdit = () => {
                   <h5 className="m-0">
                     <b>Twitter Username</b>
                   </h5>
-                  <div
+                  {/* <div
                     className="color-gray text-right"
                     style={{ fontSize: "10px" }}
                   >
                     Link your Twitter account to gain more trust on the marketplace
-                  </div>
+                  </div> */}
                 </div>
                 <div className="prize-single-collectible">
                   <input
@@ -196,9 +218,9 @@ const CreateCollectibleEdit = () => {
                     value={udata === undefined ? "" : udata.twitter_username}
                     placeholder="@PixelDrops"
                   />
-                  <span className="color-gray ">
+                  {/* <span className="color-gray ">
                     <button className="btn-primary-outline">Link</button>
-                  </span>
+                  </span> */}
                 </div>
               </div>
 
@@ -245,9 +267,9 @@ const CreateCollectibleEdit = () => {
                     }}
                     placeholder="PixelDrops@gmail.com"
                   />
-                  <span className="color-gray ">
-                    <button onClick={() => sendOtp(udata.email)}className="btn-primary-outline">Confirm</button>
-                  </span>
+                  {/* <span className="color-gray ">
+                    <button  onClick={() => sendOtp(udata.email)} className="btn-primary-outline">Confirm</button>
+                  </span> */}
                 </div>
               </div>
             </div>
@@ -257,10 +279,17 @@ const CreateCollectibleEdit = () => {
                   <b> Upload Profile Picture</b>
                 </h5>
               </div>
-              <div className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center">
-                <div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>
-                <div className="mt-3">
+              <div
+                className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center"
+                style={{
+                  backgroundImage: 'url("' + udata.profile_img_url + '")',
+                  backgroundRepeat: 'round',
+                }}
+              >
+                {/*<div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>*/}
+                <div className="mt-3" style={{ cursor: 'pointer'}}>
                   <input
+                    style={{ cursor: 'pointer'}}
                     type="file"
                     accept="image/*"
                     name="profile"
@@ -273,19 +302,20 @@ const CreateCollectibleEdit = () => {
                     id="profileImg"
                     className="img-btn w-100 ml-0 "
                   />
-                  <label htmlFor="profileImg">
+                  <label htmlFor="profileImg" style={{ cursor: 'pointer'}}>
                     {" "}
                     <img
                       src="/static/media/bg_img.156953d5.png"
                       alt={""}
-                    />{" "}
+                      style={{ cursor: 'pointer'}}
+                    />
                   </label>
-                  <br />
-                  {udata == null
+                  {/*<br />*/}
+                  {/*{udata == null
                     ? ""
                     : typeof udata.profile_img_url == "object"
-                    ? udata.profile_img_url.name
-                    : udata.profile_img_url}
+                    ? udata.profile_img_url.name.split("/")[5]
+                    : udata.profile_img_url ? udata.profile_img_url.split("/")[5] : udata.profile_img_url }*/}
                 </div>
               </div>
 
@@ -294,10 +324,17 @@ const CreateCollectibleEdit = () => {
                   <b> Upload Cover Image</b>
                 </h5>
               </div>
-              <div className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center">
-                <div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>
-                <div className="mt-3">
+              <div
+                  className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center"
+                  style={{
+                    backgroundImage: 'url("' + udata.cover_img_url + '")',
+                    backgroundRepeat: 'round',
+                  }}
+              >
+                {/*<div className="color-gray">PNG, GIF, WEBP. Max 10mb</div>*/}
+                <div className="mt-3" style={{ cursor: 'pointer'}}>
                   <input
+                    style={{ cursor: 'pointer'}}
                     type="file"
                     accept="image/*"
                     name="cover"
@@ -307,19 +344,13 @@ const CreateCollectibleEdit = () => {
                     id="coverImg"
                     className="img-btn w-100 ml-0"
                   />
-                  <label htmlFor="coverImg">
-                    {" "}
+                  <label htmlFor="coverImg" style={{ cursor: 'pointer'}}>
                     <img
                       src="/static/media/bg_img.156953d5.png"
                       alt={""}
-                    />{" "}
+                      style={{ cursor: 'pointer'}}
+                    />
                   </label>
-                  <br />
-                  {udata == null
-                    ? ""
-                    : typeof udata.cover_img_url == "object"
-                    ? udata.cover_img_url.name
-                    : udata.cover_img_url}
                 </div>
               </div>
             </div>
@@ -336,17 +367,27 @@ const CreateCollectibleEdit = () => {
                 </div>
 
                 <div className="col-sm-12 col-lg-6 ">
+                {
+                    udata.isVerificationRequested === false ?
                   <span className="color-gray ">
                     Proceed with verification process to get <br />
                     more visibility and gain trust on Starlight <br /> Marketplace.
                   </span>
+                  :
+                  <span className="color-gray ">
+                    Your verification request is under review
+                  </span>
+                }
                 </div>
-
-                <div className="col-sm-12 col-lg-4 text-right ">
-                  <button className=" btn-primary-outline profile-edit-verified-btn w-50">
-                    Get Verified
-                  </button>
-                </div>
+                    {
+                    udata.isVerificationRequested === false ?
+                        <div className="col-sm-12 col-lg-4 text-right ">
+                        <button onClick={() => verificationRequest()} className=" btn-primary-outline profile-edit-verified-btn w-50">
+                            Get Verified
+                        </button>
+                        </div>
+                     : ''
+                    }
               </div>
             </div>
 

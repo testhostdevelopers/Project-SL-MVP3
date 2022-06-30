@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 export default function LiveAuctions({
   title,
   id = '',
-  WETH,
+  WETH = 0,
   bid,
   isCollection = false,
   isLiveAuctions = true,
@@ -26,6 +26,8 @@ export default function LiveAuctions({
   const apiToken = sessionStorage.getItem("apiToken");
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [ReportPopups, setReportPopup] = useState(false);
+  const [liked1, setLiked1] = useState(liked);
+  const [heartcount1, setHeartcount1] = useState(heartcount);
   const [sharePopup, setsharePopup] = useState(false);
   // const [singlePopup, setSinglePopup] = useState(false);
   // console.log('singlePopup', singlePopup);
@@ -49,7 +51,11 @@ export default function LiveAuctions({
           }
         })
         .then(response => {
-          console.log('response', response);
+          // console.log('response', response);
+          if (response.data.response_code === "API_SUCCESS") {
+            setLiked1(true);
+            setHeartcount1(heartcount1 + 1);
+          }
         })
         .catch(err => {
           console.log(err);
@@ -73,7 +79,11 @@ export default function LiveAuctions({
           }
         })
         .then(response => {
-          console.log('response', response);
+          // console.log('response', response);
+          if (response.data.response_code === "API_SUCCESS") {
+            setLiked1(false);
+            setHeartcount1(heartcount1 - 1);
+          }
         })
         .catch(err => {
           console.log(err);
@@ -116,10 +126,10 @@ export default function LiveAuctions({
           <div className="live-image">
             <img src={Coverimg} width="100%" alt={title} />
             <div className="card-heart-icon">
-              {liked ?
-                <><i onClick={disLikeCollectible} className="fas fa-heart" /> {heartcount}</>
+              {liked1 ?
+                <><i onClick={apiToken ? disLikeCollectible : null} className="fas fa-heart" /> {heartcount1}</>
                 :
-                <><i onClick={likeCollectible} className="far fa-heart" /> {heartcount}</>
+                <><i onClick={apiToken ? likeCollectible : null} className="far fa-heart" /> {heartcount1}</>
               }
             </div>
             <Dropdown overlay={menu}>
@@ -135,23 +145,33 @@ export default function LiveAuctions({
           <div className="bg-white p-4">
             {isLiveAuctions === true ?
                 <div className="live-user-list">
-                  <img src={User1} width="36px" alt="" />
-                  <img src={User2} width="36px" alt="" />
-                  <img src={User3} width="36px" alt="" />
-                  <div className="live-card-tick">
+                  {User1 ?
+                      <img src={User1} width="36px" alt="" /> : <></>
+                  }
+                  {User2 ?
+                      <img src={User2} width="36px" alt="" /> : <></>
+                  }
+                  {User3 ?
+                      <img src={User3} width="36px" alt="" /> : <></>
+                  }
+                  {/*<div className="live-card-tick">
                     <i className="fas fa-check" />
-                  </div>
+                  </div>*/}
                 </div> : <></>
             }
 
-            {isCollection === true?
+            {isCollection === true ?
                 <Link to={'/collection/'+id}><h6>{title}</h6></Link> : <Link to={'/buy/'+id}><h6>{title} 321</h6></Link>
             }
             <div className="d-flex justify-content-between align-items-center">
               <div className="text-danger">
-                <b>{WETH}</b>
+                  {!isCollection ?
+                      <b>{WETH} WETH</b> : <></>
+                  }
               </div>
-              <small className="text-secondary">{bid}</small>
+              {!isCollection ?
+                  <small className="text-secondary">{bid}</small> : <></>
+              }
             </div>
           </div>
         </div>

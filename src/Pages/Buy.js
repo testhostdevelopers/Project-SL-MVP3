@@ -86,7 +86,7 @@ const Buy = () => {
         },
       })
       .then((res) => {
-        // console.log(res.data.data);
+        console.log(res.data.data);
         setSingleCollectibleData(res.data.data);
         // console.log(singleCollectibleData.bids)
         axios
@@ -148,6 +148,7 @@ const Buy = () => {
           setSinglePopup={setSinglePopup}
           sethelpPopup={sethelpPopup}
           setSingleCollectionPopup={setSingleCollectionPopup}
+          singleCollectibleData={singleCollectibleData}
         />
       )}
       {singlePopup && (
@@ -313,53 +314,42 @@ const Buy = () => {
                       role="tabpanel"
                       aria-labelledby="pills-home-tab"
                     >
-                      <div className="w-100 d-flex justify-content-between mb-3">
-                        <div className="d-flex">
-                          <div className="user-img">
-                            <img src={userTick} width="36" alt="" />
-                          </div>
-                          <div className="ml-4">
-                            <div>
-                              <span className="color-gray">
-                                Listed 1 edition for
-                              </span>{" "}
-                              <b> 0.024 ETH</b>
+                      {/*{singleCollectibleData?.owner_id?.map((singleBid, key) =>(*/}
+                          <div className="w-100 d-flex justify-content-between mb-3">
+                            <div className="d-flex">
+                              <div className="user-img">
+                                <img src={singleCollectibleData?.owner_id?.profile_img_url} width="36" alt="" />
+                              </div>
+                              <div className="ml-4">
+                                <div>
+                                  <span className="color-gray">
+                                    Listed 1 edition for
+                                  </span>{" "}
+                                  <b> {singleCollectibleData.price} {singleCollectibleData.price_currency}</b>
+                                </div>
+                                <div>
+                                  <span className="color-gray">By </span>
+                                  <b>{singleCollectibleData?.owner_id?.display_name}</b>{" "}
+                                  <span className="color-gray"> {new Date(singleCollectibleData.createdAt).toLocaleString('en-US', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric',
+                                    hour: 'numeric',
+                                    minute: 'numeric',
+                                    second: 'numeric',
+                                  })}</span>
+                                </div>
+                              </div>
                             </div>
-                            <div>
-                              <span className="color-gray">By </span>
-                              <b>Mad Scientist</b>{" "}
-                              <span className="color-gray"> 1 hour ago</span>
-                            </div>
-                          </div>
-                        </div>
 
-                        <button
-                          onClick={() => setCheckOutPopup(true)}
-                          className="new-buy btn-ping"
-                        >
-                          Buy
-                        </button>
-                      </div>
-
-                      <div className="w-100 d-flex justify-content-between mb-3">
-                        <div className="d-flex">
-                          <div className="user-img">
-                            <img src={userTick} width="36" alt="" />
+                            <button
+                                onClick={() => setCheckOutPopup(true)}
+                                className="new-buy btn-ping"
+                            >
+                              Buy
+                            </button>
                           </div>
-                          <div className="ml-4">
-                            <div>
-                              <span className="color-gray">
-                                Listed 1 edition for
-                              </span>{" "}
-                              <b> 0.024 ETH</b>
-                            </div>
-                            <div>
-                              <span className="color-gray">1 edition </span>
-                              <b>not for sale</b>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      {/*))}*/}
                     </div>
                     <div
                       className="tab-pane fade"
@@ -367,35 +357,30 @@ const Buy = () => {
                       role="tabpanel"
                       aria-labelledby="pills-profile-tab"
                     >
-                      <div className="w-100 d-flex justify-content-between mb-3">
-
-                        <div className="d-flex">
-                          <div className="user-img">
-                            <img src={userTick} width="36" alt="" />
-                          </div>
-                          <div className="ml-4">
-                            <div>
-                              <b>0.0002 ETH </b>
-                              <span className="color-gray">by </span>
-                              <b>tanelen tivan </b>
-                              <span className="color-gray">
-                                for 10 editions
-                              </span>
+                      {singleCollectibleData?.bids?.map((singleBid, key) =>(
+                          <div className="w-100 d-flex justify-content-between mb-3">
+                            <div className="d-flex">
+                              <div className="user-img">
+                                <img src={singleBid.user_id.profile_img_url} width="36" alt="" />
+                              </div>
+                              <div className="ml-4">
+                                <div>
+                                  <b>{singleBid.amount} {singleBid.currency} </b>
+                                  <span className="color-gray">by </span>
+                                  <b>{singleBid.user_id.display_name} </b>
+                                  <span className="color-gray">
+                                    for 10 editions
+                                  </span>
+                                </div>
+                                <div>
+                                  <span className="color-gray">
+                                    26/072021, 16:28
+                                  </span>
+                                </div>
+                              </div>
                             </div>
-                            <div>
-                              <span className="color-gray">
-                                26/072021, 16:28
-                              </span>
-                            </div>
                           </div>
-                        </div>
-                            
-                      <ul>
-                      {/* { singleCollectibleData.bids.map((bids, key) =>(
-                        <li>{bids}</li>
-                      )) } */}
-                      </ul>
-                      </div>
+                      ))}
                     </div>
 
                     <div
@@ -409,8 +394,21 @@ const Buy = () => {
                   </div>
                   <div className="tab-pane-bottom-solid" />
                 </div>
-                {singleCollectibleData.price_type === 'time_auction' ?
-                  <BuyAuction props={singleCollectibleData} />
+                {singleCollectibleData.price_type === 'time_auction' && singleCollectibleData.isAuctionCompleted === false ?
+                  <BuyAuction props={singleCollectibleData} /> 
+                  : ''
+                }
+                {singleCollectibleData.price_type === 'time_auction' && singleCollectibleData.isAuctionCompleted === false ?
+                  <button
+                    className="btn-primary-outline ml-3 mt-3 w-100"
+                    onClick={() => setSingleCollectionPopup(true)}
+                  >
+                    Place a Bid
+                  </button>
+                  : ''
+                }
+                {singleCollectibleData.price_type === 'time_auction' && singleCollectibleData.isAuctionCompleted === true ?
+                  <h3>Auction is completed</h3>
                   : ''
                 }
                 <div className="row d-flex justify-content-center mt-5 action-btn buy-highest-bid-block-btn">

@@ -49,6 +49,7 @@ const Home = () => {
   let [hotCollectionsList, setHotCollectionsList] = useState([]);
   let [topSellerUser, setTopSellerUser] = useState([]);
   let [topBuyerUser, setTopBuyerUser] = useState([]);
+  let [QuickExploreCollectible, setQuickExploreCollectible] = useState([]);
 
   const variants = {
     hidden: { opacity: 0 },
@@ -88,84 +89,6 @@ const Home = () => {
     "This month",
     "Last 6 months",
     "Last 1 year",
-  ];
-
-  const live_auction = [
-    {
-      cover_img: artWorkWeek1,
-      auction_name: "Memescalf#782021",
-      h_count: "24",
-      auc_user1: topSellerUser1,
-      auc_user2: topSellerUser2,
-      auc_user3: topSellerUser3,
-      auction_WETH: "1.2 WETH",
-      auction_bid: "Highest bid 1/1",
-    },
-    {
-      cover_img: artWorkWeek2,
-      auction_name: "Memescalf#782022",
-      h_count: "27",
-      auc_user1: topSellerUser1,
-      auc_user2: topSellerUser2,
-      auc_user3: topSellerUser3,
-      auction_WETH: "1.3 WETH",
-      auction_bid: "Highest bid 1/1",
-    },
-    {
-      cover_img: artWorkWeek3,
-      auction_name: "Memescalf#782021",
-      h_count: "30",
-      auc_user1: topSellerUser1,
-      auc_user2: topSellerUser2,
-      auc_user3: topSellerUser3,
-      auction_WETH: "1.7 WETH",
-      auction_bid: "Highest bid 1/1",
-    },
-    {
-      cover_img: artWorkWeek4,
-      auction_name: "Memescalf#782022",
-      h_count: "36",
-      auc_user1: topSellerUser1,
-      auc_user2: topSellerUser2,
-      auc_user3: topSellerUser3,
-      auction_WETH: "1.6 WETH",
-      auction_bid: "Highest bid 1/1",
-    },
-  ];
-
-  const hot_bide = [
-    {
-      cover_bide: artWorkWeek2,
-      bide_heartcount: "23",
-      bide_time: "3H : 15M : 50S left",
-      bide_name: "Memescalf#782021",
-      bide_weth: "1.3 WETH",
-      bide_bid: "Highest bid 1/1",
-    },
-    {
-      cover_bide: artWorkWeek3,
-      bide_heartcount: "25",
-      bide_time: "7H : 13M : 50S left",
-      bide_name: "Memescalf#782022",
-      bide_weth: "1.6 WETH",
-      bide_bid: "Highest bid 1/16",
-    },
-    {
-      cover_bide: artWorkWeek1,
-      bide_heartcount: "26",
-      bide_time: "8H : 20M : 50S left",
-      bide_name: "Memescalf#782023",
-      bide_weth: "1.2 WETH",
-      bide_bid: "Highest bid 6/6",
-    },
-    {
-      cover_bide: artWorkWeek4,
-      bide_heartcount: "26",
-      bide_time: "8H : 40M : 50S left",
-      bide_name: "Memescalf#782022",
-      bide_weth: "1.2 WETH",
-      bide_bid: "Highest bid 6/5",
-    },
   ];
 
   const slide_data = [
@@ -298,7 +221,7 @@ const Home = () => {
   };
   const getHotCollectionsList = async () => {
     await axios
-        .get(`${Config.baseURL}v1/collection/hotcollectionslist/0/10`, {
+        .get(`${Config.baseURL}v1/collection/hotcollectionslist/0/8`, {
               data: {
                 user_id: userData._id
               },
@@ -351,12 +274,41 @@ const Home = () => {
         console.log(err);
       });
   };
+  const getAllCollectibleList = async () => {
+    await axios
+        .get(`${Config.baseURL}v1/collectible/getallcollectiblelist/0/12`, {
+          data: {
+            user_id: userData._id
+          },
+          headers: {
+            Authorization: `Bearer ${apiToken}`,
+          }
+        })
+        .then(response => {
+          // console.log('response.data', response.data);
+          if (response.data.response_code === "API_SUCCESS") {
+            response.data.data.forEach((element, index) => {
+              response.data.data[index].show = true;
+              if (element.likedBy.includes(userData._id)) {
+                response.data.data[index].like = true;
+              } else {
+                response.data.data[index].like = false;
+              }
+            });
+            setQuickExploreCollectible(response.data.data);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
 
   useEffect(() => {
     getLiveAuctionCollectibleList().then(r => {});
     getHotCollectionsList().then(r => {});
     getTopSellerUser().then(r => {});
     getTopBuyerUser().then(r => {});
+    getAllCollectibleList().then(r => {});
   }, []);
 
   return (
@@ -731,11 +683,11 @@ const Home = () => {
                 liked={SingleCollectible.like}
                 title={SingleCollectible.title}
                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                User1={topSellerUser1}
-                User2={topSellerUser2}
-                User3={topSellerUser3}
+                User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
                 WETH={SingleCollectible.price}
-                bid="Highest bid 1/1"
+                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
               />
             ))}
           </div>
@@ -801,11 +753,11 @@ const Home = () => {
                 liked={SingleCollectible.like}
                 title={SingleCollectible.title}
                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                User1={topSellerUser1}
-                User2={topSellerUser2}
-                User3={topSellerUser3}
+                User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
                 WETH={SingleCollectible.price}
-                bid="Highest bid 1/1"
+                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
               />
             ))}
           </div>
@@ -864,20 +816,14 @@ const Home = () => {
           </div>
 
           <div className="row mt-5">
-            {hotCollectionsList.slice(0, 8).map((SingleCollectible, key) => (
+            {hotCollectionsList.slice(0, 8).map((SingleCollection, key) => (
               <LiveAuctions
-                key={SingleCollectible._id}
-                isCollection={false}
-                id={SingleCollectible._id}
-                Coverimg={SingleCollectible.img_path?.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
-                liked={SingleCollectible.like}
-                title={SingleCollectible.title}
-                heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                User1={topSellerUser1}
-                User2={topSellerUser2}
-                User3={topSellerUser3}
-                WETH={SingleCollectible.price}
-                bid="Highest bid 1/1"
+                  isCollection={true}
+                  id={SingleCollection._id}
+                  Coverimg={SingleCollection.main_img.indexOf('https://storage.googleapis.com') > -1 ? SingleCollection.main_img : artWorkWeek1}
+                  liked={SingleCollection.like}
+                  title={SingleCollection.title}
+                  heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
               />
             ))}
           </div>
@@ -956,31 +902,27 @@ const Home = () => {
               aria-labelledby="all-tab"
             >
               <div className="row">
-                {live_auction.map((live_a, key) => (
+                {QuickExploreCollectible.map((SingleCollectible, key) => (
                   <LiveAuctions
-                    key={live_a._id}
-                    Coverimg={live_a.cover_img}
-                    title={live_a.auction_name}
-                    heartcount={live_a.h_count}
-                    User1={live_a.auc_user1}
-                    User2={live_a.auc_user2}
-                    User3={live_a.auc_user3}
-                    WETH={live_a.auction_WETH}
-                    bid={live_a.auction_bid}
+                    key={key}
+                    liked={SingleCollectible.like}
+                    Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
+                    heartcount={SingleCollectible.likes}
+                    time={new Date(SingleCollectible.createdAt).toLocaleString('en-US', {
+                      weekday: 'long',
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                      hour: 'numeric',
+                      minute: 'numeric',
+                      second: 'numeric',
+                    })}
+                    id={SingleCollectible._id}
+                    title={SingleCollectible.title}
+                    WETH={SingleCollectible.price}
                     isOpenInProfile={false}
-                  />
-                ))}
-
-                {hot_bide.map((bide_desk, ho_B) => (
-                  <HotBids
-                    key={ho_B}
-                    Coverimg={bide_desk.cover_bide}
-                    heartcount={bide_desk.bide_heartcount}
-                    time={bide_desk.bide_time}
-                    title={bide_desk.bide_name}
-                    WETH={bide_desk.bide_weth}
-                    bid={bide_desk.bide_bid}
-                    isOpenInProfile={false}
+                    isLiveAuctions={false}
+                    bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                   />
                 ))}
               </div>
@@ -992,19 +934,29 @@ const Home = () => {
               aria-labelledby="art-tab"
             >
               <div className="row">
-                {liveAuctionList.map((live_a, key) => (
-                  <LiveAuctions
-                    key={live_a._id}
-                    Coverimg={live_a.cover_img}
-                    title={live_a.auction_name}
-                    heartcount={live_a.h_count}
-                    User1={live_a.auc_user1}
-                    User2={live_a.auc_user2}
-                    User3={live_a.auc_user3}
-                    WETH={live_a.auction_WETH}
-                    bid={live_a.auction_bid}
-                    isOpenInProfile={false}
-                  />
+                {QuickExploreCollectible.map((SingleCollectible, key) => (
+                  SingleCollectible.category === "Art" ?
+                    <LiveAuctions
+                      key={key}
+                      liked={SingleCollectible.like}
+                      Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
+                      heartcount={SingleCollectible.likes}
+                      time={new Date(SingleCollectible.createdAt).toLocaleString('en-US', {
+                      weekday: 'long',
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                      hour: 'numeric',
+                      minute: 'numeric',
+                      second: 'numeric',
+                    })}
+                      id={SingleCollectible._id}
+                      title={SingleCollectible.title}
+                      WETH={SingleCollectible.price}
+                      isOpenInProfile={false}
+                      isLiveAuctions={false}
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                    /> : <></>
                 ))}
               </div>
             </div>
@@ -1015,19 +967,29 @@ const Home = () => {
               aria-labelledby="photo-tab"
             >
               <div className="row">
-                {live_auction.map((live_a, key) => (
-                  <LiveAuctions
-                    key={live_a._id}
-                    Coverimg={live_a.cover_img}
-                    title={live_a.auction_name}
-                    heartcount={live_a.h_count}
-                    User1={live_a.auc_user1}
-                    User2={live_a.auc_user2}
-                    User3={live_a.auc_user3}
-                    WETH={live_a.auction_WETH}
-                    bid={live_a.auction_bid}
-                    isOpenInProfile={false}
-                  />
+                {QuickExploreCollectible.map((SingleCollectible, key) => (
+                  SingleCollectible.category === "Photography" ?
+                    <LiveAuctions
+                      key={key}
+                      liked={SingleCollectible.like}
+                      Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
+                      heartcount={SingleCollectible.likes}
+                      time={new Date(SingleCollectible.createdAt).toLocaleString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        second: 'numeric',
+                      })}
+                      id={SingleCollectible._id}
+                      title={SingleCollectible.title}
+                      WETH={SingleCollectible.price}
+                      isOpenInProfile={false}
+                      isLiveAuctions={false}
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                    /> : <></>
                 ))}
               </div>
             </div>
@@ -1038,19 +1000,29 @@ const Home = () => {
               aria-labelledby="games-tab"
             >
               <div className="row">
-                {liveAuctionList.map((live_a, key) => (
-                  <LiveAuctions
-                    key={live_a._id}
-                    Coverimg={live_a.cover_img}
-                    title={live_a.auction_name}
-                    heartcount={live_a.h_count}
-                    User1={live_a.auc_user1}
-                    User2={live_a.auc_user2}
-                    User3={live_a.auc_user3}
-                    WETH={live_a.auction_WETH}
-                    bid={live_a.auction_bid}
-                    isOpenInProfile={false}
-                  />
+                {QuickExploreCollectible.map((SingleCollectible, key) => (
+                  SingleCollectible.category === "Games" ?
+                    <LiveAuctions
+                      key={key}
+                      liked={SingleCollectible.like}
+                      Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
+                      heartcount={SingleCollectible.likes}
+                      time={new Date(SingleCollectible.createdAt).toLocaleString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        second: 'numeric',
+                      })}
+                      id={SingleCollectible._id}
+                      title={SingleCollectible.title}
+                      WETH={SingleCollectible.price}
+                      isOpenInProfile={false}
+                      isLiveAuctions={false}
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                    /> : <></>
                 ))}
               </div>
             </div>
@@ -1062,19 +1034,29 @@ const Home = () => {
               aria-labelledby="metaverses-tab"
             >
               <div className="row">
-                {live_auction.map((live_a, key) => (
-                  <LiveAuctions
-                    key={live_a._id}
-                    Coverimg={live_a.cover_img}
-                    title={live_a.auction_name}
-                    heartcount={live_a.h_count}
-                    User1={live_a.auc_user1}
-                    User2={live_a.auc_user2}
-                    User3={live_a.auc_user3}
-                    WETH={live_a.auction_WETH}
-                    bid={live_a.auction_bid}
-                    isOpenInProfile={false}
-                  />
+                {QuickExploreCollectible.map((SingleCollectible, key) => (
+                  SingleCollectible.category === "Metaverse" ?
+                    <LiveAuctions
+                      key={key}
+                      liked={SingleCollectible.like}
+                      Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
+                      heartcount={SingleCollectible.likes}
+                      time={new Date(SingleCollectible.createdAt).toLocaleString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        second: 'numeric',
+                      })}
+                      id={SingleCollectible._id}
+                      title={SingleCollectible.title}
+                      WETH={SingleCollectible.price}
+                      isOpenInProfile={false}
+                      isLiveAuctions={false}
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                    /> : <></>
                 ))}
               </div>
             </div>
@@ -1085,19 +1067,29 @@ const Home = () => {
               aria-labelledby="music-tab"
             >
               <div className="row">
-                {live_auction.map((live_a, key) => (
-                  <LiveAuctions
-                    key={live_a._id}
-                    Coverimg={live_a.cover_img}
-                    title={live_a.auction_name}
-                    heartcount={live_a.h_count}
-                    User1={live_a.auc_user1}
-                    User2={live_a.auc_user2}
-                    User3={live_a.auc_user3}
-                    WETH={live_a.auction_WETH}
-                    bid={live_a.auction_bid}
-                    isOpenInProfile={false}
-                  />
+                {QuickExploreCollectible.map((SingleCollectible, key) => (
+                  SingleCollectible.category === "Music" ?
+                    <LiveAuctions
+                      key={key}
+                      liked={SingleCollectible.like}
+                      Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
+                      heartcount={SingleCollectible.likes}
+                      time={new Date(SingleCollectible.createdAt).toLocaleString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        second: 'numeric',
+                      })}
+                      id={SingleCollectible._id}
+                      title={SingleCollectible.title}
+                      WETH={SingleCollectible.price}
+                      isOpenInProfile={false}
+                      isLiveAuctions={false}
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                    /> : <></>
                 ))}
               </div>
             </div>
@@ -1109,19 +1101,29 @@ const Home = () => {
               aria-labelledby="memes-tab"
             >
               <div className="row">
-                {live_auction.map((live_a, key) => (
-                  <LiveAuctions
-                    key={live_a._id}
-                    Coverimg={live_a.cover_img}
-                    title={live_a.auction_name}
-                    heartcount={live_a.h_count}
-                    User1={live_a.auc_user1}
-                    User2={live_a.auc_user2}
-                    User3={live_a.auc_user3}
-                    WETH={live_a.auction_WETH}
-                    bid={live_a.auction_bid}
-                    isOpenInProfile={false}
-                  />
+                {QuickExploreCollectible.map((SingleCollectible, key) => (
+                  SingleCollectible.category === "Meme" ?
+                    <LiveAuctions
+                      key={key}
+                      liked={SingleCollectible.like}
+                      Coverimg={SingleCollectible.img_path.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
+                      heartcount={SingleCollectible.likes}
+                      time={new Date(SingleCollectible.createdAt).toLocaleString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        second: 'numeric',
+                      })}
+                      id={SingleCollectible._id}
+                      title={SingleCollectible.title}
+                      WETH={SingleCollectible.price}
+                      isOpenInProfile={false}
+                      isLiveAuctions={false}
+                      bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
+                    /> : <></>
                 ))}
               </div>
             </div>

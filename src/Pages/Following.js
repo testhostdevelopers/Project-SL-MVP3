@@ -5,14 +5,14 @@ import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 // import artWorkWeek2 from "../assets/img/custom/artWorkWeek2.png";
 // import artWorkWeek3 from "../assets/img/custom/artWorkWeek3.png";
 // import artWorkWeek4 from "../assets/img/custom/artWorkWeek4.png";
-import propertiesicon from "../assets/img/custom/properties.svg";
+// import propertiesicon from "../assets/img/custom/properties.svg";
 import FilterSort from "../Components/FilterSort";
 import FullScreenImage from "../Components/Popup/FullScreenImage";
 import FilterCategory from "../Components/FilterCategory";
 import FilterCollections from "../Components/FilterCollections";
 import Filtersale from "../Components/Filtersale";
 import FilterRange from "../Components/FilterRange";
-import FilterProperties from "../Components/FilterProperties";
+// import FilterProperties from "../Components/FilterProperties";
 import axios from "axios";
 import {Config} from "../utils/config";
 import LiveAuctions from "../Components/LiveAuctions";
@@ -28,11 +28,11 @@ const Following = () => {
   const apiToken = sessionStorage.getItem("apiToken");
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   let [openImage, setOpenImage] = useState(false);
-  const [filterSort, setFilterSort] = useState(false);
   const [filterCategory, setFilterCategory] = useState(false);
+  const [filterSort, setFilterSort] = useState(false);
   const [filterCollections, setFilterCollections] = useState(false);
   const [filterProperties, setFilterProperties] = useState(false);
-  const [filtersale, setFiltersale] = useState(false);
+  const [filtersale, setFiltersale] = useState([]);
   const [filterRange, setFilterRange] = useState(false);
   let [collectionsList, setCollectionsList] = useState([]);
   let offset = 0;
@@ -56,11 +56,7 @@ const Following = () => {
         if (response.data.response_code === "API_SUCCESS") {
           response.data.data.forEach((element, index) => {
             response.data.data[index].show = true;
-            if (element.likedBy.includes(userData._id)) {
-              response.data.data[index].like = true;
-            } else {
-              response.data.data[index].like = false;
-            }
+            response.data.data[index].like = !!element.likedBy.includes(userData._id);
           });
           setCollectionsList(response.data.data);
         }
@@ -70,7 +66,7 @@ const Following = () => {
       });
   };
   if (filterCategory) {
-    // console.log('filterCategory', filterCategory);
+    console.log('filterCategory', filterCategory);
     collectionsList.forEach((SingleData, key) => {
       if (filterCategory === "All") {
         collectionsList[key].show = true;
@@ -80,6 +76,7 @@ const Following = () => {
     });
   }
   if (filterSort) {
+    console.log('filterSort', filterSort);
     if (filterSort === "RecentlyAdded") {
       collectionsList.sort((a, b) => {
         let da = new Date(a.createdAt),
@@ -97,6 +94,7 @@ const Following = () => {
     }
   }
   if (filterCollections) {
+    console.log('filterCollections', filterCollections);
     filterCollections.forEach((SingleCollection, key) => {
       // console.log('SingleCollection', SingleCollection);
       collectionsList.forEach((SingleData, key) => {
@@ -108,19 +106,45 @@ const Following = () => {
       });
     });
   }
-  console.log('filterCollections', filterCollections);
-  useEffect(() => {
-    if (sessionStorage.getItem("apiToken")) {
-      getAllCollectibleList().then(r => {});
+  if (filterRange) {
+    console.log('filterRange', filterRange);
+    if (filterRange[0] > 0 || filterRange[1] > 0) {
+      collectionsList.forEach((SingleData, key) => {
+        if (SingleData.price > filterRange[0] && SingleData.price < filterRange[1]) {
+          // console.log('SingleData.price > filterRange[0]', SingleData.price);
+          collectionsList[key].show = true;
+        } else {
+          // console.log('SingleData.price', SingleData.price);
+          collectionsList[key].show = false;
+        }
+      });
+    } else {
+      collectionsList.forEach((SingleData, key) => {
+        collectionsList[key].show = true;
+      });
     }
+  }
+  if (filtersale.length) {
+    console.log('filtersale', filtersale);
+    collectionsList.forEach((SingleData, key) => {
+      collectionsList[key].show = filtersale.includes(SingleData.price_type);
+    });
+  } else if (filtersale === []) {
+    console.log('filtersale', filtersale);
+    /*collectionsList.forEach((SingleData, key) => {
+      collectionsList[key].show = true;
+    });*/
+  }
+  useEffect(() => {
+    getAllCollectibleList().then(r => {});
   }, []);
 
   return (
     <>
       {openImage && <FullScreenImage setOpenImage={setOpenImage} />}
-      {filterProperties && (
+      {/*{filterProperties && (
         <FilterProperties setFilterProperties={setFilterProperties} />
-      )}
+      )}*/}
 
       <motion.section
         initial="hidden"
@@ -176,7 +200,7 @@ const Following = () => {
                 setFiltersale={setFiltersale}
                 setFilterRange={setFilterRange}
               />
-              <li>
+              {/*<li>
                 <span className="label">Properties</span>
                 <div className="icon">
                   <img src={propertiesicon} alt={""} />
@@ -208,7 +232,7 @@ const Following = () => {
                     </span>
                   </span>
                 </div>
-              </li>
+              </li>*/}
               <Filtersale
                 filterSort={filterSort}
                 filterCategory={filterCategory}
@@ -262,7 +286,7 @@ const Following = () => {
                   WETH={SingleCollectible.price}
                   isOpenInProfile={false}
                   isLiveAuctions={false}
-                  bid="Highest bid 1/1"
+                  bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                 />
               </> : <></>
             ))}

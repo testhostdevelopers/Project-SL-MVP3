@@ -257,7 +257,7 @@ const Navbar = (props) => {
             }
           })
           .then(response => {
-            console.log('response', response);
+            // console.log('response', response);
           })
           .catch(err => {
             console.log(err);
@@ -271,7 +271,7 @@ const Navbar = (props) => {
             }
           })
           .then(response => {
-            console.log('response', response);
+            // console.log('response', response);
           })
           .catch(err => {
             console.log(err);
@@ -284,7 +284,7 @@ const Navbar = (props) => {
             }
           })
           .then(response => {
-            console.log('response', response);
+            // console.log('response', response);
           })
           .catch(err => {
             console.log(err);
@@ -338,7 +338,7 @@ const Navbar = (props) => {
     }
     return defaultImg;
   };
-  const getNotifications = async () => {
+  /*const getNotifications = async () => {
     if (sessionStorage.getItem("apiToken")) {
       await axios
           .get(`${Config.baseURL}v1/transaction/getusertransactions/` + userData._id + `/0/5`, {
@@ -356,7 +356,7 @@ const Navbar = (props) => {
             console.log(err);
           });
     }
-  };
+  };*/
   if (!notificationsActivity.length) {
     // getNotifications().then(r => {});
   }
@@ -424,7 +424,7 @@ const Navbar = (props) => {
               <div className="d-lg-none d-sm-block mr-1">
                 <a
                   className="nav-link nav-dark-button"
-                  href="/#"
+                  href="#"
                   onClick={() => activeMode()}
                 >
                   {theme === true ? (
@@ -1128,7 +1128,7 @@ const Navbar = (props) => {
                   {sessionStorage.getItem("apiToken") ? (
                     <a
                       className="d-sm-none d-lg-block nav-link p-0 nav-dark-button mr-2 position-relative"
-                      href="/#"
+                      href="#"
                       onClick={() =>
                         setOpenProfileDropMenu(!openProfileDropMenu)
                       }
@@ -1325,7 +1325,7 @@ const Navbar = (props) => {
                   <a
                     className="nav-link nav-dark-button d-sm-none d-lg-block"
                     onClick={() => activeMode()}
-                    href={''}
+                    href={'#'}
                   >
                     {theme === true ? (
                       <svg

@@ -7,9 +7,9 @@ import ProfileLinks from "../Components/ProfileLinks";
 import LiveAuctions from "../Components/LiveAuctions";
 import TopCard from "../Components/TopCard";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
-import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
-import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
-import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
+// import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
+// import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
+// import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
 import { Config } from '../utils/config';           
 import EarthIcon from "../assets/img/icons/custom/earth.svg";
 import Activity from "./Activity";
@@ -93,8 +93,7 @@ const Profile = (props) => {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           }
-        }
-      )
+        })
       .then(response => {
         response.data.data.forEach((element) => {
           if (element.likedBy.includes(udata._id)) {
@@ -118,8 +117,7 @@ const Profile = (props) => {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           }
-        }
-      )
+        })
       .then(response => {
         // console.log('getuserlikedcollectionslist', response.data.data);
         response.data.data.forEach((element) => {
@@ -144,8 +142,7 @@ const Profile = (props) => {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           }
-        }
-      )
+        })
       .then(response => {
         response.data.data.forEach((element) => {
           if (element.likedBy.includes(udata._id)) {
@@ -161,6 +158,56 @@ const Profile = (props) => {
         console.log(err);
       });
   };
+  const userHiddenCollectible = async () => {
+    await axios
+        .get(`${Config.baseURL}v1/collectible/getuserhiddencollectiblelist/` + udata._id + '/0/100', {
+              data: {
+                user_id: udata._id
+              },
+              headers: {
+                Authorization: `Bearer ${apiToken}`,
+              }
+            })
+        .then(response => {
+          response.data.data.forEach((element) => {
+            if (element.likedBy.includes(udata._id)) {
+              element.like = true;
+            } else {
+              element.like = false;
+            }
+          });
+          setUserHiddenCollectibleList(response.data.data);
+          // console.log('userHiddenCollectibleList', response.data.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
+  const userOnSaleCollectible = async () => {
+    await axios
+        .get(`${Config.baseURL}v1/collectible/getuseronsalecollectiblelist/` + udata._id + '/0/100', {
+            data: {
+                user_id: udata._id
+            },
+            headers: {
+                Authorization: `Bearer ${apiToken}`,
+            }
+        })
+        .then(response => {
+            response.data.data.forEach((element) => {
+                if (element.likedBy.includes(udata._id)) {
+                    element.like = true;
+                } else {
+                    element.like = false;
+                }
+            });
+            setUserOnSaleCollectibleList(response.data.data);
+            // console.log('setUserOnSaleCollectibleList', response.data.data);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    };
   const userLikedCollectible = async () => {
     await axios
       .get(`${Config.baseURL}v1/collectible/getuserlikedcollectiblelist`, {
@@ -170,8 +217,7 @@ const Profile = (props) => {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           }
-        }
-      )
+        })
       .then(response => {
         response.data.data.forEach((element) => {
           if (element.likedBy.includes(udata._id)) {
@@ -196,8 +242,7 @@ const Profile = (props) => {
           headers: {
             Authorization: `Bearer ${apiToken}`,
           }
-        }
-      )
+        })
       .then(response => {
         response.data.data.forEach((element) => {
           if (element.likedBy.includes(udata._id)) {
@@ -213,22 +258,24 @@ const Profile = (props) => {
         console.log(err);
       });
   };
-  useEffect(() => {
+  useEffect(async () => {
     if (sessionStorage.getItem("apiToken")) {
-      axios
-        .get(`${Config.baseURL}v1/user/getUser`, {
-          headers: {
-            Authorization: `Bearer ${apiToken}`,
-          },
-        })
-        .then((res) => {
-          setUdata(res.data.data);
-        });
+      await axios
+          .get(`${Config.baseURL}v1/user/getUser`, {
+            headers: {
+              Authorization: `Bearer ${apiToken}`,
+            },
+          })
+          .then((res) => {
+            setUdata(res.data.data);
+          });
       userCollectibleListFunc().then(r => {});
       userCollectionListFunc().then(r => {});
       userLikedCollections().then(r => {});
       userLikedCollectible().then(r => {});
       userOwnedCollectible().then(r => {});
+      userHiddenCollectible().then(r => {});
+      userOnSaleCollectible().then(r => {});
       getFollowerUsers().then(r => {});
       getFollowingUsers().then(r => {});
     }
@@ -499,7 +546,7 @@ const Profile = (props) => {
                       {userOnSaleCollectibleList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                           <div className="row ">
-                            {userLikedCollectibleList.map((SingleCollectible, key) => (
+                            {userOnSaleCollectibleList.map((SingleCollectible, key) => (
                               <LiveAuctions
                                 isCollection={false}
                                 id={SingleCollectible._id}
@@ -507,11 +554,11 @@ const Profile = (props) => {
                                 liked={SingleCollectible.like}
                                 title={SingleCollectible.title}
                                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                                User1={topSellerUser1}
-                                User2={topSellerUser2}
-                                User3={topSellerUser3}
-                                WETH={SingleCollectible.price + ' WETH'}
-                                bid="Highest bid 1/1"
+                                User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                                User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                                User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
+                                WETH={SingleCollectible.price}
+                                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                               />
                             ))}
                           </div>
@@ -540,11 +587,11 @@ const Profile = (props) => {
                                 liked={SingleCollectible.like}
                                 title={SingleCollectible.title}
                                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                                User1={topSellerUser1}
-                                User3={topSellerUser3}
-                                User2={topSellerUser2}
-                                WETH={SingleCollectible.price + ' WETH'}
-                                bid="Highest bid 1/1"
+                                User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                                User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                                User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
+                                WETH={SingleCollectible.price}
+                                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                               />
                             ))}
                           </> : <>
@@ -575,11 +622,11 @@ const Profile = (props) => {
                                 liked={SingleCollectible.like}
                                 title={SingleCollectible.title}
                                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                                User1={topSellerUser1}
-                                User3={topSellerUser3}
-                                User2={topSellerUser2}
-                                WETH={SingleCollectible.price + ' WETH'}
-                                bid="Highest bid 1/1"
+                                User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                                User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                                User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
+                                WETH={SingleCollectible.price}
+                                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                               />
                             ))}
                           </div>
@@ -608,11 +655,6 @@ const Profile = (props) => {
                                 liked={SingleCollection.like}
                                 title={SingleCollection.title}
                                 heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
-                                User1={topSellerUser1}
-                                User2={topSellerUser2}
-                                User3={topSellerUser3}
-                                WETH={SingleCollection.price}
-                                bid="Highest bid 1/1"
                               />
                             ))}
                           </div>
@@ -641,11 +683,11 @@ const Profile = (props) => {
                                 liked={SingleCollectible.like}
                                 title={SingleCollectible.title}
                                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                                User1={topSellerUser1}
-                                User2={topSellerUser2}
-                                User3={topSellerUser3}
-                                WETH={SingleCollectible.price + ' WETH'}
-                                bid="Highest bid 1/1"
+                                User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                                User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                                User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
+                                WETH={SingleCollectible.price}
+                                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                               />
                             ))}
                           </div>
@@ -674,11 +716,6 @@ const Profile = (props) => {
                                 liked={SingleCollection.like}
                                 title={SingleCollection.title}
                                 heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
-                                User1={topSellerUser1}
-                                User2={topSellerUser2}
-                                User3={topSellerUser3}
-                                WETH="1.2 WETH"
-                                bid="Highest bid 1/1"
                               />
                             ))}
                           </div>
@@ -829,7 +866,7 @@ const Profile = (props) => {
                       {userHiddenCollectibleList.length > 0 ?
                         <div className="col-sm-12 d-flex justify-content-center flex-column text-center">
                           <div className="row ">
-                            {userLikedCollectibleList.map((SingleCollectible, key) => (
+                            {userHiddenCollectibleList.map((SingleCollectible, key) => (
                               <LiveAuctions
                                 isCollection={false}
                                 id={SingleCollectible._id}
@@ -837,11 +874,11 @@ const Profile = (props) => {
                                 liked={SingleCollectible.like}
                                 title={SingleCollectible.title}
                                 heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
-                                User1={topSellerUser1}
-                                User2={topSellerUser2}
-                                User3={topSellerUser3}
-                                WETH={SingleCollectible.price + ' WETH'}
-                                bid="Highest bid 1/1"
+                                User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                                User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                                User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
+                                WETH={SingleCollectible.price}
+                                bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                               />
                             ))}
                           </div>
