@@ -6,9 +6,9 @@ import { Config } from '../../utils/config';
 const BuyAuction = (props) => {
   const apiToken = sessionStorage.getItem("apiToken");
   const [day, setDay] = useState(0);
-  const [hour, setHour] = useState(0);
-  const [min, setMin] = useState(0);
-  const [seconds, setSeconds] = useState(4);
+  const [hour, setHour] = useState(2);
+  const [min, setMin] = useState(10);
+  const [seconds, setSeconds] = useState(44);
   const data = props;
   var length = data.props.bids.length;
   console.log(data.props);

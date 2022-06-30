@@ -282,7 +282,7 @@ const CreateCollectibleEdit = () => {
               <div
                 className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center"
                 style={{
-                  backgroundImage: 'url("' + udata.profile_img_url + '")',
+                  // backgroundImage: 'url("' + udata.profile_img_url + '")',
                   backgroundRepeat: 'round',
                 }}
               >
@@ -310,12 +310,12 @@ const CreateCollectibleEdit = () => {
                       style={{ cursor: 'pointer'}}
                     />
                   </label>
-                  {/*<br />*/}
-                  {/*{udata == null
+                  <br />
+                  {udata == null
                     ? ""
                     : typeof udata.profile_img_url == "object"
                     ? udata.profile_img_url.name.split("/")[5]
-                    : udata.profile_img_url ? udata.profile_img_url.split("/")[5] : udata.profile_img_url }*/}
+                    : udata.profile_img_url ? udata.profile_img_url.split("/")[5] : udata.profile_img_url }
                 </div>
               </div>
 
@@ -327,7 +327,7 @@ const CreateCollectibleEdit = () => {
               <div
                   className="upload-file-container border-radius color-gray d-flex text-center justify-content-center flex-column align-items-center"
                   style={{
-                    backgroundImage: 'url("' + udata.cover_img_url + '")',
+                    // backgroundImage: 'url("' + udata.cover_img_url + '")',
                     backgroundRepeat: 'round',
                   }}
               >
@@ -351,6 +351,12 @@ const CreateCollectibleEdit = () => {
                       style={{ cursor: 'pointer'}}
                     />
                   </label>
+                  <br />
+                  {udata == null
+                    ? ""
+                    : typeof udata.cover_img_url == "object"
+                    ? udata.cover_img_url.name.split("/")[5]
+                    : udata.cover_img_url ? udata.cover_img_url.split("/")[5] : udata.cover_img_url}
                 </div>
               </div>
             </div>
