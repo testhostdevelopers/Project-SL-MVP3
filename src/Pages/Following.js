@@ -101,7 +101,7 @@ const Following = () => {
         if (SingleData.collection_id.title === SingleCollection) {
           collectionsList[key].show = true;
         } else {
-          // collectionsList[key].show = false;
+          collectionsList[key].show = false;
         }
       });
     });
@@ -125,12 +125,12 @@ const Following = () => {
     }
   }
   if (filtersale.length) {
-    console.log('filtersale', filtersale);
+    console.log('Sale type 1', filtersale);
     collectionsList.forEach((SingleData, key) => {
       collectionsList[key].show = filtersale.includes(SingleData.price_type);
     });
   } else if (filtersale === []) {
-    console.log('filtersale', filtersale);
+    console.log('Sale type 2', filtersale);
     /*collectionsList.forEach((SingleData, key) => {
       collectionsList[key].show = true;
     });*/

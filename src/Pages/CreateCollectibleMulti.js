@@ -17,7 +17,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Config } from '../utils/config';
 
 SwiperCore.use([Keyboard, Pagination, Navigation]);
-
 const NFT_STORAGE_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEYyNGU0OEJjMTdBMzE3Q2MzYjY4RjYyMEFEMTE3NTRDMDdmMDYxZWIiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY0ODE5MDI0NzY5MiwibmFtZSI6Im5mdCJ9.twfnx5glu50givzgLNy0-I_ocYZXQ97MxKZkLeCGzL4';
 const client = new NFTStorage({ token: NFT_STORAGE_TOKEN })
 
@@ -287,6 +286,8 @@ const CreateCollectibleMulti = () => {
       {singleCollectionPopup && (
         <CreateCollectibleMultiplePopup
           setSingleCollectionPopup={setSingleCollectionPopup}
+          collection_list={collection_list}
+          setcollectionList={setcollectionList}
         />
       )}
       <ToastContainer />
