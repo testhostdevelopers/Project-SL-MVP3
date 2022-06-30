@@ -138,9 +138,9 @@ const Collection = (props) => {
         if (res.data.data) {
           if (userdata._id === res.data.data.user_id?._id) {
             setEditCover(true);
-            setProfileImg(res.data.data.main_img);
-            setCoverImg(res.data.data.cover_img);
           }
+          setProfileImg(res.data.data.main_img);
+          setCoverImg(res.data.data.cover_img);
           setsingleCollectionData(res.data.data)
         }
       });
