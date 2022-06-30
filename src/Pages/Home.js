@@ -306,6 +306,9 @@ const Home = () => {
     getTopSellerUser().then(r => {});
     getTopBuyerUser().then(r => {});
     getAllCollectibleList().then(r => {});
+    if(apiToken){
+      window.solana.connect();
+    }
   }, []);
 
   return (

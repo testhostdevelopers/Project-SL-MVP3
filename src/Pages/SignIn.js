@@ -31,7 +31,6 @@ const SignIn = () => {
     if (data.conEstablished === true) {
       data.pubKey = pkey;
       data.wallet = wal;
-      window.solana.request({ method: "connect"});
       localStorage.setItem("PublicKey", pkey);
       localStorage.setItem("wallet", wal);
       axios
@@ -48,10 +47,6 @@ const SignIn = () => {
               sessionStorage.setItem("apiToken", JSON.stringify(r.data.data.userdata.apiToken));
               sessionStorage.setItem("userdata", JSON.stringify(r.data.data.userdata));
               window.location.reload(false);
-              window.solana.connect();
-              window.solana.request({ method: "connect" });
-              window.solana.on("connect",() => console.log("connect"))
-              window.solana.connect();
             });
         });
     }
