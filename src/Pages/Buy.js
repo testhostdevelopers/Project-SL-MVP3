@@ -307,7 +307,6 @@ const Buy = () => {
                         </ul>
                       </div>
                     </div>
-
                     <div
                       className="tab-pane fade"
                       id="pills-home"

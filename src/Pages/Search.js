@@ -107,7 +107,6 @@ const Search = () => {
           <div className="col-sm-12">
             <main className="profile-tab-menu">
               <h2 className="mb-3">Search results for “{keyword}”</h2>
-
               <Tabs defaultActiveKey="3" centered>
                 <TabPane tab="Collections" key="1" style={{ color: "gray" }}>
                   <div className="topSeller">
@@ -286,7 +285,6 @@ const Search = () => {
                           </svg>
                         </button>
                       </div>
-
                       <div className="topSellerContent following-profile-topSellerContent">
                         <div className="row mt-5 mb-5">
                           <div className="d-flex col-lg-12 activity">

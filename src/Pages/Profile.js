@@ -160,7 +160,7 @@ const Profile = (props) => {
   };
   const userHiddenCollectible = async () => {
     await axios
-        .get(`${Config.baseURL}v1/collectible/getuserhiddencollectiblelist/` + udata._id + '/0/100', {
+        .get(`${Config.baseURL}v1/collectible/getuserhiddencollectiblelist/` + udata._id + '/0/12', {
               data: {
                 user_id: udata._id
               },

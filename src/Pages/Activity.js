@@ -6,8 +6,6 @@ import ActivityCard from "../assets/img/custom/activity-cardonly.png";
 import userImg from "../assets/img/icons/custom/userProfilePictures.png";
 import axios from "axios";
 import { Config } from '../utils/config';
-// import { Tabs } from "antd";
-// const { TabPane } = Tabs;
 
 const Activity = (props) => {
   let {page = 'Activity', collectionId = '', userId = ''} = props;

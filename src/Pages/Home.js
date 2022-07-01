@@ -9,13 +9,13 @@ import SwiperCore, {
   Autoplay,
 } from "swiper/core";
 import ArtWork from "../Components/ArtWork";
-import artWorkWeekOne from "../assets/img/custom/artWorkWeekOne.png";
+// import artWorkWeekOne from "../assets/img/custom/artWorkWeekOne.png";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 import artWorkWeek2 from "../assets/img/custom/artWorkWeek2.png";
 import artWorkWeek3 from "../assets/img/custom/artWorkWeek3.png";
 import artWorkWeek4 from "../assets/img/custom/artWorkWeek4.png";
-import artWorkWeek5 from "../assets/img/custom/artWorkWeek5.png";
-import artWorkWeek6 from "../assets/img/custom/artWorkWeek6.png";
+// import artWorkWeek5 from "../assets/img/custom/artWorkWeek5.png";
+// import artWorkWeek6 from "../assets/img/custom/artWorkWeek6.png";
 import topSeller2 from "../assets/img/custom/topSeller2.png";
 import topSeller3 from "../assets/img/custom/topSeller3.png";
 import topSeller4 from "../assets/img/custom/topSeller4.png";
@@ -306,9 +306,9 @@ const Home = () => {
     getTopSellerUser().then(r => {});
     getTopBuyerUser().then(r => {});
     getAllCollectibleList().then(r => {});
-    if(apiToken){
-      window.solana.connect();
-    }
+    // if(apiToken){
+    //   window.solana.connect();
+    // }
   }, []);
 
   return (
