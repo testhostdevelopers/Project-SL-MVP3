@@ -19,7 +19,7 @@ const Activity = (props) => {
   const [offset, setOffset] = useState(0);
   const limit = 10;
   const [showTransactionData, setShowTransactionData] = useState(true);
-  const [LoadMore, setShowLoadMore] = useState(false);
+  const [LoadMore, setShowLoadMore] = useState(true);
   const [filterTransactionData, setFilterTransactionData] = useState([]);
   const resetFilterValue = async () => {
     findFilter('All');
