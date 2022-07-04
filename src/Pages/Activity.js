@@ -15,7 +15,7 @@ const Activity = (props) => {
   const [filterValue, setFilterValue] = useState("All");
   const error_data = "";
   const [all_filter, setAllFilter] = useState([]);
-  const [transactionData, setTransactionData] = useState([]);
+  const [allTransactionData, setAllTransactionData] = useState([]);
   const [offset, setOffset] = useState(0);
   const limit = 10;
   const [showTransactionData, setShowTransactionData] = useState(true);
@@ -44,15 +44,25 @@ const Activity = (props) => {
   const gettransactions = async (page) => {
     // console.log('page', page);
     let API_URL = '';
-    if (page === 'Activity') {
-      API_URL = `${Config.baseURL}v1/transaction/gettransactions/` + offset + '/' + limit;
+    if (filterValue == "All") {
+      if (page === 'Activity') {
+        API_URL = `${Config.baseURL}v1/transaction/gettransactions/` + offset + '/' + limit;
+      } else if (page === 'User') {
+        API_URL = `${Config.baseURL}v1/transaction/getusertransactions/` + userId + `/` + offset + '/' + limit;
+      } else if (page === 'Collection') {
+        API_URL = `${Config.baseURL}v1/transaction/getcollectiontransactions/` + collectionId + `/` + offset + '/' + limit;
+      }
+    } else {
+      // console.log('all_filter title', all_filter.find(c => c.title == filterValue).title);
+      if (page === 'Activity') {
+        API_URL = `${Config.baseURL}v1/transaction/getfiltertransactions/` + all_filter.find(c => c.title == filterValue)._id + '/' + filterTransactionData.length + '/' + limit;
+      } else if (page === 'User') {
+        API_URL = `${Config.baseURL}v1/transaction/getuserfiltertransactions/` + all_filter.find(c => c.title == filterValue)._id + '/' + userId + `/` + filterTransactionData.length + '/' + limit;
+      } else if (page === 'Collection') {
+        API_URL = `${Config.baseURL}v1/transaction/getcollectionfiltertransactions/` + all_filter.find(c => c.title == filterValue)._id + '/' + collectionId + `/` + filterTransactionData.length + '/' + limit;
+      }
     }
-    else if (page === 'User') {
-      API_URL = `${Config.baseURL}v1/transaction/getusertransactions/` + userId + `/` + offset + '/' + limit;
-    }
-    else if (page === 'Collection') {
-      API_URL = `${Config.baseURL}v1/transaction/getcollectiontransactions/` + collectionId + `/` + offset + '/' + limit;
-    }
+    // console.log('API_URL', API_URL);
     if (API_URL.length) {
       await axios
         .get(API_URL, {
@@ -63,18 +73,10 @@ const Activity = (props) => {
             Authorization: `Bearer ${apiToken}`,
           }
         })
-        .then(response => {
-          setOffset(offset + parseInt(response.data.data.length))
-          if (offset === 0) {
-            setTransactionData(response.data.data);
-          } else {
-            setTransactionData(transactionData => [...transactionData, ...response.data.data]);
-            // console.log('transactionData', transactionData);
-          }
-          if(parseInt(response.data.data.length) === limit) {
-            setShowLoadMore(true);
-          } else {
-            setShowLoadMore(false);
+        .then((response) => {
+          if (response.data.response_code === "API_SUCCESS") {
+            setOffset(offset + parseInt(response.data.data.length));
+            setAllTransactionData(allTransactionData => [...allTransactionData, ...response.data.data]);
           }
         })
         .catch(err => {
@@ -83,15 +85,19 @@ const Activity = (props) => {
     }
   };
   const findFilter = (key) => {
+    // console.log('findFilter func ', key);
     setFilterValue(key);
+    // setAllTransactionData(getUniqueListBy(allTransactionData, '_id'));
     if (key === 'All') {
       setShowTransactionData(true);
     } else {
       setShowTransactionData(false);
       let arr = [];
-      transactionData.forEach((SingleData) => {
+      // console.log('allTransactionData', allTransactionData.length);
+      allTransactionData.forEach((SingleData) => {
+        // console.log('SingleData', SingleData.filter.title);
+        // console.log('key', key);
         if (SingleData.filter.title === key) {
-          // console.log('SingleData', SingleData.filter.title);
           arr.push(SingleData);
         }
       });
@@ -99,9 +105,9 @@ const Activity = (props) => {
     }
   };
   const loadMore = async () => {
-    // console.log('offset', offset, 'limit', limit);
-    await gettransactions(page);
-    findFilter(filterValue);
+    await gettransactions(page).then(() => {
+      findFilter(filterValue);
+    });
   };
   const makeTitle = (activity) => {
     let title = '';
@@ -209,7 +215,7 @@ const Activity = (props) => {
                         </h5>
                         {showTransactionData > 0 ?
                           <>
-                            {transactionData.map((single) => (
+                            {allTransactionData.map((single) => (
                               <ActivityNumberCard
                                 activitynumbercardimg={img(single)}
                                 FillLabel={FillLabel}

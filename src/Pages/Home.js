@@ -182,7 +182,7 @@ const Home = () => {
     await axios
         .get(`${Config.baseURL}v1/dashboard/getdashboard`)
         .then(response => {
-          console.log('getDashboard', response.data);
+          // console.log('getDashboard', response.data);
           if (response.data.response_code === "API_SUCCESS") {
             response.data.data.forEach((element) => {
               if (element.artType === "collectible") {
