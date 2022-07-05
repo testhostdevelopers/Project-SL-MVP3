@@ -3,6 +3,7 @@ import {motion} from "framer-motion";
 import closeicon from "../../assets/img/custom/close.svg";
 import axios from "axios";
 import { Config } from '../../utils/config';
+import {toast} from "react-toastify";
 
 const CreateCollectibleMultiplePopup = (props) => {
   const variants = {
@@ -34,6 +35,10 @@ const CreateCollectibleMultiplePopup = (props) => {
     if (apiToken) {
       // console.log(collectibleData);
       event.preventDefault();
+      if (collectibleData.main_img === undefined) {
+        toast("Please Select Image");
+        return;
+      }
       const formData = new FormData();
       // formData.append("file", selectedFile);
       formData.append("title", collectibleData.title);
@@ -103,7 +108,7 @@ const CreateCollectibleMultiplePopup = (props) => {
               </h6>
               <p className="color-gray">
                 <small>
-                  We recommend an image of atleast 400x400. Gifs work too.
+                  We recommend an image of at least 400x400. Gifs work too.
                 </small>
               </p>
               <input
@@ -209,6 +214,7 @@ const CreateCollectibleMultiplePopup = (props) => {
               <input
                   type="text"
                   placeholder="Enter your custom URL"
+                  required={true}
                   onChange={(e) => {
                     setCollectibleData({...collectibleData, custom_url: makeURL(e.target.value)});
                     // console.log('collectibleData', collectibleData);
