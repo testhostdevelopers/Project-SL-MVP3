@@ -35,7 +35,7 @@ import HotBids from "../Components/HotBids";
 import QuickExplore from "../Components/Tabs/QuickExplore";
 import axios from "axios";
 import { Config } from '../utils/config';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 // const { TabPane } = Tabs;
 // const { Option } = Select;
 
@@ -549,7 +549,11 @@ const Home = () => {
             <h3 className="main-title">
               <b>Artwork of the week</b>
             </h3>
-            <button className="btn-primary-outline">View All</button>
+            <button className="btn-primary-outline">
+              <Link to="following">
+                View All
+              </Link>
+            </button>
           </div>
 
           <div className="row mt-5">
@@ -567,7 +571,9 @@ const Home = () => {
               />
               <div className="art-work-description-container">
                 <h4 className="mb-0">
-                  <b>{dashboardArtWork[0]?.collectible_id?.title}</b>
+                  <Link to={'/buy/' + dashboardArtWork[0]?.collectible_id?._id}>
+                    <b>{dashboardArtWork[0]?.collectible_id?.title}</b>
+                  </Link>
                 </h4>
                 <small>Original Series</small>
               </div>
@@ -578,6 +584,7 @@ const Home = () => {
                 {dashboardArtWork.slice(1,7) .map((artwork, key) => (
                   <div key={key} className="art-list">
                     <ArtWork
+                      id={artwork.collectible_id._id}
                       title={artwork.collectible_id.title}
                       artworkimg={'https://' + artwork.collectible_id.img_path}
                       setOpenImage={(imgFlag) => {

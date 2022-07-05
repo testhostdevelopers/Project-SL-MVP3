@@ -1,7 +1,7 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function ArtWork({ title, artworkimg, setOpenImage }) {
+export default function ArtWork({ id='', title, artworkimg, setOpenImage }) {
   return (
     <div className="position-relative mr-3 artwork-item">
       <img
@@ -15,7 +15,12 @@ export default function ArtWork({ title, artworkimg, setOpenImage }) {
       />
       <div className="art-work-description-container">
         <small>
-          <b>{title}</b>
+            { id.length ?
+                <Link to={'/buy/' + id}>
+                    <b>{title}</b>
+                </Link> :
+                <b>{title}</b>
+            }
         </small>
       </div>
     </div>
