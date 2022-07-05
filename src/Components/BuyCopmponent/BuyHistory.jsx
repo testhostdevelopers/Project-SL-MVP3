@@ -5,7 +5,7 @@ import axios from "axios";
 import artWorkWeek1 from "../../../src/assets/img/custom/artWorkWeek1.png";
 
 const BuyHistory = (props) => {
-  let {page = 'Activity', collectibleId = '', userId = ''} = props;
+  let {collectibleId = ''} = props;
   const apiToken = sessionStorage.getItem("apiToken");
   const userData = JSON.parse(sessionStorage.getItem("userdata")) || {};
   const [historyData, setHistory] = useState([]);
