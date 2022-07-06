@@ -8,36 +8,15 @@ import SwiperCore, {
   Navigation,
   Autoplay,
 } from "swiper/core";
+import axios from "axios";
+import { Config } from '../utils/config';
+import { Link } from "react-router-dom";
 import ArtWork from "../Components/ArtWork";
-// import artWorkWeekOne from "../assets/img/custom/artWorkWeekOne.png";
-import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
-import artWorkWeek2 from "../assets/img/custom/artWorkWeek2.png";
-import artWorkWeek3 from "../assets/img/custom/artWorkWeek3.png";
-import artWorkWeek4 from "../assets/img/custom/artWorkWeek4.png";
-// import artWorkWeek5 from "../assets/img/custom/artWorkWeek5.png";
-// import artWorkWeek6 from "../assets/img/custom/artWorkWeek6.png";
-import topSeller2 from "../assets/img/custom/topSeller2.png";
-import topSeller3 from "../assets/img/custom/topSeller3.png";
-import topSeller4 from "../assets/img/custom/topSeller4.png";
-import topSeller5 from "../assets/img/custom/topSeller5.png";
-import topSeller6 from "../assets/img/custom/topSeller6.png";
-import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
-import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
-import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
-import topSellerUser4 from "../assets/img/custom/topSellerUser4.png";
-import topSellerUser5 from "../assets/img/custom/topSellerUser5.png";
-import topSellerUser6 from "../assets/img/custom/topSellerUser6.png";
-import topSellerUser7 from "../assets/img/custom/topSellerUser7.png";
 import FullScreenImage from "../Components/Popup/FullScreenImage";
 import TopCard from "../Components/TopCard";
 import LiveAuctions from "../Components/LiveAuctions";
-import HotBids from "../Components/HotBids";
 import QuickExplore from "../Components/Tabs/QuickExplore";
-import axios from "axios";
-import { Config } from '../utils/config';
-import {Link} from "react-router-dom";
-// const { TabPane } = Tabs;
-// const { Option } = Select;
+import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 
 SwiperCore.use([Keyboard, Pagination, Navigation, Autoplay]);
 
@@ -58,8 +37,7 @@ const Home = () => {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
-
-  const top_seller = [
+  const top_seller_combo = [
     "Today",
     "This week",
     "This month",
@@ -67,122 +45,11 @@ const Home = () => {
     "Last 1 year",
   ];
 
-  const slide_data = [
-    {
-      top_cover: topSeller6,
-      top_user: topSellerUser3,
-      top_name: "Courtney Henry",
-      top_price: "$1,403",
-    },
-    {
-      top_cover: topSeller2,
-      top_user: topSellerUser4,
-      top_name: "Courtney Henry",
-      top_price: "$3,403",
-    },
-    {
-      top_cover: topSeller3,
-      top_user: topSellerUser5,
-      top_name: "Courtney Henry",
-      top_price: "$5,403",
-    },
-    {
-      top_cover: topSeller4,
-      top_user: topSellerUser6,
-      top_name: "Courtney Henry",
-      top_price: "$3,403",
-    },
-    {
-      top_cover: topSeller5,
-      top_user: topSellerUser7,
-      top_name: "Courtney Henry",
-      top_price: "$4,403",
-    },
-  ];
-
-  const slide_hot_bid = [
-    {
-      cover_bide: artWorkWeek2,
-      bide_heartcount: "23",
-      bide_time: "3H : 15M : 50S left",
-      bide_name: "Memescalf#782021",
-      bide_weth: "1.3 WETH",
-      bide_bid: "Highest bid 1/1",
-    },
-    {
-      cover_bide: artWorkWeek3,
-      bide_heartcount: "25",
-      bide_time: "7H : 13M : 50S left",
-      bide_name: "Memescalf#782022",
-      bide_weth: "1.6 WETH",
-      bide_bid: "Highest bid 1/16",
-    },
-    {
-      cover_bide: artWorkWeek1,
-      bide_heartcount: "26",
-      bide_time: "8H : 20M : 50S left",
-      bide_name: "Memescalf#782023",
-      bide_weth: "1.2 WETH",
-      bide_bid: "Highest bid 6/6",
-    },
-    {
-      cover_bide: artWorkWeek4,
-      bide_heartcount: "26",
-      bide_time: "8H : 40M : 50S left",
-      bide_name: "Memescalf#782022",
-      bide_weth: "1.2 WETH",
-      bide_bid: "Highest bid 6/5",
-    },
-  ];
-
-  const slide_live_auction = [
-    {
-      cover_img: artWorkWeek1,
-      auction_name: "Memescalf#782021",
-      h_count: "24",
-      auc_user1: topSellerUser1,
-      auc_user2: topSellerUser2,
-      auc_user3: topSellerUser3,
-      auction_WETH: "1.2 WETH",
-      auction_bid: "Highest bid 1/1",
-    },
-    {
-      cover_img: artWorkWeek2,
-      auction_name: "Memescalf#782022",
-      h_count: "27",
-      auc_user1: topSellerUser1,
-      auc_user2: topSellerUser2,
-      auc_user3: topSellerUser3,
-      auction_WETH: "1.3 WETH",
-      auction_bid: "Highest bid 1/1",
-    },
-    {
-      cover_img: artWorkWeek3,
-      auction_name: "Memescalf#782021",
-      h_count: "30",
-      auc_user1: topSellerUser1,
-      auc_user2: topSellerUser2,
-      auc_user3: topSellerUser3,
-      auction_WETH: "1.7 WETH",
-      auction_bid: "Highest bid 1/1",
-    },
-    {
-      cover_img: artWorkWeek4,
-      auction_name: "Memescalf#782022",
-      h_count: "36",
-      auc_user1: topSellerUser1,
-      auc_user2: topSellerUser2,
-      auc_user3: topSellerUser3,
-      auction_WETH: "1.6 WETH",
-      auction_bid: "Highest bid 1/1",
-    },
-  ];
-
   const getDashboard = async () => {
     await axios
         .get(`${Config.baseURL}v1/dashboard/getdashboard`)
         .then(response => {
-          console.log('getDashboard', response.data);
+          // console.log('getDashboard', response.data);
           if (response.data.response_code === "API_SUCCESS") {
             response.data.data.forEach((element) => {
               if (element.artType === "collectible") {
@@ -242,9 +109,20 @@ const Home = () => {
           Authorization: `Bearer ${apiToken}`,
         }
       })
-      .then(response => {
+      .then(async response => {
         if (response.data.data) {
-          setTopBuyerUser([...response.data.data]);
+          if (apiToken) {
+            await response.data.data.forEach((element) => {
+              if (element.followers.includes(userData._id)) {
+                element.isImFollowing = true;
+              } else {
+                element.isImFollowing = false;
+              }
+            });
+            setTopBuyerUser([...response.data.data]);
+          } else {
+            setTopBuyerUser([...response.data.data]);
+          }
         }
       })
       .catch(err => {
@@ -261,9 +139,20 @@ const Home = () => {
           Authorization: `Bearer ${apiToken}`,
         }
       })
-      .then(response => {
+      .then(async response => {
         if (response.data.data) {
-          setTopSellerUser([...response.data.data]);
+          if (apiToken) {
+            await response.data.data.forEach((element) => {
+              if (element.followers.includes(userData._id)) {
+                element.isImFollowing = true;
+              } else {
+                element.isImFollowing = false;
+              }
+            });
+            setTopSellerUser([...response.data.data]);
+          } else {
+            setTopSellerUser([...response.data.data]);
+          }
         }
       })
       .catch(err => {
@@ -314,6 +203,8 @@ const Home = () => {
   return (
     <>
       {openImage && <FullScreenImage setOpenImage={setOpenImage} Image={openImagePath} />}
+
+      {/* Dashboard Div 4 Slides*/}
       <motion.section
         initial="hidden"
         animate="visible"
@@ -538,6 +429,7 @@ const Home = () => {
         </div>
       </motion.section>
 
+      {/* Artwork of the week Section */}
       <motion.section
         initial="hidden"
         animate="visible"
@@ -549,7 +441,11 @@ const Home = () => {
             <h3 className="main-title">
               <b>Artwork of the week</b>
             </h3>
-            <button className="btn-primary-outline">View All</button>
+            <button className="btn-primary-outline">
+              <Link to="following">
+                View All
+              </Link>
+            </button>
           </div>
 
           <div className="row mt-5">
@@ -567,9 +463,11 @@ const Home = () => {
               />
               <div className="art-work-description-container">
                 <h4 className="mb-0">
-                  <b>{dashboardArtWork[0]?.collectible_id?.title}</b>
+                  <Link to={'/buy/' + dashboardArtWork[0]?.collectible_id?._id}>
+                    <b>{dashboardArtWork[0]?.collectible_id?.title}</b>
+                  </Link>
                 </h4>
-                <small>Original Series</small>
+                <small>{dashboardArtWork[0]?.category}</small>
               </div>
             </div>
 
@@ -578,6 +476,7 @@ const Home = () => {
                 {dashboardArtWork.slice(1,7) .map((artwork, key) => (
                   <div key={key} className="art-list">
                     <ArtWork
+                      id={artwork.collectible_id._id}
                       title={artwork.collectible_id.title}
                       artworkimg={'https://' + artwork.collectible_id.img_path}
                       setOpenImage={(imgFlag) => {
@@ -593,6 +492,7 @@ const Home = () => {
         </div>
       </motion.section>
 
+      {/* Top Sellers Section */}
       <motion.section
         initial="hidden"
         animate="visible"
@@ -605,7 +505,7 @@ const Home = () => {
               <b>Top Sellers</b>
             </h3>
             <Select className="section-select-filter" defaultValue="day">
-              {top_seller.map((x, y) => (
+              {top_seller_combo.map((x, y) => (
                 <Select.Option key={y}>{x}</Select.Option>
               ))}
             </Select>
@@ -621,6 +521,8 @@ const Home = () => {
                   title={top_seller_profile.display_name}
                   confirmation={top_seller_profile.verified}
                   id={top_seller_profile._id}
+                  follow={top_seller_profile.followersCount + ' followers'}
+                  btnname={top_seller_profile.isImFollowing ? "Unfollow" : "Follow"}
                 />
               ))}
             </div>
@@ -628,6 +530,7 @@ const Home = () => {
         </div>
       </motion.section>
 
+      {/* Top Buyers Section */}
       <motion.section
         initial="hidden"
         animate="visible"
@@ -640,7 +543,7 @@ const Home = () => {
               <b>Top Buyers</b>
             </h3>
             <Select className="section-select-filter" defaultValue="day">
-              {top_seller.map((x, y) => (
+              {top_seller_combo.map((x, y) => (
                 <Select.Option key={y}>{x}</Select.Option>
               ))}
             </Select>
@@ -648,14 +551,16 @@ const Home = () => {
 
           <div className="topSellerContent mt-5">
             <div className="d-flex">
-              {topBuyerUser.map((top_seller_profile, key) => (
+              {topBuyerUser.map((top_buyer_profile, key) => (
                 <TopCard
-                  key={top_seller_profile._id}
-                  topcoverimg={top_seller_profile.cover_img_url}
-                  topuserimg={top_seller_profile.profile_img_url}
-                  title={top_seller_profile.display_name}
-                  confirmation={top_seller_profile.verified}
-                  id={top_seller_profile._id}
+                  key={top_buyer_profile._id}
+                  topcoverimg={top_buyer_profile.cover_img_url}
+                  topuserimg={top_buyer_profile.profile_img_url}
+                  title={top_buyer_profile.display_name}
+                  confirmation={top_buyer_profile.verified}
+                  id={top_buyer_profile._id}
+                  follow={top_buyer_profile.followersCount + ' followers'}
+                  btnname={top_buyer_profile.isImFollowing ? "Unfollow" : "Follow"}
                 />
               ))}
             </div>
@@ -663,6 +568,7 @@ const Home = () => {
         </div>
       </motion.section>
 
+      {/* Hot Bids Section */}
       <motion.section
         initial="hidden"
         animate="visible"
@@ -697,6 +603,7 @@ const Home = () => {
         </div>
       </motion.section>
 
+      {/* Hot Bids Mobile */}
       <motion.section
         initial="hidden"
         animate="visible"
@@ -715,16 +622,21 @@ const Home = () => {
             slidesPerView={1}
             navigation={true}
           >
-            {slide_hot_bid.map((bide_desk, key) => (
+            {liveAuctionList.map((SingleCollectible, key) => (
               <SwiperSlide>
-                <HotBids
-                  key={bide_desk._id}
-                  Coverimg={bide_desk.cover_bide}
-                  heartcount={bide_desk.bide_heartcount}
-                  time={bide_desk.bide_time}
-                  title={bide_desk.bide_name}
-                  WETH={bide_desk.bide_weth}
-                  bid={bide_desk.bide_bid}
+                <LiveAuctions
+                    key={SingleCollectible._id}
+                    isCollection={false}
+                    id={SingleCollectible._id}
+                    Coverimg={SingleCollectible.img_path?.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
+                    liked={SingleCollectible.like}
+                    title={SingleCollectible.title}
+                    heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                    User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                    User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                    User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
+                    WETH={SingleCollectible.price}
+                    bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                   isOpenInProfile={false}
                 />
               </SwiperSlide>
@@ -733,6 +645,7 @@ const Home = () => {
         </div>
       </motion.section>
 
+      {/* Live Auction Section */}
       <motion.section
         initial="hidden"
         animate="visible"
@@ -767,6 +680,7 @@ const Home = () => {
         </div>
       </motion.section>
 
+      {/* Live Auction Section Mobile */}
       <motion.section
         initial="hidden"
         animate="visible"
@@ -785,18 +699,21 @@ const Home = () => {
             slidesPerView={1}
             navigation={true}
           >
-            {slide_live_auction.map((live_a, key) => (
+            {liveAuctionList.map((SingleCollectible, key) => (
               <SwiperSlide>
                 <LiveAuctions
-                  key={live_a._id}
-                  Coverimg={live_a.cover_img}
-                  title={live_a.auction_name}
-                  heartcount={live_a.h_count}
-                  User1={live_a.auc_user1}
-                  User2={live_a.auc_user2}
-                  User3={live_a.auc_user3}
-                  WETH={live_a.auction_WETH}
-                  bid={live_a.auction_bid}
+                    key={SingleCollectible._id}
+                    isCollection={false}
+                    id={SingleCollectible._id}
+                    Coverimg={SingleCollectible.img_path?.indexOf('nftstorage.link') > -1 ? 'https://' + SingleCollectible.img_path : artWorkWeek1}
+                    liked={SingleCollectible.like}
+                    title={SingleCollectible.title}
+                    heartcount={SingleCollectible.likes ? SingleCollectible.likes : 0}
+                    User1={SingleCollectible.bids[0]?.user_id?.profile_img_url}
+                    User2={SingleCollectible.bids[1]?.user_id?.profile_img_url}
+                    User3={SingleCollectible.bids[2]?.user_id?.profile_img_url}
+                    WETH={SingleCollectible.price}
+                    bid={Math.max(...SingleCollectible.bids.map(o => o.amount)) == "-Infinity" ? "No Bid" : "Highest bid " + Math.max(...SingleCollectible.bids.map(o => o.amount))}
                   isOpenInProfile={false}
                 />
               </SwiperSlide>
@@ -805,6 +722,7 @@ const Home = () => {
         </div>
       </motion.section>
 
+      {/* Hot Collections Section Desktop*/}
       <motion.section
           initial="hidden"
           animate="visible"
@@ -833,6 +751,7 @@ const Home = () => {
         </div>
       </motion.section>
 
+      {/* Hot Collections Section Mobile*/}
       <motion.section
         initial="hidden"
         animate="visible"
@@ -852,15 +771,15 @@ const Home = () => {
               slidesPerView={1}
               navigation={true}
             >
-              {slide_data.map((collr_, key) => (
+              {hotCollectionsList.map((SingleCollection, key) => (
                 <SwiperSlide>
-                  <TopCard
-                    key={collr_._id}
-                    topcoverimg={collr_.top_cover}
-                    topuserimg={collr_.top_user}
-                    title={collr_.top_name}
-                    id={collr_.top_name}
-                    Price={collr_.top_price}
+                  <LiveAuctions
+                    isCollection={true}
+                    id={SingleCollection._id}
+                    Coverimg={SingleCollection.main_img.indexOf('https://storage.googleapis.com') > -1 ? SingleCollection.main_img : artWorkWeek1}
+                    liked={SingleCollection.like}
+                    title={SingleCollection.title}
+                    heartcount={SingleCollection.likes ? SingleCollection.likes : 0}
                   />
                 </SwiperSlide>
               ))}
@@ -869,6 +788,7 @@ const Home = () => {
         </div>
       </motion.section>
 
+      {/* Quick Explore Section*/}
       <motion.section
         initial="hidden"
         animate="visible"
@@ -881,12 +801,12 @@ const Home = () => {
               <h3>
                 <b>Quick Explore</b>
               </h3>
-              <button className="m-0 btn-primary-outline-responsive d-lg-none">
-                {/* <svg width="15" height="10" viewBox="0 0 15 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fillRule="evenodd" clipRule="evenodd" d="M0 0V1.66667H15V0H0ZM5.83333 10H9.16667V8.33333H5.83333V10ZM12.5 5.83333H2.5V4.16667H12.5V5.83333Z" fill="black" />
-                                </svg> */}
+              {/*<button className="m-0 btn-primary-outline-responsive d-lg-none">
+                 <svg width="15" height="10" viewBox="0 0 15 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M0 0V1.66667H15V0H0ZM5.83333 10H9.16667V8.33333H5.83333V10ZM12.5 5.83333H2.5V4.16667H12.5V5.83333Z" fill="black" />
+                  </svg>
                 view all
-              </button>
+              </button>*/}
             </div>
 
             <div className="col-sm-12 col-lg-8 order-sm-3 order-2 d-flex align-items-center">
@@ -1136,7 +1056,6 @@ const Home = () => {
         {/*<div className="w-100 mt-5 pl-3 pr-3">
           <div className="view-all-items">
             <button className="btn-primary-outline w-100"><b>View all</b></button>
-
           </div>
         </div>*/}
       </motion.section>

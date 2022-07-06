@@ -40,9 +40,7 @@ const CreateCollectibleMulti = () => {
   let [price, setPrice] = useState(0);
   let [collection_list, setcollectionList] = useState([]);
   const [filesize, setfilesize] = useState("");
-  const [changetext, setChangetext] = useState(
-    "Upload file to preview your brand new NFT"
-  );
+  const [changetext, setChangetext] = useState("Upload file to preview your brand new NFT");
   const profileImage = React.useRef(null);
   const profileUploader = React.useRef(null);
   const collectionListFunc = async () => {
@@ -207,7 +205,6 @@ const CreateCollectibleMulti = () => {
 
   const handleSubmit = async () => {
     if (apiToken) {
-      // let apiToken = sessionStorage.getItem('apiToken');
       let formData = new FormData();
       formData.append("aaa", "aaaaa");
       let form = {
@@ -219,8 +216,8 @@ const CreateCollectibleMulti = () => {
         collection_id: udata.collection_id,
         title: udata.title,
         description: udata.description,
-        royalties: 11,                                                                                                                                                                                                                                                                                                            
-        is_single: false,  
+        royalties: udata.royalties,
+        is_single: false,
         img_path: udata.img_path,
         digital_key: "11",
         user_id: user_id._id,
@@ -230,42 +227,56 @@ const CreateCollectibleMulti = () => {
         alt_text_nft: udata.alterText,
         category: udata.category
       };
+      if (form.img_path === undefined) {
+        toast("Please Select Image");
+        return;
+      }
+      else if (form.price <= 0) {
+        toast("Please Add Price");
+        return;
+      }
+      else if (form.collection_id === undefined) {
+        toast("Please Select Collection");
+        return;
+      }
+      else if (form.title === undefined) {
+        toast("Please Add Title");
+        return;
+      }
+      else if (form.royalties === undefined) {
+        toast("Please Add Royalties");
+        return;
+      }
       var file = form.img_path;
-      console.log(file)
-        console.log(udata)
-        await axios.post(`${Config.baseURL}v1/collectible/create`, form,
-          {
-            headers: {
-              "Authorization": `Bearer ${apiToken}`,
-            }
-          })
-        .then((res) => {
-          console.log(res);
-          if(res.data.response_code === "API_ERROR") {
-            toast("" + res.data.error.message);
-          } else if (res.data.response_code === "API_SUCCESS") {
-            /*var transactions = {
-              type: "collectible",
-              amount: 10
-            }*/
-            // axios.put(`${Config.baseURL}v1/user/transaction/create`,transactions,
-            // {
-            //   headers: {
-            //     "Authorization": `Bearer ${apiToken}`,
-            //   }  
-            // }).then((res) => {
-            //   console.log(res);
-            //   toast("" + res.data.message);
-            // })
-            toast("" + res.data.message);
-          }
+      await axios.post(`${Config.baseURL}v1/collectible/create`, form, {
+          headers: {"Authorization": `Bearer ${apiToken}`}
         })
-        .catch(error => {
-          // this.setState({ errorMessage: error.message });
-          console.log('There was an error!', error);
-          toast("" + error);
-        });
-     
+      .then((res) => {
+        console.log(res);
+        if(res.data.response_code === "API_ERROR") {
+          toast("" + res.data.error.message);
+        } else if (res.data.response_code === "API_SUCCESS") {
+          /*var transactions = {
+            type: "collectible",
+            amount: 10
+          }*/
+          // axios.put(`${Config.baseURL}v1/user/transaction/create`,transactions,
+          // {
+          //   headers: {
+          //     "Authorization": `Bearer ${apiToken}`,
+          //   }
+          // }).then((res) => {
+          //   console.log(res);
+          //   toast("" + res.data.message);
+          // })
+          toast("" + res.data.message);
+        }
+      })
+      .catch(error => {
+        // this.setState({ errorMessage: error.message });
+        console.log('There was an error!', error);
+        toast("" + error);
+      });
     }
   };
 
@@ -417,7 +428,7 @@ const CreateCollectibleMulti = () => {
                   <div className="prize-single-collectible d-flex flex-column">
                     <div className="d-flex justify-content-between align-items-center">
                       <span className="color-gray">
-                        Enter price for one piece
+                        Enter price for one piece 2
                       </span>
                       <span className="color-gray">
                         <div className="d-flex border">
@@ -523,8 +534,7 @@ const CreateCollectibleMulti = () => {
             <div className="col-sm-12 col-md-5 pl-5 brand-new-nfp">
               <b>Preview</b>
               <div className="border-gray upload-box text-center border-radius mt-4 color-gray d-flex justify-content-center align-items-center p-5">
-                <label>Upload file to preview your brand new NFT</label>  
-
+                <label>{changetext}</label>
                 <img
                   alt={""}
                   src=""

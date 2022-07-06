@@ -36,7 +36,7 @@ const CreateCollectibleEdit = () => {
           // console.log(res.data.data);
         });
     }
-  }, []);
+  }, [apiToken]);
 
   var upProfile = async () => {
     console.log(form);

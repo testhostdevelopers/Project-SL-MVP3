@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import TopCard from "../Components/TopCard";
 import { Tabs } from "antd";
 import { useParams } from "react-router-dom";
+import axios from "axios";
+import { Config } from "../utils/config";
+import TopCard from "../Components/TopCard";
+import LiveAuctions from "../Components/LiveAuctions";
+import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 // import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
 // import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
 // import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
-import axios from "axios";
-import { Config } from "../utils/config";
-import LiveAuctions from "../Components/LiveAuctions";
-import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
 
 const { TabPane } = Tabs;
 

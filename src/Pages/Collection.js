@@ -8,30 +8,24 @@ import UpdateCoverPopup from "../Components/Popup/UpdateCoverPopup";
 import UpdateProfilePicPopup from "../Components/Popup/UpdateProfilePicPopup";
 import { useParams } from "react-router-dom";
 import addicon from "../assets/img/custom/Mask_Group.png";
-// import propertiesicon from "../assets/img/custom/properties.svg";
 import FilterSort from "../Components/FilterSort";
 import FilterCategory from "../Components/FilterCategory";
 import Filtersale from "../Components/Filtersale";
 import FilterRange from "../Components/FilterRange";
-// import FilterProperties from "../Components/FilterProperties";
 import ProfileLinks from "../Components/ProfileLinks";
 import { Config } from '../utils/config';
 import Activity from "./Activity";
 import artWorkWeek1 from "../assets/img/custom/artWorkWeek1.png";
-// import artWorkWeek2 from "../assets/img/custom/artWorkWeek2.png";
-// import artWorkWeek3 from "../assets/img/custom/artWorkWeek3.png";
-// import artWorkWeek4 from "../assets/img/custom/artWorkWeek4.png";
+// import propertiesicon from "../assets/img/custom/properties.svg";
+// import FilterProperties from "../Components/FilterProperties";
 // import Activitytab from "../Components/Tabs/Activitytab";
-// import topSellerUser1 from "../assets/img/custom/topSellerUser1.png";
-// import topSellerUser2 from "../assets/img/custom/topSellerUser2.png";
-// import topSellerUser3 from "../assets/img/custom/topSellerUser3.png";
 // import addicon from "../assets/img/custom/Mask_Group.png";
 // import CollectionBannerBg from "../assets/img/custom/Collection-banner-bg.png";
 // import userProfilePictures from "../assets/img/custom/userProfilePictures.png";
 // import FilterCollections from "../Components/FilterCollections";
+// const { Option } = Select;
 
 const { TabPane } = Tabs;
-// const { Option } = Select;
 
 const Collection = (props) => {
   const { collectionId } = useParams();

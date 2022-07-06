@@ -10,7 +10,7 @@ const BuyAuction = (props) => {
   const [min, setMin] = useState(10);
   const [seconds, setSeconds] = useState(44);
   const data = props;
-  var length = data.props.bids.length;
+  // var length = data.props.bids.length;
   console.log(data.props);
   const update = async () => {
     await axios

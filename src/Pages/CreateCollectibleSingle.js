@@ -29,7 +29,6 @@ const client = new NFTStorage({ token: NFT_STORAGE_TOKEN })
 const CreateCollectibleSingle = () => {
   const apiToken = sessionStorage.getItem("apiToken");
   const user_id = JSON.parse(sessionStorage.getItem("userdata")) || {};
-  // console.log('user_id', user_id);
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -46,9 +45,7 @@ const CreateCollectibleSingle = () => {
   let [price, setPrice] = useState(0);
   let [collection_list, setcollectionList] = useState([]);
   const [filesize, setfilesize] = useState("");
-  const [changetext, setChangetext] = useState(
-    "Upload file to preview your brand new NFT"
-  );
+  const [changetext, setChangetext] = useState("Upload file to preview your brand new NFT");
   const profileImage = React.useRef(null);
   const profileUploader = React.useRef(null);
   const collectionListFunc = async () => {
@@ -120,16 +117,10 @@ const CreateCollectibleSingle = () => {
   };*/
 
   const uploadNftStorage = async (file) => {
-    console.log(file)
     // let fileExt = file.name.split(".").pop();
     // let readers = new FileReader();
     // readers.readAsDataURL(file);
     // const imageFile = new File([ file ], file.name , { type: `image/${fileExt}` })
-    // console.log(imageFile)
-    // console.log(fileExt)
-   
-    
-
     const metadata = {
       name: "Storing the World's Most Valuable Virtual Assets with NFT.Storage",
       description: "The metaverse is here. Where is it all being stored?",
@@ -145,19 +136,11 @@ const CreateCollectibleSingle = () => {
         }
       }
     };
-    console.log(metadata)
     var m = new File([metadata],"metadata.json",{ type: "text/json" });
-    console.log(m)
     const out = await client.storeDirectory(file,m);
-    console.log(out)
     const imageUrlNft = out + '.ipfs.nftstorage.link/' + file[0].name;
-    console.log(imageUrlNft)
-
     // const imageUrl = metadata.url;
-
-    
     setUdata({...udata, img_path: imageUrlNft })
-
     // const connection = new Connection(  
     //   clusterApiUrl('devnet'),
     //   'confirmed',
@@ -165,14 +148,12 @@ const CreateCollectibleSingle = () => {
     // const keypair = Keypair.generate();
     // const feePayerAirdropSignature = await connection.requestAirdrop(keypair.publicKey, LAMPORTS_PER_SOL);
     // await connection.confirmTransaction(feePayerAirdropSignature);
-
     // const mintNFTResponse = await actions.mintNFT({
     //   connection,
     //   wallet: new NodeWallet(keypair),
     //   uri: imageUrl,
     //   maxSupply: 1
     // });
-
     // console.log(mintNFTResponse);
   }
 
@@ -197,13 +178,11 @@ const CreateCollectibleSingle = () => {
       reader.readAsDataURL(file);
       uploadNftStorage(e.target.files);
       // imageUpload(e.target.files[0]);
-
     }
   };
 
   const [singleCollectionPopup, setSingleCollectionPopup] = useState(false);
   // console.log(filesize, "setfilesize");
-
   const price_one = ["SOL", "BTC"];
   const category = ["Cryptoloria", "Art","Photography","Games","Metaverses"];
   const [showDetail, setShowDetail] = useState(true);
@@ -224,7 +203,7 @@ const CreateCollectibleSingle = () => {
         collection_id: udata.collection_id,
         title: udata.title,
         description: udata.description,
-        royalties: 11,                                                                                                                                                                                                                                                                                                            
+        royalties: udata.royalties,
         is_single: true,  
         img_path: udata.img_path,
         digital_key: "11",
@@ -235,33 +214,38 @@ const CreateCollectibleSingle = () => {
         alt_text_nft: udata.alterText,
         category: udata.category
       };
-      var file = form.img_path;
-      console.log(file)
-        console.log(udata)
-        await axios.post(`${Config.baseURL}v1/collectible/create`, form,
-          {
-            headers: {
-              "Authorization": `Bearer ${apiToken}`,
-            }
-          })
+      // var file = form.img_path;
+      // console.log('form.img_path', form.img_path);
+      // console.log(udata);
+      if (form.img_path === undefined) {
+        toast("Please Select Image");
+        return;
+      }
+      else if (form.price <= 0) {
+        toast("Please Add Price");
+        return;
+      }
+      else if (form.collection_id === undefined) {
+        toast("Please Select Collection");
+        return;
+      }
+      else if (form.title === undefined) {
+        toast("Please Add Title");
+        return;
+      }
+      else if (form.royalties === undefined) {
+        toast("Please Add Royalties");
+        return;
+      }
+
+      await axios.post(`${Config.baseURL}v1/collectible/create`, form, {
+          headers: { "Authorization": `Bearer ${apiToken}` }
+        })
         .then((res) => {
-          console.log(res);
-          if(res.data.response_code === "API_ERROR") {
+          // console.log(res);
+          if (res.data.response_code === "API_ERROR") {
             toast("" + res.data.error.message);
           } else if (res.data.response_code === "API_SUCCESS") {
-            /*var transactions = {
-              type: "collectible",
-              amount: 10
-            }*/
-            // axios.put(`${Config.baseURL}v1/user/transaction/create`,transactions,
-            // {
-            //   headers: {
-            //     "Authorization": `Bearer ${apiToken}`,
-            //   }  
-            // }).then((res) => {
-            //   console.log(res);
-            //   toast("" + res.data.message);
-            // })
             toast("" + res.data.message);
           }
         })
@@ -270,7 +254,6 @@ const CreateCollectibleSingle = () => {
           console.log('There was an error!', error);
           toast("" + error);
         });
-     
     }
   };
 
@@ -490,10 +473,8 @@ const CreateCollectibleSingle = () => {
                       <h5>Category</h5>
                     </b>
                     <div className="d-flex justify-content-between align-items-center">
-                      
                       <span className="color-gray">
                         <div className="d-flex border">
-                         
                           <Select
                             className="section-select-filter ml-0"
                             onChange={(e) => {
@@ -513,7 +494,6 @@ const CreateCollectibleSingle = () => {
                   </div>
                 </div>
                 <div className="prize-single-collectible d-flex flex-column">
-
                   <div className="d-flex justify-content-between mt-1">
                     <b>
                       <h5>Unlock once Purchased</h5>
