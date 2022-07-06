@@ -467,7 +467,7 @@ const Home = () => {
                     <b>{dashboardArtWork[0]?.collectible_id?.title}</b>
                   </Link>
                 </h4>
-                <small>Original Series</small>
+                <small>{dashboardArtWork[0]?.category}</small>
               </div>
             </div>
 

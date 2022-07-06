@@ -365,6 +365,7 @@ const Navbar = (props) => {
       if (event.key === 'Enter') {
         // console.log('search keyword ', event.target.value);
         history.push('/search/' + event.target.value);
+        SetSearchItem(!searchItem);
       }
     }
     return <input type="text" onKeyDown={handleKeyDown} placeholder="Search by creator, collectible or collection"/>
@@ -401,7 +402,6 @@ const Navbar = (props) => {
               >
                 <a
                   className="nav-link nav-dark-button"
-                  href="/#"
                   onClick={() => SetSearchItem(!searchItem)}
                 >
                   {theme === true ? (
@@ -416,7 +416,7 @@ const Navbar = (props) => {
                 </a>
                 {searchItem && (
                   <div className="mobile_search">
-                    <input type="text" placeholder="Search" />
+                    <SearchInput />
                   </div>
                 )}
               </div>
@@ -498,7 +498,7 @@ const Navbar = (props) => {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
-                <a className="nav-link nav-dark-button" href="/#">
+                <a className="nav-link nav-dark-button">
                   {theme === true ? (
                     <img
                       src={notification_white}
@@ -518,7 +518,6 @@ const Navbar = (props) => {
               <div className="d-lg-none d-sm-block">
                 <a
                   className="nav-link nav-dark-button p-0 nav-dark-button mr-2 position-relative"
-                  href="/#"
                   onClick={() => setOpenProfileDropMenu(!openProfileDropMenu)}
                 >
                   {theme === true && sessionStorage.getItem("apiToken") ? (
@@ -631,7 +630,7 @@ const Navbar = (props) => {
                             </div>
                           </div>
 
-                          <a className="nav-link nav-dark-button" href="/#">
+                          <a className="nav-link nav-dark-button">
                             <svg
                               width="20"
                               height="20"
@@ -733,17 +732,17 @@ const Navbar = (props) => {
                 }`}
               >
                 <li>
-                  <Link to="/Explore" className="nav-link">
+                  <Link to="/Profile" className="nav-link">
                     My items
                   </Link>
                 </li>
                 <li>
-                  <Link to="/Cryptoloria" className="nav-link">
+                  <Link to="/Following" className="nav-link">
                     Following
                   </Link>
                 </li>
                 <li>
-                  <Link to="#0" className="nav-link">
+                  <Link to="/Activity" className="nav-link">
                     Activity
                   </Link>
                 </li>
@@ -800,7 +799,7 @@ const Navbar = (props) => {
                   </div>
                 </li>
                 <li>
-                  <Link to="#0" className="btn-primary">
+                  <Link to="/create" className="btn-primary">
                     Create
                   </Link>
                 </li>
